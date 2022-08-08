@@ -13,7 +13,7 @@ ignoreFiles = ['\assets\node_modules\.*']
     note_pager = 10
     article_pager = 10
     home_post_limit = 10
-    GACode = "G-1KK3645K2M"
+    GACode = "G-RWE4MLJYE6"
     BingCode = "0899226C2935AEF15F1F831A889431FA"
 [taxonomies]
     category = "categories"
