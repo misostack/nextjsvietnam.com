@@ -1,0 +1,531 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=home href=https://nextjsvietnam.com>
+<meta name=generator content="jsguru cms">
+<link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap">
+<link rel=stylesheet href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel=stylesheet href=https://nextjsvietnam.com/themes/2022/public/main.css>
+<link rel=stylesheet href=https://nextjsvietnam.com/themes/2022/public/home.css>
+<link rel=stylesheet href=https://nextjsvietnam.com/themes/2022/public/page.css>
+<meta name=msvalidate.01 content="0899226C2935AEF15F1F831A889431FA">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1KK3645K2M"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-1KK3645K2M')</script>
+<title>Nestjs Request and Response Object | As you've known, in a request we will have Route Params, Query Params, Body, Headers ... | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+<meta name=robots content="all">
+<meta name=keywords content="nestjs,request,response,express">
+<meta name=description content="As you've known, in a request we will have Route Params, Query Params, Body, Headers ...">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://user-images.githubusercontent.com/31009750/181449337-70081a76-5a01-4229-805e-39ed0ded6b5b.png">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="750">
+<meta property="og:image:height" content="300">
+<link rel=apple-touch-icon sizes=57x57 href=/apple-icon-57x57.png>
+<link rel=apple-touch-icon sizes=60x60 href=/apple-icon-60x60.png>
+<link rel=apple-touch-icon sizes=72x72 href=/apple-icon-72x72.png>
+<link rel=apple-touch-icon sizes=76x76 href=/apple-icon-76x76.png>
+<link rel=apple-touch-icon sizes=114x114 href=/apple-icon-114x114.png>
+<link rel=apple-touch-icon sizes=120x120 href=/apple-icon-120x120.png>
+<link rel=apple-touch-icon sizes=144x144 href=/apple-icon-144x144.png>
+<link rel=apple-touch-icon sizes=152x152 href=/apple-icon-152x152.png>
+<link rel=apple-touch-icon sizes=180x180 href=/apple-icon-180x180.png>
+<link rel=icon type=image/png sizes=192x192 href=/android-icon-192x192.png>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=96x96 href=/favicon-96x96.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
+<link rel=manifest href=/manifest.json>
+<meta name=msapplication-TileColor content="#ffffff">
+<meta name=msapplication-TileImage content="/ms-icon-144x144.png">
+<meta name=theme-color content="#ffffff">
+</head>
+<body class=body-nav-fixed>
+<nav class="nav-fixed nav-default z-50">
+<div class=container>
+<div class="nav-container flex flex-wrap justify-between items-center">
+<a href=https://nextjsvietnam.com class="nav-brand inline-block">
+<img class=h-16 src=https://nextjsvietnam.com/themes/2022/src/assets/images/logo.png alt=Stunning>
+</a>
+<a href=javascript:void(0); data-menu=#menu-main_menu class=nav-menu-toggle><span class=material-icons>menu</span></a>
+<ul id=menu-main_menu class="nav-menu h-0 md:h-auto">
+<form class="nav-menu-search-bar md:hidden relative">
+<button class="nav-menu-search-bar-search-btn absolute h-full"><svg class="w-3 h-3 text-gray-600" fill="currentcolor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.32 14.9l5.39 5.4a1 1 0 01-1.42 1.4l-5.38-5.38a8 8 0 111.41-1.41zM10 16a6 6 0 100-12 6 6 0 000 12z"/></svg>
+</button>
+<input name=s type=text class=w-full>
+</form>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/cheatsheet>cheatsheet</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/frameworks>frameworks</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/java>java</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/lifestyle>lifestyle</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/systemdesign>systemdesign</a></li>
+<li class=nav-menu-item>
+<a class=nav-menu-link href=https://nextjsvietnam.com>Tools
+<span class=material-icons>keyboard_arrow_down</span>
+</a>
+<ul class=sub-menu>
+<li class=nav-menu-item><a class=nav-menu-link href=https://regex101.com/>Online Regex</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=http://www.bashoneliners.com/>Bash Online</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://www.epochconverter.com/>Unix Timestamp Conversion</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://ryanstutorials.net/bash-scripting-tutorial/>Bash Scripting</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://explainshell.com/>Explain Shell</a></li>
+</ul>
+</li>
+<form class="nav-menu-search-bar hidden md:flex relative">
+<button class="nav-menu-search-bar-search-btn absolute h-full"><svg class="w-3 h-3 text-gray-600" fill="currentcolor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.32 14.9l5.39 5.4a1 1 0 01-1.42 1.4l-5.38-5.38a8 8 0 111.41-1.41zM10 16a6 6 0 100-12 6 6 0 000 12z"/></svg>
+</button>
+<input name=s type=text class=w-full>
+</form>
+</ul>
+</div>
+</div>
+</nav>
+<main>
+<section class="container section">
+<div class="page-content max-w-2xl mx-auto">
+<img src=https://user-images.githubusercontent.com/31009750/181449337-70081a76-5a01-4229-805e-39ed0ded6b5b.png class=img-responsive alt="Nestjs Request and Response Object">
+<h1>Nestjs Request and Response Object</h1>
+<p>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/frameworks>frameworks</a>
+</p>
+<p><strong>Note</strong>: All of demo source code you can find our in github <a href=https://github.com/misostack/finance.api.sonnm.com>nestjs boilerplate</a></p>
+<p>As you&rsquo;ve known, in a request we will have:</p>
+<ul>
+<li>Route Params ( included in URL )</li>
+<li>Query Params ( included in URL )</li>
+<li>Body ( json/form-data/multipart/form-data )</li>
+</ul>
+<blockquote>
+<p>There are 2 ways to get these values</p>
+</blockquote>
+<h3 id=library-specific-approach---express>Library specific Approach - Express</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Controller</span>, <span style=color:#a6e22e>Req</span>, <span style=color:#a6e22e>Res</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/common&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Request</span>, <span style=color:#a6e22e>Response</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;express&#34;</span>;
+
+<span style=color:#66d9ef>@Controller</span>(<span style=color:#e6db74>&#34;examples&#34;</span>)
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ExamplesController</span> {
+  <span style=color:#66d9ef>@Post</span>(<span style=color:#e6db74>&#34;request-object/express/:email&#34;</span>)
+  <span style=color:#a6e22e>exampleRequestObjectExpress</span>(<span style=color:#66d9ef>@Req</span>() <span style=color:#a6e22e>req</span>: <span style=color:#66d9ef>Request</span>, <span style=color:#66d9ef>@Res</span>() <span style=color:#a6e22e>res</span>: <span style=color:#66d9ef>Response</span>) {
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>responseData</span> <span style=color:#f92672>=</span> {
+      <span style=color:#a6e22e>approach</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;express&#34;</span>,
+      <span style=color:#a6e22e>routeParams</span>: <span style=color:#66d9ef>req.params</span>,
+      <span style=color:#a6e22e>queryParams</span>: <span style=color:#66d9ef>req.query</span>,
+      <span style=color:#a6e22e>body</span>: <span style=color:#66d9ef>req.body</span>,
+      <span style=color:#a6e22e>headers</span>: <span style=color:#66d9ef>req.headers</span>,
+      <span style=color:#a6e22e>ip</span>: <span style=color:#66d9ef>req.ip</span>,
+      <span style=color:#a6e22e>ips</span>: <span style=color:#66d9ef>req.ips</span>,
+      <span style=color:#a6e22e>hostname</span>: <span style=color:#66d9ef>req.hostname</span>,
+      <span style=color:#a6e22e>subdomain</span>: <span style=color:#66d9ef>req.subdomains</span>,
+    };
+    <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>status</span>(<span style=color:#ae81ff>200</span>).<span style=color:#a6e22e>json</span>(<span style=color:#a6e22e>responseData</span>);
+  }
+}
+</code></pre></div><h3 id=standard-using-nestjs-decoratos>Standard using NestJS Decoratos</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>import</span> {
+  <span style=color:#a6e22e>Controller</span>,
+  <span style=color:#a6e22e>Delete</span>,
+  <span style=color:#a6e22e>Get</span>,
+  <span style=color:#a6e22e>Headers</span>,
+  <span style=color:#a6e22e>Ip</span>,
+  <span style=color:#a6e22e>Param</span>,
+  <span style=color:#a6e22e>Patch</span>,
+  <span style=color:#a6e22e>Post</span>,
+  <span style=color:#a6e22e>Query</span>,
+  <span style=color:#a6e22e>Req</span>,
+  <span style=color:#a6e22e>Res</span>,
+} <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/common&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Body</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/common&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Request</span>, <span style=color:#a6e22e>Response</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;express&#34;</span>;
+
+<span style=color:#66d9ef>@Controller</span>(<span style=color:#e6db74>&#34;examples&#34;</span>)
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ExamplesController</span> {
+  <span style=color:#66d9ef>@Post</span>(<span style=color:#e6db74>&#34;request-object/standard/:email&#34;</span>)
+  <span style=color:#a6e22e>exampleRequestObjectStandard</span>(
+    <span style=color:#66d9ef>@Body</span>() <span style=color:#a6e22e>body</span>,
+    <span style=color:#66d9ef>@Query</span>() <span style=color:#a6e22e>query</span>,
+    <span style=color:#66d9ef>@Param</span>(<span style=color:#e6db74>&#34;email&#34;</span>) <span style=color:#a6e22e>email</span>: <span style=color:#66d9ef>string</span>,
+    <span style=color:#66d9ef>@Headers</span>() <span style=color:#a6e22e>headers</span>,
+    <span style=color:#66d9ef>@Ip</span>() <span style=color:#a6e22e>ip</span>
+  ) {
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>responseData</span> <span style=color:#f92672>=</span> {
+      <span style=color:#a6e22e>approach</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;standard&#34;</span>,
+      <span style=color:#a6e22e>routeParams</span><span style=color:#f92672>:</span> { <span style=color:#a6e22e>email</span> },
+      <span style=color:#a6e22e>queryParams</span>: <span style=color:#66d9ef>query</span>,
+      <span style=color:#a6e22e>body</span>: <span style=color:#66d9ef>body</span>,
+      <span style=color:#a6e22e>headers</span>: <span style=color:#66d9ef>headers</span>,
+      <span style=color:#a6e22e>ip</span>,
+    };
+    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>responseData</span>;
+  }
+}
+</code></pre></div><p><strong>It&rsquo;s more clean right? We only have to work with JSON object, NestJS will do serialization part for us</strong></p>
+<h3 id=but-how-about-uploading-files-with-form-datamultipart>But how about uploading files with form-data/multipart?</h3>
+<p><img src=https://user-images.githubusercontent.com/31009750/182763620-ac27e35a-5a4b-4d3f-9153-0fc98c22c199.png alt=image></p>
+<p><strong>Let&rsquo;s have a look in POST data when a request is trying to upload a file</strong></p>
+<p><img src=https://user-images.githubusercontent.com/31009750/182764168-96dd74f6-0297-47e5-9bb9-56f1c39321f3.png alt=image></p>
+<blockquote>
+<p>Request is a streaming object</p>
+</blockquote>
+<p><img src=https://user-images.githubusercontent.com/31009750/182773536-4edb3c95-520d-4afc-bf8f-d16adede3224.png alt=image></p>
+<blockquote>
+<p>So let&rsquo;s do some transformation</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Transform</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;stream&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>createWriteStream</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;fs&#34;</span>;
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>writeStream</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>createWriteStream</span>(<span style=color:#e6db74>&#34;./tmp/example-write-stream.pdf&#34;</span>);
+<span style=color:#75715e>// This will write the stream data into the open file
+</span><span style=color:#75715e></span><span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>pipe</span>(<span style=color:#a6e22e>writeStream</span>);
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>myMultipartParser</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Transform</span>({
+  <span style=color:#a6e22e>transform</span>(<span style=color:#a6e22e>buffer</span>, <span style=color:#a6e22e>_</span>, <span style=color:#a6e22e>done</span>) {
+    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>buffer</span>);
+    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;-&#34;</span>.<span style=color:#a6e22e>repeat</span>(<span style=color:#ae81ff>50</span>));
+    <span style=color:#a6e22e>done</span>();
+  },
+});
+<span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>pipe</span>(<span style=color:#a6e22e>myMultipartParser</span>);
+<span style=color:#a6e22e>req</span>
+  .<span style=color:#a6e22e>on</span>(<span style=color:#e6db74>&#34;abort&#34;</span>, () <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>send</span>({ <span style=color:#a6e22e>aborted</span>: <span style=color:#66d9ef>1001</span> }))
+  .<span style=color:#a6e22e>on</span>(<span style=color:#e6db74>&#34;err&#34;</span>, (<span style=color:#a6e22e>err</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>send</span>(<span style=color:#a6e22e>err</span>))
+  .<span style=color:#a6e22e>on</span>(<span style=color:#e6db74>&#34;data&#34;</span>, (<span style=color:#a6e22e>buffer</span>) <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;buffer&#34;</span>, <span style=color:#a6e22e>buffer</span>);
+  })
+  .<span style=color:#a6e22e>on</span>(<span style=color:#e6db74>&#34;end&#34;</span>, () <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;end&#34;</span>);
+    <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>status</span>(<span style=color:#ae81ff>200</span>).<span style=color:#a6e22e>json</span>({
+      <span style=color:#a6e22e>body</span>: <span style=color:#66d9ef>req.body</span>,
+      <span style=color:#a6e22e>headers</span>: <span style=color:#66d9ef>req.headers</span>,
+    });
+  });
+</code></pre></div><p><strong>If we have only one file it is okie to write this stream directly. But if we allow to upload multiple files. It will write into a same file if we don&rsquo;t know how to seperate files based on the stream data. We don&rsquo;t have to invent the wheel</strong></p>
+<blockquote>
+<p>In NodeJS Ecosystem, we have 2 big libraries to handle this</p>
+</blockquote>
+<ul>
+<li><a href=https://www.npmjs.com/package/formidable>Formidable</a></li>
+<li><a href=https://www.npmjs.com/package/multer>Multer</a></li>
+<li><a href=https://www.npmjs.com/package/form-data>Form Data</a></li>
+</ul>
+<p><strong>Let&rsquo;s take a look at example with Formidable and Multer</strong></p>
+<h2 id=1-multer-is-a-middleware-so-our-approach-here-is-creating-a-middleware-and-apply-multer>1. Multer is a middleware, so our approach here is creating a middleware and apply multer</h2>
+<ul>
+<li><input checked disabled type=checkbox> Check in header if content type is mutipart</li>
+<li><input checked disabled type=checkbox> Example for middleware in NestJS</li>
+<li><input checked disabled type=checkbox> Apply multer middleware with configuration</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>multipart</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>/multipart/i</span>.<span style=color:#a6e22e>test</span>(<span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>headers</span>[<span style=color:#e6db74>&#34;content-type&#34;</span>]);
+</code></pre></div><blockquote>
+<p>Let&rsquo;s create an example for middleware in NestJS</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>NextFunction</span>, <span style=color:#a6e22e>Request</span>, <span style=color:#a6e22e>Response</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;express&#34;</span>;
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>ExampleMiddleware</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>req</span>: <span style=color:#66d9ef>Request</span>, <span style=color:#a6e22e>res</span>: <span style=color:#66d9ef>Response</span>, <span style=color:#a6e22e>next</span>: <span style=color:#66d9ef>NextFunction</span>) <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;[ExampleMiddleware]&#34;</span>);
+  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>next</span>();
+};
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#a6e22e>ExampleMiddleware</span>;
+</code></pre></div><p><strong>And we can use it like this</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>MiddlewareConsumer</span>, <span style=color:#a6e22e>Module</span>, <span style=color:#a6e22e>NestModule</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/common&#34;</span>;
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AppModule</span> <span style=color:#66d9ef>implements</span> <span style=color:#a6e22e>NestModule</span> {
+  <span style=color:#a6e22e>configure</span>(<span style=color:#a6e22e>consumer</span>: <span style=color:#66d9ef>MiddlewareConsumer</span>) {
+    <span style=color:#a6e22e>consumer</span>.<span style=color:#a6e22e>apply</span>(<span style=color:#a6e22e>ExampleMiddleware</span>).<span style=color:#a6e22e>forRoutes</span>(<span style=color:#e6db74>&#34;*&#34;</span>);
+  }
+}
+</code></pre></div><p><strong>Example with Multer</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>MulterOptions</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/platform-express/multer/interfaces/multer-options.interface&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#f92672>*</span> <span style=color:#66d9ef>as</span> <span style=color:#a6e22e>multer</span> <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;multer&#34;</span>;
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>MulterMiddleware</span> <span style=color:#f92672>=</span> (
+  <span style=color:#a6e22e>multerOptions</span>: <span style=color:#66d9ef>MulterOptions</span>,
+  <span style=color:#a6e22e>fieldName</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;file&#34;</span>,
+  <span style=color:#a6e22e>single</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>true</span>
+) <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>upload</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>multer</span>(<span style=color:#a6e22e>multerOptions</span>);
+  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>single</span> <span style=color:#f92672>?</span> <span style=color:#a6e22e>upload</span>.<span style=color:#a6e22e>single</span>(<span style=color:#a6e22e>fieldName</span>) <span style=color:#f92672>:</span> <span style=color:#a6e22e>upload</span>.<span style=color:#a6e22e>array</span>(<span style=color:#a6e22e>fieldName</span>);
+};
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#a6e22e>MulterMiddleware</span>;
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Environment</span> {
+  <span style=color:#66d9ef>static</span> <span style=color:#a6e22e>getMulterOptions</span>(<span style=color:#a6e22e>options</span>: <span style=color:#66d9ef>Partial</span>&lt;<span style=color:#f92672>MulterOptions</span>&gt; <span style=color:#f92672>=</span> {})<span style=color:#f92672>:</span> <span style=color:#a6e22e>MulterOptions</span> {
+    <span style=color:#66d9ef>return</span> {
+      <span style=color:#a6e22e>dest</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;./public/data/uploads&#34;</span>,
+      ...<span style=color:#a6e22e>options</span>,
+    };
+  }
+}
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AppModule</span> <span style=color:#66d9ef>implements</span> <span style=color:#a6e22e>NestModule</span> {
+  <span style=color:#a6e22e>configure</span>(<span style=color:#a6e22e>consumer</span>: <span style=color:#66d9ef>MiddlewareConsumer</span>) {
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>SINGLE_MULTIPART_ROUTES</span> <span style=color:#f92672>=</span> [
+      <span style=color:#e6db74>&#34;examples/request-object/express/upload-file/multer&#34;</span>,
+    ];
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>MULTIPLE_MULTIPART_ROUTES</span> <span style=color:#f92672>=</span> [
+      <span style=color:#e6db74>&#34;examples/request-object/express/upload-multiple-file/multer&#34;</span>,
+    ];
+    <span style=color:#a6e22e>consumer</span>
+      .<span style=color:#a6e22e>apply</span>(<span style=color:#a6e22e>ExampleMiddleware</span>)
+      .<span style=color:#a6e22e>forRoutes</span>(<span style=color:#e6db74>&#34;*&#34;</span>)
+      .<span style=color:#a6e22e>apply</span>(<span style=color:#a6e22e>MulterMiddleware</span>(<span style=color:#a6e22e>Environment</span>.<span style=color:#a6e22e>getMulterOptions</span>()))
+      .<span style=color:#a6e22e>forRoutes</span>(...<span style=color:#a6e22e>SINGLE_MULTIPART_ROUTES</span>)
+      .<span style=color:#a6e22e>apply</span>(
+        <span style=color:#a6e22e>MulterMiddleware</span>(
+          <span style=color:#a6e22e>Environment</span>.<span style=color:#a6e22e>getMulterOptions</span>({
+            <span style=color:#a6e22e>limits</span><span style=color:#f92672>:</span> {
+              <span style=color:#a6e22e>fileSize</span>: <span style=color:#66d9ef>1024</span> <span style=color:#f92672>*</span> <span style=color:#ae81ff>1024</span> <span style=color:#f92672>*</span> <span style=color:#ae81ff>5</span>, <span style=color:#75715e>// in bytes : 5MB
+</span><span style=color:#75715e></span>              <span style=color:#a6e22e>files</span>: <span style=color:#66d9ef>2</span>, <span style=color:#75715e>// maximum files
+</span><span style=color:#75715e></span>            },
+          }),
+          <span style=color:#e6db74>&#34;files&#34;</span>,
+          <span style=color:#66d9ef>false</span>
+        )
+      )
+      .<span style=color:#a6e22e>forRoutes</span>(...<span style=color:#a6e22e>MULTIPLE_MULTIPART_ROUTES</span>);
+  }
+}
+</code></pre></div><p><strong>Does multer support us to save file with custom file name? YES</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>MulterOptions</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/platform-express/multer/interfaces/multer-options.interface&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#f92672>*</span> <span style=color:#66d9ef>as</span> <span style=color:#a6e22e>multer</span> <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;multer&#34;</span>;
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>getMyStorage</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>destination</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;./public/data/uploads&#34;</span>) <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>multer</span>.<span style=color:#a6e22e>diskStorage</span>({
+    <span style=color:#a6e22e>destination</span>: <span style=color:#66d9ef>function</span> (<span style=color:#a6e22e>req</span>, <span style=color:#a6e22e>file</span>, <span style=color:#a6e22e>cb</span>) {
+      <span style=color:#a6e22e>cb</span>(<span style=color:#66d9ef>null</span>, <span style=color:#a6e22e>destination</span>);
+    },
+    <span style=color:#a6e22e>filename</span>: <span style=color:#66d9ef>function</span> (<span style=color:#a6e22e>req</span>, <span style=color:#a6e22e>file</span>, <span style=color:#a6e22e>cb</span>) {
+      <span style=color:#75715e>// const uniqueSuffix = Date.now() + &#39;-&#39; + Math.round(Math.random() * 1e9);
+</span><span style=color:#75715e></span>      <span style=color:#a6e22e>cb</span>(<span style=color:#66d9ef>null</span>, <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>file</span>.<span style=color:#a6e22e>originalname</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>);
+    },
+  });
+};
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>getMyFileFilter</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>function</span> (<span style=color:#a6e22e>req</span>, <span style=color:#a6e22e>file</span>, <span style=color:#a6e22e>cb</span>) {
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>allowedMimes</span> <span style=color:#f92672>=</span> [
+    <span style=color:#e6db74>&#34;image/jpeg&#34;</span>,
+    <span style=color:#e6db74>&#34;image/pjpeg&#34;</span>,
+    <span style=color:#e6db74>&#34;image/png&#34;</span>,
+    <span style=color:#e6db74>&#34;application/pdf&#34;</span>,
+  ];
+  <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span><span style=color:#a6e22e>allowedMimes</span> <span style=color:#f92672>||</span> <span style=color:#a6e22e>allowedMimes</span>.<span style=color:#a6e22e>includes</span>(<span style=color:#a6e22e>file</span>.<span style=color:#a6e22e>mimetype</span>)) {
+    <span style=color:#a6e22e>cb</span>(<span style=color:#66d9ef>null</span>, <span style=color:#66d9ef>true</span>);
+  } <span style=color:#66d9ef>else</span> {
+    <span style=color:#a6e22e>cb</span>(
+      {
+        <span style=color:#a6e22e>success</span>: <span style=color:#66d9ef>false</span>,
+        <span style=color:#a6e22e>code</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;invalid_file_type&#34;</span>,
+        <span style=color:#a6e22e>message</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Invalid file type. Only jpg, png image files are allowed.&#34;</span>,
+      },
+      <span style=color:#66d9ef>false</span>
+    );
+  }
+};
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>MulterMiddleware</span> <span style=color:#f92672>=</span> (
+  <span style=color:#a6e22e>multerOptions</span>: <span style=color:#66d9ef>MulterOptions</span>,
+  <span style=color:#a6e22e>fieldName</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;file&#34;</span>,
+  <span style=color:#a6e22e>single</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>true</span>
+) <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>upload</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>multer</span>({
+    <span style=color:#a6e22e>storage</span>: <span style=color:#66d9ef>getMyStorage</span>(<span style=color:#a6e22e>multerOptions</span>.<span style=color:#a6e22e>dest</span>),
+    <span style=color:#a6e22e>fileFilter</span>: <span style=color:#66d9ef>getMyFileFilter</span>,
+    ...<span style=color:#a6e22e>multerOptions</span>,
+  });
+  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>single</span> <span style=color:#f92672>?</span> <span style=color:#a6e22e>upload</span>.<span style=color:#a6e22e>single</span>(<span style=color:#a6e22e>fieldName</span>) <span style=color:#f92672>:</span> <span style=color:#a6e22e>upload</span>.<span style=color:#a6e22e>array</span>(<span style=color:#a6e22e>fieldName</span>);
+};
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#a6e22e>MulterMiddleware</span>;
+</code></pre></div><p><strong>It&rsquo;s pretty cool right, and you have to handle errors when multer validation was failed</strong></p>
+<p>Okie, but the error will be thrown in middleware how do we handle? LOL.</p>
+<p><strong>Don&rsquo;t worry</strong></p>
+<p><img src=https://user-images.githubusercontent.com/31009750/182817635-c358897c-ef74-4f42-aede-e415f81e51d6.png alt=image></p>
+<p>NestJS provide us something call <strong>Exception filters</strong>, so you can catch and customize your error message before they were sending to client</p>
+<h3 id=exception-filters>Exception Filters</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>import</span> {
+  <span style=color:#a6e22e>ExceptionFilter</span>,
+  <span style=color:#a6e22e>Catch</span>,
+  <span style=color:#a6e22e>ArgumentsHost</span>,
+  <span style=color:#a6e22e>HttpException</span>,
+  <span style=color:#a6e22e>HttpStatus</span>,
+} <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/common&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>HttpArgumentsHost</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/common/interfaces&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>AbstractHttpAdapter</span>, <span style=color:#a6e22e>HttpAdapterHost</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/core&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>MulterError</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;multer&#34;</span>;
+
+<span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>HttpErrorResponse</span> {
+  <span style=color:#a6e22e>code</span>: <span style=color:#66d9ef>string</span>;
+  <span style=color:#a6e22e>message</span>: <span style=color:#66d9ef>string</span>;
+  <span style=color:#a6e22e>errors?</span>: <span style=color:#66d9ef>Array</span>&lt;<span style=color:#f92672>any</span>&gt;;
+}
+
+<span style=color:#66d9ef>@Catch</span>()
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AllExceptionsFilter</span> <span style=color:#66d9ef>implements</span> <span style=color:#a6e22e>ExceptionFilter</span> {
+  <span style=color:#66d9ef>constructor</span>(<span style=color:#66d9ef>private</span> <span style=color:#66d9ef>readonly</span> <span style=color:#a6e22e>httpAdapterHost</span>: <span style=color:#66d9ef>HttpAdapterHost</span>) {}
+  <span style=color:#a6e22e>handleHttpException</span>(
+    <span style=color:#a6e22e>exception</span>: <span style=color:#66d9ef>HttpException</span>,
+    <span style=color:#a6e22e>httpAdapter</span>: <span style=color:#66d9ef>AbstractHttpAdapter</span>,
+    <span style=color:#a6e22e>ctx</span>: <span style=color:#66d9ef>HttpArgumentsHost</span>,
+    <span style=color:#a6e22e>isProduction</span>
+  ) {
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>statusCode</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>exception</span>.<span style=color:#a6e22e>getStatus</span>();
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>res</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>exception</span>.<span style=color:#a6e22e>getResponse</span>() <span style=color:#66d9ef>as</span> <span style=color:#a6e22e>HttpErrorResponse</span>;
+    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>httpAdapter</span>.<span style=color:#a6e22e>reply</span>(
+      <span style=color:#a6e22e>ctx</span>.<span style=color:#a6e22e>getResponse</span>(),
+      {
+        <span style=color:#a6e22e>message</span>: <span style=color:#66d9ef>res.message</span>,
+        <span style=color:#a6e22e>code</span><span style=color:#f92672>:</span> (<span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>code</span> <span style=color:#f92672>||=</span> <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>message</span>),
+        <span style=color:#a6e22e>errors</span><span style=color:#f92672>:</span> (<span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>errors</span> <span style=color:#f92672>||=</span> <span style=color:#66d9ef>null</span>),
+      },
+      <span style=color:#a6e22e>statusCode</span>
+    );
+  }
+  <span style=color:#a6e22e>handleMulterException</span>(
+    <span style=color:#a6e22e>exception</span>: <span style=color:#66d9ef>MulterError</span>,
+    <span style=color:#a6e22e>httpAdapter</span>: <span style=color:#66d9ef>AbstractHttpAdapter</span>,
+    <span style=color:#a6e22e>ctx</span>: <span style=color:#66d9ef>HttpArgumentsHost</span>,
+    <span style=color:#a6e22e>isProduction</span>
+  ) {
+    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>httpAdapter</span>.<span style=color:#a6e22e>reply</span>(
+      <span style=color:#a6e22e>ctx</span>.<span style=color:#a6e22e>getResponse</span>(),
+      {
+        <span style=color:#a6e22e>code</span>: <span style=color:#66d9ef>exception.code</span>,
+        <span style=color:#a6e22e>message</span>: <span style=color:#66d9ef>isProduction</span> <span style=color:#f92672>?</span> <span style=color:#a6e22e>exception.message</span> : <span style=color:#66d9ef>exception.code</span>,
+        <span style=color:#a6e22e>statusCode</span>: <span style=color:#66d9ef>HttpStatus.BAD_REQUEST</span>,
+      },
+      <span style=color:#a6e22e>HttpStatus</span>.<span style=color:#a6e22e>BAD_REQUEST</span>
+    );
+  }
+  <span style=color:#66d9ef>catch</span>(<span style=color:#a6e22e>exception</span>: <span style=color:#66d9ef>unknown</span>, <span style=color:#a6e22e>host</span>: <span style=color:#66d9ef>ArgumentsHost</span>) {
+    <span style=color:#66d9ef>const</span> { <span style=color:#a6e22e>httpAdapter</span> } <span style=color:#f92672>=</span> <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>httpAdapterHost</span>;
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>ctx</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>host</span>.<span style=color:#a6e22e>switchToHttp</span>();
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>isProduction</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>process</span>.<span style=color:#a6e22e>env</span>.<span style=color:#a6e22e>NODE_ENV</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#34;production&#34;</span>;
+    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>exception</span> <span style=color:#66d9ef>instanceof</span> <span style=color:#a6e22e>HttpException</span>) {
+      <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>handleHttpException</span>(
+        <span style=color:#a6e22e>exception</span>,
+        <span style=color:#a6e22e>httpAdapter</span>,
+        <span style=color:#a6e22e>ctx</span>,
+        <span style=color:#a6e22e>isProduction</span>
+      );
+    }
+    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>exception</span> <span style=color:#66d9ef>instanceof</span> <span style=color:#a6e22e>MulterError</span>) {
+      <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>handleMulterException</span>(
+        <span style=color:#a6e22e>exception</span>,
+        <span style=color:#a6e22e>httpAdapter</span>,
+        <span style=color:#a6e22e>ctx</span>,
+        <span style=color:#a6e22e>isProduction</span>
+      );
+    }
+    <span style=color:#75715e>// otherwise
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>httpAdapter</span>.<span style=color:#a6e22e>reply</span>(
+      <span style=color:#a6e22e>ctx</span>.<span style=color:#a6e22e>getResponse</span>(),
+      {
+        <span style=color:#a6e22e>message</span>: <span style=color:#66d9ef>isProduction</span>
+          <span style=color:#f92672>?</span> <span style=color:#e6db74>&#34;INTERNAL_SERVER_ERROR&#34;</span>
+          <span style=color:#f92672>:</span> (<span style=color:#a6e22e>exception</span> <span style=color:#66d9ef>as</span> Error).<span style=color:#a6e22e>message</span> <span style=color:#f92672>+</span> (<span style=color:#a6e22e>exception</span> <span style=color:#66d9ef>as</span> Error).<span style=color:#a6e22e>stack</span>,
+        <span style=color:#a6e22e>statusCode</span>: <span style=color:#66d9ef>HttpStatus.INTERNAL_SERVER_ERROR</span>,
+      },
+      <span style=color:#a6e22e>HttpStatus</span>.<span style=color:#a6e22e>INTERNAL_SERVER_ERROR</span>
+    );
+  }
+}
+
+<span style=color:#66d9ef>@Module</span>({
+  <span style=color:#a6e22e>imports</span><span style=color:#f92672>:</span> [],
+  <span style=color:#a6e22e>controllers</span><span style=color:#f92672>:</span> [],
+  <span style=color:#a6e22e>providers</span><span style=color:#f92672>:</span> [
+    {
+      <span style=color:#a6e22e>provide</span>: <span style=color:#66d9ef>APP_FILTER</span>,
+      <span style=color:#a6e22e>useClass</span>: <span style=color:#66d9ef>AllExceptionsFilter</span>,
+    },
+  ],
+})
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AppModule</span> <span style=color:#66d9ef>implements</span> <span style=color:#a6e22e>NestModule</span> {}
+</code></pre></div><h3 id=but-this-approach-has-some-limitation>But this approach has some limitation</h3>
+<ul>
+<li>You have more than 1 field for file upload. Eg: You have an entity that has: thumbnail, slide photos, icon</li>
+<li>You wanna have custom message for file size limit and specify which file was reached the limit</li>
+<li>You wanna throw and error if the request does not include files</li>
+<li>You wanna throw a custom error message for file extension validation with error 400/422 ( not 500 as default of MulterError for file extension)</li>
+</ul>
+<p><strong>What is the</strong> <a href=/post/nestjs-upload-files>right way to handle uploading files in NestJS</a></p>
+<div class="m-1 p-1">
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/frameworks>frameworks</a>
+</div>
+</div>
+</section>
+<section class="container section">
+<div class="max-w-2xl mx-auto">
+<div class="font-heading text-2xl font-semibold">You Might Also Like</div>
+<div class="mt-8 grid gap-8">
+<ul class=sidebar-links>
+<li><a href=/post/vuejs-how-to-add-tailwind-in-your-application/>Vuejs How to Add TailwindCSS in Your Application</a></li>
+<li><a href=/post/nestjs-upload-files/>Nestjs Upload Files</a></li>
+<li><a href=/post/nestjs-pipes/>Nestjs Pipes</a></li>
+<li><a href=/post/validate-request-input-in-nestjs/>Validate Request Input in Nestjs</a></li>
+<li><a href=/post/nestjs-provider/>Nestjs Provider</a></li>
+<li><a href=/post/developer-your-rest-api-with-nestjs/>Developer Your Rest Api With Nestjs</a></li>
+<li><a href=/post/create-new-website-with-nextjs/>Create New Website With Nextjs</a></li>
+</ul>
+</div>
+</div>
+</section>
+</main>
+<footer class=footer>
+<div class="container md:flex">
+<section class="footer-section-info md:basis-1/4">
+<div class=address>
+<a class=logo href=https://nextjsvietnam.com title=NextJSVietNam>
+NextJSVietNam
+</a>
+<h4 class=footer-heading>
+PRODUCTION MODE
+<h4>
+</div>
+</section>
+<div class="footer-section-navigation-menu md:basis-1/4">
+<h4 class=footer-heading>NestJS</h4>
+<ul class=footer-section-navigation-menu-links>
+<li><a href=https://nextjsvietnam.com/post/nestjs-request-and-response-object/>Nestjs Request and Response Object</a></li>
+<li><a href=https://nextjsvietnam.com/post/nestjs-upload-files/>Nestjs Upload Files</a></li>
+<li><a href=https://nextjsvietnam.com/post/nestjs-pipes/>Nestjs Pipes</a></li>
+<li><a href=https://nextjsvietnam.com/post/validate-request-input-in-nestjs/>Validate Request Input in Nestjs</a></li>
+<li><a href=https://nextjsvietnam.com/post/nestjs-provider/>Nestjs Provider</a></li>
+</ul>
+</div>
+<div class="footer-section-navigation-menu md:basis-1/4">
+<h4 class=footer-heading>NextJS</h4>
+<ul class=footer-section-navigation-menu-links>
+<li><a href=https://nextjsvietnam.com/post/create-new-website-with-nextjs/>Create New Website With Nextjs</a></li>
+</ul>
+</div>
+<div class="footer-section-navigation-menu md:basis-1/4">
+<h4 class=footer-heading>Cheatsheet</h4>
+<ul class=footer-section-navigation-menu-links>
+<li><a href=https://nextjsvietnam.com/post/how-to-use-typescript-path-alias-in-loopback-4/>How to Use Typescript Path Alias in Loopback 4</a></li>
+<li><a href=https://nextjsvietnam.com/post/javascript-numeric-precision-issue/>Javascript Numeric Precision Issue</a></li>
+<li><a href=https://nextjsvietnam.com/post/su-dung-firebase-realtime-database-gui-thong-bao/>Sử dụng Firebase Realtime Database để gửi thông báo cho người dùng trong web app</a></li>
+<li><a href=https://nextjsvietnam.com/post/tim-hieu-ve-props-va-state-trong-reactjs/>Tim Hieu Ve Props Va State Trong Reactjs</a></li>
+<li><a href=https://nextjsvietnam.com/post/con-duong-tro-lap-lap-trinh-vien-fullstack-js/>Con đường trở thành lập trình viên fullstack JS</a></li>
+</ul>
+</div>
+</div>
+<div class=container>
+<div class=text-center>
+<a href><span class="material-icons text-4xl m-4">facebook</span></a>
+<a href><span class="material-icons text-4xl m-4">smart_display</span></a>
+</div>
+<div class="text-center text-lg py-4">
+Copyright @ NextJSVietNam 2022
+</div>
+<div class="text-center text-sm">
+Powered by <a class="font-bold text-primary" href=https://gohugo.io/>Go Hugo</a> - Made
+with love from <a class="font-bold text-primary" href=https://nextjsvietnam.com>NextJSVietNam</a> -
+Build
+Version 2022-08-05 20:07:21 +0700 +0700
+</div>
+</div>
+</footer>
+<script type=text/javascript src=https://nextjsvietnam.com/core/jquery-3.6.0.min.js></script>
+<script type=text/javascript src=https://nextjsvietnam.com/themes/2022/public/main.js></script>
+<script type=text/javascript src=https://nextjsvietnam.com/themes/2022/public/home.js></script>
+</body>
+</html>

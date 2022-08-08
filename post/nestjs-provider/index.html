@@ -1,0 +1,656 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=home href=https://nextjsvietnam.com>
+<meta name=generator content="jsguru cms">
+<link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap">
+<link rel=stylesheet href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel=stylesheet href=https://nextjsvietnam.com/themes/2022/public/main.css>
+<link rel=stylesheet href=https://nextjsvietnam.com/themes/2022/public/home.css>
+<link rel=stylesheet href=https://nextjsvietnam.com/themes/2022/public/page.css>
+<meta name=msvalidate.01 content="0899226C2935AEF15F1F831A889431FA">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1KK3645K2M"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-1KK3645K2M')</script>
+<title>Nestjs Provider | Providers are plain JavaScript classes that are declared as providers in a module | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+<meta name=robots content="all">
+<meta name=keywords content="Nestjs Provider">
+<meta name=description content="Providers are plain JavaScript classes that are declared as providers in a module">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://user-images.githubusercontent.com/31009750/181449337-70081a76-5a01-4229-805e-39ed0ded6b5b.png">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="750">
+<meta property="og:image:height" content="300">
+<link rel=apple-touch-icon sizes=57x57 href=/apple-icon-57x57.png>
+<link rel=apple-touch-icon sizes=60x60 href=/apple-icon-60x60.png>
+<link rel=apple-touch-icon sizes=72x72 href=/apple-icon-72x72.png>
+<link rel=apple-touch-icon sizes=76x76 href=/apple-icon-76x76.png>
+<link rel=apple-touch-icon sizes=114x114 href=/apple-icon-114x114.png>
+<link rel=apple-touch-icon sizes=120x120 href=/apple-icon-120x120.png>
+<link rel=apple-touch-icon sizes=144x144 href=/apple-icon-144x144.png>
+<link rel=apple-touch-icon sizes=152x152 href=/apple-icon-152x152.png>
+<link rel=apple-touch-icon sizes=180x180 href=/apple-icon-180x180.png>
+<link rel=icon type=image/png sizes=192x192 href=/android-icon-192x192.png>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=96x96 href=/favicon-96x96.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
+<link rel=manifest href=/manifest.json>
+<meta name=msapplication-TileColor content="#ffffff">
+<meta name=msapplication-TileImage content="/ms-icon-144x144.png">
+<meta name=theme-color content="#ffffff">
+</head>
+<body class=body-nav-fixed>
+<nav class="nav-fixed nav-default z-50">
+<div class=container>
+<div class="nav-container flex flex-wrap justify-between items-center">
+<a href=https://nextjsvietnam.com class="nav-brand inline-block">
+<img class=h-16 src=https://nextjsvietnam.com/themes/2022/src/assets/images/logo.png alt=Stunning>
+</a>
+<a href=javascript:void(0); data-menu=#menu-main_menu class=nav-menu-toggle><span class=material-icons>menu</span></a>
+<ul id=menu-main_menu class="nav-menu h-0 md:h-auto">
+<form class="nav-menu-search-bar md:hidden relative">
+<button class="nav-menu-search-bar-search-btn absolute h-full"><svg class="w-3 h-3 text-gray-600" fill="currentcolor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.32 14.9l5.39 5.4a1 1 0 01-1.42 1.4l-5.38-5.38a8 8 0 111.41-1.41zM10 16a6 6 0 100-12 6 6 0 000 12z"/></svg>
+</button>
+<input name=s type=text class=w-full>
+</form>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/cheatsheet>cheatsheet</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/frameworks>frameworks</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/java>java</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/lifestyle>lifestyle</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/systemdesign>systemdesign</a></li>
+<li class=nav-menu-item>
+<a class=nav-menu-link href=https://nextjsvietnam.com>Tools
+<span class=material-icons>keyboard_arrow_down</span>
+</a>
+<ul class=sub-menu>
+<li class=nav-menu-item><a class=nav-menu-link href=https://regex101.com/>Online Regex</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=http://www.bashoneliners.com/>Bash Online</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://www.epochconverter.com/>Unix Timestamp Conversion</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://ryanstutorials.net/bash-scripting-tutorial/>Bash Scripting</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://explainshell.com/>Explain Shell</a></li>
+</ul>
+</li>
+<form class="nav-menu-search-bar hidden md:flex relative">
+<button class="nav-menu-search-bar-search-btn absolute h-full"><svg class="w-3 h-3 text-gray-600" fill="currentcolor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.32 14.9l5.39 5.4a1 1 0 01-1.42 1.4l-5.38-5.38a8 8 0 111.41-1.41zM10 16a6 6 0 100-12 6 6 0 000 12z"/></svg>
+</button>
+<input name=s type=text class=w-full>
+</form>
+</ul>
+</div>
+</div>
+</nav>
+<main>
+<section class="container section">
+<div class="page-content max-w-2xl mx-auto">
+<img src=https://user-images.githubusercontent.com/31009750/181449337-70081a76-5a01-4229-805e-39ed0ded6b5b.png class=img-responsive alt="Nestjs Provider">
+<h1>Nestjs Provider</h1>
+<p>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/frameworks>frameworks</a>
+</p>
+<p><strong>Note</strong>: All of demo source code you can find our in github <a href=https://github.com/misostack/finance.api.sonnm.com>nestjs boilerplate</a></p>
+<p><strong>Many of the basic Nest classes may be treated as a provider:</strong></p>
+<ul>
+<li>Services</li>
+<li>Repositories</li>
+<li>Factories</li>
+<li>Helpers</li>
+</ul>
+<p><strong>The main idea of a provider is that it can be injected as a dependency</strong></p>
+<blockquote>
+<p>This means NestJS will be act as a container and creating relationship between objects and wire them up at runtime</p>
+</blockquote>
+<p><strong>When creating a provider, we should consider these aspects</strong></p>
+<ul>
+<li><input checked disabled type=checkbox> Dependency Inject</li>
+<li><input checked disabled type=checkbox> Scopes</li>
+<li><input checked disabled type=checkbox> Custom provider</li>
+<li><input checked disabled type=checkbox> Optional providers</li>
+</ul>
+<h2 id=using-service-provider-in-controller>Using service provider in controller</h2>
+<p><strong>Creating service</strong></p>
+<blockquote>
+<p><strong>@Injectable()</strong> : injectable decorator</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>Example</span> {
+  <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>string</span>;
+  <span style=color:#a6e22e>title</span>: <span style=color:#66d9ef>string</span>;
+  <span style=color:#a6e22e>keywords?</span>: <span style=color:#66d9ef>Array</span>&lt;<span style=color:#f92672>string</span>&gt;;
+  <span style=color:#a6e22e>content</span>: <span style=color:#66d9ef>string</span>;
+  <span style=color:#a6e22e>tags</span>: <span style=color:#66d9ef>Array</span>&lt;<span style=color:#f92672>string</span>&gt;;
+  <span style=color:#a6e22e>createdAt</span>: <span style=color:#66d9ef>Date</span>;
+  <span style=color:#a6e22e>updatedAt</span>: <span style=color:#66d9ef>Date</span>;
+}
+
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Example</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./../interfaces/example.interface&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Injectable</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/common&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>v4</span> <span style=color:#66d9ef>as</span> <span style=color:#a6e22e>uuidv4</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;uuid&#34;</span>;
+
+<span style=color:#66d9ef>@Injectable</span>()
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ExampleService</span> {
+  <span style=color:#66d9ef>static</span> <span style=color:#a6e22e>initialTimes</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+  <span style=color:#66d9ef>constructor</span>() {
+    <span style=color:#a6e22e>ExampleService</span>.<span style=color:#a6e22e>initialTimes</span><span style=color:#f92672>++</span>;
+    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(
+      <span style=color:#e6db74>`initExampleService times: </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>ExampleService</span>.<span style=color:#a6e22e>initialTimes</span><span style=color:#e6db74>}</span><span style=color:#e6db74> `</span>,
+      <span style=color:#66d9ef>new</span> Date().<span style=color:#a6e22e>toISOString</span>()
+    );
+  }
+  <span style=color:#a6e22e>create</span>(<span style=color:#a6e22e>payload</span>: <span style=color:#66d9ef>Partial</span>&lt;<span style=color:#f92672>Example</span>&gt;)<span style=color:#f92672>:</span> <span style=color:#a6e22e>Example</span> {
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>now</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Date();
+    <span style=color:#66d9ef>return</span> {
+      <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>uuidv4</span>(),
+      <span style=color:#a6e22e>title</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;&#34;</span>,
+      <span style=color:#a6e22e>keywords</span><span style=color:#f92672>:</span> [],
+      <span style=color:#a6e22e>content</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;&#34;</span>,
+      <span style=color:#a6e22e>tags</span><span style=color:#f92672>:</span> [],
+      <span style=color:#a6e22e>createdAt</span>: <span style=color:#66d9ef>now</span>,
+      <span style=color:#a6e22e>updatedAt</span>: <span style=color:#66d9ef>now</span>,
+      ...<span style=color:#a6e22e>payload</span>,
+    };
+  }
+}
+</code></pre></div><p><strong>Register as a module&rsquo;s provider</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Module</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/common&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>ExamplesController</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./controllers/examples.controller&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>ExampleService</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./services/example.service&#34;</span>;
+
+<span style=color:#66d9ef>@Module</span>({
+  <span style=color:#a6e22e>controllers</span><span style=color:#f92672>:</span> [<span style=color:#a6e22e>ExamplesController</span>],
+  <span style=color:#a6e22e>providers</span><span style=color:#f92672>:</span> [<span style=color:#a6e22e>ExampleService</span>], <span style=color:#75715e>// add service to module&#39;s providers
+</span><span style=color:#75715e></span>})
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ExampleModule</span> {}
+</code></pre></div><p><strong>Use</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Example</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./../interfaces/example.interface&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>ExampleService</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./../services/example.service&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Controller</span>, <span style=color:#a6e22e>Post</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/common&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Body</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/common&#34;</span>;
+
+<span style=color:#66d9ef>@Controller</span>(<span style=color:#e6db74>&#34;examples&#34;</span>)
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ExamplesController</span> {
+  <span style=color:#66d9ef>constructor</span>(<span style=color:#66d9ef>private</span> <span style=color:#a6e22e>exampleService</span>: <span style=color:#66d9ef>ExampleService</span>) {}
+
+  <span style=color:#66d9ef>@Post</span>(<span style=color:#e6db74>&#34;&#34;</span>)
+  <span style=color:#a6e22e>create</span>(<span style=color:#66d9ef>@Body</span>() <span style=color:#a6e22e>payload</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>Example</span> {
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>example</span>: <span style=color:#66d9ef>Example</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>exampleService</span>.<span style=color:#a6e22e>create</span>(<span style=color:#a6e22e>payload</span>);
+    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>example</span>;
+  }
+}
+</code></pre></div><h2 id=understand-scopes>Understand scopes</h2>
+<blockquote>
+<p>Providers normally have a lifetime (&ldquo;scope&rdquo;) synchronized with the application lifecycle. When the application is bootstrapped, every dependency must be resolved, and therefore every provider has to be instantiated</p>
+</blockquote>
+<p><strong>There are 3 type of scopes</strong></p>
+<ul>
+<li>DEFAULT : A single instance of the provider is shared across the entire application</li>
+<li>REQUEST : A new instance of the provider is created exclusively for each incoming request</li>
+<li>TRANSIENT: Transient providers are not shared across consumers. Each consumer that injects a transient provider will receive a new, dedicated instance</li>
+</ul>
+<blockquote>
+<p>Let&rsquo;s do some test</p>
+</blockquote>
+<p><strong>DEFAULT</strong> scope</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#f92672>[</span>Nest<span style=color:#f92672>]</span> <span style=color:#ae81ff>13408</span>  - 07/28/2022, 3:54:44 PM     LOG <span style=color:#f92672>[</span>NestFactory<span style=color:#f92672>]</span> Starting Nest application...
+initExampleService times: <span style=color:#ae81ff>1</span>  2022-07-28T08:54:44.622
+</code></pre></div><p><strong>REQUEST</strong> scope</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#f92672>[</span>Nest<span style=color:#f92672>]</span> <span style=color:#ae81ff>16160</span>  - 07/28/2022, 3:57:00 PM     LOG <span style=color:#f92672>[</span>RouterExplorer<span style=color:#f92672>]</span> Mapped <span style=color:#f92672>{</span>/examples/:id, GET<span style=color:#f92672>}</span> route +2ms
+<span style=color:#f92672>[</span>Nest<span style=color:#f92672>]</span> <span style=color:#ae81ff>16160</span>  - 07/28/2022, 3:57:00 PM     LOG <span style=color:#f92672>[</span>RouterExplorer<span style=color:#f92672>]</span> Mapped <span style=color:#f92672>{</span>/examples, POST<span style=color:#f92672>}</span> route +1ms
+<span style=color:#f92672>[</span>Nest<span style=color:#f92672>]</span> <span style=color:#ae81ff>16160</span>  - 07/28/2022, 3:57:00 PM     LOG <span style=color:#f92672>[</span>RouterExplorer<span style=color:#f92672>]</span> Mapped <span style=color:#f92672>{</span>/examples/:id, PATCH<span style=color:#f92672>}</span> route +2ms
+<span style=color:#f92672>[</span>Nest<span style=color:#f92672>]</span> <span style=color:#ae81ff>16160</span>  - 07/28/2022, 3:57:00 PM     LOG <span style=color:#f92672>[</span>RouterExplorer<span style=color:#f92672>]</span> Mapped <span style=color:#f92672>{</span>/examples/:id, DELETE<span style=color:#f92672>}</span> route +2ms
+<span style=color:#f92672>[</span>Nest<span style=color:#f92672>]</span> <span style=color:#ae81ff>16160</span>  - 07/28/2022, 3:57:00 PM     LOG <span style=color:#f92672>[</span>NestApplication<span style=color:#f92672>]</span> Nest application successfully started +5ms
+initExampleService times: <span style=color:#ae81ff>1</span>  2022-07-28T08:57:24.453Z
+initExampleService times: <span style=color:#ae81ff>2</span>  2022-07-28T08:57:28.310Z
+initExampleService times: <span style=color:#ae81ff>3</span>  2022-07-28T08:57:32.456Z
+initExampleService times: <span style=color:#ae81ff>4</span>  2022-07-28T08:57:36.250Z
+initExampleService times: <span style=color:#ae81ff>5</span>  2022-07-28T08:57:39.503Z
+</code></pre></div><p><strong>TRANSIENT</strong> scope</p>
+<blockquote>
+<p>Let&rsquo;s create a new controller and use the ExampleService</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>ExampleService</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./../services/example.service&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Controller</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/common&#34;</span>;
+
+<span style=color:#66d9ef>@Controller</span>(<span style=color:#e6db74>&#34;example-groups&#34;</span>)
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ExampleGroupsController</span> {
+  <span style=color:#66d9ef>constructor</span>(<span style=color:#66d9ef>private</span> <span style=color:#a6e22e>exampleService</span>: <span style=color:#66d9ef>ExampleService</span>) {}
+  <span style=color:#a6e22e>index() {</span>
+    <span style=color:#66d9ef>return</span> [];
+  }
+}
+</code></pre></div><p><strong>And we got</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#f92672>[</span>Nest<span style=color:#f92672>]</span> <span style=color:#ae81ff>19024</span>  - 07/28/2022, 4:02:46 PM     LOG <span style=color:#f92672>[</span>NestFactory<span style=color:#f92672>]</span> Starting Nest application...
+<span style=color:#f92672>[</span>Nest<span style=color:#f92672>]</span> <span style=color:#ae81ff>19024</span>  - 07/28/2022, 4:02:46 PM     LOG <span style=color:#f92672>[</span>InstanceLoader<span style=color:#f92672>]</span> AppModule dependencies initialized +63ms
+<span style=color:#f92672>[</span>Nest<span style=color:#f92672>]</span> <span style=color:#ae81ff>19024</span>  - 07/28/2022, 4:02:46 PM     LOG <span style=color:#f92672>[</span>InstanceLoader<span style=color:#f92672>]</span> GoldModule dependencies initialized +0ms
+initExampleService times: <span style=color:#ae81ff>1</span>  2022-07-28T09:02:46.846Z
+initExampleService times: <span style=color:#ae81ff>2</span>  2022-07-28T09:02:46.847Z
+</code></pre></div><h2 id=custom-provider>Custom provider</h2>
+<blockquote>
+<p>There are several ways to define a provider: you can use plain <strong>values</strong>, <strong>classes</strong>, and either <strong>asynchronous</strong> or <strong>synchronous factories</strong></p>
+</blockquote>
+<p><strong>Standard Provider</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Module</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/common&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>ExamplesController</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./controllers/examples.controller&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>ExampleService</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./services/example.service&#34;</span>;
+
+<span style=color:#66d9ef>@Module</span>({
+  <span style=color:#a6e22e>controllers</span><span style=color:#f92672>:</span> [<span style=color:#a6e22e>ExamplesController</span>],
+  <span style=color:#a6e22e>providers</span><span style=color:#f92672>:</span> [<span style=color:#a6e22e>ExampleService</span>], <span style=color:#75715e>// add service to module&#39;s providers
+</span><span style=color:#75715e></span>})
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ExampleModule</span> {}
+
+<span style=color:#75715e>// is the short-hand of
+</span><span style=color:#75715e></span>
+<span style=color:#a6e22e>providers</span><span style=color:#f92672>:</span> [
+  {
+    <span style=color:#a6e22e>provide</span>: <span style=color:#66d9ef>ExampleService</span>,
+    <span style=color:#a6e22e>useClass</span>: <span style=color:#66d9ef>ExampleService</span>,
+  },
+];
+</code></pre></div><p><strong>Why do we need a customer provider?</strong></p>
+<ul>
+<li>You want to create a custom instance instead of having Nest instantiate (or return a cached instance of) a class</li>
+<li>You want to re-use an existing class in a second dependency</li>
+<li>You want to override a class with a mock version for testing</li>
+</ul>
+<p><strong>How do we export custom providers for usage?</strong></p>
+<blockquote>
+<p>Like any provider, a custom provider is scoped to its declaring module. To make it visible to other modules, it must be exported. To export a custom provider, we can either use <strong>its token</strong> or the <strong>full provider object</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>Token Example</strong></p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>connectionFactory</span> <span style=color:#f92672>=</span> {
+  <span style=color:#a6e22e>provide</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;CONNECTION&#34;</span>,
+  <span style=color:#a6e22e>useFactory</span><span style=color:#f92672>:</span> (<span style=color:#a6e22e>optionsProvider</span>: <span style=color:#66d9ef>OptionsProvider</span>) <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>options</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>optionsProvider</span>.<span style=color:#66d9ef>get</span>();
+    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>DatabaseConnection</span>(<span style=color:#a6e22e>options</span>);
+  },
+  <span style=color:#a6e22e>inject</span><span style=color:#f92672>:</span> [<span style=color:#a6e22e>OptionsProvider</span>],
+};
+
+<span style=color:#66d9ef>@Module</span>({
+  <span style=color:#a6e22e>providers</span><span style=color:#f92672>:</span> [<span style=color:#a6e22e>connectionFactory</span>],
+  <span style=color:#a6e22e>exports</span><span style=color:#f92672>:</span> [<span style=color:#e6db74>&#34;CONNECTION&#34;</span>],
+})
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AppModule</span> {}
+</code></pre></div><blockquote>
+<p><strong>Full Object Example</strong></p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>connectionFactory</span> <span style=color:#f92672>=</span> {
+  <span style=color:#a6e22e>provide</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;CONNECTION&#34;</span>,
+  <span style=color:#a6e22e>useFactory</span><span style=color:#f92672>:</span> (<span style=color:#a6e22e>optionsProvider</span>: <span style=color:#66d9ef>OptionsProvider</span>) <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>options</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>optionsProvider</span>.<span style=color:#66d9ef>get</span>();
+    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>DatabaseConnection</span>(<span style=color:#a6e22e>options</span>);
+  },
+  <span style=color:#a6e22e>inject</span><span style=color:#f92672>:</span> [<span style=color:#a6e22e>OptionsProvider</span>],
+};
+
+<span style=color:#66d9ef>@Module</span>({
+  <span style=color:#a6e22e>providers</span><span style=color:#f92672>:</span> [<span style=color:#a6e22e>connectionFactory</span>],
+  <span style=color:#a6e22e>exports</span><span style=color:#f92672>:</span> [<span style=color:#a6e22e>connectionFactory</span>],
+})
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AppModule</span> {}
+</code></pre></div><p><strong>How to To get existing instances, or instantiate providers dynamically?</strong></p>
+<blockquote>
+<p>Module Reference</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>@Injectable</span>()
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>CatsService</span> <span style=color:#66d9ef>implements</span> <span style=color:#a6e22e>OnModuleInit</span> {
+  <span style=color:#66d9ef>private</span> <span style=color:#a6e22e>service</span>: <span style=color:#66d9ef>Service</span>;
+  <span style=color:#66d9ef>constructor</span>(<span style=color:#66d9ef>private</span> <span style=color:#66d9ef>module</span><span style=color:#a6e22e>Ref</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>ModuleRef</span>) {}
+
+  <span style=color:#a6e22e>onModuleInit() {</span>
+    <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>service</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>this</span>.<span style=color:#66d9ef>module</span><span style=color:#a6e22e>Ref.get</span>(<span style=color:#a6e22e>Service</span>);
+  }
+}
+</code></pre></div><ul>
+<li><a href=https://docs.nestjs.com/fundamentals/module-ref>https://docs.nestjs.com/fundamentals/module-ref</a> => will have another post for this</li>
+</ul>
+<h3 id=value-providers>Value providers</h3>
+<blockquote>
+<p>Using the same example. In this case uuid + now is generated at run time and different for each test. So the only way to test it is creating a mock of ExampleService.</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts>    <span style=color:#a6e22e>providers</span><span style=color:#f92672>:</span> [
+    {
+        <span style=color:#a6e22e>provide</span>: <span style=color:#66d9ef>ExampleService</span>,
+        <span style=color:#a6e22e>useValue</span>: <span style=color:#66d9ef>mockExampleService</span>,
+    },
+    ],
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>ExampleService</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./../services/example.service&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Test</span>, <span style=color:#a6e22e>TestingModule</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/testing&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>ExamplesController</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./examples.controller&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Example</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@modules/example/interfaces/example.interface&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>v4</span> <span style=color:#66d9ef>as</span> <span style=color:#a6e22e>uuidv4</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;uuid&#34;</span>;
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>mockExampleService</span> <span style=color:#f92672>=</span> {
+  <span style=color:#75715e>/* mock implementation
+</span><span style=color:#75715e>  ...
+</span><span style=color:#75715e>  */</span>
+  <span style=color:#a6e22e>create</span>(<span style=color:#a6e22e>payload</span>: <span style=color:#66d9ef>Partial</span>&lt;<span style=color:#f92672>Example</span>&gt;)<span style=color:#f92672>:</span> <span style=color:#a6e22e>Example</span> {
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>now</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Date(<span style=color:#e6db74>&#34;2022-07-28T08:59:02.246Z&#34;</span>);
+    <span style=color:#66d9ef>return</span> {
+      <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;1170b8c2-630a-4ad6-842d-ac7255213cf6&#34;</span>,
+      <span style=color:#a6e22e>title</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;example 1&#34;</span>,
+      <span style=color:#a6e22e>keywords</span><span style=color:#f92672>:</span> [<span style=color:#e6db74>&#34;example&#34;</span>],
+      <span style=color:#a6e22e>content</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;example&#34;</span>,
+      <span style=color:#a6e22e>tags</span><span style=color:#f92672>:</span> [<span style=color:#e6db74>&#34;nestjs&#34;</span>],
+      <span style=color:#a6e22e>createdAt</span>: <span style=color:#66d9ef>now</span>,
+      <span style=color:#a6e22e>updatedAt</span>: <span style=color:#66d9ef>now</span>,
+      ...<span style=color:#a6e22e>payload</span>,
+    };
+  },
+};
+
+<span style=color:#a6e22e>describe</span>(<span style=color:#e6db74>&#34;ExamplesController&#34;</span>, () <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>controller</span>: <span style=color:#66d9ef>ExamplesController</span>;
+
+  <span style=color:#a6e22e>beforeEach</span>(<span style=color:#66d9ef>async</span> () <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>module</span>: <span style=color:#66d9ef>TestingModule</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>Test</span>.<span style=color:#a6e22e>createTestingModule</span>({
+      <span style=color:#a6e22e>controllers</span><span style=color:#f92672>:</span> [<span style=color:#a6e22e>ExamplesController</span>],
+      <span style=color:#a6e22e>providers</span><span style=color:#f92672>:</span> [
+        {
+          <span style=color:#a6e22e>provide</span>: <span style=color:#66d9ef>ExampleService</span>,
+          <span style=color:#a6e22e>useValue</span>: <span style=color:#66d9ef>mockExampleService</span>,
+        },
+      ],
+    }).<span style=color:#a6e22e>compile</span>();
+
+    <span style=color:#a6e22e>controller</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>module</span><span style=color:#a6e22e>.get</span>&lt;<span style=color:#f92672>ExamplesController</span>&gt;(<span style=color:#a6e22e>ExamplesController</span>);
+  });
+
+  <span style=color:#a6e22e>it</span>(<span style=color:#e6db74>&#34;should be defined&#34;</span>, () <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#a6e22e>expect</span>(<span style=color:#a6e22e>controller</span>).<span style=color:#a6e22e>toBeDefined</span>();
+  });
+
+  <span style=color:#a6e22e>describe</span>(<span style=color:#e6db74>&#34;Create new example&#34;</span>, () <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#a6e22e>it</span>(<span style=color:#e6db74>&#34;should create a new example successfully if data is valid&#34;</span>, () <span style=color:#f92672>=&gt;</span> {
+      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>now</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Date(<span style=color:#e6db74>&#34;2022-07-28T08:59:02.246Z&#34;</span>);
+      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>responseValue</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>controller</span>.<span style=color:#a6e22e>create</span>({
+        <span style=color:#a6e22e>title</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;example 1&#34;</span>,
+        <span style=color:#a6e22e>keywords</span><span style=color:#f92672>:</span> [<span style=color:#e6db74>&#34;example&#34;</span>],
+        <span style=color:#a6e22e>content</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;example&#34;</span>,
+        <span style=color:#a6e22e>tags</span><span style=color:#f92672>:</span> [<span style=color:#e6db74>&#34;nestjs&#34;</span>],
+      });
+      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>expectedValue</span> <span style=color:#f92672>=</span> {
+        <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;1170b8c2-630a-4ad6-842d-ac7255213cf6&#34;</span>,
+        <span style=color:#a6e22e>title</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;example 1&#34;</span>,
+        <span style=color:#a6e22e>keywords</span><span style=color:#f92672>:</span> [<span style=color:#e6db74>&#34;example&#34;</span>],
+        <span style=color:#a6e22e>content</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;example&#34;</span>,
+        <span style=color:#a6e22e>tags</span><span style=color:#f92672>:</span> [<span style=color:#e6db74>&#34;nestjs&#34;</span>],
+        <span style=color:#a6e22e>createdAt</span>: <span style=color:#66d9ef>now</span>,
+        <span style=color:#a6e22e>updatedAt</span>: <span style=color:#66d9ef>now</span>,
+      };
+      <span style=color:#a6e22e>expect</span>(<span style=color:#a6e22e>responseValue</span>).<span style=color:#a6e22e>toMatchObject</span>(<span style=color:#a6e22e>expectedValue</span>);
+    });
+  });
+});
+</code></pre></div><h3 id=non-class-based-provider-tokens>Non-class-based provider tokens</h3>
+<blockquote>
+<p>So far, we&rsquo;ve used class names as our provider tokens (the value of the provide property in a provider listed in the providers array). This is matched by the standard pattern used with <strong>constructor based injection</strong>, where the <strong>token is also a class name</strong></p>
+</blockquote>
+<blockquote>
+<p>Sometimes, we may want the flexibility to use <strong>strings or symbols as the DI token</strong></p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>dataProviders</span> <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./providers&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Scope</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/common&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>DynamicModule</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/common&#34;</span>;
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>MONGODB_URL</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>Environment</span>.<span style=color:#a6e22e>getConfigValues</span>().<span style=color:#a6e22e>MONGODB_URL</span>;
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>mongooseOptions</span>: <span style=color:#66d9ef>MongooseOptions</span> <span style=color:#f92672>=</span> { <span style=color:#a6e22e>autoCreate</span>: <span style=color:#66d9ef>true</span> };
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>databaseProviders</span> <span style=color:#f92672>=</span> [
+  {
+    <span style=color:#a6e22e>scope</span>: <span style=color:#66d9ef>Scope.DEFAULT</span>,
+    <span style=color:#a6e22e>provide</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;DatabaseConnection&#34;</span>,
+    <span style=color:#a6e22e>useFactory</span>: <span style=color:#66d9ef>async</span> () <span style=color:#f92672>=&gt;</span>
+      <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>mongoose</span>.<span style=color:#a6e22e>connect</span>(<span style=color:#a6e22e>MONGODB_URL</span>, <span style=color:#a6e22e>mongooseOptions</span>),
+  },
+  ...<span style=color:#a6e22e>dataProviders</span>,
+];
+
+<span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;MONGODB_URL&#34;</span>, <span style=color:#a6e22e>MONGODB_URL</span>);
+
+<span style=color:#66d9ef>@Module</span>({
+  <span style=color:#a6e22e>imports</span><span style=color:#f92672>:</span> [],
+  <span style=color:#a6e22e>providers</span>: <span style=color:#66d9ef>databaseProviders</span>,
+  <span style=color:#a6e22e>exports</span>: <span style=color:#66d9ef>databaseProviders</span>,
+})
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>DatabaseModule</span> {}
+</code></pre></div><h4 id=nestjs-mongoosehttpsgithubcomnestjsmongooseblob69d14845450a7675352e3202701bc7827fd1c583libcommonmongooseutilstsl13><a href=https://github.com/nestjs/mongoose/blob/69d14845450a7675352e3202701bc7827fd1c583/lib/common/mongoose.utils.ts#L13>NestJS Mongoose</a></h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>getConnectionToken</span>(<span style=color:#a6e22e>name?</span>: <span style=color:#66d9ef>string</span>) {
+  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>name</span> <span style=color:#f92672>&amp;&amp;</span> <span style=color:#a6e22e>name</span> <span style=color:#f92672>!==</span> <span style=color:#a6e22e>DEFAULT_DB_CONNECTION</span>
+    <span style=color:#f92672>?</span> <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>name</span><span style=color:#e6db74>}</span><span style=color:#e6db74>Connection`</span>
+    <span style=color:#f92672>:</span> <span style=color:#a6e22e>DEFAULT_DB_CONNECTION</span>;
+}
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>mongooseConnectionFactory</span> <span style=color:#f92672>=</span>
+  <span style=color:#a6e22e>connectionFactory</span> <span style=color:#f92672>||</span> ((<span style=color:#a6e22e>connection</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>connection</span>);
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>mongooseConnectionName</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>getConnectionToken</span>(<span style=color:#a6e22e>connectionName</span>);
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>mongooseConnectionNameProvider</span> <span style=color:#f92672>=</span> {
+  <span style=color:#a6e22e>provide</span>: <span style=color:#66d9ef>MONGOOSE_CONNECTION_NAME</span>,
+  <span style=color:#a6e22e>useValue</span>: <span style=color:#66d9ef>mongooseConnectionName</span>,
+};
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>connectionProvider</span> <span style=color:#f92672>=</span> {
+  <span style=color:#a6e22e>provide</span>: <span style=color:#66d9ef>mongooseConnectionName</span>,
+  <span style=color:#a6e22e>useFactory</span>: <span style=color:#66d9ef>async</span> ()<span style=color:#f92672>:</span> <span style=color:#a6e22e>Promise</span>&lt;<span style=color:#f92672>any</span>&gt; <span style=color:#f92672>=&gt;</span>
+    <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>lastValueFrom</span>(
+      <span style=color:#a6e22e>defer</span>(<span style=color:#66d9ef>async</span> () <span style=color:#f92672>=&gt;</span>
+        <span style=color:#a6e22e>mongooseConnectionFactory</span>(
+          <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>mongoose</span>.<span style=color:#a6e22e>createConnection</span>(<span style=color:#a6e22e>uri</span>, <span style=color:#a6e22e>mongooseOptions</span>).<span style=color:#a6e22e>asPromise</span>(),
+          <span style=color:#a6e22e>mongooseConnectionName</span>
+        )
+      ).<span style=color:#a6e22e>pipe</span>(<span style=color:#a6e22e>handleRetry</span>(<span style=color:#a6e22e>retryAttempts</span>, <span style=color:#a6e22e>retryDelay</span>))
+    ),
+};
+<span style=color:#66d9ef>return</span> {
+  <span style=color:#a6e22e>module</span>: <span style=color:#66d9ef>MongooseCoreModule</span>,
+  <span style=color:#a6e22e>providers</span><span style=color:#f92672>:</span> [<span style=color:#a6e22e>connectionProvider</span>, <span style=color:#a6e22e>mongooseConnectionNameProvider</span>],
+  <span style=color:#a6e22e>exports</span><span style=color:#f92672>:</span> [<span style=color:#a6e22e>connectionProvider</span>],
+};
+</code></pre></div><p><strong>Custom injection key for connection</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Module</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/common&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>MongooseModule</span>, <span style=color:#a6e22e>MongooseModuleOptions</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/mongoose&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#a6e22e>mongoose</span>, { <span style=color:#a6e22e>MongooseOptions</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;mongoose&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Environment</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@config/environment&#34;</span>;
+
+<span style=color:#66d9ef>import</span> <span style=color:#a6e22e>dataProviders</span> <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./providers&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Scope</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/common&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>DynamicModule</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/common&#34;</span>;
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>MONGODB_URL</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>Environment</span>.<span style=color:#a6e22e>getConfigValues</span>().<span style=color:#a6e22e>MONGODB_URL</span>;
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>mongooseOptions</span>: <span style=color:#66d9ef>MongooseModuleOptions</span> <span style=color:#f92672>=</span> {
+  <span style=color:#a6e22e>autoCreate</span>: <span style=color:#66d9ef>true</span>,
+  <span style=color:#a6e22e>connectionName</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Default&#34;</span>,
+};
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>databaseProviders</span> <span style=color:#f92672>=</span> [...<span style=color:#a6e22e>dataProviders</span>];
+
+<span style=color:#66d9ef>@Module</span>({
+  <span style=color:#a6e22e>imports</span><span style=color:#f92672>:</span> [<span style=color:#a6e22e>MongooseModule</span>.<span style=color:#a6e22e>forRoot</span>(<span style=color:#a6e22e>MONGODB_URL</span>, <span style=color:#a6e22e>mongooseOptions</span>)],
+  <span style=color:#a6e22e>providers</span>: <span style=color:#66d9ef>databaseProviders</span>,
+  <span style=color:#a6e22e>exports</span>: <span style=color:#66d9ef>databaseProviders</span>,
+})
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>DatabaseModule</span> {}
+
+<span style=color:#75715e>// usage
+</span><span style=color:#75715e></span><span style=color:#66d9ef>@Inject</span>(<span style=color:#e6db74>&#39;DefaultConnection&#39;</span>)
+<span style=color:#66d9ef>private</span> <span style=color:#a6e22e>connection</span>: <span style=color:#66d9ef>Connection</span>,
+</code></pre></div><h3 id=class-providers-useclass>Class providers: useClass</h3>
+<blockquote>
+<p>The useClass syntax allows you to dynamically determine a class that a token should resolve to</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>configServiceProvider</span> <span style=color:#f92672>=</span> {
+  <span style=color:#a6e22e>provide</span>: <span style=color:#66d9ef>ConfigService</span>,
+  <span style=color:#a6e22e>useClass</span>:
+    <span style=color:#66d9ef>process.env.NODE_ENV</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#34;development&#34;</span>
+      <span style=color:#f92672>?</span> <span style=color:#a6e22e>DevelopmentConfigService</span>
+      : <span style=color:#66d9ef>ProductionConfigService</span>,
+};
+
+<span style=color:#66d9ef>@Module</span>({
+  <span style=color:#a6e22e>providers</span><span style=color:#f92672>:</span> [<span style=color:#a6e22e>configServiceProvider</span>],
+})
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AppModule</span> {}
+</code></pre></div><h3 id=factory-providers-usefactory>Factory providers: useFactory</h3>
+<blockquote>
+<p>The useFactory syntax allows for creating providers dynamically. The actual provider will be supplied by the value returned from a factory function. The factory function can be as simple or complex as needed</p>
+</blockquote>
+<p>Sometimes, you may need to create a provider that depends on others, so using Factory is a best approach here.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>connectionProvider</span> <span style=color:#f92672>=</span> {
+  <span style=color:#a6e22e>provide</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;CONNECTION&#34;</span>,
+  <span style=color:#a6e22e>useFactory</span><span style=color:#f92672>:</span> (<span style=color:#a6e22e>optionsProvider</span>: <span style=color:#66d9ef>OptionsProvider</span>, <span style=color:#a6e22e>optionalProvider?</span>: <span style=color:#66d9ef>string</span>) <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>options</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>optionsProvider</span>.<span style=color:#66d9ef>get</span>();
+    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>DatabaseConnection</span>(<span style=color:#a6e22e>options</span>);
+  },
+  <span style=color:#a6e22e>inject</span><span style=color:#f92672>:</span> [<span style=color:#a6e22e>OptionsProvider</span>, { <span style=color:#a6e22e>token</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;SomeOptionalProvider&#34;</span>, <span style=color:#a6e22e>optional</span>: <span style=color:#66d9ef>true</span> }],
+  <span style=color:#75715e>//       \_____________/            \__________________/
+</span><span style=color:#75715e></span>  <span style=color:#75715e>//        This provider              The provider with this
+</span><span style=color:#75715e></span>  <span style=color:#75715e>//        is mandatory.              token can resolve to `undefined`.
+</span><span style=color:#75715e></span>};
+
+<span style=color:#66d9ef>@Module</span>({
+  <span style=color:#a6e22e>providers</span><span style=color:#f92672>:</span> [
+    <span style=color:#a6e22e>connectionProvider</span>,
+    <span style=color:#a6e22e>OptionsProvider</span>,
+    <span style=color:#75715e>// { provide: &#39;SomeOptionalProvider&#39;, useValue: &#39;anything&#39; },
+</span><span style=color:#75715e></span>  ],
+})
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AppModule</span> {}
+</code></pre></div><h3 id=alias-providers--useexisting>Alias providers : useExisting</h3>
+<blockquote>
+<p>The useExisting syntax allows you to create aliases for existing providers. This creates two ways to access the same provider. In the example below, the (string-based) token &lsquo;AliasedLoggerService&rsquo; is an alias for the (class-based) token LoggerService. If both dependencies are specified with SINGLETON scope, they&rsquo;ll both resolve to the same instance.</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>@Injectable</span>()
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>LoggerService</span> {
+  <span style=color:#75715e>/* implementation details */</span>
+}
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>loggerAliasProvider</span> <span style=color:#f92672>=</span> {
+  <span style=color:#a6e22e>provide</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;AliasedLoggerService&#34;</span>,
+  <span style=color:#a6e22e>useExisting</span>: <span style=color:#66d9ef>LoggerService</span>,
+};
+
+<span style=color:#66d9ef>@Module</span>({
+  <span style=color:#a6e22e>providers</span><span style=color:#f92672>:</span> [<span style=color:#a6e22e>LoggerService</span>, <span style=color:#a6e22e>loggerAliasProvider</span>],
+})
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AppModule</span> {}
+</code></pre></div><h3 id=non-service-based-providers>Non-service based providers</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>configFactory</span> <span style=color:#f92672>=</span> {
+  <span style=color:#a6e22e>provide</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;CONFIG&#34;</span>,
+  <span style=color:#a6e22e>useFactory</span><span style=color:#f92672>:</span> () <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>process</span>.<span style=color:#a6e22e>env</span>.<span style=color:#a6e22e>NODE_ENV</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#34;development&#34;</span> <span style=color:#f92672>?</span> <span style=color:#a6e22e>devConfig</span> : <span style=color:#66d9ef>prodConfig</span>;
+  },
+};
+
+<span style=color:#66d9ef>@Module</span>({
+  <span style=color:#a6e22e>providers</span><span style=color:#f92672>:</span> [<span style=color:#a6e22e>configFactory</span>],
+})
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AppModule</span> {}
+</code></pre></div><h3 id=custom-provider-referenceshttpsdocsnestjscomfundamentalscustom-providers><a href=https://docs.nestjs.com/fundamentals/custom-providers>Custom provider References</a></h3>
+<h2 id=optional-providers>Optional providers</h2>
+<blockquote>
+<p>Occasionally, you might have dependencies which do not necessarily have to be resolved. For instance, your class may depend on a configuration object, but if none is passed, the default values should be used. In such a case, the dependency becomes optional, because lack of the configuration provider wouldn&rsquo;t lead to errors.</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Injectable</span>, <span style=color:#a6e22e>Optional</span>, <span style=color:#a6e22e>Inject</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/common&#34;</span>;
+
+<span style=color:#66d9ef>@Injectable</span>()
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>HttpService</span>&lt;<span style=color:#f92672>T</span>&gt; {
+  <span style=color:#66d9ef>constructor</span>(<span style=color:#66d9ef>@Optional</span>() <span style=color:#66d9ef>@Inject</span>(<span style=color:#e6db74>&#34;HTTP_OPTIONS&#34;</span>) <span style=color:#66d9ef>private</span> <span style=color:#a6e22e>httpClient</span>: <span style=color:#66d9ef>T</span>) {}
+}
+</code></pre></div><h2 id=property-based-injection>Property-based injection</h2>
+<blockquote>
+<p>The technique we&rsquo;ve used so far is called constructor-based injection, as providers are injected via the constructor method. In some very specific cases, property-based injection might be useful. For instance, if your top-level class depends on either one or multiple providers, passing them all the way up by calling super() in sub-classes from the constructor can be very tedious. In order to avoid this, you can use the @Inject() decorator at the property level.</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Injectable</span>, <span style=color:#a6e22e>Inject</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/common&#34;</span>;
+
+<span style=color:#66d9ef>@Injectable</span>()
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>HttpService</span>&lt;<span style=color:#f92672>T</span>&gt; {
+  <span style=color:#66d9ef>@Inject</span>(<span style=color:#e6db74>&#34;HTTP_OPTIONS&#34;</span>)
+  <span style=color:#66d9ef>private</span> <span style=color:#66d9ef>readonly</span> <span style=color:#a6e22e>httpClient</span>: <span style=color:#66d9ef>T</span>;
+}
+</code></pre></div><h2 id=final>Final</h2>
+<blockquote>
+<p>It is up to you for choosing the right recipes for your application. Thanks for reading and have good day :))</p>
+</blockquote>
+<div class="m-1 p-1">
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/frameworks>frameworks</a>
+</div>
+</div>
+</section>
+<section class="container section">
+<div class="max-w-2xl mx-auto">
+<div class="font-heading text-2xl font-semibold">You Might Also Like</div>
+<div class="mt-8 grid gap-8">
+<ul class=sidebar-links>
+<li><a href=/post/vuejs-how-to-add-tailwind-in-your-application/>Vuejs How to Add TailwindCSS in Your Application</a></li>
+<li><a href=/post/nestjs-request-and-response-object/>Nestjs Request and Response Object</a></li>
+<li><a href=/post/nestjs-upload-files/>Nestjs Upload Files</a></li>
+<li><a href=/post/nestjs-pipes/>Nestjs Pipes</a></li>
+<li><a href=/post/validate-request-input-in-nestjs/>Validate Request Input in Nestjs</a></li>
+<li><a href=/post/developer-your-rest-api-with-nestjs/>Developer Your Rest Api With Nestjs</a></li>
+<li><a href=/post/create-new-website-with-nextjs/>Create New Website With Nextjs</a></li>
+</ul>
+</div>
+</div>
+</section>
+</main>
+<footer class=footer>
+<div class="container md:flex">
+<section class="footer-section-info md:basis-1/4">
+<div class=address>
+<a class=logo href=https://nextjsvietnam.com title=NextJSVietNam>
+NextJSVietNam
+</a>
+<h4 class=footer-heading>
+PRODUCTION MODE
+<h4>
+</div>
+</section>
+<div class="footer-section-navigation-menu md:basis-1/4">
+<h4 class=footer-heading>NestJS</h4>
+<ul class=footer-section-navigation-menu-links>
+<li><a href=https://nextjsvietnam.com/post/nestjs-request-and-response-object/>Nestjs Request and Response Object</a></li>
+<li><a href=https://nextjsvietnam.com/post/nestjs-upload-files/>Nestjs Upload Files</a></li>
+<li><a href=https://nextjsvietnam.com/post/nestjs-pipes/>Nestjs Pipes</a></li>
+<li><a href=https://nextjsvietnam.com/post/validate-request-input-in-nestjs/>Validate Request Input in Nestjs</a></li>
+<li><a href=https://nextjsvietnam.com/post/nestjs-provider/>Nestjs Provider</a></li>
+</ul>
+</div>
+<div class="footer-section-navigation-menu md:basis-1/4">
+<h4 class=footer-heading>NextJS</h4>
+<ul class=footer-section-navigation-menu-links>
+<li><a href=https://nextjsvietnam.com/post/create-new-website-with-nextjs/>Create New Website With Nextjs</a></li>
+</ul>
+</div>
+<div class="footer-section-navigation-menu md:basis-1/4">
+<h4 class=footer-heading>Cheatsheet</h4>
+<ul class=footer-section-navigation-menu-links>
+<li><a href=https://nextjsvietnam.com/post/how-to-use-typescript-path-alias-in-loopback-4/>How to Use Typescript Path Alias in Loopback 4</a></li>
+<li><a href=https://nextjsvietnam.com/post/javascript-numeric-precision-issue/>Javascript Numeric Precision Issue</a></li>
+<li><a href=https://nextjsvietnam.com/post/su-dung-firebase-realtime-database-gui-thong-bao/>Sử dụng Firebase Realtime Database để gửi thông báo cho người dùng trong web app</a></li>
+<li><a href=https://nextjsvietnam.com/post/tim-hieu-ve-props-va-state-trong-reactjs/>Tim Hieu Ve Props Va State Trong Reactjs</a></li>
+<li><a href=https://nextjsvietnam.com/post/con-duong-tro-lap-lap-trinh-vien-fullstack-js/>Con đường trở thành lập trình viên fullstack JS</a></li>
+</ul>
+</div>
+</div>
+<div class=container>
+<div class=text-center>
+<a href><span class="material-icons text-4xl m-4">facebook</span></a>
+<a href><span class="material-icons text-4xl m-4">smart_display</span></a>
+</div>
+<div class="text-center text-lg py-4">
+Copyright @ NextJSVietNam 2022
+</div>
+<div class="text-center text-sm">
+Powered by <a class="font-bold text-primary" href=https://gohugo.io/>Go Hugo</a> - Made
+with love from <a class="font-bold text-primary" href=https://nextjsvietnam.com>NextJSVietNam</a> -
+Build
+Version 2022-08-05 20:07:21 +0700 +0700
+</div>
+</div>
+</footer>
+<script type=text/javascript src=https://nextjsvietnam.com/core/jquery-3.6.0.min.js></script>
+<script type=text/javascript src=https://nextjsvietnam.com/themes/2022/public/main.js></script>
+<script type=text/javascript src=https://nextjsvietnam.com/themes/2022/public/home.js></script>
+</body>
+</html>

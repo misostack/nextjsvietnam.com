@@ -1,0 +1,562 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=home href=https://nextjsvietnam.com>
+<meta name=generator content="jsguru cms">
+<link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap">
+<link rel=stylesheet href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel=stylesheet href=https://nextjsvietnam.com/themes/2022/public/main.css>
+<link rel=stylesheet href=https://nextjsvietnam.com/themes/2022/public/home.css>
+<link rel=stylesheet href=https://nextjsvietnam.com/themes/2022/public/page.css>
+<meta name=msvalidate.01 content="0899226C2935AEF15F1F831A889431FA">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1KK3645K2M"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-1KK3645K2M')</script>
+<title>Sử dụng Firebase Realtime Database để gửi thông báo cho người dùng trong web app | Hướng dẫn setup và code sample sử dụng ReactJS | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+<meta name=robots content="all">
+<meta name=keywords content="firebase,notifications">
+<meta name=description content="Hướng dẫn setup và code sample sử dụng ReactJS">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://user-images.githubusercontent.com/31009750/178468844-4ee1f036-78cc-44fd-8185-5092b5863494.png">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="750">
+<meta property="og:image:height" content="300">
+<link rel=apple-touch-icon sizes=57x57 href=/apple-icon-57x57.png>
+<link rel=apple-touch-icon sizes=60x60 href=/apple-icon-60x60.png>
+<link rel=apple-touch-icon sizes=72x72 href=/apple-icon-72x72.png>
+<link rel=apple-touch-icon sizes=76x76 href=/apple-icon-76x76.png>
+<link rel=apple-touch-icon sizes=114x114 href=/apple-icon-114x114.png>
+<link rel=apple-touch-icon sizes=120x120 href=/apple-icon-120x120.png>
+<link rel=apple-touch-icon sizes=144x144 href=/apple-icon-144x144.png>
+<link rel=apple-touch-icon sizes=152x152 href=/apple-icon-152x152.png>
+<link rel=apple-touch-icon sizes=180x180 href=/apple-icon-180x180.png>
+<link rel=icon type=image/png sizes=192x192 href=/android-icon-192x192.png>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=96x96 href=/favicon-96x96.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
+<link rel=manifest href=/manifest.json>
+<meta name=msapplication-TileColor content="#ffffff">
+<meta name=msapplication-TileImage content="/ms-icon-144x144.png">
+<meta name=theme-color content="#ffffff">
+</head>
+<body class=body-nav-fixed>
+<nav class="nav-fixed nav-default z-50">
+<div class=container>
+<div class="nav-container flex flex-wrap justify-between items-center">
+<a href=https://nextjsvietnam.com class="nav-brand inline-block">
+<img class=h-16 src=https://nextjsvietnam.com/themes/2022/src/assets/images/logo.png alt=Stunning>
+</a>
+<a href=javascript:void(0); data-menu=#menu-main_menu class=nav-menu-toggle><span class=material-icons>menu</span></a>
+<ul id=menu-main_menu class="nav-menu h-0 md:h-auto">
+<form class="nav-menu-search-bar md:hidden relative">
+<button class="nav-menu-search-bar-search-btn absolute h-full"><svg class="w-3 h-3 text-gray-600" fill="currentcolor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.32 14.9l5.39 5.4a1 1 0 01-1.42 1.4l-5.38-5.38a8 8 0 111.41-1.41zM10 16a6 6 0 100-12 6 6 0 000 12z"/></svg>
+</button>
+<input name=s type=text class=w-full>
+</form>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/cheatsheet>cheatsheet</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/frameworks>frameworks</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/java>java</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/lifestyle>lifestyle</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/systemdesign>systemdesign</a></li>
+<li class=nav-menu-item>
+<a class=nav-menu-link href=https://nextjsvietnam.com>Tools
+<span class=material-icons>keyboard_arrow_down</span>
+</a>
+<ul class=sub-menu>
+<li class=nav-menu-item><a class=nav-menu-link href=https://regex101.com/>Online Regex</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=http://www.bashoneliners.com/>Bash Online</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://www.epochconverter.com/>Unix Timestamp Conversion</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://ryanstutorials.net/bash-scripting-tutorial/>Bash Scripting</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://explainshell.com/>Explain Shell</a></li>
+</ul>
+</li>
+<form class="nav-menu-search-bar hidden md:flex relative">
+<button class="nav-menu-search-bar-search-btn absolute h-full"><svg class="w-3 h-3 text-gray-600" fill="currentcolor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.32 14.9l5.39 5.4a1 1 0 01-1.42 1.4l-5.38-5.38a8 8 0 111.41-1.41zM10 16a6 6 0 100-12 6 6 0 000 12z"/></svg>
+</button>
+<input name=s type=text class=w-full>
+</form>
+</ul>
+</div>
+</div>
+</nav>
+<main>
+<section class="container section">
+<div class="page-content max-w-2xl mx-auto">
+<img src=https://user-images.githubusercontent.com/31009750/178468844-4ee1f036-78cc-44fd-8185-5092b5863494.png class=img-responsive alt="Sử dụng Firebase Realtime Database để gửi thông báo cho người dùng trong web app">
+<h1>Sử dụng Firebase Realtime Database để gửi thông báo cho người dùng trong web app</h1>
+<p>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/cheatsheet>cheatsheet</a>
+</p>
+<h1 id=firebase-realtime-database>Firebase Realtime Database</h1>
+<h2 id=create-new-project>Create new project</h2>
+<ul>
+<li><a href=https://console.firebase.google.com/u/0/>https://console.firebase.google.com/u/0/</a></li>
+</ul>
+<blockquote>
+<p>Step 1</p>
+</blockquote>
+<p><img src=https://user-images.githubusercontent.com/31009750/178453011-1da71561-f7bd-48b3-a1a8-6d7be34cfbce.png alt=image></p>
+<blockquote>
+<p>Step 2</p>
+</blockquote>
+<p><img src=https://user-images.githubusercontent.com/31009750/178453101-e9996701-2501-44b7-9b7a-78f147dff2e6.png alt=image></p>
+<blockquote>
+<p>Step 3</p>
+</blockquote>
+<p><img src=https://user-images.githubusercontent.com/31009750/178453680-40f3be23-7617-421c-96a4-026645a209cb.png alt=image></p>
+<h2 id=add-new-firebase-realtime-database>Add new firebase realtime database</h2>
+<p><img src=https://user-images.githubusercontent.com/31009750/178453976-2a3cb1b9-a29c-4388-821d-6d5c3332eb37.png alt=image></p>
+<p><img src=https://user-images.githubusercontent.com/31009750/178454046-0ededf24-8b2d-49cd-aacc-28fe3afda63c.png alt=image></p>
+<blockquote>
+<p>Select your database region</p>
+</blockquote>
+<p><img src=https://user-images.githubusercontent.com/31009750/178454178-27d15fe7-ce37-4877-9b52-9c6731873014.png alt=image></p>
+<blockquote>
+<p>Test Mode Enable</p>
+</blockquote>
+<p><img src=https://user-images.githubusercontent.com/31009750/178454308-bc61aeaf-b33b-4967-900f-95b185b6fba1.png alt=image></p>
+<blockquote>
+<p>Finally, you will have this new database with the generated URI</p>
+</blockquote>
+<p><img src=https://user-images.githubusercontent.com/31009750/178454580-f47f1d29-a68a-4a8a-80e2-589d0551881b.png alt=image></p>
+<h2 id=lets-design-a-simple-notification-database>Let’s design a simple notification database</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=color:#e6db74>&#34;notifications&#34;</span><span style=color:#960050;background-color:#1e0010>:</span> {
+  <span style=color:#f92672>&#34;$userId&#34;</span>: {
+        <span style=color:#f92672>&#34;notificationId&#34;</span>: <span style=color:#ae81ff>1</span>,
+        <span style=color:#f92672>&#34;content&#34;</span>: <span style=color:#e6db74>&#34;hello&#34;</span>,
+        <span style=color:#f92672>&#34;notificationType&#34;</span>: <span style=color:#ae81ff>1</span>,
+        <span style=color:#f92672>&#34;isRead&#34;</span>: <span style=color:#66d9ef>false</span>,
+        <span style=color:#f92672>&#34;isSent&#34;</span>: <span style=color:#66d9ef>false</span>
+   },
+}
+{
+  <span style=color:#f92672>&#34;notifications&#34;</span>: {
+    <span style=color:#f92672>&#34;1&#34;</span>: [
+      {
+        <span style=color:#f92672>&#34;userId&#34;</span>: <span style=color:#ae81ff>1</span>,
+        <span style=color:#f92672>&#34;notificationId&#34;</span>: <span style=color:#ae81ff>1</span>,
+        <span style=color:#f92672>&#34;content&#34;</span>: <span style=color:#e6db74>&#34;hello&#34;</span>,
+        <span style=color:#f92672>&#34;notificationType&#34;</span>: <span style=color:#ae81ff>1</span>,
+        <span style=color:#f92672>&#34;isRead&#34;</span>: <span style=color:#66d9ef>false</span>,
+        <span style=color:#f92672>&#34;isSent&#34;</span>: <span style=color:#66d9ef>false</span>
+      },
+      {
+        <span style=color:#f92672>&#34;userId&#34;</span>: <span style=color:#ae81ff>1</span>,
+        <span style=color:#f92672>&#34;notificationId&#34;</span>: <span style=color:#ae81ff>2</span>,
+        <span style=color:#f92672>&#34;content&#34;</span>: <span style=color:#e6db74>&#34;hey&#34;</span>,
+        <span style=color:#f92672>&#34;notificationType&#34;</span>: <span style=color:#ae81ff>2</span>,
+        <span style=color:#f92672>&#34;isRead&#34;</span>: <span style=color:#66d9ef>false</span>,
+        <span style=color:#f92672>&#34;isSent&#34;</span>: <span style=color:#66d9ef>false</span>
+      }
+    ],
+    <span style=color:#f92672>&#34;2&#34;</span>: [
+      {
+        <span style=color:#f92672>&#34;userId&#34;</span>: <span style=color:#ae81ff>2</span>,
+        <span style=color:#f92672>&#34;notificationId&#34;</span>: <span style=color:#ae81ff>3</span>,
+        <span style=color:#f92672>&#34;content&#34;</span>: <span style=color:#e6db74>&#34;heyo&#34;</span>,
+        <span style=color:#f92672>&#34;notificationType&#34;</span>: <span style=color:#ae81ff>1</span>,
+        <span style=color:#f92672>&#34;isRead&#34;</span>: <span style=color:#66d9ef>false</span>,
+        <span style=color:#f92672>&#34;isSent&#34;</span>: <span style=color:#66d9ef>false</span>
+      }
+    ]
+  }
+}
+
+</code></pre></div><blockquote>
+<p>Import</p>
+</blockquote>
+<p><img src=https://user-images.githubusercontent.com/31009750/178457594-8e3aaa23-07fe-40d5-92d5-a5538fd44eb9.png alt=image></p>
+<blockquote>
+<p>After imported</p>
+</blockquote>
+<p><img src=https://user-images.githubusercontent.com/31009750/178465807-7e534b24-a9de-4a1f-b2ea-75ad9a599e76.png alt=image></p>
+<blockquote>
+<p>Connect and get DB instance</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#75715e>/* eslint-disable import/no-anonymous-default-export */</span>
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>initializeApp</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;firebase/app&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>getDatabase</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;firebase/database&#34;</span>;
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> {
+  <span style=color:#a6e22e>getInstance</span><span style=color:#f92672>:</span> (<span style=color:#a6e22e>databaseURL</span>) =&gt; {
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>firebaseConfig</span> <span style=color:#f92672>=</span> {
+      <span style=color:#75715e>// ...
+</span><span style=color:#75715e></span>      <span style=color:#75715e>// The value of `databaseURL` depends on the location of the database
+</span><span style=color:#75715e></span>      <span style=color:#a6e22e>databaseURL</span>,
+    };
+
+    <span style=color:#75715e>// Initialize Firebase
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>app</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>initializeApp</span>(<span style=color:#a6e22e>firebaseConfig</span>);
+
+    <span style=color:#75715e>// Initialize Realtime Database and get a reference to the service
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>getDatabase</span>(<span style=color:#a6e22e>app</span>);
+  },
+};
+</code></pre></div><blockquote>
+<p>Subscribe for changes</p>
+</blockquote>
+<ul>
+<li><a href=https://firebase.google.com/docs/database/web/read-and-write#write_data>Ref</a></li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>App</span>() {
+  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>notifications</span>, <span style=color:#a6e22e>setNotifications</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>([]);
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>subcribeOnNotification</span> <span style=color:#f92672>=</span> () =&gt; {
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>db</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>firebaseService</span>.<span style=color:#a6e22e>getInstance</span>(<span style=color:#a6e22e>FIREBASE_DATABASE_URL</span>);
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>userId</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>dbRef</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>ref</span>(<span style=color:#a6e22e>db</span>, <span style=color:#e6db74>&#34;/notifications/&#34;</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>userId</span>);
+    <span style=color:#a6e22e>onValue</span>(
+      <span style=color:#a6e22e>dbRef</span>,
+      (<span style=color:#a6e22e>snapshot</span>) =&gt; {
+        <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>snapshot</span>.<span style=color:#a6e22e>val</span>()) {
+          <span style=color:#a6e22e>setNotifications</span>([...<span style=color:#a6e22e>notifications</span>, ...<span style=color:#a6e22e>snapshot</span>.<span style=color:#a6e22e>val</span>()]);
+        }
+      },
+      {
+        <span style=color:#a6e22e>onlyOnce</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>false</span>,
+      }
+    );
+  };
+  <span style=color:#75715e>// init
+</span><span style=color:#75715e></span>  <span style=color:#a6e22e>useEffect</span>(() =&gt; {
+    <span style=color:#a6e22e>subcribeOnNotification</span>();
+  }, []);
+  <span style=color:#66d9ef>return</span> (
+    &lt;&gt;
+      &lt;<span style=color:#f92672>h1</span>&gt;<span style=color:#a6e22e>Firebase</span> <span style=color:#a6e22e>Realtime</span> <span style=color:#a6e22e>Database</span> <span style=color:#a6e22e>Notififcation</span> <span style=color:#a6e22e>Sample</span>&lt;/<span style=color:#f92672>h1</span>&gt;
+      &lt;<span style=color:#f92672>ul</span>&gt;
+        {<span style=color:#a6e22e>notifications</span>.<span style=color:#a6e22e>map</span>((<span style=color:#a6e22e>n</span>) =&gt; (
+          &lt;<span style=color:#f92672>li</span> <span style=color:#a6e22e>key</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>n</span>.<span style=color:#a6e22e>notificationId</span>}&gt;{<span style=color:#a6e22e>JSON</span>.<span style=color:#a6e22e>stringify</span>(<span style=color:#a6e22e>n</span>)}&lt;/<span style=color:#f92672>li</span>&gt;
+        ))}
+      &lt;/<span style=color:#f92672>ul</span>&gt;
+    &lt;/&gt;
+  );
+}
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#a6e22e>App</span>;
+</code></pre></div><h2 id=secure-your-firebase-database>Secure your firebase database</h2>
+<ol>
+<li>Security rules</li>
+</ol>
+<ul>
+<li>Ref : <a href=https://firebase.google.com/docs/database/security/rules-conditions>https://firebase.google.com/docs/database/security/rules-conditions</a>
+<blockquote>
+<p>Sample: User can only read his records</p>
+</blockquote>
+</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json><span style=color:#e6db74>&#34;notifications&#34;</span><span style=color:#960050;background-color:#1e0010>:</span> {
+  <span style=color:#f92672>&#34;$userId&#34;</span>: {
+        <span style=color:#f92672>&#34;notificationId&#34;</span>: <span style=color:#ae81ff>1</span>,
+        <span style=color:#f92672>&#34;content&#34;</span>: <span style=color:#e6db74>&#34;hello&#34;</span>,
+        <span style=color:#f92672>&#34;notificationType&#34;</span>: <span style=color:#ae81ff>1</span>,
+        <span style=color:#f92672>&#34;isRead&#34;</span>: <span style=color:#66d9ef>false</span>,
+        <span style=color:#f92672>&#34;isSent&#34;</span>: <span style=color:#66d9ef>false</span>
+   },
+}
+</code></pre></div><p><img src=https://user-images.githubusercontent.com/31009750/178636656-630eabe3-aa8f-409a-8e21-c17d98838bc5.png alt=image></p>
+<ol start=2>
+<li>In this case user must login with firebase to allow they can access their record</li>
+</ol>
+<p>There are several ways to authenticate a user with firebase. In this case we will use custom token through our API server to shared the same user id of our system with firebase</p>
+<ol start=3>
+<li>Enable Authentication on Firebase</li>
+</ol>
+<p>Access your firebase console and enable authentication product</p>
+<p><img src=https://user-images.githubusercontent.com/31009750/178676036-3b230928-da97-4fd0-91d1-8cc6c2c9643e.png alt=image></p>
+<ul>
+<li><a href=https://github.com/firebase/quickstart-js/issues/534>https://github.com/firebase/quickstart-js/issues/534</a></li>
+</ul>
+<ol start=4>
+<li>Create custom Auth</li>
+</ol>
+<p><img src=https://user-images.githubusercontent.com/31009750/178677118-2509e26f-309b-4d99-9b29-3597c95c74a6.png alt=image></p>
+<ol start=5>
+<li>Get configuration</li>
+</ol>
+<p>5.1. Generate admin service account to use in your API Server</p>
+<p><img src=https://user-images.githubusercontent.com/31009750/178679263-4e47fc33-e568-407d-b25d-92cd58ae48a7.png alt=image></p>
+<p>5.2. Generate app configuration</p>
+<p>Add app -> select web app</p>
+<p><img src=https://user-images.githubusercontent.com/31009750/178679464-2b8a352f-f3a9-434d-b3cf-d54be05049fd.png alt=image></p>
+<p><img src=https://user-images.githubusercontent.com/31009750/178679832-9e64e091-02a5-4244-b64a-380adda7b56f.png alt=image></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#75715e>// Initialize Firebase connection
+</span><span style=color:#75715e></span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>onValue</span>, <span style=color:#a6e22e>ref</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;firebase/database&#34;</span>;
+<span style=color:#66d9ef>import</span> {
+  <span style=color:#a6e22e>getAuth</span>,
+  <span style=color:#a6e22e>onAuthStateChanged</span>,
+  <span style=color:#a6e22e>signInWithCustomToken</span>,
+} <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;firebase/auth&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>getDatabase</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;firebase/database&#34;</span>;
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>app</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>initializeApp</span>(<span style=color:#a6e22e>firebaseConfig</span>);
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>auth</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>getAuth</span>(<span style=color:#a6e22e>app</span>);
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>db</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>getDatabase</span>(<span style=color:#a6e22e>app</span>);
+<span style=color:#75715e>// login
+</span><span style=color:#75715e></span><span style=color:#a6e22e>signInWithCustomToken</span>(<span style=color:#a6e22e>auth</span>, <span style=color:#a6e22e>customToken</span>)
+  .<span style=color:#a6e22e>then</span>((<span style=color:#a6e22e>userCredential</span>) =&gt; {
+    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>userCredential</span>);
+  })
+  .<span style=color:#66d9ef>catch</span>((<span style=color:#a6e22e>error</span>) =&gt; {
+    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>error</span>(<span style=color:#a6e22e>error</span>);
+  });
+<span style=color:#75715e>// listen on login state
+</span><span style=color:#75715e></span><span style=color:#a6e22e>onAuthStateChanged</span>(<span style=color:#a6e22e>auth</span>, (<span style=color:#a6e22e>user</span>) =&gt; {
+  <span style=color:#75715e>// user = null | Object
+</span><span style=color:#75715e></span>  <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>user</span>) {
+    <span style=color:#75715e>// do anything you want
+</span><span style=color:#75715e></span>  }
+});
+<span style=color:#75715e>// db manipulation : listen on change
+</span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>userId</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>dbRef</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>ref</span>(<span style=color:#a6e22e>db</span>, <span style=color:#e6db74>&#34;/notifications/&#34;</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>userId</span>);
+<span style=color:#a6e22e>onValue</span>(
+  <span style=color:#a6e22e>dbRef</span>,
+  (<span style=color:#a6e22e>snapshot</span>) =&gt; {
+    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>snapshot</span>.<span style=color:#a6e22e>val</span>()) {
+      <span style=color:#a6e22e>setNotifications</span>([...<span style=color:#a6e22e>notifications</span>, ...<span style=color:#a6e22e>snapshot</span>.<span style=color:#a6e22e>val</span>()]);
+    }
+  },
+  {
+    <span style=color:#a6e22e>onlyOnce</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>false</span>,
+  }
+);
+</code></pre></div><ol start=6>
+<li>Samples
+<blockquote>
+<p>Backend API</p>
+</blockquote>
+</li>
+</ol>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>admin</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>require</span>(<span style=color:#e6db74>&#34;firebase-admin&#34;</span>);
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>serviceAccount</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>require</span>(<span style=color:#e6db74>&#34;./jsguru-firebase-admin-sdk.json&#34;</span>);
+<span style=color:#66d9ef>var</span> <span style=color:#a6e22e>auth</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>null</span>;
+<span style=color:#75715e>// connect Firebase
+</span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>app</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>admin</span>.<span style=color:#a6e22e>initializeApp</span>({
+  <span style=color:#a6e22e>credential</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>admin</span>.<span style=color:#a6e22e>credential</span>.<span style=color:#a6e22e>cert</span>(<span style=color:#a6e22e>serviceAccount</span>),
+});
+<span style=color:#a6e22e>auth</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>admin</span>.<span style=color:#a6e22e>auth</span>(<span style=color:#a6e22e>app</span>);
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>getAuth</span> <span style=color:#f92672>=</span> () =&gt; {
+  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>auth</span>;
+};
+
+<span style=color:#a6e22e>app</span>.<span style=color:#a6e22e>post</span>(<span style=color:#e6db74>&#34;/generate-firebase-token&#34;</span>, <span style=color:#66d9ef>async</span> (<span style=color:#a6e22e>req</span>, <span style=color:#a6e22e>res</span>) =&gt; {
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>userId</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;1&#34;</span>;
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>additionalClaims</span> <span style=color:#f92672>=</span> {
+    <span style=color:#a6e22e>premiumAccount</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>false</span>,
+  };
+  <span style=color:#75715e>// Custom auth without generate your custom JWT
+</span><span style=color:#75715e></span>  <span style=color:#66d9ef>await</span> <span style=color:#66d9ef>new</span> Promise((<span style=color:#a6e22e>resolve</span>) =&gt; {
+    <span style=color:#a6e22e>getAuth</span>()
+      .<span style=color:#a6e22e>createCustomToken</span>(<span style=color:#a6e22e>userId</span>, <span style=color:#a6e22e>additionalClaims</span>)
+      .<span style=color:#a6e22e>then</span>((<span style=color:#a6e22e>customToken</span>) =&gt; {
+        <span style=color:#75715e>// Send token back to client
+</span><span style=color:#75715e></span>        <span style=color:#a6e22e>resolve</span>(<span style=color:#a6e22e>customToken</span>);
+        <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>send</span>({
+          <span style=color:#a6e22e>customToken</span>,
+        });
+      })
+      .<span style=color:#66d9ef>catch</span>((<span style=color:#a6e22e>error</span>) =&gt; {
+        <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>send</span>({
+          <span style=color:#a6e22e>customToken</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;&#34;</span>,
+        });
+        <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;Error creating custom token:&#34;</span>, <span style=color:#a6e22e>error</span>);
+      });
+  });
+});
+</code></pre></div><blockquote>
+<p>Application</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#75715e>// firebase.service.js
+</span><span style=color:#75715e></span><span style=color:#75715e>/* eslint-disable import/no-anonymous-default-export */</span>
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>initializeApp</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;firebase/app&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>getDatabase</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;firebase/database&#34;</span>;
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> {
+  <span style=color:#a6e22e>getInstance</span><span style=color:#f92672>:</span> () =&gt; {
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>firebaseConfig</span> <span style=color:#f92672>=</span> {
+      <span style=color:#75715e>// ...
+</span><span style=color:#75715e></span>      <span style=color:#75715e>// The value of `databaseURL` depends on the location of the database
+</span><span style=color:#75715e></span>      <span style=color:#a6e22e>apiKey</span><span style=color:#f92672>:</span> <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>process</span>.<span style=color:#a6e22e>env</span>.<span style=color:#a6e22e>REACT_APP_apiKey</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>,
+      <span style=color:#a6e22e>authDomain</span><span style=color:#f92672>:</span> <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>process</span>.<span style=color:#a6e22e>env</span>.<span style=color:#a6e22e>REACT_APP_authDomain</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>,
+      <span style=color:#a6e22e>databaseURL</span><span style=color:#f92672>:</span> <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>process</span>.<span style=color:#a6e22e>env</span>.<span style=color:#a6e22e>REACT_APP_databaseURL</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>,
+      <span style=color:#a6e22e>projectId</span><span style=color:#f92672>:</span> <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>process</span>.<span style=color:#a6e22e>env</span>.<span style=color:#a6e22e>REACT_APP_projectId</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>,
+      <span style=color:#a6e22e>messagingSenderId</span><span style=color:#f92672>:</span> <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>process</span>.<span style=color:#a6e22e>env</span>.<span style=color:#a6e22e>REACT_APP_messagingSenderId</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>,
+      <span style=color:#a6e22e>appId</span><span style=color:#f92672>:</span> <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>process</span>.<span style=color:#a6e22e>env</span>.<span style=color:#a6e22e>REACT_APP_appId</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>,
+    };
+
+    <span style=color:#75715e>// Initialize Firebase
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>app</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>initializeApp</span>(<span style=color:#a6e22e>firebaseConfig</span>);
+
+    <span style=color:#75715e>// Initialize Realtime Database and get a reference to the service
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>return</span> {
+      <span style=color:#a6e22e>app</span>,
+      <span style=color:#a6e22e>db</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>getDatabase</span>(<span style=color:#a6e22e>app</span>),
+    };
+  },
+};
+
+<span style=color:#75715e>// App.jsx
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>async</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>postData</span>(<span style=color:#a6e22e>url</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;&#34;</span>, <span style=color:#a6e22e>data</span> <span style=color:#f92672>=</span> {}) {
+  <span style=color:#75715e>// Default options are marked with *
+</span><span style=color:#75715e></span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>response</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>fetch</span>(<span style=color:#a6e22e>url</span>, {
+    <span style=color:#a6e22e>method</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;POST&#34;</span>, <span style=color:#75715e>// *GET, POST, PUT, DELETE, etc.
+</span><span style=color:#75715e></span>    <span style=color:#a6e22e>mode</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;cors&#34;</span>, <span style=color:#75715e>// no-cors, *cors, same-origin
+</span><span style=color:#75715e></span>    <span style=color:#a6e22e>cache</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;no-cache&#34;</span>, <span style=color:#75715e>// *default, no-cache, reload, force-cache, only-if-cached
+</span><span style=color:#75715e></span>    <span style=color:#a6e22e>credentials</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;same-origin&#34;</span>, <span style=color:#75715e>// include, *same-origin, omit
+</span><span style=color:#75715e></span>    <span style=color:#a6e22e>headers</span><span style=color:#f92672>:</span> {
+      <span style=color:#e6db74>&#34;Content-Type&#34;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;application/json&#34;</span>,
+      <span style=color:#75715e>// &#39;Content-Type&#39;: &#39;application/x-www-form-urlencoded&#39;,
+</span><span style=color:#75715e></span>    },
+    <span style=color:#a6e22e>redirect</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;follow&#34;</span>, <span style=color:#75715e>// manual, *follow, error
+</span><span style=color:#75715e></span>    <span style=color:#a6e22e>referrerPolicy</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;no-referrer&#34;</span>, <span style=color:#75715e>// no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+</span><span style=color:#75715e></span>    <span style=color:#a6e22e>body</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>JSON</span>.<span style=color:#a6e22e>stringify</span>(<span style=color:#a6e22e>data</span>), <span style=color:#75715e>// body data type must match &#34;Content-Type&#34; header
+</span><span style=color:#75715e></span>  });
+  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>response</span>.<span style=color:#a6e22e>json</span>(); <span style=color:#75715e>// parses JSON response into native JavaScript objects
+</span><span style=color:#75715e></span>}
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>getFirebaseToken</span> <span style=color:#f92672>=</span> () =&gt; {
+  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>postData</span>(<span style=color:#e6db74>&#34;http://localhost:1337/login&#34;</span>);
+};
+
+<span style=color:#66d9ef>const</span> { <span style=color:#a6e22e>app</span>, <span style=color:#a6e22e>db</span> } <span style=color:#f92672>=</span> <span style=color:#a6e22e>firebaseService</span>.<span style=color:#a6e22e>getInstance</span>();
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>auth</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>getAuth</span>(<span style=color:#a6e22e>app</span>);
+
+<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>App</span>() {
+  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>notifications</span>, <span style=color:#a6e22e>setNotifications</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>([]);
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>doLogin</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>async</span> () =&gt; {
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>res</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>getFirebaseToken</span>();
+    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>auth</span>);
+    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>app</span>);
+    <span style=color:#a6e22e>signInWithCustomToken</span>(<span style=color:#a6e22e>auth</span>, <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>customToken</span>)
+      .<span style=color:#a6e22e>then</span>((<span style=color:#a6e22e>userCredential</span>) =&gt; {
+        <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>userCredential</span>);
+      })
+      .<span style=color:#66d9ef>catch</span>((<span style=color:#a6e22e>error</span>) =&gt; {
+        <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>error</span>(<span style=color:#a6e22e>error</span>);
+      });
+  };
+
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>subcribeOnNotification</span> <span style=color:#f92672>=</span> () =&gt; {
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>userId</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>dbRef</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>ref</span>(<span style=color:#a6e22e>db</span>, <span style=color:#e6db74>&#34;/notifications/&#34;</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>userId</span>);
+    <span style=color:#a6e22e>onValue</span>(
+      <span style=color:#a6e22e>dbRef</span>,
+      (<span style=color:#a6e22e>snapshot</span>) =&gt; {
+        <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>snapshot</span>.<span style=color:#a6e22e>val</span>()) {
+          <span style=color:#a6e22e>setNotifications</span>([...<span style=color:#a6e22e>notifications</span>, ...<span style=color:#a6e22e>snapshot</span>.<span style=color:#a6e22e>val</span>()]);
+        }
+      },
+      {
+        <span style=color:#a6e22e>onlyOnce</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>false</span>,
+      }
+    );
+  };
+
+  <span style=color:#75715e>// init
+</span><span style=color:#75715e></span>  <span style=color:#a6e22e>useEffect</span>(() =&gt; {
+    <span style=color:#a6e22e>onAuthStateChanged</span>(<span style=color:#a6e22e>auth</span>, (<span style=color:#a6e22e>user</span>) =&gt; {
+      <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;user&#34;</span>, <span style=color:#a6e22e>user</span>);
+      <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>user</span>) {
+        <span style=color:#75715e>// do something with realtime database
+</span><span style=color:#75715e></span>        <span style=color:#a6e22e>subcribeOnNotification</span>();
+      }
+    });
+  }, []);
+
+  <span style=color:#66d9ef>return</span> (
+    <span style=color:#f92672>&lt;&gt;</span>
+      <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>h1</span><span style=color:#f92672>&gt;</span><span style=color:#a6e22e>Firebase</span> <span style=color:#a6e22e>Realtime</span> <span style=color:#a6e22e>Database</span> <span style=color:#a6e22e>Notififcation</span> <span style=color:#a6e22e>Sample</span><span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/h1&gt;</span>
+      <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>ul</span><span style=color:#f92672>&gt;</span>
+        {<span style=color:#a6e22e>notifications</span>.<span style=color:#a6e22e>map</span>((<span style=color:#a6e22e>n</span>) =&gt; (
+          <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>li</span> <span style=color:#a6e22e>key</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>n</span>.<span style=color:#a6e22e>notificationId</span>}<span style=color:#f92672>&gt;</span>{<span style=color:#a6e22e>JSON</span>.<span style=color:#a6e22e>stringify</span>(<span style=color:#a6e22e>n</span>)}<span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/li&gt;</span>
+        ))}
+      <span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/ul&gt;</span>
+      <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>button</span> <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{() =&gt; <span style=color:#a6e22e>doLogin</span>()}<span style=color:#f92672>&gt;</span><span style=color:#a6e22e>Login</span><span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/button&gt;</span>
+    <span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/&gt;</span>
+  );
+}
+</code></pre></div>
+<div class="m-1 p-1">
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/cheatsheet>cheatsheet</a>
+</div>
+</div>
+</section>
+<section class="container section">
+<div class="max-w-2xl mx-auto">
+<div class="font-heading text-2xl font-semibold">You Might Also Like</div>
+<div class="mt-8 grid gap-8">
+<ul class=sidebar-links>
+<li><a href=/post/how-to-use-typescript-path-alias-in-loopback-4/>How to Use Typescript Path Alias in Loopback 4</a></li>
+<li><a href=/post/javascript-numeric-precision-issue/>Javascript Numeric Precision Issue</a></li>
+<li><a href=/post/tim-hieu-ve-props-va-state-trong-reactjs/>Tim Hieu Ve Props Va State Trong Reactjs</a></li>
+<li><a href=/post/con-duong-tro-lap-lap-trinh-vien-fullstack-js/>Con đường trở thành lập trình viên fullstack JS</a></li>
+<li><a href=/post/create-new-spa-with-reactjs/>Create New Spa With Reactjs</a></li>
+<li><a href=/post/create-static-blog-with-hugo-and-github-pages-in-5-minutes/>Create Static Blog With Hugo and Github Pages in 5 Minutes</a></li>
+<li><a href=/post/setup-nodejs-development-enviroment-in-5-minutes/>Setup NodeJS Development Environment in 5 Minutes</a></li>
+</ul>
+</div>
+</div>
+</section>
+</main>
+<footer class=footer>
+<div class="container md:flex">
+<section class="footer-section-info md:basis-1/4">
+<div class=address>
+<a class=logo href=https://nextjsvietnam.com title=NextJSVietNam>
+NextJSVietNam
+</a>
+<h4 class=footer-heading>
+PRODUCTION MODE
+<h4>
+</div>
+</section>
+<div class="footer-section-navigation-menu md:basis-1/4">
+<h4 class=footer-heading>NestJS</h4>
+<ul class=footer-section-navigation-menu-links>
+<li><a href=https://nextjsvietnam.com/post/nestjs-request-and-response-object/>Nestjs Request and Response Object</a></li>
+<li><a href=https://nextjsvietnam.com/post/nestjs-upload-files/>Nestjs Upload Files</a></li>
+<li><a href=https://nextjsvietnam.com/post/nestjs-pipes/>Nestjs Pipes</a></li>
+<li><a href=https://nextjsvietnam.com/post/validate-request-input-in-nestjs/>Validate Request Input in Nestjs</a></li>
+<li><a href=https://nextjsvietnam.com/post/nestjs-provider/>Nestjs Provider</a></li>
+</ul>
+</div>
+<div class="footer-section-navigation-menu md:basis-1/4">
+<h4 class=footer-heading>NextJS</h4>
+<ul class=footer-section-navigation-menu-links>
+<li><a href=https://nextjsvietnam.com/post/create-new-website-with-nextjs/>Create New Website With Nextjs</a></li>
+</ul>
+</div>
+<div class="footer-section-navigation-menu md:basis-1/4">
+<h4 class=footer-heading>Cheatsheet</h4>
+<ul class=footer-section-navigation-menu-links>
+<li><a href=https://nextjsvietnam.com/post/how-to-use-typescript-path-alias-in-loopback-4/>How to Use Typescript Path Alias in Loopback 4</a></li>
+<li><a href=https://nextjsvietnam.com/post/javascript-numeric-precision-issue/>Javascript Numeric Precision Issue</a></li>
+<li><a href=https://nextjsvietnam.com/post/su-dung-firebase-realtime-database-gui-thong-bao/>Sử dụng Firebase Realtime Database để gửi thông báo cho người dùng trong web app</a></li>
+<li><a href=https://nextjsvietnam.com/post/tim-hieu-ve-props-va-state-trong-reactjs/>Tim Hieu Ve Props Va State Trong Reactjs</a></li>
+<li><a href=https://nextjsvietnam.com/post/con-duong-tro-lap-lap-trinh-vien-fullstack-js/>Con đường trở thành lập trình viên fullstack JS</a></li>
+</ul>
+</div>
+</div>
+<div class=container>
+<div class=text-center>
+<a href><span class="material-icons text-4xl m-4">facebook</span></a>
+<a href><span class="material-icons text-4xl m-4">smart_display</span></a>
+</div>
+<div class="text-center text-lg py-4">
+Copyright @ NextJSVietNam 2022
+</div>
+<div class="text-center text-sm">
+Powered by <a class="font-bold text-primary" href=https://gohugo.io/>Go Hugo</a> - Made
+with love from <a class="font-bold text-primary" href=https://nextjsvietnam.com>NextJSVietNam</a> -
+Build
+Version 2022-08-05 20:07:21 +0700 +0700
+</div>
+</div>
+</footer>
+<script type=text/javascript src=https://nextjsvietnam.com/core/jquery-3.6.0.min.js></script>
+<script type=text/javascript src=https://nextjsvietnam.com/themes/2022/public/main.js></script>
+<script type=text/javascript src=https://nextjsvietnam.com/themes/2022/public/home.js></script>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=home href=https://nextjsvietnam.com>
+<meta name=generator content="jsguru cms">
+<link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap">
+<link rel=stylesheet href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel=stylesheet href=https://nextjsvietnam.com/themes/2022/public/main.css>
+<link rel=stylesheet href=https://nextjsvietnam.com/themes/2022/public/home.css>
+<link rel=stylesheet href=https://nextjsvietnam.com/themes/2022/public/page.css>
+<meta name=msvalidate.01 content="0899226C2935AEF15F1F831A889431FA">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1KK3645K2M"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-1KK3645K2M')</script>
+<title>Con đường trở thành lập trình viên fullstack JS | Chia sẻ kinh nghiệm, lộ trình cụ thể cho những lập trình viên muốn theo đuổi con đường fullstack | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+<meta name=robots content="all">
+<meta name=keywords content="fullstack,javascript,js,nodejs">
+<meta name=description content="Chia sẻ kinh nghiệm, lộ trình cụ thể cho những lập trình viên muốn theo đuổi con đường fullstack">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://nextjsvietnam.com/common/no-image.png">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="750">
+<meta property="og:image:height" content="300">
+<link rel=apple-touch-icon sizes=57x57 href=/apple-icon-57x57.png>
+<link rel=apple-touch-icon sizes=60x60 href=/apple-icon-60x60.png>
+<link rel=apple-touch-icon sizes=72x72 href=/apple-icon-72x72.png>
+<link rel=apple-touch-icon sizes=76x76 href=/apple-icon-76x76.png>
+<link rel=apple-touch-icon sizes=114x114 href=/apple-icon-114x114.png>
+<link rel=apple-touch-icon sizes=120x120 href=/apple-icon-120x120.png>
+<link rel=apple-touch-icon sizes=144x144 href=/apple-icon-144x144.png>
+<link rel=apple-touch-icon sizes=152x152 href=/apple-icon-152x152.png>
+<link rel=apple-touch-icon sizes=180x180 href=/apple-icon-180x180.png>
+<link rel=icon type=image/png sizes=192x192 href=/android-icon-192x192.png>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=96x96 href=/favicon-96x96.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
+<link rel=manifest href=/manifest.json>
+<meta name=msapplication-TileColor content="#ffffff">
+<meta name=msapplication-TileImage content="/ms-icon-144x144.png">
+<meta name=theme-color content="#ffffff">
+</head>
+<body class=body-nav-fixed>
+<nav class="nav-fixed nav-default z-50">
+<div class=container>
+<div class="nav-container flex flex-wrap justify-between items-center">
+<a href=https://nextjsvietnam.com class="nav-brand inline-block">
+<img class=h-16 src=https://nextjsvietnam.com/themes/2022/src/assets/images/logo.png alt=Stunning>
+</a>
+<a href=javascript:void(0); data-menu=#menu-main_menu class=nav-menu-toggle><span class=material-icons>menu</span></a>
+<ul id=menu-main_menu class="nav-menu h-0 md:h-auto">
+<form class="nav-menu-search-bar md:hidden relative">
+<button class="nav-menu-search-bar-search-btn absolute h-full"><svg class="w-3 h-3 text-gray-600" fill="currentcolor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.32 14.9l5.39 5.4a1 1 0 01-1.42 1.4l-5.38-5.38a8 8 0 111.41-1.41zM10 16a6 6 0 100-12 6 6 0 000 12z"/></svg>
+</button>
+<input name=s type=text class=w-full>
+</form>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/cheatsheet>cheatsheet</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/frameworks>frameworks</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/java>java</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/lifestyle>lifestyle</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/systemdesign>systemdesign</a></li>
+<li class=nav-menu-item>
+<a class=nav-menu-link href=https://nextjsvietnam.com>Tools
+<span class=material-icons>keyboard_arrow_down</span>
+</a>
+<ul class=sub-menu>
+<li class=nav-menu-item><a class=nav-menu-link href=https://regex101.com/>Online Regex</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=http://www.bashoneliners.com/>Bash Online</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://www.epochconverter.com/>Unix Timestamp Conversion</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://ryanstutorials.net/bash-scripting-tutorial/>Bash Scripting</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://explainshell.com/>Explain Shell</a></li>
+</ul>
+</li>
+<form class="nav-menu-search-bar hidden md:flex relative">
+<button class="nav-menu-search-bar-search-btn absolute h-full"><svg class="w-3 h-3 text-gray-600" fill="currentcolor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.32 14.9l5.39 5.4a1 1 0 01-1.42 1.4l-5.38-5.38a8 8 0 111.41-1.41zM10 16a6 6 0 100-12 6 6 0 000 12z"/></svg>
+</button>
+<input name=s type=text class=w-full>
+</form>
+</ul>
+</div>
+</div>
+</nav>
+<main>
+<section class="container section">
+<div class="page-content max-w-2xl mx-auto">
+<img src=https://nextjsvietnam.com/common/no-image.png class=img-responsive alt="Con đường trở thành lập trình viên fullstack JS">
+<h1>Con đường trở thành lập trình viên fullstack JS</h1>
+<p>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/cheatsheet>cheatsheet</a>
+</p>
+<div class="m-1 p-1">
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/cheatsheet>cheatsheet</a>
+</div>
+</div>
+</section>
+<section class="container section">
+<div class="max-w-2xl mx-auto">
+<div class="font-heading text-2xl font-semibold">You Might Also Like</div>
+<div class="mt-8 grid gap-8">
+<ul class=sidebar-links>
+<li><a href=/post/how-to-use-typescript-path-alias-in-loopback-4/>How to Use Typescript Path Alias in Loopback 4</a></li>
+<li><a href=/post/javascript-numeric-precision-issue/>Javascript Numeric Precision Issue</a></li>
+<li><a href=/post/su-dung-firebase-realtime-database-gui-thong-bao/>Sử dụng Firebase Realtime Database để gửi thông báo cho người dùng trong web app</a></li>
+<li><a href=/post/tim-hieu-ve-props-va-state-trong-reactjs/>Tim Hieu Ve Props Va State Trong Reactjs</a></li>
+<li><a href=/post/create-new-spa-with-reactjs/>Create New Spa With Reactjs</a></li>
+<li><a href=/post/create-static-blog-with-hugo-and-github-pages-in-5-minutes/>Create Static Blog With Hugo and Github Pages in 5 Minutes</a></li>
+<li><a href=/post/setup-nodejs-development-enviroment-in-5-minutes/>Setup NodeJS Development Environment in 5 Minutes</a></li>
+</ul>
+</div>
+</div>
+</section>
+</main>
+<footer class=footer>
+<div class="container md:flex">
+<section class="footer-section-info md:basis-1/4">
+<div class=address>
+<a class=logo href=https://nextjsvietnam.com title=NextJSVietNam>
+NextJSVietNam
+</a>
+<h4 class=footer-heading>
+PRODUCTION MODE
+<h4>
+</div>
+</section>
+<div class="footer-section-navigation-menu md:basis-1/4">
+<h4 class=footer-heading>NestJS</h4>
+<ul class=footer-section-navigation-menu-links>
+<li><a href=https://nextjsvietnam.com/post/nestjs-request-and-response-object/>Nestjs Request and Response Object</a></li>
+<li><a href=https://nextjsvietnam.com/post/nestjs-upload-files/>Nestjs Upload Files</a></li>
+<li><a href=https://nextjsvietnam.com/post/nestjs-pipes/>Nestjs Pipes</a></li>
+<li><a href=https://nextjsvietnam.com/post/validate-request-input-in-nestjs/>Validate Request Input in Nestjs</a></li>
+<li><a href=https://nextjsvietnam.com/post/nestjs-provider/>Nestjs Provider</a></li>
+</ul>
+</div>
+<div class="footer-section-navigation-menu md:basis-1/4">
+<h4 class=footer-heading>NextJS</h4>
+<ul class=footer-section-navigation-menu-links>
+<li><a href=https://nextjsvietnam.com/post/create-new-website-with-nextjs/>Create New Website With Nextjs</a></li>
+</ul>
+</div>
+<div class="footer-section-navigation-menu md:basis-1/4">
+<h4 class=footer-heading>Cheatsheet</h4>
+<ul class=footer-section-navigation-menu-links>
+<li><a href=https://nextjsvietnam.com/post/how-to-use-typescript-path-alias-in-loopback-4/>How to Use Typescript Path Alias in Loopback 4</a></li>
+<li><a href=https://nextjsvietnam.com/post/javascript-numeric-precision-issue/>Javascript Numeric Precision Issue</a></li>
+<li><a href=https://nextjsvietnam.com/post/su-dung-firebase-realtime-database-gui-thong-bao/>Sử dụng Firebase Realtime Database để gửi thông báo cho người dùng trong web app</a></li>
+<li><a href=https://nextjsvietnam.com/post/tim-hieu-ve-props-va-state-trong-reactjs/>Tim Hieu Ve Props Va State Trong Reactjs</a></li>
+<li><a href=https://nextjsvietnam.com/post/con-duong-tro-lap-lap-trinh-vien-fullstack-js/>Con đường trở thành lập trình viên fullstack JS</a></li>
+</ul>
+</div>
+</div>
+<div class=container>
+<div class=text-center>
+<a href><span class="material-icons text-4xl m-4">facebook</span></a>
+<a href><span class="material-icons text-4xl m-4">smart_display</span></a>
+</div>
+<div class="text-center text-lg py-4">
+Copyright @ NextJSVietNam 2022
+</div>
+<div class="text-center text-sm">
+Powered by <a class="font-bold text-primary" href=https://gohugo.io/>Go Hugo</a> - Made
+with love from <a class="font-bold text-primary" href=https://nextjsvietnam.com>NextJSVietNam</a> -
+Build
+Version 2022-08-05 20:07:21 +0700 +0700
+</div>
+</div>
+</footer>
+<script type=text/javascript src=https://nextjsvietnam.com/core/jquery-3.6.0.min.js></script>
+<script type=text/javascript src=https://nextjsvietnam.com/themes/2022/public/main.js></script>
+<script type=text/javascript src=https://nextjsvietnam.com/themes/2022/public/home.js></script>
+</body>
+</html>

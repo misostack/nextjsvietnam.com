@@ -1,0 +1,390 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=home href=https://nextjsvietnam.com>
+<meta name=generator content="jsguru cms">
+<link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap">
+<link rel=stylesheet href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel=stylesheet href=https://nextjsvietnam.com/themes/2022/public/main.css>
+<link rel=stylesheet href=https://nextjsvietnam.com/themes/2022/public/home.css>
+<link rel=stylesheet href=https://nextjsvietnam.com/themes/2022/public/page.css>
+<meta name=msvalidate.01 content="0899226C2935AEF15F1F831A889431FA">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1KK3645K2M"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-1KK3645K2M')</script>
+<title>Validate Request Input in Nestjs | It is best practice to validate the correctness of any data sent into a web application | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+<meta name=robots content="all">
+<meta name=keywords content="nestjs,dto,validation">
+<meta name=description content="It is best practice to validate the correctness of any data sent into a web application">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://user-images.githubusercontent.com/31009750/181449337-70081a76-5a01-4229-805e-39ed0ded6b5b.png">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="750">
+<meta property="og:image:height" content="300">
+<link rel=apple-touch-icon sizes=57x57 href=/apple-icon-57x57.png>
+<link rel=apple-touch-icon sizes=60x60 href=/apple-icon-60x60.png>
+<link rel=apple-touch-icon sizes=72x72 href=/apple-icon-72x72.png>
+<link rel=apple-touch-icon sizes=76x76 href=/apple-icon-76x76.png>
+<link rel=apple-touch-icon sizes=114x114 href=/apple-icon-114x114.png>
+<link rel=apple-touch-icon sizes=120x120 href=/apple-icon-120x120.png>
+<link rel=apple-touch-icon sizes=144x144 href=/apple-icon-144x144.png>
+<link rel=apple-touch-icon sizes=152x152 href=/apple-icon-152x152.png>
+<link rel=apple-touch-icon sizes=180x180 href=/apple-icon-180x180.png>
+<link rel=icon type=image/png sizes=192x192 href=/android-icon-192x192.png>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=96x96 href=/favicon-96x96.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
+<link rel=manifest href=/manifest.json>
+<meta name=msapplication-TileColor content="#ffffff">
+<meta name=msapplication-TileImage content="/ms-icon-144x144.png">
+<meta name=theme-color content="#ffffff">
+</head>
+<body class=body-nav-fixed>
+<nav class="nav-fixed nav-default z-50">
+<div class=container>
+<div class="nav-container flex flex-wrap justify-between items-center">
+<a href=https://nextjsvietnam.com class="nav-brand inline-block">
+<img class=h-16 src=https://nextjsvietnam.com/themes/2022/src/assets/images/logo.png alt=Stunning>
+</a>
+<a href=javascript:void(0); data-menu=#menu-main_menu class=nav-menu-toggle><span class=material-icons>menu</span></a>
+<ul id=menu-main_menu class="nav-menu h-0 md:h-auto">
+<form class="nav-menu-search-bar md:hidden relative">
+<button class="nav-menu-search-bar-search-btn absolute h-full"><svg class="w-3 h-3 text-gray-600" fill="currentcolor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.32 14.9l5.39 5.4a1 1 0 01-1.42 1.4l-5.38-5.38a8 8 0 111.41-1.41zM10 16a6 6 0 100-12 6 6 0 000 12z"/></svg>
+</button>
+<input name=s type=text class=w-full>
+</form>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/cheatsheet>cheatsheet</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/frameworks>frameworks</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/java>java</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/lifestyle>lifestyle</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/systemdesign>systemdesign</a></li>
+<li class=nav-menu-item>
+<a class=nav-menu-link href=https://nextjsvietnam.com>Tools
+<span class=material-icons>keyboard_arrow_down</span>
+</a>
+<ul class=sub-menu>
+<li class=nav-menu-item><a class=nav-menu-link href=https://regex101.com/>Online Regex</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=http://www.bashoneliners.com/>Bash Online</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://www.epochconverter.com/>Unix Timestamp Conversion</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://ryanstutorials.net/bash-scripting-tutorial/>Bash Scripting</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://explainshell.com/>Explain Shell</a></li>
+</ul>
+</li>
+<form class="nav-menu-search-bar hidden md:flex relative">
+<button class="nav-menu-search-bar-search-btn absolute h-full"><svg class="w-3 h-3 text-gray-600" fill="currentcolor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.32 14.9l5.39 5.4a1 1 0 01-1.42 1.4l-5.38-5.38a8 8 0 111.41-1.41zM10 16a6 6 0 100-12 6 6 0 000 12z"/></svg>
+</button>
+<input name=s type=text class=w-full>
+</form>
+</ul>
+</div>
+</div>
+</nav>
+<main>
+<section class="container section">
+<div class="page-content max-w-2xl mx-auto">
+<img src=https://user-images.githubusercontent.com/31009750/181449337-70081a76-5a01-4229-805e-39ed0ded6b5b.png class=img-responsive alt="Validate Request Input in Nestjs">
+<h1>Validate Request Input in Nestjs</h1>
+<p>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/frameworks>frameworks</a>
+</p>
+<p><strong>Note</strong>: All of demo source code you can find our in github <a href=https://github.com/misostack/finance.api.sonnm.com>nestjs boilerplate</a></p>
+<blockquote>
+<p>It is best practice to validate the correctness of any data sent into a web application</p>
+</blockquote>
+<p><strong>There are several libraries support us to verify data :</strong></p>
+<ul>
+<li><a href=https://www.npmjs.com/package/jsonschema>json schema</a></li>
+<li><a href="https://joi.dev/api/?v=17.6.0#version">joi</a></li>
+<li><a href=https://www.npmjs.com/package/validator>validator</a></li>
+</ul>
+<p><strong>And in typescript, we have a special library that support decorator</strong></p>
+<ul>
+<li><a href=https://github.com/typestack/class-validator>Class Validator</a> - internally uses validator.js to perform validation. Class-validator works on both browser and node.js platforms</li>
+</ul>
+<blockquote>
+<p>Let&rsquo;s dive in class validator usage example. Let&rsquo;s say that we have a requirement for example entity&rsquo;s data like this</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>{
+    <span style=color:#f92672>&#34;title&#34;</span>: {
+        <span style=color:#f92672>&#34;dataType&#34;</span>: <span style=color:#960050;background-color:#1e0010>string</span>,
+        <span style=color:#f92672>&#34;required&#34;</span>: <span style=color:#66d9ef>true</span>,
+        <span style=color:#f92672>&#34;maxLength&#34;</span>: <span style=color:#ae81ff>75</span>,
+        <span style=color:#f92672>&#34;minLength&#34;</span>: <span style=color:#ae81ff>1</span>,
+    },
+    <span style=color:#f92672>&#34;description&#34;</span>: {
+        <span style=color:#f92672>&#34;dataType&#34;</span>: <span style=color:#960050;background-color:#1e0010>string</span>,
+        <span style=color:#f92672>&#34;required&#34;</span>: <span style=color:#66d9ef>false</span>,
+        <span style=color:#f92672>&#34;maxLength&#34;</span>: <span style=color:#ae81ff>160</span>,
+    },
+    <span style=color:#f92672>&#34;content&#34;</span>: {
+        <span style=color:#f92672>&#34;dataType&#34;</span>: <span style=color:#960050;background-color:#1e0010>string</span>,
+        <span style=color:#f92672>&#34;required&#34;</span>: <span style=color:#66d9ef>false</span>
+    },
+    <span style=color:#f92672>&#34;status&#34;</span>: {
+        <span style=color:#f92672>&#34;dataType&#34;</span>: <span style=color:#960050;background-color:#1e0010>enum</span>,
+        <span style=color:#f92672>&#34;required&#34;</span>: <span style=color:#66d9ef>false</span>,
+        <span style=color:#f92672>&#34;default&#34;</span>: <span style=color:#ae81ff>1</span>,
+        <span style=color:#f92672>&#34;enum&#34;</span>: {<span style=color:#960050;background-color:#1e0010>pending:1,</span> <span style=color:#960050;background-color:#1e0010>published:2,</span> <span style=color:#960050;background-color:#1e0010>archived:3</span>}, <span style=color:#75715e>// can not be archived when creating
+</span><span style=color:#75715e></span>    },
+    <span style=color:#f92672>&#34;tags&#34;</span>: {
+        <span style=color:#f92672>&#34;dataType&#34;</span>: <span style=color:#960050;background-color:#1e0010>Array</span>[<span style=color:#960050;background-color:#1e0010>string</span>],
+        <span style=color:#f92672>&#34;required&#34;</span>: <span style=color:#66d9ef>false</span>,
+        <span style=color:#f92672>&#34;arrayMaxLength&#34;</span>: <span style=color:#ae81ff>5</span>,
+        <span style=color:#f92672>&#34;eachValidation&#34;</span>: {
+            <span style=color:#f92672>&#34;minLength&#34;</span>: <span style=color:#ae81ff>3</span>,
+            <span style=color:#f92672>&#34;maxLength&#34;</span>: <span style=color:#ae81ff>5</span>,
+        }
+    }
+}
+</code></pre></div><blockquote>
+<p>Class validator supports 2 ways for validation</p>
+</blockquote>
+<h3 id=create-your-class-and-put-some-validation-decorators-on-the-properties-you-want-to-validate>Create your class and put some validation decorators on the properties you want to validate</h3>
+<blockquote>
+<p>In real world projects, the request body will be JSON object, so that you need to create your class object by assign values from JSON object.</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>npm install class-validator --save
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>postData</span> <span style=color:#f92672>=</span> {
+  <span style=color:#a6e22e>title</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;hello&#34;</span>,
+  <span style=color:#a6e22e>description</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;the greatest post&#34;</span>,
+  <span style=color:#a6e22e>content</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;lorem ipsum ...&#34;</span>,
+};
+<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>post</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Post</span>();
+<span style=color:#a6e22e>post</span>.<span style=color:#a6e22e>title</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>postData</span>.<span style=color:#a6e22e>title</span>;
+<span style=color:#a6e22e>post</span>.<span style=color:#a6e22e>description</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>postData</span>.<span style=color:#a6e22e>description</span>;
+<span style=color:#a6e22e>post</span>.<span style=color:#a6e22e>content</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>postData</span>.<span style=color:#a6e22e>content</span>;
+</code></pre></div><p><strong>OR</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>post</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Post</span>(<span style=color:#a6e22e>postData</span>);
+</code></pre></div><p><strong>And in the constructor of this class, you should binding the properties that corresponded with object&rsquo;s values</strong></p>
+<p>Randomly, I&rsquo;ve found a library for typescript that support us easily <strong>transform your JSON object into an instance of a class</strong>. It was called <strong><a href=https://github.com/typestack/class-transformer>&ldquo;Class Transformer&rdquo;</a></strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>npm install class-transformer reflect-metadata --save
+</code></pre></div><blockquote>
+<p><strong>Should import this into your main.ts file</strong></p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#34;reflect-metadata&#34;</span>;
+</code></pre></div><p><strong>Example of using class-transformer and class-validator</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>plainToInstance</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;class-transformer&#34;</span>;
+<span style=color:#66d9ef>import</span> {
+  <span style=color:#a6e22e>IsDate</span>,
+  <span style=color:#a6e22e>IsDateString</span>,
+  <span style=color:#a6e22e>IsNotEmpty</span>,
+  <span style=color:#a6e22e>IsNumber</span>,
+  <span style=color:#a6e22e>registerSchema</span>,
+  <span style=color:#a6e22e>validate</span>,
+  <span style=color:#a6e22e>ValidationSchema</span>,
+  <span style=color:#a6e22e>ValidatorOptions</span>,
+} <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;class-validator&#34;</span>;
+
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>LessionExample</span> {
+  <span style=color:#66d9ef>@IsNotEmpty</span>()
+  <span style=color:#a6e22e>title</span>: <span style=color:#66d9ef>string</span>;
+  <span style=color:#66d9ef>@IsNumber</span>()
+  <span style=color:#66d9ef>@IsNotEmpty</span>()
+  <span style=color:#a6e22e>status</span>: <span style=color:#66d9ef>number</span>;
+  <span style=color:#66d9ef>@IsDateString</span>()
+  <span style=color:#66d9ef>@IsNotEmpty</span>()
+  <span style=color:#a6e22e>publishedDate</span>: <span style=color:#66d9ef>Date</span>;
+}
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>validatorOptions</span>: <span style=color:#66d9ef>ValidatorOptions</span> <span style=color:#f92672>=</span> {
+  <span style=color:#a6e22e>skipMissingProperties</span>: <span style=color:#66d9ef>false</span>,
+};
+
+<span style=color:#a6e22e>describe</span>(<span style=color:#e6db74>&#34;test class validator and class transformer utils&#34;</span>, () <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#a6e22e>describe</span>(<span style=color:#e6db74>&#34;test class validator and class transformer utils - with decorator&#34;</span>, () <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>lession</span>: <span style=color:#66d9ef>LessionExample</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>null</span>;
+    <span style=color:#a6e22e>beforeEach</span>(() <span style=color:#f92672>=&gt;</span> {
+      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>inputJson</span> <span style=color:#f92672>=</span> {
+        <span style=color:#a6e22e>title</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Class validator&#34;</span>,
+        <span style=color:#a6e22e>status</span>: <span style=color:#66d9ef>1</span>,
+        <span style=color:#a6e22e>publishedDate</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;2022-07-29 00:00:00&#34;</span>,
+      };
+      <span style=color:#a6e22e>lession</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>plainToInstance</span>(<span style=color:#a6e22e>LessionExample</span>, <span style=color:#a6e22e>inputJson</span>);
+    });
+    <span style=color:#a6e22e>it</span>(<span style=color:#e6db74>&#34;should transform an object to class&#34;</span>, () <span style=color:#f92672>=&gt;</span> {
+      <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;typeof lession.publishedDate&#34;</span>, <span style=color:#66d9ef>typeof</span> <span style=color:#a6e22e>lession</span>.<span style=color:#a6e22e>publishedDate</span>);
+      <span style=color:#a6e22e>expect</span>(<span style=color:#a6e22e>lession</span>).<span style=color:#a6e22e>toBeInstanceOf</span>(<span style=color:#a6e22e>LessionExample</span>);
+    });
+
+    <span style=color:#a6e22e>it</span>(<span style=color:#e6db74>&#34;should be able to validate the instance data&#34;</span>, <span style=color:#66d9ef>async</span> () <span style=color:#f92672>=&gt;</span> {
+      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>errors</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>validate</span>(<span style=color:#a6e22e>lession</span>, <span style=color:#a6e22e>validatorOptions</span>);
+      <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>errors</span>);
+      <span style=color:#a6e22e>expect</span>(<span style=color:#a6e22e>errors</span>.<span style=color:#a6e22e>length</span>).<span style=color:#a6e22e>toEqual</span>(<span style=color:#ae81ff>0</span>);
+    });
+  });
+});
+</code></pre></div><blockquote>
+<p>When using class validator, if your data is valid, it will return an empty array of error</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#a6e22e>validate</span>(<span style=color:#a6e22e>post</span>).<span style=color:#a6e22e>then</span>((<span style=color:#a6e22e>errors</span>) <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#75715e>// errors is an array of validation errors
+</span><span style=color:#75715e></span>  <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>errors</span>.<span style=color:#a6e22e>length</span> <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span>) {
+    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;validation failed. errors: &#34;</span>, <span style=color:#a6e22e>errors</span>);
+  } <span style=color:#66d9ef>else</span> {
+    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;validation succeed&#34;</span>);
+  }
+});
+</code></pre></div><h3 id=defining-validation-schema-without-decorators-to-validate-your-json-object>Defining validation schema without decorators to validate your json object</h3>
+<ul>
+<li>
+<p><a href=https://github.com/typestack/class-validator/issues/595>Schema example in README.md not work</a></p>
+</li>
+<li>
+<p><a href=https://github.com/typestack/class-validator/tree/develop/src/decorator>All validation types listed in decorator classes</a></p>
+</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>import</span> {
+  <span style=color:#a6e22e>registerSchema</span>,
+  <span style=color:#a6e22e>validate</span>,
+  <span style=color:#a6e22e>ValidationSchema</span>,
+  <span style=color:#a6e22e>ValidatorOptions</span>,
+} <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;class-validator&#34;</span>;
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>validatorOptions</span>: <span style=color:#66d9ef>ValidatorOptions</span> <span style=color:#f92672>=</span> {
+  <span style=color:#a6e22e>skipMissingProperties</span>: <span style=color:#66d9ef>false</span>,
+};
+
+<span style=color:#a6e22e>describe</span>(<span style=color:#e6db74>&#34;test class validator and class transformer utils&#34;</span>, () <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>LessionInputDTO</span> {
+    <span style=color:#a6e22e>title</span>: <span style=color:#66d9ef>string</span>;
+    <span style=color:#a6e22e>status</span>: <span style=color:#66d9ef>number</span>;
+    <span style=color:#a6e22e>publishedDate</span>: <span style=color:#66d9ef>string</span>;
+  }
+
+  <span style=color:#a6e22e>describe</span>(<span style=color:#e6db74>&#34;test class validator and class transformer utils - using schema&#34;</span>, () <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>lessionInput</span>: <span style=color:#66d9ef>Partial</span>&lt;<span style=color:#f92672>LessionInputDTO</span>&gt; <span style=color:#f92672>=</span> <span style=color:#66d9ef>null</span>;
+    <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>lessionSchema</span>: <span style=color:#66d9ef>ValidationSchema</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>null</span>;
+    <span style=color:#a6e22e>beforeAll</span>(() <span style=color:#f92672>=&gt;</span> {
+      <span style=color:#a6e22e>lessionInput</span> <span style=color:#f92672>=</span> {
+        <span style=color:#75715e>//title: &#39;Class validator&#39;,
+</span><span style=color:#75715e></span>        <span style=color:#a6e22e>status</span>: <span style=color:#66d9ef>1</span>,
+        <span style=color:#a6e22e>publishedDate</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;2022-07-29 00:00:00&#34;</span>,
+      };
+      <span style=color:#a6e22e>lessionSchema</span> <span style=color:#f92672>=</span> {
+        <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;createLessionSchema&#34;</span>,
+        <span style=color:#a6e22e>properties</span><span style=color:#f92672>:</span> {
+          <span style=color:#a6e22e>title</span><span style=color:#f92672>:</span> [{ <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;isNotEmpty&#34;</span> }],
+          <span style=color:#a6e22e>status</span><span style=color:#f92672>:</span> [
+            { <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;isNotEmpty&#34;</span>, <span style=color:#a6e22e>constraints</span><span style=color:#f92672>:</span> [] },
+            { <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;isNumber&#34;</span> },
+          ],
+          <span style=color:#a6e22e>publishedDate</span><span style=color:#f92672>:</span> [
+            { <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;isNotEmpty&#34;</span>, <span style=color:#a6e22e>constraints</span><span style=color:#f92672>:</span> [] },
+            { <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;isDateString&#34;</span> },
+          ],
+        },
+      };
+      <span style=color:#75715e>// registered schema
+</span><span style=color:#75715e></span>      <span style=color:#a6e22e>registerSchema</span>(<span style=color:#a6e22e>lessionSchema</span>);
+    });
+
+    <span style=color:#a6e22e>it</span>(<span style=color:#e6db74>&#34;should be able to validate the instance data&#34;</span>, <span style=color:#66d9ef>async</span> () <span style=color:#f92672>=&gt;</span> {
+      <span style=color:#a6e22e>lessionInput</span>.<span style=color:#a6e22e>title</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;&#34;</span>;
+      <span style=color:#66d9ef>delete</span> <span style=color:#a6e22e>lessionInput</span>.<span style=color:#a6e22e>title</span>;
+      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>errors</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>validate</span>(
+        <span style=color:#a6e22e>lessionSchema</span>.<span style=color:#a6e22e>name</span>,
+        {
+          ...<span style=color:#a6e22e>lessionInput</span>,
+          <span style=color:#a6e22e>status</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;&#34;</span>,
+        },
+        <span style=color:#a6e22e>validatorOptions</span>
+      );
+      <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>lessionInput</span>, <span style=color:#a6e22e>errors</span>);
+      <span style=color:#a6e22e>expect</span>(<span style=color:#a6e22e>errors</span>.<span style=color:#a6e22e>length</span>).<span style=color:#a6e22e>toEqual</span>(<span style=color:#ae81ff>0</span>);
+    });
+  });
+});
+</code></pre></div><p><strong>It is very cool right? BUT &mldr;</strong></p>
+<h4 id=redalert>RedAlert</h4>
+<p><img src=https://user-images.githubusercontent.com/31009750/181743668-c05b4f3f-ff76-4232-aaec-1f88c8ea51c0.png alt=image></p>
+<blockquote>
+<p>From this <a href=https://github.com/typestack/class-validator/pull/568/files#diff-8ad828b3cb077e586ecc20d38c15cd197e1efc9bf537cb8c985b845b63d97138L16>PR 568</a>, <strong>CLASS VALIDATOR</strong> WAS NOT SUPPORTED <strong>&ldquo;Validate with schema anymore&rdquo;</strong></p>
+</blockquote>
+<p><img src=https://user-images.githubusercontent.com/31009750/181744094-25b6e6fd-08de-42de-8bf0-b48c115d7e45.png alt=image></p>
+<h2 id=lets-dive-in-more-details-with-nestjs-standard-approach>Let&rsquo;s dive in more details with NestJS standard approach</h2>
+<blockquote>
+<p>NestJS provide us a built-in pipe which includes class-validator and class transformer.</p>
+</blockquote>
+<p><a href=/post/nestjs-pipes/>Using NestJS Pipes to Validate your Data</a></p>
+<div class="m-1 p-1">
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/frameworks>frameworks</a>
+</div>
+</div>
+</section>
+<section class="container section">
+<div class="max-w-2xl mx-auto">
+<div class="font-heading text-2xl font-semibold">You Might Also Like</div>
+<div class="mt-8 grid gap-8">
+<ul class=sidebar-links>
+<li><a href=/post/vuejs-how-to-add-tailwind-in-your-application/>Vuejs How to Add TailwindCSS in Your Application</a></li>
+<li><a href=/post/nestjs-request-and-response-object/>Nestjs Request and Response Object</a></li>
+<li><a href=/post/nestjs-upload-files/>Nestjs Upload Files</a></li>
+<li><a href=/post/nestjs-pipes/>Nestjs Pipes</a></li>
+<li><a href=/post/nestjs-provider/>Nestjs Provider</a></li>
+<li><a href=/post/developer-your-rest-api-with-nestjs/>Developer Your Rest Api With Nestjs</a></li>
+<li><a href=/post/create-new-website-with-nextjs/>Create New Website With Nextjs</a></li>
+</ul>
+</div>
+</div>
+</section>
+</main>
+<footer class=footer>
+<div class="container md:flex">
+<section class="footer-section-info md:basis-1/4">
+<div class=address>
+<a class=logo href=https://nextjsvietnam.com title=NextJSVietNam>
+NextJSVietNam
+</a>
+<h4 class=footer-heading>
+PRODUCTION MODE
+<h4>
+</div>
+</section>
+<div class="footer-section-navigation-menu md:basis-1/4">
+<h4 class=footer-heading>NestJS</h4>
+<ul class=footer-section-navigation-menu-links>
+<li><a href=https://nextjsvietnam.com/post/nestjs-request-and-response-object/>Nestjs Request and Response Object</a></li>
+<li><a href=https://nextjsvietnam.com/post/nestjs-upload-files/>Nestjs Upload Files</a></li>
+<li><a href=https://nextjsvietnam.com/post/nestjs-pipes/>Nestjs Pipes</a></li>
+<li><a href=https://nextjsvietnam.com/post/validate-request-input-in-nestjs/>Validate Request Input in Nestjs</a></li>
+<li><a href=https://nextjsvietnam.com/post/nestjs-provider/>Nestjs Provider</a></li>
+</ul>
+</div>
+<div class="footer-section-navigation-menu md:basis-1/4">
+<h4 class=footer-heading>NextJS</h4>
+<ul class=footer-section-navigation-menu-links>
+<li><a href=https://nextjsvietnam.com/post/create-new-website-with-nextjs/>Create New Website With Nextjs</a></li>
+</ul>
+</div>
+<div class="footer-section-navigation-menu md:basis-1/4">
+<h4 class=footer-heading>Cheatsheet</h4>
+<ul class=footer-section-navigation-menu-links>
+<li><a href=https://nextjsvietnam.com/post/how-to-use-typescript-path-alias-in-loopback-4/>How to Use Typescript Path Alias in Loopback 4</a></li>
+<li><a href=https://nextjsvietnam.com/post/javascript-numeric-precision-issue/>Javascript Numeric Precision Issue</a></li>
+<li><a href=https://nextjsvietnam.com/post/su-dung-firebase-realtime-database-gui-thong-bao/>Sử dụng Firebase Realtime Database để gửi thông báo cho người dùng trong web app</a></li>
+<li><a href=https://nextjsvietnam.com/post/tim-hieu-ve-props-va-state-trong-reactjs/>Tim Hieu Ve Props Va State Trong Reactjs</a></li>
+<li><a href=https://nextjsvietnam.com/post/con-duong-tro-lap-lap-trinh-vien-fullstack-js/>Con đường trở thành lập trình viên fullstack JS</a></li>
+</ul>
+</div>
+</div>
+<div class=container>
+<div class=text-center>
+<a href><span class="material-icons text-4xl m-4">facebook</span></a>
+<a href><span class="material-icons text-4xl m-4">smart_display</span></a>
+</div>
+<div class="text-center text-lg py-4">
+Copyright @ NextJSVietNam 2022
+</div>
+<div class="text-center text-sm">
+Powered by <a class="font-bold text-primary" href=https://gohugo.io/>Go Hugo</a> - Made
+with love from <a class="font-bold text-primary" href=https://nextjsvietnam.com>NextJSVietNam</a> -
+Build
+Version 2022-08-05 20:07:21 +0700 +0700
+</div>
+</div>
+</footer>
+<script type=text/javascript src=https://nextjsvietnam.com/core/jquery-3.6.0.min.js></script>
+<script type=text/javascript src=https://nextjsvietnam.com/themes/2022/public/main.js></script>
+<script type=text/javascript src=https://nextjsvietnam.com/themes/2022/public/home.js></script>
+</body>
+</html>
