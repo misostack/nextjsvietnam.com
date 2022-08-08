@@ -1,0 +1,38 @@
+{{ define "main" }}
+  <section class="container section">
+    <div class="page-content max-w-2xl mx-auto">
+        <img src="{{ .Params.Image | absURL }}" class="img-responsive" alt="{{ .Title }}" />
+        <h1>{{ .Title }}</h1>
+        <p>
+            {{ range $category:= .Params.categories }}
+            <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="{{ (print "categories/" $category) | absURL }}">{{ $category }}</a>
+            {{ end }}
+        </p>
+        {{ .Content }}        
+      
+      <div class="m-1 p-1">
+        {{ range $category:= .Params.categories }}
+          <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="{{ (print "categories/" $category) | absURL }}">{{ $category }}</a>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+  <section class="container section">
+    <div class="max-w-2xl mx-auto">
+      <div class="font-heading text-2xl font-semibold">You Might Also Like</div>
+      <div class="mt-8 grid  gap-8">
+        {{ range first 1 (where (where .Site.Pages ".Params.categories" "intersect" .Params.categories) "Permalink" "!=" .Permalink) }}
+        {{ $.Scratch.Set "has_related" true }}
+        {{ end }}
+        {{ if $.Scratch.Get "has_related" }}
+        <ul class="sidebar-links">
+        {{ $num_to_show := .Site.Params.related_content_limit | default 7 }}
+        {{ range first $num_to_show (where (where .Site.Pages ".Params.categories" "intersect" .Params.categories) "Permalink" "!=" .Permalink) }}
+            <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+        {{ end }}
+        </ul>
+        {{ end }}        
+      </div>
+    </div>
+  </section>
+{{ end }}

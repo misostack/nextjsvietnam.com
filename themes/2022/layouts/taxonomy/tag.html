@@ -1,0 +1,26 @@
+{{ define "main" }}
+<section class="container section hero-section">
+  <h1 class="hero-section-heading">{{ .Title }}</h1>
+</section>
+<section class="container section gap-8">
+  {{ $paginator := .Paginate .Data.Pages 1 }} {{ range $paginator.Pages }}
+  <div class="card card-post-default">
+    <div class="px-6 py-4">
+      <h2 class="card-post-title">
+        <a href="{{ .Permalink }}">{{ .Title }}</a>
+      </h2>
+      <div>
+        <span class="card-post-date"
+          >{{ .PublishDate.Format "02 Jan, 2006" }}</span
+        >
+      </div>
+      <div class="card-post-description">{{ .Description }}</div>
+    </div>
+  </div>
+
+  {{ end }}
+</section>
+<section class="container">
+  {{ template "_internal/pagination.html" . }}
+</section>
+{{ end }}

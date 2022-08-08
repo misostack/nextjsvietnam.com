@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="home" href="{{ "" | absURL }}" />
+    <meta name="generator" content="jsguru cms" />
+
+    {{ $themePath := "themes/2022/public/" }}
+    {{ if not hugo.IsProduction }}
+      {{ $themePath = "themes/2022/dist/" }}
+    {{ end }}
+
+    <!-- Load fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <!-- Load stylesheets -->
+    {{ range $style := .Site.Data.assets.styles }}
+      {{ if eq $style.theme "2022" }}
+        {{ $mainStylePath := printf "%s" $style.name | printf "%s%s" $themePath  | printf "%s" }}      
+        {{ $mainStyle := resources.Get $mainStylePath }}
+        <link rel="stylesheet" href="{{$mainStyle.Permalink}}" />
+      {{ end }}       
+    {{ end }}    
+    
+    <!-- Bing -->
+    <meta name="msvalidate.01" content="{{.Site.Params.BingCode}}" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{.Site.Params.GACode}}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', '{{.Site.Params.GACode}}');
+    </script>    
+    {{ partial "meta" . }}
+    {{ partial "favicon" . }}
+  </head>
+  <body class="body-nav-fixed">
+    {{ partial "mainnav" . }}
+    <main>
+    {{ block "main" . }}{{ end }}
+    
+    </main>
+    <footer class="footer">
+      <div class="container md:flex">
+        <section class="footer-section-info md:basis-1/4">
+          <div class="address">
+            <a class="logo" href="{{.Site.BaseURL}}" title="{{ .Site.Params.name }}">
+              {{ .Site.Params.name }}
+            </a>
+            <h4 class="footer-heading">
+              {{ if hugo.IsProduction }} PRODUCTION MODE {{ end }} {{ if not
+                hugo.IsProduction }} DEVELOPMENT MODE{{ end }}
+            <h4>                
+          </div>
+        </section>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">NestJS</h4>
+          <ul class="footer-section-navigation-menu-links">
+            {{ $nestjsTag := .Site.Taxonomies.tags.nestjs }}
+            {{ range first 5 (sort $nestjsTag.Pages "Date" "desc") }}
+              <li><a href="{{ .Permalink }}">{{.Title}}</a></li>              
+            {{ end }} 
+          </ul>
+        </div>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">NextJS</h4>
+          <ul class="footer-section-navigation-menu-links">
+            {{ $nextjsTag := .Site.Taxonomies.tags.nextjs }}
+            {{ range first 5 (sort $nextjsTag.Pages "Date" "desc") }}
+              <li><a href="{{ .Permalink }}">{{.Title}}</a></li>              
+            {{ end }} 
+          </ul>
+        </div>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">Cheatsheet</h4>
+          <ul class="footer-section-navigation-menu-links">
+            {{ $cheatsheetTag := .Site.Taxonomies.categories.cheatsheet }}
+            {{ range first 5 (sort $cheatsheetTag.Pages "Date" "desc") }}
+              <li><a href="{{ .Permalink }}">{{.Title}}</a></li>              
+            {{ end }} 
+          </ul>
+        </div>
+      </div>
+      <div class="container">
+        <div class="text-center">
+          <a href=""><span class="material-icons text-4xl m-4">facebook</span></a>
+          <a href=""><span class="material-icons text-4xl  m-4">smart_display</span></a>
+        </div>
+        <div class="text-center text-lg py-4">
+          Copyright @ {{ .Site.Params.name }} 2022
+        </div>
+        <div class="text-center text-sm">
+          Powered by <a class="font-bold text-primary" href="https://gohugo.io/">Go Hugo</a> - Made
+          with love from <a class="font-bold text-primary" href="{{ .Site.BaseURL }}">{{ .Site.Params.name }}</a> -
+          Build
+          Version {{.Site.LastChange}}
+        </div>
+      </div>
+    </footer>
+
+    <!-- Load scripts -->
+    {{ range $script := .Site.Data.assets.scripts }}
+      {{ if eq $script.type "core" }}
+        {{ $mainScriptPath := printf "%s" $script.name | printf "%s%s" "core/"  | printf "%s" }}
+        {{ $mainScript := resources.Get $mainScriptPath }}
+        {{ if ne $mainScript nil }}
+          <script type="text/javascript" src="{{ $mainScript.Permalink }}"></script>
+        {{ end }}
+      {{ else if eq $script.type "theme" }}
+        {{ $mainScriptPath := printf "%s" $script.name | printf "%s%s" $themePath  | printf "%s" }}
+        {{ $mainScript := resources.Get $mainScriptPath }}
+        {{ if ne $mainScript nil }}
+          <script type="text/javascript" src="{{ $mainScript.Permalink }}"></script>
+        {{ end }}
+      {{ end }}       
+    {{ end }}    
+  </body>
+</html>

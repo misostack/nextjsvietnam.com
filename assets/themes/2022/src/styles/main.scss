@@ -1,0 +1,230 @@
+/* Fonts */
+// @import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap");
+// @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+/* Tailwind base */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@media screen and (max-width: 768px) {
+  html,
+  body {
+    font-size: 18px;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-heading font-bold;
+}
+
+h6 {
+  @apply text-xs;
+}
+h5 {
+  @apply text-xs;
+}
+h4 {
+  @apply text-sm;
+}
+h3 {
+  @apply text-base;
+}
+h2 {
+  @apply text-2xl;
+}
+h1 {
+  @apply text-3xl;
+}
+
+.clearfix:after {
+  clear: both;
+  content: ".";
+  display: block;
+  width: 0px;
+  height: 0px;
+}
+
+// code highlight
+.highlight {
+  max-width: 100%;
+  pre {
+    max-width: 100%;
+    overflow: scroll;
+  }
+}
+
+input {
+  @apply focus-visible:outline-none;
+}
+
+.container {
+  @apply max-w-screen-xl px-4 py-4 mx-auto;
+}
+
+.body-nav-fixed {
+  @apply pt-20;
+}
+.nav-fixed {
+  @apply fixed top-0 left-0 right-0;
+}
+.nav-default {
+  @apply bg-white border-b drop-shadow-md;
+}
+
+.nav-default {
+  @apply bg-white border-b drop-shadow-md;
+}
+
+.nav-menu {
+  @apply block md:flex flex-wrap basis-full md:basis-auto overflow-hidden items-center;
+
+  &.h-0 {
+    @apply m-0;
+  }
+
+  &-toggle {
+    @apply md:hidden text-primary;
+  }
+  &-link {
+    @apply text-sm basis-full md:basis-auto p-4 leading-4 font-semibold text-gray-500 capitalize hover:text-primary flex items-center;
+    .material-icons {
+      @apply text-sm;
+    }
+  }
+  > .nav-menu-item > .nav-menu-link {
+    text-transform: uppercase;
+  }
+
+  .sub-menu {
+    @apply md:absolute md:top-[100%] md:-mt-8 bg-white md:w-60 md:hidden;
+    .nav-menu-link {
+      @apply text-xs md:text-sm;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.035);
+    }
+  }
+  .nav-menu-item:hover > .sub-menu {
+    @apply md:block;
+  }
+
+  &-search-bar {
+    @apply border-2 rounded px-2 md:ml-4 my-4 md:my-0;
+    &-search-button {
+    }
+    input[name="s"] {
+      @apply text-sm py-2 pl-6 pr-2;
+    }
+  }
+}
+
+.section {
+  @apply py-8;
+}
+
+.hero-section {
+  @apply text-center;
+  &-heading {
+    @apply text-3xl font-heading font-bold mb-4;
+  }
+  &-content {
+    @apply leading-6 text-lg;
+  }
+}
+
+.card-post {
+  @apply p-2;
+  &-default {
+    @apply overflow-hidden rounded-lg shadow-lg;
+  }
+  &-category {
+    @apply text-sm text-gray-500 hover:text-primary;
+  }
+  &-image {
+    @apply object-cover w-full h-48;
+  }
+  &-date {
+    @apply text-sm;
+  }
+  &-description {
+    @apply py-4;
+  }
+  &-readmore-link {
+    @apply font-bold hover:text-primary;
+  }
+}
+
+.pagination {
+  list-style: none;
+  margin: 2rem 0;
+  padding: 0;
+  text-align: center;
+}
+.pagination li {
+  display: inline-block;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+  border: 1px solid #ddd;
+  margin: 0 4px;
+}
+
+.pagination li.active a,
+.pagination a:hover {
+  background-color: #4caf50;
+  color: white;
+  border: 1px solid #4caf50;
+}
+
+// .pagination {
+//   @apply bg-white py-3 flex items-center justify-between;
+//   &-mobile {
+//     @apply flex-1 flex justify-between sm:hidden;
+//   }
+//   &-desktop {
+//     @apply hidden sm:flex-1 sm:flex sm:items-center sm:justify-between;
+//   }
+//   &-prev {
+//     @apply relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50;
+//   }
+//   &-next {
+//     @apply ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50;
+//   }
+//   &-pager {
+//     @apply relative z-0 inline-flex rounded-md shadow-sm -space-x-px;
+//     .nav-links {
+//       @apply inline-flex;
+//       a {
+//         @apply h-10 px-5 text-gray-600 transition-colors duration-150 bg-white hover:bg-lime-100 py-2;
+//       }
+//       .current {
+//         @apply h-10 px-5 text-white transition-colors duration-150 bg-primary py-2;
+//       }
+//     }
+//   }
+// }
+
+.footer {
+  @apply bg-black py-8;
+  @apply text-white text-opacity-50 leading-6;
+  &-section-info,
+  &-section-info p {
+    font-size: 11px;
+  }
+  &-heading {
+    @apply text-white text-sm leading-8;
+    font-weight: normal;
+  }
+  a:hover {
+    color: white;
+  }
+}

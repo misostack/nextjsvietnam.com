@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>nextjs on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+    <link>https://nextjsvietnam.com/tags/nextjs/</link>
+    <description>Recent content in nextjs on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 12 Jul 2022 11:38:00 +0700</lastBuildDate><atom:link href="https://nextjsvietnam.com/tags/nextjs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Create New Website With Nextjs</title>
+      <link>https://nextjsvietnam.com/post/create-new-website-with-nextjs/</link>
+      <pubDate>Tue, 12 Jul 2022 11:38:00 +0700</pubDate>
+      
+      <guid>https://nextjsvietnam.com/post/create-new-website-with-nextjs/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

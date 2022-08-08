@@ -1,0 +1,5 @@
+[
+  { "name": "jquery-3.6.0.min.js", "type": "core" },
+  { "name": "main.js", "type": "theme", "theme": "2022" },
+  { "name": "home.js", "type": "theme", "theme": "2022" }
+]

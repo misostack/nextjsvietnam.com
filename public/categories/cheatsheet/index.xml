@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>cheatsheet on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+    <link>https://nextjsvietnam.com/categories/cheatsheet/</link>
+    <description>Recent content in cheatsheet on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 05 Aug 2022 15:07:40 +0700</lastBuildDate><atom:link href="https://nextjsvietnam.com/categories/cheatsheet/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to Use Typescript Path Alias in Loopback 4</title>
+      <link>https://nextjsvietnam.com/post/how-to-use-typescript-path-alias-in-loopback-4/</link>
+      <pubDate>Fri, 05 Aug 2022 15:07:40 +0700</pubDate>
+      
+      <guid>https://nextjsvietnam.com/post/how-to-use-typescript-path-alias-in-loopback-4/</guid>
+      <description>The problem In Node.js (or TS/JS in general) you can import single modules into your code. This might look the following:
+import { Example } from &amp;#34;../example/model&amp;#34;; import { Article } from &amp;#34;../article/model&amp;#34;; The problem we have here is that the deeper your project tree is the more &amp;lsquo;../&amp;rsquo; are required to access modules in higher layers. Actually, this doesn&amp;rsquo;t look very beautiful to be honest. Fortunately we can change that.</description>
+    </item>
+    
+    <item>
+      <title>Javascript Numeric Precision Issue</title>
+      <link>https://nextjsvietnam.com/post/javascript-numeric-precision-issue/</link>
+      <pubDate>Wed, 20 Jul 2022 11:47:31 +0700</pubDate>
+      
+      <guid>https://nextjsvietnam.com/post/javascript-numeric-precision-issue/</guid>
+      <description>Bạn đã bao giờ gặp trường hợp như này chưa?
+let a = 0.1; let b = 0.3; let c = a - b; let d = a * b; let e = b / a; let f = 0.2 * a; Here you are
+// c -0.19999999999999998 // d 0.03 // e 2.9999999999999996 // f 0.020000000000000004 Nguyên nhân là vì floating-point trong Javascript được biểu diễn dưới dạng phân số nhị phân (cơ số 2).</description>
+    </item>
+    
+    <item>
+      <title>Sử dụng Firebase Realtime Database để gửi thông báo cho người dùng trong web app</title>
+      <link>https://nextjsvietnam.com/post/su-dung-firebase-realtime-database-gui-thong-bao/</link>
+      <pubDate>Tue, 12 Jul 2022 17:09:16 +0700</pubDate>
+      
+      <guid>https://nextjsvietnam.com/post/su-dung-firebase-realtime-database-gui-thong-bao/</guid>
+      <description>Firebase Realtime Database Create new project https://console.firebase.google.com/u/0/ Step 1
+Step 2
+Step 3
+Add new firebase realtime database Select your database region
+Test Mode Enable
+Finally, you will have this new database with the generated URI
+Let’s design a simple notification database &amp;#34;notifications&amp;#34;: { &amp;#34;$userId&amp;#34;: { &amp;#34;notificationId&amp;#34;: 1, &amp;#34;content&amp;#34;: &amp;#34;hello&amp;#34;, &amp;#34;notificationType&amp;#34;: 1, &amp;#34;isRead&amp;#34;: false, &amp;#34;isSent&amp;#34;: false }, } { &amp;#34;notifications&amp;#34;: { &amp;#34;1&amp;#34;: [ { &amp;#34;userId&amp;#34;: 1, &amp;#34;notificationId&amp;#34;: 1, &amp;#34;content&amp;#34;: &amp;#34;hello&amp;#34;, &amp;#34;notificationType&amp;#34;: 1, &amp;#34;isRead&amp;#34;: false, &amp;#34;isSent&amp;#34;: false }, { &amp;#34;userId&amp;#34;: 1, &amp;#34;notificationId&amp;#34;: 2, &amp;#34;content&amp;#34;: &amp;#34;hey&amp;#34;, &amp;#34;notificationType&amp;#34;: 2, &amp;#34;isRead&amp;#34;: false, &amp;#34;isSent&amp;#34;: false } ], &amp;#34;2&amp;#34;: [ { &amp;#34;userId&amp;#34;: 2, &amp;#34;notificationId&amp;#34;: 3, &amp;#34;content&amp;#34;: &amp;#34;heyo&amp;#34;, &amp;#34;notificationType&amp;#34;: 1, &amp;#34;isRead&amp;#34;: false, &amp;#34;isSent&amp;#34;: false } ] } } Import</description>
+    </item>
+    
+    <item>
+      <title>Tim Hieu Ve Props Va State Trong Reactjs</title>
+      <link>https://nextjsvietnam.com/post/tim-hieu-ve-props-va-state-trong-reactjs/</link>
+      <pubDate>Tue, 12 Jul 2022 15:14:47 +0700</pubDate>
+      
+      <guid>https://nextjsvietnam.com/post/tim-hieu-ve-props-va-state-trong-reactjs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Con đường trở thành lập trình viên fullstack JS</title>
+      <link>https://nextjsvietnam.com/post/con-duong-tro-lap-lap-trinh-vien-fullstack-js/</link>
+      <pubDate>Tue, 12 Jul 2022 14:24:28 +0700</pubDate>
+      
+      <guid>https://nextjsvietnam.com/post/con-duong-tro-lap-lap-trinh-vien-fullstack-js/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Create New Spa With Reactjs</title>
+      <link>https://nextjsvietnam.com/post/create-new-spa-with-reactjs/</link>
+      <pubDate>Tue, 12 Jul 2022 14:23:31 +0700</pubDate>
+      
+      <guid>https://nextjsvietnam.com/post/create-new-spa-with-reactjs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Create Static Blog With Hugo and Github Pages in 5 Minutes</title>
+      <link>https://nextjsvietnam.com/post/create-static-blog-with-hugo-and-github-pages-in-5-minutes/</link>
+      <pubDate>Tue, 21 Jun 2022 15:43:50 +0700</pubDate>
+      
+      <guid>https://nextjsvietnam.com/post/create-static-blog-with-hugo-and-github-pages-in-5-minutes/</guid>
+      <description>Todo [x] Download hugo releases for windows 10 https://gohugo.io/getting-started/installing/ Extract and copy hugo.exe to your HUGO_PATH Add your HUGO_PATH to environment path. Window Icon + &amp;rsquo;env&amp;rsquo; =&amp;gt; Edit System Variables Eg: C:/softwares/hugo
+Open system environment variable Add new hugo path Add hugo path to path Test
+hugo --help [x] Create new hugo site hugo new site blog.jsguru.net --force [x] Setup gh-pages for hugo https://github.com/marketplace/actions/hugo-setup
+.github\workflows\gh-pages.yml
+name: GitHub Pages on: push: branches: - main # Set a branch to deploy pull_request: jobs: deploy: runs-on: ubuntu-20.</description>
+    </item>
+    
+    <item>
+      <title>Setup NodeJS Development Environment in 5 Minutes</title>
+      <link>https://nextjsvietnam.com/post/setup-nodejs-development-enviroment-in-5-minutes/</link>
+      <pubDate>Tue, 21 Jun 2022 15:43:50 +0700</pubDate>
+      
+      <guid>https://nextjsvietnam.com/post/setup-nodejs-development-enviroment-in-5-minutes/</guid>
+      <description>Installation https://nodejs.org/en/download/</description>
+    </item>
+    
+  </channel>
+</rss>

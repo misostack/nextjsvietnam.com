@@ -1,0 +1,115 @@
+{{ define "main" }}
+
+<main>
+    <section class="container section hero-section">
+      <h1 class="hero-section-heading">{{ .Site.Title }}</h1>
+      <div class="hero-section-content">
+        <h2>{{ .Site.Params.description }}</h2>
+        <ul>
+          <li>NestJS, Loopback Tutorials</li>
+          <li>VueJS, Angular, ReactJS Tips</li>
+          <li>NextJS, NuxtJS Free Templates</li>
+        </ul>
+      </div>
+    </section>
+    {{ $postImage := resources.GetMatch "themes/2022/src/assets/images/post-image.png" }}
+    
+    <section class="container section news-section clearfix">      
+      <div data-content="newsfeature">
+        <div class="clear-fix">
+          {{ $cheatsheetCategory := .Site.Taxonomies.categories.cheatsheet }}
+          {{ range first 1 (sort $cheatsheetCategory.Pages "Date" "desc") }}
+          <article class="card-post card-post-feature">
+            <a href="{{ .Permalink }}">
+              <img src="{{.Params.Image | absURL}}" alt="{{.Title}}" />
+            </a>
+            <h2 class="card-post-title">
+              <a href="{{ .Permalink }}">{{.Title}}</a>
+            </h2>
+            <div class="card-post-description">
+              {{.Description}}
+            </div>
+          </article>
+          {{ end }}
+          {{ $systemdesignCategory := .Site.Taxonomies.categories.lifestyle }}
+          {{ range first 5 (sort $systemdesignCategory.Pages "Date" "desc") }}
+            <article class="card-post card-post-picked">
+              <a href="{{ .Permalink }}">
+                <img src="{{.Params.Image | absURL}}" alt="{{.Title}}" />
+              </a>
+              <h3 class="card-post-title">
+                <a href="{{ .Permalink }}">{{.Title}}</a>
+              </h3>
+            </article>
+          {{ end }}
+        </div>
+      </div>
+      
+      <div data-content="newstrending">
+        {{ $lifestyleCategory := .Site.Taxonomies.categories.frameworks }}
+        {{ range first 5 (sort $lifestyleCategory.Pages "Date" "desc") }}
+          <article class="card-post card-post-feature">
+            <a href="{{ .Permalink }}">
+              <img src="{{.Params.Image | absURL}}" alt="{{.Title}}" />
+            </a>
+            <h3 class="card-post-title">
+              <a href="{{ .Permalink }}">{{.Title}}</a>
+            </h3>
+          </article>
+        {{ end }}
+      </div>
+    </section>
+    <section class="container section clearfix">
+      <div class="content md:w-2/3 md:float-left">
+        {{ $frameworkCategory := .Site.Taxonomies.categories.lifestyle }}
+        {{ range first 12 (sort $frameworkCategory.Pages "Date" "desc") }}
+          <article class="card card-post md:flex mb-4">
+            <a href="{{ .Permalink }}">
+              <img  class="w-96" src="{{.Params.Image | absURL}}" alt="{{.Title}}" />
+            </a>
+            <div class="card-post-meta px-0 mt-2 md:px-4 md:mt-0">
+              <h3 class="card-post-title">
+                <a href="{{ .Permalink }}">{{.Title}}</a>
+              </h3>
+              <div>
+                {{ range $category:= .Params.categories }}
+                  <a class="category-tag category-{{ $category }}" href="{{ (print "categories/" $category) | absURL }}">{{ $category }}</a>
+                {{ end }}
+              </div>
+              <div>
+                <span class="card-post-date">{{ .PublishDate.Format .Site.Params.dateFormat }}</span>
+              </div>
+              <div class="card-post-description">
+                {{ .Description }}
+              </div>              
+            </div>
+          </article>
+        {{ end }}        
+      </div>
+      <div class="sidebar md:w-1/3 md:float-left">
+        <div class="theiaStickySidebar">
+          <div class="sidebar-widget px-4">
+            <div class="sidebar-widget-title font-heading">
+              HÃY KHÁM PHÁ THÊM CÁC CHỦ ĐỀ THÚ VỊ KHÁC BÊN DƯỚI
+            </div>
+            <div class="sidebar-widget-content p-4 flex flex-wrap flex-row">
+              {{ range $taxonomyname, $taxonomy := .Site.Taxonomies }}
+                {{ if eq $taxonomyname "tags" }}
+                    {{ range $key, $value := $taxonomy }}
+                        {{ $categoryUrl := $key | printf "%s%s" "tags/" | printf "%s" }}
+                        <a
+                        href="{{ $categoryUrl | absURL }}"
+                        class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white"
+                      >
+                      {{ $key }}
+                      </a>
+                    {{ end }}
+                {{ end }}
+              {{ end }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main> 
+{{end }}

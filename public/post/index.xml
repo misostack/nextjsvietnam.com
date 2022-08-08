@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+    <link>https://nextjsvietnam.com/post/</link>
+    <description>Recent content in Posts on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 05 Aug 2022 20:07:21 +0700</lastBuildDate><atom:link href="https://nextjsvietnam.com/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Vuejs How to Add TailwindCSS in Your Application</title>
+      <link>https://nextjsvietnam.com/post/vuejs-how-to-add-tailwind-in-your-application/</link>
+      <pubDate>Fri, 05 Aug 2022 20:07:21 +0700</pubDate>
+      
+      <guid>https://nextjsvietnam.com/post/vuejs-how-to-add-tailwind-in-your-application/</guid>
+      <description>Install tailwindcss&amp;rsquo;s dependency packages Configure your template paths tailwind.config.js Add Sass Support npm install -D tailwindcss postcss autoprefixer npx tailwindcss init tailwind.config.cjs
+/** @type {import(&amp;#39;tailwindcss&amp;#39;).Config} */ module.exports = { content: [&amp;#34;./index.html&amp;#34;, &amp;#34;./src/**/*.{vue,js,ts,jsx,tsx}&amp;#34;], theme: { extend: {}, }, plugins: [], }; npm add -D sass src/assets/scss/global.scss
+/* Fonts */ @import url(&amp;#34;https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&amp;amp;display=swap&amp;#34;); @import url(&amp;#34;https://fonts.googleapis.com/icon?family=Material+Icons&amp;#34;); /* Tailwind base */ @tailwind base; @tailwind components; @tailwind utilities; h1, h2, h3, h4, h5, h6 { @apply font-bold; font-family: &amp;#34;Merriweather&amp;#34;, serif; } h6 { @apply text-xs; } h5 { @apply text-xs; } h4 { @apply text-sm; } h3 { @apply text-base; } h2 { @apply text-2xl; } h1 { @apply text-3xl; } .</description>
+    </item>
+    
+    <item>
+      <title>How to Use Typescript Path Alias in Loopback 4</title>
+      <link>https://nextjsvietnam.com/post/how-to-use-typescript-path-alias-in-loopback-4/</link>
+      <pubDate>Fri, 05 Aug 2022 15:07:40 +0700</pubDate>
+      
+      <guid>https://nextjsvietnam.com/post/how-to-use-typescript-path-alias-in-loopback-4/</guid>
+      <description>The problem In Node.js (or TS/JS in general) you can import single modules into your code. This might look the following:
+import { Example } from &amp;#34;../example/model&amp;#34;; import { Article } from &amp;#34;../article/model&amp;#34;; The problem we have here is that the deeper your project tree is the more &amp;lsquo;../&amp;rsquo; are required to access modules in higher layers. Actually, this doesn&amp;rsquo;t look very beautiful to be honest. Fortunately we can change that.</description>
+    </item>
+    
+    <item>
+      <title>Nestjs Request and Response Object</title>
+      <link>https://nextjsvietnam.com/post/nestjs-request-and-response-object/</link>
+      <pubDate>Fri, 05 Aug 2022 10:06:04 +0700</pubDate>
+      
+      <guid>https://nextjsvietnam.com/post/nestjs-request-and-response-object/</guid>
+      <description>Note: All of demo source code you can find our in github nestjs boilerplate
+As you&amp;rsquo;ve known, in a request we will have:
+Route Params ( included in URL ) Query Params ( included in URL ) Body ( json/form-data/multipart/form-data ) There are 2 ways to get these values
+Library specific Approach - Express import { Controller, Req, Res } from &amp;#34;@nestjs/common&amp;#34;; import { Request, Response } from &amp;#34;express&amp;#34;; @Controller(&amp;#34;examples&amp;#34;) export class ExamplesController { @Post(&amp;#34;request-object/express/:email&amp;#34;) exampleRequestObjectExpress(@Req() req: Request, @Res() res: Response) { const responseData = { approach: &amp;#34;express&amp;#34;, routeParams: req.</description>
+    </item>
+    
+    <item>
+      <title>Nestjs Upload Files</title>
+      <link>https://nextjsvietnam.com/post/nestjs-upload-files/</link>
+      <pubDate>Fri, 05 Aug 2022 10:04:38 +0700</pubDate>
+      
+      <guid>https://nextjsvietnam.com/post/nestjs-upload-files/</guid>
+      <description>Note: All of demo source code you can find our in github nestjs boilerplate</description>
+    </item>
+    
+    <item>
+      <title>Nestjs Pipes</title>
+      <link>https://nextjsvietnam.com/post/nestjs-pipes/</link>
+      <pubDate>Thu, 04 Aug 2022 10:46:09 +0700</pubDate>
+      
+      <guid>https://nextjsvietnam.com/post/nestjs-pipes/</guid>
+      <description>Note: All of demo source code you can find our in github nestjs boilerplate
+What is Pipe?
+A pipe is a class annotated with the @Injectable() decorator, which implements the PipeTransform interface
+Pipes operate on the arguments being processed by a controller route handler.
+Nest interposes a pipe just before a method is invoked, and the pipe receives the arguments destined for the method and operates on them
+So that, we can use pipes in two typical use cases:</description>
+    </item>
+    
+    <item>
+      <title>Validate Request Input in Nestjs</title>
+      <link>https://nextjsvietnam.com/post/validate-request-input-in-nestjs/</link>
+      <pubDate>Fri, 29 Jul 2022 15:17:27 +0700</pubDate>
+      
+      <guid>https://nextjsvietnam.com/post/validate-request-input-in-nestjs/</guid>
+      <description>Note: All of demo source code you can find our in github nestjs boilerplate
+It is best practice to validate the correctness of any data sent into a web application
+There are several libraries support us to verify data :
+json schema joi validator And in typescript, we have a special library that support decorator
+Class Validator - internally uses validator.js to perform validation. Class-validator works on both browser and node.</description>
+    </item>
+    
+    <item>
+      <title>Nestjs Provider</title>
+      <link>https://nextjsvietnam.com/post/nestjs-provider/</link>
+      <pubDate>Thu, 28 Jul 2022 14:41:08 +0700</pubDate>
+      
+      <guid>https://nextjsvietnam.com/post/nestjs-provider/</guid>
+      <description>Note: All of demo source code you can find our in github nestjs boilerplate
+Many of the basic Nest classes may be treated as a provider:
+Services Repositories Factories Helpers The main idea of a provider is that it can be injected as a dependency
+This means NestJS will be act as a container and creating relationship between objects and wire them up at runtime
+When creating a provider, we should consider these aspects</description>
+    </item>
+    
+    <item>
+      <title>Thiện tâm</title>
+      <link>https://nextjsvietnam.com/post/thien-tam/</link>
+      <pubDate>Thu, 28 Jul 2022 09:18:57 +0700</pubDate>
+      
+      <guid>https://nextjsvietnam.com/post/thien-tam/</guid>
+      <description>
+Người làm điều thiện, phúc tuy chưa đến mà họa đã rời xa Thế gian lạnh ấm, mãi đan xen Nửa thì mưa gió, nửa phồn hoa Thế nhân không tỏ, thường oán trách Đâu biết vấn đề, ngụ trong tâm #Tướng tùy tâm sinh
+Thiên đạo vô thân Thường giữ thiện nhân Người quân tử yêu cầu bản thân, kẻ tiểu nhân yêu cầu người khác Bần tiện bất năng di Phú quý bất đăng dâm Uy vũ bất đăng khuất Quân tử không đấu với tiểu nhân Ác nhân tự có ác nhân trị Lý tương sinh tương khắc Nhân quả tuần hoàn </description>
+    </item>
+    
+    <item>
+      <title>Javascript Numeric Precision Issue</title>
+      <link>https://nextjsvietnam.com/post/javascript-numeric-precision-issue/</link>
+      <pubDate>Wed, 20 Jul 2022 11:47:31 +0700</pubDate>
+      
+      <guid>https://nextjsvietnam.com/post/javascript-numeric-precision-issue/</guid>
+      <description>Bạn đã bao giờ gặp trường hợp như này chưa?
+let a = 0.1; let b = 0.3; let c = a - b; let d = a * b; let e = b / a; let f = 0.2 * a; Here you are
+// c -0.19999999999999998 // d 0.03 // e 2.9999999999999996 // f 0.020000000000000004 Nguyên nhân là vì floating-point trong Javascript được biểu diễn dưới dạng phân số nhị phân (cơ số 2).</description>
+    </item>
+    
+    <item>
+      <title>Java for Professional</title>
+      <link>https://nextjsvietnam.com/post/java-for-professional/</link>
+      <pubDate>Wed, 20 Jul 2022 09:04:17 +0700</pubDate>
+      
+      <guid>https://nextjsvietnam.com/post/java-for-professional/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Java for Pre Intermediate</title>
+      <link>https://nextjsvietnam.com/post/java-for-pre-intermediate/</link>
+      <pubDate>Wed, 20 Jul 2022 09:04:00 +0700</pubDate>
+      
+      <guid>https://nextjsvietnam.com/post/java-for-pre-intermediate/</guid>
+      <description>Java Advanced APIs Java EE Essentials Java EE Tutorial References Java point EE </description>
+    </item>
+    
+    <item>
+      <title>Java for Beginner</title>
+      <link>https://nextjsvietnam.com/post/java-for-beginner/</link>
+      <pubDate>Wed, 20 Jul 2022 09:03:37 +0700</pubDate>
+      
+      <guid>https://nextjsvietnam.com/post/java-for-beginner/</guid>
+      <description>Materials Java Beginner Learning Path Java Developer Center Overview Architecture Java Platform
+What can Java do?
+Development Tools Netbeans IntelliJ IDEA Setup Development Environment Install Java Install JDK &amp;amp; JRE What does Java 8 Packages include ?
+Getting Start Object Oriented Concept
+Object Class Instance Inheritance Language Basic
+Variables Data types Operators Control flow Array Annotation Interface and inheritance Numbers &amp;amp; Strings Generic Lambda Expressions Pattern matching Exceptions Packages Debug &amp;amp; Test</description>
+    </item>
+    
+    <item>
+      <title>Sử dụng Firebase Realtime Database để gửi thông báo cho người dùng trong web app</title>
+      <link>https://nextjsvietnam.com/post/su-dung-firebase-realtime-database-gui-thong-bao/</link>
+      <pubDate>Tue, 12 Jul 2022 17:09:16 +0700</pubDate>
+      
+      <guid>https://nextjsvietnam.com/post/su-dung-firebase-realtime-database-gui-thong-bao/</guid>
+      <description>Firebase Realtime Database Create new project https://console.firebase.google.com/u/0/ Step 1
+Step 2
+Step 3
+Add new firebase realtime database Select your database region
+Test Mode Enable
+Finally, you will have this new database with the generated URI
+Let’s design a simple notification database &amp;#34;notifications&amp;#34;: { &amp;#34;$userId&amp;#34;: { &amp;#34;notificationId&amp;#34;: 1, &amp;#34;content&amp;#34;: &amp;#34;hello&amp;#34;, &amp;#34;notificationType&amp;#34;: 1, &amp;#34;isRead&amp;#34;: false, &amp;#34;isSent&amp;#34;: false }, } { &amp;#34;notifications&amp;#34;: { &amp;#34;1&amp;#34;: [ { &amp;#34;userId&amp;#34;: 1, &amp;#34;notificationId&amp;#34;: 1, &amp;#34;content&amp;#34;: &amp;#34;hello&amp;#34;, &amp;#34;notificationType&amp;#34;: 1, &amp;#34;isRead&amp;#34;: false, &amp;#34;isSent&amp;#34;: false }, { &amp;#34;userId&amp;#34;: 1, &amp;#34;notificationId&amp;#34;: 2, &amp;#34;content&amp;#34;: &amp;#34;hey&amp;#34;, &amp;#34;notificationType&amp;#34;: 2, &amp;#34;isRead&amp;#34;: false, &amp;#34;isSent&amp;#34;: false } ], &amp;#34;2&amp;#34;: [ { &amp;#34;userId&amp;#34;: 2, &amp;#34;notificationId&amp;#34;: 3, &amp;#34;content&amp;#34;: &amp;#34;heyo&amp;#34;, &amp;#34;notificationType&amp;#34;: 1, &amp;#34;isRead&amp;#34;: false, &amp;#34;isSent&amp;#34;: false } ] } } Import</description>
+    </item>
+    
+    <item>
+      <title>Tim Hieu Ve Props Va State Trong Reactjs</title>
+      <link>https://nextjsvietnam.com/post/tim-hieu-ve-props-va-state-trong-reactjs/</link>
+      <pubDate>Tue, 12 Jul 2022 15:14:47 +0700</pubDate>
+      
+      <guid>https://nextjsvietnam.com/post/tim-hieu-ve-props-va-state-trong-reactjs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Con đường trở thành lập trình viên fullstack JS</title>
+      <link>https://nextjsvietnam.com/post/con-duong-tro-lap-lap-trinh-vien-fullstack-js/</link>
+      <pubDate>Tue, 12 Jul 2022 14:24:28 +0700</pubDate>
+      
+      <guid>https://nextjsvietnam.com/post/con-duong-tro-lap-lap-trinh-vien-fullstack-js/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Create New Spa With Reactjs</title>
+      <link>https://nextjsvietnam.com/post/create-new-spa-with-reactjs/</link>
+      <pubDate>Tue, 12 Jul 2022 14:23:31 +0700</pubDate>
+      
+      <guid>https://nextjsvietnam.com/post/create-new-spa-with-reactjs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ngay Dau Di Lam Dev Backend</title>
+      <link>https://nextjsvietnam.com/post/ngay-dau-di-lam-dev-backend/</link>
+      <pubDate>Tue, 12 Jul 2022 11:41:01 +0700</pubDate>
+      
+      <guid>https://nextjsvietnam.com/post/ngay-dau-di-lam-dev-backend/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>System Design Head First</title>
+      <link>https://nextjsvietnam.com/post/system-design-head-first/</link>
+      <pubDate>Tue, 12 Jul 2022 11:39:43 +0700</pubDate>
+      
+      <guid>https://nextjsvietnam.com/post/system-design-head-first/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Developer Your Rest Api With Nestjs</title>
+      <link>https://nextjsvietnam.com/post/developer-your-rest-api-with-nestjs/</link>
+      <pubDate>Tue, 12 Jul 2022 11:39:11 +0700</pubDate>
+      
+      <guid>https://nextjsvietnam.com/post/developer-your-rest-api-with-nestjs/</guid>
+      <description>Ứng dụng Xây dựng REST API cung cấp dữ liệu thời gian thực giá vàng
+Tính năng cập nhật giá vàng Cập nhật giá vàng theo ngày : nhập thông thường Cập nhật giá vàng hàng loạt: import tập tin excel theo định dạng Cập nhật giá vàng tự động: thiết lập link liên kết lấy giá vàng, khoảng thời gian lấy Tính năng hiển thị giá vàng Dạng hiện thị : dạng bảng hoặc dạng biểu đồ</description>
+    </item>
+    
+    <item>
+      <title>Create New Website With Nextjs</title>
+      <link>https://nextjsvietnam.com/post/create-new-website-with-nextjs/</link>
+      <pubDate>Tue, 12 Jul 2022 11:38:00 +0700</pubDate>
+      
+      <guid>https://nextjsvietnam.com/post/create-new-website-with-nextjs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Create Static Blog With Hugo and Github Pages in 5 Minutes</title>
+      <link>https://nextjsvietnam.com/post/create-static-blog-with-hugo-and-github-pages-in-5-minutes/</link>
+      <pubDate>Tue, 21 Jun 2022 15:43:50 +0700</pubDate>
+      
+      <guid>https://nextjsvietnam.com/post/create-static-blog-with-hugo-and-github-pages-in-5-minutes/</guid>
+      <description>Todo [x] Download hugo releases for windows 10 https://gohugo.io/getting-started/installing/ Extract and copy hugo.exe to your HUGO_PATH Add your HUGO_PATH to environment path. Window Icon + &amp;rsquo;env&amp;rsquo; =&amp;gt; Edit System Variables Eg: C:/softwares/hugo
+Open system environment variable Add new hugo path Add hugo path to path Test
+hugo --help [x] Create new hugo site hugo new site blog.jsguru.net --force [x] Setup gh-pages for hugo https://github.com/marketplace/actions/hugo-setup
+.github\workflows\gh-pages.yml
+name: GitHub Pages on: push: branches: - main # Set a branch to deploy pull_request: jobs: deploy: runs-on: ubuntu-20.</description>
+    </item>
+    
+    <item>
+      <title>Setup NodeJS Development Environment in 5 Minutes</title>
+      <link>https://nextjsvietnam.com/post/setup-nodejs-development-enviroment-in-5-minutes/</link>
+      <pubDate>Tue, 21 Jun 2022 15:43:50 +0700</pubDate>
+      
+      <guid>https://nextjsvietnam.com/post/setup-nodejs-development-enviroment-in-5-minutes/</guid>
+      <description>Installation https://nodejs.org/en/download/</description>
+    </item>
+    
+  </channel>
+</rss>

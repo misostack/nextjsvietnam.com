@@ -1,0 +1,62 @@
+<nav class="nav-fixed nav-default z-50">
+    <div class="container">
+      <div class="nav-container flex flex-wrap justify-between items-center">
+        <a href="{{.Site.BaseURL}}" class="nav-brand inline-block">
+          {{ $logo := resources.GetMatch "themes/2022/src/assets/images/logo.png" }}
+          <img class="h-16" src="{{ $logo.Permalink }}" 
+          alt="Stunning" />
+        </a>
+        <a href="javascript:void(0);" data-menu="#menu-main_menu" class="nav-menu-toggle"><span
+          class="material-icons">menu</span></a>
+        <ul id="menu-main_menu" class="nav-menu h-0 md:h-auto">
+          <form class="nav-menu-search-bar md:hidden relative">
+            <button class="nav-menu-search-bar-search-btn absolute h-full">
+              <svg class="w-3 h-3 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24">
+                <path
+                  d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z">
+                </path>
+              </svg>
+            </button>
+            <input name="s" type="text" class="w-full" />
+          </form>
+          {{ range $taxonomyname, $taxonomy := .Site.Taxonomies }}
+            {{ if eq $taxonomyname "categories" }}
+                {{ range $key, $value := $taxonomy }}
+                    {{ $categoryUrl := $key | printf "%s%s" "categories/" | printf "%s" }}
+                    <li class="nav-menu-item"><a class="nav-menu-link" 
+                        href="{{ $categoryUrl | absURL }}">{{ $key }}</a></li>
+                {{ end }}
+            {{ end }}
+          {{ end }}
+          {{ range $navitem := .Site.Data.layouts.navitems }}
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="{{ $navitem.url | absURL }}">{{ $navitem.name }}
+                {{ if $navitem.childrens }}
+                    <span class="material-icons">keyboard_arrow_down</span>
+                {{ end }}
+            </a>
+            {{ if $navitem.childrens }}
+                <ul class="sub-menu">                                    
+                {{ range $sub_navitem := $navitem.childrens }}
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="{{ $sub_navitem.url | absURL }}">{{ $sub_navitem.name }}</a></li>
+                {{ end }}
+                </ul>
+            {{ end }}
+            </li>
+          {{ end }}
+          <form class="nav-menu-search-bar hidden md:flex relative">
+            <button class="nav-menu-search-bar-search-btn absolute h-full">
+              <svg class="w-3 h-3 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24">
+                <path
+                  d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z">
+                </path>
+              </svg>
+            </button>
+            <input name="s" type="text" class="w-full" />
+          </form>
+        </ul>
+      </div>
+    </div>
+</nav>

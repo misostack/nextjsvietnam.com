@@ -1,0 +1,33 @@
+/* Custom style for home page */
+
+.news-section {
+}
+
+[data-content="newsfeature"] {
+  @apply md:float-right md:w-4/6;
+  .card-post-feature {
+    @apply md:float-left md:h-full md:w-2/3;
+    .card-post-title {
+      @apply mt-4;
+    }
+  }
+  .card-post-picked {
+    @apply md:float-right md:w-1/3;
+    .card-post-title {
+      @apply mt-2;
+    }
+  }
+}
+[data-content="newstrending"] {
+  @apply md:float-right md:w-2/6;
+  .card-post-feature {
+    @apply flex p-2;
+    .card-post-title {
+      @apply ml-4;
+      @apply w-2/3;
+    }
+    img {
+      @apply w-32;
+    }
+  }
+}

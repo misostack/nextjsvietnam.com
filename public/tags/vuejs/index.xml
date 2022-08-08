@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>vuejs on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+    <link>https://nextjsvietnam.com/tags/vuejs/</link>
+    <description>Recent content in vuejs on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 05 Aug 2022 20:07:21 +0700</lastBuildDate><atom:link href="https://nextjsvietnam.com/tags/vuejs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Vuejs How to Add TailwindCSS in Your Application</title>
+      <link>https://nextjsvietnam.com/post/vuejs-how-to-add-tailwind-in-your-application/</link>
+      <pubDate>Fri, 05 Aug 2022 20:07:21 +0700</pubDate>
+      
+      <guid>https://nextjsvietnam.com/post/vuejs-how-to-add-tailwind-in-your-application/</guid>
+      <description>Install tailwindcss&amp;rsquo;s dependency packages Configure your template paths tailwind.config.js Add Sass Support npm install -D tailwindcss postcss autoprefixer npx tailwindcss init tailwind.config.cjs
+/** @type {import(&amp;#39;tailwindcss&amp;#39;).Config} */ module.exports = { content: [&amp;#34;./index.html&amp;#34;, &amp;#34;./src/**/*.{vue,js,ts,jsx,tsx}&amp;#34;], theme: { extend: {}, }, plugins: [], }; npm add -D sass src/assets/scss/global.scss
+/* Fonts */ @import url(&amp;#34;https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&amp;amp;display=swap&amp;#34;); @import url(&amp;#34;https://fonts.googleapis.com/icon?family=Material+Icons&amp;#34;); /* Tailwind base */ @tailwind base; @tailwind components; @tailwind utilities; h1, h2, h3, h4, h5, h6 { @apply font-bold; font-family: &amp;#34;Merriweather&amp;#34;, serif; } h6 { @apply text-xs; } h5 { @apply text-xs; } h4 { @apply text-sm; } h3 { @apply text-base; } h2 { @apply text-2xl; } h1 { @apply text-3xl; } .</description>
+    </item>
+    
+  </channel>
+</rss>

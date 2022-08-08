@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>nodejs on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+    <link>https://nextjsvietnam.com/tags/nodejs/</link>
+    <description>Recent content in nodejs on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 12 Jul 2022 11:39:11 +0700</lastBuildDate><atom:link href="https://nextjsvietnam.com/tags/nodejs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Developer Your Rest Api With Nestjs</title>
+      <link>https://nextjsvietnam.com/post/developer-your-rest-api-with-nestjs/</link>
+      <pubDate>Tue, 12 Jul 2022 11:39:11 +0700</pubDate>
+      
+      <guid>https://nextjsvietnam.com/post/developer-your-rest-api-with-nestjs/</guid>
+      <description>Ứng dụng Xây dựng REST API cung cấp dữ liệu thời gian thực giá vàng
+Tính năng cập nhật giá vàng Cập nhật giá vàng theo ngày : nhập thông thường Cập nhật giá vàng hàng loạt: import tập tin excel theo định dạng Cập nhật giá vàng tự động: thiết lập link liên kết lấy giá vàng, khoảng thời gian lấy Tính năng hiển thị giá vàng Dạng hiện thị : dạng bảng hoặc dạng biểu đồ</description>
+    </item>
+    
+  </channel>
+</rss>
