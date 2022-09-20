@@ -2,7 +2,7 @@
 title: "Npm Cheatsheet"
 type: "post"
 date: 2022-09-20T17:09:13+07:00
-description: "Npm Cheatsheet"
+description: "List all common and useful npm commands from 0 to hero"
 keywords: ["Npm Cheatsheet"]
 categories: ["cheatsheet"]
 tags: []
