@@ -1,0 +1,283 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=home href=https://nextjsvietnam.com>
+<meta name=generator content="jsguru cms">
+<link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap">
+<link rel=stylesheet href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel=stylesheet href=https://nextjsvietnam.com/themes/2022/public/main.css>
+<link rel=stylesheet href=https://nextjsvietnam.com/themes/2022/public/home.css>
+<link rel=stylesheet href=https://nextjsvietnam.com/themes/2022/public/page.css>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RWE4MLJYE6"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-RWE4MLJYE6')</script>
+<title>Rest Api Design Checklist | Things to think when designing, testing, and releasing your API | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+<meta name=robots content="all">
+<meta name=keywords content="rest api,rest api principles">
+<meta name=description content="Things to think when designing, testing, and releasing your API">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://nextjsvietnam.com/common/no-image.png">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="750">
+<meta property="og:image:height" content="300">
+<link rel=apple-touch-icon sizes=57x57 href=/apple-icon-57x57.png>
+<link rel=apple-touch-icon sizes=60x60 href=/apple-icon-60x60.png>
+<link rel=apple-touch-icon sizes=72x72 href=/apple-icon-72x72.png>
+<link rel=apple-touch-icon sizes=76x76 href=/apple-icon-76x76.png>
+<link rel=apple-touch-icon sizes=114x114 href=/apple-icon-114x114.png>
+<link rel=apple-touch-icon sizes=120x120 href=/apple-icon-120x120.png>
+<link rel=apple-touch-icon sizes=144x144 href=/apple-icon-144x144.png>
+<link rel=apple-touch-icon sizes=152x152 href=/apple-icon-152x152.png>
+<link rel=apple-touch-icon sizes=180x180 href=/apple-icon-180x180.png>
+<link rel=icon type=image/png sizes=192x192 href=/android-icon-192x192.png>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=96x96 href=/favicon-96x96.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
+<link rel=manifest href=/manifest.json>
+<meta name=msapplication-TileColor content="#ffffff">
+<meta name=msapplication-TileImage content="/ms-icon-144x144.png">
+<meta name=theme-color content="#ffffff">
+</head>
+<body class=body-nav-fixed>
+<nav class="nav-fixed nav-default z-50">
+<div class=container>
+<div class="nav-container flex flex-wrap justify-between items-center">
+<a href=https://nextjsvietnam.com class="nav-brand inline-block">
+<img class=h-16 src=https://nextjsvietnam.com/themes/2022/src/assets/images/logo.png alt=Stunning>
+</a>
+<a href=javascript:void(0); data-menu=#menu-main_menu class=nav-menu-toggle><span class=material-icons>menu</span></a>
+<ul id=menu-main_menu class="nav-menu h-0 md:h-auto">
+<form class="nav-menu-search-bar md:hidden relative">
+<button class="nav-menu-search-bar-search-btn absolute h-full"><svg class="w-3 h-3 text-gray-600" fill="currentcolor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.32 14.9l5.39 5.4a1 1 0 01-1.42 1.4l-5.38-5.38a8 8 0 111.41-1.41zM10 16a6 6 0 100-12 6 6 0 000 12z"/></svg>
+</button>
+<input name=s type=text class=w-full>
+</form>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/cheatsheet>cheatsheet</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/frameworks>frameworks</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/java>java</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/lifestyle>lifestyle</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/systemdesign>systemdesign</a></li>
+<li class=nav-menu-item>
+<a class=nav-menu-link href=https://nextjsvietnam.com>Tools
+<span class=material-icons>keyboard_arrow_down</span>
+</a>
+<ul class=sub-menu>
+<li class=nav-menu-item><a class=nav-menu-link href=https://regex101.com/>Online Regex</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=http://www.bashoneliners.com/>Bash Online</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://www.epochconverter.com/>Unix Timestamp Conversion</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://ryanstutorials.net/bash-scripting-tutorial/>Bash Scripting</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://explainshell.com/>Explain Shell</a></li>
+</ul>
+</li>
+<form class="nav-menu-search-bar hidden md:flex relative">
+<button class="nav-menu-search-bar-search-btn absolute h-full"><svg class="w-3 h-3 text-gray-600" fill="currentcolor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.32 14.9l5.39 5.4a1 1 0 01-1.42 1.4l-5.38-5.38a8 8 0 111.41-1.41zM10 16a6 6 0 100-12 6 6 0 000 12z"/></svg>
+</button>
+<input name=s type=text class=w-full>
+</form>
+</ul>
+</div>
+</div>
+</nav>
+<main>
+<section class="container section">
+<div class="page-content max-w-2xl mx-auto">
+<img src=https://nextjsvietnam.com/common/no-image.png class=img-responsive alt="Rest Api Design Checklist">
+<h1>Rest Api Design Checklist</h1>
+<p>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/cheatsheet>cheatsheet</a>
+</p>
+<h2 id=rest-api-là-gì>REST API là gì?</h2>
+<ul>
+<li>API : Application programming interface</li>
+<li>REST : Representational state transfer</li>
+</ul>
+<p><strong>Giải thích theo thuật ngữ chuyên môn thì</strong></p>
+<p>REST API là một loạt các quy tắc được đặt ra khi thiết kế và lập trình cho các ứng dụng, nhằm mục đích thống nhất các thể hiện của trạng thái được truyền tải trong những ứng dụng này.</p>
+<p><strong>Còn nếu tiếp cận theo hướng ví dụ thực tế</strong></p>
+<p>Trong thực tế, bạn có một ứng dụng quản lí trạng thái bật/tắt của các bóng đèn trong nhà. Thì trạng thái của từng bóng đèn sẽ được lưu lại và cho phép người dùng biết được trạng thái của bóng đèn hiện tại.</p>
+<p>Khi xây dựng ứng dụng này, sẽ có 3 phần: ứng dụng phía người dùng, ứng dụng kết nối và xử lý các yêu cầu của người dùng, ứng dụng điều khiển bóng đèn trực tiếp.</p>
+<p>Cơ chế hoạt động chính là : khi người dùng tương tác với ứng dụng( có thể là trang web/ mobile app ) thì nó sẽ gửi yêu cầu lên ứng dụng quản kết nối và xử lý yêu cầu, để ứng dụng trung gian này tương tác với ứng dụng xử lý việc bật/tắt của bóng đèn tương ứng. Đồng thời cho phép người dùng biết được trạng thái hiện tại của từng bóng đèn.</p>
+<blockquote>
+<p>Chính vì điều đó REST API được ra đời, nó là các nguyên tắc thiết kế dữ liệu truyền tải giữa các ứng dụng</p>
+</blockquote>
+<p><strong>Vậy các quy tắc đó là gì, chúng ta sẽ tiếp tục tìm hiểu chi tiết bên dưới đây.</strong></p>
+<h3 id=rest-design-principles>REST design principles</h3>
+<p>Điều đầu tiên, thì API chính là 1 phương thức cho phép các ứng dụng hoặc dịch vụ yêu cầu truy cập được <strong>resource</strong> từ những ứng dụng/dịch vụ khác. Do đó việc tuân thủ các quy tắc là cực kì cần thiết. Có 6 nguyên tắc chính bên dưới đây:</p>
+<h4 id=1-uniform-interface>1. Uniform interface</h4>
+<p>Điều này mang ý nghĩa là, bất kì yêu cầu truy cập vào cùng một <strong>resource</strong> thì định dạng của dữ liệu nhận được phải tương tự. Có nghĩa là mỗi resource cần có 1 định danh cụ thể (URI).</p>
+<p>Ví dụ: Ứng dụng quản lí thông tin khách hàng, mỗi khách hàng sẽ có 1 mã định dang riêng. Trong trường hợp này khi thiết kế REST API, cần phải đảm bảo tính nhất quán của URI. Cụ thể như sau.
+Để truy cập thông tin khách hàng, 1 ứng dụng sẽ gửi yêu cầu vào URI bên dưới</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#960050;background-color:#1e0010>/customers/20220923C1</span>
+
+<span style=color:#75715e>// JSON response
+</span><span style=color:#75715e></span>
+{
+    <span style=color:#e6db74>&#34;id&#34;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;20220923C1&#34;</span>,
+    <span style=color:#e6db74>&#34;name&#34;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Nguyễn Bin&#34;</span>,
+    <span style=color:#e6db74>&#34;email&#34;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;contact@nextjsvietnam.com&#34;</span>,
+    <span style=color:#e6db74>&#34;phoneNumber&#34;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;0937123456&#34;</span>
+}
+</code></pre></div><h4 id=2-client-server-decoupling>2. Client-server decoupling</h4>
+<p>Trong thiết kế REST-API, ứng dụng client và server phải hoàn toàn độc lập với nhau.</p>
+<p>Điều này nghĩa là, ứng dụng client(máy khách) chỉ cần biết thông tin về URI của resource là hoàn toàn có thể tương tác với server để truy cập dữ liệu. Cũng như, phía server không thể thay đổi ứng dụng khách, mà chỉ có thể gửi trả lại dữ liệu khi client yêu cầu.</p>
+<p>Do đó REST API còn bổ sung thêm vào việc thiết kế các phương thức giúp cho:</p>
+<ul>
+<li>HTTP verbs: GET, POST, PUT, PATCH, DELETE, OPTIONS</li>
+</ul>
+<p>Ngoài ra, chúng ta còn có 1 số tiêu chí để phân loại mức độ của RESTful API đã thiết kế</p>
+<ol>
+<li>Level 0 : 1 URI, toàn bộ operations sử dụng POST requests.</li>
+<li>Level 1 : Mỗi resource sẽ có URI riêng</li>
+<li>Level 2 : Sử dụng HTTP methods để định nghĩa operations cho từng URI</li>
+<li>Level 3 : Sử dụng hypermedia (HATEOAS) để link tới các resource có liên quan được lồng ghép trong resource hiện tại</li>
+</ol>
+<blockquote>
+<p>HATEOAS : Hypertext as the Engine of Application State</p>
+</blockquote>
+<h4 id=3-statelessness>3. Statelessness</h4>
+<p>Điều này nghĩa là khi client gửi 1 request lên phía server để yêu cầu thông tin, thì trong nội hàm request đó đã bao gồm đầy đủ các thông tin cần thiết để thực thi.</p>
+<p>Lí do là các http requests độc lập với nhau, do đó việc giữ trạng thái giữa các request là không khả thi. Do đó, mỗi request cần chứa đầy đủ các thông tin mà nó cần. Ví dụ giữ thông tin xác thực quyền truy cập resource ( access token )</p>
+<p>Nói cách khác, bên phía server không cần thiết phải lưu trữ session của client để kiểm tra mỗi lần có request từ phía client.</p>
+<p>Ngoài ra nếu đảm bảo tính statelessness, thì khi scale ngang (horizontal scale), thì bất kì server nào cũng có thể phục vụ được request này.</p>
+<h4 id=4-cacheability>4. Cacheability</h4>
+<p>Mục đích hỗ trợ ứng dụng có thể scale được, resource nên được cache lại ở phía client side/ server side. Đặc biệt phía server, đối với các resource có thể được cached thì response cần chứa thêm thông tin đánh dấu resource này được cache và cache trong bao lâu.</p>
+<h4 id=5-layered-system-architecture>5. Layered system architecture</h4>
+<p>Đôi khi trong thực tế, client và server ko giao tiếp trực tiếp với nhau mà thông qua 1 trung gian khác. Do đó khi thiết kế, cần lưu ý client/server cần biết chắc chắn rằng nó sẽ giao tiếp trực tiếp hay thông qua trung gian.</p>
+<p>Ví dụ: Ta có ứng dụng quản lí bật/tắt bóng đèn ở trên. Thực tế client ko giao tiếp trực tiếp với ứng dụng bật/tắt bóng đèn mà thông qua 1 ứng dụng trung gian( giao tiếp với app mobile và ứng dụng quản lí bật/tắt bóng đèn)</p>
+<h4 id=6-code-on-demand-optional>6. Code on demand (optional).</h4>
+<p>Thông thường REST API chỉ trả về dữ liệu của resource. Đôi khi response chứa cả code có thể thực thi được.</p>
+<h2 id=rest-api-design-checklist>REST Api Design Checklist</h2>
+<p>Bên dưới đây là checklist tham khảo khi bạn thiết kế 1 ứng dụng RESTful Api</p>
+<ol>
+<li><input disabled type=checkbox> Idempotent methods: GET, HEAD, PUT, DELETE, OPTIONS and TRACE. &ldquo;the side-effects of N > 0 identical requests is the same as for a single request&rdquo;. Nghĩa là không trigger thay đổi resource khi sử dụng các method trên. Ví dụ: GET /customers/1 luôn là thông tin customer/404 cho N request</li>
+<li><input disabled type=checkbox> Authentication</li>
+<li><input disabled type=checkbox> 201 Created : status được response khi 1 request tạo ra 1 resource mới thành công</li>
+<li><input disabled type=checkbox> 202 Status : status được response khi 1 request hợp lệ và được thực thi, nhưng chưa hoàn thành ngay. Ví dụ: send email</li>
+<li><input disabled type=checkbox> 4xx Status: Client Error (something wrong)</li>
+<li><input disabled type=checkbox> 5xx Status: Server Side Error (something broken)</li>
+<li><input disabled type=checkbox> 410 Gone : resource đã tồn tại ở URL này nhưng hiện tại ko còn. Ví dụ: resource bị deleted, archived, hoặc expired time(download link)</li>
+<li><input disabled type=checkbox> Expect: 100-continue. Ví dụ: phía app chuẩn bị upload 1 file có kích cỡ lớn, có thể sử dụng meta này + độ lớn của file + loại file để server kiểm tra trước xem liệu loại file/độ lớn có hợp lệ không thay vì gửi lên toàn bộ nội dung file rồi mới kiểm tra.</li>
+<li><input disabled type=checkbox> Connection Keep-Alive: Cấu hình để thông số này là hợp lí nhất, vì nếu maintain nhiều connection, sẽ dẫn đến vấn đề lớn về mặt performance</li>
+<li><input disabled type=checkbox> HTTP Compression : Để tăng network performance, chúng ta có thể nén body ở cả phía client lẫn server. response bodies (Accept-Encoding: gzip) and for request bodies (Content-Encoding: gzip)</li>
+<li><input disabled type=checkbox> HTTP Caching: Cache-Control header</li>
+<li><input disabled type=checkbox> Cache Validation: Last-Modified or ETag headers của response</li>
+<li><input disabled type=checkbox> Conditional Modifications</li>
+<li><input disabled type=checkbox> Absolute Redirects: Đối với các 201, 301, 302, 303, 307 response codes, trong header nên chứa Location để hỗ trợ redirect</li>
+<li><input disabled type=checkbox> Canonical URLs: đối với các resource có nhiều URL, sử dụng 1 phương thức cố định để chỉ định đau là URL gốc. Ví dụ: link sản phẩm: products/1 và products/web-chuan-seo-mau-001</li>
+<li><input disabled type=checkbox> Chunked Transfer Encoding: sử dụng Transfer-Encoding: Chunked, nếu content có kích thước lớn để stream dữ liệu cho client</li>
+<li><input disabled type=checkbox> Error Handling in Chunked Transfer Encoding : suy nghĩ về việc handle lỗi khi stream data, vì khi bắt đầu stream response, chúng ta ko thể thay đổi http status code. Tuy nhiên có thể sử dụng Content-Type để làm điều này.</li>
+<li><input disabled type=checkbox> X-HTTP-Method-Override: Một số http clients ko hỗ trợ gì khác ngoài POST/GET, có thể dùng cách này để bypass</li>
+<li><input disabled type=checkbox> URL Length : Nếu API support filter, lưu ý đảm bảo URL ko vượt quá 2000 kí tự</li>
+<li><input disabled type=checkbox> Statelessness</li>
+<li><input disabled type=checkbox> Content Negotiation : hỗ trợ response ở nhiều format thông qua Accept-Headers hoặc URLs khác nhau</li>
+<li><input disabled type=checkbox> URI Template: tạo ra template mẫu cho URI, đảm bảo tính nhất quán trong ứng dụng. <a href=https://www.rfc-editor.org/rfc/rfc6570>Tham khảo tại</a></li>
+<li><input disabled type=checkbox> Design for Intent: Đừng chỉ forward toàn bộ business object đang lưu trữ phía server về client side. Luôn nhớ rằng cần design các API theo ý nghĩa của nó và thỏa mãn use-cases trong thực tế.</li>
+<li><input disabled type=checkbox> Versioning : Ví dụ: /v1 tương ứng với phiên bản 1 của API</li>
+<li><input disabled type=checkbox> Authorization : Cần đảm bảo API luôn kiểm tra quyền hạn của user khi truy cập vào các tài nguyên</li>
+<li><input disabled type=checkbox> Bulk Operations: Đôi lúc thay vì gửi quá nhiều request thì gửi 1 bulk operations sẽ giảm tải rất nhiều thời gian chờ đợi cho phía client.</li>
+<li><input disabled type=checkbox> Pagination : Đảm bảo API của bạn hỗ trợ pagination 1 cách nhất quán, tránh việc hiển thị quá nhiều thông tin dư thừa trên client hoặc dữ liệu quá nhiều ko thể tải hết.</li>
+<li><input disabled type=checkbox> Unicode : luôn lưu ý, cũng cần hỗ trợ cả unicode. Ví dụ: customers/search/Sơn</li>
+<li><input disabled type=checkbox> Error Logging: luôn chắc rằng bạn cần áp dụng log các lỗi cần thiết. Đặc biệt nên phân biệt lỗi client và server. Có thể chia làm 2 file log riêng.</li>
+<li><input disabled type=checkbox> Content Types : support các dạng content type phổ biến</li>
+<li><input disabled type=checkbox> HATEOAS : liên kết tới các resource liên quan</li>
+<li><input disabled type=checkbox> Date/time: lưu ý cần cung cấp cả thông tin timezone đối với dữ liệu dạng date/time</li>
+<li><input disabled type=checkbox> SSL : nên xài SSL cho cả client lẫn server</li>
+<li><input disabled type=checkbox> Cross-site Request Forgery (CSRF)</li>
+<li><input disabled type=checkbox> Throttling: Đôi khi client side request quá nhiều vào 1 endpoint trong 1 thời điểm. Ví dụ: gửi request search liên tục khi người dùng gõ. Áp dụng API request limits - 503 cùng với Retry-After header để đảm bảo API vẫn hoạt động tốt.</li>
+<li><input disabled type=checkbox> Subtle Denial of Service: Kĩ thuật Throttling có thể chống quá tải cơ bản, tuy nhiên khi gặp các vấn đề liên quan đến Dos attack, cần đảm bảo hãy sử dụng các công cụ tương ứng.</li>
+<li><input disabled type=checkbox> Connection Keep-Alive</li>
+<li><input disabled type=checkbox> 401 before Authorization: sử dụng Authorization khi cần thiết</li>
+<li><input disabled type=checkbox> Documentation : làm ơn hãy ghi tài liệu hướng dẫn sử dụng API. Tiêu biểu như : swagger</li>
+<li><input disabled type=checkbox> Design with a Customer!: kiếm người xài nha bạn</li>
+<li><input disabled type=checkbox> Feedback : bình tĩnh nhận feedback</li>
+<li><input disabled type=checkbox> Automated Testing: viết khi có thể, nó sẽ giúp bạn tiết kiệm rất nhiều thời gian</li>
+</ol>
+<h2 id=thông-tin-tham-khảo>Thông tin tham khảo</h2>
+<ul>
+<li><a href=https://www.ibm.com/cloud/learn/rest-apis#toc-what-is-a--MEwTVhOV>General</a></li>
+<li><a href=https://mathieu.fenniak.net/the-api-checklist/>Refs</a></li>
+<li><a href=https://learn.microsoft.com/en-us/azure/architecture/best-practices/api-design>Best Practice</a></li>
+<li><a href=https://martinfowler.com/articles/richardsonMaturityModel.html>Maturity Model</a></li>
+</ul>
+<div class="m-1 p-1">
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/cheatsheet>cheatsheet</a>
+</div>
+</div>
+</section>
+<section class="container section">
+<div class="max-w-2xl mx-auto">
+<div class="font-heading text-2xl font-semibold">You Might Also Like</div>
+<div class="mt-8 grid gap-8">
+<ul class=sidebar-links>
+<li><a href=/post/npm-cheatsheet/>Npm Cheatsheet</a></li>
+<li><a href=/post/how-to-use-typescript-path-alias-in-loopback-4/>How to Use Typescript Path Alias in Loopback 4</a></li>
+<li><a href=/post/javascript-numeric-precision-issue/>Javascript Numeric Precision Issue</a></li>
+<li><a href=/post/su-dung-firebase-realtime-database-gui-thong-bao/>Sử dụng Firebase Realtime Database để gửi thông báo cho người dùng trong web app</a></li>
+<li><a href=/post/tim-hieu-ve-props-va-state-trong-reactjs/>Tim Hieu Ve Props Va State Trong Reactjs</a></li>
+<li><a href=/post/con-duong-tro-lap-lap-trinh-vien-fullstack-js/>Con đường trở thành lập trình viên fullstack JS</a></li>
+<li><a href=/post/create-new-spa-with-reactjs/>Create New Spa With Reactjs</a></li>
+</ul>
+</div>
+</div>
+</section>
+</main>
+<footer class=footer>
+<div class="container md:flex">
+<section class="footer-section-info md:basis-1/4">
+<div class=address>
+<a class=logo href=https://nextjsvietnam.com title=NextJSVietNam>
+NextJSVietNam
+</a>
+<h4 class=footer-heading>
+PRODUCTION MODE
+<h4>
+</div>
+</section>
+<div class="footer-section-navigation-menu md:basis-1/4">
+<h4 class=footer-heading>NestJS</h4>
+<ul class=footer-section-navigation-menu-links>
+<li><a href=https://nextjsvietnam.com/post/the-best-way-to-upload-file-in-nestjs/>The Best Way to Upload File in Nestjs</a></li>
+<li><a href=https://nextjsvietnam.com/post/nestjs-request-and-response-object/>Nestjs Request and Response Object</a></li>
+<li><a href=https://nextjsvietnam.com/post/nestjs-pipes/>Nestjs Pipes</a></li>
+<li><a href=https://nextjsvietnam.com/post/validate-request-input-in-nestjs/>Validate Request Input in Nestjs</a></li>
+<li><a href=https://nextjsvietnam.com/post/nestjs-provider/>Nestjs Provider</a></li>
+</ul>
+</div>
+<div class="footer-section-navigation-menu md:basis-1/4">
+<h4 class=footer-heading>NextJS</h4>
+<ul class=footer-section-navigation-menu-links>
+<li><a href=https://nextjsvietnam.com/post/create-new-website-with-nextjs/>Create New Website With Nextjs</a></li>
+</ul>
+</div>
+<div class="footer-section-navigation-menu md:basis-1/4">
+<h4 class=footer-heading>Cheatsheet</h4>
+<ul class=footer-section-navigation-menu-links>
+<li><a href=https://nextjsvietnam.com/post/rest-api-design-checklist/>Rest Api Design Checklist</a></li>
+<li><a href=https://nextjsvietnam.com/post/npm-cheatsheet/>Npm Cheatsheet</a></li>
+<li><a href=https://nextjsvietnam.com/post/how-to-use-typescript-path-alias-in-loopback-4/>How to Use Typescript Path Alias in Loopback 4</a></li>
+<li><a href=https://nextjsvietnam.com/post/javascript-numeric-precision-issue/>Javascript Numeric Precision Issue</a></li>
+<li><a href=https://nextjsvietnam.com/post/su-dung-firebase-realtime-database-gui-thong-bao/>Sử dụng Firebase Realtime Database để gửi thông báo cho người dùng trong web app</a></li>
+</ul>
+</div>
+</div>
+<div class=container>
+<div class=text-center>
+<a href><span class="material-icons text-4xl m-4">facebook</span></a>
+<a href><span class="material-icons text-4xl m-4">smart_display</span></a>
+</div>
+<div class="text-center text-lg py-4">
+Copyright @ NextJSVietNam 2022
+</div>
+<div class="text-center text-sm">
+Powered by <a class="font-bold text-primary" href=https://gohugo.io/>Go Hugo</a> - Made
+with love from <a class="font-bold text-primary" href=https://nextjsvietnam.com>NextJSVietNam</a> -
+Build
+Version 2022-09-23 14:33:24 +0700 +0700
+</div>
+</div>
+</footer>
+<script type=text/javascript src=https://nextjsvietnam.com/core/jquery-3.6.0.min.js></script>
+<script type=text/javascript src=https://nextjsvietnam.com/themes/2022/public/main.js></script>
+<script type=text/javascript src=https://nextjsvietnam.com/themes/2022/public/home.js></script>
+</body>
+</html>
