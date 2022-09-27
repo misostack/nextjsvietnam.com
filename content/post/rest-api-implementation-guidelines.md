@@ -159,7 +159,93 @@ Thay vì users/vhugo1802/userEvents/birthday-dinner-226 nên sử dụng users/v
 
 ### Nguyên tắc số 4. Resource ID segments
 
-## Các vấn đề và giải pháp
+- Resource ID segment là định dang của chính nó trong collection nội tại
+
+Ví dụ: Ta có resource như sau
+
+> /users/789/orders/3
+
+Thì 789 là resource ID của user, còn 3 là resource id của order
+
+Đồng thời khi thiết kế cần lưu ý 3 trường hợp sau:
+
+**Trường hợp 1: Resource IDs luôn được user tạo ra**
+
+- Thì API phải document format hợp lệ.
+- Luôn tuân theo [chuẩn của DNS](https://www.rfc-editor.org/rfc/rfc1034).
+
+**Ví dụ:**
+
+- Format cho resource ID chỉ được bao gồm : các kí chữ cái, số, gạch ngang "-"
+- Kí tự đầu tiên là chữ cái, kí tự cuối cùng phải là số hoặc chữ cái.
+- Luôn sử dụng chữ thường ( lowercase ), tối đa 63 kí tự
+
+```js
+(^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$).
+```
+
+**Trường hợp 2: Resource IDs luôn do hệ thống tự generate**
+
+- Thì API phải document format hợp lệ.
+- Quy định giới hạn tối đa 63 kí tự
+
+**Trường hợp 3: Resource IDs được user tạo ra hoặc hệ thống tự generate**
+
+- Phải tạo ra quy tắc chung cho cả 2 trường hợp tương tự như trường hợp 1 hoặc 2
+
+Đối với cả 3 trường hợp trên phải đảm bảo rằng:
+
+- Resource ID là bất biến sau khi đã được tạo ra
+
+### Nguyên tắc số 5. Resource ID aliases
+
+- Đôi khi API cần phải tạo ra các alias cho 1 số resource cụ thể. Ví dụ, users/me dùng để truy vấn thông tin của user đã xác thực.
+
+### Nguyên tắc số 6. Full resource names
+
+Trong đa số các trường hợp resource name được sử dụng trong cùng 1 API duy nhất. Hoặc trong 1 hoàn cảnh cụ thể.
+
+Tuy nhiên đôi khi nếu resource liên quan lại thuộc về 1 service khác, full resource name (schemeless URI ) cần được sử dụng.
+
+Ví dụ:
+
+```
+//api.books.nextjsvietnam.com/publishers/123/books/rest-api-design-pattern
+//api.nextjsvietnam.com/users/1
+```
+
+### Nguyên tắc số 7. Resource URIs
+
+Resource URIs sẽ phải bao gồm:
+
+- Scheme : http hoặc https
+- API Version: v1, v2, ...vN
+
+Tại sao version không thuộc về full resource name, lí do rất đơn giản. Vì full resource name phải nhất quán giữa các version.
+
+### Nguyên tắc số 8 (optional). Fields representing resource names
+
+- Khi define 1 resource, thì field đầu tiên nên là "resource name", field này bắt buộc phải là "string" và gọi là _name_ và để làm resource name.
+
+Ví dụ: Format: publishers/{publisher}/books/{book}
+
+### Nguyên tắc số 9 (optional). Fields representing a resource's parent
+
+### Nguyên tắc số 10 (optional). Fields representing another resource
+
+- When referencing a resource name for a different resource
+- Field names có thể sử dụng các tính từ làm prefix nếu cần thiết.
+- Field names không nên sử dụng suffix name trừ trường hợp bắt buộc (crypto_key_name)
+
+```ts
+class Book {
+  // The resource name of the book.
+  public name: string;
+  // Other fields ...
+}
+```
+
+## Các vấn đề thường gặp và giải pháp
 
 Chúng ta sẽ bắt đầu với bài toán đầu tiên, thiết kế API cho 2 chức năng sau:
 
@@ -216,3 +302,7 @@ Confirmed user's account: activate and login
 > POST /accounts/reset-password/request: gửi yêu cầu khôi phục mật khẩu
 
 > POST /accounts/reset-password: cập nhật mật khẩu mới
+
+## Tài liệu tham khảo
+
+- [Google API Dev](https://google.aip.dev/122)
