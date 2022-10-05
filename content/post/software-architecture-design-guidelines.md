@@ -35,7 +35,7 @@ Trong phạm vi của bài viết này, tôi xin chia sẻ những gì đúc k�
 3. [ ] Group into modules: design and breakdown the system in individual module for development
 4. [ ] Details for funtionality in each module
 5. [ ] Create database schema: dataset, field definitions, constraints, database schema
-6. [ ] Create API inteface
+6. [ ] Create API contract-first approach
 7. [ ] Design the global architecture: choosing between monolith and microservices
 8. [ ] Design codebase architecture: for development, testing, deployment. Eg: DDD(domain driven design), Clean Architecture, Rapid (everything stay inside controller )
 9. [ ] Apply clean code standard
