@@ -11,6 +11,15 @@
 <link rel=stylesheet href=https://nextjsvietnam.com/themes/2022/public/page.css>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWE4MLJYE6"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-RWE4MLJYE6')</script>
+<title>Manage Your Reactjs State the Right Way | Để dễ dàng nắm bắt được các phương pháp khi làm việc với state, chúng ta sẽ đi qua lần lượt các trường hợp sau | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+<meta name=robots content="all">
+<meta name=keywords content="reactjs&#34;,reactjs state management">
+<meta name=description content="Để dễ dàng nắm bắt được các phương pháp khi làm việc với state, chúng ta sẽ đi qua lần lượt các trường hợp sau">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://nextjsvietnam.com/common/no-image.png">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="750">
+<meta property="og:image:height" content="300">
 <link rel=apple-touch-icon sizes=57x57 href=/apple-icon-57x57.png>
 <link rel=apple-touch-icon sizes=60x60 href=/apple-icon-60x60.png>
 <link rel=apple-touch-icon sizes=72x72 href=/apple-icon-72x72.png>
@@ -70,43 +79,76 @@
 </div>
 </nav>
 <main>
-<section class="container section hero-section">
-<h1 class=hero-section-heading>java</h1>
-</section>
-<section class="container section gap-8">
-<div class="card card-post-default">
-<div class="px-6 py-4">
-<h2 class=card-post-title>
-<a href=https://nextjsvietnam.com/post/java-for-beginner/>Java for Beginner</a>
-</h2>
-<div>
-<span class=card-post-date>20 Jul, 2022</span>
-</div>
-<div class=card-post-description>Java languages, essential Java classes, GUI</div>
-</div>
-</div>
-</section>
-<section class=container>
-<ul class="pagination pagination-default">
-<li class=page-item>
-<a href=/tags/java/ aria-label=First class=page-link role=button><span aria-hidden=true>&#171;&#171;</span></a>
-</li>
-<li class=page-item>
-<a href=/tags/java/ aria-label=Previous class=page-link role=button><span aria-hidden=true>&#171;</span></a>
-</li>
-<li class=page-item>
-<a href=/tags/java/ aria-label="Page 1" class=page-link role=button>1</a>
-</li>
-<li class="page-item active">
-<a aria-current=page aria-label="Page 2" class=page-link role=button>2</a>
-</li>
-<li class="page-item disabled">
-<a aria-disabled=true aria-label=Next class=page-link role=button tabindex=-1><span aria-hidden=true>&#187;</span></a>
-</li>
-<li class="page-item disabled">
-<a aria-disabled=true aria-label=Last class=page-link role=button tabindex=-1><span aria-hidden=true>&#187;&#187;</span></a>
-</li>
+<section class="container section">
+<div class="page-content max-w-2xl mx-auto">
+<img src=https://nextjsvietnam.com/common/no-image.png class=img-responsive alt="Manage Your Reactjs State the Right Way">
+<h1>Manage Your Reactjs State the Right Way</h1>
+<p>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/frameworks>frameworks</a>
+</p>
+<p>Các khái niệm cần nắm trước khi đọc bài viết này:</p>
+<ol>
+<li>Khái niệm cơ bản về React State</li>
+<li>Khái niệm cơ bản về React Hook</li>
+</ol>
+<p>Về mặt định nghĩa, thì State trong ReactJS là 1 Javascript Object phản ánh phần dữ liệu của component và có thể bị thay đổi giá trị do các tác nhân trong ứng dụng ( người dùng, web worker, web socket, &mldr;)</p>
+<p>Trong phạm vi của bài viết này, toàn bộ ví dụ sẽ được viết theo dạng functional và react hooks.</p>
+<p>Khi ứng dụng càng lớn, hoặc trong cùng 1 màn hình lại có rất nhiều tính năng và chúng lại có liên quan mật thiết với nhau. Thì việc thiết kế và tổ chức cấu trúc dữ liệu cho state là điều tối quan trọng.</p>
+<p>Để dễ dàng nắm bắt được các phương pháp khi làm việc với state, chúng ta sẽ đi qua lần lượt các trường hợp sau:</p>
+<ol>
+<li>Internal UI states: phần state được sử dụng để hiển thị hoặc thay đổi về mặt giao diện người dùng như disabled, đổi màu sắc, hiển thị thông báo thành công/lỗi</li>
+<li>Interal data states: phần state được sử dụng để chứa dữ liệu chính hiển thị cho người dùng</li>
+<li>Shared UI states: phần state chung được sử dụng thay đổi về mặt UI ở toàn bộ ứng dụng hoặc các cụm màn hình chung</li>
+<li>Shared data states: phần state được sử dụng để chứa các dữ liệu chung của toàn bộ ứng dụng hoặc 1 cụm các màn hình chung</li>
+</ol>
+<h2 id=internal-ui-states>Internal UI states</h2>
+<p>Về loại này chúng ta có thể đi qua các ví dụ cụ thể như sau:</p>
+<ol>
+<li>On-Off buttons: Giả sử chúng ta có 6 bóng đèn, mỗi bóng đều có công tắc , và ngoài ra còn 1 công tắc điện tổng. Yêu cầu: xây dựng màn hình hiển thị 6 bóng đèn với các công tắc tương ứng. Mặc định ban đầu: toàn bộ các bóng đèn và công tắc điện tổng đều tắt.</li>
+</ol>
+<p>Đối với loại này, có các điểm sau cần lưu ý:</p>
+<ul>
+<li>State dành cho trạng thái của công tắc điện tổng</li>
+<li>State dành cho trạng thái của từng bóng đèn</li>
 </ul>
+<ol start=2>
+<li>React to Input State: Ứng dụng react state để tạo form validate dữ liệu. Yêu cầu:</li>
+</ol>
+<ul>
+<li>Form thu thập thông tin khách hàng: họ tên, email, số điện thoại</li>
+<li>Highlight các field sai format</li>
+<li>Disabled nút submit nếu dữ liệu không hợp lệ</li>
+<li>Disabled toàn bộ form trong thời gian chờ đợi form được submit thành công</li>
+<li>Hiển thị thông báo lỗi nếu có lỗi sau khi submit</li>
+<li>Hiển thị thông báo thành công nếu submit được chấp nhận</li>
+</ul>
+<p>Đối với loại này, có các điểm sau cần lưu ý:</p>
+<ul>
+<li>State dành cho input values</li>
+<li>State dành cho trạng thái của các input, của form</li>
+<li>State dành cho trạng thái submit</li>
+<li>State dành cho thông báo lỗi/thành công</li>
+</ul>
+<div class="m-1 p-1">
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/frameworks>frameworks</a>
+</div>
+</div>
+</section>
+<section class="container section">
+<div class="max-w-2xl mx-auto">
+<div class="font-heading text-2xl font-semibold">You Might Also Like</div>
+<div class="mt-8 grid gap-8">
+<ul class=sidebar-links>
+<li><a href=/post/the-best-way-to-upload-file-in-nestjs/>The Best Way to Upload File in Nestjs</a></li>
+<li><a href=/post/vuejs-how-to-add-tailwind-in-your-application/>Vuejs How to Add TailwindCSS in Your Application</a></li>
+<li><a href=/post/nestjs-request-and-response-object/>Nestjs Request and Response Object</a></li>
+<li><a href=/post/nestjs-pipes/>Nestjs Pipes</a></li>
+<li><a href=/post/validate-request-input-in-nestjs/>Validate Request Input in Nestjs</a></li>
+<li><a href=/post/nestjs-provider/>Nestjs Provider</a></li>
+<li><a href=/post/developer-your-rest-api-with-nestjs/>Developer Your Rest Api With Nestjs</a></li>
+</ul>
+</div>
+</div>
 </section>
 </main>
 <footer class=footer>
