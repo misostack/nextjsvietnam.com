@@ -27,3 +27,26 @@ Trong phạm vi của bài viết này, tôi xin chia sẻ những gì đúc k�
 10. [ ] Test your application
 11. [ ] Write tests for your application and setup your continous integration process
 12. [ ] Create blueprint for developers: overview source code architecture, component usage guidlines, developer's guidelines
+
+## Trình tự thiết kế kiến trúc và phát triển 1 dự án API ( Resftful API ) trong thực tế
+
+1. [ ] Brainstorm : analyze requirements and list all relevant entities
+2. [ ] High level design: components and interation between them
+3. [ ] Group into modules: design and breakdown the system in individual module for development
+4. [ ] Details for funtionality in each module
+5. [ ] Create database schema: dataset, field definitions, constraints, database schema
+6. [ ] Create API inteface
+7. [ ] Design the global architecture: choosing between monolith and microservices
+8. [ ] Design codebase architecture: for development, testing, deployment. Eg: DDD(domain driven design), Clean Architecture, Rapid (everything stay inside controller )
+9. [ ] Apply clean code standard
+10. [ ] Codefirst with API: create API contracts: request, response, dtos - accuracy, consistency, latency
+11. [ ] Business Layer: service and external resources - write unit test (use mocks vs stubs if needed)
+12. [ ] Persistence Layer: repository, database entities, data migration, adjust db depends on usecases for optimizing performance
+13. [ ] Connect all layer into fully feature
+14. [ ] Test your final API
+15. [ ] Document your API
+16. [ ] Setup your continous deployment process on your infrastructure: dev, test, uat, production
+17. [ ] Setup your continous integration process on your CI infrastructure: test, coverage report, automatically report,...
+18. [ ] Create blueprint for developers: overview source code architecture, code re-use guidelines, developer's guidelines
+
+## Các kiến thức và công cụ thường sử dụng trong từng bước theo trình tự trên
