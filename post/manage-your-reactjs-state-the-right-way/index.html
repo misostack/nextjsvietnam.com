@@ -111,7 +111,118 @@
 <li>State dành cho trạng thái của công tắc điện tổng</li>
 <li>State dành cho trạng thái của từng bóng đèn</li>
 </ul>
-<ol start=2>
+<p>Code sample</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>React</span>, { <span style=color:#a6e22e>useState</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;react&#34;</span>;
+<span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>LightBulbProps</span> {
+  <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>number</span>;
+  <span style=color:#a6e22e>status</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;on&#34;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#34;off&#34;</span>;
+}
+<span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>LightBulbStates</span> {
+  <span style=color:#a6e22e>lightBulbs</span>: <span style=color:#66d9ef>LightBulbProps</span>[];
+  <span style=color:#a6e22e>powerStatus</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;on&#34;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#34;off&#34;</span>;
+}
+
+<span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>PowerSwitchProps</span> {
+  <span style=color:#a6e22e>status</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;on&#34;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#34;off&#34;</span>;
+  <span style=color:#a6e22e>switchPowerState</span><span style=color:#f92672>:</span> (<span style=color:#a6e22e>status</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;on&#34;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#34;off&#34;</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>void</span>;
+}
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>PowerSwitch</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>props</span>: <span style=color:#66d9ef>PowerSwitchProps</span>) <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#66d9ef>const</span> { <span style=color:#a6e22e>status</span>, <span style=color:#a6e22e>switchPowerState</span> } <span style=color:#f92672>=</span> <span style=color:#a6e22e>props</span>;
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>iconName</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>status</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#34;on&#34;</span> <span style=color:#f92672>?</span> <span style=color:#e6db74>&#34;toggle_on&#34;</span> <span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;toggle_off&#34;</span>;
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>oppositeStatus</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>status</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#34;on&#34;</span> <span style=color:#f92672>?</span> <span style=color:#e6db74>&#34;off&#34;</span> <span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;on&#34;</span>;
+  <span style=color:#66d9ef>return</span> (
+    &lt;<span style=color:#f92672>button</span>
+      <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;text-center&#34;</span>
+      <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{() <span style=color:#f92672>=&gt;</span> {
+        <span style=color:#a6e22e>switchPowerState</span>(<span style=color:#a6e22e>oppositeStatus</span>);
+      }}
+    &gt;
+      &lt;<span style=color:#f92672>span</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;material-icons-outlined md-48&#34;</span>&gt;{<span style=color:#a6e22e>iconName</span>}&lt;/<span style=color:#f92672>span</span>&gt;
+      &lt;<span style=color:#f92672>br</span> /&gt;
+      {<span style=color:#a6e22e>status</span>.<span style=color:#a6e22e>toUpperCase</span>()}
+    &lt;/<span style=color:#f92672>button</span>&gt;
+  );
+};
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>LightBulb</span> <span style=color:#f92672>=</span> (
+  <span style=color:#a6e22e>props</span>: <span style=color:#66d9ef>LightBulbProps</span> <span style=color:#f92672>&amp;</span> {
+    <span style=color:#a6e22e>switchBulbState</span><span style=color:#f92672>:</span> (<span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>number</span>, <span style=color:#a6e22e>status</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;on&#34;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#34;off&#34;</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>void</span>;
+  }
+) <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#66d9ef>const</span> { <span style=color:#a6e22e>id</span>, <span style=color:#a6e22e>status</span> } <span style=color:#f92672>=</span> <span style=color:#a6e22e>props</span>;
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>className</span> <span style=color:#f92672>=</span>
+    <span style=color:#a6e22e>status</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#34;on&#34;</span> <span style=color:#f92672>?</span> <span style=color:#e6db74>&#34;material-icons-outlined&#34;</span> <span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;material-icons&#34;</span>;
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>oppositeStatus</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>status</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#34;on&#34;</span> <span style=color:#f92672>?</span> <span style=color:#e6db74>&#34;off&#34;</span> <span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;on&#34;</span>;
+  <span style=color:#66d9ef>return</span> (
+    &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;text-center&#34;</span>&gt;
+      &lt;<span style=color:#f92672>h2</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;m-4&#34;</span>&gt;{<span style=color:#a6e22e>id</span>}&lt;/<span style=color:#f92672>h2</span>&gt;
+      &lt;<span style=color:#f92672>button</span>
+        <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{() <span style=color:#f92672>=&gt;</span> {
+          <span style=color:#a6e22e>props</span>.<span style=color:#a6e22e>switchBulbState</span>(<span style=color:#a6e22e>id</span>, <span style=color:#a6e22e>oppositeStatus</span>);
+        }}
+        <span style=color:#a6e22e>id</span><span style=color:#f92672>=</span>{<span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>id</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>}
+        <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>className</span>}
+      &gt;
+        <span style=color:#a6e22e>lightbulb</span>
+      &lt;/<span style=color:#f92672>button</span>&gt;
+    &lt;/<span style=color:#f92672>div</span>&gt;
+  );
+};
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>StateManagementUserInterface() {</span>
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>initialStates</span>: <span style=color:#66d9ef>LightBulbStates</span> <span style=color:#f92672>=</span> {
+    <span style=color:#a6e22e>lightBulbs</span><span style=color:#f92672>:</span> [
+      { <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>1</span>, <span style=color:#a6e22e>status</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;off&#34;</span> },
+      { <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>2</span>, <span style=color:#a6e22e>status</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;off&#34;</span> },
+      { <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>3</span>, <span style=color:#a6e22e>status</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;off&#34;</span> },
+      { <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>4</span>, <span style=color:#a6e22e>status</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;off&#34;</span> },
+      { <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>5</span>, <span style=color:#a6e22e>status</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;off&#34;</span> },
+      { <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>6</span>, <span style=color:#a6e22e>status</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;off&#34;</span> },
+    ],
+    <span style=color:#a6e22e>powerStatus</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;off&#34;</span>,
+  };
+  <span style=color:#75715e>// define states
+</span><span style=color:#75715e></span>  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>lightBulbStates</span>, <span style=color:#a6e22e>setLightBulbStates</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(
+    <span style=color:#a6e22e>initialStates</span>.<span style=color:#a6e22e>lightBulbs</span>
+  );
+  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>powerStatus</span>, <span style=color:#a6e22e>setPowerStatus</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(<span style=color:#a6e22e>initialStates</span>.<span style=color:#a6e22e>powerStatus</span>);
+  <span style=color:#75715e>// define actions
+</span><span style=color:#75715e></span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>switchBulbState</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>bulbId</span>: <span style=color:#66d9ef>number</span>, <span style=color:#a6e22e>newStatus</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;on&#34;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#34;off&#34;</span>) <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#75715e>// clone
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>targetBulbIndex</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>lightBulbStates</span>.<span style=color:#a6e22e>findIndex</span>((<span style=color:#a6e22e>b</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>b</span>.<span style=color:#a6e22e>id</span> <span style=color:#f92672>===</span> <span style=color:#a6e22e>bulbId</span>);
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>newLightBulbStates</span> <span style=color:#f92672>=</span> [...<span style=color:#a6e22e>lightBulbStates</span>];
+    <span style=color:#a6e22e>newLightBulbStates</span>[<span style=color:#a6e22e>targetBulbIndex</span>].<span style=color:#a6e22e>status</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>newStatus</span>;
+    <span style=color:#75715e>// update status
+</span><span style=color:#75715e></span>    <span style=color:#a6e22e>setLightBulbStates</span>(<span style=color:#a6e22e>newLightBulbStates</span>);
+  };
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>switchPowerState</span> <span style=color:#f92672>=</span> () <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#a6e22e>setPowerStatus</span>(<span style=color:#a6e22e>powerStatus</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#34;on&#34;</span> <span style=color:#f92672>?</span> <span style=color:#e6db74>&#34;off&#34;</span> <span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;on&#34;</span>);
+  };
+
+  <span style=color:#66d9ef>return</span> (
+    &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;container&#34;</span>&gt;
+      &lt;<span style=color:#f92672>h1</span>&gt;<span style=color:#a6e22e>StateManagementUserInterface</span>&lt;/<span style=color:#f92672>h1</span>&gt;
+      &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;my-2&#34;</span>&gt;
+        &lt;<span style=color:#f92672>PowerSwitch</span>
+          <span style=color:#a6e22e>status</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>powerStatus</span>}
+          <span style=color:#a6e22e>switchPowerState</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>switchPowerState</span>}
+        &gt;&lt;/<span style=color:#f92672>PowerSwitch</span>&gt;
+      &lt;/<span style=color:#f92672>div</span>&gt;
+      &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;grid grid-cols-6&#34;</span>&gt;
+        {<span style=color:#a6e22e>lightBulbStates</span>.<span style=color:#a6e22e>map</span>((<span style=color:#a6e22e>bulb</span>) <span style=color:#f92672>=&gt;</span> (
+          &lt;<span style=color:#f92672>LightBulb</span>
+            <span style=color:#a6e22e>switchBulbState</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>switchBulbState</span>}
+            <span style=color:#a6e22e>key</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>bulb</span>.<span style=color:#a6e22e>id</span>}
+            <span style=color:#a6e22e>id</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>bulb</span>.<span style=color:#a6e22e>id</span>}
+            <span style=color:#a6e22e>status</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>powerStatus</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#34;off&#34;</span> <span style=color:#f92672>?</span> <span style=color:#e6db74>&#34;off&#34;</span> <span style=color:#f92672>:</span> <span style=color:#a6e22e>bulb</span>.<span style=color:#a6e22e>status</span>}
+          /&gt;
+        ))}
+      &lt;/<span style=color:#f92672>div</span>&gt;
+    &lt;/<span style=color:#f92672>div</span>&gt;
+  );
+}
+</code></pre></div><ol start=2>
 <li>React to Input State: Ứng dụng react state để tạo form validate dữ liệu. Yêu cầu:</li>
 </ol>
 <ul>
