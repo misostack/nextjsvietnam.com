@@ -240,6 +240,246 @@
 <li>State dành cho trạng thái submit</li>
 <li>State dành cho thông báo lỗi/thành công</li>
 </ul>
+<p>Code sample</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#75715e>/* eslint-disable no-template-curly-in-string */</span>
+<span style=color:#66d9ef>import</span> <span style=color:#a6e22e>React</span>, { <span style=color:#a6e22e>ChangeEvent</span>, <span style=color:#a6e22e>FormEvent</span>, <span style=color:#a6e22e>useEffect</span>, <span style=color:#a6e22e>useState</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;react&#34;</span>;
+
+<span style=color:#66d9ef>import</span> <span style=color:#f92672>*</span> <span style=color:#66d9ef>as</span> <span style=color:#a6e22e>yup</span> <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;yup&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#a6e22e>useDebounce</span> <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;../helpers/hooks.helpers&#34;</span>;
+
+<span style=color:#75715e>// import { debounce } from &#39;lodash&#39;;
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>EMAIL_REGEX</span> <span style=color:#f92672>=</span>
+  <span style=color:#e6db74>/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/</span>;
+
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>ErrorObject</span> <span style=color:#f92672>=</span> {
+  [<span style=color:#a6e22e>field</span>: <span style=color:#66d9ef>string</span>]<span style=color:#f92672>:</span> <span style=color:#66d9ef>string</span>[];
+};
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>initialStates</span> <span style=color:#f92672>=</span> {
+  <span style=color:#a6e22e>formData</span><span style=color:#f92672>:</span> {
+    <span style=color:#a6e22e>fullname</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;&#34;</span>,
+    <span style=color:#a6e22e>email</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;&#34;</span>,
+  },
+  <span style=color:#a6e22e>formValidationObserver</span><span style=color:#f92672>:</span> {
+    <span style=color:#a6e22e>isValid</span>: <span style=color:#66d9ef>false</span>,
+    <span style=color:#a6e22e>dirty</span><span style=color:#f92672>:</span> {},
+    <span style=color:#a6e22e>errorObject</span><span style=color:#f92672>:</span> {},
+  },
+};
+
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>FieldName</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;fullname&#34;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#34;email&#34;</span>;
+
+<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>fakeAPICall</span>&lt;<span style=color:#f92672>T</span>&gt;(<span style=color:#a6e22e>res</span>: <span style=color:#66d9ef>any</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>Promise</span>&lt;<span style=color:#f92672>T</span>&gt; {
+  <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Promise</span>((<span style=color:#a6e22e>resolve</span>) <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#a6e22e>setTimeout</span>(() <span style=color:#f92672>=&gt;</span> {
+      <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;fake api call&#34;</span>);
+      <span style=color:#a6e22e>resolve</span>(<span style=color:#a6e22e>res</span>);
+    }, <span style=color:#ae81ff>300</span>);
+  });
+}
+
+<span style=color:#a6e22e>yup</span>.<span style=color:#a6e22e>setLocale</span>({
+  <span style=color:#75715e>// use constant translation keys for messages without values
+</span><span style=color:#75715e></span>  <span style=color:#a6e22e>mixed</span><span style=color:#f92672>:</span> {
+    <span style=color:#66d9ef>default</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;invalid&#34;</span>,
+    <span style=color:#a6e22e>required</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;required&#34;</span>,
+  },
+});
+
+<span style=color:#75715e>/**
+</span><span style=color:#75715e> * Convert yup error into an error object where the keys are the fields and the values are the errors for that field
+</span><span style=color:#75715e> * @param {ValidationError} err The yup error to convert
+</span><span style=color:#75715e> * @returns {ErrorObject} The error object
+</span><span style=color:#75715e> */</span>
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>yupErrorToErrorObject</span>(<span style=color:#a6e22e>err</span>: <span style=color:#66d9ef>yup.ValidationError</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>ErrorObject</span> {
+  <span style=color:#66d9ef>const</span> <span style=color:#66d9ef>object</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>ErrorObject</span> <span style=color:#f92672>=</span> {};
+
+  <span style=color:#a6e22e>err</span>.<span style=color:#a6e22e>inner</span>.<span style=color:#a6e22e>forEach</span>((<span style=color:#a6e22e>x</span>) <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>x</span>.<span style=color:#a6e22e>path</span> <span style=color:#f92672>!==</span> <span style=color:#66d9ef>undefined</span>) {
+      <span style=color:#66d9ef>object</span>[<span style=color:#a6e22e>x</span>.<span style=color:#a6e22e>path</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>x</span>.<span style=color:#a6e22e>errors</span>;
+    }
+  });
+
+  <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>object</span>;
+}
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>subcribeFormSchema</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>yup</span>.<span style=color:#66d9ef>object</span>().<span style=color:#a6e22e>shape</span>({
+  <span style=color:#a6e22e>fullname</span>: <span style=color:#66d9ef>yup.string</span>().<span style=color:#a6e22e>required</span>().<span style=color:#a6e22e>label</span>(<span style=color:#e6db74>&#34;fullname&#34;</span>),
+  <span style=color:#a6e22e>email</span>: <span style=color:#66d9ef>yup</span>
+    .<span style=color:#66d9ef>string</span>()
+    .<span style=color:#a6e22e>required</span>()
+    .<span style=color:#a6e22e>label</span>(<span style=color:#e6db74>&#34;email&#34;</span>)
+    <span style=color:#75715e>// eslint-disable-next-line no-template-curly-in-string
+</span><span style=color:#75715e></span>    .<span style=color:#a6e22e>test</span>(<span style=color:#e6db74>&#34;is_valid&#34;</span>, <span style=color:#e6db74>&#34;invalid&#34;</span>, (<span style=color:#a6e22e>value</span>, <span style=color:#a6e22e>context</span>) <span style=color:#f92672>=&gt;</span> {
+      <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>value</span>) {
+        <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>EMAIL_REGEX</span>.<span style=color:#a6e22e>test</span>(<span style=color:#a6e22e>value</span>);
+      }
+      <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>false</span>;
+    })
+    <span style=color:#75715e>// eslint-disable-next-line no-template-curly-in-string
+</span><span style=color:#75715e></span>    .<span style=color:#a6e22e>test</span>(<span style=color:#e6db74>&#34;is_unique&#34;</span>, <span style=color:#e6db74>&#34;unique&#34;</span>, <span style=color:#66d9ef>async</span> (<span style=color:#a6e22e>value</span>, <span style=color:#a6e22e>_context</span>) <span style=color:#f92672>=&gt;</span> {
+      <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>value</span> <span style=color:#f92672>&amp;&amp;</span> <span style=color:#a6e22e>EMAIL_REGEX</span>.<span style=color:#a6e22e>test</span>(<span style=color:#a6e22e>value</span>)) {
+        <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>isUnique</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>fakeAPICall</span>&lt;<span style=color:#f92672>boolean</span>&gt;(<span style=color:#66d9ef>true</span>);
+        <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>isUnique</span>;
+      }
+      <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>true</span>;
+    }),
+});
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>StateManagementFormValidation() {</span>
+  <span style=color:#75715e>// default state
+</span><span style=color:#75715e></span>  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>formData</span>, <span style=color:#a6e22e>setFormData</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(<span style=color:#a6e22e>initialStates</span>.<span style=color:#a6e22e>formData</span>);
+  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>formValidationObserver</span>, <span style=color:#a6e22e>setFormValidationObserver</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(
+    <span style=color:#a6e22e>initialStates</span>.<span style=color:#a6e22e>formValidationObserver</span>
+  );
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>debounceFormData</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>useDebounce</span>(<span style=color:#a6e22e>formData</span>, <span style=color:#ae81ff>300</span>);
+  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>step</span>, <span style=color:#a6e22e>setStep</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span><span style=color:#f92672>&lt;</span><span style=color:#e6db74>&#34;default&#34;</span> <span style=color:#f92672>|</span> <span style=color:#e6db74>&#34;thank&#34;</span><span style=color:#f92672>&gt;</span>(<span style=color:#e6db74>&#34;default&#34;</span>);
+  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>errorMessage</span>, <span style=color:#a6e22e>setErrorMessage</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>&lt;<span style=color:#f92672>string</span>&gt;(<span style=color:#e6db74>&#34;&#34;</span>);
+  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>successMessage</span>, <span style=color:#a6e22e>setSuccessMessage</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>&lt;<span style=color:#f92672>string</span>&gt;(<span style=color:#e6db74>&#34;&#34;</span>);
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>classNames</span> <span style=color:#f92672>=</span>
+    <span style=color:#e6db74>&#34;bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500&#34;</span>;
+  <span style=color:#75715e>// methods
+</span><span style=color:#75715e></span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>validateData</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>schema</span>: <span style=color:#66d9ef>typeof</span> <span style=color:#a6e22e>subcribeFormSchema</span>, <span style=color:#a6e22e>data</span>: <span style=color:#66d9ef>any</span>) <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#a6e22e>schema</span>
+      .<span style=color:#a6e22e>validate</span>(<span style=color:#a6e22e>data</span>, { <span style=color:#a6e22e>abortEarly</span>: <span style=color:#66d9ef>false</span> })
+      .<span style=color:#a6e22e>then</span>(() <span style=color:#f92672>=&gt;</span> {
+        <span style=color:#a6e22e>setFormValidationObserver</span>({
+          ...<span style=color:#a6e22e>formValidationObserver</span>,
+          <span style=color:#a6e22e>isValid</span>: <span style=color:#66d9ef>true</span>,
+          <span style=color:#a6e22e>errorObject</span><span style=color:#f92672>:</span> {},
+        });
+      })
+      .<span style=color:#66d9ef>catch</span>((<span style=color:#a6e22e>err</span>: <span style=color:#66d9ef>yup.ValidationError</span>) <span style=color:#f92672>=&gt;</span> {
+        <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>err</span>) {
+          <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>errorObject</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>yupErrorToErrorObject</span>(<span style=color:#a6e22e>err</span>);
+
+          <span style=color:#a6e22e>setFormValidationObserver</span>({
+            ...<span style=color:#a6e22e>formValidationObserver</span>,
+            <span style=color:#a6e22e>isValid</span><span style=color:#f92672>:</span> <span style=color:#f92672>!</span><span style=color:#a6e22e>err</span>,
+            <span style=color:#a6e22e>errorObject</span>,
+          });
+        }
+      });
+  };
+  <span style=color:#75715e>// Handle events
+</span><span style=color:#75715e></span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>onBlurField</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>field</span>: <span style=color:#66d9ef>string</span>) <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span><span style=color:#a6e22e>Reflect</span>.<span style=color:#66d9ef>get</span>(<span style=color:#a6e22e>formValidationObserver</span>, <span style=color:#a6e22e>field</span>)) {
+      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>dirty</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>formValidationObserver</span>.<span style=color:#a6e22e>dirty</span>;
+      <span style=color:#a6e22e>Reflect</span>.<span style=color:#66d9ef>set</span>(<span style=color:#a6e22e>dirty</span>, <span style=color:#a6e22e>field</span>, <span style=color:#66d9ef>true</span>);
+      <span style=color:#a6e22e>setFormValidationObserver</span>({
+        ...<span style=color:#a6e22e>formValidationObserver</span>,
+        <span style=color:#a6e22e>dirty</span>,
+      });
+    }
+  };
+  <span style=color:#75715e>// sync input&#39;s values with its state
+</span><span style=color:#75715e></span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>onFieldChange</span> <span style=color:#f92672>=</span> (
+    <span style=color:#a6e22e>fieldName</span>: <span style=color:#66d9ef>FieldName</span>,
+    <span style=color:#a6e22e>event</span>: <span style=color:#66d9ef>ChangeEvent</span>&lt;<span style=color:#f92672>HTMLInputElement</span>&gt;
+  ) <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>formData</span>[<span style=color:#a6e22e>fieldName</span>] <span style=color:#f92672>!==</span> <span style=color:#a6e22e>event</span>.<span style=color:#a6e22e>target</span>.<span style=color:#a6e22e>value</span>) {
+      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>newFormData</span> <span style=color:#f92672>=</span> {
+        ...<span style=color:#a6e22e>formData</span>,
+      };
+      <span style=color:#a6e22e>newFormData</span>[<span style=color:#a6e22e>fieldName</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>event</span>.<span style=color:#a6e22e>target</span>.<span style=color:#a6e22e>value</span>;
+      <span style=color:#a6e22e>setFormData</span>(<span style=color:#a6e22e>newFormData</span>);
+      <span style=color:#a6e22e>setFormValidationObserver</span>({
+        ...<span style=color:#a6e22e>formValidationObserver</span>,
+      });
+    }
+  };
+  <span style=color:#75715e>// onFormSubmit
+</span><span style=color:#75715e></span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>onFormSubmit</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>e</span>: <span style=color:#66d9ef>FormEvent</span>) <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>preventDefault</span>();
+    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>formData</span>.<span style=color:#a6e22e>email</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#34;learnenoughtobebetter@nextjsvietnam.com&#34;</span>) {
+      <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>setErrorMessage</span>(<span style=color:#e6db74>&#34;You have been registered before!&#34;</span>);
+    }
+    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>fakeAPICall</span>(<span style=color:#a6e22e>formData</span>)
+      .<span style=color:#a6e22e>then</span>((<span style=color:#a6e22e>res</span>: <span style=color:#66d9ef>any</span>) <span style=color:#f92672>=&gt;</span> {
+        <span style=color:#a6e22e>setSuccessMessage</span>(<span style=color:#e6db74>`Xin chuc mung &lt;strong&gt;</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>fullname</span><span style=color:#e6db74>}</span><span style=color:#e6db74>&lt;/strong&gt;, ban da dang ky thanh cong. Ban
+</span><span style=color:#e6db74>        se som nhan duoc qua tang cua he thong!`</span>);
+        <span style=color:#a6e22e>setStep</span>(<span style=color:#e6db74>&#34;thank&#34;</span>);
+      })
+      .<span style=color:#66d9ef>catch</span>((<span style=color:#a6e22e>err</span>) <span style=color:#f92672>=&gt;</span> {
+        <span style=color:#a6e22e>setErrorMessage</span>(<span style=color:#a6e22e>err</span>);
+      });
+  };
+
+  <span style=color:#75715e>// validate data everytime formData changes
+</span><span style=color:#75715e></span>  <span style=color:#a6e22e>useEffect</span>(() <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#a6e22e>validateData</span>(<span style=color:#a6e22e>subcribeFormSchema</span>, <span style=color:#a6e22e>debounceFormData</span>);
+  }, [<span style=color:#a6e22e>debounceFormData</span>]);
+
+  <span style=color:#66d9ef>return</span> (
+    &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;container&#34;</span>&gt;
+      &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;flex justify-center&#34;</span>&gt;
+        &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;w-96 p-8 border border-gray-200 shadow&#34;</span>&gt;
+          &lt;<span style=color:#f92672>h1</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;mb-4&#34;</span>&gt;<span style=color:#a6e22e>Nhan</span> <span style=color:#a6e22e>thong</span> <span style=color:#a6e22e>bao</span> <span style=color:#a6e22e>va</span> <span style=color:#a6e22e>qua</span> <span style=color:#a6e22e>tang</span> <span style=color:#a6e22e>dinh</span> <span style=color:#a6e22e>ky</span>&lt;/<span style=color:#f92672>h1</span>&gt;
+          &lt;<span style=color:#f92672>p</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;text-gray-400 mb-4&#34;</span>&gt;
+            <span style=color:#a6e22e>Bang</span> <span style=color:#a6e22e>cach</span> <span style=color:#a6e22e>dang</span> <span style=color:#a6e22e>ky</span> <span style=color:#a6e22e>thanh</span> <span style=color:#a6e22e>vien</span> <span style=color:#a6e22e>cua</span> <span style=color:#a6e22e>cong</span> <span style=color:#a6e22e>dong</span> <span style=color:#a6e22e>NEXTJSVIETNAM</span>
+          &lt;/<span style=color:#f92672>p</span>&gt;
+          {<span style=color:#a6e22e>step</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#34;default&#34;</span> <span style=color:#f92672>&amp;&amp;</span> (
+            &lt;<span style=color:#f92672>form</span> <span style=color:#a6e22e>onSubmit</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>onFormSubmit</span>}&gt;
+              &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;mb-4 bg-red-300&#34;</span>&gt;{<span style=color:#a6e22e>errorMessage</span>}&lt;/<span style=color:#f92672>div</span>&gt;
+              &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;mb-4&#34;</span>&gt;
+                &lt;<span style=color:#f92672>input</span>
+                  <span style=color:#a6e22e>value</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>formData</span>.<span style=color:#a6e22e>fullname</span>}
+                  <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;text&#34;</span>
+                  <span style=color:#a6e22e>id</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;fullname&#34;</span>
+                  <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span>{<span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>classNames</span><span style=color:#e6db74>}</span><span style=color:#e6db74> </span><span style=color:#e6db74>${</span>
+                    <span style=color:#a6e22e>Reflect</span>.<span style=color:#66d9ef>get</span>(<span style=color:#a6e22e>formValidationObserver</span>.<span style=color:#a6e22e>dirty</span>, <span style=color:#e6db74>&#34;fullname&#34;</span>) <span style=color:#f92672>&amp;&amp;</span>
+                    <span style=color:#a6e22e>Reflect</span>.<span style=color:#a6e22e>has</span>(<span style=color:#a6e22e>formValidationObserver</span>.<span style=color:#a6e22e>errorObject</span>, <span style=color:#e6db74>&#34;fullname&#34;</span>)
+                      <span style=color:#f92672>?</span> <span style=color:#e6db74>&#34;border border-red-600&#34;</span>
+                      <span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;border border-gray-300&#34;</span>
+                  <span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>}
+                  <span style=color:#a6e22e>placeholder</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Your name&#34;</span>
+                  <span style=color:#a6e22e>onChange</span><span style=color:#f92672>=</span>{(<span style=color:#a6e22e>e</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>onFieldChange</span>(<span style=color:#e6db74>&#34;fullname&#34;</span>, <span style=color:#a6e22e>e</span>)}
+                  <span style=color:#a6e22e>onBlur</span><span style=color:#f92672>=</span>{(<span style=color:#a6e22e>e</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>onBlurField</span>(<span style=color:#e6db74>&#34;fullname&#34;</span>)}
+                  <span style=color:#a6e22e>required</span>
+                /&gt;
+              &lt;/<span style=color:#f92672>div</span>&gt;
+              &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;mb-4&#34;</span>&gt;
+                &lt;<span style=color:#f92672>input</span>
+                  <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;email&#34;</span>
+                  <span style=color:#a6e22e>value</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>formData</span>.<span style=color:#a6e22e>email</span>}
+                  <span style=color:#a6e22e>id</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;email&#34;</span>
+                  <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span>{<span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>classNames</span><span style=color:#e6db74>}</span><span style=color:#e6db74> </span><span style=color:#e6db74>${</span>
+                    <span style=color:#a6e22e>Reflect</span>.<span style=color:#66d9ef>get</span>(<span style=color:#a6e22e>formValidationObserver</span>.<span style=color:#a6e22e>dirty</span>, <span style=color:#e6db74>&#34;email&#34;</span>) <span style=color:#f92672>&amp;&amp;</span>
+                    <span style=color:#a6e22e>Reflect</span>.<span style=color:#a6e22e>has</span>(<span style=color:#a6e22e>formValidationObserver</span>.<span style=color:#a6e22e>errorObject</span>, <span style=color:#e6db74>&#34;email&#34;</span>)
+                      <span style=color:#f92672>?</span> <span style=color:#e6db74>&#34;border border-red-600&#34;</span>
+                      <span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;border border-gray-300&#34;</span>
+                  <span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>}
+                  <span style=color:#a6e22e>placeholder</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Email&#34;</span>
+                  <span style=color:#a6e22e>onChange</span><span style=color:#f92672>=</span>{(<span style=color:#a6e22e>e</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>onFieldChange</span>(<span style=color:#e6db74>&#34;email&#34;</span>, <span style=color:#a6e22e>e</span>)}
+                  <span style=color:#a6e22e>onBlur</span><span style=color:#f92672>=</span>{(<span style=color:#a6e22e>e</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>onBlurField</span>(<span style=color:#e6db74>&#34;email&#34;</span>)}
+                  <span style=color:#a6e22e>required</span>
+                /&gt;
+              &lt;/<span style=color:#f92672>div</span>&gt;
+              &lt;<span style=color:#f92672>div</span>&gt;
+                &lt;<span style=color:#f92672>button</span>
+                  <span style=color:#a6e22e>disabled</span><span style=color:#f92672>=</span>{<span style=color:#f92672>!</span><span style=color:#a6e22e>formValidationObserver</span>.<span style=color:#a6e22e>isValid</span>}
+                  <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;bg-red-800 hover:bg-red-600 focus:bg-red-600 text-white leading-16 py-2 block w-full disabled:opacity-50&#34;</span>
+                &gt;
+                  <span style=color:#a6e22e>Subcribe</span>
+                &lt;/<span style=color:#f92672>button</span>&gt;
+              &lt;/<span style=color:#f92672>div</span>&gt;
+            &lt;/<span style=color:#f92672>form</span>&gt;
+          )}
+          {<span style=color:#a6e22e>step</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#34;thank&#34;</span> <span style=color:#f92672>&amp;&amp;</span> (
+            &lt;<span style=color:#f92672>div</span>
+              <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;mb-4 bg-green-400 p-8&#34;</span>
+              <span style=color:#a6e22e>dangerouslySetInnerHTML</span><span style=color:#f92672>=</span>{{
+                <span style=color:#a6e22e>__html</span>: <span style=color:#66d9ef>successMessage</span>,
+              }}
+            /&gt;
+          )}
+        &lt;/<span style=color:#f92672>div</span>&gt;
+      &lt;/<span style=color:#f92672>div</span>&gt;
+    &lt;/<span style=color:#f92672>div</span>&gt;
+  );
+}
+</code></pre></div>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/frameworks>frameworks</a>
 </div>
