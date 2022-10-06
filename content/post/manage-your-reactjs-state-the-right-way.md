@@ -31,7 +31,9 @@ Khi ứng dụng càng lớn, hoặc trong cùng 1 màn hình lại có rất nh
 
 Về loại này chúng ta có thể đi qua các ví dụ cụ thể như sau:
 
-1. On-Off buttons: Giả sử chúng ta có 6 bóng đèn, mỗi bóng đều có công tắc , và ngoài ra còn 1 công tắc điện tổng. Yêu cầu: xây dựng màn hình hiển thị 6 bóng đèn với các công tắc tương ứng. Mặc định ban đầu: toàn bộ các bóng đèn và công tắc điện tổng đều tắt.
+### 1. On-Off buttons
+
+Giả sử chúng ta có 6 bóng đèn, mỗi bóng đều có công tắc , và ngoài ra còn 1 công tắc điện tổng. Yêu cầu: xây dựng màn hình hiển thị 6 bóng đèn với các công tắc tương ứng. Mặc định ban đầu: toàn bộ các bóng đèn và công tắc điện tổng đều tắt.
 
 Đối với loại này, có các điểm sau cần lưu ý:
 
@@ -153,7 +155,9 @@ export default function StateManagementUserInterface() {
 }
 ```
 
-2. React to Input State: Ứng dụng react state để tạo form validate dữ liệu. Yêu cầu:
+### 2. React to Input State
+
+Ứng dụng react state để tạo form validate dữ liệu. Yêu cầu:
 
 - Form thu thập thông tin khách hàng: họ tên, email, số điện thoại
 - Highlight các field sai format
