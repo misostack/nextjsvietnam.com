@@ -168,6 +168,134 @@
 <li><a href=https://maven.apache.org/what-is-maven.html>Maven</a></li>
 <li><a href=https://netbeans.apache.org/wiki/MavenBestPractices.asciidoc>Using Maven with Netbeans</a></li>
 </ul>
+<blockquote>
+<p>Day 1 : Java Variables</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#f92672>package</span> javacore.net<span style=color:#f92672>;</span>
+
+<span style=color:#f92672>import</span> java.text.NumberFormat<span style=color:#f92672>;</span>
+<span style=color:#f92672>import</span> java.util.Locale<span style=color:#f92672>;</span>
+
+<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Main</span> <span style=color:#f92672>{</span>
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>main</span><span style=color:#f92672>(</span>String<span style=color:#f92672>[]</span> args<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        <span style=color:#75715e>// customer information
+</span><span style=color:#75715e></span>        String customerName<span style=color:#f92672>;</span>
+        String customerDob<span style=color:#f92672>;</span>
+        String customerEmail<span style=color:#f92672>;</span>
+        String customerPhoneNumber<span style=color:#f92672>;</span>
+        <span style=color:#66d9ef>char</span> customerGender<span style=color:#f92672>;</span>
+        <span style=color:#66d9ef>boolean</span> isActiveCustomer<span style=color:#f92672>;</span>
+        <span style=color:#66d9ef>int</span> customerPoint<span style=color:#f92672>;</span>
+        <span style=color:#66d9ef>double</span> customerBalance<span style=color:#f92672>;</span>
+
+        <span style=color:#75715e>// init values
+</span><span style=color:#75715e></span>        customerName <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;Learn Enough Java&#34;</span><span style=color:#f92672>;</span>
+        customerDob <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;01/01/2000&#34;</span><span style=color:#f92672>;</span>
+        customerEmail <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;learn.enough.java@nextjsvietnam.com&#34;</span><span style=color:#f92672>;</span>
+        customerPhoneNumber <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;+84937590678&#34;</span><span style=color:#f92672>;</span>
+        customerGender <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;M&#39;</span><span style=color:#f92672>;</span>
+        customerPoint <span style=color:#f92672>=</span> 2530000<span style=color:#f92672>;</span>
+        customerBalance <span style=color:#f92672>=</span> 5175<span style=color:#f92672>.</span><span style=color:#a6e22e>25</span><span style=color:#f92672>;</span>
+        isActiveCustomer <span style=color:#f92672>=</span> <span style=color:#66d9ef>true</span><span style=color:#f92672>;</span>
+
+        String customerInformation <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;&#34;</span>
+                <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34;Customer Name : &#34;</span> <span style=color:#f92672>+</span> customerName <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34;\n&#34;</span>
+                <span style=color:#f92672>+</span> String<span style=color:#f92672>.</span><span style=color:#a6e22e>format</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Customer Dob: %s\n&#34;</span><span style=color:#f92672>,</span> customerDob<span style=color:#f92672>)</span>
+                <span style=color:#f92672>+</span> String<span style=color:#f92672>.</span><span style=color:#a6e22e>format</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Customer Email: %4s\n&#34;</span><span style=color:#f92672>,</span> customerEmail<span style=color:#f92672>)</span>
+                <span style=color:#f92672>+</span> String<span style=color:#f92672>.</span><span style=color:#a6e22e>format</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Customer PhoneNumber: %s\n&#34;</span><span style=color:#f92672>,</span> customerPhoneNumber<span style=color:#f92672>)</span>
+                <span style=color:#f92672>+</span> String<span style=color:#f92672>.</span><span style=color:#a6e22e>format</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Customer Gender: %s\n&#34;</span><span style=color:#f92672>,</span> customerGender <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;M&#39;</span> <span style=color:#f92672>?</span> <span style=color:#e6db74>&#34;Male&#34;</span> <span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Female&#34;</span><span style=color:#f92672>)</span>
+                <span style=color:#f92672>+</span> String<span style=color:#f92672>.</span><span style=color:#a6e22e>format</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Customer Point: %s points\n&#34;</span><span style=color:#f92672>,</span> NumberFormat<span style=color:#f92672>.</span><span style=color:#a6e22e>getInstance</span><span style=color:#f92672>().</span><span style=color:#a6e22e>format</span><span style=color:#f92672>(</span>customerPoint<span style=color:#f92672>))</span>
+                <span style=color:#f92672>+</span> String<span style=color:#f92672>.</span><span style=color:#a6e22e>format</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Customer Balance: %s USD\n&#34;</span><span style=color:#f92672>,</span> NumberFormat<span style=color:#f92672>.</span><span style=color:#a6e22e>getCurrencyInstance</span><span style=color:#f92672>(</span><span style=color:#66d9ef>new</span> Locale<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;en-US&#34;</span><span style=color:#f92672>)).</span><span style=color:#a6e22e>format</span><span style=color:#f92672>(</span>customerBalance<span style=color:#f92672>))</span>
+                <span style=color:#f92672>+</span> String<span style=color:#f92672>.</span><span style=color:#a6e22e>format</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Customer is active: %s\n&#34;</span><span style=color:#f92672>,</span> isActiveCustomer <span style=color:#f92672>?</span> <span style=color:#e6db74>&#34;Yes&#34;</span> <span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;No&#34;</span><span style=color:#f92672>);</span>
+
+        System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span>customerInformation<span style=color:#f92672>);</span>
+    <span style=color:#f92672>}</span>
+<span style=color:#f92672>}</span>
+</code></pre></div><blockquote>
+<p>Day 2 : Java Array & Loop</p>
+</blockquote>
+<ol>
+<li>Java Array&rsquo;s length is fixed</li>
+<li>You can use ArrayList to make a dynamic size array.</li>
+</ol>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#f92672>package</span> javacore.net<span style=color:#f92672>;</span>
+
+<span style=color:#75715e>// Day 2: Java Array &amp; Loops
+</span><span style=color:#75715e></span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>JavaArrayLoop</span> <span style=color:#f92672>{</span>
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>run</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+
+        <span style=color:#75715e>// There are 26 letters in English
+</span><span style=color:#75715e></span>        <span style=color:#66d9ef>char</span><span style=color:#f92672>[]</span> englishLetters <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>char</span><span style=color:#f92672>[</span>26<span style=color:#f92672>];</span>
+        <span style=color:#66d9ef>byte</span> letterCount <span style=color:#f92672>=</span> 0<span style=color:#f92672>;</span>
+        <span style=color:#66d9ef>for</span> <span style=color:#f92672>(</span><span style=color:#66d9ef>char</span> c <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;a&#39;</span><span style=color:#f92672>;</span> c <span style=color:#f92672>&lt;=</span> <span style=color:#e6db74>&#39;z&#39;</span><span style=color:#f92672>;</span> c<span style=color:#f92672>++)</span> <span style=color:#f92672>{</span>
+            englishLetters<span style=color:#f92672>[</span>letterCount<span style=color:#f92672>]</span> <span style=color:#f92672>=</span> c<span style=color:#f92672>;</span>
+            letterCount<span style=color:#f92672>++;</span>
+        <span style=color:#f92672>}</span>
+        String englishAlphabet <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;&#34;</span><span style=color:#f92672>;</span>
+        <span style=color:#66d9ef>for</span> <span style=color:#f92672>(</span><span style=color:#66d9ef>byte</span> i <span style=color:#f92672>=</span> 0<span style=color:#f92672>;</span> i <span style=color:#f92672>&lt;</span> englishLetters<span style=color:#f92672>.</span><span style=color:#a6e22e>length</span><span style=color:#f92672>;</span> i<span style=color:#f92672>++)</span> <span style=color:#f92672>{</span>
+            englishAlphabet <span style=color:#f92672>+=</span> Character<span style=color:#f92672>.</span><span style=color:#a6e22e>toString</span><span style=color:#f92672>(</span>englishLetters<span style=color:#f92672>[</span>i<span style=color:#f92672>])</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34; &#34;</span><span style=color:#f92672>;</span>
+        <span style=color:#f92672>}</span>
+        System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>printf</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;%s\n&#34;</span><span style=color:#f92672>,</span> englishAlphabet<span style=color:#f92672>.</span><span style=color:#a6e22e>trim</span><span style=color:#f92672>());</span>
+        System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>printf</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;%s\n&#34;</span><span style=color:#f92672>,</span> englishAlphabet<span style=color:#f92672>.</span><span style=color:#a6e22e>trim</span><span style=color:#f92672>().</span><span style=color:#a6e22e>toUpperCase</span><span style=color:#f92672>());</span>
+
+        String<span style=color:#f92672>[]</span> listOfRepeatedChars <span style=color:#f92672>=</span> JavaArrayLoop<span style=color:#f92672>.</span><span style=color:#a6e22e>generateRepeatedCharacters</span><span style=color:#f92672>(</span>5<span style=color:#f92672>);</span>
+        <span style=color:#66d9ef>for</span> <span style=color:#f92672>(</span><span style=color:#66d9ef>byte</span> i <span style=color:#f92672>=</span> 0<span style=color:#f92672>;</span> i <span style=color:#f92672>&lt;</span> listOfRepeatedChars<span style=color:#f92672>.</span><span style=color:#a6e22e>length</span><span style=color:#f92672>;</span> i<span style=color:#f92672>++)</span> <span style=color:#f92672>{</span>
+            System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>printf</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;%s &#34;</span><span style=color:#f92672>,</span> listOfRepeatedChars<span style=color:#f92672>[</span>i<span style=color:#f92672>]);</span>
+        <span style=color:#f92672>}</span>
+        System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>();</span>
+
+        <span style=color:#66d9ef>int</span><span style=color:#f92672>[]</span> customerPoints <span style=color:#f92672>=</span> <span style=color:#f92672>{</span>10<span style=color:#f92672>,</span> 3<span style=color:#f92672>,</span> 6<span style=color:#f92672>,</span> 3<span style=color:#f92672>,</span> 8<span style=color:#f92672>,</span> 2<span style=color:#f92672>,</span> 5<span style=color:#f92672>,</span> 8<span style=color:#f92672>,</span> 3<span style=color:#f92672>,</span> 7<span style=color:#f92672>};</span>
+        JavaArrayLoop<span style=color:#f92672>.</span><span style=color:#a6e22e>sortCustomerPoints</span><span style=color:#f92672>(</span>customerPoints<span style=color:#f92672>);</span>
+        <span style=color:#66d9ef>for</span> <span style=color:#f92672>(</span><span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> 0<span style=color:#f92672>;</span> i <span style=color:#f92672>&lt;</span> customerPoints<span style=color:#f92672>.</span><span style=color:#a6e22e>length</span><span style=color:#f92672>;</span> i<span style=color:#f92672>++)</span> <span style=color:#f92672>{</span>
+            System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>printf</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;%s &#34;</span><span style=color:#f92672>,</span> customerPoints<span style=color:#f92672>[</span>i<span style=color:#f92672>]);</span>
+        <span style=color:#f92672>}</span>
+    <span style=color:#f92672>}</span>
+
+    <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>char</span><span style=color:#f92672>[]</span> <span style=color:#a6e22e>getEnglishAlphabet</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+        <span style=color:#75715e>// There are 26 letters in English
+</span><span style=color:#75715e></span>        <span style=color:#66d9ef>char</span><span style=color:#f92672>[]</span> englishLetters <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#66d9ef>char</span><span style=color:#f92672>[</span>26<span style=color:#f92672>];</span>
+        <span style=color:#66d9ef>byte</span> letterCount <span style=color:#f92672>=</span> 0<span style=color:#f92672>;</span>
+        <span style=color:#66d9ef>for</span> <span style=color:#f92672>(</span><span style=color:#66d9ef>char</span> c <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;a&#39;</span><span style=color:#f92672>;</span> c <span style=color:#f92672>&lt;=</span> <span style=color:#e6db74>&#39;z&#39;</span><span style=color:#f92672>;</span> c<span style=color:#f92672>++)</span> <span style=color:#f92672>{</span>
+            englishLetters<span style=color:#f92672>[</span>letterCount<span style=color:#f92672>]</span> <span style=color:#f92672>=</span> c<span style=color:#f92672>;</span>
+            letterCount<span style=color:#f92672>++;</span>
+        <span style=color:#f92672>}</span>
+        <span style=color:#66d9ef>return</span> englishLetters<span style=color:#f92672>;</span>
+    <span style=color:#f92672>}</span>
+
+    <span style=color:#75715e>// write a function to generate a list of string like this
+</span><span style=color:#75715e></span>    <span style=color:#75715e>// IF N= 5 THEN output = [&#34;a&#34;, &#34;bb&#34;, &#34;ccc&#34;, &#34;dddd&#34;, &#34;eeeee&#34;];
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>static</span> String<span style=color:#f92672>[]</span> <span style=color:#a6e22e>generateRepeatedCharacters</span><span style=color:#f92672>(</span><span style=color:#66d9ef>int</span> n<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        String<span style=color:#f92672>[]</span> result<span style=color:#f92672>;</span>
+        result <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> String<span style=color:#f92672>[</span>n<span style=color:#f92672>];</span>
+        var letters <span style=color:#f92672>=</span> JavaArrayLoop<span style=color:#f92672>.</span><span style=color:#a6e22e>getEnglishAlphabet</span><span style=color:#f92672>();</span>
+        <span style=color:#66d9ef>for</span> <span style=color:#f92672>(</span><span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> 0<span style=color:#f92672>;</span> i <span style=color:#f92672>&lt;</span> n<span style=color:#f92672>;</span> i<span style=color:#f92672>++)</span> <span style=color:#f92672>{</span>
+            result<span style=color:#f92672>[</span>i<span style=color:#f92672>]</span> <span style=color:#f92672>=</span> Character<span style=color:#f92672>.</span><span style=color:#a6e22e>toString</span><span style=color:#f92672>(</span>letters<span style=color:#f92672>[</span>i<span style=color:#f92672>]).</span><span style=color:#a6e22e>repeat</span><span style=color:#f92672>(</span>i <span style=color:#f92672>+</span> 1<span style=color:#f92672>);</span>
+        <span style=color:#f92672>}</span>
+        <span style=color:#66d9ef>return</span> result<span style=color:#f92672>;</span>
+    <span style=color:#f92672>}</span>
+
+    <span style=color:#75715e>// write a sort function in one dimension number array
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>sortCustomerPoints</span><span style=color:#f92672>(</span><span style=color:#66d9ef>int</span><span style=color:#f92672>[]</span> points<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        <span style=color:#75715e>// selection sort
+</span><span style=color:#75715e></span>        <span style=color:#75715e>// split your array into 2 parts: left, right
+</span><span style=color:#75715e></span>        <span style=color:#75715e>// left is the sorted parts, right is the unsorted parts
+</span><span style=color:#75715e></span>        <span style=color:#75715e>// the main idea is pick an item from right part and compare it with last item in left parts
+</span><span style=color:#75715e></span>        <span style=color:#66d9ef>int</span> tmp<span style=color:#f92672>;</span>
+        <span style=color:#66d9ef>for</span> <span style=color:#f92672>(</span><span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> 0<span style=color:#f92672>;</span> i <span style=color:#f92672>&lt;</span> points<span style=color:#f92672>.</span><span style=color:#a6e22e>length</span> <span style=color:#f92672>-</span> 1<span style=color:#f92672>;</span> i<span style=color:#f92672>++)</span> <span style=color:#f92672>{</span>
+            <span style=color:#66d9ef>for</span> <span style=color:#f92672>(</span><span style=color:#66d9ef>int</span> j <span style=color:#f92672>=</span> i <span style=color:#f92672>+</span> 1<span style=color:#f92672>;</span> j <span style=color:#f92672>&lt;</span> points<span style=color:#f92672>.</span><span style=color:#a6e22e>length</span><span style=color:#f92672>;</span> j<span style=color:#f92672>++)</span> <span style=color:#f92672>{</span>
+                <span style=color:#75715e>// we will find the smallest element and put it in the left parts
+</span><span style=color:#75715e></span>                <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>points<span style=color:#f92672>[</span>j<span style=color:#f92672>]</span> <span style=color:#f92672>&lt;</span> points<span style=color:#f92672>[</span>i<span style=color:#f92672>])</span> <span style=color:#f92672>{</span>
+                    <span style=color:#75715e>// swap position
+</span><span style=color:#75715e></span>                    tmp <span style=color:#f92672>=</span> points<span style=color:#f92672>[</span>i<span style=color:#f92672>];</span>
+                    points<span style=color:#f92672>[</span>i<span style=color:#f92672>]</span> <span style=color:#f92672>=</span> points<span style=color:#f92672>[</span>j<span style=color:#f92672>];</span>
+                    points<span style=color:#f92672>[</span>j<span style=color:#f92672>]</span> <span style=color:#f92672>=</span> tmp<span style=color:#f92672>;</span>
+                <span style=color:#f92672>}</span>
+            <span style=color:#f92672>}</span>
+        <span style=color:#f92672>}</span>
+    <span style=color:#f92672>}</span>
+<span style=color:#f92672>}</span>
+
+</code></pre></div>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/java>java</a>
 </div>
