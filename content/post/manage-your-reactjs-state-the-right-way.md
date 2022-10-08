@@ -14,7 +14,196 @@ Các khái niệm cần nắm trước khi đọc bài viết này:
 1. Khái niệm cơ bản về React State
 2. Khái niệm cơ bản về React Hook
 
+Nội dung được chia sẻ phạm vi bài viết này:
+
+1. Các nguyên tắc khi thiết kế data structure cho state
+2. Một số ví dụ cụ thể trong các dự án thực tế
+
+## Phần 1: Các nguyên tắc khi thiết kế data structure cho state
+
 Về mặt định nghĩa, thì State trong ReactJS là 1 Javascript Object phản ánh phần dữ liệu của component và có thể bị thay đổi giá trị do các tác nhân trong ứng dụng ( người dùng, web worker, web socket, ...)
+
+### 1.Nhóm các state liên quan với nhau.
+
+- Các state hay thay đổi cùng lúc. Ví dụ: tọa độ con trỏ chuột x,y
+- Form data. Ví dụ: Bạn có 1 màn hình mà user có thể thêm nhiều custom field khác nhau (advanced filter chẳng hạn)
+
+Tuy nhiên cần lưu ý, khi nhóm state thành object hoặc array, lúc cập nhật 1 field, cần nhớ bạn phải cập nhật luôn các field còn lại. Ví dụ: setPosition({...position, x: 5});
+
+```js
+// replace
+const [x, setX] = useState(0);
+const [y, setY] = useState(0);
+// with
+const [point, setPoint] = useState({ x: 0, y: 0 });
+setPoint({
+  ...point,
+  x: 5,
+});
+```
+
+### 2.Tránh việc khai báo các state mẫu thuẫn với nhau.
+
+Ví dụ:
+
+```js
+const [isSending, setIsSending] = useState(false);
+const [isSent, setIsSent] = useState(false);
+setIsSending(true); // to allow showing loading modal
+await callAPI();
+setIsSending(false);
+setIsSent(true);
+```
+
+Nó vẫn chạy, đúng chứ, tuy nhiên. Nếu như bạn quên reset lại isSending thì trạng thái lúc này sẽ vừa là isSending và isSent.
+Để tránh sai suất này xảy ra và để code clean hơn. Chúng ta có thể thay đổi lại 1 chút như sau
+
+```js
+const [formStatus, setFormStatus] = useState(false);
+setFormStatus("sending");
+await callAPI();
+setFormStatus("sent");
+```
+
+Rõ ràng là tốt hơn nhiều so với phiên bản đầu tiên. Thậm chí có thể sử dụng constant hoặc enum để khai báo các trạng thái của form.
+
+### 3. Tránh khai báo các state dư thừa
+
+- Những giá trị nào có thể tính toán được từ state và prop hiện tại không cần thiết phải sử dụng state để lưu trữ nó.
+
+Ví dụ:
+
+```js
+// replace
+const [firstName, setFirstName] = useState("");
+const [lastName, setLastName] = useState("");
+const [fullName, setFullName] = useState("");
+
+// with
+const [firstName, setFirstName] = useState("");
+const [lastName, setLastName] = useState("");
+const fullName = firstName + " " + lastName;
+```
+
+### 4. Đừng copy lại props vào state
+
+```js
+function Message({ messageColor }) {
+  const [color, setColor] = useState(messageColor);
+```
+
+Với cách init state như thế này, khi giá trị prop từ component cha được thay đổi.
+Sẽ dễ gây hiểu lầm là giá trị messageColor cũng tự động đổi theo.
+Để hạn chế điều này luôn sử dụng initial hoặc default làm prefix cho các prop dùng
+để khởi tạo giá trị ban đầu của state
+
+Đặc biệt
+
+> ## Đừng copy lại props vào state
+
+```ts
+import React, { useMemo, useState } from "react";
+
+const Message = ({ initialColor }: { initialColor: string }) => {
+  const [color, setColor] = useState(initialColor);
+  const className = `bg-${color}-500`;
+  return (
+    <>
+      <h3 className={className}>Principle 3: Avoid Redundant State</h3>
+      <button
+        className={className}
+        onClick={() => {
+          color === "green" ? setColor(initialColor) : setColor("green");
+        }}
+      >
+        Switch Color
+      </button>
+    </>
+  );
+};
+
+export default function StateStructurePrinciples() {
+  const [defaultColor, setDefaultColor] = useState("blue");
+  const supportedColors = useMemo(() => {
+    return ["blue", "red", "yellow", "pink"];
+  }, []);
+  return (
+    <div className="container">
+      <h1>StateStructurePrinciples</h1>
+      <Message initialColor={defaultColor}></Message>
+      <select
+        className="px-4 py-3 rounded-full"
+        onChange={(e) => setDefaultColor(e.target.value)}
+      >
+        {supportedColors.map((c) => (
+          <option key={c} value={c}>
+            {c}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+}
+```
+
+```js
+function Message({ initialColor }) {
+  const [color, setColor] = useState(initialColor);
+```
+
+```ts
+import React, { useEffect, useMemo, useState } from "react";
+
+const Message = ({ initialColor }: { initialColor: string }) => {
+  const [color, setColor] = useState(initialColor);
+  const className = `bg-${color}-500`;
+
+  useEffect(() => {
+    // update State when initialColor changed
+    setColor(initialColor);
+  }, [initialColor]);
+  return (
+    <>
+      <h3 className={className}>Principle 3: Avoid Redundant State</h3>
+      <button
+        className={className}
+        onClick={() => {
+          color === "green" ? setColor(initialColor) : setColor("green");
+        }}
+      >
+        Switch Color
+      </button>
+    </>
+  );
+};
+
+export default function StateStructurePrinciples() {
+  const [defaultColor, setDefaultColor] = useState("blue");
+  const supportedColors = useMemo(() => {
+    return ["blue", "red", "yellow", "pink"];
+  }, []);
+  return (
+    <div className="container">
+      <h1>StateStructurePrinciples</h1>
+      <Message initialColor={defaultColor}></Message>
+      <select
+        className="px-4 py-3 rounded-full"
+        onChange={(e) => setDefaultColor(e.target.value)}
+      >
+        {supportedColors.map((c) => (
+          <option key={c} value={c}>
+            {c}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+}
+```
+
+### 4. Tránh việc trùng lặp state
+
+## Phần 2: Các ví dụ thực tế
 
 Trong phạm vi của bài viết này, toàn bộ ví dụ sẽ được viết theo dạng functional và react hooks.
 
@@ -415,3 +604,9 @@ export default function StateManagementFormValidation() {
   );
 }
 ```
+
+## Share UI states for entire application or between component's have the same ancestor
+
+### 1. React to
+
+## Share Data states for entire application or between component's have the same ancestor
