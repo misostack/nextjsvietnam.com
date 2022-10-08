@@ -11,10 +11,10 @@
 <link rel=stylesheet href=https://nextjsvietnam.com/themes/2022/public/page.css>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWE4MLJYE6"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-RWE4MLJYE6')</script>
-<title>The Best Way to Upload File in Nestjs | In this topic, we will learn how to use NestJS's built-in module (multer) to upload files | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+<title>Validate Form Data Javascript the Right Way | Data validation is the process of ensuring that user input is clean, correct, and useful. Yup is one of Dead simple Object Schema Validation | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
 <meta name=robots content="all">
-<meta name=keywords content="nestjs,upload file,nestjs multer">
-<meta name=description content="In this topic, we will learn how to use NestJS's built-in module (multer) to upload files">
+<meta name=keywords content="client side validation,yup">
+<meta name=description content="Data validation is the process of ensuring that user input is clean, correct, and useful. Yup is one of Dead simple Object Schema Validation">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://nextjsvietnam.com/common/no-image.png">
 <meta property="og:image:type" content="image/jpeg">
@@ -81,79 +81,13 @@
 <main>
 <section class="container section">
 <div class="page-content max-w-2xl mx-auto">
-<img src=https://nextjsvietnam.com/common/no-image.png class=img-responsive alt="The Best Way to Upload File in Nestjs">
-<h1>The Best Way to Upload File in Nestjs</h1>
+<img src=https://nextjsvietnam.com/common/no-image.png class=img-responsive alt="Validate Form Data Javascript the Right Way">
+<h1>Validate Form Data Javascript the Right Way</h1>
 <p>
-<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/frameworks>frameworks</a>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/cheatsheet>cheatsheet</a>
 </p>
-<p>In the last topic, we&rsquo;ve already learn how to upload file with Multer.
-In this post, I wanna share with you the NestJS&rsquo;s best practice to upload file.</p>
-<p>Firstly, we need to install type safe for multer in case you didn&rsquo;t.</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>npm i -D @types/multer
-</code></pre></div><p>In real world projects, we may have to allow user upload a single file or multiple files.
-With multer we need to define with the target route, we will upload single or multiple.</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>MulterOptions</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/platform-express/multer/interfaces/multer-options.interface&#34;</span>;
-<span style=color:#66d9ef>import</span> <span style=color:#f92672>*</span> <span style=color:#66d9ef>as</span> <span style=color:#a6e22e>multer</span> <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;multer&#34;</span>;
-
-<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>getMyStorage</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>destination</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;./public/data/uploads&#34;</span>) <span style=color:#f92672>=&gt;</span> {
-  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>multer</span>.<span style=color:#a6e22e>diskStorage</span>({
-    <span style=color:#a6e22e>destination</span>: <span style=color:#66d9ef>function</span> (<span style=color:#a6e22e>req</span>, <span style=color:#a6e22e>file</span>, <span style=color:#a6e22e>cb</span>) {
-      <span style=color:#a6e22e>cb</span>(<span style=color:#66d9ef>null</span>, <span style=color:#a6e22e>destination</span>);
-    },
-    <span style=color:#a6e22e>filename</span>: <span style=color:#66d9ef>function</span> (<span style=color:#a6e22e>req</span>, <span style=color:#a6e22e>file</span>, <span style=color:#a6e22e>cb</span>) {
-      <span style=color:#75715e>// const uniqueSuffix = Date.now() + &#39;-&#39; + Math.round(Math.random() * 1e9);
-</span><span style=color:#75715e></span>      <span style=color:#a6e22e>cb</span>(<span style=color:#66d9ef>null</span>, <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>file</span>.<span style=color:#a6e22e>originalname</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>);
-    },
-  });
-};
-
-<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>getMyFileFilter</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>function</span> (<span style=color:#a6e22e>req</span>, <span style=color:#a6e22e>file</span>, <span style=color:#a6e22e>cb</span>) {
-  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>allowedMimes</span> <span style=color:#f92672>=</span> [
-    <span style=color:#e6db74>&#34;image/jpeg&#34;</span>,
-    <span style=color:#e6db74>&#34;image/pjpeg&#34;</span>,
-    <span style=color:#e6db74>&#34;image/png&#34;</span>,
-    <span style=color:#e6db74>&#34;application/pdf&#34;</span>,
-  ];
-  <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span><span style=color:#a6e22e>allowedMimes</span> <span style=color:#f92672>||</span> <span style=color:#a6e22e>allowedMimes</span>.<span style=color:#a6e22e>includes</span>(<span style=color:#a6e22e>file</span>.<span style=color:#a6e22e>mimetype</span>)) {
-    <span style=color:#a6e22e>cb</span>(<span style=color:#66d9ef>null</span>, <span style=color:#66d9ef>true</span>);
-  } <span style=color:#66d9ef>else</span> {
-    <span style=color:#a6e22e>cb</span>(
-      {
-        <span style=color:#a6e22e>success</span>: <span style=color:#66d9ef>false</span>,
-        <span style=color:#a6e22e>code</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;invalid_file_type&#34;</span>,
-        <span style=color:#a6e22e>message</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Invalid file type. Only jpg, png image files are allowed.&#34;</span>,
-      },
-      <span style=color:#66d9ef>false</span>
-    );
-  }
-};
-
-<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>MulterMiddleware</span> <span style=color:#f92672>=</span> (
-  <span style=color:#a6e22e>multerOptions</span>: <span style=color:#66d9ef>MulterOptions</span>,
-  <span style=color:#a6e22e>fieldName</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;file&#34;</span>,
-  <span style=color:#a6e22e>single</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>true</span>
-) <span style=color:#f92672>=&gt;</span> {
-  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>upload</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>multer</span>({
-    <span style=color:#a6e22e>storage</span>: <span style=color:#66d9ef>getMyStorage</span>(<span style=color:#a6e22e>multerOptions</span>.<span style=color:#a6e22e>dest</span>),
-    <span style=color:#a6e22e>fileFilter</span>: <span style=color:#66d9ef>getMyFileFilter</span>,
-    ...<span style=color:#a6e22e>multerOptions</span>,
-  });
-  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>single</span> <span style=color:#f92672>?</span> <span style=color:#a6e22e>upload</span>.<span style=color:#a6e22e>single</span>(<span style=color:#a6e22e>fieldName</span>) <span style=color:#f92672>:</span> <span style=color:#a6e22e>upload</span>.<span style=color:#a6e22e>array</span>(<span style=color:#a6e22e>fieldName</span>);
-};
-
-<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#a6e22e>MulterMiddleware</span>;
-</code></pre></div><p>NestJS has a built-in module which use Multer. So that in concept, it will work in the same way.</p>
-<p>Let&rsquo;s dive into details</p>
-<h2 id=lets-make-an-example-to-upload-a-single-file>Let&rsquo;s make an example to upload a single file</h2>
-<p>In the official doc, an article about this introduce with us 2 annotation:</p>
-<ol>
-<li>FileInterceptor : attach multer to handle file upload</li>
-<li>UploadedFile : extract file from request</li>
-</ol>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts>
-</code></pre></div>
 <div class="m-1 p-1">
-<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/frameworks>frameworks</a>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/cheatsheet>cheatsheet</a>
 </div>
 </div>
 </section>
@@ -162,13 +96,13 @@ With multer we need to define with the target route, we will upload single or mu
 <div class="font-heading text-2xl font-semibold">You Might Also Like</div>
 <div class="mt-8 grid gap-8">
 <ul class=sidebar-links>
-<li><a href=/post/manage-your-reactjs-state-the-right-way/>Manage Your Reactjs State the Right Way</a></li>
-<li><a href=/post/vuejs-how-to-add-tailwind-in-your-application/>Vuejs How to Add TailwindCSS in Your Application</a></li>
-<li><a href=/post/nestjs-request-and-response-object/>Nestjs Request and Response Object</a></li>
-<li><a href=/post/nestjs-pipes/>Nestjs Pipes</a></li>
-<li><a href=/post/validate-request-input-in-nestjs/>Validate Request Input in Nestjs</a></li>
-<li><a href=/post/nestjs-provider/>Nestjs Provider</a></li>
-<li><a href=/post/developer-your-rest-api-with-nestjs/>Developer Your Rest Api With Nestjs</a></li>
+<li><a href=/post/software-architecture-design-guidelines/>Software Architecture Design Guidelines</a></li>
+<li><a href=/post/rest-api-implementation-guidelines/>Rest Api Implementation Guidelines</a></li>
+<li><a href=/post/rest-api-design-checklist/>Rest Api Design Checklist</a></li>
+<li><a href=/post/npm-cheatsheet/>Npm Cheatsheet</a></li>
+<li><a href=/post/how-to-use-typescript-path-alias-in-loopback-4/>How to Use Typescript Path Alias in Loopback 4</a></li>
+<li><a href=/post/javascript-numeric-precision-issue/>Javascript Numeric Precision Issue</a></li>
+<li><a href=/post/su-dung-firebase-realtime-database-gui-thong-bao/>Sử dụng Firebase Realtime Database để gửi thông báo cho người dùng trong web app</a></li>
 </ul>
 </div>
 </div>
