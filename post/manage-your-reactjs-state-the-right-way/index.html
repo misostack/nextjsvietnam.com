@@ -91,7 +91,161 @@
 <li>Khái niệm cơ bản về React State</li>
 <li>Khái niệm cơ bản về React Hook</li>
 </ol>
+<p>Nội dung được chia sẻ phạm vi bài viết này:</p>
+<ol>
+<li>Các nguyên tắc khi thiết kế data structure cho state</li>
+<li>Một số ví dụ cụ thể trong các dự án thực tế</li>
+</ol>
+<h2 id=phần-1-các-nguyên-tắc-khi-thiết-kế-data-structure-cho-state>Phần 1: Các nguyên tắc khi thiết kế data structure cho state</h2>
 <p>Về mặt định nghĩa, thì State trong ReactJS là 1 Javascript Object phản ánh phần dữ liệu của component và có thể bị thay đổi giá trị do các tác nhân trong ứng dụng ( người dùng, web worker, web socket, &mldr;)</p>
+<h3 id=1nhóm-các-state-liên-quan-với-nhau>1.Nhóm các state liên quan với nhau.</h3>
+<ul>
+<li>Các state hay thay đổi cùng lúc. Ví dụ: tọa độ con trỏ chuột x,y</li>
+<li>Form data. Ví dụ: Bạn có 1 màn hình mà user có thể thêm nhiều custom field khác nhau (advanced filter chẳng hạn)</li>
+</ul>
+<p>Tuy nhiên cần lưu ý, khi nhóm state thành object hoặc array, lúc cập nhật 1 field, cần nhớ bạn phải cập nhật luôn các field còn lại. Ví dụ: setPosition({&mldr;position, x: 5});</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#75715e>// replace
+</span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>x</span>, <span style=color:#a6e22e>setX</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(<span style=color:#ae81ff>0</span>);
+<span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>y</span>, <span style=color:#a6e22e>setY</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(<span style=color:#ae81ff>0</span>);
+<span style=color:#75715e>// with
+</span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>point</span>, <span style=color:#a6e22e>setPoint</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>({ <span style=color:#a6e22e>x</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>0</span>, <span style=color:#a6e22e>y</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>0</span> });
+<span style=color:#a6e22e>setPoint</span>({
+  ...<span style=color:#a6e22e>point</span>,
+  <span style=color:#a6e22e>x</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>5</span>,
+});
+</code></pre></div><h3 id=2tránh-việc-khai-báo-các-state-mẫu-thuẫn-với-nhau>2.Tránh việc khai báo các state mẫu thuẫn với nhau.</h3>
+<p>Ví dụ:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>isSending</span>, <span style=color:#a6e22e>setIsSending</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(<span style=color:#66d9ef>false</span>);
+<span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>isSent</span>, <span style=color:#a6e22e>setIsSent</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(<span style=color:#66d9ef>false</span>);
+<span style=color:#a6e22e>setIsSending</span>(<span style=color:#66d9ef>true</span>); <span style=color:#75715e>// to allow showing loading modal
+</span><span style=color:#75715e></span><span style=color:#66d9ef>await</span> <span style=color:#a6e22e>callAPI</span>();
+<span style=color:#a6e22e>setIsSending</span>(<span style=color:#66d9ef>false</span>);
+<span style=color:#a6e22e>setIsSent</span>(<span style=color:#66d9ef>true</span>);
+</code></pre></div><p>Nó vẫn chạy, đúng chứ, tuy nhiên. Nếu như bạn quên reset lại isSending thì trạng thái lúc này sẽ vừa là isSending và isSent.
+Để tránh sai suất này xảy ra và để code clean hơn. Chúng ta có thể thay đổi lại 1 chút như sau</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>formStatus</span>, <span style=color:#a6e22e>setFormStatus</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(<span style=color:#66d9ef>false</span>);
+<span style=color:#a6e22e>setFormStatus</span>(<span style=color:#e6db74>&#34;sending&#34;</span>);
+<span style=color:#66d9ef>await</span> <span style=color:#a6e22e>callAPI</span>();
+<span style=color:#a6e22e>setFormStatus</span>(<span style=color:#e6db74>&#34;sent&#34;</span>);
+</code></pre></div><p>Rõ ràng là tốt hơn nhiều so với phiên bản đầu tiên. Thậm chí có thể sử dụng constant hoặc enum để khai báo các trạng thái của form.</p>
+<h3 id=3-tránh-khai-báo-các-state-dư-thừa>3. Tránh khai báo các state dư thừa</h3>
+<ul>
+<li>Những giá trị nào có thể tính toán được từ state và prop hiện tại không cần thiết phải sử dụng state để lưu trữ nó.</li>
+</ul>
+<p>Ví dụ:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#75715e>// replace
+</span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>firstName</span>, <span style=color:#a6e22e>setFirstName</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(<span style=color:#e6db74>&#34;&#34;</span>);
+<span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>lastName</span>, <span style=color:#a6e22e>setLastName</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(<span style=color:#e6db74>&#34;&#34;</span>);
+<span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>fullName</span>, <span style=color:#a6e22e>setFullName</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(<span style=color:#e6db74>&#34;&#34;</span>);
+
+<span style=color:#75715e>// with
+</span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>firstName</span>, <span style=color:#a6e22e>setFirstName</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(<span style=color:#e6db74>&#34;&#34;</span>);
+<span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>lastName</span>, <span style=color:#a6e22e>setLastName</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(<span style=color:#e6db74>&#34;&#34;</span>);
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>fullName</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>firstName</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34; &#34;</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>lastName</span>;
+</code></pre></div><h3 id=4-đừng-copy-lại-props-vào-state>4. Đừng copy lại props vào state</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>Message</span>({ <span style=color:#a6e22e>messageColor</span> }) {
+  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>color</span>, <span style=color:#a6e22e>setColor</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(<span style=color:#a6e22e>messageColor</span>);
+</code></pre></div><p>Với cách init state như thế này, khi giá trị prop từ component cha được thay đổi.
+Sẽ dễ gây hiểu lầm là giá trị messageColor cũng tự động đổi theo.
+Để hạn chế điều này luôn sử dụng initial hoặc default làm prefix cho các prop dùng
+để khởi tạo giá trị ban đầu của state</p>
+<p>Đặc biệt</p>
+<blockquote>
+<h2 id=đừng-copy-lại-props-vào-state>Đừng copy lại props vào state</h2>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>React</span>, { <span style=color:#a6e22e>useMemo</span>, <span style=color:#a6e22e>useState</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;react&#34;</span>;
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>Message</span> <span style=color:#f92672>=</span> ({ <span style=color:#a6e22e>initialColor</span> }<span style=color:#f92672>:</span> { <span style=color:#a6e22e>initialColor</span>: <span style=color:#66d9ef>string</span> }) <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>color</span>, <span style=color:#a6e22e>setColor</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(<span style=color:#a6e22e>initialColor</span>);
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>className</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>`bg-</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>color</span><span style=color:#e6db74>}</span><span style=color:#e6db74>-500`</span>;
+  <span style=color:#66d9ef>return</span> (
+    &lt;&gt;
+      &lt;<span style=color:#f92672>h3</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>className</span>}&gt;<span style=color:#a6e22e>Principle</span> <span style=color:#a6e22e>3</span>: <span style=color:#66d9ef>Avoid</span> <span style=color:#a6e22e>Redundant</span> <span style=color:#a6e22e>State</span>&lt;/<span style=color:#f92672>h3</span>&gt;
+      &lt;<span style=color:#f92672>button</span>
+        <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>className</span>}
+        <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{() <span style=color:#f92672>=&gt;</span> {
+          <span style=color:#a6e22e>color</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#34;green&#34;</span> <span style=color:#f92672>?</span> <span style=color:#a6e22e>setColor</span>(<span style=color:#a6e22e>initialColor</span>) <span style=color:#f92672>:</span> <span style=color:#a6e22e>setColor</span>(<span style=color:#e6db74>&#34;green&#34;</span>);
+        }}
+      &gt;
+        <span style=color:#a6e22e>Switch</span> <span style=color:#a6e22e>Color</span>
+      &lt;/<span style=color:#f92672>button</span>&gt;
+    &lt;/&gt;
+  );
+};
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>StateStructurePrinciples() {</span>
+  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>defaultColor</span>, <span style=color:#a6e22e>setDefaultColor</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(<span style=color:#e6db74>&#34;blue&#34;</span>);
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>supportedColors</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>useMemo</span>(() <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#66d9ef>return</span> [<span style=color:#e6db74>&#34;blue&#34;</span>, <span style=color:#e6db74>&#34;red&#34;</span>, <span style=color:#e6db74>&#34;yellow&#34;</span>, <span style=color:#e6db74>&#34;pink&#34;</span>];
+  }, []);
+  <span style=color:#66d9ef>return</span> (
+    &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;container&#34;</span>&gt;
+      &lt;<span style=color:#f92672>h1</span>&gt;<span style=color:#a6e22e>StateStructurePrinciples</span>&lt;/<span style=color:#f92672>h1</span>&gt;
+      &lt;<span style=color:#f92672>Message</span> <span style=color:#a6e22e>initialColor</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>defaultColor</span>}&gt;&lt;/<span style=color:#f92672>Message</span>&gt;
+      &lt;<span style=color:#f92672>select</span>
+        <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;px-4 py-3 rounded-full&#34;</span>
+        <span style=color:#a6e22e>onChange</span><span style=color:#f92672>=</span>{(<span style=color:#a6e22e>e</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>setDefaultColor</span>(<span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>target</span>.<span style=color:#a6e22e>value</span>)}
+      &gt;
+        {<span style=color:#a6e22e>supportedColors</span>.<span style=color:#a6e22e>map</span>((<span style=color:#a6e22e>c</span>) <span style=color:#f92672>=&gt;</span> (
+          &lt;<span style=color:#f92672>option</span> <span style=color:#a6e22e>key</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>c</span>} <span style=color:#a6e22e>value</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>c</span>}&gt;
+            {<span style=color:#a6e22e>c</span>}
+          &lt;/<span style=color:#f92672>option</span>&gt;
+        ))}
+      &lt;/<span style=color:#f92672>select</span>&gt;
+    &lt;/<span style=color:#f92672>div</span>&gt;
+  );
+}
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>Message</span>({ <span style=color:#a6e22e>initialColor</span> }) {
+  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>color</span>, <span style=color:#a6e22e>setColor</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(<span style=color:#a6e22e>initialColor</span>);
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>React</span>, { <span style=color:#a6e22e>useEffect</span>, <span style=color:#a6e22e>useMemo</span>, <span style=color:#a6e22e>useState</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;react&#34;</span>;
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>Message</span> <span style=color:#f92672>=</span> ({ <span style=color:#a6e22e>initialColor</span> }<span style=color:#f92672>:</span> { <span style=color:#a6e22e>initialColor</span>: <span style=color:#66d9ef>string</span> }) <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>color</span>, <span style=color:#a6e22e>setColor</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(<span style=color:#a6e22e>initialColor</span>);
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>className</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>`bg-</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>color</span><span style=color:#e6db74>}</span><span style=color:#e6db74>-500`</span>;
+
+  <span style=color:#a6e22e>useEffect</span>(() <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#75715e>// update State when initialColor changed
+</span><span style=color:#75715e></span>    <span style=color:#a6e22e>setColor</span>(<span style=color:#a6e22e>initialColor</span>);
+  }, [<span style=color:#a6e22e>initialColor</span>]);
+  <span style=color:#66d9ef>return</span> (
+    &lt;&gt;
+      &lt;<span style=color:#f92672>h3</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>className</span>}&gt;<span style=color:#a6e22e>Principle</span> <span style=color:#a6e22e>3</span>: <span style=color:#66d9ef>Avoid</span> <span style=color:#a6e22e>Redundant</span> <span style=color:#a6e22e>State</span>&lt;/<span style=color:#f92672>h3</span>&gt;
+      &lt;<span style=color:#f92672>button</span>
+        <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>className</span>}
+        <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{() <span style=color:#f92672>=&gt;</span> {
+          <span style=color:#a6e22e>color</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#34;green&#34;</span> <span style=color:#f92672>?</span> <span style=color:#a6e22e>setColor</span>(<span style=color:#a6e22e>initialColor</span>) <span style=color:#f92672>:</span> <span style=color:#a6e22e>setColor</span>(<span style=color:#e6db74>&#34;green&#34;</span>);
+        }}
+      &gt;
+        <span style=color:#a6e22e>Switch</span> <span style=color:#a6e22e>Color</span>
+      &lt;/<span style=color:#f92672>button</span>&gt;
+    &lt;/&gt;
+  );
+};
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>StateStructurePrinciples() {</span>
+  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>defaultColor</span>, <span style=color:#a6e22e>setDefaultColor</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(<span style=color:#e6db74>&#34;blue&#34;</span>);
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>supportedColors</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>useMemo</span>(() <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#66d9ef>return</span> [<span style=color:#e6db74>&#34;blue&#34;</span>, <span style=color:#e6db74>&#34;red&#34;</span>, <span style=color:#e6db74>&#34;yellow&#34;</span>, <span style=color:#e6db74>&#34;pink&#34;</span>];
+  }, []);
+  <span style=color:#66d9ef>return</span> (
+    &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;container&#34;</span>&gt;
+      &lt;<span style=color:#f92672>h1</span>&gt;<span style=color:#a6e22e>StateStructurePrinciples</span>&lt;/<span style=color:#f92672>h1</span>&gt;
+      &lt;<span style=color:#f92672>Message</span> <span style=color:#a6e22e>initialColor</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>defaultColor</span>}&gt;&lt;/<span style=color:#f92672>Message</span>&gt;
+      &lt;<span style=color:#f92672>select</span>
+        <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;px-4 py-3 rounded-full&#34;</span>
+        <span style=color:#a6e22e>onChange</span><span style=color:#f92672>=</span>{(<span style=color:#a6e22e>e</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>setDefaultColor</span>(<span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>target</span>.<span style=color:#a6e22e>value</span>)}
+      &gt;
+        {<span style=color:#a6e22e>supportedColors</span>.<span style=color:#a6e22e>map</span>((<span style=color:#a6e22e>c</span>) <span style=color:#f92672>=&gt;</span> (
+          &lt;<span style=color:#f92672>option</span> <span style=color:#a6e22e>key</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>c</span>} <span style=color:#a6e22e>value</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>c</span>}&gt;
+            {<span style=color:#a6e22e>c</span>}
+          &lt;/<span style=color:#f92672>option</span>&gt;
+        ))}
+      &lt;/<span style=color:#f92672>select</span>&gt;
+    &lt;/<span style=color:#f92672>div</span>&gt;
+  );
+}
+</code></pre></div><h3 id=4-tránh-việc-trùng-lặp-state>4. Tránh việc trùng lặp state</h3>
+<h2 id=phần-2-các-ví-dụ-thực-tế>Phần 2: Các ví dụ thực tế</h2>
 <p>Trong phạm vi của bài viết này, toàn bộ ví dụ sẽ được viết theo dạng functional và react hooks.</p>
 <p>Khi ứng dụng càng lớn, hoặc trong cùng 1 màn hình lại có rất nhiều tính năng và chúng lại có liên quan mật thiết với nhau. Thì việc thiết kế và tổ chức cấu trúc dữ liệu cho state là điều tối quan trọng.</p>
 <p>Để dễ dàng nắm bắt được các phương pháp khi làm việc với state, chúng ta sẽ đi qua lần lượt các trường hợp sau:</p>
@@ -477,7 +631,9 @@
     &lt;/<span style=color:#f92672>div</span>&gt;
   );
 }
-</code></pre></div>
+</code></pre></div><h2 id=share-ui-states-for-entire-application-or-between-components-have-the-same-ancestor>Share UI states for entire application or between component&rsquo;s have the same ancestor</h2>
+<h3 id=1-react-to>1. React to</h3>
+<h2 id=share-data-states-for-entire-application-or-between-components-have-the-same-ancestor>Share Data states for entire application or between component&rsquo;s have the same ancestor</h2>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/frameworks>frameworks</a>
 </div>
