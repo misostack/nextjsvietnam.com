@@ -147,8 +147,40 @@ export default function StateStructurePrinciples() {
 ```
 
 ```js
-function Message({ initialColor }) {
-  const [color, setColor] = useState(initialColor);
+import React, { useMemo, useState } from "react";
+
+const Message = (props: { initialColor: string }) => {
+  const className = `bg-${props.initialColor}-500`;
+
+  return (
+    <>
+      <h3 className={className}>Principle 3: Avoid Redundant State</h3>
+    </>
+  );
+};
+
+export default function StateStructurePrinciple3() {
+  const [defaultColor, setDefaultColor] = useState("blue");
+  const supportedColors = useMemo(() => {
+    return ["blue", "red", "yellow", "pink"];
+  }, []);
+  return (
+    <div className="container">
+      <h1>StateStructurePrinciples</h1>
+      <Message initialColor={defaultColor}></Message>
+      <select
+        className="px-4 py-3 rounded-full"
+        onChange={(e) => setDefaultColor(e.target.value)}
+      >
+        {supportedColors.map((c) => (
+          <option key={c} value={c}>
+            {c}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+}
 ```
 
 ```ts
@@ -202,6 +234,134 @@ export default function StateStructurePrinciples() {
 ```
 
 ### 4. Tránh việc trùng lặp state
+
+> Bad: When you duplicate the entire book object into your favoriteBook State, it doesn't reflect when its original version changed
+
+```ts
+import React, { useState } from "react";
+
+export default function StateStructurePrinciple4() {
+  const [books, setBooks] = useState([
+    {
+      id: 1,
+      name: "Clean Code",
+    },
+    {
+      id: 2,
+      name: "ReactJS the right way",
+    },
+    { id: 3, name: "Angular the right way" },
+  ]);
+  const [favoriteBook, setFavoriteBook] = useState<any>(null);
+
+  return (
+    <div className="container">
+      <h1>StateStructurePrinciple4</h1>
+      <div className="bg-green-600 text-white p-4">
+        {favoriteBook ? favoriteBook.name : "Please select your favorite book"}
+      </div>
+      <div>
+        {books.map((book) => (
+          <div key={book.id} className="flex items-center my-4">
+            <input
+              type="text"
+              className="bg-gray-50 text-gray-900 text-sm rounded-lg border leading-6 py-3 px-4 mr-2 w-1/2"
+              value={book.name}
+              onChange={(e) => {
+                setBooks(
+                  books.map((b) => {
+                    if (b.id === book.id) {
+                      return {
+                        ...book,
+                        name: e.target.value,
+                      };
+                    }
+                    return b;
+                  })
+                );
+              }}
+            />
+            <button
+              className="bg-green-400 rounded-md p-4 disabled:opacity-50"
+              disabled={favoriteBook && book.id === favoriteBook.id}
+              onClick={() => {
+                setFavoriteBook(book);
+              }}
+            >
+              Select as favorite book
+            </button>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+```
+
+> Good: instead of duplicate the book object, you only need to track the bookId for your favoriteBook state. So when the original book object changed, your favoriteBook will be recalculate via searching from the list of book with favoriteBookId
+
+```ts
+import React, { useState } from "react";
+
+export default function StateStructurePrinciple4() {
+  const [books, setBooks] = useState([
+    {
+      id: 1,
+      name: "Clean Code",
+    },
+    {
+      id: 2,
+      name: "ReactJS the right way",
+    },
+    { id: 3, name: "Angular the right way" },
+  ]);
+  const [favoriteBookId, setFavoriteBookId] = useState<number>(0);
+  const favoriteBook = books.find((book) => book.id === favoriteBookId);
+  return (
+    <div className="container">
+      <h1>StateStructurePrinciple4</h1>
+      <div className="bg-green-600 text-white p-4">
+        {favoriteBook?.name || "Please select your favorite book"}
+      </div>
+      <div>
+        {books.map((book) => (
+          <div key={book.id} className="flex items-center my-4">
+            <input
+              type="text"
+              className="bg-gray-50 text-gray-900 text-sm rounded-lg border leading-6 py-3 px-4 mr-2 w-1/2"
+              value={book.name}
+              onChange={(e) => {
+                setBooks(
+                  books.map((b) => {
+                    if (b.id === book.id) {
+                      return {
+                        ...book,
+                        name: e.target.value,
+                      };
+                    }
+                    return b;
+                  })
+                );
+              }}
+            />
+            <button
+              className="bg-green-400 rounded-md p-4 disabled:opacity-50"
+              disabled={book.id === favoriteBookId}
+              onClick={() => {
+                setFavoriteBookId(book.id);
+              }}
+            >
+              Select as favorite book
+            </button>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+```
+
+### 5. Tránh sử dụng state lồng ghép nhiều cấp
 
 ## Phần 2: Các ví dụ thực tế
 
