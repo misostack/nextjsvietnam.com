@@ -195,8 +195,40 @@ Sẽ dễ gây hiểu lầm là giá trị messageColor cũng tự động đổ
     &lt;/<span style=color:#f92672>div</span>&gt;
   );
 }
-</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>Message</span>({ <span style=color:#a6e22e>initialColor</span> }) {
-  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>color</span>, <span style=color:#a6e22e>setColor</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(<span style=color:#a6e22e>initialColor</span>);
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>React</span>, { <span style=color:#a6e22e>useMemo</span>, <span style=color:#a6e22e>useState</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;react&#34;</span>;
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>Message</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>props</span><span style=color:#f92672>:</span> { <span style=color:#a6e22e>initialColor</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>string</span> }) =&gt; {
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>className</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>`bg-</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>props</span>.<span style=color:#a6e22e>initialColor</span><span style=color:#e6db74>}</span><span style=color:#e6db74>-500`</span>;
+
+  <span style=color:#66d9ef>return</span> (
+    <span style=color:#f92672>&lt;&gt;</span>
+      <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>h3</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>className</span>}<span style=color:#f92672>&gt;</span><span style=color:#a6e22e>Principle</span> <span style=color:#ae81ff>3</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>Avoid</span> <span style=color:#a6e22e>Redundant</span> <span style=color:#a6e22e>State</span><span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/h3&gt;</span>
+    <span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/&gt;</span>
+  );
+};
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>StateStructurePrinciple3</span>() {
+  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>defaultColor</span>, <span style=color:#a6e22e>setDefaultColor</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(<span style=color:#e6db74>&#34;blue&#34;</span>);
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>supportedColors</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>useMemo</span>(() =&gt; {
+    <span style=color:#66d9ef>return</span> [<span style=color:#e6db74>&#34;blue&#34;</span>, <span style=color:#e6db74>&#34;red&#34;</span>, <span style=color:#e6db74>&#34;yellow&#34;</span>, <span style=color:#e6db74>&#34;pink&#34;</span>];
+  }, []);
+  <span style=color:#66d9ef>return</span> (
+    <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;container&#34;</span><span style=color:#f92672>&gt;</span>
+      <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>h1</span><span style=color:#f92672>&gt;</span><span style=color:#a6e22e>StateStructurePrinciples</span><span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/h1&gt;</span>
+      <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>Message</span> <span style=color:#a6e22e>initialColor</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>defaultColor</span>}<span style=color:#f92672>&gt;&lt;</span><span style=color:#960050;background-color:#1e0010>/Message&gt;</span>
+      <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>select</span>
+        <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;px-4 py-3 rounded-full&#34;</span>
+        <span style=color:#a6e22e>onChange</span><span style=color:#f92672>=</span>{(<span style=color:#a6e22e>e</span>) =&gt; <span style=color:#a6e22e>setDefaultColor</span>(<span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>target</span>.<span style=color:#a6e22e>value</span>)}
+      <span style=color:#f92672>&gt;</span>
+        {<span style=color:#a6e22e>supportedColors</span>.<span style=color:#a6e22e>map</span>((<span style=color:#a6e22e>c</span>) =&gt; (
+          <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>option</span> <span style=color:#a6e22e>key</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>c</span>} <span style=color:#a6e22e>value</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>c</span>}<span style=color:#f92672>&gt;</span>
+            {<span style=color:#a6e22e>c</span>}
+          <span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/option&gt;</span>
+        ))}
+      <span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/select&gt;</span>
+    <span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/div&gt;</span>
+  );
+}
 </code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>React</span>, { <span style=color:#a6e22e>useEffect</span>, <span style=color:#a6e22e>useMemo</span>, <span style=color:#a6e22e>useState</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;react&#34;</span>;
 
 <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>Message</span> <span style=color:#f92672>=</span> ({ <span style=color:#a6e22e>initialColor</span> }<span style=color:#f92672>:</span> { <span style=color:#a6e22e>initialColor</span>: <span style=color:#66d9ef>string</span> }) <span style=color:#f92672>=&gt;</span> {
@@ -245,6 +277,129 @@ Sẽ dễ gây hiểu lầm là giá trị messageColor cũng tự động đổ
   );
 }
 </code></pre></div><h3 id=4-tránh-việc-trùng-lặp-state>4. Tránh việc trùng lặp state</h3>
+<blockquote>
+<p>Bad: When you duplicate the entire book object into your favoriteBook State, it doesn&rsquo;t reflect when its original version changed</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>React</span>, { <span style=color:#a6e22e>useState</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;react&#34;</span>;
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>StateStructurePrinciple4() {</span>
+  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>books</span>, <span style=color:#a6e22e>setBooks</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>([
+    {
+      <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>1</span>,
+      <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Clean Code&#34;</span>,
+    },
+    {
+      <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>2</span>,
+      <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;ReactJS the right way&#34;</span>,
+    },
+    { <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>3</span>, <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Angular the right way&#34;</span> },
+  ]);
+  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>favoriteBook</span>, <span style=color:#a6e22e>setFavoriteBook</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>&lt;<span style=color:#f92672>any</span>&gt;(<span style=color:#66d9ef>null</span>);
+
+  <span style=color:#66d9ef>return</span> (
+    &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;container&#34;</span>&gt;
+      &lt;<span style=color:#f92672>h1</span>&gt;<span style=color:#a6e22e>StateStructurePrinciple4</span>&lt;/<span style=color:#f92672>h1</span>&gt;
+      &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;bg-green-600 text-white p-4&#34;</span>&gt;
+        {<span style=color:#a6e22e>favoriteBook</span> <span style=color:#f92672>?</span> <span style=color:#a6e22e>favoriteBook</span>.<span style=color:#a6e22e>name</span> <span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Please select your favorite book&#34;</span>}
+      &lt;/<span style=color:#f92672>div</span>&gt;
+      &lt;<span style=color:#f92672>div</span>&gt;
+        {<span style=color:#a6e22e>books</span>.<span style=color:#a6e22e>map</span>((<span style=color:#a6e22e>book</span>) <span style=color:#f92672>=&gt;</span> (
+          &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>key</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>book</span>.<span style=color:#a6e22e>id</span>} <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;flex items-center my-4&#34;</span>&gt;
+            &lt;<span style=color:#f92672>input</span>
+              <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;text&#34;</span>
+              <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;bg-gray-50 text-gray-900 text-sm rounded-lg border leading-6 py-3 px-4 mr-2 w-1/2&#34;</span>
+              <span style=color:#a6e22e>value</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>book</span>.<span style=color:#a6e22e>name</span>}
+              <span style=color:#a6e22e>onChange</span><span style=color:#f92672>=</span>{(<span style=color:#a6e22e>e</span>) <span style=color:#f92672>=&gt;</span> {
+                <span style=color:#a6e22e>setBooks</span>(
+                  <span style=color:#a6e22e>books</span>.<span style=color:#a6e22e>map</span>((<span style=color:#a6e22e>b</span>) <span style=color:#f92672>=&gt;</span> {
+                    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>b</span>.<span style=color:#a6e22e>id</span> <span style=color:#f92672>===</span> <span style=color:#a6e22e>book</span>.<span style=color:#a6e22e>id</span>) {
+                      <span style=color:#66d9ef>return</span> {
+                        ...<span style=color:#a6e22e>book</span>,
+                        <span style=color:#a6e22e>name</span>: <span style=color:#66d9ef>e.target.value</span>,
+                      };
+                    }
+                    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>b</span>;
+                  })
+                );
+              }}
+            /&gt;
+            &lt;<span style=color:#f92672>button</span>
+              <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;bg-green-400 rounded-md p-4 disabled:opacity-50&#34;</span>
+              <span style=color:#a6e22e>disabled</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>favoriteBook</span> <span style=color:#f92672>&amp;&amp;</span> <span style=color:#a6e22e>book</span>.<span style=color:#a6e22e>id</span> <span style=color:#f92672>===</span> <span style=color:#a6e22e>favoriteBook</span>.<span style=color:#a6e22e>id</span>}
+              <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{() <span style=color:#f92672>=&gt;</span> {
+                <span style=color:#a6e22e>setFavoriteBook</span>(<span style=color:#a6e22e>book</span>);
+              }}
+            &gt;
+              <span style=color:#a6e22e>Select</span> <span style=color:#66d9ef>as</span> <span style=color:#a6e22e>favorite</span> <span style=color:#a6e22e>book</span>
+            &lt;/<span style=color:#f92672>button</span>&gt;
+          &lt;/<span style=color:#f92672>div</span>&gt;
+        ))}
+      &lt;/<span style=color:#f92672>div</span>&gt;
+    &lt;/<span style=color:#f92672>div</span>&gt;
+  );
+}
+</code></pre></div><blockquote>
+<p>Good: instead of duplicate the book object, you only need to track the bookId for your favoriteBook state. So when the original book object changed, your favoriteBook will be recalculate via searching from the list of book with favoriteBookId</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>React</span>, { <span style=color:#a6e22e>useState</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;react&#34;</span>;
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>StateStructurePrinciple4() {</span>
+  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>books</span>, <span style=color:#a6e22e>setBooks</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>([
+    {
+      <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>1</span>,
+      <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Clean Code&#34;</span>,
+    },
+    {
+      <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>2</span>,
+      <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;ReactJS the right way&#34;</span>,
+    },
+    { <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>3</span>, <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Angular the right way&#34;</span> },
+  ]);
+  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>favoriteBookId</span>, <span style=color:#a6e22e>setFavoriteBookId</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>&lt;<span style=color:#f92672>number</span>&gt;(<span style=color:#ae81ff>0</span>);
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>favoriteBook</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>books</span>.<span style=color:#a6e22e>find</span>((<span style=color:#a6e22e>book</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>book</span>.<span style=color:#a6e22e>id</span> <span style=color:#f92672>===</span> <span style=color:#a6e22e>favoriteBookId</span>);
+  <span style=color:#66d9ef>return</span> (
+    &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;container&#34;</span>&gt;
+      &lt;<span style=color:#f92672>h1</span>&gt;<span style=color:#a6e22e>StateStructurePrinciple4</span>&lt;/<span style=color:#f92672>h1</span>&gt;
+      &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;bg-green-600 text-white p-4&#34;</span>&gt;
+        {<span style=color:#a6e22e>favoriteBook</span><span style=color:#f92672>?</span>.<span style=color:#a6e22e>name</span> <span style=color:#f92672>||</span> <span style=color:#e6db74>&#34;Please select your favorite book&#34;</span>}
+      &lt;/<span style=color:#f92672>div</span>&gt;
+      &lt;<span style=color:#f92672>div</span>&gt;
+        {<span style=color:#a6e22e>books</span>.<span style=color:#a6e22e>map</span>((<span style=color:#a6e22e>book</span>) <span style=color:#f92672>=&gt;</span> (
+          &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>key</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>book</span>.<span style=color:#a6e22e>id</span>} <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;flex items-center my-4&#34;</span>&gt;
+            &lt;<span style=color:#f92672>input</span>
+              <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;text&#34;</span>
+              <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;bg-gray-50 text-gray-900 text-sm rounded-lg border leading-6 py-3 px-4 mr-2 w-1/2&#34;</span>
+              <span style=color:#a6e22e>value</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>book</span>.<span style=color:#a6e22e>name</span>}
+              <span style=color:#a6e22e>onChange</span><span style=color:#f92672>=</span>{(<span style=color:#a6e22e>e</span>) <span style=color:#f92672>=&gt;</span> {
+                <span style=color:#a6e22e>setBooks</span>(
+                  <span style=color:#a6e22e>books</span>.<span style=color:#a6e22e>map</span>((<span style=color:#a6e22e>b</span>) <span style=color:#f92672>=&gt;</span> {
+                    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>b</span>.<span style=color:#a6e22e>id</span> <span style=color:#f92672>===</span> <span style=color:#a6e22e>book</span>.<span style=color:#a6e22e>id</span>) {
+                      <span style=color:#66d9ef>return</span> {
+                        ...<span style=color:#a6e22e>book</span>,
+                        <span style=color:#a6e22e>name</span>: <span style=color:#66d9ef>e.target.value</span>,
+                      };
+                    }
+                    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>b</span>;
+                  })
+                );
+              }}
+            /&gt;
+            &lt;<span style=color:#f92672>button</span>
+              <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;bg-green-400 rounded-md p-4 disabled:opacity-50&#34;</span>
+              <span style=color:#a6e22e>disabled</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>book</span>.<span style=color:#a6e22e>id</span> <span style=color:#f92672>===</span> <span style=color:#a6e22e>favoriteBookId</span>}
+              <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{() <span style=color:#f92672>=&gt;</span> {
+                <span style=color:#a6e22e>setFavoriteBookId</span>(<span style=color:#a6e22e>book</span>.<span style=color:#a6e22e>id</span>);
+              }}
+            &gt;
+              <span style=color:#a6e22e>Select</span> <span style=color:#66d9ef>as</span> <span style=color:#a6e22e>favorite</span> <span style=color:#a6e22e>book</span>
+            &lt;/<span style=color:#f92672>button</span>&gt;
+          &lt;/<span style=color:#f92672>div</span>&gt;
+        ))}
+      &lt;/<span style=color:#f92672>div</span>&gt;
+    &lt;/<span style=color:#f92672>div</span>&gt;
+  );
+}
+</code></pre></div><h3 id=5-tránh-sử-dụng-state-lồng-ghép-nhiều-cấp>5. Tránh sử dụng state lồng ghép nhiều cấp</h3>
 <h2 id=phần-2-các-ví-dụ-thực-tế>Phần 2: Các ví dụ thực tế</h2>
 <p>Trong phạm vi của bài viết này, toàn bộ ví dụ sẽ được viết theo dạng functional và react hooks.</p>
 <p>Khi ứng dụng càng lớn, hoặc trong cùng 1 màn hình lại có rất nhiều tính năng và chúng lại có liên quan mật thiết với nhau. Thì việc thiết kế và tổ chức cấu trúc dữ liệu cho state là điều tối quan trọng.</p>
