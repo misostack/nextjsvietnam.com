@@ -1,6 +1,7 @@
 /* Custom style for page content */
 .page-content {
-  @apply max-w-screen-md mx-auto;
+  word-wrap: break-word;
+  @apply md:max-w-screen-md mx-auto;
   h1,
   h2,
   h3,

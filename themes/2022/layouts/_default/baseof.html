@@ -35,7 +35,8 @@
 
       gtag('config', '{{.Site.Params.GACode}}');
     </script>    
-    {{ partial "meta" . }}
+    {{ block "meta" . }}{{ end }}
+    {{ partial "meta" . }}    
     {{ partial "favicon" . }}
   </head>
   <body class="body-nav-fixed">

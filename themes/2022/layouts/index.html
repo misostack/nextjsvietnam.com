@@ -101,7 +101,7 @@
                         href="{{ $categoryUrl | absURL }}"
                         class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white"
                       >
-                      {{ $key }}
+                      {{ replace $key "-" " " }}
                       </a>
                     {{ end }}
                 {{ end }}

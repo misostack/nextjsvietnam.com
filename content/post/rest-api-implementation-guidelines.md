@@ -209,7 +209,7 @@ Tuy nhiên đôi khi nếu resource liên quan lại thuộc về 1 service khá
 
 Ví dụ:
 
-```
+```js
 //api.books.nextjsvietnam.com/publishers/123/books/rest-api-design-pattern
 //api.nextjsvietnam.com/users/1
 ```

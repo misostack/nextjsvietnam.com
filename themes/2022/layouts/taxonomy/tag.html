@@ -1,6 +1,9 @@
-{{ define "main" }}
+{{ define "meta"}}
+<title>{{ upper (replace .Title "-" " ") }} | {{ .Site.Title }}</title>
+<meta name="robots" content="noindex" />
+{{end}} {{ define "main" }}
 <section class="container section hero-section">
-  <h1 class="hero-section-heading">{{ .Title }}</h1>
+  <h1 class="hero-section-heading">{{ upper (replace .Title "-" " ") }}</h1>
 </section>
 <section class="container section gap-8">
   {{ $paginator := .Paginate .Data.Pages 1 }} {{ range $paginator.Pages }}
