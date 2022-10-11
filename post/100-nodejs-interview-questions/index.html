@@ -86,7 +86,7 @@
 <p>
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/cheatsheet>cheatsheet</a>
 </p>
-<h2 id=question-1>Question 1</h2>
+<h2 id=question-1--nodejs-write-stream>Question 1 : NodeJS Write Stream</h2>
 <p>In the JavaScript file, write a program to perform a GET request on the route <strong><a href=https://coderbyte.com/api/challenges/json/age-counting>https://coderbyte.com/api/challenges/json/age-counting</a></strong> which contains a data key and the value is a string which contains items in the format: key=STRING, age=INTEGER. Your goal is to count how many items exist that have an age equal to 32. Then you should create a write stream to a file called output.txt and the contents should be the key values (from the json) each on a separate line in the order they appeared in the json file (the file should end with a newline character on its own line). Finally, then output the SHA1 hash of the file.</p>
 <p><strong>Example Input</strong></p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>{
@@ -99,6 +99,41 @@
 <blockquote>
 <p>7caa78c7180ea52e5193d2b4c22e5e8a9e03b486</p>
 </blockquote>
+<h2 id=question-2--nodejs-counting-age>Question 2 : NodeJS Counting age</h2>
+<p>In the JavaScript file, write a program to perform a GET request on the route <a href=https://coderbyte.com/api/challenges/json/age-counting>https://coderbyte.com/api/challenges/json/age-counting</a> which contains a data key and the value is a string which contains items in the format: key=STRING, age=INTEGER. Your goal is to count how many items exist that have an age equal to or greater than 50, and print this final value.</p>
+<p><strong>Example Input</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>{ <span style=color:#f92672>&#34;data&#34;</span>: <span style=color:#e6db74>&#34;key=IAfpK, age=58, key=WNVdi, age=64, key=jp9zt, age=47&#34;</span> }
+</code></pre></div><p><strong>Example Output</strong></p>
+<blockquote>
+<p>2</p>
+</blockquote>
+<h2 id=question-3--nodejs-print-files>Question 3 : NodeJS Print Files</h2>
+<p>In the JavaScript file, write a program to first create a file in the current directory with the name newfile.txt filled with any content. Then, using exec, print to the console all the files in the current directory so that they are in the following format: FILENAME, FILENAME, &mldr;</p>
+<p><strong>Example output</strong></p>
+<blockquote>
+<p>file.js, helloworld.txt, abc.txt</p>
+</blockquote>
+<h2 id=question-4-nodejs-rest-get-simple>Question 4: NodeJS REST GET Simple</h2>
+<p>In the JavaScript file, write a program to perform a GET request on the route <a href=https://coderbyte.com/api/challenges/json/rest-get-simple>https://coderbyte.com/api/challenges/json/rest-get-simple</a> and then print to the console the hobbies property in the following format: ITEM1, ITEM2, &mldr;</p>
+<p><strong>Example Output</strong></p>
+<blockquote>
+<p>running, painting</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>https</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>require</span>(<span style=color:#e6db74>&#34;https&#34;</span>);
+<span style=color:#a6e22e>https</span>.<span style=color:#a6e22e>get</span>(
+  <span style=color:#e6db74>&#34;https://coderbyte.com/api/challenges/json/rest-get-simple&#34;</span>,
+  (<span style=color:#a6e22e>resp</span>) =&gt; {
+    <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>rawData</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;&#34;</span>;
+
+    <span style=color:#75715e>// parse json data here...
+</span><span style=color:#75715e></span>    <span style=color:#a6e22e>resp</span>.<span style=color:#a6e22e>on</span>(<span style=color:#e6db74>&#34;data&#34;</span>, (<span style=color:#a6e22e>chunk</span>) =&gt; {
+      <span style=color:#a6e22e>rawData</span> <span style=color:#f92672>+=</span> <span style=color:#a6e22e>chunk</span>;
+    });
+
+    <span style=color:#a6e22e>resp</span>.<span style=color:#a6e22e>on</span>(<span style=color:#e6db74>&#34;end&#34;</span>, () =&gt; {});
+  }
+);
+</code></pre></div>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/cheatsheet>cheatsheet</a>
 </div>
