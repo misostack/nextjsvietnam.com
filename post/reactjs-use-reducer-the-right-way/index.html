@@ -172,6 +172,94 @@ Do đó thay vì có 1 đống code bên trong component lần lượt setState 
     &lt;/<span style=color:#f92672>div</span>&gt;
   );
 }
+</code></pre></div><h2 id=tips-to-write-reducers-well>Tips to write reducers well</h2>
+<h3 id=1-reducers-must-be-pure>1. Reducers must be pure</h3>
+<blockquote>
+<p>Giống như state update, reducers chạy trong quá trình rendering ( actions được cho vào hàng đợi cho đến lần render tiếp theo). Do đó:</p>
+</blockquote>
+<ol>
+<li>Không nên send requests</li>
+<li>Không nên schedule timeouts</li>
+<li>Thực hiện side effects ( hoạt động ảnh hưởng tới các component bên ngoài )</li>
+<li>Cập nhật các objects và array mà ko biến đổi nó (mutate)</li>
+</ol>
+<h3 id=2-writing-concise-reducers-with-immer>2. Writing concise reducers with Immer</h3>
+<blockquote>
+<p>Immer support us to write reducers in a mutating style</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#a6e22e>mport</span> {<span style=color:#a6e22e>useImmerReducer</span>} <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#39;use-immer&#39;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#a6e22e>AddTask</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#39;./AddTask.js&#39;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#a6e22e>TaskList</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#39;./TaskList.js&#39;</span>;
+
+<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>tasksReducer</span>(<span style=color:#a6e22e>draft</span>, <span style=color:#a6e22e>action</span>) {
+  <span style=color:#66d9ef>switch</span> (<span style=color:#a6e22e>action</span>.<span style=color:#a6e22e>type</span>) {
+    <span style=color:#66d9ef>case</span> <span style=color:#e6db74>&#39;added&#39;</span><span style=color:#f92672>:</span> {
+      <span style=color:#a6e22e>draft</span>.<span style=color:#a6e22e>push</span>({
+        <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>action</span>.<span style=color:#a6e22e>id</span>,
+        <span style=color:#a6e22e>text</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>action</span>.<span style=color:#a6e22e>text</span>,
+        <span style=color:#a6e22e>done</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>false</span>,
+      });
+      <span style=color:#66d9ef>break</span>;
+    }
+    <span style=color:#66d9ef>case</span> <span style=color:#e6db74>&#39;changed&#39;</span><span style=color:#f92672>:</span> {
+      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>index</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>draft</span>.<span style=color:#a6e22e>findIndex</span>((<span style=color:#a6e22e>t</span>) =&gt; <span style=color:#a6e22e>t</span>.<span style=color:#a6e22e>id</span> <span style=color:#f92672>===</span> <span style=color:#a6e22e>action</span>.<span style=color:#a6e22e>task</span>.<span style=color:#a6e22e>id</span>);
+      <span style=color:#a6e22e>draft</span>[<span style=color:#a6e22e>index</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>action</span>.<span style=color:#a6e22e>task</span>;
+      <span style=color:#66d9ef>break</span>;
+    }
+    <span style=color:#66d9ef>case</span> <span style=color:#e6db74>&#39;deleted&#39;</span><span style=color:#f92672>:</span> {
+      <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>draft</span>.<span style=color:#a6e22e>filter</span>((<span style=color:#a6e22e>t</span>) =&gt; <span style=color:#a6e22e>t</span>.<span style=color:#a6e22e>id</span> <span style=color:#f92672>!==</span> <span style=color:#a6e22e>action</span>.<span style=color:#a6e22e>id</span>);
+    }
+    <span style=color:#66d9ef>default</span><span style=color:#f92672>:</span> {
+      <span style=color:#66d9ef>throw</span> Error(<span style=color:#e6db74>&#39;Unknown action: &#39;</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>action</span>.<span style=color:#a6e22e>type</span>);
+    }
+  }
+}
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>TaskApp</span>() {
+  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>tasks</span>, <span style=color:#a6e22e>dispatch</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useImmerReducer</span>(<span style=color:#a6e22e>tasksReducer</span>, <span style=color:#a6e22e>initialTasks</span>);
+
+  <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>handleAddTask</span>(<span style=color:#a6e22e>text</span>) {
+    <span style=color:#a6e22e>dispatch</span>({
+      <span style=color:#a6e22e>type</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;added&#39;</span>,
+      <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>nextId</span><span style=color:#f92672>++</span>,
+      <span style=color:#a6e22e>text</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>text</span>,
+    });
+  }
+
+  <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>handleChangeTask</span>(<span style=color:#a6e22e>task</span>) {
+    <span style=color:#a6e22e>dispatch</span>({
+      <span style=color:#a6e22e>type</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;changed&#39;</span>,
+      <span style=color:#a6e22e>task</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>task</span>,
+    });
+  }
+
+  <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>handleDeleteTask</span>(<span style=color:#a6e22e>taskId</span>) {
+    <span style=color:#a6e22e>dispatch</span>({
+      <span style=color:#a6e22e>type</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;deleted&#39;</span>,
+      <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>taskId</span>,
+    });
+  }
+
+  <span style=color:#66d9ef>return</span> (
+    <span style=color:#f92672>&lt;&gt;</span>
+      <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>h1</span><span style=color:#f92672>&gt;</span><span style=color:#a6e22e>Prague</span> <span style=color:#a6e22e>itinerary</span><span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/h1&gt;</span>
+      <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>AddTask</span> <span style=color:#a6e22e>onAddTask</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>handleAddTask</span>} <span style=color:#f92672>/&gt;</span>
+      <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>TaskList</span>
+        <span style=color:#a6e22e>tasks</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>tasks</span>}
+        <span style=color:#a6e22e>onChangeTask</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>handleChangeTask</span>}
+        <span style=color:#a6e22e>onDeleteTask</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>handleDeleteTask</span>}
+      <span style=color:#f92672>/&gt;</span>
+    <span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/&gt;</span>
+  );
+}
+
+<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>nextId</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>3</span>;
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>initialTasks</span> <span style=color:#f92672>=</span> [
+  {<span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>0</span>, <span style=color:#a6e22e>text</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;Visit Kafka Museum&#39;</span>, <span style=color:#a6e22e>done</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>true</span>},
+  {<span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>1</span>, <span style=color:#a6e22e>text</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;Watch a puppet show&#39;</span>, <span style=color:#a6e22e>done</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>false</span>},
+  {<span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>2</span>, <span style=color:#a6e22e>text</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;Lennon Wall pic&#39;</span>, <span style=color:#a6e22e>done</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>false</span>},
+];
+
 </code></pre></div>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/cheatsheet>cheatsheet</a>
@@ -246,7 +334,7 @@ Copyright @ NextJSVietNam 2022
 Powered by <a class="font-bold text-primary" href=https://gohugo.io/>Go Hugo</a> - Made
 with love from <a class="font-bold text-primary" href=https://nextjsvietnam.com>NextJSVietNam</a> -
 Build
-Version 2022-10-11 14:30:39 +0700 +0700
+Version 2022-10-12 09:03:37 +0700 +0700
 </div>
 </div>
 </footer>
