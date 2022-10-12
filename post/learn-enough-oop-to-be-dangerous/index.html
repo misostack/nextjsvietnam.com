@@ -95,7 +95,82 @@ Và đồng thời cũng thể hiện các tính chất ( properties ) và hoạ
 <h3 id=1-các-thuộc-tính-properties-giúp-thể-hiện-các-đặc-điểmtrạng-thái-của-đối-tượng>1. Các thuộc tính (properties): giúp thể hiện các đặc điểm/trạng thái của đối tượng.</h3>
 <p>Ví dụ: 1 chiếc xe Lamborghini <strong>hiệu</strong> Aventador S. <strong>màu</strong> vàng, <strong>mẫu</strong> xe thể thao, <strong>động cơ</strong> V12 6.5L <strong>đã chạy được</strong> 100 cây, hiện đang được rao bán với <strong>giá</strong> 40 tỉ đồng.</p>
 <p><img src=https://user-images.githubusercontent.com/31009750/195302215-ecf5239e-56f3-4428-975b-a83d36ef850e.png alt=image></p>
-<h3 id=2-phương-thức-methods-giúp-thể-hiện-hành-viphản-ứng-của-đối-tượng>2. Phương thức (methods): giúp thể hiện hành vi/phản ứng của đối tượng</h3>
+<p>Ví dụ:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#f92672>package</span> javacore.net<span style=color:#f92672>;</span>
+
+<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Car</span> <span style=color:#f92672>{</span>
+    <span style=color:#75715e>// properties: manufacturer, model,
+</span><span style=color:#75715e></span>    String manufacture<span style=color:#f92672>;</span>
+    String model<span style=color:#f92672>;</span>
+    String color<span style=color:#f92672>;</span>
+    String engine<span style=color:#f92672>;</span>
+    <span style=color:#66d9ef>int</span> capacity<span style=color:#f92672>;</span>
+    <span style=color:#66d9ef>float</span> vehicleKilometersTraveled<span style=color:#f92672>;</span>
+
+    <span style=color:#66d9ef>public</span> <span style=color:#a6e22e>Car</span><span style=color:#f92672>(</span>String manufacture<span style=color:#f92672>,</span> String model<span style=color:#f92672>,</span> String color<span style=color:#f92672>,</span> String engine<span style=color:#f92672>,</span> <span style=color:#66d9ef>int</span> capacity<span style=color:#f92672>,</span> <span style=color:#66d9ef>float</span> vehicleKilometersTraveled<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>manufacture</span> <span style=color:#f92672>=</span> manufacture<span style=color:#f92672>;</span>
+        <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>model</span> <span style=color:#f92672>=</span> model<span style=color:#f92672>;</span>
+        <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>color</span> <span style=color:#f92672>=</span> color<span style=color:#f92672>;</span>
+        <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>engine</span> <span style=color:#f92672>=</span> engine<span style=color:#f92672>;</span>
+        <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>capacity</span> <span style=color:#f92672>=</span> capacity<span style=color:#f92672>;</span>
+        <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>vehicleKilometersTraveled</span> <span style=color:#f92672>=</span> vehicleKilometersTraveled<span style=color:#f92672>;</span>
+    <span style=color:#f92672>}</span>
+<span style=color:#f92672>}</span>
+
+</code></pre></div><h3 id=2-phương-thức-methods-giúp-thể-hiện-hành-viphản-ứng-của-đối-tượng>2. Phương thức (methods): giúp thể hiện hành vi/phản ứng của đối tượng</h3>
+<p>Trong thực tế, các đối tượng sẽ giao tiếp với các đối tượng khác trong ứng dụng.
+Do đó khi định nghĩa một phương, đôi khi phương thức sẽ cần các giá trị đầu vào (params), để có thể cho ra giá trị đầu ra (return value) tương ứng.</p>
+<p>Nguyên tắc khi thiết kế các phương thức:</p>
+<ol>
+<li>Những phương thức tốt nhất là những phương thức không có params</li>
+<li>Khi một phương thức chỉ có 1 param mang giá trị true/false, nên tách biệt thành 2 phương thức khác nhau.</li>
+<li>Một phương thức có thể có nhiều params, tuy nhiên không nên vượt quá con số 3. Có thể chuyển nhiều params này thành 1 đối tượng khác.</li>
+<li>Cố gắng không tạo ra side effect ( làm thay đổi 1 đối tượng khác không thuộc phạm vi của đối tượng này)</li>
+</ol>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#f92672>package</span> javacore.net<span style=color:#f92672>;</span>
+
+<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Car</span> <span style=color:#f92672>{</span>
+    <span style=color:#75715e>// properties: manufacturer, model,
+</span><span style=color:#75715e></span>    String manufacture<span style=color:#f92672>;</span>
+    String model<span style=color:#f92672>;</span>
+    String color<span style=color:#f92672>;</span>
+    String engine<span style=color:#f92672>;</span>
+    <span style=color:#66d9ef>int</span> capacity<span style=color:#f92672>;</span>
+    <span style=color:#66d9ef>float</span> vehicleKilometersTraveled<span style=color:#f92672>;</span>
+    <span style=color:#66d9ef>double</span> price<span style=color:#f92672>;</span>
+
+    <span style=color:#66d9ef>public</span> <span style=color:#a6e22e>Car</span><span style=color:#f92672>(</span>String manufacture<span style=color:#f92672>,</span> String model<span style=color:#f92672>,</span> String color<span style=color:#f92672>,</span> String engine<span style=color:#f92672>,</span> <span style=color:#66d9ef>int</span> capacity<span style=color:#f92672>,</span> <span style=color:#66d9ef>float</span> vehicleKilometersTraveled<span style=color:#f92672>,</span> <span style=color:#66d9ef>double</span> price<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>manufacture</span> <span style=color:#f92672>=</span> manufacture<span style=color:#f92672>;</span>
+        <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>model</span> <span style=color:#f92672>=</span> model<span style=color:#f92672>;</span>
+        <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>color</span> <span style=color:#f92672>=</span> color<span style=color:#f92672>;</span>
+        <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>engine</span> <span style=color:#f92672>=</span> engine<span style=color:#f92672>;</span>
+        <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>capacity</span> <span style=color:#f92672>=</span> capacity<span style=color:#f92672>;</span>
+        <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>vehicleKilometersTraveled</span> <span style=color:#f92672>=</span> vehicleKilometersTraveled<span style=color:#f92672>;</span>
+        <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>price</span> <span style=color:#f92672>=</span> price<span style=color:#f92672>;</span>
+    <span style=color:#f92672>}</span>
+
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>move</span><span style=color:#f92672>(</span><span style=color:#66d9ef>float</span> kilometers<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>vehicleKilometersTraveled</span> <span style=color:#f92672>+=</span> kilometers<span style=color:#f92672>;</span>
+    <span style=color:#f92672>}</span>
+
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>print</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+        String output <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;&#34;</span><span style=color:#f92672>;</span>
+        String lineBreak <span style=color:#f92672>=</span> String<span style=color:#f92672>.</span><span style=color:#a6e22e>format</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;%s\n&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;*&#34;</span><span style=color:#f92672>.</span><span style=color:#a6e22e>repeat</span><span style=color:#f92672>(</span>50<span style=color:#f92672>));</span>
+        output <span style=color:#f92672>+=</span> lineBreak<span style=color:#f92672>;</span>
+        output <span style=color:#f92672>+=</span> String<span style=color:#f92672>.</span><span style=color:#a6e22e>format</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Manufacture: %s\n&#34;</span><span style=color:#f92672>,</span> <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>manufacture</span><span style=color:#f92672>);</span>
+        output <span style=color:#f92672>+=</span> String<span style=color:#f92672>.</span><span style=color:#a6e22e>format</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Model: %s\n&#34;</span><span style=color:#f92672>,</span> <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>model</span><span style=color:#f92672>);</span>
+        output <span style=color:#f92672>+=</span> String<span style=color:#f92672>.</span><span style=color:#a6e22e>format</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Color: %s\n&#34;</span><span style=color:#f92672>,</span> <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>color</span><span style=color:#f92672>);</span>
+        output <span style=color:#f92672>+=</span> String<span style=color:#f92672>.</span><span style=color:#a6e22e>format</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Engine: %s\n&#34;</span><span style=color:#f92672>,</span> <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>engine</span><span style=color:#f92672>);</span>
+        output <span style=color:#f92672>+=</span> String<span style=color:#f92672>.</span><span style=color:#a6e22e>format</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Capacity: %s\n&#34;</span><span style=color:#f92672>,</span> <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>capacity</span><span style=color:#f92672>);</span>
+        output <span style=color:#f92672>+=</span> String<span style=color:#f92672>.</span><span style=color:#a6e22e>format</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Vehicle Kilometers Traveled: %.2f\n&#34;</span><span style=color:#f92672>,</span> <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>vehicleKilometersTraveled</span><span style=color:#f92672>);</span>
+        output <span style=color:#f92672>+=</span> String<span style=color:#f92672>.</span><span style=color:#a6e22e>format</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Price : %.2f\n&#34;</span><span style=color:#f92672>,</span> <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>price</span><span style=color:#f92672>);</span>
+        output <span style=color:#f92672>+=</span> lineBreak<span style=color:#f92672>;</span>
+        System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>printf</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;%s\n&#34;</span><span style=color:#f92672>,</span> output<span style=color:#f92672>);</span>
+    <span style=color:#f92672>}</span>
+<span style=color:#f92672>}</span>
+
+</code></pre></div><h3 id=3-để-hiện-thực-hóa-1-đối-tượng-trong-lập-trình-chúng-ta-sử-dụng-class>3. Để hiện thực hóa 1 đối tượng, trong lập trình chúng ta sử dụng Class</h3>
+<p><strong>Class</strong>: chính là 1 bản thiết kế mẫu, trong đó bao gồm định nghĩa có các thuộc tính, phương thức mà một đối tượng thuộc về Class này. Cụ thể hơn Class là 1 tập hợp các Object. Còn Object là 1 biểu hiện cụ thể của Class</p>
 <h3 id=tổng-kết>Tổng kết</h3>
 <p><img src=https://user-images.githubusercontent.com/31009750/195331118-2e9145f7-97d2-4f1d-9176-c4b89d874096.png alt=image></p>
 <h2 id=phần-2-oop-solid-principles>Phần 2: OOP SOLID Principles</h2>
