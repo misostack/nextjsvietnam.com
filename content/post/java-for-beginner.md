@@ -1,7 +1,7 @@
 ---
 title: "Java for Beginner"
 type: "post"
-date: 2022-07-20T09:03:37+07:00
+date: 2022-10-12T09:03:37+07:00
 description: "Java languages, essential Java classes, GUI"
 keywords: ["java", "java-beginner"]
 categories: ["java"]
@@ -210,6 +210,51 @@ public class JavaArrayLoop {
                 }
             }
         }
+    }
+}
+
+```
+
+> Day 3 : Java Array List
+
+```java
+package javacore.net;
+
+import java.util.ArrayList;
+
+public class JavaArrayList {
+    public static void run() {
+        // Programming languages
+        ArrayList<String> programmingLanguages = new ArrayList<String>();
+        String userInput = "java,c#,php,python,ruby,javascript,go,haskell,typescript,kotlin,dart,swift";
+        String[] arrayOfStr = userInput.split(",");
+        for (String item : arrayOfStr
+        ) {
+            programmingLanguages.add(item);
+        }
+
+        for (int i = 0; i < programmingLanguages.size(); i++) {
+            System.out.printf("%d. %s\n", i + 1, StringHelper.toCaptitalize(programmingLanguages.get(i)));
+        }
+    }
+}
+
+// StringHelper.java
+package javacore.net;
+
+public class StringHelper {
+    public static String toCaptitalize(String str) {
+        // convert to char
+
+        // uppercase first char
+        String newStr = "";
+        for (int i = 0; i < str.length(); i++) {
+            newStr += str.charAt(i);
+            if (i == 0) {
+                newStr = newStr.toUpperCase();
+            }
+        }
+        return newStr;
     }
 }
 
