@@ -50,3 +50,12 @@ The common pillars when we design a system:
 - Determine high-performing **data** _ingestion_ and _transformation_ solutions
 
 ### Domain 4. Cost Optimized Architectures
+
+- Design cost-optimized storage solutions
+- Design cost-optimized compute solutions
+- Design cost-optimized database solutions
+- Design cost-optimized network architectures
+
+## Resources
+
+1. [Cloud Guru - The best learning labs for cloud and devops](https://acloudguru.com/)
