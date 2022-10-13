@@ -14,6 +14,8 @@ The main topics will be discussed in this article:
 - [x] Hands-on practice tutorials
 - [x] The architecture patterns : real cases example
 
+## Overview
+
 AWS provide us "The SAA-C03 Exam", if you can pass the exam, you will get this certificate
 
 > AWS Solution Architect - Associate
@@ -55,6 +57,22 @@ The common pillars when we design a system:
 - Design cost-optimized compute solutions
 - Design cost-optimized database solutions
 - Design cost-optimized network architectures
+
+### AWS Freetier vs Sandbox
+
+#### AWS Freetier
+
+- Create your own AWS Free Tier Account
+- Full control
+- You've responsible for the bills
+- ... but you can operate in the free tier and set a billing alarm
+
+#### Sandbox
+
+- AWS account is hosted by a provider
+- Limited control
+- No clouds billing(no risk)
+- Scenario-based challenges
 
 ## Resources
 
