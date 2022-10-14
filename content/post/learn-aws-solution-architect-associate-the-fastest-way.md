@@ -74,6 +74,11 @@ The common pillars when we design a system:
 - No clouds billing(no risk)
 - Scenario-based challenges
 
-## Resources
+Some of creditable cloud training labs:
 
-1. [Cloud Guru - The best learning labs for cloud and devops](https://acloudguru.com/)
+- [DigitalCloud Training](https://digitalcloud.training/hands-on-challenge-labs/) by [Neal David](https://twitter.com/nealkdavis)
+- [Cloud Guru - The best learning labs for cloud and devops](https://acloudguru.com/)
+
+## Fun facts
+
+> Cloud Guru is a holding company of LinuxAcademy, and is a subsidiary of Pluralsight
