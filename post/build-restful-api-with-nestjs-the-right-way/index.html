@@ -11,12 +11,12 @@
 <link rel=stylesheet href=https://nextjsvietnam.com/themes/2022/public/page.css>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWE4MLJYE6"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-RWE4MLJYE6')</script>
-<title>Ngay Dau Di Lam Dev Backend | Ngày đầu đi làm Backend | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+<title>Build Restful Api With Nestjs the Right Way | The hands-on NestJS tutorial to build a standard Restful API | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
 <meta name=robots content="all">
-<meta name=keywords content="Ngày đầu đi làm Backend">
-<meta name=description content="Ngày đầu đi làm Backend">
+<meta name=keywords content="nestjs,dto,validation">
+<meta name=description content="The hands-on NestJS tutorial to build a standard Restful API">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://nextjsvietnam.com/common/no-image.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/31009750/181449337-70081a76-5a01-4229-805e-39ed0ded6b5b.png">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="750">
 <meta property="og:image:height" content="300">
@@ -81,13 +81,59 @@
 <main>
 <section class="container section">
 <div class="page-content max-w-2xl mx-auto">
-<img src=https://nextjsvietnam.com/common/no-image.png class=img-responsive alt="Ngay Dau Di Lam Dev Backend">
-<h1>Ngay Dau Di Lam Dev Backend</h1>
+<img src=https://user-images.githubusercontent.com/31009750/181449337-70081a76-5a01-4229-805e-39ed0ded6b5b.png class=img-responsive alt="Build Restful Api With Nestjs the Right Way">
+<h1>Build Restful Api With Nestjs the Right Way</h1>
 <p>
-<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/lifestyle>lifestyle</a>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/frameworks>frameworks</a>
 </p>
+<blockquote>
+<p>Foreword</p>
+</blockquote>
+<p>If you are new with NestJS or you have been worked with it for several projects, this post is for you. In this article, I&rsquo;ll share with you the real world process to build a Restful API from scratch with NestJS</p>
+<p>Okie, let&rsquo;s start. Imagination, we&rsquo;ve already have detail specifications.
+This is our requirements in this sample:</p>
+<p>Create Restful API for a image storage service that allow:</p>
+<ol>
+<li>Users can register to the system. They need to verify their account before using it (via email).</li>
+<li>Users can only use the system if they have an active account</li>
+<li>Users can upload images with png,jpg,jpeg format. The maximum size is 5MB</li>
+<li>User&rsquo;s images won&rsquo;t be public unless they created a shared link and share with other people.</li>
+<li>User&rsquo;s images can be used on other websites</li>
+<li>A user has maximum 100 images.</li>
+<li>A system will delete unused image(unused more than 1 year) automatically every weekends.</li>
+</ol>
+<p>Infrastructure requirements:</p>
+<ol>
+<li>Local : Local Docker</li>
+<li>Staging: Run on VM with Docker</li>
+<li>Production: Host everything on AWS</li>
+</ol>
+<p>First of all, we need to write down what we have to do.</p>
+<ul>
+<li><input checked disabled type=checkbox> Install NestJS CLI</li>
+<li><input checked disabled type=checkbox> Setup your dev tools: vscode, config for debug, code linter</li>
+<li><input checked disabled type=checkbox> Design source code structure: seperate them into layers</li>
+<li><input checked disabled type=checkbox> Setup your local docker (database only)</li>
+<li><input checked disabled type=checkbox> Setup your application&rsquo;s configuration</li>
+<li><input checked disabled type=checkbox> Setup data access layer and configuration</li>
+<li><input checked disabled type=checkbox> Business Layer: define business models: inputModels, outputModels</li>
+<li><input checked disabled type=checkbox> Presentation Layer: define controllers</li>
+<li><input checked disabled type=checkbox> Presentation Layer: integrate data validation from business models</li>
+<li><input checked disabled type=checkbox> Business Layer: define business service</li>
+<li><input checked disabled type=checkbox> Presentation Layer: integrate with business layer</li>
+<li><input checked disabled type=checkbox> Presentation Layer: create swagger - the api document</li>
+<li><input checked disabled type=checkbox> Persistence Layer: define database&rsquo;s entities, create and run migration scripts, seeds</li>
+<li><input checked disabled type=checkbox> Persistence Layer: define repositories</li>
+<li><input checked disabled type=checkbox> Business Layer: integrate repository with business layer</li>
+<li><input checked disabled type=checkbox> Setup your staging docker: dockerfile, docker compose, setup scripts</li>
+<li><input checked disabled type=checkbox> Setup your CI/CD flow and setup on your staging</li>
+<li><input checked disabled type=checkbox> Design and setup AWS Infrastructure</li>
+</ul>
+<h2 id=step-1--install-nestjs-cli>Step 1 : Install NestJS CLI</h2>
+<h2 id=step-2-setup-your-dev-tools>Step 2: Setup your dev tools</h2>
+<h2 id=step-3-design-source-code-structure>Step 3: Design source code structure</h2>
 <div class="m-1 p-1">
-<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/lifestyle>lifestyle</a>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/frameworks>frameworks</a>
 </div>
 </div>
 </section>
@@ -96,7 +142,13 @@
 <div class="font-heading text-2xl font-semibold">You Might Also Like</div>
 <div class="mt-8 grid gap-8">
 <ul class=sidebar-links>
-<li><a href=/post/thien-tam/>Thiện tâm</a></li>
+<li><a href=/post/manage-your-reactjs-state-the-right-way/>Manage Your Reactjs State the Right Way</a></li>
+<li><a href=/post/the-best-way-to-upload-file-in-nestjs/>The Best Way to Upload File in Nestjs</a></li>
+<li><a href=/post/vuejs-how-to-add-tailwind-in-your-application/>Vuejs How to Add TailwindCSS in Your Application</a></li>
+<li><a href=/post/nestjs-request-and-response-object/>Nestjs Request and Response Object</a></li>
+<li><a href=/post/nestjs-pipes/>Nestjs Pipes</a></li>
+<li><a href=/post/validate-request-input-in-nestjs/>Validate Request Input in Nestjs</a></li>
+<li><a href=/post/nestjs-provider/>Nestjs Provider</a></li>
 </ul>
 </div>
 </div>
