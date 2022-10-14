@@ -78,3 +78,45 @@ https.get(
   }
 );
 ```
+
+## Question 5: Write a factorial function
+
+```js
+// factorial is a function that multiples a number by every number below it till 1
+const factorialCalculation = (n) => {};
+```
+
+> Answer
+
+```js
+// factorial is a function that multiples a number by every number below it till 1
+const factorialCalculation = (n) => {
+  if (isNaN(n) || n.toString().indexOf(".") > 0 || n < 0) {
+    throw new Error(`${n} is not a natural number`);
+  }
+  // n <= 1 : 0,1
+  if (n <= 1) {
+    return 1;
+  }
+  if (n >= 1e3) {
+    throw new Error(`n is too large, it must be less than ${1e3}`);
+  }
+  let factorialResult = n;
+  for (let i = n - 1; i > 1; factorialResult *= i--);
+  return factorialResult;
+};
+
+console.log(0, factorialCalculation(0));
+console.log(2.0, factorialCalculation(2.0));
+console.log(3, factorialCalculation(3));
+console.log(4, factorialCalculation(4));
+console.log(5, factorialCalculation(5));
+console.log(6, factorialCalculation(6));
+console.log(1e2, factorialCalculation(1e2));
+console.log("10", factorialCalculation("10"));
+console.log("5", factorialCalculation("5"));
+console.log(2.3, factorialCalculation(2.3));
+console.log("a", factorialCalculation("a"));
+console.log(1e99, factorialCalculation(1e9));
+console.log(-2, factorialCalculation(-2));
+```
