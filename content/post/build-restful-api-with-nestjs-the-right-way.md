@@ -53,8 +53,89 @@ First of all, we need to write down what we have to do.
 - [x] Setup your CI/CD flow and setup on your staging
 - [x] Design and setup AWS Infrastructure
 
+### And assume that we already have the high level designs
+
+![File Storage API](/documents/file-storage-api.png)
+
+![File Storage API Entities](/documents/file-storage-api-entities.png)
+
+![File Storage API Endpoints](/documents/file-storage-api-endpoints.png)
+
 ## Step 1 : Install NestJS CLI
+
+```bash
+npm i -g @nestjs/cli
+nest new your-project-name
+```
 
 ## Step 2: Setup your dev tools
 
+1. How to debug NestJS in VSCode?
+
+> .vscode/launch.json
+
+```json
+{
+  "configurations": [
+    {
+      "name": "Debug API",
+      "type": "node",
+      "program": "${workspaceFolder}/src/application/api/main.ts",
+      "runtimeArgs": [
+        "-r",
+        "ts-node/register",
+        "-r",
+        "tsconfig-paths/register"
+      ],
+      "console": "integratedTerminal",
+      "request": "launch",
+      "skipFiles": ["<node_internals>/**"],
+      "outFiles": ["${workspaceFolder}/**/*.js", "!**/node_modules/**"]
+    },
+    {
+      "name": "Debug remote api",
+      "type": "node",
+      "request": "attach",
+      "remoteRoot": "/app",
+      "localRoot": "${workspaceFolder}",
+      "port": 9229,
+      "restart": true,
+      "address": "0.0.0.0",
+      "skipFiles": ["<node_internals>/**"]
+    }
+  ]
+}
+```
+
+> Debug main app (file storage api)
+
+F5 -> Select Debug API
+
+Make sure your program path is your api's main file
+
+> Eg: "program": "${workspaceFolder}/src/application/api/main.ts",
+
+> Debug remote
+
+Example: Start app in debug mode - debugger port 9229
+
+F5 -> Select Debug remote API
+
+```bash
+npm run start:debug
+```
+
 ## Step 3: Design source code structure
+
+1. solutions
+   - deployment -> deployment scripts, dockerfiles, k8s, ...
+2. src
+
+- src/share -> Share/Common projects
+- src/domain -> Tables mapping
+- src/persistence -> TypeORM Core
+- src/business -> Business logic
+- src/application -> applications: file-storage-api, web, queues, ...
+- src/tool -> tools: migration data
+
+3. test -> test configuration
