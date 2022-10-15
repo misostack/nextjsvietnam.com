@@ -169,6 +169,61 @@
 <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;a&#34;</span>, <span style=color:#a6e22e>factorialCalculation</span>(<span style=color:#e6db74>&#34;a&#34;</span>));
 <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#ae81ff>1e99</span>, <span style=color:#a6e22e>factorialCalculation</span>(<span style=color:#ae81ff>1e9</span>));
 <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#f92672>-</span><span style=color:#ae81ff>2</span>, <span style=color:#a6e22e>factorialCalculation</span>(<span style=color:#f92672>-</span><span style=color:#ae81ff>2</span>));
+</code></pre></div><h2 id=question-6-binary-gap>Question 6: Binary Gap</h2>
+<p>A binary gap within a positive integer N is any maximal sequence of consecutive zeros that is surrounded by ones at both ends in the binary representation of N.</p>
+<p>For example, number 9 has binary representation 1001 and contains a binary gap of length 2. The number 529 has binary representation 1000010001 and contains two binary gaps: one of length 4 and one of length 3. The number 20 has binary representation 10100 and contains one binary gap of length 1. The number 15 has binary representation 1111 and has no binary gaps. The number 32 has binary representation 100000 and has no binary gaps.</p>
+<p>Write a function:</p>
+<p>function solution(N);</p>
+<p>that, given a positive integer N, returns the length of its longest binary gap. The function should return 0 if N doesn&rsquo;t contain a binary gap.</p>
+<p>For example, given N = 1041 the function should return 5, because N has binary representation 10000010001 and so its longest binary gap is of length 5. Given N = 32 the function should return 0, because N has binary representation &lsquo;100000&rsquo; and thus no binary gaps.</p>
+<p>Write an efficient algorithm for the following assumptions:</p>
+<p>N is an integer within the range [1..2,147,483,647].</p>
+<h3 id=answer>Answer</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#75715e>// you can write to stdout for debugging purposes, e.g.
+</span><span style=color:#75715e>// console.log(&#39;this is a debug message&#39;);
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>solution</span>(<span style=color:#a6e22e>N</span>) {
+  <span style=color:#75715e>// write your code in JavaScript (Node.js 14)
+</span><span style=color:#75715e></span>
+  <span style=color:#66d9ef>try</span> {
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>MAX_N</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>2147483647</span>;
+    <span style=color:#75715e>// if not a positive integer return 0
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>if</span> (isNaN(<span style=color:#a6e22e>N</span>) <span style=color:#f92672>||</span> <span style=color:#a6e22e>N</span> <span style=color:#f92672>&lt;=</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>||</span> <span style=color:#a6e22e>N</span>.<span style=color:#a6e22e>toString</span>().<span style=color:#a6e22e>includes</span>(<span style=color:#e6db74>&#34;.&#34;</span>) <span style=color:#f92672>||</span> parseInt(<span style=color:#a6e22e>N</span>) <span style=color:#f92672>&gt;</span> <span style=color:#a6e22e>MAX_N</span>)
+      <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+    <span style=color:#75715e>// convert to binary number
+</span><span style=color:#75715e></span>    <span style=color:#75715e>// 12 -&gt; 6 -&gt; 3 -&gt; 2 -&gt; 1 =&gt; 10000
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>cloneOfN</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>N</span>;
+    <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>longestBinaryGap</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+    <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>startGap</span> <span style=color:#f92672>=</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>;
+    <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>endGap</span> <span style=color:#f92672>=</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>;
+    <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>index</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; <span style=color:#a6e22e>cloneOfN</span> <span style=color:#f92672>&gt;=</span> <span style=color:#ae81ff>1</span>; ) {
+      <span style=color:#75715e>// set startGap when startGap === -1 cloneOfN %2 === 1
+</span><span style=color:#75715e></span>      <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>cloneOfN</span> <span style=color:#f92672>%</span> <span style=color:#ae81ff>2</span> <span style=color:#f92672>===</span> <span style=color:#ae81ff>1</span>) {
+        <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>startGap</span> <span style=color:#f92672>===</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>) {
+          <span style=color:#a6e22e>startGap</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>index</span>;
+        } <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>startGap</span> <span style=color:#f92672>!==</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span> <span style=color:#f92672>&amp;&amp;</span> <span style=color:#a6e22e>endGap</span> <span style=color:#f92672>===</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>) {
+          <span style=color:#a6e22e>endGap</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>index</span>;
+          <span style=color:#75715e>// closeGap and compare
+</span><span style=color:#75715e></span>          <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>gapDiff</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>endGap</span> <span style=color:#f92672>-</span> <span style=color:#a6e22e>startGap</span> <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>;
+          <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>gapDiff</span> <span style=color:#f92672>&gt;</span> <span style=color:#a6e22e>longestBinaryGap</span>) {
+            <span style=color:#a6e22e>longestBinaryGap</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>gapDiff</span>;
+          }
+          <span style=color:#75715e>// reset gap
+</span><span style=color:#75715e></span>          <span style=color:#a6e22e>startGap</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>index</span>;
+          <span style=color:#a6e22e>endGap</span> <span style=color:#f92672>=</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>;
+        }
+      }
+      <span style=color:#a6e22e>cloneOfN</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>cloneOfN</span> <span style=color:#f92672>-</span> (<span style=color:#a6e22e>cloneOfN</span> <span style=color:#f92672>%</span> <span style=color:#ae81ff>2</span>)) <span style=color:#f92672>/</span> <span style=color:#ae81ff>2</span>;
+      <span style=color:#a6e22e>index</span><span style=color:#f92672>++</span>;
+    }
+    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>longestBinaryGap</span>;
+  } <span style=color:#66d9ef>catch</span> {
+    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+  }
+}
+
+<span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>solution</span>(<span style=color:#ae81ff>1041</span>));
+<span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>solution</span>(<span style=color:#e6db74>&#34;abc&#34;</span>));
 </code></pre></div>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/cheatsheet>cheatsheet</a>

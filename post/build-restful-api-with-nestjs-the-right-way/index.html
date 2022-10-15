@@ -129,9 +129,84 @@ This is our requirements in this sample:</p>
 <li><input checked disabled type=checkbox> Setup your CI/CD flow and setup on your staging</li>
 <li><input checked disabled type=checkbox> Design and setup AWS Infrastructure</li>
 </ul>
+<h3 id=and-assume-that-we-already-have-the-high-level-designs>And assume that we already have the high level designs</h3>
+<p><img src=/documents/file-storage-api.png alt="File Storage API"></p>
+<p><img src=/documents/file-storage-api-entities.png alt="File Storage API Entities"></p>
+<p><img src=/documents/file-storage-api-endpoints.png alt="File Storage API Endpoints"></p>
 <h2 id=step-1--install-nestjs-cli>Step 1 : Install NestJS CLI</h2>
-<h2 id=step-2-setup-your-dev-tools>Step 2: Setup your dev tools</h2>
-<h2 id=step-3-design-source-code-structure>Step 3: Design source code structure</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>npm i -g @nestjs/cli
+nest new your-project-name
+</code></pre></div><h2 id=step-2-setup-your-dev-tools>Step 2: Setup your dev tools</h2>
+<ol>
+<li>How to debug NestJS in VSCode?</li>
+</ol>
+<blockquote>
+<p>.vscode/launch.json</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>{
+  <span style=color:#f92672>&#34;configurations&#34;</span>: [
+    {
+      <span style=color:#f92672>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;Debug API&#34;</span>,
+      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;node&#34;</span>,
+      <span style=color:#f92672>&#34;program&#34;</span>: <span style=color:#e6db74>&#34;${workspaceFolder}/src/application/api/main.ts&#34;</span>,
+      <span style=color:#f92672>&#34;runtimeArgs&#34;</span>: [
+        <span style=color:#e6db74>&#34;-r&#34;</span>,
+        <span style=color:#e6db74>&#34;ts-node/register&#34;</span>,
+        <span style=color:#e6db74>&#34;-r&#34;</span>,
+        <span style=color:#e6db74>&#34;tsconfig-paths/register&#34;</span>
+      ],
+      <span style=color:#f92672>&#34;console&#34;</span>: <span style=color:#e6db74>&#34;integratedTerminal&#34;</span>,
+      <span style=color:#f92672>&#34;request&#34;</span>: <span style=color:#e6db74>&#34;launch&#34;</span>,
+      <span style=color:#f92672>&#34;skipFiles&#34;</span>: [<span style=color:#e6db74>&#34;&lt;node_internals&gt;/**&#34;</span>],
+      <span style=color:#f92672>&#34;outFiles&#34;</span>: [<span style=color:#e6db74>&#34;${workspaceFolder}/**/*.js&#34;</span>, <span style=color:#e6db74>&#34;!**/node_modules/**&#34;</span>]
+    },
+    {
+      <span style=color:#f92672>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;Debug remote api&#34;</span>,
+      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;node&#34;</span>,
+      <span style=color:#f92672>&#34;request&#34;</span>: <span style=color:#e6db74>&#34;attach&#34;</span>,
+      <span style=color:#f92672>&#34;remoteRoot&#34;</span>: <span style=color:#e6db74>&#34;/app&#34;</span>,
+      <span style=color:#f92672>&#34;localRoot&#34;</span>: <span style=color:#e6db74>&#34;${workspaceFolder}&#34;</span>,
+      <span style=color:#f92672>&#34;port&#34;</span>: <span style=color:#ae81ff>9229</span>,
+      <span style=color:#f92672>&#34;restart&#34;</span>: <span style=color:#66d9ef>true</span>,
+      <span style=color:#f92672>&#34;address&#34;</span>: <span style=color:#e6db74>&#34;0.0.0.0&#34;</span>,
+      <span style=color:#f92672>&#34;skipFiles&#34;</span>: [<span style=color:#e6db74>&#34;&lt;node_internals&gt;/**&#34;</span>]
+    }
+  ]
+}
+</code></pre></div><blockquote>
+<p>Debug main app (file storage api)</p>
+</blockquote>
+<p>F5 -> Select Debug API</p>
+<p>Make sure your program path is your api&rsquo;s main file</p>
+<blockquote>
+<p>Eg: &ldquo;program&rdquo;: &ldquo;${workspaceFolder}/src/application/api/main.ts&rdquo;,</p>
+</blockquote>
+<blockquote>
+<p>Debug remote</p>
+</blockquote>
+<p>Example: Start app in debug mode - debugger port 9229</p>
+<p>F5 -> Select Debug remote API</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>npm run start:debug
+</code></pre></div><h2 id=step-3-design-source-code-structure>Step 3: Design source code structure</h2>
+<ol>
+<li>solutions
+<ul>
+<li>deployment -> deployment scripts, dockerfiles, k8s, &mldr;</li>
+</ul>
+</li>
+<li>src</li>
+</ol>
+<ul>
+<li>src/share -> Share/Common projects</li>
+<li>src/domain -> Tables mapping</li>
+<li>src/persistence -> TypeORM Core</li>
+<li>src/business -> Business logic</li>
+<li>src/application -> applications: file-storage-api, web, queues, &mldr;</li>
+<li>src/tool -> tools: migration data</li>
+</ul>
+<ol start=3>
+<li>test -> test configuration</li>
+</ol>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/frameworks>frameworks</a>
 </div>
