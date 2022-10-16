@@ -226,3 +226,82 @@ function solution2(N) {
   }
 }
 ```
+
+## Question 7: Write code to make this become true
+
+```js
+// So what is a
+if (a == 1 && a == 2 && a == 3) {
+  console.log("Hello World!");
+}
+```
+
+## Answer
+
+```js
+const a = {
+  i: 1,
+  toString: function () {
+    return a.i++;
+  },
+};
+```
+
+## Question 8: Array
+
+Create pairs of an integer array. Each array element may belong to one pair only. Is it possible to use all the integers?
+
+```js
+function solutionA(A) {
+  // return whether it is possible to split all the integers into pair
+}
+```
+
+Sample test cases:
+
+1. A = [1,2,2,1] => return True. Because we have 2 pairs: [A[0],A[3]], [A[1],A[2]]
+2. A = [7,7,7] => return False. have a single 7 left
+3. A = [1,2,2,3] => return false. there's nothing a[1] can be paired with
+
+Assumptions:
+
+1. Length of A : [1..100,000]
+2. Each element in A is an integer within the range [-1,000,000..1,000,000]
+
+### Answer
+
+```js
+// Create pairs of an integer array.
+// Each array element may belong to one pair only.
+// Is it possible to use all the integers?
+
+// return whether it is possible to split all the integers into pair
+
+function solutionA(A) {
+  // A's length is odd number return false
+  if (A.length % 2 != 0) return false;
+  let sortedA = A.sort((a, b) => a - b);
+  // if there is any number in even index is not equal its next number in the sorted array
+  // it meaned it can not be paired
+  for (let i = 0; i <= sortedA.length - 1; i += 2) {
+    if (A[i] != A[i + 1]) return false;
+  }
+  return true;
+}
+// run test
+console.log(solutionA([1, 2, 2, 1]));
+console.log(solutionA([7, 7, 7]));
+console.log(solutionA([1, 2, 2, 3]));
+const longestA = [];
+
+for (let i = 0; i < 50, 000; i++) {
+  longestA.push(-100, 000 + i * 10);
+  longestA.push(-100, 000 + i * 10);
+}
+
+Array.prototype.shuffle = function () {
+  return this.sort(() => Math.random() - 0.5);
+};
+
+console.log(solutionA(longestA.shuffle()));
+```
