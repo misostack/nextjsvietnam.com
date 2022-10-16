@@ -299,7 +299,7 @@
 </span><span style=color:#75715e></span>
 <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>solutionA</span>(<span style=color:#a6e22e>A</span>) {
   <span style=color:#75715e>// A&#39;s length is odd number return false
-</span><span style=color:#75715e></span>  <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>A</span>.<span style=color:#a6e22e>length</span> <span style=color:#f92672>%</span> <span style=color:#ae81ff>2</span> <span style=color:#f92672>!=</span> <span style=color:#ae81ff>0</span>) <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>false</span>;
+</span><span style=color:#75715e></span>  <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>A</span>.<span style=color:#a6e22e>length</span> <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>||</span> <span style=color:#a6e22e>A</span>.<span style=color:#a6e22e>length</span> <span style=color:#f92672>%</span> <span style=color:#ae81ff>2</span> <span style=color:#f92672>!=</span> <span style=color:#ae81ff>0</span>) <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>false</span>;
   <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>sortedA</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>A</span>.<span style=color:#a6e22e>sort</span>((<span style=color:#a6e22e>a</span>, <span style=color:#a6e22e>b</span>) =&gt; <span style=color:#a6e22e>a</span> <span style=color:#f92672>-</span> <span style=color:#a6e22e>b</span>);
   <span style=color:#75715e>// if there is any number in even index is not equal its next number in the sorted array
 </span><span style=color:#75715e></span>  <span style=color:#75715e>// it meaned it can not be paired
@@ -309,12 +309,13 @@
   <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>true</span>;
 }
 <span style=color:#75715e>// run test
-</span><span style=color:#75715e></span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>solutionA</span>([<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>1</span>]));
+</span><span style=color:#75715e></span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>solutionA</span>([]));
+<span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>solutionA</span>([<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>1</span>]));
 <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>solutionA</span>([<span style=color:#ae81ff>7</span>, <span style=color:#ae81ff>7</span>, <span style=color:#ae81ff>7</span>]));
 <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>solutionA</span>([<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>]));
 <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>longestA</span> <span style=color:#f92672>=</span> [];
 
-<span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>i</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; <span style=color:#a6e22e>i</span> <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>50</span>, <span style=color:#ae81ff>000</span>; <span style=color:#a6e22e>i</span><span style=color:#f92672>++</span>) {
+<span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>i</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; <span style=color:#a6e22e>i</span> <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>500</span>, <span style=color:#ae81ff>000</span>; <span style=color:#a6e22e>i</span><span style=color:#f92672>++</span>) {
   <span style=color:#a6e22e>longestA</span>.<span style=color:#a6e22e>push</span>(<span style=color:#f92672>-</span><span style=color:#ae81ff>100</span>, <span style=color:#ae81ff>000</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>i</span> <span style=color:#f92672>*</span> <span style=color:#ae81ff>10</span>);
   <span style=color:#a6e22e>longestA</span>.<span style=color:#a6e22e>push</span>(<span style=color:#f92672>-</span><span style=color:#ae81ff>100</span>, <span style=color:#ae81ff>000</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>i</span> <span style=color:#f92672>*</span> <span style=color:#ae81ff>10</span>);
 }
