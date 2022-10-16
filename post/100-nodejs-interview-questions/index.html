@@ -262,6 +262,68 @@
     <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
   }
 }
+</code></pre></div><h2 id=question-7-write-code-to-make-this-become-true>Question 7: Write code to make this become true</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#75715e>// So what is a
+</span><span style=color:#75715e></span><span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>a</span> <span style=color:#f92672>==</span> <span style=color:#ae81ff>1</span> <span style=color:#f92672>&amp;&amp;</span> <span style=color:#a6e22e>a</span> <span style=color:#f92672>==</span> <span style=color:#ae81ff>2</span> <span style=color:#f92672>&amp;&amp;</span> <span style=color:#a6e22e>a</span> <span style=color:#f92672>==</span> <span style=color:#ae81ff>3</span>) {
+  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;Hello World!&#34;</span>);
+}
+</code></pre></div><h2 id=answer-1>Answer</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>a</span> <span style=color:#f92672>=</span> {
+  <span style=color:#a6e22e>i</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>1</span>,
+  <span style=color:#a6e22e>toString</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>function</span> () {
+    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>a</span>.<span style=color:#a6e22e>i</span><span style=color:#f92672>++</span>;
+  },
+};
+</code></pre></div><h2 id=question-8-array>Question 8: Array</h2>
+<p>Create pairs of an integer array. Each array element may belong to one pair only. Is it possible to use all the integers?</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>solutionA</span>(<span style=color:#a6e22e>A</span>) {
+  <span style=color:#75715e>// return whether it is possible to split all the integers into pair
+</span><span style=color:#75715e></span>}
+</code></pre></div><p>Sample test cases:</p>
+<ol>
+<li>A = [1,2,2,1] => return True. Because we have 2 pairs: [A[0],A[3]], [A[1],A[2]]</li>
+<li>A = [7,7,7] => return False. have a single 7 left</li>
+<li>A = [1,2,2,3] => return false. there&rsquo;s nothing a[1] can be paired with</li>
+</ol>
+<p>Assumptions:</p>
+<ol>
+<li>Length of A : [1..100,000]</li>
+<li>Each element in A is an integer within the range [-1,000,000..1,000,000]</li>
+</ol>
+<h3 id=answer-2>Answer</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#75715e>// Create pairs of an integer array.
+</span><span style=color:#75715e>// Each array element may belong to one pair only.
+</span><span style=color:#75715e>// Is it possible to use all the integers?
+</span><span style=color:#75715e></span>
+<span style=color:#75715e>// return whether it is possible to split all the integers into pair
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>solutionA</span>(<span style=color:#a6e22e>A</span>) {
+  <span style=color:#75715e>// A&#39;s length is odd number return false
+</span><span style=color:#75715e></span>  <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>A</span>.<span style=color:#a6e22e>length</span> <span style=color:#f92672>%</span> <span style=color:#ae81ff>2</span> <span style=color:#f92672>!=</span> <span style=color:#ae81ff>0</span>) <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>false</span>;
+  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>sortedA</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>A</span>.<span style=color:#a6e22e>sort</span>((<span style=color:#a6e22e>a</span>, <span style=color:#a6e22e>b</span>) =&gt; <span style=color:#a6e22e>a</span> <span style=color:#f92672>-</span> <span style=color:#a6e22e>b</span>);
+  <span style=color:#75715e>// if there is any number in even index is not equal its next number in the sorted array
+</span><span style=color:#75715e></span>  <span style=color:#75715e>// it meaned it can not be paired
+</span><span style=color:#75715e></span>  <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>i</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; <span style=color:#a6e22e>i</span> <span style=color:#f92672>&lt;=</span> <span style=color:#a6e22e>sortedA</span>.<span style=color:#a6e22e>length</span> <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>; <span style=color:#a6e22e>i</span> <span style=color:#f92672>+=</span> <span style=color:#ae81ff>2</span>) {
+    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>A</span>[<span style=color:#a6e22e>i</span>] <span style=color:#f92672>!=</span> <span style=color:#a6e22e>A</span>[<span style=color:#a6e22e>i</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>]) <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>false</span>;
+  }
+  <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>true</span>;
+}
+<span style=color:#75715e>// run test
+</span><span style=color:#75715e></span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>solutionA</span>([<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>1</span>]));
+<span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>solutionA</span>([<span style=color:#ae81ff>7</span>, <span style=color:#ae81ff>7</span>, <span style=color:#ae81ff>7</span>]));
+<span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>solutionA</span>([<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>]));
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>longestA</span> <span style=color:#f92672>=</span> [];
+
+<span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>i</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; <span style=color:#a6e22e>i</span> <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>50</span>, <span style=color:#ae81ff>000</span>; <span style=color:#a6e22e>i</span><span style=color:#f92672>++</span>) {
+  <span style=color:#a6e22e>longestA</span>.<span style=color:#a6e22e>push</span>(<span style=color:#f92672>-</span><span style=color:#ae81ff>100</span>, <span style=color:#ae81ff>000</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>i</span> <span style=color:#f92672>*</span> <span style=color:#ae81ff>10</span>);
+  <span style=color:#a6e22e>longestA</span>.<span style=color:#a6e22e>push</span>(<span style=color:#f92672>-</span><span style=color:#ae81ff>100</span>, <span style=color:#ae81ff>000</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>i</span> <span style=color:#f92672>*</span> <span style=color:#ae81ff>10</span>);
+}
+
+Array.<span style=color:#a6e22e>prototype</span>.<span style=color:#a6e22e>shuffle</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>function</span> () {
+  <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>sort</span>(() =&gt; Math.<span style=color:#a6e22e>random</span>() <span style=color:#f92672>-</span> <span style=color:#ae81ff>0.5</span>);
+};
+
+<span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>solutionA</span>(<span style=color:#a6e22e>longestA</span>.<span style=color:#a6e22e>shuffle</span>()));
 </code></pre></div>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/cheatsheet>cheatsheet</a>
