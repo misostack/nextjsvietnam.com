@@ -188,6 +188,8 @@ nest new your-project-name
 <p>F5 -> Select Debug remote API</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>npm run start:debug
 </code></pre></div><h2 id=step-3-design-source-code-structure>Step 3: Design source code structure</h2>
+<p><strong>Overview layers</strong></p>
+<p><img src=/documents/file-storage-api-clean-architecture.png alt="File Storage API clean architecture layer"></p>
 <ol>
 <li>solutions
 <ul>
@@ -197,17 +199,71 @@ nest new your-project-name
 <li>src</li>
 </ol>
 <ul>
-<li>src/share -> Share/Common projects</li>
-<li>src/domain -> Tables mapping</li>
-<li>src/persistence -> TypeORM Core</li>
-<li>src/business -> Business logic</li>
 <li>src/application -> applications: file-storage-api, web, queues, &mldr;</li>
+<li>src/domain -> Tables mapping</li>
+<li>src/business -> Business logic</li>
+<li>src/share -> Share/Common projects</li>
+<li>src/persistence -> TypeORM Core</li>
 <li>src/tool -> tools: migration data</li>
 </ul>
 <ol start=3>
 <li>test -> test configuration</li>
 </ol>
-<p><strong>Example application layer</strong></p>
+<p><strong>domain layer</strong>
+<img src=/documents/file-storage-api-domain-layer.png alt="File Storage API business layer"></p>
+<p><strong>application layer</strong>
+<img src=/documents/file-storage-api-application-layer.png alt="File Storage API application layer"></p>
+<p><strong>business layer</strong>
+<img src=/documents/file-storage-api-application-layer.png alt="File Storage API business layer"></p>
+<p><strong>Example domain layer</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#75715e>// src/domain/base.entity.ts
+</span><span style=color:#75715e></span><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>abstract</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>BaseEntity</span> {
+  <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>number</span>;
+  <span style=color:#a6e22e>createdAt</span>: <span style=color:#66d9ef>Date</span>;
+  <span style=color:#a6e22e>updatedAt</span>: <span style=color:#66d9ef>Date</span>;
+}
+
+<span style=color:#75715e>// src/domain/user/user.entity.ts
+</span><span style=color:#75715e></span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>UserSns</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./user-sns.entity&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>BaseEntity</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;../base.entity&#34;</span>;
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>enum</span> <span style=color:#a6e22e>UserType</span> {
+  <span style=color:#a6e22e>admin</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;admin&#34;</span>,
+  <span style=color:#a6e22e>user</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;user&#34;</span>,
+}
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>UserEntity</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>BaseEntity</span> {
+  <span style=color:#a6e22e>fullname</span>: <span style=color:#66d9ef>string</span>;
+  <span style=color:#a6e22e>username</span>: <span style=color:#66d9ef>string</span>;
+  <span style=color:#a6e22e>email</span>: <span style=color:#66d9ef>string</span>;
+  <span style=color:#a6e22e>password</span>: <span style=color:#66d9ef>string</span>;
+  <span style=color:#a6e22e>isActive</span>: <span style=color:#66d9ef>boolean</span>;
+  <span style=color:#a6e22e>userType</span>: <span style=color:#66d9ef>UserType</span>;
+  <span style=color:#a6e22e>snsAccounts?</span>: <span style=color:#66d9ef>UserSns</span>[] <span style=color:#f92672>=</span> [];
+  <span style=color:#a6e22e>avatar</span>: <span style=color:#66d9ef>string</span>;
+  <span style=color:#a6e22e>maximumFiles</span>: <span style=color:#66d9ef>number</span>;
+  <span style=color:#a6e22e>totalFiles</span>: <span style=color:#66d9ef>number</span>;
+}
+
+<span style=color:#75715e>// src/domain/user/user-sns.entity.ts
+</span><span style=color:#75715e></span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>UserEntity</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./user.entity&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>BaseEntity</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;../base.entity&#34;</span>;
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>enum</span> <span style=color:#a6e22e>SnsType</span> {
+  <span style=color:#a6e22e>FACEBOOK</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;facebook&#34;</span>,
+  <span style=color:#a6e22e>GOOGLE</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;google&#34;</span>,
+  <span style=color:#a6e22e>LINKEDIN</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;linkedin&#34;</span>,
+  <span style=color:#a6e22e>TWITTER</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;twitter&#34;</span>,
+  <span style=color:#a6e22e>INSTAGRAM</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;instagram&#34;</span>,
+}
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>UserSns</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>BaseEntity</span> {
+  <span style=color:#a6e22e>snsType</span>: <span style=color:#66d9ef>SnsType</span>;
+  <span style=color:#a6e22e>snsId</span>: <span style=color:#66d9ef>string</span>;
+  <span style=color:#a6e22e>authorizedDate</span>: <span style=color:#66d9ef>Date</span>;
+  <span style=color:#75715e>// relationship
+</span><span style=color:#75715e></span>  <span style=color:#a6e22e>user</span>: <span style=color:#66d9ef>UserEntity</span>;
+}
+</code></pre></div><p><strong>Example application layer</strong></p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#75715e>// src/application/api/api.module.ts
 </span><span style=color:#75715e></span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Module</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/common&#34;</span>;
 
