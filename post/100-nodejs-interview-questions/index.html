@@ -325,6 +325,82 @@ Array.<span style=color:#a6e22e>prototype</span>.<span style=color:#a6e22e>shuff
 };
 
 <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>solutionA</span>(<span style=color:#a6e22e>longestA</span>.<span style=color:#a6e22e>shuffle</span>()));
+</code></pre></div><h3 id=question-9>Question 9</h3>
+<p>Write typeCheck function
+string: string type
+int 12.00 and 12 are both integers
+float : for example 12.34
+number: any int or float
+bool: for example true
+types are optional and validation should be skipped if the type isn&rsquo;t specified.
+_ always precedes the type name</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>obj</span> <span style=color:#f92672>=</span> {
+  <span style=color:#a6e22e>age_int</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>2</span>,
+  <span style=color:#a6e22e>name_string</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Adam&#34;</span>,
+  <span style=color:#a6e22e>job</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>null</span>,
+};
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>validateObject</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>typeCheck</span>(<span style=color:#a6e22e>obj</span>);
+<span style=color:#75715e>// validateObject.age_int = 2.5; // throws error
+</span><span style=color:#75715e></span><span style=color:#a6e22e>validateObject</span>.<span style=color:#a6e22e>age_int</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>2</span>;
+<span style=color:#a6e22e>validateObject</span>.<span style=color:#a6e22e>job</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;fireman&#34;</span>;
+<span style=color:#75715e>// validateObject.address_string = 20; // throws error
+</span><span style=color:#75715e></span><span style=color:#a6e22e>validateObject</span>.<span style=color:#a6e22e>salary_float</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>2500.55</span>;
+<span style=color:#a6e22e>validateObject</span>.<span style=color:#a6e22e>worked_experience_number</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span>;
+<span style=color:#a6e22e>validateObject</span>.<span style=color:#a6e22e>is_active_bool</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>false</span>;
+<span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>JSON</span>.<span style=color:#a6e22e>stringify</span>(<span style=color:#a6e22e>validateObject</span>));
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>obj_2</span> <span style=color:#f92672>=</span> {
+  <span style=color:#a6e22e>employed_bool</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;true&#34;</span>,
+};
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>validateObject2</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>typeCheck</span>(<span style=color:#a6e22e>obj_2</span>); <span style=color:#75715e>// throws error
+</span><span style=color:#75715e></span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>validateObject2</span>);
+</code></pre></div><h3 id=answer-3>Answer</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>ALLOW_PROP_TYPES</span> <span style=color:#f92672>=</span> [<span style=color:#e6db74>&#34;string&#34;</span>, <span style=color:#e6db74>&#34;int&#34;</span>, <span style=color:#e6db74>&#34;float&#34;</span>, <span style=color:#e6db74>&#34;number&#34;</span>, <span style=color:#e6db74>&#34;bool&#34;</span>];
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>propTypes</span> <span style=color:#f92672>=</span> {
+  <span style=color:#a6e22e>check</span><span style=color:#f92672>:</span> (<span style=color:#a6e22e>prop</span>, <span style=color:#a6e22e>value</span>) =&gt; {
+    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>prop</span>.<span style=color:#a6e22e>includes</span>(<span style=color:#e6db74>&#34;_&#34;</span>) <span style=color:#f92672>&amp;&amp;</span> <span style=color:#a6e22e>prop</span>.<span style=color:#a6e22e>split</span>(<span style=color:#e6db74>&#34;_&#34;</span>).<span style=color:#a6e22e>length</span> <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>1</span>) {
+      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>propParts</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>prop</span>.<span style=color:#a6e22e>split</span>(<span style=color:#e6db74>&#34;_&#34;</span>);
+      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>dataType</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>propParts</span>[<span style=color:#a6e22e>propParts</span>.<span style=color:#a6e22e>length</span> <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>];
+      <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>ALLOW_PROP_TYPES</span>.<span style=color:#a6e22e>includes</span>(<span style=color:#a6e22e>dataType</span>)) {
+        <span style=color:#75715e>// run validation
+</span><span style=color:#75715e></span>        <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>Reflect</span>.<span style=color:#a6e22e>has</span>(<span style=color:#a6e22e>propTypes</span>, <span style=color:#a6e22e>dataType</span>) <span style=color:#f92672>&amp;&amp;</span> <span style=color:#f92672>!</span><span style=color:#a6e22e>propTypes</span>[<span style=color:#a6e22e>dataType</span>](<span style=color:#a6e22e>value</span>)) {
+          <span style=color:#66d9ef>throw</span> <span style=color:#66d9ef>new</span> Error(<span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>value</span><span style=color:#e6db74>}</span><span style=color:#e6db74> is invalid </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>dataType</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>);
+        }
+      }
+    }
+    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>true</span>;
+  },
+  <span style=color:#a6e22e>string</span><span style=color:#f92672>:</span> (<span style=color:#a6e22e>v</span>) =&gt; {
+    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>typeof</span> <span style=color:#a6e22e>v</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#34;string&#34;</span>;
+  },
+  <span style=color:#66d9ef>int</span><span style=color:#f92672>:</span> (<span style=color:#a6e22e>v</span>) =&gt; {
+    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>typeof</span> <span style=color:#a6e22e>v</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#34;number&#34;</span> <span style=color:#f92672>&amp;&amp;</span> <span style=color:#a6e22e>v</span> <span style=color:#f92672>%</span> <span style=color:#ae81ff>1</span> <span style=color:#f92672>===</span> <span style=color:#ae81ff>0</span>;
+  },
+  <span style=color:#66d9ef>float</span><span style=color:#f92672>:</span> (<span style=color:#a6e22e>v</span>) =&gt; {
+    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>typeof</span> <span style=color:#a6e22e>v</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#34;number&#34;</span> <span style=color:#f92672>&amp;&amp;</span> <span style=color:#a6e22e>v</span> <span style=color:#f92672>%</span> <span style=color:#ae81ff>1</span> <span style=color:#f92672>!==</span> <span style=color:#ae81ff>0</span>;
+  },
+  <span style=color:#a6e22e>bool</span><span style=color:#f92672>:</span> (<span style=color:#a6e22e>v</span>) =&gt; {
+    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>typeof</span> <span style=color:#a6e22e>v</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#34;boolean&#34;</span>;
+  },
+  <span style=color:#a6e22e>number</span><span style=color:#f92672>:</span> (<span style=color:#a6e22e>v</span>) =&gt; {
+    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>typeof</span> <span style=color:#a6e22e>v</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#34;number&#34;</span>;
+  },
+};
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>typeCheck</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>obj</span>) =&gt; {
+  <span style=color:#a6e22e>Reflect</span>.<span style=color:#a6e22e>ownKeys</span>(<span style=color:#a6e22e>obj</span>).<span style=color:#a6e22e>map</span>((<span style=color:#a6e22e>prop</span>) =&gt; {
+    <span style=color:#a6e22e>propTypes</span>.<span style=color:#a6e22e>check</span>(<span style=color:#a6e22e>prop</span>, <span style=color:#a6e22e>obj</span>[<span style=color:#a6e22e>prop</span>]);
+  });
+  <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> Proxy(<span style=color:#a6e22e>obj</span>, {
+    <span style=color:#a6e22e>set</span>(<span style=color:#a6e22e>obj</span>, <span style=color:#a6e22e>prop</span>, <span style=color:#a6e22e>value</span>) {
+      <span style=color:#a6e22e>propTypes</span>.<span style=color:#a6e22e>check</span>(<span style=color:#a6e22e>prop</span>, <span style=color:#a6e22e>value</span>);
+      <span style=color:#a6e22e>obj</span>[<span style=color:#a6e22e>prop</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>value</span>;
+      <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>true</span>;
+    },
+  });
+};
 </code></pre></div>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/cheatsheet>cheatsheet</a>
