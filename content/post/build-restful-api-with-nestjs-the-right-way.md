@@ -127,18 +127,83 @@ npm run start:debug
 
 ## Step 3: Design source code structure
 
+**Overview layers**
+
+![File Storage API clean architecture layer](/documents/file-storage-api-clean-architecture.png)
+
 1. solutions
    - deployment -> deployment scripts, dockerfiles, k8s, ...
 2. src
 
-- src/share -> Share/Common projects
-- src/domain -> Tables mapping
-- src/persistence -> TypeORM Core
-- src/business -> Business logic
 - src/application -> applications: file-storage-api, web, queues, ...
+- src/domain -> Tables mapping
+- src/business -> Business logic
+- src/share -> Share/Common projects
+- src/persistence -> TypeORM Core
 - src/tool -> tools: migration data
 
 3. test -> test configuration
+
+**domain layer**
+![File Storage API business layer](/documents/file-storage-api-domain-layer.png)
+
+**application layer**
+![File Storage API application layer](/documents/file-storage-api-application-layer.png)
+
+**business layer**
+![File Storage API business layer](/documents/file-storage-api-application-layer.png)
+
+**Example domain layer**
+
+```ts
+// src/domain/base.entity.ts
+export abstract class BaseEntity {
+  id: number;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+// src/domain/user/user.entity.ts
+import { UserSns } from "./user-sns.entity";
+import { BaseEntity } from "../base.entity";
+export enum UserType {
+  admin = "admin",
+  user = "user",
+}
+
+export class UserEntity extends BaseEntity {
+  fullname: string;
+  username: string;
+  email: string;
+  password: string;
+  isActive: boolean;
+  userType: UserType;
+  snsAccounts?: UserSns[] = [];
+  avatar: string;
+  maximumFiles: number;
+  totalFiles: number;
+}
+
+// src/domain/user/user-sns.entity.ts
+import { UserEntity } from "./user.entity";
+import { BaseEntity } from "../base.entity";
+
+export enum SnsType {
+  FACEBOOK = "facebook",
+  GOOGLE = "google",
+  LINKEDIN = "linkedin",
+  TWITTER = "twitter",
+  INSTAGRAM = "instagram",
+}
+
+export class UserSns extends BaseEntity {
+  snsType: SnsType;
+  snsId: string;
+  authorizedDate: Date;
+  // relationship
+  user: UserEntity;
+}
+```
 
 **Example application layer**
 
