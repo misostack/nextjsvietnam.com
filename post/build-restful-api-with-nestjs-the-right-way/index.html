@@ -207,6 +207,37 @@ nest new your-project-name
 <ol start=3>
 <li>test -> test configuration</li>
 </ol>
+<p><strong>Example application layer</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#75715e>// src/application/api/api.module.ts
+</span><span style=color:#75715e></span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Module</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/common&#34;</span>;
+
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>ExampleModule</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./example/example.module&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>UserModule</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./user/user.module&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>FileModule</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./file/file.module&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>AuthModule</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./auth/auth.module&#34;</span>;
+
+<span style=color:#66d9ef>@Module</span>({
+  <span style=color:#a6e22e>imports</span><span style=color:#f92672>:</span> [<span style=color:#a6e22e>ExampleModule</span>, <span style=color:#a6e22e>UserModule</span>, <span style=color:#a6e22e>FileModule</span>, <span style=color:#a6e22e>AuthModule</span>],
+  <span style=color:#a6e22e>controllers</span><span style=color:#f92672>:</span> [],
+  <span style=color:#a6e22e>providers</span><span style=color:#f92672>:</span> [],
+})
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ApiModule</span> {}
+
+<span style=color:#75715e>// src/application/api/example/example.module.ts
+</span><span style=color:#75715e></span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Module</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/common&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>ExampleController</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./controllers/example.controller&#34;</span>;
+
+<span style=color:#66d9ef>@Module</span>({
+  <span style=color:#a6e22e>controllers</span><span style=color:#f92672>:</span> [<span style=color:#a6e22e>ExampleController</span>],
+})
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ExampleModule</span> {}
+
+<span style=color:#75715e>// src/application/api/example/controllers/example.controller.ts
+</span><span style=color:#75715e></span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Controller</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/common&#34;</span>;
+
+<span style=color:#66d9ef>@Controller</span>(<span style=color:#e6db74>&#34;examples&#34;</span>)
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ExampleController</span> {}
+</code></pre></div>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/frameworks>frameworks</a>
 </div>
