@@ -309,6 +309,7 @@ console.log(solutionA(longestA.shuffle()));
 
 ### Question 9
 
+```md
 Write typeCheck function
 string: string type
 int 12.00 and 12 are both integers
@@ -317,6 +318,7 @@ number: any int or float
 bool: for example true
 types are optional and validation should be skipped if the type isn't specified.
 \_ always precedes the type name
+```
 
 ```js
 const obj = {
