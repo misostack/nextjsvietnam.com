@@ -139,3 +139,37 @@ npm run start:debug
 - src/tool -> tools: migration data
 
 3. test -> test configuration
+
+**Example application layer**
+
+```ts
+// src/application/api/api.module.ts
+import { Module } from "@nestjs/common";
+
+import { ExampleModule } from "./example/example.module";
+import { UserModule } from "./user/user.module";
+import { FileModule } from "./file/file.module";
+import { AuthModule } from "./auth/auth.module";
+
+@Module({
+  imports: [ExampleModule, UserModule, FileModule, AuthModule],
+  controllers: [],
+  providers: [],
+})
+export class ApiModule {}
+
+// src/application/api/example/example.module.ts
+import { Module } from "@nestjs/common";
+import { ExampleController } from "./controllers/example.controller";
+
+@Module({
+  controllers: [ExampleController],
+})
+export class ExampleModule {}
+
+// src/application/api/example/controllers/example.controller.ts
+import { Controller } from "@nestjs/common";
+
+@Controller("examples")
+export class ExampleController {}
+```
