@@ -140,7 +140,7 @@ npm run start:debug
 - src/business -> Business logic
 - src/share -> Share/Common projects
 - src/persistence -> TypeORM Core
-- src/tool -> tools: migration data
+- src/config -> config: log,environment, configuration
 
 3. test -> test configuration
 
