@@ -214,7 +214,11 @@ nest new your-project-name
 <p><strong>application layer</strong>
 <img src=/documents/file-storage-api-application-layer.png alt="File Storage API application layer"></p>
 <p><strong>business layer</strong>
-<img src=/documents/file-storage-api-application-layer.png alt="File Storage API business layer"></p>
+<img src=/documents/file-storage-api-business-layer.png alt="File Storage API business layer"></p>
+<p><strong>persistence layer</strong>
+<img src=/documents/file-storage-api-persistence-layer.png alt="File Storage API persistence layer"></p>
+<p><strong>config layer</strong>
+<img src=/documents/file-storage-api-config-layer.png alt="File Storage API config layer"></p>
 <p><strong>Example domain layer</strong></p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#75715e>// src/domain/base.entity.ts
 </span><span style=color:#75715e></span><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>abstract</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>BaseEntity</span> {
@@ -293,6 +297,275 @@ nest new your-project-name
 
 <span style=color:#66d9ef>@Controller</span>(<span style=color:#e6db74>&#34;examples&#34;</span>)
 <span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ExampleController</span> {}
+</code></pre></div><p><strong>Example persistence layer</strong></p>
+<p>In this example, i will use typeorm as our main ORM and MYSQL as main database</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>npm install --save @nestjs/typeorm typeorm mysql2
+</code></pre></div><p><strong>Install and use typeorm cli</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>npm install ts-node --save-dev
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#75715e>// src/persistence/database/entities/Example.ts
+</span><span style=color:#75715e></span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Entity</span>, <span style=color:#a6e22e>PrimaryGeneratedColumn</span>, <span style=color:#a6e22e>Column</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;typeorm&#34;</span>;
+
+<span style=color:#66d9ef>@Entity</span>()
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Example</span> {
+  <span style=color:#66d9ef>@PrimaryGeneratedColumn</span>()
+  <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>number</span>;
+
+  <span style=color:#66d9ef>@Column</span>()
+  <span style=color:#a6e22e>firstName</span>: <span style=color:#66d9ef>string</span>;
+
+  <span style=color:#66d9ef>@Column</span>()
+  <span style=color:#a6e22e>lastName</span>: <span style=color:#66d9ef>string</span>;
+
+  <span style=color:#66d9ef>@Column</span>()
+  <span style=color:#a6e22e>age</span>: <span style=color:#66d9ef>number</span>;
+}
+
+<span style=color:#75715e>// src/config/configuration/index.ts
+</span><span style=color:#75715e></span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>MYSQL_DB_URI</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@config/environment&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>TypeOrmModule</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/typeorm&#34;</span>;
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>getTypeORMConfiguration</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>entities</span>) <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>TypeOrmModule</span>.<span style=color:#a6e22e>forRoot</span>({
+    <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;mysql&#34;</span>,
+    <span style=color:#a6e22e>url</span>: <span style=color:#66d9ef>MYSQL_DB_URI</span>,
+    <span style=color:#a6e22e>entities</span>,
+    <span style=color:#a6e22e>synchronize</span>: <span style=color:#66d9ef>false</span>,
+  });
+};
+
+<span style=color:#75715e>// src/persistence/database/database.module.ts
+</span><span style=color:#75715e></span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>DynamicModule</span>, <span style=color:#a6e22e>Module</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/common&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>getTypeORMConfiguration</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@config/configuration&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#a6e22e>entities</span> <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./entities&#34;</span>;
+
+<span style=color:#66d9ef>@Module</span>({})
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>DatabaseModule</span> {
+  <span style=color:#66d9ef>static</span> <span style=color:#a6e22e>forRoot</span>()<span style=color:#f92672>:</span> <span style=color:#a6e22e>DynamicModule</span> {
+    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>getTypeORMConfiguration</span>([<span style=color:#a6e22e>entities</span>]);
+  }
+}
+</code></pre></div><blockquote>
+<p>Data Migration</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#75715e>// src/persistence/database/data-source.ts
+</span><span style=color:#75715e></span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>MYSQL_DB_URI</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@config/environment&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>DataSource</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;typeorm&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#a6e22e>entities</span> <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./entities&#34;</span>;
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>AppDataSource</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>DataSource</span>({
+  <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;mysql&#34;</span>,
+  <span style=color:#a6e22e>url</span>: <span style=color:#66d9ef>MYSQL_DB_URI</span>,
+  <span style=color:#a6e22e>synchronize</span>: <span style=color:#66d9ef>false</span>,
+  <span style=color:#a6e22e>logging</span>: <span style=color:#66d9ef>false</span>,
+  <span style=color:#a6e22e>entities</span>,
+  <span style=color:#a6e22e>migrations</span><span style=color:#f92672>:</span> [<span style=color:#e6db74>&#34;./src/persistence/database/migrations/*.ts&#34;</span>],
+  <span style=color:#a6e22e>subscribers</span><span style=color:#f92672>:</span> [],
+});
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>  <span style=color:#e6db74>&#34;scripts&#34;</span><span style=color:#960050;background-color:#1e0010>:</span> {
+    <span style=color:#f92672>&#34;typeorm&#34;</span>: <span style=color:#e6db74>&#34;typeorm-ts-node-commonjs --dataSource ./src/persistence/database/data-source.ts&#34;</span>,
+    <span style=color:#f92672>&#34;typeorm:migration:generate&#34;</span>: <span style=color:#e6db74>&#34;typeorm-ts-node-commonjs migration:generate --dataSource ./src/persistence/database/data-source.ts&#34;</span>,
+    <span style=color:#f92672>&#34;typeorm:migration:create&#34;</span>: <span style=color:#e6db74>&#34;typeorm-ts-node-commonjs migration:create&#34;</span>
+  }<span style=color:#960050;background-color:#1e0010>,</span>
+</code></pre></div><blockquote>
+<p>generate migration script</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>npm run typeorm:migration:generate ./src/persistence/database/migrations/migration-script-name
+</code></pre></div><blockquote>
+<p>create migration script</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>npm run typeorm:migration:create ./src/persistence/database/migrations/migration-script-name
+</code></pre></div><blockquote>
+<p>show migration</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>npm run typeorm migration:show
+npm run typeorm migration:run
+npm run typeorm migration:revert
+</code></pre></div><p><strong>Example config layer</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#75715e>// src/config/environment/index.ts
+</span><span style=color:#75715e></span><span style=color:#66d9ef>import</span> <span style=color:#f92672>*</span> <span style=color:#66d9ef>as</span> <span style=color:#a6e22e>dotenv</span> <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;dotenv&#34;</span>;
+<span style=color:#75715e>// LOAD process&#39;s enviroment variables
+</span><span style=color:#75715e></span><span style=color:#a6e22e>dotenv</span>.<span style=color:#a6e22e>config</span>();
+<span style=color:#75715e>// REQUIRED VARIABLES
+</span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>REQUIRED_VARIABLES</span> <span style=color:#f92672>=</span> [<span style=color:#e6db74>&#34;NODE_ENV&#34;</span>, <span style=color:#e6db74>&#34;MYSQL_DB_URI&#34;</span>];
+<span style=color:#75715e>/*
+</span><span style=color:#75715e>Log level:
+</span><span style=color:#75715e>- fatal
+</span><span style=color:#75715e>- error
+</span><span style=color:#75715e>- warn
+</span><span style=color:#75715e>- info
+</span><span style=color:#75715e>- verbose
+</span><span style=color:#75715e>- debug
+</span><span style=color:#75715e>*/</span>
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>LOG_LEVEL</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>process</span>.<span style=color:#a6e22e>env</span>.<span style=color:#a6e22e>LOG_LEVEL</span>;
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>ERROR_LOG_PATH</span> <span style=color:#f92672>=</span>
+  <span style=color:#a6e22e>process</span>.<span style=color:#a6e22e>env</span>.<span style=color:#a6e22e>ERROR_LOG_PATH</span> <span style=color:#f92672>||</span> <span style=color:#e6db74>&#34;logs/server-errors.log&#34;</span>;
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>LOG_PATH</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>process</span>.<span style=color:#a6e22e>env</span>.<span style=color:#a6e22e>LOG_PATH</span> <span style=color:#f92672>||</span> <span style=color:#e6db74>&#34;logs/server.log&#34;</span>;
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>validateRequiredEnviromentVariables</span> <span style=color:#f92672>=</span> () <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>missingKeys</span> <span style=color:#f92672>=</span> [];
+  <span style=color:#a6e22e>REQUIRED_VARIABLES</span>.<span style=color:#a6e22e>map</span>((<span style=color:#a6e22e>requiredKey</span>) <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span><span style=color:#a6e22e>process</span>.<span style=color:#a6e22e>env</span>[<span style=color:#a6e22e>requiredKey</span>]) {
+      <span style=color:#a6e22e>missingKeys</span>.<span style=color:#a6e22e>push</span>(<span style=color:#a6e22e>requiredKey</span>);
+    }
+  });
+  <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>missingKeys</span>.<span style=color:#a6e22e>length</span> <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span>) {
+    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>missingKeys</span>);
+    <span style=color:#a6e22e>missingKeys</span>.<span style=color:#a6e22e>map</span>((<span style=color:#a6e22e>key</span>, <span style=color:#a6e22e>index</span>) <span style=color:#f92672>=&gt;</span> {
+      <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>error</span>(<span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>index</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span><span style=color:#e6db74>}</span><span style=color:#e6db74>. Missing </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>key</span><span style=color:#e6db74>}</span><span style=color:#e6db74> !!!`</span>);
+    });
+    <span style=color:#a6e22e>process</span>.<span style=color:#a6e22e>exit</span>(<span style=color:#ae81ff>1</span>);
+  }
+};
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>NODE_ENV</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>process</span>.<span style=color:#a6e22e>env</span>.<span style=color:#a6e22e>NODE_ENV</span>;
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>MYSQL_DB_URI</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>process</span>.<span style=color:#a6e22e>env</span>.<span style=color:#a6e22e>MYSQL_DB_URI</span>;
+
+<span style=color:#a6e22e>validateRequiredEnviromentVariables</span>();
+
+<span style=color:#75715e>// src/config/configuration/index.ts
+</span><span style=color:#75715e></span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>MYSQL_DB_URI</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@config/environment&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>TypeOrmModule</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/typeorm&#34;</span>;
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>getTypeORMConfiguration</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>entities</span>) <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>TypeOrmModule</span>.<span style=color:#a6e22e>forRoot</span>({
+    <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;mysql&#34;</span>,
+    <span style=color:#a6e22e>url</span>: <span style=color:#66d9ef>MYSQL_DB_URI</span>,
+    <span style=color:#a6e22e>entities</span>,
+    <span style=color:#a6e22e>synchronize</span>: <span style=color:#66d9ef>false</span>,
+  });
+};
+
+<span style=color:#75715e>// src/config/log/index.ts
+</span><span style=color:#75715e></span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>ConsoleLogger</span>, <span style=color:#a6e22e>Optional</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/common&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#f92672>*</span> <span style=color:#66d9ef>as</span> <span style=color:#a6e22e>dayjs</span> <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;dayjs&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#f92672>*</span> <span style=color:#66d9ef>as</span> <span style=color:#a6e22e>utc</span> <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;dayjs/plugin/utc&#34;</span>;
+<span style=color:#66d9ef>import</span> {
+  <span style=color:#a6e22e>configure</span>,
+  <span style=color:#a6e22e>getLogger</span>,
+  <span style=color:#a6e22e>Layout</span>,
+  <span style=color:#a6e22e>Logger</span> <span style=color:#66d9ef>as</span> <span style=color:#a6e22e>Log4js</span>,
+  <span style=color:#a6e22e>LoggingEvent</span>,
+} <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;log4js&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>ERROR_LOG_PATH</span>, <span style=color:#a6e22e>LOG_LEVEL</span>, <span style=color:#a6e22e>LOG_PATH</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@config/environment&#34;</span>;
+
+<span style=color:#75715e>// Fix timezone
+</span><span style=color:#75715e></span><span style=color:#a6e22e>dayjs</span>.<span style=color:#a6e22e>extend</span>(<span style=color:#a6e22e>utc</span>);
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>log4jLayout</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>isConsole</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>false</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>Layout</span> <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#66d9ef>return</span> {
+    <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;pattern&#34;</span>,
+    <span style=color:#a6e22e>pattern</span>: <span style=color:#66d9ef>isConsole</span>
+      <span style=color:#f92672>?</span> <span style=color:#e6db74>&#34;%[[%x{startTime}] [%p] [%c] -%] %m&#34;</span>
+      <span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;[%x{startTime}] [%p] [%c] - %m&#34;</span>,
+    <span style=color:#a6e22e>tokens</span><span style=color:#f92672>:</span> {
+      <span style=color:#a6e22e>startTime</span><span style=color:#f92672>:</span> (<span style=color:#a6e22e>logEvent</span>: <span style=color:#66d9ef>LoggingEvent</span>) <span style=color:#f92672>=&gt;</span>
+        <span style=color:#a6e22e>dayjs</span>.<span style=color:#a6e22e>utc</span>(<span style=color:#a6e22e>logEvent</span>.<span style=color:#a6e22e>startTime</span>).<span style=color:#a6e22e>format</span>(),
+    },
+  };
+};
+
+<span style=color:#a6e22e>configure</span>({
+  <span style=color:#a6e22e>appenders</span><span style=color:#f92672>:</span> {
+    <span style=color:#a6e22e>Server</span><span style=color:#f92672>:</span> {
+      <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;dateFile&#34;</span>,
+      <span style=color:#a6e22e>maxLogSize</span>: <span style=color:#66d9ef>52428800</span>,
+      <span style=color:#a6e22e>numBackups</span>: <span style=color:#66d9ef>20</span>,
+      <span style=color:#a6e22e>filename</span>: <span style=color:#66d9ef>LOG_PATH</span>,
+      <span style=color:#a6e22e>layout</span>: <span style=color:#66d9ef>log4jLayout</span>(),
+      <span style=color:#a6e22e>pattern</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;yyyy-MM-dd&#34;</span>,
+      <span style=color:#a6e22e>compress</span>: <span style=color:#66d9ef>true</span>,
+    },
+    <span style=color:#a6e22e>serverError</span><span style=color:#f92672>:</span> {
+      <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;dateFile&#34;</span>,
+      <span style=color:#a6e22e>maxLogSize</span>: <span style=color:#66d9ef>52428800</span>,
+      <span style=color:#a6e22e>numBackups</span>: <span style=color:#66d9ef>20</span>,
+      <span style=color:#a6e22e>filename</span>: <span style=color:#66d9ef>ERROR_LOG_PATH</span>,
+      <span style=color:#a6e22e>layout</span>: <span style=color:#66d9ef>log4jLayout</span>(),
+      <span style=color:#a6e22e>pattern</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;yyyy-MM-dd&#34;</span>,
+      <span style=color:#a6e22e>compress</span>: <span style=color:#66d9ef>true</span>,
+    },
+    <span style=color:#a6e22e>serverLogFilter</span><span style=color:#f92672>:</span> {
+      <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;logLevelFilter&#34;</span>,
+      <span style=color:#a6e22e>appender</span><span style=color:#f92672>:</span> <span style=color:#e6db74>`serverError`</span>,
+      <span style=color:#a6e22e>level</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;error&#34;</span>,
+    },
+    <span style=color:#a6e22e>console</span><span style=color:#f92672>:</span> {
+      <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;console&#34;</span>,
+      <span style=color:#a6e22e>layout</span>: <span style=color:#66d9ef>log4jLayout</span>(<span style=color:#66d9ef>true</span>),
+    },
+  },
+  <span style=color:#a6e22e>categories</span><span style=color:#f92672>:</span> {
+    <span style=color:#66d9ef>default</span><span style=color:#f92672>:</span> {
+      <span style=color:#a6e22e>appenders</span><span style=color:#f92672>:</span> [<span style=color:#e6db74>&#34;Server&#34;</span>, <span style=color:#e6db74>&#34;serverLogFilter&#34;</span>, <span style=color:#e6db74>&#34;console&#34;</span>],
+      <span style=color:#a6e22e>level</span>: <span style=color:#66d9ef>LOG_LEVEL</span>,
+    },
+  },
+});
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Logger</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>ConsoleLogger</span> {
+  <span style=color:#a6e22e>logger</span>: <span style=color:#66d9ef>Log4js</span>;
+  <span style=color:#66d9ef>constructor</span>(
+    <span style=color:#66d9ef>@Optional</span>() <span style=color:#66d9ef>protected</span> <span style=color:#a6e22e>context?</span>: <span style=color:#66d9ef>string</span>,
+    <span style=color:#66d9ef>@Optional</span>() <span style=color:#66d9ef>protected</span> <span style=color:#a6e22e>options</span><span style=color:#f92672>:</span> { <span style=color:#a6e22e>timestamp?</span>: <span style=color:#66d9ef>boolean</span> } <span style=color:#f92672>=</span> {}
+  ) {
+    <span style=color:#66d9ef>super</span>();
+    <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>logger</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>getLogger</span>(<span style=color:#e6db74>&#34;Server&#34;</span>);
+  }
+
+  <span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>message</span>: <span style=color:#66d9ef>any</span>, ...<span style=color:#a6e22e>optionalParams</span>: <span style=color:#66d9ef>any</span>[])<span style=color:#f92672>:</span> <span style=color:#66d9ef>void</span> {
+    <span style=color:#a6e22e>optionalParams</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>context</span>
+      <span style=color:#f92672>?</span> <span style=color:#a6e22e>optionalParams</span>.<span style=color:#a6e22e>concat</span>(<span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>context</span>)
+      <span style=color:#f92672>:</span> <span style=color:#a6e22e>optionalParams</span>;
+    <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>logger</span>.<span style=color:#a6e22e>info</span>(<span style=color:#a6e22e>message</span>, ...<span style=color:#a6e22e>optionalParams</span>);
+  }
+
+  <span style=color:#a6e22e>error</span>(<span style=color:#a6e22e>message</span>: <span style=color:#66d9ef>any</span>, ...<span style=color:#a6e22e>optionalParams</span>: <span style=color:#66d9ef>any</span>[])<span style=color:#f92672>:</span> <span style=color:#66d9ef>void</span> {
+    <span style=color:#a6e22e>optionalParams</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>context</span>
+      <span style=color:#f92672>?</span> <span style=color:#a6e22e>optionalParams</span>.<span style=color:#a6e22e>concat</span>(<span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>context</span>)
+      <span style=color:#f92672>:</span> <span style=color:#a6e22e>optionalParams</span>;
+    <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>logger</span>.<span style=color:#a6e22e>error</span>(<span style=color:#a6e22e>message</span>, ...<span style=color:#a6e22e>optionalParams</span>);
+  }
+
+  <span style=color:#a6e22e>warn</span>(<span style=color:#a6e22e>message</span>: <span style=color:#66d9ef>any</span>, ...<span style=color:#a6e22e>optionalParams</span>: <span style=color:#66d9ef>any</span>[])<span style=color:#f92672>:</span> <span style=color:#66d9ef>void</span> {
+    <span style=color:#a6e22e>optionalParams</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>context</span>
+      <span style=color:#f92672>?</span> <span style=color:#a6e22e>optionalParams</span>.<span style=color:#a6e22e>concat</span>(<span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>context</span>)
+      <span style=color:#f92672>:</span> <span style=color:#a6e22e>optionalParams</span>;
+    <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>logger</span>.<span style=color:#a6e22e>warn</span>(<span style=color:#a6e22e>message</span>, ...<span style=color:#a6e22e>optionalParams</span>);
+  }
+
+  <span style=color:#a6e22e>debug</span>(<span style=color:#a6e22e>message</span>: <span style=color:#66d9ef>any</span>, ...<span style=color:#a6e22e>optionalParams</span>: <span style=color:#66d9ef>any</span>[])<span style=color:#f92672>:</span> <span style=color:#66d9ef>void</span> {
+    <span style=color:#a6e22e>optionalParams</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>context</span>
+      <span style=color:#f92672>?</span> <span style=color:#a6e22e>optionalParams</span>.<span style=color:#a6e22e>concat</span>(<span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>context</span>)
+      <span style=color:#f92672>:</span> <span style=color:#a6e22e>optionalParams</span>;
+    <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>logger</span>.<span style=color:#a6e22e>debug</span>(<span style=color:#a6e22e>message</span>, ...<span style=color:#a6e22e>optionalParams</span>);
+  }
+}
+<span style=color:#75715e>// Reference from : [Ho Nguyen Dang Khoa] - https://www.linkedin.com/in/ho-nguyen-dang-khoa-63b387187/
+</span><span style=color:#75715e></span>
+<span style=color:#75715e>// src/application/api/main.ts
+</span><span style=color:#75715e></span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Logger</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@config/log&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>NestFactory</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/core&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>ApiModule</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./api.module&#34;</span>;
+
+<span style=color:#66d9ef>async</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>bootstrap() {</span>
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>app</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>NestFactory</span>.<span style=color:#a6e22e>create</span>(<span style=color:#a6e22e>ApiModule</span>, {
+    <span style=color:#a6e22e>logger</span>: <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Logger</span>(), <span style=color:#75715e>// overwrite default Logger
+</span><span style=color:#75715e></span>  });
+
+  <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>app</span>.<span style=color:#a6e22e>listen</span>(<span style=color:#ae81ff>3000</span>);
+}
+<span style=color:#a6e22e>bootstrap</span>();
+
+<span style=color:#75715e>// usage
+</span><span style=color:#75715e></span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Controller</span>, <span style=color:#a6e22e>Get</span>, <span style=color:#a6e22e>Logger</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/common&#34;</span>;
+
+<span style=color:#66d9ef>@Controller</span>(<span style=color:#e6db74>&#34;auth&#34;</span>)
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AuthController</span> {
+  <span style=color:#66d9ef>@Get</span>(<span style=color:#e6db74>&#34;&#34;</span>)
+  <span style=color:#a6e22e>index() {</span>
+    <span style=color:#a6e22e>Logger</span>.<span style=color:#a6e22e>error</span>(<span style=color:#e6db74>&#34;test auth log&#34;</span>);
+  }
+}
 </code></pre></div>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/frameworks>frameworks</a>
