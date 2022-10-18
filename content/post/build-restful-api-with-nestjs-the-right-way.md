@@ -151,7 +151,13 @@ npm run start:debug
 ![File Storage API application layer](/documents/file-storage-api-application-layer.png)
 
 **business layer**
-![File Storage API business layer](/documents/file-storage-api-application-layer.png)
+![File Storage API business layer](/documents/file-storage-api-business-layer.png)
+
+**persistence layer**
+![File Storage API persistence layer](/documents/file-storage-api-persistence-layer.png)
+
+**config layer**
+![File Storage API config layer](/documents/file-storage-api-config-layer.png)
 
 **Example domain layer**
 
@@ -237,4 +243,300 @@ import { Controller } from "@nestjs/common";
 
 @Controller("examples")
 export class ExampleController {}
+```
+
+**Example persistence layer**
+
+In this example, i will use typeorm as our main ORM and MYSQL as main database
+
+```bash
+npm install --save @nestjs/typeorm typeorm mysql2
+```
+
+**Install and use typeorm cli**
+
+```bash
+npm install ts-node --save-dev
+```
+
+```ts
+// src/persistence/database/entities/Example.ts
+import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+
+@Entity()
+export class Example {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column()
+  firstName: string;
+
+  @Column()
+  lastName: string;
+
+  @Column()
+  age: number;
+}
+
+// src/config/configuration/index.ts
+import { MYSQL_DB_URI } from "@config/environment";
+import { TypeOrmModule } from "@nestjs/typeorm";
+
+export const getTypeORMConfiguration = (entities) => {
+  return TypeOrmModule.forRoot({
+    type: "mysql",
+    url: MYSQL_DB_URI,
+    entities,
+    synchronize: false,
+  });
+};
+
+// src/persistence/database/database.module.ts
+import { DynamicModule, Module } from "@nestjs/common";
+import { getTypeORMConfiguration } from "@config/configuration";
+import entities from "./entities";
+
+@Module({})
+export class DatabaseModule {
+  static forRoot(): DynamicModule {
+    return getTypeORMConfiguration([entities]);
+  }
+}
+```
+
+> Data Migration
+
+```ts
+// src/persistence/database/data-source.ts
+import { MYSQL_DB_URI } from "@config/environment";
+import { DataSource } from "typeorm";
+import entities from "./entities";
+
+export const AppDataSource = new DataSource({
+  type: "mysql",
+  url: MYSQL_DB_URI,
+  synchronize: false,
+  logging: false,
+  entities,
+  migrations: ["./src/persistence/database/migrations/*.ts"],
+  subscribers: [],
+});
+```
+
+```json
+  "scripts": {
+    "typeorm": "typeorm-ts-node-commonjs --dataSource ./src/persistence/database/data-source.ts",
+    "typeorm:migration:generate": "typeorm-ts-node-commonjs migration:generate --dataSource ./src/persistence/database/data-source.ts",
+    "typeorm:migration:create": "typeorm-ts-node-commonjs migration:create"
+  },
+```
+
+> generate migration script
+
+```bash
+npm run typeorm:migration:generate ./src/persistence/database/migrations/migration-script-name
+```
+
+> create migration script
+
+```bash
+npm run typeorm:migration:create ./src/persistence/database/migrations/migration-script-name
+```
+
+> show migration
+
+```bash
+npm run typeorm migration:show
+npm run typeorm migration:run
+npm run typeorm migration:revert
+```
+
+**Example config layer**
+
+```ts
+// src/config/environment/index.ts
+import * as dotenv from "dotenv";
+// LOAD process's enviroment variables
+dotenv.config();
+// REQUIRED VARIABLES
+const REQUIRED_VARIABLES = ["NODE_ENV", "MYSQL_DB_URI"];
+/*
+Log level:
+- fatal
+- error
+- warn
+- info
+- verbose
+- debug
+*/
+export const LOG_LEVEL = process.env.LOG_LEVEL;
+export const ERROR_LOG_PATH =
+  process.env.ERROR_LOG_PATH || "logs/server-errors.log";
+export const LOG_PATH = process.env.LOG_PATH || "logs/server.log";
+
+export const validateRequiredEnviromentVariables = () => {
+  const missingKeys = [];
+  REQUIRED_VARIABLES.map((requiredKey) => {
+    if (!process.env[requiredKey]) {
+      missingKeys.push(requiredKey);
+    }
+  });
+  if (missingKeys.length > 0) {
+    console.log(missingKeys);
+    missingKeys.map((key, index) => {
+      console.error(`${index + 1}. Missing ${key} !!!`);
+    });
+    process.exit(1);
+  }
+};
+
+export const NODE_ENV = process.env.NODE_ENV;
+export const MYSQL_DB_URI = process.env.MYSQL_DB_URI;
+
+validateRequiredEnviromentVariables();
+
+// src/config/configuration/index.ts
+import { MYSQL_DB_URI } from "@config/environment";
+import { TypeOrmModule } from "@nestjs/typeorm";
+
+export const getTypeORMConfiguration = (entities) => {
+  return TypeOrmModule.forRoot({
+    type: "mysql",
+    url: MYSQL_DB_URI,
+    entities,
+    synchronize: false,
+  });
+};
+
+// src/config/log/index.ts
+import { ConsoleLogger, Optional } from "@nestjs/common";
+import * as dayjs from "dayjs";
+import * as utc from "dayjs/plugin/utc";
+import {
+  configure,
+  getLogger,
+  Layout,
+  Logger as Log4js,
+  LoggingEvent,
+} from "log4js";
+import { ERROR_LOG_PATH, LOG_LEVEL, LOG_PATH } from "@config/environment";
+
+// Fix timezone
+dayjs.extend(utc);
+
+export const log4jLayout = (isConsole = false): Layout => {
+  return {
+    type: "pattern",
+    pattern: isConsole
+      ? "%[[%x{startTime}] [%p] [%c] -%] %m"
+      : "[%x{startTime}] [%p] [%c] - %m",
+    tokens: {
+      startTime: (logEvent: LoggingEvent) =>
+        dayjs.utc(logEvent.startTime).format(),
+    },
+  };
+};
+
+configure({
+  appenders: {
+    Server: {
+      type: "dateFile",
+      maxLogSize: 52428800,
+      numBackups: 20,
+      filename: LOG_PATH,
+      layout: log4jLayout(),
+      pattern: "yyyy-MM-dd",
+      compress: true,
+    },
+    serverError: {
+      type: "dateFile",
+      maxLogSize: 52428800,
+      numBackups: 20,
+      filename: ERROR_LOG_PATH,
+      layout: log4jLayout(),
+      pattern: "yyyy-MM-dd",
+      compress: true,
+    },
+    serverLogFilter: {
+      type: "logLevelFilter",
+      appender: `serverError`,
+      level: "error",
+    },
+    console: {
+      type: "console",
+      layout: log4jLayout(true),
+    },
+  },
+  categories: {
+    default: {
+      appenders: ["Server", "serverLogFilter", "console"],
+      level: LOG_LEVEL,
+    },
+  },
+});
+
+export class Logger extends ConsoleLogger {
+  logger: Log4js;
+  constructor(
+    @Optional() protected context?: string,
+    @Optional() protected options: { timestamp?: boolean } = {}
+  ) {
+    super();
+    this.logger = getLogger("Server");
+  }
+
+  log(message: any, ...optionalParams: any[]): void {
+    optionalParams = this.context
+      ? optionalParams.concat(this.context)
+      : optionalParams;
+    this.logger.info(message, ...optionalParams);
+  }
+
+  error(message: any, ...optionalParams: any[]): void {
+    optionalParams = this.context
+      ? optionalParams.concat(this.context)
+      : optionalParams;
+    this.logger.error(message, ...optionalParams);
+  }
+
+  warn(message: any, ...optionalParams: any[]): void {
+    optionalParams = this.context
+      ? optionalParams.concat(this.context)
+      : optionalParams;
+    this.logger.warn(message, ...optionalParams);
+  }
+
+  debug(message: any, ...optionalParams: any[]): void {
+    optionalParams = this.context
+      ? optionalParams.concat(this.context)
+      : optionalParams;
+    this.logger.debug(message, ...optionalParams);
+  }
+}
+// Reference from : [Ho Nguyen Dang Khoa] - https://www.linkedin.com/in/ho-nguyen-dang-khoa-63b387187/
+
+// src/application/api/main.ts
+import { Logger } from "@config/log";
+import { NestFactory } from "@nestjs/core";
+import { ApiModule } from "./api.module";
+
+async function bootstrap() {
+  const app = await NestFactory.create(ApiModule, {
+    logger: new Logger(), // overwrite default Logger
+  });
+
+  await app.listen(3000);
+}
+bootstrap();
+
+// usage
+import { Controller, Get, Logger } from "@nestjs/common";
+
+@Controller("auth")
+export class AuthController {
+  @Get("")
+  index() {
+    Logger.error("test auth log");
+  }
+}
 ```
