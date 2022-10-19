@@ -401,6 +401,63 @@ types are optional and validation should be skipped if the type isn&#39;t specif
     },
   });
 };
+</code></pre></div><h2 id=question-10--mark-duplicated-file>Question 10 : Mark duplicated file</h2>
+<p>You will have an array of files like this. Your mission is marking the duplicated file.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>files</span> <span style=color:#f92672>=</span> [
+  {
+    <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>1</span>,
+    <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;abc.pdf&#34;</span>,
+  },
+  { <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>2</span>, <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;bcd.pdf&#34;</span> },
+  { <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>3</span>, <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;cef.pdf&#34;</span> },
+  { <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>4</span>, <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;abc.pdf&#34;</span> },
+  { <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>5</span>, <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;abcd.pdf&#34;</span> },
+  { <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>6</span>, <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;abcd.pdf&#34;</span> },
+  { <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>7</span>, <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;abc.pdf&#34;</span> },
+];
+</code></pre></div><p><strong>Expected output</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>expectedOutput</span> <span style=color:#f92672>=</span> [
+  {
+    <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>1</span>,
+    <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;abc.pdf&#34;</span>,
+    <span style=color:#a6e22e>duplicated</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>false</span>,
+  },
+  { <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>2</span>, <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;bcd.pdf&#34;</span>, <span style=color:#a6e22e>duplicated</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>false</span> },
+  { <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>3</span>, <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;cef.pdf&#34;</span>, <span style=color:#a6e22e>duplicated</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>false</span> },
+  { <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>4</span>, <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;abc.pdf&#34;</span>, <span style=color:#a6e22e>duplicated</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>true</span> },
+  { <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>5</span>, <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;abcd.pdf&#34;</span>, <span style=color:#a6e22e>duplicated</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>false</span> },
+  { <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>6</span>, <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;abcd.pdf&#34;</span>, <span style=color:#a6e22e>duplicated</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>true</span> },
+  { <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>7</span>, <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;abc.pdf&#34;</span>, <span style=color:#a6e22e>duplicated</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>true</span> },
+];
+</code></pre></div><h3 id=answer-1-1>Answer 1</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>transformedFiles</span> <span style=color:#f92672>=</span> [];
+
+<span style=color:#a6e22e>files</span>.<span style=color:#a6e22e>map</span>((<span style=color:#a6e22e>f</span>) =&gt; {
+  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>transformedFile</span> <span style=color:#f92672>=</span> { ...<span style=color:#a6e22e>f</span>, <span style=color:#a6e22e>duplicated</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>false</span> };
+  <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>transformedFiles</span>.<span style=color:#a6e22e>find</span>((<span style=color:#a6e22e>file</span>) =&gt; <span style=color:#a6e22e>f</span>.<span style=color:#a6e22e>name</span> <span style=color:#f92672>===</span> <span style=color:#a6e22e>file</span>.<span style=color:#a6e22e>name</span>)) {
+    <span style=color:#a6e22e>transformedFile</span>.<span style=color:#a6e22e>duplicated</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>true</span>;
+  }
+  <span style=color:#a6e22e>transformedFiles</span>.<span style=color:#a6e22e>push</span>(<span style=color:#a6e22e>transformedFile</span>);
+});
+</code></pre></div><h3 id=answer-2-1>Answer 2</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>transformedFiles</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>files</span>.<span style=color:#a6e22e>sort</span>((<span style=color:#a6e22e>a</span>, <span style=color:#a6e22e>b</span>) =&gt; <span style=color:#a6e22e>a</span>.<span style=color:#a6e22e>name</span>.<span style=color:#a6e22e>localeCompare</span>(<span style=color:#a6e22e>b</span>.<span style=color:#a6e22e>name</span>));
+<span style=color:#a6e22e>transformedFiles</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>transformedFiles</span>.<span style=color:#a6e22e>map</span>((<span style=color:#a6e22e>f</span>, <span style=color:#a6e22e>index</span>) =&gt; {
+  <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>index</span> <span style=color:#f92672>===</span> <span style=color:#ae81ff>0</span>)
+    <span style=color:#66d9ef>return</span> {
+      ...<span style=color:#a6e22e>f</span>,
+      <span style=color:#a6e22e>duplicated</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>false</span>,
+    };
+  <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>f</span>.<span style=color:#a6e22e>name</span>.<span style=color:#a6e22e>localeCompare</span>(<span style=color:#a6e22e>transformedFiles</span>[<span style=color:#a6e22e>index</span> <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>].<span style=color:#a6e22e>name</span>) <span style=color:#f92672>===</span> <span style=color:#ae81ff>0</span>)
+    <span style=color:#66d9ef>return</span> {
+      ...<span style=color:#a6e22e>f</span>,
+      <span style=color:#a6e22e>duplicated</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>true</span>,
+    };
+  <span style=color:#66d9ef>return</span> {
+    ...<span style=color:#a6e22e>f</span>,
+    <span style=color:#a6e22e>duplicated</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>false</span>,
+  };
+});
+<span style=color:#a6e22e>transformedFiles</span>.<span style=color:#a6e22e>sort</span>((<span style=color:#a6e22e>a</span>, <span style=color:#a6e22e>b</span>) =&gt; <span style=color:#a6e22e>a</span>.<span style=color:#a6e22e>id</span> <span style=color:#f92672>-</span> <span style=color:#a6e22e>b</span>.<span style=color:#a6e22e>id</span>).<span style=color:#a6e22e>map</span>((<span style=color:#a6e22e>f</span>) =&gt; <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>f</span>));
 </code></pre></div>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/cheatsheet>cheatsheet</a>
