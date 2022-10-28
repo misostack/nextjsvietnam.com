@@ -1,7 +1,7 @@
 ---
 title: "Build Restful Api With Nestjs the Right Way"
 type: "post"
-date: 2022-10-14T14:26:07+07:00
+date: 2022-10-28T06:00:07+07:00
 description: "The hands-on NestJS tutorial to build a standard Restful API"
 keywords: ["nestjs", "dto", "validation"]
 categories: ["frameworks"]
