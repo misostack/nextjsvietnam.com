@@ -11,10 +11,10 @@
 <link rel=stylesheet href=https://nextjsvietnam.com/themes/2022/public/page.css>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWE4MLJYE6"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-RWE4MLJYE6')</script>
-<title>Npm Cheatsheet | List all common and useful npm commands from 0 to hero | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+<title>The Art of Programming | Topics to be discussed are anything about concepts in programming | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
 <meta name=robots content="all">
-<meta name=keywords content="Npm Cheatsheet">
-<meta name=description content="List all common and useful npm commands from 0 to hero">
+<meta name=keywords content="The Art of Programming">
+<meta name=description content="Topics to be discussed are anything about concepts in programming">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://nextjsvietnam.com/common/no-image.png">
 <meta property="og:image:type" content="image/jpeg">
@@ -81,43 +81,40 @@
 <main>
 <section class="container section">
 <div class="page-content max-w-2xl mx-auto">
-<img src=https://nextjsvietnam.com/common/no-image.png class=img-responsive alt="Npm Cheatsheet">
-<h1>Npm Cheatsheet</h1>
+<img src=https://nextjsvietnam.com/common/no-image.png class=img-responsive alt="The Art of Programming">
+<h1>The Art of Programming</h1>
 <p>
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/cheatsheet>cheatsheet</a>
 </p>
-<h2 id=basic-commands>Basic commands</h2>
-<p><strong>Global</strong></p>
-<h3 id=list-global-installed-packages>list global installed packages</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>npm list -g
-</code></pre></div><h3 id=list-global-installed-packages-without-their-dependencies>list global installed packages without their dependencies</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>npm list -g --depth<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>
-</code></pre></div><h3 id=check-a-specific-global-package>check a specific global package</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>npm list -g express
-</code></pre></div><h3 id=install-global-packages>install global packages</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>npm install -g &lt;package_name&gt;
-</code></pre></div><h3 id=check-outdated-global-packages>check outdated global packages</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>npm outdated -g --depth<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>
-</code></pre></div><h3 id=update-global-package>update global package</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>npm update -g &lt;package_name&gt;
-</code></pre></div><h3 id=uninstall-global-package>uninstall global package</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>npm uninstall -g &lt;package_name&gt;
-</code></pre></div><p><strong>Local</strong></p>
-<h3 id=list-local-installed-packages>list local installed packages</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>npm list
-</code></pre></div><h3 id=list-local-installed-packages-without-their-dependencies>list local installed packages without their dependencies</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>npm list --depth<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>
-</code></pre></div><h3 id=check-a-specific-local-package>check a specific local package</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>npm list express
-</code></pre></div><h3 id=install-local-package-and-save-to-packagejson>install local package and save to package.json</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>npm install -S &lt;package_name&gt;
-</code></pre></div><h3 id=check-outdated-local-package>check outdated local package</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>npm outdated --depth<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>
-</code></pre></div><h3 id=update-local-package-and-save-to-packagejson>update local package and save to package.json</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>npm update -S &lt;package_name&gt;
-</code></pre></div><h3 id=uninstall-local-package-and-save-to-packagejson>uninstall local package and save to package.json</h3>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>npm uninstall -S &lt;package_name&gt;
-</code></pre></div>
+<p>Topics to be discussed are anything about concepts in programming</p>
+<ol>
+<li><input checked disabled type=checkbox> Imperative programming vs Declarative programming</li>
+</ol>
+<p>Functional Programming is a declarative programming paradigm, in contrast to imperative programming paradigms.</p>
+<p><strong>Declarative programming</strong> is a paradigm describing <strong>WHAT</strong> the program does, without explicitly specifying its control flow.</p>
+<p><strong>Imperative programming</strong> is a paradigm describing <strong>HOW</strong> the program should do something by explicitly specifying each instruction (or statement) step by step, which mutate the program&rsquo;s state.</p>
+<blockquote>
+<p>Making a chocolate cake</p>
+</blockquote>
+<p><strong>The imperative way</strong></p>
+<ul>
+<li>First, turn on the oven to preheat it at 180°C.</li>
+<li>Next, add flour, sugar, cocoa powder, baking soda and salt to a large bowl, then stir the mixture with a paddle.</li>
+<li>Then, add milk, vegetable oil, eggs and vanilla extract to the mixture, and mix together on medium speed until well combined.</li>
+<li>Distribute the cake batter evenly in a large cake pan, then bake it for approx. 30 minutes.</li>
+<li>Remove the pan from the oven with a pot holder, let it cool for 10 minutes.</li>
+<li>Finally, remove the cake from the pan with the tapping method, and frost it evenly with chocolate frosting.</li>
+</ul>
+<p><strong>The declarative way</strong></p>
+<ul>
+<li>You have to preheat the oven to 180 °C.</li>
+<li>You have to mix dry ingredients in a bowl.</li>
+<li>Once dry ingredients are mixed, you have to add wet ingredients to the mixture, and mix together to form the cake batter.</li>
+<li>Once the oven and batter are ready, you have to put the batter in a pan, then bake it for 30 minutes.</li>
+<li>Once baked, you have to remove the pan from the oven and let it cool for 10 minutes.</li>
+<li>Finally, you have to remove the cake from the pan, and frost it.</li>
+</ul>
+<p>Ready? Go!</p>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/cheatsheet>cheatsheet</a>
 </div>
@@ -128,13 +125,13 @@
 <div class="font-heading text-2xl font-semibold">You Might Also Like</div>
 <div class="mt-8 grid gap-8">
 <ul class=sidebar-links>
-<li><a href=/post/the-art-of-programming/>The Art of Programming</a></li>
 <li><a href=/post/learn-enough-oop-to-be-dangerous/>Learn Enough Oop to Be Dangerous</a></li>
 <li><a href=/post/100-nodejs-interview-questions/>100 Nodejs Interview Questions</a></li>
 <li><a href=/post/reactjs-use-reducer-the-right-way/>Reactjs Use Reducer the Right Way</a></li>
 <li><a href=/post/validate-form-data-javascript-the-right-way/>Validate Form Data Javascript the Right Way</a></li>
 <li><a href=/post/software-architecture-design-guidelines/>Software Architecture Design Guidelines</a></li>
 <li><a href=/post/rest-api-implementation-guidelines/>Rest Api Implementation Guidelines</a></li>
+<li><a href=/post/rest-api-design-checklist/>Rest Api Design Checklist</a></li>
 </ul>
 </div>
 </div>
