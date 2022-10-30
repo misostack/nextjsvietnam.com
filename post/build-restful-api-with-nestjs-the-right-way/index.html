@@ -540,8 +540,7 @@ npm run typeorm migration:revert
     <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>logger</span>.<span style=color:#a6e22e>debug</span>(<span style=color:#a6e22e>message</span>, ...<span style=color:#a6e22e>optionalParams</span>);
   }
 }
-<span style=color:#75715e>// Reference from : [Ho Nguyen Dang Khoa] - https://www.linkedin.com/in/ho-nguyen-dang-khoa-63b387187/
-</span><span style=color:#75715e></span>
+
 <span style=color:#75715e>// src/application/api/main.ts
 </span><span style=color:#75715e></span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Logger</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@config/log&#34;</span>;
 <span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>NestFactory</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/core&#34;</span>;
@@ -566,7 +565,18 @@ npm run typeorm migration:revert
     <span style=color:#a6e22e>Logger</span>.<span style=color:#a6e22e>error</span>(<span style=color:#e6db74>&#34;test auth log&#34;</span>);
   }
 }
-</code></pre></div>
+</code></pre></div><h2 id=step-4--application-layer-implementation>Step 4 : Application Layer Implementation</h2>
+<p>Let&rsquo;s assume that we already have the below high level design diagrams</p>
+<p><strong>Response & Response</strong></p>
+<p><img src=/documents/file-storage-api-design-examples-request-response.png alt="Response & Response"></p>
+<p><strong>Create Example</strong></p>
+<p><img src=/documents/file-storage-api-design-examples-create.png alt="Create Example"></p>
+<p><strong>List Example</strong></p>
+<p><img src=/documents/file-storage-api-design-examples-list.png alt="List Example"></p>
+<p><strong>Update Example</strong></p>
+<p><img src=/documents/file-storage-api-design-examples-update.png alt="List Example"></p>
+<p><strong>Delete Example</strong></p>
+<p><img src=/documents/file-storage-api-design-examples-delete.png alt="List Example"></p>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/frameworks>frameworks</a>
 </div>
@@ -640,7 +650,7 @@ Copyright @ NextJSVietNam 2022
 Powered by <a class="font-bold text-primary" href=https://gohugo.io/>Go Hugo</a> - Made
 with love from <a class="font-bold text-primary" href=https://nextjsvietnam.com>NextJSVietNam</a> -
 Build
-Version 2022-10-29 18:16:57 +0700 +0700
+Version 2022-10-30 06:00:00 +0700 +0700
 </div>
 </div>
 </footer>
