@@ -12,6 +12,9 @@ image: "/common/no-image.png"
 Topics to be discussed are anything about concepts in programming
 
 1. [x] Imperative programming vs Declarative programming
+2. [x] Aspect Oriented Programming
+
+## Imperative programming vs Declarative programming
 
 Functional Programming is a declarative programming paradigm, in contrast to imperative programming paradigms.
 
@@ -40,3 +43,16 @@ Functional Programming is a declarative programming paradigm, in contrast to imp
 - Finally, you have to remove the cake from the pan, and frost it.
 
 Ready? Go!
+
+## Aspect Oriented Programming
+
+- Aims to increase modularity by allowing the separation of cross-cutting concerns.
+- It does so by adding behavior to existing code (an advice) without modifying the code itself, instead separately specifying which code is modified via a "pointcut" specification, such as "log all function calls when the function's name begins with 'set'".
+
+Interceptors have a set of useful capabilities which are inspired by the Aspect Oriented Programming (AOP) technique. They make it possible to:
+
+- bind extra logic before / after method execution
+- transform the result returned from a function
+- transform the exception thrown from a function
+- extend the basic function behavior
+- completely override a function depending on specific conditions (e.g., for caching purposes)
