@@ -1,7 +1,7 @@
 ---
 title: "Build Restful Api With Nestjs the Right Way"
 type: "post"
-date: 2022-10-28T06:00:07+07:00
+date: 2022-10-30T06:00:00+07:00
 description: "The hands-on NestJS tutorial to build a standard Restful API"
 keywords: ["nestjs", "dto", "validation"]
 categories: ["frameworks"]
@@ -513,7 +513,6 @@ export class Logger extends ConsoleLogger {
     this.logger.debug(message, ...optionalParams);
   }
 }
-// Reference from : [Ho Nguyen Dang Khoa] - https://www.linkedin.com/in/ho-nguyen-dang-khoa-63b387187/
 
 // src/application/api/main.ts
 import { Logger } from "@config/log";
@@ -540,3 +539,27 @@ export class AuthController {
   }
 }
 ```
+
+## Step 4 : Application Layer Implementation
+
+Let's assume that we already have the below high level design diagrams
+
+**Response & Response**
+
+![Response & Response](/documents/file-storage-api-design-examples-request-response.png)
+
+**Create Example**
+
+![Create Example](/documents/file-storage-api-design-examples-create.png)
+
+**List Example**
+
+![List Example](/documents/file-storage-api-design-examples-list.png)
+
+**Update Example**
+
+![List Example](/documents/file-storage-api-design-examples-update.png)
+
+**Delete Example**
+
+![List Example](/documents/file-storage-api-design-examples-delete.png)
