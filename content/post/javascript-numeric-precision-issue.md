@@ -40,3 +40,42 @@ Các số dấu phẩy động thập phân mà bạn nhập chỉ gần đúng 
 2. Dữ liệu trả về nên gói thành string trong JSON
 3. Phần thập phần trong javascript tối đa là 12 số
 4. Lưu ý khi làm việc với số lớn nê dùng BigInt
+
+## Javascript is so smart !!!
+
+```js
+const d = new Date("1985-13-29");
+console.log(d);
+
+// and we got
+// Fri Mar 01 1985 07:00:00 GMT+0700 (Indochina Time)
+```
+
+Note: in java you have the same result
+
+```java
+package javacore.net;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
+public class Main {
+    public static void main(String[] args) {
+        // JavaThePillars.run();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+        try {
+            String dateInString = "1985-13-31";
+            Date date = formatter.parse(dateInString);
+            System.out.printf(date.toString());
+        } catch (ParseException ex) {
+            System.out.printf(ex.toString());
+        }
+
+
+    }
+}
+
+// Fri Jan 31 00:00:00 ICT 1986
+```
