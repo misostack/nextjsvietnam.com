@@ -79,3 +79,67 @@ public class Main {
 
 // Fri Jan 31 00:00:00 ICT 1986
 ```
+
+Nhưng méo có đúng với Python đâu nha
+
+```py
+import datetime
+
+date_time_str = '1985-02-28'
+date_time_obj = datetime.datetime.strptime(date_time_str, '%Y-%m-%d')
+
+print('Date:', date_time_obj.date())
+
+date_time_str = '1985-02-29'
+date_time_obj = datetime.datetime.strptime(date_time_str, '%Y-%m-%d')
+
+print('Date:', date_time_obj.date())
+# => ăn chửi ngay
+```
+
+```go
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+func main() {
+	v := "Thu, 02/29/11, 10:47PM"
+	l := "Mon, 01/02/06, 03:04PM"
+	tt, e := time.Parse(l, v)
+	fmt.Println(tt)
+	fmt.Println(e)
+}
+
+```
+
+And how about C#
+
+```c#
+// Online C# Editor for free
+// Write, Edit and Run your C# code using C# Online Compiler
+
+using System;
+using System.Globalization;
+
+public class HelloWorld
+{
+    public static void Main(string[] args)
+    {
+        Console.WriteLine ("Hello Mono World");
+        string dateString = "02-29-85";
+
+        // It throws Argument null exception
+        DateTime parsedDate;
+        DateTime.TryParseExact(dateString, "MM-dd-yy", null,
+                                      DateTimeStyles.None, out parsedDate);
+        Console.WriteLine(parsedDate.ToString());
+    }
+}
+
+// Ăn đấm luôn nhé
+
+// Hello Mono World01/01/0001 00:00:00
+```
