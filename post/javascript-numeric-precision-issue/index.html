@@ -112,6 +112,38 @@
 <li>Phần thập phần trong javascript tối đa là 12 số</li>
 <li>Lưu ý khi làm việc với số lớn nê dùng BigInt</li>
 </ol>
+<h2 id=javascript-is-so-smart->Javascript is so smart !!!</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>d</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Date(<span style=color:#e6db74>&#34;1985-13-29&#34;</span>);
+<span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>d</span>);
+
+<span style=color:#75715e>// and we got
+</span><span style=color:#75715e>// Fri Mar 01 1985 07:00:00 GMT+0700 (Indochina Time)
+</span></code></pre></div><p>Note: in java you have the same result</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#f92672>package</span> javacore.net<span style=color:#f92672>;</span>
+
+<span style=color:#f92672>import</span> java.text.ParseException<span style=color:#f92672>;</span>
+<span style=color:#f92672>import</span> java.text.SimpleDateFormat<span style=color:#f92672>;</span>
+<span style=color:#f92672>import</span> java.util.Date<span style=color:#f92672>;</span>
+<span style=color:#f92672>import</span> java.util.Locale<span style=color:#f92672>;</span>
+
+<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Main</span> <span style=color:#f92672>{</span>
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>main</span><span style=color:#f92672>(</span>String<span style=color:#f92672>[]</span> args<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        <span style=color:#75715e>// JavaThePillars.run();
+</span><span style=color:#75715e></span>        SimpleDateFormat formatter <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> SimpleDateFormat<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;yyyy-MM-dd&#34;</span><span style=color:#f92672>,</span> Locale<span style=color:#f92672>.</span><span style=color:#a6e22e>ENGLISH</span><span style=color:#f92672>);</span>
+        <span style=color:#66d9ef>try</span> <span style=color:#f92672>{</span>
+            String dateInString <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;1985-13-31&#34;</span><span style=color:#f92672>;</span>
+            Date date <span style=color:#f92672>=</span> formatter<span style=color:#f92672>.</span><span style=color:#a6e22e>parse</span><span style=color:#f92672>(</span>dateInString<span style=color:#f92672>);</span>
+            System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>printf</span><span style=color:#f92672>(</span>date<span style=color:#f92672>.</span><span style=color:#a6e22e>toString</span><span style=color:#f92672>());</span>
+        <span style=color:#f92672>}</span> <span style=color:#66d9ef>catch</span> <span style=color:#f92672>(</span>ParseException ex<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+            System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>printf</span><span style=color:#f92672>(</span>ex<span style=color:#f92672>.</span><span style=color:#a6e22e>toString</span><span style=color:#f92672>());</span>
+        <span style=color:#f92672>}</span>
+
+
+    <span style=color:#f92672>}</span>
+<span style=color:#f92672>}</span>
+
+<span style=color:#75715e>// Fri Jan 31 00:00:00 ICT 1986
+</span></code></pre></div>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/cheatsheet>cheatsheet</a>
 </div>
