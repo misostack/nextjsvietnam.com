@@ -174,6 +174,199 @@ Do đó khi định nghĩa một phương, đôi khi phương thức sẽ cần 
 <h3 id=tổng-kết>Tổng kết</h3>
 <p><img src=https://user-images.githubusercontent.com/31009750/195331118-2e9145f7-97d2-4f1d-9176-c4b89d874096.png alt=image></p>
 <h2 id=phần-2-oop-solid-principles>Phần 2: OOP SOLID Principles</h2>
+<ol>
+<li><strong>S</strong>ingle Responsibility</li>
+</ol>
+<blockquote>
+<p>A class should only have one responsibility. Furthermore, it should only have one reason to change</p>
+</blockquote>
+<p><strong>Benefits</strong></p>
+<ul>
+<li>Testing - class have only one responsility wil have far fewer test cases</li>
+<li>Lower coupling - less funtionality in single class wil have fewer dependencies</li>
+<li>Organization - smaller, well-organized classes are easier to search than monolith ones</li>
+</ul>
+<p>Example:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>UserService</span> {
+  <span style=color:#a6e22e>findOne() {</span>}
+  <span style=color:#a6e22e>find() {</span>}
+  <span style=color:#a6e22e>updateOne() {</span>}
+  <span style=color:#a6e22e>deleteOne() {</span>}
+}
+
+<span style=color:#75715e>// violation
+</span><span style=color:#75715e></span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>BadUserService</span> {
+  <span style=color:#a6e22e>findOne() {</span>}
+  <span style=color:#a6e22e>find() {</span>}
+  <span style=color:#a6e22e>updateOne() {</span>}
+  <span style=color:#a6e22e>deleteOne() {</span>}
+  <span style=color:#a6e22e>exportToPdf() {</span>}
+}
+
+<span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>ExportService</span> {
+  <span style=color:#a6e22e>exportToPdf</span>();
+}
+
+<span style=color:#75715e>// good
+</span><span style=color:#75715e></span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>UserExportService</span> <span style=color:#66d9ef>implements</span> <span style=color:#a6e22e>ExportService</span> {
+  <span style=color:#a6e22e>exportToPdf() {</span>}
+}
+</code></pre></div><ol start=2>
+<li><strong>O</strong>pen for Extension, Closed for Modification</li>
+</ol>
+<blockquote>
+<p>open-closed principle. Classes should be open for extension but closed for modification. In doing so, we stop ourselves</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>enum</span> <span style=color:#a6e22e>FurnitureGroup</span> {
+  <span style=color:#a6e22e>CLASSIC</span>,
+  <span style=color:#a6e22e>MODERN</span>,
+}
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Furniture</span> {
+  <span style=color:#a6e22e>furnitureGroup</span>: <span style=color:#66d9ef>FurnitureGroup</span>;
+  <span style=color:#66d9ef>constructor</span>() {}
+  <span style=color:#a6e22e>getCollection() {</span>}
+}
+
+<span style=color:#75715e>// Instead of modifing the base class, we&#39;re creating new 2 class for new business rule
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ClassicFurniture</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>Furniture</span> {
+  <span style=color:#66d9ef>constructor</span>() {
+    <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>furnitureGroup</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>FurnitureGroup</span>.<span style=color:#a6e22e>CLASSIC</span>;
+  }
+}
+
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ModernFurniture</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>Furniture</span> {
+  <span style=color:#66d9ef>constructor</span>() {
+    <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>furnitureGroup</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>FurnitureGroup</span>.<span style=color:#a6e22e>MODERN</span>;
+  }
+}
+</code></pre></div><ol start=3>
+<li><strong>L</strong>iskov Substituation Principle</li>
+</ol>
+<blockquote>
+<p>The Liskov Substitution Principle states that subclasses should be substitutable for their base classes</p>
+</blockquote>
+<blockquote>
+<p>if class A is a subtype of class B, we should be able to replace B with A without disrupting the behavior of our program</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#75715e>// if we use only one type of class to take responsibility, in theory, we will violate
+</span><span style=color:#75715e>// 1- single responsibility
+</span><span style=color:#75715e>// 2- open for extension, closed for modification
+</span><span style=color:#75715e>// 3- Liskov substituation
+</span><span style=color:#75715e></span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>QueueJob</span> {
+  <span style=color:#a6e22e>create() {</span>}
+  <span style=color:#a6e22e>run() {</span>}
+}
+
+<span style=color:#75715e>// So we&#39;re going to refactoring this class, we can apply 2 patterns here
+</span><span style=color:#75715e>// 1. Creational Pattern: AbstractFactory or Factory
+</span><span style=color:#75715e>// 2. Behavior Pattern: Strategy
+</span><span style=color:#75715e></span>
+<span style=color:#75715e>// jobs: sendNotification:email, sms,
+</span><span style=color:#75715e></span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>NotificationQueueJob</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>QueueJob</span> {}
+</code></pre></div><ol start=4>
+<li><strong>I</strong>nterface Segregation</li>
+</ol>
+<blockquote>
+<p>Larger interfaces should be split into smaller ones. By doing so, we can ensure that implementing classes only need to be concerned about the methods that are of interest to them</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#75715e>// instead of creating an interface that
+</span><span style=color:#75715e></span><span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>Soldier</span> {
+  <span style=color:#a6e22e>fire</span>(); <span style=color:#75715e>// only archer can fire
+</span><span style=color:#75715e></span>  <span style=color:#a6e22e>shieldUp</span>(); <span style=color:#75715e>// only phalanx can create shieldWall
+</span><span style=color:#75715e></span>  <span style=color:#a6e22e>shieldDown</span>(); <span style=color:#75715e>// only phalanx can create shieldWall
+</span><span style=color:#75715e></span>  <span style=color:#a6e22e>attack</span>(); <span style=color:#75715e>// only knight/swordman/phalanx can attack
+</span><span style=color:#75715e></span>  <span style=color:#a6e22e>chase</span>(); <span style=color:#75715e>// only knight/swordman/phalanx can attack
+</span><span style=color:#75715e></span>}
+
+<span style=color:#75715e>// we should segregate the large interface into smaller interfaces
+</span><span style=color:#75715e></span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Soldier</span>{}
+
+<span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>SoldierCanFire</span> {
+  <span style=color:#a6e22e>fire</span>(); <span style=color:#75715e>// only archer can fire
+</span><span style=color:#75715e></span>}
+<span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>SoldierCanMakeShieldWall</span> {
+  <span style=color:#a6e22e>shieldUp</span>(); <span style=color:#75715e>// only phalanx can create shieldWall
+</span><span style=color:#75715e></span>  <span style=color:#a6e22e>shieldDown</span>(); <span style=color:#75715e>// only phalanx can create shieldWall
+</span><span style=color:#75715e></span>}
+<span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>SoldierCanAttackAndChaseEnemy</span>(){
+    <span style=color:#a6e22e>attack</span>();
+    <span style=color:#a6e22e>chase</span>();
+}
+
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Archer</span> <span style=color:#a6e22e>extend</span> <span style=color:#a6e22e>Soldier</span> <span style=color:#66d9ef>implements</span> <span style=color:#a6e22e>SoldierCanFire</span>{}
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Phalanx</span> <span style=color:#a6e22e>extend</span> <span style=color:#a6e22e>Soldier</span> <span style=color:#66d9ef>implements</span> <span style=color:#a6e22e>SoldierCanMakeShieldWall</span>, <span style=color:#a6e22e>SoldierCanAttackAndChaseEnemy</span>{}
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Swordman</span> <span style=color:#a6e22e>extend</span> <span style=color:#a6e22e>Soldier</span> <span style=color:#66d9ef>implements</span> <span style=color:#a6e22e>SoldierCanMakeShieldWall</span>, <span style=color:#a6e22e>SoldierCanAttackAndChaseEnemy</span>{}
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Knight</span> <span style=color:#a6e22e>extend</span> <span style=color:#a6e22e>Soldier</span> <span style=color:#66d9ef>implements</span> <span style=color:#a6e22e>SoldierCanAttackAndChaseEnemy</span>{}
+</code></pre></div><ol start=5>
+<li><strong>D</strong>ependency Inversion</li>
+</ol>
+<blockquote>
+<p>The principle of dependency inversion refers to the decoupling of software modules. This way, instead of high-level modules depending on low-level modules, both will depend on abstractions</p>
+</blockquote>
+<p>The typical example that demonstrate the violation of this principle is the Controller-Model</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>User</span> {
+  <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>number</span>;
+  <span style=color:#a6e22e>name</span>: <span style=color:#66d9ef>string</span>;
+  <span style=color:#a6e22e>username</span>: <span style=color:#66d9ef>string</span>;
+
+  <span style=color:#a6e22e>toModel</span>(<span style=color:#a6e22e>model</span>: <span style=color:#66d9ef>Model</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>Model</span> {
+    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>newModelInstance</span>(<span style=color:#a6e22e>Model</span>, <span style=color:#66d9ef>this</span>);
+  }
+}
+
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>UserResponseModel</span> {
+  <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>number</span>;
+  <span style=color:#a6e22e>name</span>: <span style=color:#66d9ef>string</span>;
+}
+
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>UserRepository</span> {
+  <span style=color:#66d9ef>constructor</span>(<span style=color:#66d9ef>private</span> <span style=color:#a6e22e>dbInstance</span>: <span style=color:#66d9ef>DBInstance</span>) {
+    <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>dbInstance</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>dbInstance</span>;
+  }
+  <span style=color:#a6e22e>findById</span>(<span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>number</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>User</span> {
+    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>dbInstance</span>
+      .<span style=color:#a6e22e>query</span>(<span style=color:#e6db74>`SELECT * from users where id = </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>id</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>)
+      .<span style=color:#a6e22e>toEntity</span>(<span style=color:#a6e22e>User</span>);
+  }
+}
+
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>UserController</span> {
+  <span style=color:#66d9ef>constructor</span>(<span style=color:#66d9ef>private</span> <span style=color:#a6e22e>userRepository</span>: <span style=color:#66d9ef>UserRepository</span>) {
+    <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>userRepository</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>userRepository</span>;
+  }
+
+  <span style=color:#a6e22e>findUser</span>(<span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>number</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>UserResponseModel</span> {
+    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>userRepository</span>.<span style=color:#a6e22e>findById</span>(<span style=color:#a6e22e>id</span>).<span style=color:#a6e22e>toModel</span>(<span style=color:#a6e22e>UserResponseModel</span>);
+  }
+}
+
+<span style=color:#75715e>// in this case userController in application layer (high level module) depends on persistence layer ( lower level module), apply DI we will create an interface
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>IUserRepository</span> {
+  <span style=color:#a6e22e>findById</span>(<span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>number</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>User</span>;
+}
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>UserRepository</span> <span style=color:#66d9ef>implements</span> <span style=color:#a6e22e>IUserRepository</span> {
+  <span style=color:#66d9ef>constructor</span>(<span style=color:#66d9ef>private</span> <span style=color:#a6e22e>dbInstance</span>: <span style=color:#66d9ef>DBInstance</span>) {
+    <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>dbInstance</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>dbInstance</span>;
+  }
+  <span style=color:#a6e22e>findById</span>(<span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>number</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>User</span> {
+    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>dbInstance</span>
+      .<span style=color:#a6e22e>query</span>(<span style=color:#e6db74>`SELECT * from users where id = </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>id</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>)
+      .<span style=color:#a6e22e>toEntity</span>(<span style=color:#a6e22e>User</span>);
+  }
+}
+
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>UserController</span> {
+  <span style=color:#66d9ef>constructor</span>(<span style=color:#66d9ef>private</span> <span style=color:#a6e22e>userRepository</span>: <span style=color:#66d9ef>IUserRepository</span>) {
+    <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>userRepository</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>userRepository</span>;
+  }
+
+  <span style=color:#a6e22e>findUser</span>(<span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>number</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>UserResponseModel</span> {
+    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>userRepository</span>.<span style=color:#a6e22e>findById</span>(<span style=color:#a6e22e>id</span>).<span style=color:#a6e22e>toModel</span>(<span style=color:#a6e22e>UserResponseModel</span>);
+  }
+}
+</code></pre></div>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/cheatsheet>cheatsheet</a>
 </div>
