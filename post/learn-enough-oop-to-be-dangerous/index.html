@@ -366,6 +366,108 @@ Do đó khi định nghĩa một phương, đôi khi phương thức sẽ cần 
     <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>userRepository</span>.<span style=color:#a6e22e>findById</span>(<span style=color:#a6e22e>id</span>).<span style=color:#a6e22e>toModel</span>(<span style=color:#a6e22e>UserResponseModel</span>);
   }
 }
+</code></pre></div><h2 id=inheritance>Inheritance</h2>
+<h3 id=dependency-injection>Dependency Injection</h3>
+<p><img src=https://user-images.githubusercontent.com/31009750/219949132-61920e3d-daa0-40af-95d3-18b7ba45b385.png alt=image>
+<img src=https://user-images.githubusercontent.com/31009750/219949656-0a897f1e-8a59-4727-84b6-a4320e159de4.png alt=image></p>
+<blockquote>
+<p>Dependency inversion is a key part of building loosely coupled applications, since implementation details can be written to depend on and implement higher-level abstractions, rather than the other way around. The resulting applications are more testable, modular, and maintainable as a result. The practice of dependency injection is made possible by following the dependency inversion principle</p>
+</blockquote>
+<p><strong>The 4 roles in dependency injection</strong></p>
+<ul>
+<li>1.The service you want to use.</li>
+<li>2.The client that uses the service.</li>
+<li>3.An interface that’s used by the client and implemented by the service.</li>
+<li>4.The injector which creates a service instance and injects it into the client.</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#34;reflect-metadata&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>injectable</span>, <span style=color:#a6e22e>inject</span>, <span style=color:#a6e22e>container</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;tsyringe&#34;</span>;
+
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>ID</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>string</span> <span style=color:#f92672>|</span> <span style=color:#66d9ef>number</span>;
+<span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>Repository</span>&lt;<span style=color:#f92672>T</span>&gt; {
+  <span style=color:#a6e22e>findOne</span>(<span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>ID</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>T</span>;
+}
+<span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>CrudService</span>&lt;<span style=color:#f92672>Model</span>&gt; {
+  <span style=color:#a6e22e>findOne</span>(<span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>ID</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>Model</span>;
+}
+
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>User</span> {
+  <span style=color:#a6e22e>id</span><span style=color:#f92672>!:</span> <span style=color:#a6e22e>ID</span>;
+  <span style=color:#a6e22e>firstName</span><span style=color:#f92672>!:</span> <span style=color:#66d9ef>string</span>;
+  <span style=color:#a6e22e>lastName</span><span style=color:#f92672>!:</span> <span style=color:#66d9ef>string</span>;
+  <span style=color:#66d9ef>constructor</span>(<span style=color:#a6e22e>payload</span>: <span style=color:#66d9ef>Partial</span>&lt;<span style=color:#f92672>User</span>&gt;) {
+    Object.<span style=color:#a6e22e>assign</span>(<span style=color:#66d9ef>this</span>, <span style=color:#a6e22e>payload</span>);
+  }
+}
+
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Role</span> {
+  <span style=color:#a6e22e>id</span><span style=color:#f92672>!:</span> <span style=color:#a6e22e>ID</span>;
+  <span style=color:#a6e22e>name</span><span style=color:#f92672>!:</span> <span style=color:#66d9ef>string</span>;
+  <span style=color:#a6e22e>permissions</span>: <span style=color:#66d9ef>string</span>[] <span style=color:#f92672>=</span> [];
+  <span style=color:#66d9ef>constructor</span>(<span style=color:#a6e22e>payload</span>: <span style=color:#66d9ef>Partial</span>&lt;<span style=color:#f92672>Role</span>&gt;) {
+    Object.<span style=color:#a6e22e>assign</span>(<span style=color:#66d9ef>this</span>, <span style=color:#a6e22e>payload</span>);
+  }
+}
+
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>UserRepository</span> <span style=color:#66d9ef>implements</span> <span style=color:#a6e22e>Repository</span>&lt;<span style=color:#f92672>User</span>&gt; {
+  <span style=color:#a6e22e>findOne</span>(<span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>ID</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>User</span> {
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>user</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>User</span>({
+      <span style=color:#a6e22e>id</span>,
+      <span style=color:#a6e22e>firstName</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Typescript&#34;</span>,
+      <span style=color:#a6e22e>lastName</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Master Class&#34;</span>,
+    });
+    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>user</span>;
+  }
+}
+
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>RoleRepository</span> <span style=color:#66d9ef>implements</span> <span style=color:#a6e22e>Repository</span>&lt;<span style=color:#f92672>Role</span>&gt; {
+  <span style=color:#a6e22e>findOne</span>(<span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>ID</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>Role</span> {
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>role</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Role</span>({
+      <span style=color:#a6e22e>id</span>,
+      <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Admin&#34;</span>,
+      <span style=color:#a6e22e>permissions</span><span style=color:#f92672>:</span> [<span style=color:#e6db74>&#34;CreateUser&#34;</span>, <span style=color:#e6db74>&#34;EditUser&#34;</span>, <span style=color:#e6db74>&#34;RetrieveUser&#34;</span>, <span style=color:#e6db74>&#34;DeleteUser&#34;</span>],
+    });
+    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>role</span>;
+  }
+}
+
+<span style=color:#66d9ef>abstract</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>BaseService</span>&lt;<span style=color:#f92672>M</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>R</span> <span style=color:#a6e22e>extends</span> <span style=color:#a6e22e>Repository</span><span style=color:#960050;background-color:#1e0010>&lt;</span><span style=color:#a6e22e>M</span>&gt;<span style=color:#f92672>&gt;</span>
+  <span style=color:#66d9ef>implements</span> <span style=color:#a6e22e>CrudService</span>&lt;<span style=color:#f92672>M</span>&gt;
+{
+  <span style=color:#66d9ef>constructor</span>(<span style=color:#66d9ef>private</span> <span style=color:#a6e22e>repository</span>: <span style=color:#66d9ef>R</span>) {}
+  <span style=color:#a6e22e>findOne</span>(<span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>ID</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>M</span> {
+    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>repository</span>.<span style=color:#a6e22e>findOne</span>(<span style=color:#a6e22e>id</span>);
+  }
+}
+
+<span style=color:#66d9ef>@injectable</span>()
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>UserService</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>BaseService</span>&lt;<span style=color:#f92672>User</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>UserRepository</span>&gt; {
+  <span style=color:#66d9ef>constructor</span>(
+    <span style=color:#66d9ef>@inject</span>(<span style=color:#a6e22e>UserRepository</span>.<span style=color:#a6e22e>name</span>) <span style=color:#a6e22e>userRepository</span>: <span style=color:#66d9ef>UserRepository</span>,
+    <span style=color:#66d9ef>@inject</span>(<span style=color:#a6e22e>RoleRepository</span>.<span style=color:#a6e22e>name</span>) <span style=color:#66d9ef>private</span> <span style=color:#a6e22e>roleRepository</span>: <span style=color:#66d9ef>RoleRepository</span>
+  ) {
+    <span style=color:#66d9ef>super</span>(<span style=color:#a6e22e>userRepository</span>);
+  }
+
+  <span style=color:#a6e22e>retrievePermission</span>(<span style=color:#a6e22e>user</span>: <span style=color:#66d9ef>User</span>) {
+    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>roleRepository</span>.<span style=color:#a6e22e>findOne</span>(<span style=color:#a6e22e>user</span>.<span style=color:#a6e22e>id</span>);
+  }
+}
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>main</span> <span style=color:#f92672>=</span> () <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#a6e22e>container</span>.<span style=color:#a6e22e>register</span>(<span style=color:#e6db74>&#34;UserRepository&#34;</span>, {
+    <span style=color:#a6e22e>useClass</span>: <span style=color:#66d9ef>UserRepository</span>,
+  });
+  <span style=color:#a6e22e>container</span>.<span style=color:#a6e22e>register</span>(<span style=color:#e6db74>&#34;RoleRepository&#34;</span>, {
+    <span style=color:#a6e22e>useClass</span>: <span style=color:#66d9ef>RoleRepository</span>,
+  });
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>userService</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>container</span>.<span style=color:#a6e22e>resolve</span>(<span style=color:#a6e22e>UserService</span>);
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>user</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>userService</span>.<span style=color:#a6e22e>findOne</span>(<span style=color:#ae81ff>1</span>);
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>permissions</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>userService</span>.<span style=color:#a6e22e>retrievePermission</span>(<span style=color:#a6e22e>user</span>);
+  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>user</span>, <span style=color:#a6e22e>permissions</span>);
+};
+
+<span style=color:#a6e22e>main</span>();
 </code></pre></div>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/cheatsheet>cheatsheet</a>
@@ -420,10 +522,10 @@ PRODUCTION MODE
 <div class="footer-section-navigation-menu md:basis-1/4">
 <h4 class=footer-heading>Cheatsheet</h4>
 <ul class=footer-section-navigation-menu-links>
+<li><a href=https://nextjsvietnam.com/post/learn-enough-oop-to-be-dangerous/>Learn Enough Oop to Be Dangerous</a></li>
 <li><a href=https://nextjsvietnam.com/post/the-future-of-hr/>The Future of Hr</a></li>
 <li><a href=https://nextjsvietnam.com/post/how-to-test-the-database/>How to Test the Database</a></li>
 <li><a href=https://nextjsvietnam.com/post/the-art-of-programming/>The Art of Programming</a></li>
-<li><a href=https://nextjsvietnam.com/post/learn-enough-oop-to-be-dangerous/>Learn Enough Oop to Be Dangerous</a></li>
 <li><a href=https://nextjsvietnam.com/post/100-nodejs-interview-questions/>100 Nodejs Interview Questions</a></li>
 </ul>
 </div>
@@ -440,7 +542,7 @@ Copyright @ NextJSVietNam 2022
 Powered by <a class="font-bold text-primary" href=https://gohugo.io/>Go Hugo</a> - Made
 with love from <a class="font-bold text-primary" href=https://nextjsvietnam.com>NextJSVietNam</a> -
 Build
-Version 2022-12-31 21:10:13 +0700 +0700
+Version 2023-02-19 16:00:15 +0700 +0700
 </div>
 </div>
 </footer>
