@@ -1,7 +1,7 @@
 ---
 title: "Learn Enough Oop to Be Dangerous"
 type: "post"
-date: 2022-10-12T16:00:15+07:00
+date: 2023-02-19T16:00:15+07:00
 description: "Learn Enough Oop to Be Dangerous"
 keywords: ["Learn Enough Oop to Be Dangerous"]
 categories: ["cheatsheet"]
@@ -315,4 +315,111 @@ class UserController {
     return this.userRepository.findById(id).toModel(UserResponseModel);
   }
 }
+```
+
+## Inheritance
+
+### Dependency Injection
+
+![image](https://user-images.githubusercontent.com/31009750/219949132-61920e3d-daa0-40af-95d3-18b7ba45b385.png)
+![image](https://user-images.githubusercontent.com/31009750/219949656-0a897f1e-8a59-4727-84b6-a4320e159de4.png)
+
+> Dependency inversion is a key part of building loosely coupled applications, since implementation details can be written to depend on and implement higher-level abstractions, rather than the other way around. The resulting applications are more testable, modular, and maintainable as a result. The practice of dependency injection is made possible by following the dependency inversion principle
+
+**The 4 roles in dependency injection**
+
+- 1.The service you want to use.
+- 2.The client that uses the service.
+- 3.An interface that’s used by the client and implemented by the service.
+- 4.The injector which creates a service instance and injects it into the client.
+
+```ts
+import "reflect-metadata";
+import { injectable, inject, container } from "tsyringe";
+
+type ID = string | number;
+interface Repository<T> {
+  findOne(id: ID): T;
+}
+interface CrudService<Model> {
+  findOne(id: ID): Model;
+}
+
+class User {
+  id!: ID;
+  firstName!: string;
+  lastName!: string;
+  constructor(payload: Partial<User>) {
+    Object.assign(this, payload);
+  }
+}
+
+class Role {
+  id!: ID;
+  name!: string;
+  permissions: string[] = [];
+  constructor(payload: Partial<Role>) {
+    Object.assign(this, payload);
+  }
+}
+
+class UserRepository implements Repository<User> {
+  findOne(id: ID): User {
+    const user = new User({
+      id,
+      firstName: "Typescript",
+      lastName: "Master Class",
+    });
+    return user;
+  }
+}
+
+class RoleRepository implements Repository<Role> {
+  findOne(id: ID): Role {
+    const role = new Role({
+      id,
+      name: "Admin",
+      permissions: ["CreateUser", "EditUser", "RetrieveUser", "DeleteUser"],
+    });
+    return role;
+  }
+}
+
+abstract class BaseService<M, R extends Repository<M>>
+  implements CrudService<M>
+{
+  constructor(private repository: R) {}
+  findOne(id: ID): M {
+    return this.repository.findOne(id);
+  }
+}
+
+@injectable()
+class UserService extends BaseService<User, UserRepository> {
+  constructor(
+    @inject(UserRepository.name) userRepository: UserRepository,
+    @inject(RoleRepository.name) private roleRepository: RoleRepository
+  ) {
+    super(userRepository);
+  }
+
+  retrievePermission(user: User) {
+    return this.roleRepository.findOne(user.id);
+  }
+}
+
+const main = () => {
+  container.register("UserRepository", {
+    useClass: UserRepository,
+  });
+  container.register("RoleRepository", {
+    useClass: RoleRepository,
+  });
+  const userService = container.resolve(UserService);
+  const user = userService.findOne(1);
+  const permissions = userService.retrievePermission(user);
+  console.log(user, permissions);
+};
+
+main();
 ```
