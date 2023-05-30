@@ -273,3 +273,29 @@ Answer: https://jsfiddle.net/misostack/qa5d4rkh/26/
   transform: scaleY(1);
 }
 ```
+
+### Javascript questions
+
+### Vue2 questions
+
+1. Watcher
+
+- https://codesandbox.io/s/vue2-interview-questions-9g6szm?file=/src/components/Watcher.vue
+
+Question:
+
+- Can you explain what's happened when user search any value?
+- How can we improve this?
+
+Answer:
+
+- https://codesandbox.io/s/vue2-interview-answers-hhzktn?file=/src/components/Watcher.vue
+
+### Another list of Vue questions:
+
+- https://gist.github.com/misostack/4d7be67d23655f70cc927b07fe58c84a
+
+### Another list of JS & Typescript questions:
+
+- https://gist.github.com/misostack/0683e129a2cae6d05ca125b84b1e0002
+- https://gist.github.com/misostack/697ae8274dc201d80ac0416210694492
