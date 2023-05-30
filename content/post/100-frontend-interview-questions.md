@@ -234,3 +234,42 @@ height:60px;
 
 - Question: https://jsfiddle.net/misostack/bw2uncj7/
 - Answer: https://jsfiddle.net/misostack/bw2uncj7/57/
+
+### CSS Transition
+
+Question: https://jsfiddle.net/misostack/qa5d4rkh/
+
+We have a demo about transition like this, but it doesn't look smooth.
+So why does it happened and how can we fix it?
+
+Answer: https://jsfiddle.net/misostack/qa5d4rkh/26/
+
+```css
+.div-width {
+  width: 100px;
+  height: 100px;
+  background: red;
+  margin-bottom: 20px;
+  transition: width 2s;
+}
+
+.div-width:hover {
+  width: 300px;
+}
+
+.div-height {
+  width: 100px;
+  overflow: hidden;
+  background: green;
+  transform: scaleY(0.1);
+  transform-origin: top;
+  color: green;
+  transition: transform 2s ease-out;
+}
+
+.div-height:hover {
+  max-height: 400px;
+  color: black;
+  transform: scaleY(1);
+}
+```
