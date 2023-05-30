@@ -17,14 +17,18 @@ image: "/common/no-image.png"
 
 Examples of non-semantic elements:
 
+```md
 - <div>
 - <span>
+```
 
 Examples of semantic elements:
 
+```md
 - <form>
 - <table>
 - <nav>
+```
 
 ### HTML Form
 
@@ -141,7 +145,7 @@ This is vnexpress on mobile, how to fix it?
 
 > Flex question
 
-![image](https://user-images.githubusercontent.com/31009750/241841631-a3febd61-07af-451c-9a6d-0de1c0821429.png
+![image](https://user-images.githubusercontent.com/31009750/241841631-a3febd61-07af-451c-9a6d-0de1c0821429.png)
 
 - Question: https://jsfiddle.net/misostack/a0b9thcu/
 - Answer: https://jsfiddle.net/misostack/a0b9thcu/31/
