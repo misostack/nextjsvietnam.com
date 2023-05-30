@@ -141,13 +141,20 @@ This is vnexpress on mobile, how to fix it?
 
 ![image](https://user-images.githubusercontent.com/31009750/241838304-6ef43f26-caca-42bf-8a3e-28d317d6c326.png)
 
-#### Flex vs Grid
+## CSS Questions
 
-> Flex question
+### Flex vs Grid
+
+#### Flex question
 
 ![image](https://user-images.githubusercontent.com/31009750/241841631-a3febd61-07af-451c-9a6d-0de1c0821429.png)
 
 - Question: https://jsfiddle.net/misostack/a0b9thcu/
 - Answer: https://jsfiddle.net/misostack/a0b9thcu/31/
 
-> Grid question
+#### Grid question
+
+![image](https://user-images.githubusercontent.com/31009750/241854208-76fa996b-e92c-4347-83de-b76da67d9ada.png)
+
+- Question: https://jsfiddle.net/misostack/bw2uncj7/
+- Answer: https://jsfiddle.net/misostack/bw2uncj7/57/
