@@ -141,6 +141,15 @@ This is vnexpress on mobile, how to fix it?
 
 ![image](https://user-images.githubusercontent.com/31009750/241838304-6ef43f26-caca-42bf-8a3e-28d317d6c326.png)
 
+Answer
+
+```html
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=yes"
+/>
+```
+
 ## CSS Questions
 
 ### Flex vs Grid
