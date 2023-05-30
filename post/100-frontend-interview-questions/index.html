@@ -11,10 +11,10 @@
 <link rel=stylesheet href=https://nextjsvietnam.com/themes/2022/public/page.css>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWE4MLJYE6"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-RWE4MLJYE6')</script>
-<title>Software Architecture Design Guidelines | Software Architecture Design Guidelines | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+<title>100 Frontend Interview Questions | 100 Fe Interview Questions | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
 <meta name=robots content="all">
-<meta name=keywords content="software architecture,frontend architecture">
-<meta name=description content="Software Architecture Design Guidelines">
+<meta name=keywords content="fe,fe interview,fe interview questions">
+<meta name=description content="100 Fe Interview Questions">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://nextjsvietnam.com/common/no-image.png">
 <meta property="og:image:type" content="image/jpeg">
@@ -82,50 +82,138 @@
 <main>
 <section class="container section">
 <div class="page-content max-w-2xl mx-auto">
-<img src=https://nextjsvietnam.com/common/no-image.png class=img-responsive alt="Software Architecture Design Guidelines">
-<h1>Software Architecture Design Guidelines</h1>
+<img src=https://nextjsvietnam.com/common/no-image.png class=img-responsive alt="100 Frontend Interview Questions">
+<h1>100 Frontend Interview Questions</h1>
 <p>
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/cheatsheet>cheatsheet</a>
 </p>
-<p>Lời nói đầu, trong bất kì một hoạt động sản xuất kinh doanh nào, không chỉ ngành IT nói riêng, mà trong thực tế hoạt động của nhiều ngành nghề khác. Việc xây dựng hệ thống là cực kì quan trọng.</p>
-<p>Trong phạm vi của bài viết này, tôi xin chia sẻ những gì đúc kết được trong quá trình xây dựng hệ thống cho các dự án với các quy mô khác nhau. Tuy rằng về mặt quy mô có khác biệt nhưng về mặt bản chất, thì các bước cần thiết để xây dựng 1 hệ thống là một.</p>
-<h2 id=trình-tự-thiết-kế-kiến-trúc-và-phát-triển-1-dự-án-single-page-app--spa--trong-thực-tế>Trình tự thiết kế kiến trúc và phát triển 1 dự án Single Page App ( SPA ) trong thực tế</h2>
-<ol>
-<li><input checked disabled type=checkbox> Create a Sitemap</li>
-<li><input disabled type=checkbox> Check the design and choose a proper UI Framework. Such as: TailwindCSS(Atomic CSS Framework), Ant Design(Atomic CSS Framework included built-in ReactJS Components), Material, Bootstrap, Bulma, &mldr;</li>
-<li><input disabled type=checkbox> Create the relevant page routes</li>
-<li><input disabled type=checkbox> Apply code clean standard</li>
-<li><input disabled type=checkbox> Breakdown design into smaller components: global styles, components</li>
-<li><input disabled type=checkbox> Create page details : collect bricks and build a fully page with fake data</li>
-<li><input disabled type=checkbox> Create page interaction : handle user&rsquo;s interaction</li>
-<li><input disabled type=checkbox> Integrate with API : they can be http request, websocket and they can be restful api or graphql. Should write test for your api integration ( use mocks & stubs if needed)</li>
-<li><input disabled type=checkbox> Think about the infrastructure and setup your continuous deployment process</li>
-<li><input disabled type=checkbox> Test your application</li>
-<li><input disabled type=checkbox> Write tests for your application and setup your continous integration process</li>
-<li><input disabled type=checkbox> Create blueprint for developers: overview source code architecture, component usage guidlines, developer&rsquo;s guidelines</li>
-</ol>
-<h2 id=trình-tự-thiết-kế-kiến-trúc-và-phát-triển-1-dự-án-api--resftful-api--trong-thực-tế>Trình tự thiết kế kiến trúc và phát triển 1 dự án API ( Resftful API ) trong thực tế</h2>
-<ol>
-<li><input disabled type=checkbox> Brainstorm : analyze requirements and list all relevant entities</li>
-<li><input disabled type=checkbox> High level design: components and interation between them</li>
-<li><input disabled type=checkbox> Group into modules: design and breakdown the system in individual module for development</li>
-<li><input disabled type=checkbox> Details for funtionality in each module</li>
-<li><input disabled type=checkbox> Create database schema: dataset, field definitions, constraints, database schema</li>
-<li><input disabled type=checkbox> Create API contract-first approach</li>
-<li><input disabled type=checkbox> Design the global architecture: choosing between monolith and microservices</li>
-<li><input disabled type=checkbox> Design codebase architecture: for development, testing, deployment. Eg: DDD(domain driven design), Clean Architecture, Rapid (everything stay inside controller )</li>
-<li><input disabled type=checkbox> Apply clean code standard</li>
-<li><input disabled type=checkbox> Codefirst with API: create API contracts: request, response, dtos - accuracy, consistency, latency</li>
-<li><input disabled type=checkbox> Business Layer: service and external resources - write unit test (use mocks vs stubs if needed)</li>
-<li><input disabled type=checkbox> Persistence Layer: repository, database entities, data migration, adjust db depends on usecases for optimizing performance</li>
-<li><input disabled type=checkbox> Connect all layer into fully feature</li>
-<li><input disabled type=checkbox> Test your final API</li>
-<li><input disabled type=checkbox> Document your API</li>
-<li><input disabled type=checkbox> Setup your continous deployment process on your infrastructure: dev, test, uat, production</li>
-<li><input disabled type=checkbox> Setup your continous integration process on your CI infrastructure: test, coverage report, automatically report,&mldr;</li>
-<li><input disabled type=checkbox> Create blueprint for developers: overview source code architecture, code re-use guidelines, developer&rsquo;s guidelines</li>
-</ol>
-<h2 id=các-kiến-thức-và-công-cụ-thường-sử-dụng-trong-từng-bước-theo-trình-tự-trên>Các kiến thức và công cụ thường sử dụng trong từng bước theo trình tự trên</h2>
+<h2 id=html-inteview-questions>HTML Inteview questions</h2>
+<h3 id=what-are-html-sematic-elements>What are HTML Sematic Elements?</h3>
+<blockquote>
+<p>A semantic element clearly describes its meaning to both the browser and the developer.</p>
+</blockquote>
+<p>Examples of non-semantic elements:</p>
+<ul>
+<li>
+</li>
+<li>
+</li>
+</ul>
+<p>Examples of semantic elements:</p>
+<ul>
+<li>
+</li>
+<li>
+</li>
+<li>
+</li>
+</ul>
+<h3 id=html-form>HTML Form</h3>
+<h4 id=whats-happened-when-user-submit-a-form>What&rsquo;s happened when user submit a form</h4>
+<blockquote>
+<p>The page will be reload and the form data will be sent to server</p>
+</blockquote>
+<h4 id=how-to-create-a-form-that-support-to-upload-a-file>How to create a form that support to upload a file?</h4>
+<blockquote>
+<p>We can use multipart/formdata</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>&lt;<span style=color:#f92672>form</span> <span style=color:#a6e22e>enctype</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;multipart/form-data&#34;</span> <span style=color:#a6e22e>method</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;post&#34;</span> <span style=color:#a6e22e>name</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;fileinfo&#34;</span>&gt;
+  &lt;<span style=color:#f92672>p</span>&gt;
+    &lt;<span style=color:#f92672>label</span>
+      &gt;File to stash:
+      &lt;<span style=color:#f92672>input</span> <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;file&#34;</span> <span style=color:#a6e22e>name</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;file&#34;</span> <span style=color:#a6e22e>required</span> /&gt;
+    &lt;/<span style=color:#f92672>label</span>&gt;
+  &lt;/<span style=color:#f92672>p</span>&gt;
+  &lt;<span style=color:#f92672>p</span>&gt;
+    &lt;<span style=color:#f92672>input</span> <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;submit&#34;</span> <span style=color:#a6e22e>value</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Stash the file!&#34;</span> /&gt;
+  &lt;/<span style=color:#f92672>p</span>&gt;
+&lt;/<span style=color:#f92672>form</span>&gt;
+</code></pre></div><h4 id=how-to-upload-a-file-without-reload-the-page>How to upload a file without reload the page?</h4>
+<ul>
+<li>Using XMLHttpRequest(AJAX) - Eg: Axios</li>
+<li>Using Fetch API</li>
+</ul>
+<h4 id=html-graphic-canvas-vs-svg>HTML Graphic: Canvas vs SVG</h4>
+<p><strong>Canvas</strong></p>
+<ul>
+<li>A canvas is a rectangular area on an HTML page. By default, a canvas has no border and no content.</li>
+<li>The element is only a container for graphics. You must use JavaScript to actually draw the graphics.</li>
+<li>Canvas has several methods for drawing paths, boxes, circles, text, and adding images.</li>
+<li>Well suited for graphic-intensive games</li>
+</ul>
+<p><strong>SVG</strong></p>
+<ul>
+<li>SVG defines vector-based graphics in XML format.</li>
+<li>In SVG, each drawn shape is remembered as an object. If attributes of an SVG object are changed, the browser can automatically re-render the shape.</li>
+<li>Best suited for applications with large rendering areas (Google Maps)</li>
+</ul>
+<h4 id=html-media-audio-video>HTML Media: Audio, Video</h4>
+<ul>
+<li>Common issues when you worked with audio, video tag in browser</li>
+</ul>
+<h4 id=html-apis>HTML APIs</h4>
+<blockquote>
+<p>SessionStorage vs LocalStorage</p>
+</blockquote>
+<p><strong>SessionStorage</strong></p>
+<ul>
+<li>sessionStorage is cleared when the page session ends</li>
+<li>page session is valid only for that particular tab</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#75715e>// Save data to sessionStorage
+</span><span style=color:#75715e></span><span style=color:#a6e22e>sessionStorage</span>.<span style=color:#a6e22e>setItem</span>(<span style=color:#e6db74>&#34;key&#34;</span>, <span style=color:#e6db74>&#34;value&#34;</span>);
+
+<span style=color:#75715e>// Get saved data from sessionStorage
+</span><span style=color:#75715e></span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>data</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>sessionStorage</span>.<span style=color:#a6e22e>getItem</span>(<span style=color:#e6db74>&#34;key&#34;</span>);
+
+<span style=color:#75715e>// Remove saved data from sessionStorage
+</span><span style=color:#75715e></span><span style=color:#a6e22e>sessionStorage</span>.<span style=color:#a6e22e>removeItem</span>(<span style=color:#e6db74>&#34;key&#34;</span>);
+
+<span style=color:#75715e>// Remove all saved data from sessionStorage
+</span><span style=color:#75715e></span><span style=color:#a6e22e>sessionStorage</span>.<span style=color:#a6e22e>clear</span>();
+</code></pre></div><p><strong>Use case for sessionStorage - Saving text between refreshes</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#75715e>// Get the text field that we&#39;re going to track
+</span><span style=color:#75715e></span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>field</span> <span style=color:#f92672>=</span> document.<span style=color:#a6e22e>getElementById</span>(<span style=color:#e6db74>&#34;field&#34;</span>);
+
+<span style=color:#75715e>// See if we have an autosave value
+</span><span style=color:#75715e>// (this will only happen if the page is accidentally refreshed)
+</span><span style=color:#75715e></span><span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>sessionStorage</span>.<span style=color:#a6e22e>getItem</span>(<span style=color:#e6db74>&#34;autosave&#34;</span>)) {
+  <span style=color:#75715e>// Restore the contents of the text field
+</span><span style=color:#75715e></span>  <span style=color:#a6e22e>field</span>.<span style=color:#a6e22e>value</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>sessionStorage</span>.<span style=color:#a6e22e>getItem</span>(<span style=color:#e6db74>&#34;autosave&#34;</span>);
+}
+
+<span style=color:#75715e>// Listen for changes in the text field
+</span><span style=color:#75715e></span><span style=color:#a6e22e>field</span>.<span style=color:#a6e22e>addEventListener</span>(<span style=color:#e6db74>&#34;change&#34;</span>, () =&gt; {
+  <span style=color:#75715e>// And save the results into the session storage object
+</span><span style=color:#75715e></span>  <span style=color:#a6e22e>sessionStorage</span>.<span style=color:#a6e22e>setItem</span>(<span style=color:#e6db74>&#34;autosave&#34;</span>, <span style=color:#a6e22e>field</span>.<span style=color:#a6e22e>value</span>);
+});
+</code></pre></div><p><strong>LocalStorage</strong></p>
+<ul>
+<li>localStorage data has no expiration time</li>
+<li>localStorage data for a document loaded in a &ldquo;private browsing&rdquo; or &ldquo;incognito&rdquo; session is cleared when the last &ldquo;private&rdquo; tab is closed</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#a6e22e>localStorage</span>.<span style=color:#a6e22e>setItem</span>(<span style=color:#e6db74>&#34;myCat&#34;</span>, <span style=color:#e6db74>&#34;Tom&#34;</span>);
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>cat</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>localStorage</span>.<span style=color:#a6e22e>getItem</span>(<span style=color:#e6db74>&#34;myCat&#34;</span>);
+<span style=color:#a6e22e>localStorage</span>.<span style=color:#a6e22e>removeItem</span>(<span style=color:#e6db74>&#34;myCat&#34;</span>);
+<span style=color:#a6e22e>localStorage</span>.<span style=color:#a6e22e>clear</span>();
+</code></pre></div><h4 id=what-is-viewport>What is viewport?</h4>
+<blockquote>
+<p>The viewport is the user&rsquo;s visible area of a web page.</p>
+</blockquote>
+<p>This is vnexpress on mobile, how to fix it?</p>
+<p><img src=https://user-images.githubusercontent.com/31009750/241838304-6ef43f26-caca-42bf-8a3e-28d317d6c326.png alt=image></p>
+<h4 id=flex-vs-grid>Flex vs Grid</h4>
+<blockquote>
+<p>Flex question</p>
+</blockquote>
+<p>![image](<a href=https://user-images.githubusercontent.com/31009750/241841631-a3febd61-07af-451c-9a6d-0de1c0821429.png>https://user-images.githubusercontent.com/31009750/241841631-a3febd61-07af-451c-9a6d-0de1c0821429.png</a></p>
+<ul>
+<li>Question: <a href=https://jsfiddle.net/misostack/a0b9thcu/>https://jsfiddle.net/misostack/a0b9thcu/</a></li>
+<li>Answer: <a href=https://jsfiddle.net/misostack/a0b9thcu/31/>https://jsfiddle.net/misostack/a0b9thcu/31/</a></li>
+</ul>
+<blockquote>
+<p>Grid question</p>
+</blockquote>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/cheatsheet>cheatsheet</a>
 </div>
@@ -136,13 +224,13 @@
 <div class="font-heading text-2xl font-semibold">You Might Also Like</div>
 <div class="mt-8 grid gap-8">
 <ul class=sidebar-links>
-<li><a href=/post/100-frontend-interview-questions/>100 Frontend Interview Questions</a></li>
 <li><a href=/post/chatgpt-what-can-chat-gpt-do/>Chatgpt What Can Chat Gpt Do</a></li>
 <li><a href=/post/learn-enough-oop-to-be-dangerous/>Learn Enough Oop to Be Dangerous</a></li>
 <li><a href=/post/the-future-of-hr/>The Future of Hr</a></li>
 <li><a href=/post/how-to-test-the-database/>How to Test the Database</a></li>
 <li><a href=/post/the-art-of-programming/>The Art of Programming</a></li>
 <li><a href=/post/100-nodejs-interview-questions/>100 Nodejs Interview Questions</a></li>
+<li><a href=/post/reactjs-use-reducer-the-right-way/>Reactjs Use Reducer the Right Way</a></li>
 </ul>
 </div>
 </div>
