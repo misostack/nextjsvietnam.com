@@ -278,7 +278,15 @@ Answer: https://jsfiddle.net/misostack/qa5d4rkh/26/
 
 ### Vue2 questions
 
-1. Watcher
+> Memory Leak
+
+- List the most common cause of memory leaks in Vue.js apps and how they can be solved ?
+
+> Memory leaks in Vue.js applications often come from using third-party libraries that create their own instances and/or manipulate the DOM. The v-if directive and the Vue Router destroy Vue component instances; however, cleaning up after any third party library should be done manually in the beforeDestroy() lifecycle hook.
+
+> Vue slot and slot scoped
+
+> Watcher
 
 - https://codesandbox.io/s/vue2-interview-questions-9g6szm?file=/src/components/Watcher.vue
 
@@ -288,8 +296,6 @@ Question:
 - How can we improve this?
 
 Answer:
-
-- https://codesandbox.io/s/vue2-interview-answers-hhzktn?file=/src/components/Watcher.vue
 
 ### Another list of Vue questions:
 
