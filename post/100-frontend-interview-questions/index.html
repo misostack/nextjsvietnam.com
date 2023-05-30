@@ -304,9 +304,21 @@ So why does it happened and how can we fix it?</p>
 }
 </code></pre></div><h3 id=javascript-questions>Javascript questions</h3>
 <h3 id=vue2-questions>Vue2 questions</h3>
-<ol>
-<li>Watcher</li>
-</ol>
+<blockquote>
+<p>Memory Leak</p>
+</blockquote>
+<ul>
+<li>List the most common cause of memory leaks in Vue.js apps and how they can be solved ?</li>
+</ul>
+<blockquote>
+<p>Memory leaks in Vue.js applications often come from using third-party libraries that create their own instances and/or manipulate the DOM. The v-if directive and the Vue Router destroy Vue component instances; however, cleaning up after any third party library should be done manually in the beforeDestroy() lifecycle hook.</p>
+</blockquote>
+<blockquote>
+<p>Vue slot and slot scoped</p>
+</blockquote>
+<blockquote>
+<p>Watcher</p>
+</blockquote>
 <ul>
 <li><a href="https://codesandbox.io/s/vue2-interview-questions-9g6szm?file=/src/components/Watcher.vue">https://codesandbox.io/s/vue2-interview-questions-9g6szm?file=/src/components/Watcher.vue</a></li>
 </ul>
@@ -316,9 +328,6 @@ So why does it happened and how can we fix it?</p>
 <li>How can we improve this?</li>
 </ul>
 <p>Answer:</p>
-<ul>
-<li><a href="https://codesandbox.io/s/vue2-interview-answers-hhzktn?file=/src/components/Watcher.vue">https://codesandbox.io/s/vue2-interview-answers-hhzktn?file=/src/components/Watcher.vue</a></li>
-</ul>
 <h3 id=another-list-of-vue-questions>Another list of Vue questions:</h3>
 <ul>
 <li><a href=https://gist.github.com/misostack/4d7be67d23655f70cc927b07fe58c84a>https://gist.github.com/misostack/4d7be67d23655f70cc927b07fe58c84a</a></li>
