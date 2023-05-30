@@ -152,6 +152,73 @@ Answer
 
 ## CSS Questions
 
+### What is Box Model?
+
+> All HTML elements can be considered as boxes.
+
+- The CSS box model is essentially a box that wraps around every HTML element. It consists of: margins, borders, padding, and the actual content
+
+### CSS Units?
+
+> How many kind of css units?
+
+- Two kind : absolute and relative
+
+**Absolute**: cm, px, pt, pc
+**Relative**: em, rem, vh, vw, %
+
+### Using math with CSS
+
+Question:
+
+![image](https://user-images.githubusercontent.com/31009750/241859639-e5dee5cf-6e1b-4246-8db9-b6ac236e2300.png)
+
+Answered:
+
+```css
+#divParent{
+position:relative;
+background:green;
+height:60px;
+}
+#div1 {
+  position: absolute;
+  left: 50px;
+  border: 1px solid black;
+  background-color: yellow;
+  padding: 5px 0;
+}
+#div2 {
+  position: absolute;
+  top:30px;
+  left: 50px;
+  width: calc(100% - 100px);
+  border: 1px solid black;
+  background-color: yellow;
+  padding: 5px 0;
+}
+</style>
+```
+
+```css
+/* Use calc() to calculate the width of a <div> element: */
+#div1 {
+  position: absolute;
+  width: calc(100% - 100px);
+  border: 1px solid black;
+  background-color: yellow;
+  padding: 5px;
+}
+
+/* Use min() to set the width of #div1 to whichever value is smallest, 50% or 300px:*/
+
+#div1 {
+  background-color: yellow;
+  height: 100px;
+  width: min(50%, 300px);
+}
+```
+
 ### Flex vs Grid
 
 #### Flex question
@@ -163,7 +230,7 @@ Answer
 
 #### Grid question
 
-![image](https://user-images.githubusercontent.com/31009750/241854208-76fa996b-e92c-4347-83de-b76da67d9ada.png)
+![image](https://user-images.githubusercontent.com/31009750/241855055-715f5284-e409-44a6-b3a0-90d09fc650b6.png)
 
 - Question: https://jsfiddle.net/misostack/bw2uncj7/
 - Answer: https://jsfiddle.net/misostack/bw2uncj7/57/
