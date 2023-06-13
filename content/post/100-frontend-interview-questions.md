@@ -2,7 +2,7 @@
 title: "100 Frontend Interview Questions"
 type: "post"
 date: 2023-05-30T09:26:04+07:00
-description: "100 Fe Interview Questions"
+description: "100 Frontend Interview Questions from beginner to professional"
 keywords: ["fe", "fe interview", "fe interview questions"]
 categories: ["cheatsheet"]
 tags: []
@@ -286,16 +286,18 @@ Answer: https://jsfiddle.net/misostack/qa5d4rkh/26/
 
 > Vue slot and slot scoped
 
-> Watcher
+#### Watcher
+
+> Question
 
 - https://codesandbox.io/s/vue2-interview-questions-9g6szm?file=/src/components/Watcher.vue
-
-Question:
 
 - Can you explain what's happened when user search any value?
 - How can we improve this?
 
-Answer:
+> Answer:
+
+- https://codesandbox.io/s/vue2-interview-answers-eni7ql?file=/src/components/Watcher.vue
 
 ### Another list of Vue questions:
 
