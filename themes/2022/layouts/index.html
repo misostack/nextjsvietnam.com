@@ -61,7 +61,7 @@
     </section>
     <section class="container section clearfix">
       <div class="content md:w-2/3 md:float-left">
-        {{ $frameworkCategory := .Site.Taxonomies.categories.lifestyle }}
+        {{ $frameworkCategory := .Site.Taxonomies.categories.systemdesign }}
         {{ range first 12 (sort $frameworkCategory.Pages "Date" "desc") }}
           <article class="card card-post md:flex mb-4">
             <a href="{{ .Permalink }}">

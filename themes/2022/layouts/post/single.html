@@ -4,10 +4,18 @@
         <img src="{{ .Params.Image | absURL }}" class="img-responsive" alt="{{ .Title }}" />
         <h1>{{ .Title }}</h1>
         <p>
+            <strong>Category:</strong>
             {{ range $category:= .Params.categories }}
             <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="{{ (print "categories/" $category) | absURL }}">{{ $category }}</a>
             {{ end }}
         </p>
+        <p>
+          <strong>Tags:</strong>
+          {{ range $key, $value := .Params.tags }}
+             <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white"
+             href="{{ "/tags/" }}{{ $value | urlize }}">{{ if $key }}, {{ end }}{{ $value }}</a>
+          {{ end }}
+        </p>        
         {{ .Content }}        
       
       <div class="m-1 p-1">
