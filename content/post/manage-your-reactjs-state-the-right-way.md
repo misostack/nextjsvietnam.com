@@ -4,9 +4,9 @@ type: "post"
 date: 2022-10-05T14:31:27+07:00
 description: "Để dễ dàng nắm bắt được các phương pháp khi làm việc với state, chúng ta sẽ đi qua lần lượt các trường hợp sau"
 keywords: [reactjs", "reactjs state management"]
-categories: ["frameworks"]
+categories: ["reactjs"]
 tags: ["reactjs"]
-image: "/common/no-image.png"
+image: "https://user-images.githubusercontent.com/31009750/246856332-ece36caa-82ef-4a4f-86d9-9dad4a108929.png"
 ---
 
 Các khái niệm cần nắm trước khi đọc bài viết này:

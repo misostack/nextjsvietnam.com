@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="home" href="https://nextjsvietnam.com" />
+    <meta name="generator" content="jsguru cms" />
+
+    
+    
+
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    
+    
+      
+              
+        
+        <link rel="stylesheet" href="https://nextjsvietnam.com/themes/2022/public/main.css" />
+             
+    
+      
+              
+        
+        <link rel="stylesheet" href="https://nextjsvietnam.com/themes/2022/public/home.css" />
+             
+    
+      
+              
+        
+        <link rel="stylesheet" href="https://nextjsvietnam.com/themes/2022/public/page.css" />
+             
+        
+    
+    
+    
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWE4MLJYE6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-RWE4MLJYE6');
+      
+    </script>    
+    
+    
+<title>Learn Enough Oop to Be Dangerous | Learn Enough Oop to Be Dangerous | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+<meta name="robots" content="all" />
+<meta name="keywords" content="Learn Enough Oop to Be Dangerous" />
+<meta name="description" content="Learn Enough Oop to Be Dangerous" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://nextjsvietnam.com/common/no-image.png" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="750" />
+<meta property="og:image:height" content="300" />
+<meta
+  property="article:publisher"
+  content="https://www.facebook.com/nextjsvietnam"
+/>
+
+<meta property="article:published_time" content="2023-02-19T16:00:15+07:00" />
+<meta property="article:modified_time" content="2023-02-19T16:00:15+07:00" />
+
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png" />
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png" />
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png" />
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png" />
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png" />
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png" />
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="192x192"
+  href="/android-icon-192x192.png"
+/>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="manifest" href="/manifest.json" />
+<meta name="msapplication-TileColor" content="#ffffff" />
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
+<meta name="theme-color" content="#ffffff" />
+
+  </head>
+  <body class="body-nav-fixed">
+    <nav class="nav-fixed nav-default z-50">
+    <div class="container">
+      <div class="nav-container flex flex-wrap justify-between items-center">
+        <a href="https://nextjsvietnam.com" class="nav-brand inline-block">
+          
+          <img class="h-12" src="https://nextjsvietnam.com/themes/2022/src/assets/images/logo.png" 
+          alt="Stunning" />
+        </a>
+        <a href="javascript:void(0);" data-menu="#menu-main_menu" class="nav-menu-toggle"><span
+          class="material-icons">menu</span></a>
+        <ul id="menu-main_menu" class="nav-menu h-0 md:h-auto">
+          <form class="nav-menu-search-bar md:hidden relative">
+            <button class="nav-menu-search-bar-search-btn absolute h-full">
+              <svg class="w-3 h-3 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24">
+                <path
+                  d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z">
+                </path>
+              </svg>
+            </button>
+            <input name="s" type="text" class="w-full" />
+          </form>
+          
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="https://nextjsvietnam.com/categories/cheatsheet">Cheatsheet
+                
+            </a>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="https://nextjsvietnam.com/categories/frameworks">Frameworks
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://nextjsvietnam.com/categories/nestjs">NestJS</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://nextjsvietnam.com/categories/reactjs">ReactJS</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="https://nextjsvietnam.com">Tutorials
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://nextjsvietnam.com/categories/nestjs-tutorial">NestJS Tutorial</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="https://nextjsvietnam.com">Tools
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://regex101.com/">Online Regex</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://www.bashoneliners.com/">Bash Online</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://www.epochconverter.com/">Unix Timestamp Conversion</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://ryanstutorials.net/bash-scripting-tutorial/">Bash Scripting</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://explainshell.com/">Explain Shell</a></li>
+                
+                </ul>
+            
+            </li>
+          
+          <form class="nav-menu-search-bar hidden md:flex relative">
+            <button class="nav-menu-search-bar-search-btn absolute h-full">
+              <svg class="w-3 h-3 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24">
+                <path
+                  d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z">
+                </path>
+              </svg>
+            </button>
+            <input name="s" type="text" class="w-full" />
+          </form>
+        </ul>
+      </div>
+    </div>
+</nav>
+
+    <main>
+    
+  <section class="container section">
+    <div class="page-content max-w-2xl mx-auto">
+        <img src="https://nextjsvietnam.com/common/no-image.png" class="img-responsive" alt="Learn Enough Oop to Be Dangerous" />
+        <h1>Learn Enough Oop to Be Dangerous</h1>
+        
+          
+          
+          <p><strong>Post Date</strong> : 2023-02-19T16:00:15+07:00</p>
+          <p><strong>Modified Date</strong> : 2023-02-19T16:00:15+07:00</p>
+        <p>
+            <strong>Category:</strong>
+            
+            <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="https://nextjsvietnam.com/categories/cheatsheet">cheatsheet</a>
+            
+        </p>
+        <p>
+          <strong>Tags:</strong>
+          
+        </p>        
+        <h2 id="phần-1--oop-basis">Phần 1 : OOP Basis</h2>
+<p>Về mặt khái niệm, đầu tiên chúng ta cần hiểu 1 nguyên lí cơ bản là OOP sinh ra để làm gì.</p>
+<p>Đơn giản, OOP sinh ra để giúp chúng ta lập trình theo phương pháp thể hiện lại các sự vật, sự việc ( được gọi là Object - đối tượng )trong thế giới thực.
+Và đồng thời cũng thể hiện các tính chất ( properties ) và hoạt động của các đối tượng với nhau.</p>
+<p><img src="https://user-images.githubusercontent.com/31009750/195316367-3fed1a1a-6800-4c50-83c6-8ffa747515dc.png" alt="image"></p>
+<h2 id="object--đối-tượng--sẽ-bao-gồm">Object ( đối tượng ) sẽ bao gồm</h2>
+<h3 id="1-các-thuộc-tính-properties-giúp-thể-hiện-các-đặc-điểmtrạng-thái-của-đối-tượng">1. Các thuộc tính (properties): giúp thể hiện các đặc điểm/trạng thái của đối tượng.</h3>
+<p>Ví dụ: 1 chiếc xe Lamborghini <strong>hiệu</strong> Aventador S. <strong>màu</strong> vàng, <strong>mẫu</strong> xe thể thao, <strong>động cơ</strong> V12 6.5L <strong>đã chạy được</strong> 100 cây, hiện đang được rao bán với <strong>giá</strong> 40 tỉ đồng.</p>
+<p><img src="https://user-images.githubusercontent.com/31009750/195302215-ecf5239e-56f3-4428-975b-a83d36ef850e.png" alt="image"></p>
+<p>Ví dụ:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> javacore.net<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Car</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// properties: manufacturer, model,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    String manufacture<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    String model<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    String color<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    String engine<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> capacity<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> vehicleKilometersTraveled<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Car</span><span style="color:#f92672">(</span>String manufacture<span style="color:#f92672">,</span> String model<span style="color:#f92672">,</span> String color<span style="color:#f92672">,</span> String engine<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> capacity<span style="color:#f92672">,</span> <span style="color:#66d9ef">float</span> vehicleKilometersTraveled<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">manufacture</span> <span style="color:#f92672">=</span> manufacture<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">model</span> <span style="color:#f92672">=</span> model<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">color</span> <span style="color:#f92672">=</span> color<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">engine</span> <span style="color:#f92672">=</span> engine<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">capacity</span> <span style="color:#f92672">=</span> capacity<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">vehicleKilometersTraveled</span> <span style="color:#f92672">=</span> vehicleKilometersTraveled<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h3 id="2-phương-thức-methods-giúp-thể-hiện-hành-viphản-ứng-của-đối-tượng">2. Phương thức (methods): giúp thể hiện hành vi/phản ứng của đối tượng</h3>
+<p>Trong thực tế, các đối tượng sẽ giao tiếp với các đối tượng khác trong ứng dụng.
+Do đó khi định nghĩa một phương, đôi khi phương thức sẽ cần các giá trị đầu vào (params), để có thể cho ra giá trị đầu ra (return value) tương ứng.</p>
+<p>Nguyên tắc khi thiết kế các phương thức:</p>
+<ol>
+<li>Những phương thức tốt nhất là những phương thức không có params</li>
+<li>Khi một phương thức chỉ có 1 param mang giá trị true/false, nên tách biệt thành 2 phương thức khác nhau.</li>
+<li>Một phương thức có thể có nhiều params, tuy nhiên không nên vượt quá con số 3. Có thể chuyển nhiều params này thành 1 đối tượng khác.</li>
+<li>Cố gắng không tạo ra side effect ( làm thay đổi 1 đối tượng khác không thuộc phạm vi của đối tượng này)</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> javacore.net<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Car</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// properties: manufacturer, model,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    String manufacture<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    String model<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    String color<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    String engine<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> capacity<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">float</span> vehicleKilometersTraveled<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">double</span> price<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Car</span><span style="color:#f92672">(</span>String manufacture<span style="color:#f92672">,</span> String model<span style="color:#f92672">,</span> String color<span style="color:#f92672">,</span> String engine<span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> capacity<span style="color:#f92672">,</span> <span style="color:#66d9ef">float</span> vehicleKilometersTraveled<span style="color:#f92672">,</span> <span style="color:#66d9ef">double</span> price<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">manufacture</span> <span style="color:#f92672">=</span> manufacture<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">model</span> <span style="color:#f92672">=</span> model<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">color</span> <span style="color:#f92672">=</span> color<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">engine</span> <span style="color:#f92672">=</span> engine<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">capacity</span> <span style="color:#f92672">=</span> capacity<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">vehicleKilometersTraveled</span> <span style="color:#f92672">=</span> vehicleKilometersTraveled<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">price</span> <span style="color:#f92672">=</span> price<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">move</span><span style="color:#f92672">(</span><span style="color:#66d9ef">float</span> kilometers<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">vehicleKilometersTraveled</span> <span style="color:#f92672">+=</span> kilometers<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">print</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        String output <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        String lineBreak <span style="color:#f92672">=</span> String<span style="color:#f92672">.</span><span style="color:#a6e22e">format</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;%s\n&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;*&#34;</span><span style="color:#f92672">.</span><span style="color:#a6e22e">repeat</span><span style="color:#f92672">(</span><span style="color:#ae81ff">50</span><span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>        output <span style="color:#f92672">+=</span> lineBreak<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        output <span style="color:#f92672">+=</span> String<span style="color:#f92672">.</span><span style="color:#a6e22e">format</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Manufacture: %s\n&#34;</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">manufacture</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        output <span style="color:#f92672">+=</span> String<span style="color:#f92672">.</span><span style="color:#a6e22e">format</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Model: %s\n&#34;</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">model</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        output <span style="color:#f92672">+=</span> String<span style="color:#f92672">.</span><span style="color:#a6e22e">format</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Color: %s\n&#34;</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">color</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        output <span style="color:#f92672">+=</span> String<span style="color:#f92672">.</span><span style="color:#a6e22e">format</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Engine: %s\n&#34;</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">engine</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        output <span style="color:#f92672">+=</span> String<span style="color:#f92672">.</span><span style="color:#a6e22e">format</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Capacity: %s\n&#34;</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">capacity</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        output <span style="color:#f92672">+=</span> String<span style="color:#f92672">.</span><span style="color:#a6e22e">format</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Vehicle Kilometers Traveled: %.2f\n&#34;</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">vehicleKilometersTraveled</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        output <span style="color:#f92672">+=</span> String<span style="color:#f92672">.</span><span style="color:#a6e22e">format</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Price : %.2f\n&#34;</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">price</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        output <span style="color:#f92672">+=</span> lineBreak<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">printf</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;%s\n&#34;</span><span style="color:#f92672">,</span> output<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h3 id="3-để-hiện-thực-hóa-1-đối-tượng-trong-lập-trình-chúng-ta-sử-dụng-class">3. Để hiện thực hóa 1 đối tượng, trong lập trình chúng ta sử dụng Class</h3>
+<p><strong>Class</strong>: chính là 1 bản thiết kế mẫu, trong đó bao gồm định nghĩa có các thuộc tính, phương thức mà một đối tượng thuộc về Class này. Cụ thể hơn Class là 1 tập hợp các Object. Còn Object là 1 biểu hiện cụ thể của Class</p>
+<h3 id="tổng-kết">Tổng kết</h3>
+<p><img src="https://user-images.githubusercontent.com/31009750/195331118-2e9145f7-97d2-4f1d-9176-c4b89d874096.png" alt="image"></p>
+<h2 id="phần-2-oop-solid-principles">Phần 2: OOP SOLID Principles</h2>
+<ol>
+<li><strong>S</strong>ingle Responsibility</li>
+</ol>
+<blockquote>
+<p>A class should only have one responsibility. Furthermore, it should only have one reason to change</p>
+</blockquote>
+<p><strong>Benefits</strong></p>
+<ul>
+<li>Testing - class have only one responsility wil have far fewer test cases</li>
+<li>Lower coupling - less funtionality in single class wil have fewer dependencies</li>
+<li>Organization - smaller, well-organized classes are easier to search than monolith ones</li>
+</ul>
+<p>Example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserService</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">findOne() {</span>}
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">find() {</span>}
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">updateOne() {</span>}
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">deleteOne() {</span>}
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// violation
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">BadUserService</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">findOne() {</span>}
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">find() {</span>}
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">updateOne() {</span>}
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">deleteOne() {</span>}
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">exportToPdf() {</span>}
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">ExportService</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">exportToPdf</span>();
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// good
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserExportService</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">ExportService</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">exportToPdf() {</span>}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ol start="2">
+<li><strong>O</strong>pen for Extension, Closed for Modification</li>
+</ol>
+<blockquote>
+<p>open-closed principle. Classes should be open for extension but closed for modification. In doing so, we stop ourselves</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">enum</span> <span style="color:#a6e22e">FurnitureGroup</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">CLASSIC</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">MODERN</span>,
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Furniture</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">furnitureGroup</span>: <span style="color:#66d9ef">FurnitureGroup</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">constructor</span>() {}
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">getCollection() {</span>}
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Instead of modifing the base class, we&#39;re creating new 2 class for new business rule
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ClassicFurniture</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Furniture</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">constructor</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">furnitureGroup</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">FurnitureGroup</span>.<span style="color:#a6e22e">CLASSIC</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ModernFurniture</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Furniture</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">constructor</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">furnitureGroup</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">FurnitureGroup</span>.<span style="color:#a6e22e">MODERN</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ol start="3">
+<li><strong>L</strong>iskov Substituation Principle</li>
+</ol>
+<blockquote>
+<p>The Liskov Substitution Principle states that subclasses should be substitutable for their base classes</p>
+</blockquote>
+<blockquote>
+<p>if class A is a subtype of class B, we should be able to replace B with A without disrupting the behavior of our program</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#75715e">// if we use only one type of class to take responsibility, in theory, we will violate
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// 1- single responsibility
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// 2- open for extension, closed for modification
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// 3- Liskov substituation
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">QueueJob</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">create() {</span>}
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">run() {</span>}
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// So we&#39;re going to refactoring this class, we can apply 2 patterns here
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// 1. Creational Pattern: AbstractFactory or Factory
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// 2. Behavior Pattern: Strategy
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// jobs: sendNotification:email, sms,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">NotificationQueueJob</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">QueueJob</span> {}
+</span></span></code></pre></div><ol start="4">
+<li><strong>I</strong>nterface Segregation</li>
+</ol>
+<blockquote>
+<p>Larger interfaces should be split into smaller ones. By doing so, we can ensure that implementing classes only need to be concerned about the methods that are of interest to them</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#75715e">// instead of creating an interface that
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Soldier</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fire</span>(); <span style="color:#75715e">// only archer can fire
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">shieldUp</span>(); <span style="color:#75715e">// only phalanx can create shieldWall
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">shieldDown</span>(); <span style="color:#75715e">// only phalanx can create shieldWall
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">attack</span>(); <span style="color:#75715e">// only knight/swordman/phalanx can attack
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">chase</span>(); <span style="color:#75715e">// only knight/swordman/phalanx can attack
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// we should segregate the large interface into smaller interfaces
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Soldier</span>{}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">SoldierCanFire</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fire</span>(); <span style="color:#75715e">// only archer can fire
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">SoldierCanMakeShieldWall</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">shieldUp</span>(); <span style="color:#75715e">// only phalanx can create shieldWall
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">shieldDown</span>(); <span style="color:#75715e">// only phalanx can create shieldWall
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">SoldierCanAttackAndChaseEnemy</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">attack</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">chase</span>();
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Archer</span> <span style="color:#a6e22e">extend</span> <span style="color:#a6e22e">Soldier</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">SoldierCanFire</span>{}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Phalanx</span> <span style="color:#a6e22e">extend</span> <span style="color:#a6e22e">Soldier</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">SoldierCanMakeShieldWall</span>, <span style="color:#a6e22e">SoldierCanAttackAndChaseEnemy</span>{}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Swordman</span> <span style="color:#a6e22e">extend</span> <span style="color:#a6e22e">Soldier</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">SoldierCanMakeShieldWall</span>, <span style="color:#a6e22e">SoldierCanAttackAndChaseEnemy</span>{}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Knight</span> <span style="color:#a6e22e">extend</span> <span style="color:#a6e22e">Soldier</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">SoldierCanAttackAndChaseEnemy</span>{}
+</span></span></code></pre></div><ol start="5">
+<li><strong>D</strong>ependency Inversion</li>
+</ol>
+<blockquote>
+<p>The principle of dependency inversion refers to the decoupling of software modules. This way, instead of high-level modules depending on low-level modules, both will depend on abstractions</p>
+</blockquote>
+<p>The typical example that demonstrate the violation of this principle is the Controller-Model</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">User</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">number</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">username</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">toModel</span>(<span style="color:#a6e22e">model</span>: <span style="color:#66d9ef">Model</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Model</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">newModelInstance</span>(<span style="color:#a6e22e">Model</span>, <span style="color:#66d9ef">this</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserResponseModel</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">number</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserRepository</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">dbInstance</span>: <span style="color:#66d9ef">DBInstance</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">dbInstance</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">dbInstance</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">findById</span>(<span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">number</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">User</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">dbInstance</span>
+</span></span><span style="display:flex;"><span>      .<span style="color:#a6e22e">query</span>(<span style="color:#e6db74">`SELECT * from users where id = </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">id</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>)
+</span></span><span style="display:flex;"><span>      .<span style="color:#a6e22e">toEntity</span>(<span style="color:#a6e22e">User</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserController</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">userRepository</span>: <span style="color:#66d9ef">UserRepository</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">userRepository</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">userRepository</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">findUser</span>(<span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">number</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">UserResponseModel</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">userRepository</span>.<span style="color:#a6e22e">findById</span>(<span style="color:#a6e22e">id</span>).<span style="color:#a6e22e">toModel</span>(<span style="color:#a6e22e">UserResponseModel</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// in this case userController in application layer (high level module) depends on persistence layer ( lower level module), apply DI we will create an interface
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">IUserRepository</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">findById</span>(<span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">number</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">User</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserRepository</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">IUserRepository</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">dbInstance</span>: <span style="color:#66d9ef">DBInstance</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">dbInstance</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">dbInstance</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">findById</span>(<span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">number</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">User</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">dbInstance</span>
+</span></span><span style="display:flex;"><span>      .<span style="color:#a6e22e">query</span>(<span style="color:#e6db74">`SELECT * from users where id = </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">id</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>)
+</span></span><span style="display:flex;"><span>      .<span style="color:#a6e22e">toEntity</span>(<span style="color:#a6e22e">User</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserController</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">userRepository</span>: <span style="color:#66d9ef">IUserRepository</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">userRepository</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">userRepository</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">findUser</span>(<span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">number</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">UserResponseModel</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">userRepository</span>.<span style="color:#a6e22e">findById</span>(<span style="color:#a6e22e">id</span>).<span style="color:#a6e22e">toModel</span>(<span style="color:#a6e22e">UserResponseModel</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="inheritance">Inheritance</h2>
+<h3 id="dependency-injection">Dependency Injection</h3>
+<p><img src="https://user-images.githubusercontent.com/31009750/219949132-61920e3d-daa0-40af-95d3-18b7ba45b385.png" alt="image">
+<img src="https://user-images.githubusercontent.com/31009750/219949656-0a897f1e-8a59-4727-84b6-a4320e159de4.png" alt="image"></p>
+<blockquote>
+<p>Dependency inversion is a key part of building loosely coupled applications, since implementation details can be written to depend on and implement higher-level abstractions, rather than the other way around. The resulting applications are more testable, modular, and maintainable as a result. The practice of dependency injection is made possible by following the dependency inversion principle</p>
+</blockquote>
+<p><strong>The 4 roles in dependency injection</strong></p>
+<ul>
+<li>1.The service you want to use.</li>
+<li>2.The client that uses the service.</li>
+<li>3.An interface that’s used by the client and implemented by the service.</li>
+<li>4.The injector which creates a service instance and injects it into the client.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#34;reflect-metadata&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">injectable</span>, <span style="color:#a6e22e">inject</span>, <span style="color:#a6e22e">container</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;tsyringe&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">ID</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">string</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">number</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Repository</span>&lt;<span style="color:#f92672">T</span>&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">findOne</span>(<span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">ID</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">T</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">CrudService</span>&lt;<span style="color:#f92672">Model</span>&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">findOne</span>(<span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">ID</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Model</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">User</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">id</span><span style="color:#f92672">!:</span> <span style="color:#a6e22e">ID</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">firstName</span><span style="color:#f92672">!:</span> <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">lastName</span><span style="color:#f92672">!:</span> <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">constructor</span>(<span style="color:#a6e22e">payload</span>: <span style="color:#66d9ef">Partial</span>&lt;<span style="color:#f92672">User</span>&gt;) {
+</span></span><span style="display:flex;"><span>    Object.<span style="color:#a6e22e">assign</span>(<span style="color:#66d9ef">this</span>, <span style="color:#a6e22e">payload</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Role</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">id</span><span style="color:#f92672">!:</span> <span style="color:#a6e22e">ID</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span><span style="color:#f92672">!:</span> <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">permissions</span>: <span style="color:#66d9ef">string</span>[] <span style="color:#f92672">=</span> [];
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">constructor</span>(<span style="color:#a6e22e">payload</span>: <span style="color:#66d9ef">Partial</span>&lt;<span style="color:#f92672">Role</span>&gt;) {
+</span></span><span style="display:flex;"><span>    Object.<span style="color:#a6e22e">assign</span>(<span style="color:#66d9ef">this</span>, <span style="color:#a6e22e">payload</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserRepository</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">Repository</span>&lt;<span style="color:#f92672">User</span>&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">findOne</span>(<span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">ID</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">User</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">User</span>({
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">id</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">firstName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Typescript&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">lastName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Master Class&#34;</span>,
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">user</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RoleRepository</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">Repository</span>&lt;<span style="color:#f92672">Role</span>&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">findOne</span>(<span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">ID</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Role</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">role</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Role</span>({
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">id</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Admin&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">permissions</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;CreateUser&#34;</span>, <span style="color:#e6db74">&#34;EditUser&#34;</span>, <span style="color:#e6db74">&#34;RetrieveUser&#34;</span>, <span style="color:#e6db74">&#34;DeleteUser&#34;</span>],
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">role</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">BaseService</span>&lt;<span style="color:#f92672">M</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#a6e22e">R</span> <span style="color:#a6e22e">extends</span> <span style="color:#a6e22e">Repository</span><span style="color:#960050;background-color:#1e0010">&lt;</span><span style="color:#a6e22e">M</span>&gt;<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">CrudService</span>&lt;<span style="color:#f92672">M</span>&gt;
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">repository</span>: <span style="color:#66d9ef">R</span>) {}
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">findOne</span>(<span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">ID</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">M</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">repository</span>.<span style="color:#a6e22e">findOne</span>(<span style="color:#a6e22e">id</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@injectable</span>()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserService</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">BaseService</span>&lt;<span style="color:#f92672">User</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#a6e22e">UserRepository</span>&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">constructor</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">@inject</span>(<span style="color:#a6e22e">UserRepository</span>.<span style="color:#a6e22e">name</span>) <span style="color:#a6e22e">userRepository</span>: <span style="color:#66d9ef">UserRepository</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">@inject</span>(<span style="color:#a6e22e">RoleRepository</span>.<span style="color:#a6e22e">name</span>) <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">roleRepository</span>: <span style="color:#66d9ef">RoleRepository</span>
+</span></span><span style="display:flex;"><span>  ) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">super</span>(<span style="color:#a6e22e">userRepository</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">retrievePermission</span>(<span style="color:#a6e22e">user</span>: <span style="color:#66d9ef">User</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">roleRepository</span>.<span style="color:#a6e22e">findOne</span>(<span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">id</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">main</span> <span style="color:#f92672">=</span> () <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">container</span>.<span style="color:#a6e22e">register</span>(<span style="color:#e6db74">&#34;UserRepository&#34;</span>, {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">useClass</span>: <span style="color:#66d9ef">UserRepository</span>,
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">container</span>.<span style="color:#a6e22e">register</span>(<span style="color:#e6db74">&#34;RoleRepository&#34;</span>, {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">useClass</span>: <span style="color:#66d9ef">RoleRepository</span>,
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">userService</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">container</span>.<span style="color:#a6e22e">resolve</span>(<span style="color:#a6e22e">UserService</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">userService</span>.<span style="color:#a6e22e">findOne</span>(<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">permissions</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">userService</span>.<span style="color:#a6e22e">retrievePermission</span>(<span style="color:#a6e22e">user</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">user</span>, <span style="color:#a6e22e">permissions</span>);
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">main</span>();
+</span></span></code></pre></div>        
+      
+      <div class="m-1 p-1">
+        
+          <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="https://nextjsvietnam.com/categories/cheatsheet">cheatsheet</a>
+        
+      </div>
+    </div>
+  </section>
+  <section class="container section">
+    <div class="max-w-2xl mx-auto">
+      <div class="font-heading text-2xl font-semibold">You Might Also Like</div>
+      <div class="mt-8 grid  gap-8">
+        
+        
+        
+        
+        <ul class="sidebar-links">
+        
+        
+            <li><a href="/post/100-frontend-interview-questions/">100 Frontend Interview Questions</a></li>
+        
+            <li><a href="/post/chatgpt-what-can-chat-gpt-do/">Chatgpt What Can Chat Gpt Do</a></li>
+        
+            <li><a href="/post/the-future-of-hr/">The Future of Hr</a></li>
+        
+            <li><a href="/post/how-to-test-the-database/">How to Test the Database</a></li>
+        
+            <li><a href="/post/the-art-of-programming/">The Art of Programming</a></li>
+        
+            <li><a href="/post/100-nodejs-interview-questions/">100 Nodejs Interview Questions</a></li>
+        
+            <li><a href="/post/reactjs-use-reducer-the-right-way/">Reactjs Use Reducer the Right Way</a></li>
+        
+        </ul>
+                
+      </div>
+    </div>
+  </section>
+
+    
+    </main>
+    <footer class="footer">
+      <div class="container md:flex">
+        <section class="footer-section-info md:basis-1/4">
+          <div class="address">
+            <a class="logo" href="https://nextjsvietnam.com" title="NextJSVietNam">
+              NextJSVietNam
+            </a>
+            <h4 class="footer-heading">
+               PRODUCTION MODE  
+            <h4>                
+          </div>
+        </section>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">NestJS</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="https://nextjsvietnam.com/post/khoa-hoc-nestjs/">Khóa học NestJS - Bài 01 - Lộ trình các bài học về NestJS Framework</a></li>              
+            
+              <li><a href="https://nextjsvietnam.com/post/build-restful-api-with-nestjs-the-right-way/">Build Restful Api With Nestjs the Right Way</a></li>              
+            
+              <li><a href="https://nextjsvietnam.com/post/the-best-way-to-upload-file-in-nestjs/">The Best Way to Upload File in Nestjs</a></li>              
+            
+              <li><a href="https://nextjsvietnam.com/post/nestjs-request-and-response-object/">Nestjs Request and Response Object</a></li>              
+            
+              <li><a href="https://nextjsvietnam.com/post/nestjs-pipes/">Nestjs Pipes</a></li>              
+             
+          </ul>
+        </div>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">NextJS</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="https://nextjsvietnam.com/post/create-new-website-with-nextjs/">Create New Website With Nextjs</a></li>              
+             
+          </ul>
+        </div>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">Cheatsheet</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="https://nextjsvietnam.com/post/100-frontend-interview-questions/">100 Frontend Interview Questions</a></li>              
+            
+              <li><a href="https://nextjsvietnam.com/post/chatgpt-what-can-chat-gpt-do/">Chatgpt What Can Chat Gpt Do</a></li>              
+            
+              <li><a href="https://nextjsvietnam.com/post/learn-enough-oop-to-be-dangerous/">Learn Enough Oop to Be Dangerous</a></li>              
+            
+              <li><a href="https://nextjsvietnam.com/post/the-future-of-hr/">The Future of Hr</a></li>              
+            
+              <li><a href="https://nextjsvietnam.com/post/how-to-test-the-database/">How to Test the Database</a></li>              
+             
+          </ul>
+        </div>
+      </div>
+      <div class="container">
+        <div class="text-center">
+          <a href=""><span class="material-icons text-4xl m-4">facebook</span></a>
+          <a href=""><span class="material-icons text-4xl  m-4">smart_display</span></a>
+        </div>
+        <div class="text-center text-lg py-4">
+          Copyright @ NextJSVietNam 2022
+        </div>
+        <div class="text-center text-sm">
+          Powered by <a class="font-bold text-primary" href="https://gohugo.io/">Go Hugo</a> - Made
+          with love from <a class="font-bold text-primary" href="https://nextjsvietnam.com">NextJSVietNam</a> -
+          Build
+          Version 2023-06-12 13:47:24 &#43;0700 &#43;07
+        </div>
+      </div>
+    </footer>
+
+    
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="https://nextjsvietnam.com/core/jquery-3.6.0.min.js"></script>
+        
+             
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="https://nextjsvietnam.com/themes/2022/public/main.js"></script>
+        
+             
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="https://nextjsvietnam.com/themes/2022/public/home.js"></script>
+        
+             
+    
+
+  
+  <script async>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1760611910980690');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1760611910980690&ev=PageView&noscript=1"
+    /></noscript>
+        
+  </body>
+</html>

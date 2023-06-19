@@ -32,7 +32,7 @@
           </article>
           {{ end }}
           {{ $systemdesignCategory := index .Site.Taxonomies.categories "nestjs-tutorial" }}
-          {{ range first 5 (sort $systemdesignCategory.Pages "Date" "desc") }}
+          {{ range first 1 (sort $systemdesignCategory.Pages "Date" "desc") }}
             <article class="card-post card-post-picked">
               <a href="{{ .Permalink }}">
                 <img src="{{.Params.Image | absURL}}" alt="{{.Title}}" />
@@ -42,6 +42,17 @@
               </h3>
             </article>
           {{ end }}
+          {{ $systemdesignCategory := index .Site.Taxonomies.categories "reactjs-tutorial" }}
+          {{ range first 1 (sort $systemdesignCategory.Pages "Date" "desc") }}
+            <article class="card-post card-post-picked">
+              <a href="{{ .Permalink }}">
+                <img src="{{.Params.Image | absURL}}" alt="{{.Title}}" />
+              </a>
+              <h3 class="card-post-title">
+                <a href="{{ .Permalink }}">{{.Title}}</a>
+              </h3>
+            </article>
+          {{ end }}          
         </div>
       </div>
       

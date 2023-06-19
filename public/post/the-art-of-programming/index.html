@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="home" href="https://nextjsvietnam.com" />
+    <meta name="generator" content="jsguru cms" />
+
+    
+    
+
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    
+    
+      
+              
+        
+        <link rel="stylesheet" href="https://nextjsvietnam.com/themes/2022/public/main.css" />
+             
+    
+      
+              
+        
+        <link rel="stylesheet" href="https://nextjsvietnam.com/themes/2022/public/home.css" />
+             
+    
+      
+              
+        
+        <link rel="stylesheet" href="https://nextjsvietnam.com/themes/2022/public/page.css" />
+             
+        
+    
+    
+    
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWE4MLJYE6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-RWE4MLJYE6');
+      
+    </script>    
+    
+    
+<title>The Art of Programming | Topics to be discussed are anything about concepts in programming | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+<meta name="robots" content="all" />
+<meta name="keywords" content="The Art of Programming" />
+<meta name="description" content="Topics to be discussed are anything about concepts in programming" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://nextjsvietnam.com/common/no-image.png" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="750" />
+<meta property="og:image:height" content="300" />
+<meta
+  property="article:publisher"
+  content="https://www.facebook.com/nextjsvietnam"
+/>
+
+<meta property="article:published_time" content="2022-10-29T18:16:57+07:00" />
+<meta property="article:modified_time" content="2022-10-29T18:16:57+07:00" />
+
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png" />
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png" />
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png" />
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png" />
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png" />
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png" />
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="192x192"
+  href="/android-icon-192x192.png"
+/>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="manifest" href="/manifest.json" />
+<meta name="msapplication-TileColor" content="#ffffff" />
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
+<meta name="theme-color" content="#ffffff" />
+
+  </head>
+  <body class="body-nav-fixed">
+    <nav class="nav-fixed nav-default z-50">
+    <div class="container">
+      <div class="nav-container flex flex-wrap justify-between items-center">
+        <a href="https://nextjsvietnam.com" class="nav-brand inline-block">
+          
+          <img class="h-12" src="https://nextjsvietnam.com/themes/2022/src/assets/images/logo.png" 
+          alt="Stunning" />
+        </a>
+        <a href="javascript:void(0);" data-menu="#menu-main_menu" class="nav-menu-toggle"><span
+          class="material-icons">menu</span></a>
+        <ul id="menu-main_menu" class="nav-menu h-0 md:h-auto">
+          <form class="nav-menu-search-bar md:hidden relative">
+            <button class="nav-menu-search-bar-search-btn absolute h-full">
+              <svg class="w-3 h-3 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24">
+                <path
+                  d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z">
+                </path>
+              </svg>
+            </button>
+            <input name="s" type="text" class="w-full" />
+          </form>
+          
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="https://nextjsvietnam.com/categories/cheatsheet">Cheatsheet
+                
+            </a>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="https://nextjsvietnam.com/categories/frameworks">Frameworks
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://nextjsvietnam.com/categories/nestjs">NestJS</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://nextjsvietnam.com/categories/reactjs">ReactJS</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="https://nextjsvietnam.com">Tutorials
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://nextjsvietnam.com/categories/nestjs-tutorial">NestJS Tutorial</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="https://nextjsvietnam.com">Tools
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://regex101.com/">Online Regex</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://www.bashoneliners.com/">Bash Online</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://www.epochconverter.com/">Unix Timestamp Conversion</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://ryanstutorials.net/bash-scripting-tutorial/">Bash Scripting</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://explainshell.com/">Explain Shell</a></li>
+                
+                </ul>
+            
+            </li>
+          
+          <form class="nav-menu-search-bar hidden md:flex relative">
+            <button class="nav-menu-search-bar-search-btn absolute h-full">
+              <svg class="w-3 h-3 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24">
+                <path
+                  d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z">
+                </path>
+              </svg>
+            </button>
+            <input name="s" type="text" class="w-full" />
+          </form>
+        </ul>
+      </div>
+    </div>
+</nav>
+
+    <main>
+    
+  <section class="container section">
+    <div class="page-content max-w-2xl mx-auto">
+        <img src="https://nextjsvietnam.com/common/no-image.png" class="img-responsive" alt="The Art of Programming" />
+        <h1>The Art of Programming</h1>
+        
+          
+          
+          <p><strong>Post Date</strong> : 2022-10-29T18:16:57+07:00</p>
+          <p><strong>Modified Date</strong> : 2022-10-29T18:16:57+07:00</p>
+        <p>
+            <strong>Category:</strong>
+            
+            <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="https://nextjsvietnam.com/categories/cheatsheet">cheatsheet</a>
+            
+        </p>
+        <p>
+          <strong>Tags:</strong>
+          
+        </p>        
+        <p>Topics to be discussed are anything about concepts in programming</p>
+<ol>
+<li><input checked="" disabled="" type="checkbox"> Imperative programming vs Declarative programming</li>
+<li><input checked="" disabled="" type="checkbox"> Aspect Oriented Programming</li>
+</ol>
+<h2 id="imperative-programming-vs-declarative-programming">Imperative programming vs Declarative programming</h2>
+<p>Functional Programming is a declarative programming paradigm, in contrast to imperative programming paradigms.</p>
+<p><strong>Declarative programming</strong> is a paradigm describing <strong>WHAT</strong> the program does, without explicitly specifying its control flow.</p>
+<p><strong>Imperative programming</strong> is a paradigm describing <strong>HOW</strong> the program should do something by explicitly specifying each instruction (or statement) step by step, which mutate the program&rsquo;s state.</p>
+<blockquote>
+<p>Making a chocolate cake</p>
+</blockquote>
+<p><strong>The imperative way</strong></p>
+<ul>
+<li>First, turn on the oven to preheat it at 180°C.</li>
+<li>Next, add flour, sugar, cocoa powder, baking soda and salt to a large bowl, then stir the mixture with a paddle.</li>
+<li>Then, add milk, vegetable oil, eggs and vanilla extract to the mixture, and mix together on medium speed until well combined.</li>
+<li>Distribute the cake batter evenly in a large cake pan, then bake it for approx. 30 minutes.</li>
+<li>Remove the pan from the oven with a pot holder, let it cool for 10 minutes.</li>
+<li>Finally, remove the cake from the pan with the tapping method, and frost it evenly with chocolate frosting.</li>
+</ul>
+<p><strong>The declarative way</strong></p>
+<ul>
+<li>You have to preheat the oven to 180 °C.</li>
+<li>You have to mix dry ingredients in a bowl.</li>
+<li>Once dry ingredients are mixed, you have to add wet ingredients to the mixture, and mix together to form the cake batter.</li>
+<li>Once the oven and batter are ready, you have to put the batter in a pan, then bake it for 30 minutes.</li>
+<li>Once baked, you have to remove the pan from the oven and let it cool for 10 minutes.</li>
+<li>Finally, you have to remove the cake from the pan, and frost it.</li>
+</ul>
+<p>Ready? Go!</p>
+<h2 id="aspect-oriented-programming">Aspect Oriented Programming</h2>
+<ul>
+<li>Aims to increase modularity by allowing the separation of cross-cutting concerns.</li>
+<li>It does so by adding behavior to existing code (an advice) without modifying the code itself, instead separately specifying which code is modified via a &ldquo;pointcut&rdquo; specification, such as &ldquo;log all function calls when the function&rsquo;s name begins with &lsquo;set&rsquo;&rdquo;.</li>
+</ul>
+<p>Interceptors have a set of useful capabilities which are inspired by the Aspect Oriented Programming (AOP) technique. They make it possible to:</p>
+<ul>
+<li>bind extra logic before / after method execution</li>
+<li>transform the result returned from a function</li>
+<li>transform the exception thrown from a function</li>
+<li>extend the basic function behavior</li>
+<li>completely override a function depending on specific conditions (e.g., for caching purposes)</li>
+</ul>
+        
+      
+      <div class="m-1 p-1">
+        
+          <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="https://nextjsvietnam.com/categories/cheatsheet">cheatsheet</a>
+        
+      </div>
+    </div>
+  </section>
+  <section class="container section">
+    <div class="max-w-2xl mx-auto">
+      <div class="font-heading text-2xl font-semibold">You Might Also Like</div>
+      <div class="mt-8 grid  gap-8">
+        
+        
+        
+        
+        <ul class="sidebar-links">
+        
+        
+            <li><a href="/post/100-frontend-interview-questions/">100 Frontend Interview Questions</a></li>
+        
+            <li><a href="/post/chatgpt-what-can-chat-gpt-do/">Chatgpt What Can Chat Gpt Do</a></li>
+        
+            <li><a href="/post/learn-enough-oop-to-be-dangerous/">Learn Enough Oop to Be Dangerous</a></li>
+        
+            <li><a href="/post/the-future-of-hr/">The Future of Hr</a></li>
+        
+            <li><a href="/post/how-to-test-the-database/">How to Test the Database</a></li>
+        
+            <li><a href="/post/100-nodejs-interview-questions/">100 Nodejs Interview Questions</a></li>
+        
+            <li><a href="/post/reactjs-use-reducer-the-right-way/">Reactjs Use Reducer the Right Way</a></li>
+        
+        </ul>
+                
+      </div>
+    </div>
+  </section>
+
+    
+    </main>
+    <footer class="footer">
+      <div class="container md:flex">
+        <section class="footer-section-info md:basis-1/4">
+          <div class="address">
+            <a class="logo" href="https://nextjsvietnam.com" title="NextJSVietNam">
+              NextJSVietNam
+            </a>
+            <h4 class="footer-heading">
+               PRODUCTION MODE  
+            <h4>                
+          </div>
+        </section>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">NestJS</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="https://nextjsvietnam.com/post/khoa-hoc-nestjs/">Khóa học NestJS - Bài 01 - Lộ trình các bài học về NestJS Framework</a></li>              
+            
+              <li><a href="https://nextjsvietnam.com/post/build-restful-api-with-nestjs-the-right-way/">Build Restful Api With Nestjs the Right Way</a></li>              
+            
+              <li><a href="https://nextjsvietnam.com/post/the-best-way-to-upload-file-in-nestjs/">The Best Way to Upload File in Nestjs</a></li>              
+            
+              <li><a href="https://nextjsvietnam.com/post/nestjs-request-and-response-object/">Nestjs Request and Response Object</a></li>              
+            
+              <li><a href="https://nextjsvietnam.com/post/nestjs-pipes/">Nestjs Pipes</a></li>              
+             
+          </ul>
+        </div>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">NextJS</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="https://nextjsvietnam.com/post/create-new-website-with-nextjs/">Create New Website With Nextjs</a></li>              
+             
+          </ul>
+        </div>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">Cheatsheet</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="https://nextjsvietnam.com/post/100-frontend-interview-questions/">100 Frontend Interview Questions</a></li>              
+            
+              <li><a href="https://nextjsvietnam.com/post/chatgpt-what-can-chat-gpt-do/">Chatgpt What Can Chat Gpt Do</a></li>              
+            
+              <li><a href="https://nextjsvietnam.com/post/learn-enough-oop-to-be-dangerous/">Learn Enough Oop to Be Dangerous</a></li>              
+            
+              <li><a href="https://nextjsvietnam.com/post/the-future-of-hr/">The Future of Hr</a></li>              
+            
+              <li><a href="https://nextjsvietnam.com/post/how-to-test-the-database/">How to Test the Database</a></li>              
+             
+          </ul>
+        </div>
+      </div>
+      <div class="container">
+        <div class="text-center">
+          <a href=""><span class="material-icons text-4xl m-4">facebook</span></a>
+          <a href=""><span class="material-icons text-4xl  m-4">smart_display</span></a>
+        </div>
+        <div class="text-center text-lg py-4">
+          Copyright @ NextJSVietNam 2022
+        </div>
+        <div class="text-center text-sm">
+          Powered by <a class="font-bold text-primary" href="https://gohugo.io/">Go Hugo</a> - Made
+          with love from <a class="font-bold text-primary" href="https://nextjsvietnam.com">NextJSVietNam</a> -
+          Build
+          Version 2023-06-12 13:47:24 &#43;0700 &#43;07
+        </div>
+      </div>
+    </footer>
+
+    
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="https://nextjsvietnam.com/core/jquery-3.6.0.min.js"></script>
+        
+             
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="https://nextjsvietnam.com/themes/2022/public/main.js"></script>
+        
+             
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="https://nextjsvietnam.com/themes/2022/public/home.js"></script>
+        
+             
+    
+
+  
+  <script async>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1760611910980690');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1760611910980690&ev=PageView&noscript=1"
+    /></noscript>
+        
+  </body>
+</html>

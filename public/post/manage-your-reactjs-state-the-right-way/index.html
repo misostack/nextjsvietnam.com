@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="home" href="https://nextjsvietnam.com" />
+    <meta name="generator" content="jsguru cms" />
+
+    
+    
+
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    
+    
+      
+              
+        
+        <link rel="stylesheet" href="https://nextjsvietnam.com/themes/2022/public/main.css" />
+             
+    
+      
+              
+        
+        <link rel="stylesheet" href="https://nextjsvietnam.com/themes/2022/public/home.css" />
+             
+    
+      
+              
+        
+        <link rel="stylesheet" href="https://nextjsvietnam.com/themes/2022/public/page.css" />
+             
+        
+    
+    
+    
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWE4MLJYE6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-RWE4MLJYE6');
+      
+    </script>    
+    
+    
+<title>Manage Your Reactjs State the Right Way | Để dễ dàng nắm bắt được các phương pháp khi làm việc với state, chúng ta sẽ đi qua lần lượt các trường hợp sau | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+<meta name="robots" content="all" />
+<meta name="keywords" content="reactjs&#34;, reactjs state management" />
+<meta name="description" content="Để dễ dàng nắm bắt được các phương pháp khi làm việc với state, chúng ta sẽ đi qua lần lượt các trường hợp sau" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://nextjsvietnam.com/common/no-image.png" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="750" />
+<meta property="og:image:height" content="300" />
+<meta
+  property="article:publisher"
+  content="https://www.facebook.com/nextjsvietnam"
+/>
+
+<meta property="article:published_time" content="2022-10-05T14:31:27+07:00" />
+<meta property="article:modified_time" content="2022-10-05T14:31:27+07:00" />
+
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png" />
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png" />
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png" />
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png" />
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png" />
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png" />
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="192x192"
+  href="/android-icon-192x192.png"
+/>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="manifest" href="/manifest.json" />
+<meta name="msapplication-TileColor" content="#ffffff" />
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
+<meta name="theme-color" content="#ffffff" />
+
+  </head>
+  <body class="body-nav-fixed">
+    <nav class="nav-fixed nav-default z-50">
+    <div class="container">
+      <div class="nav-container flex flex-wrap justify-between items-center">
+        <a href="https://nextjsvietnam.com" class="nav-brand inline-block">
+          
+          <img class="h-12" src="https://nextjsvietnam.com/themes/2022/src/assets/images/logo.png" 
+          alt="Stunning" />
+        </a>
+        <a href="javascript:void(0);" data-menu="#menu-main_menu" class="nav-menu-toggle"><span
+          class="material-icons">menu</span></a>
+        <ul id="menu-main_menu" class="nav-menu h-0 md:h-auto">
+          <form class="nav-menu-search-bar md:hidden relative">
+            <button class="nav-menu-search-bar-search-btn absolute h-full">
+              <svg class="w-3 h-3 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24">
+                <path
+                  d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z">
+                </path>
+              </svg>
+            </button>
+            <input name="s" type="text" class="w-full" />
+          </form>
+          
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="https://nextjsvietnam.com/categories/cheatsheet">Cheatsheet
+                
+            </a>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="https://nextjsvietnam.com/categories/frameworks">Frameworks
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://nextjsvietnam.com/categories/nestjs">NestJS</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://nextjsvietnam.com/categories/reactjs">ReactJS</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="https://nextjsvietnam.com">Tutorials
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://nextjsvietnam.com/categories/nestjs-tutorial">NestJS Tutorial</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="https://nextjsvietnam.com">Tools
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://regex101.com/">Online Regex</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://www.bashoneliners.com/">Bash Online</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://www.epochconverter.com/">Unix Timestamp Conversion</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://ryanstutorials.net/bash-scripting-tutorial/">Bash Scripting</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://explainshell.com/">Explain Shell</a></li>
+                
+                </ul>
+            
+            </li>
+          
+          <form class="nav-menu-search-bar hidden md:flex relative">
+            <button class="nav-menu-search-bar-search-btn absolute h-full">
+              <svg class="w-3 h-3 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24">
+                <path
+                  d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z">
+                </path>
+              </svg>
+            </button>
+            <input name="s" type="text" class="w-full" />
+          </form>
+        </ul>
+      </div>
+    </div>
+</nav>
+
+    <main>
+    
+  <section class="container section">
+    <div class="page-content max-w-2xl mx-auto">
+        <img src="https://nextjsvietnam.com/common/no-image.png" class="img-responsive" alt="Manage Your Reactjs State the Right Way" />
+        <h1>Manage Your Reactjs State the Right Way</h1>
+        
+          
+          
+          <p><strong>Post Date</strong> : 2022-10-05T14:31:27+07:00</p>
+          <p><strong>Modified Date</strong> : 2022-10-05T14:31:27+07:00</p>
+        <p>
+            <strong>Category:</strong>
+            
+            <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="https://nextjsvietnam.com/categories/frameworks">frameworks</a>
+            
+        </p>
+        <p>
+          <strong>Tags:</strong>
+          
+             <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white"
+             href="/tags/reactjs">reactjs</a>
+          
+        </p>        
+        <p>Các khái niệm cần nắm trước khi đọc bài viết này:</p>
+<ol>
+<li>Khái niệm cơ bản về React State</li>
+<li>Khái niệm cơ bản về React Hook</li>
+</ol>
+<p>Nội dung được chia sẻ phạm vi bài viết này:</p>
+<ol>
+<li>Các nguyên tắc khi thiết kế data structure cho state</li>
+<li>Một số ví dụ cụ thể trong các dự án thực tế</li>
+</ol>
+<h2 id="phần-1-các-nguyên-tắc-khi-thiết-kế-data-structure-cho-state">Phần 1: Các nguyên tắc khi thiết kế data structure cho state</h2>
+<p>Về mặt định nghĩa, thì State trong ReactJS là 1 Javascript Object phản ánh phần dữ liệu của component và có thể bị thay đổi giá trị do các tác nhân trong ứng dụng ( người dùng, web worker, web socket, &hellip;)</p>
+<h3 id="1nhóm-các-state-liên-quan-với-nhau">1.Nhóm các state liên quan với nhau.</h3>
+<ul>
+<li>Các state hay thay đổi cùng lúc. Ví dụ: tọa độ con trỏ chuột x,y</li>
+<li>Form data. Ví dụ: Bạn có 1 màn hình mà user có thể thêm nhiều custom field khác nhau (advanced filter chẳng hạn)</li>
+</ul>
+<p>Tuy nhiên cần lưu ý, khi nhóm state thành object hoặc array, lúc cập nhật 1 field, cần nhớ bạn phải cập nhật luôn các field còn lại. Ví dụ: setPosition({&hellip;position, x: 5});</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// replace
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> [<span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">setX</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">useState</span>(<span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> [<span style="color:#a6e22e">y</span>, <span style="color:#a6e22e">setY</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">useState</span>(<span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// with
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> [<span style="color:#a6e22e">point</span>, <span style="color:#a6e22e">setPoint</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">useState</span>({ <span style="color:#a6e22e">x</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">y</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span> });
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">setPoint</span>({
+</span></span><span style="display:flex;"><span>  ...<span style="color:#a6e22e">point</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">x</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">5</span>,
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><h3 id="2tránh-việc-khai-báo-các-state-mẫu-thuẫn-với-nhau">2.Tránh việc khai báo các state mẫu thuẫn với nhau.</h3>
+<p>Ví dụ:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> [<span style="color:#a6e22e">isSending</span>, <span style="color:#a6e22e">setIsSending</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">useState</span>(<span style="color:#66d9ef">false</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> [<span style="color:#a6e22e">isSent</span>, <span style="color:#a6e22e">setIsSent</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">useState</span>(<span style="color:#66d9ef">false</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">setIsSending</span>(<span style="color:#66d9ef">true</span>); <span style="color:#75715e">// to allow showing loading modal
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">await</span> <span style="color:#a6e22e">callAPI</span>();
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">setIsSending</span>(<span style="color:#66d9ef">false</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">setIsSent</span>(<span style="color:#66d9ef">true</span>);
+</span></span></code></pre></div><p>Nó vẫn chạy, đúng chứ, tuy nhiên. Nếu như bạn quên reset lại isSending thì trạng thái lúc này sẽ vừa là isSending và isSent.
+Để tránh sai suất này xảy ra và để code clean hơn. Chúng ta có thể thay đổi lại 1 chút như sau</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> [<span style="color:#a6e22e">formStatus</span>, <span style="color:#a6e22e">setFormStatus</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">useState</span>(<span style="color:#66d9ef">false</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">setFormStatus</span>(<span style="color:#e6db74">&#34;sending&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">await</span> <span style="color:#a6e22e">callAPI</span>();
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">setFormStatus</span>(<span style="color:#e6db74">&#34;sent&#34;</span>);
+</span></span></code></pre></div><p>Rõ ràng là tốt hơn nhiều so với phiên bản đầu tiên. Thậm chí có thể sử dụng constant hoặc enum để khai báo các trạng thái của form.</p>
+<h3 id="3-tránh-khai-báo-các-state-dư-thừa">3. Tránh khai báo các state dư thừa</h3>
+<ul>
+<li>Những giá trị nào có thể tính toán được từ state và prop hiện tại không cần thiết phải sử dụng state để lưu trữ nó.</li>
+</ul>
+<p>Ví dụ:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// replace
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> [<span style="color:#a6e22e">firstName</span>, <span style="color:#a6e22e">setFirstName</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">useState</span>(<span style="color:#e6db74">&#34;&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> [<span style="color:#a6e22e">lastName</span>, <span style="color:#a6e22e">setLastName</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">useState</span>(<span style="color:#e6db74">&#34;&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> [<span style="color:#a6e22e">fullName</span>, <span style="color:#a6e22e">setFullName</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">useState</span>(<span style="color:#e6db74">&#34;&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// with
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> [<span style="color:#a6e22e">firstName</span>, <span style="color:#a6e22e">setFirstName</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">useState</span>(<span style="color:#e6db74">&#34;&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> [<span style="color:#a6e22e">lastName</span>, <span style="color:#a6e22e">setLastName</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">useState</span>(<span style="color:#e6db74">&#34;&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">fullName</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">firstName</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">lastName</span>;
+</span></span></code></pre></div><h3 id="4-đừng-copy-lại-props-vào-state">4. Đừng copy lại props vào state</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">Message</span>({ <span style="color:#a6e22e">messageColor</span> }) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> [<span style="color:#a6e22e">color</span>, <span style="color:#a6e22e">setColor</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">useState</span>(<span style="color:#a6e22e">messageColor</span>);
+</span></span></code></pre></div><p>Với cách init state như thế này, khi giá trị prop từ component cha được thay đổi.
+Sẽ dễ gây hiểu lầm là giá trị messageColor cũng tự động đổi theo.
+Để hạn chế điều này luôn sử dụng initial hoặc default làm prefix cho các prop dùng
+để khởi tạo giá trị ban đầu của state</p>
+<p>Đặc biệt</p>
+<blockquote>
+<h2 id="đừng-copy-lại-props-vào-state">Đừng copy lại props vào state</h2>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">React</span>, { <span style="color:#a6e22e">useMemo</span>, <span style="color:#a6e22e">useState</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;react&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">Message</span> <span style="color:#f92672">=</span> ({ <span style="color:#a6e22e">initialColor</span> }<span style="color:#f92672">:</span> { <span style="color:#a6e22e">initialColor</span>: <span style="color:#66d9ef">string</span> }) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> [<span style="color:#a6e22e">color</span>, <span style="color:#a6e22e">setColor</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">useState</span>(<span style="color:#a6e22e">initialColor</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">className</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">`bg-</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">color</span><span style="color:#e6db74">}</span><span style="color:#e6db74">-500`</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> (
+</span></span><span style="display:flex;"><span>    &lt;&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">h3</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">className</span>}&gt;<span style="color:#a6e22e">Principle</span> <span style="color:#a6e22e">3</span>: <span style="color:#66d9ef">Avoid</span> <span style="color:#a6e22e">Redundant</span> <span style="color:#a6e22e">State</span>&lt;/<span style="color:#f92672">h3</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">button</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">className</span>}
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">onClick</span><span style="color:#f92672">=</span>{() <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">color</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;green&#34;</span> <span style="color:#f92672">?</span> <span style="color:#a6e22e">setColor</span>(<span style="color:#a6e22e">initialColor</span>) <span style="color:#f92672">:</span> <span style="color:#a6e22e">setColor</span>(<span style="color:#e6db74">&#34;green&#34;</span>);
+</span></span><span style="display:flex;"><span>        }}
+</span></span><span style="display:flex;"><span>      &gt;
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">Switch</span> <span style="color:#a6e22e">Color</span>
+</span></span><span style="display:flex;"><span>      &lt;/<span style="color:#f92672">button</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/&gt;
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">StateStructurePrinciples() {</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> [<span style="color:#a6e22e">defaultColor</span>, <span style="color:#a6e22e">setDefaultColor</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">useState</span>(<span style="color:#e6db74">&#34;blue&#34;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">supportedColors</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">useMemo</span>(() <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> [<span style="color:#e6db74">&#34;blue&#34;</span>, <span style="color:#e6db74">&#34;red&#34;</span>, <span style="color:#e6db74">&#34;yellow&#34;</span>, <span style="color:#e6db74">&#34;pink&#34;</span>];
+</span></span><span style="display:flex;"><span>  }, []);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> (
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;container&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">h1</span>&gt;<span style="color:#a6e22e">StateStructurePrinciples</span>&lt;/<span style="color:#f92672">h1</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">Message</span> <span style="color:#a6e22e">initialColor</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">defaultColor</span>}&gt;&lt;/<span style="color:#f92672">Message</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">select</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;px-4 py-3 rounded-full&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">onChange</span><span style="color:#f92672">=</span>{(<span style="color:#a6e22e">e</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">setDefaultColor</span>(<span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">value</span>)}
+</span></span><span style="display:flex;"><span>      &gt;
+</span></span><span style="display:flex;"><span>        {<span style="color:#a6e22e">supportedColors</span>.<span style="color:#a6e22e">map</span>((<span style="color:#a6e22e">c</span>) <span style="color:#f92672">=&gt;</span> (
+</span></span><span style="display:flex;"><span>          &lt;<span style="color:#f92672">option</span> <span style="color:#a6e22e">key</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">c</span>} <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">c</span>}&gt;
+</span></span><span style="display:flex;"><span>            {<span style="color:#a6e22e">c</span>}
+</span></span><span style="display:flex;"><span>          &lt;/<span style="color:#f92672">option</span>&gt;
+</span></span><span style="display:flex;"><span>        ))}
+</span></span><span style="display:flex;"><span>      &lt;/<span style="color:#f92672">select</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">React</span>, { <span style="color:#a6e22e">useMemo</span>, <span style="color:#a6e22e">useState</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;react&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">Message</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">props</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">initialColor</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">string</span> }) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">className</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">`bg-</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">props</span>.<span style="color:#a6e22e">initialColor</span><span style="color:#e6db74">}</span><span style="color:#e6db74">-500`</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> (
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">h3</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">className</span>}<span style="color:#f92672">&gt;</span><span style="color:#a6e22e">Principle</span> <span style="color:#ae81ff">3</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">Avoid</span> <span style="color:#a6e22e">Redundant</span> <span style="color:#a6e22e">State</span><span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/h3&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/&gt;</span>
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">StateStructurePrinciple3</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> [<span style="color:#a6e22e">defaultColor</span>, <span style="color:#a6e22e">setDefaultColor</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">useState</span>(<span style="color:#e6db74">&#34;blue&#34;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">supportedColors</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">useMemo</span>(() =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> [<span style="color:#e6db74">&#34;blue&#34;</span>, <span style="color:#e6db74">&#34;red&#34;</span>, <span style="color:#e6db74">&#34;yellow&#34;</span>, <span style="color:#e6db74">&#34;pink&#34;</span>];
+</span></span><span style="display:flex;"><span>  }, []);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> (
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">div</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;container&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">h1</span><span style="color:#f92672">&gt;</span><span style="color:#a6e22e">StateStructurePrinciples</span><span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/h1&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Message</span> <span style="color:#a6e22e">initialColor</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">defaultColor</span>}<span style="color:#f92672">&gt;&lt;</span><span style="color:#960050;background-color:#1e0010">/Message&gt;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">select</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;px-4 py-3 rounded-full&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">onChange</span><span style="color:#f92672">=</span>{(<span style="color:#a6e22e">e</span>) =&gt; <span style="color:#a6e22e">setDefaultColor</span>(<span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">value</span>)}
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>        {<span style="color:#a6e22e">supportedColors</span>.<span style="color:#a6e22e">map</span>((<span style="color:#a6e22e">c</span>) =&gt; (
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">option</span> <span style="color:#a6e22e">key</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">c</span>} <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">c</span>}<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>            {<span style="color:#a6e22e">c</span>}
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/option&gt;</span>
+</span></span><span style="display:flex;"><span>        ))}
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/select&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/div&gt;</span>
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">React</span>, { <span style="color:#a6e22e">useEffect</span>, <span style="color:#a6e22e">useMemo</span>, <span style="color:#a6e22e">useState</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;react&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">Message</span> <span style="color:#f92672">=</span> ({ <span style="color:#a6e22e">initialColor</span> }<span style="color:#f92672">:</span> { <span style="color:#a6e22e">initialColor</span>: <span style="color:#66d9ef">string</span> }) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> [<span style="color:#a6e22e">color</span>, <span style="color:#a6e22e">setColor</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">useState</span>(<span style="color:#a6e22e">initialColor</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">className</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">`bg-</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">color</span><span style="color:#e6db74">}</span><span style="color:#e6db74">-500`</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">useEffect</span>(() <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// update State when initialColor changed
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">setColor</span>(<span style="color:#a6e22e">initialColor</span>);
+</span></span><span style="display:flex;"><span>  }, [<span style="color:#a6e22e">initialColor</span>]);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> (
+</span></span><span style="display:flex;"><span>    &lt;&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">h3</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">className</span>}&gt;<span style="color:#a6e22e">Principle</span> <span style="color:#a6e22e">3</span>: <span style="color:#66d9ef">Avoid</span> <span style="color:#a6e22e">Redundant</span> <span style="color:#a6e22e">State</span>&lt;/<span style="color:#f92672">h3</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">button</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">className</span>}
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">onClick</span><span style="color:#f92672">=</span>{() <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">color</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;green&#34;</span> <span style="color:#f92672">?</span> <span style="color:#a6e22e">setColor</span>(<span style="color:#a6e22e">initialColor</span>) <span style="color:#f92672">:</span> <span style="color:#a6e22e">setColor</span>(<span style="color:#e6db74">&#34;green&#34;</span>);
+</span></span><span style="display:flex;"><span>        }}
+</span></span><span style="display:flex;"><span>      &gt;
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">Switch</span> <span style="color:#a6e22e">Color</span>
+</span></span><span style="display:flex;"><span>      &lt;/<span style="color:#f92672">button</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/&gt;
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">StateStructurePrinciples() {</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> [<span style="color:#a6e22e">defaultColor</span>, <span style="color:#a6e22e">setDefaultColor</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">useState</span>(<span style="color:#e6db74">&#34;blue&#34;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">supportedColors</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">useMemo</span>(() <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> [<span style="color:#e6db74">&#34;blue&#34;</span>, <span style="color:#e6db74">&#34;red&#34;</span>, <span style="color:#e6db74">&#34;yellow&#34;</span>, <span style="color:#e6db74">&#34;pink&#34;</span>];
+</span></span><span style="display:flex;"><span>  }, []);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> (
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;container&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">h1</span>&gt;<span style="color:#a6e22e">StateStructurePrinciples</span>&lt;/<span style="color:#f92672">h1</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">Message</span> <span style="color:#a6e22e">initialColor</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">defaultColor</span>}&gt;&lt;/<span style="color:#f92672">Message</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">select</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;px-4 py-3 rounded-full&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">onChange</span><span style="color:#f92672">=</span>{(<span style="color:#a6e22e">e</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">setDefaultColor</span>(<span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">value</span>)}
+</span></span><span style="display:flex;"><span>      &gt;
+</span></span><span style="display:flex;"><span>        {<span style="color:#a6e22e">supportedColors</span>.<span style="color:#a6e22e">map</span>((<span style="color:#a6e22e">c</span>) <span style="color:#f92672">=&gt;</span> (
+</span></span><span style="display:flex;"><span>          &lt;<span style="color:#f92672">option</span> <span style="color:#a6e22e">key</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">c</span>} <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">c</span>}&gt;
+</span></span><span style="display:flex;"><span>            {<span style="color:#a6e22e">c</span>}
+</span></span><span style="display:flex;"><span>          &lt;/<span style="color:#f92672">option</span>&gt;
+</span></span><span style="display:flex;"><span>        ))}
+</span></span><span style="display:flex;"><span>      &lt;/<span style="color:#f92672">select</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="4-tránh-việc-trùng-lặp-state">4. Tránh việc trùng lặp state</h3>
+<blockquote>
+<p>Bad: When you duplicate the entire book object into your favoriteBook State, it doesn&rsquo;t reflect when its original version changed</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">React</span>, { <span style="color:#a6e22e">useState</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;react&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">StateStructurePrinciple4() {</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> [<span style="color:#a6e22e">books</span>, <span style="color:#a6e22e">setBooks</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">useState</span>([
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">1</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Clean Code&#34;</span>,
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">2</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;ReactJS the right way&#34;</span>,
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    { <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">3</span>, <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Angular the right way&#34;</span> },
+</span></span><span style="display:flex;"><span>  ]);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> [<span style="color:#a6e22e">favoriteBook</span>, <span style="color:#a6e22e">setFavoriteBook</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">useState</span>&lt;<span style="color:#f92672">any</span>&gt;(<span style="color:#66d9ef">null</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> (
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;container&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">h1</span>&gt;<span style="color:#a6e22e">StateStructurePrinciple4</span>&lt;/<span style="color:#f92672">h1</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;bg-green-600 text-white p-4&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        {<span style="color:#a6e22e">favoriteBook</span> <span style="color:#f92672">?</span> <span style="color:#a6e22e">favoriteBook</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Please select your favorite book&#34;</span>}
+</span></span><span style="display:flex;"><span>      &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>        {<span style="color:#a6e22e">books</span>.<span style="color:#a6e22e">map</span>((<span style="color:#a6e22e">book</span>) <span style="color:#f92672">=&gt;</span> (
+</span></span><span style="display:flex;"><span>          &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">key</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">book</span>.<span style="color:#a6e22e">id</span>} <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;flex items-center my-4&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">input</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;bg-gray-50 text-gray-900 text-sm rounded-lg border leading-6 py-3 px-4 mr-2 w-1/2&#34;</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">book</span>.<span style="color:#a6e22e">name</span>}
+</span></span><span style="display:flex;"><span>              <span style="color:#a6e22e">onChange</span><span style="color:#f92672">=</span>{(<span style="color:#a6e22e">e</span>) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">setBooks</span>(
+</span></span><span style="display:flex;"><span>                  <span style="color:#a6e22e">books</span>.<span style="color:#a6e22e">map</span>((<span style="color:#a6e22e">b</span>) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">id</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">book</span>.<span style="color:#a6e22e">id</span>) {
+</span></span><span style="display:flex;"><span>                      <span style="color:#66d9ef">return</span> {
+</span></span><span style="display:flex;"><span>                        ...<span style="color:#a6e22e">book</span>,
+</span></span><span style="display:flex;"><span>                        <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">e.target.value</span>,
+</span></span><span style="display:flex;"><span>                      };
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">b</span>;
+</span></span><span style="display:flex;"><span>                  })
+</span></span><span style="display:flex;"><span>                );
+</span></span><span style="display:flex;"><span>              }}
+</span></span><span style="display:flex;"><span>            /&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">button</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;bg-green-400 rounded-md p-4 disabled:opacity-50&#34;</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#a6e22e">disabled</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">favoriteBook</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">book</span>.<span style="color:#a6e22e">id</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">favoriteBook</span>.<span style="color:#a6e22e">id</span>}
+</span></span><span style="display:flex;"><span>              <span style="color:#a6e22e">onClick</span><span style="color:#f92672">=</span>{() <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">setFavoriteBook</span>(<span style="color:#a6e22e">book</span>);
+</span></span><span style="display:flex;"><span>              }}
+</span></span><span style="display:flex;"><span>            &gt;
+</span></span><span style="display:flex;"><span>              <span style="color:#a6e22e">Select</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">favorite</span> <span style="color:#a6e22e">book</span>
+</span></span><span style="display:flex;"><span>            &lt;/<span style="color:#f92672">button</span>&gt;
+</span></span><span style="display:flex;"><span>          &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>        ))}
+</span></span><span style="display:flex;"><span>      &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
+<p>Good: instead of duplicate the book object, you only need to track the bookId for your favoriteBook state. So when the original book object changed, your favoriteBook will be recalculate via searching from the list of book with favoriteBookId</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">React</span>, { <span style="color:#a6e22e">useState</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;react&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">StateStructurePrinciple4() {</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> [<span style="color:#a6e22e">books</span>, <span style="color:#a6e22e">setBooks</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">useState</span>([
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">1</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Clean Code&#34;</span>,
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">2</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;ReactJS the right way&#34;</span>,
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    { <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">3</span>, <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Angular the right way&#34;</span> },
+</span></span><span style="display:flex;"><span>  ]);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> [<span style="color:#a6e22e">favoriteBookId</span>, <span style="color:#a6e22e">setFavoriteBookId</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">useState</span>&lt;<span style="color:#f92672">number</span>&gt;(<span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">favoriteBook</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">books</span>.<span style="color:#a6e22e">find</span>((<span style="color:#a6e22e">book</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">book</span>.<span style="color:#a6e22e">id</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">favoriteBookId</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> (
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;container&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">h1</span>&gt;<span style="color:#a6e22e">StateStructurePrinciple4</span>&lt;/<span style="color:#f92672">h1</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;bg-green-600 text-white p-4&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        {<span style="color:#a6e22e">favoriteBook</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">||</span> <span style="color:#e6db74">&#34;Please select your favorite book&#34;</span>}
+</span></span><span style="display:flex;"><span>      &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>        {<span style="color:#a6e22e">books</span>.<span style="color:#a6e22e">map</span>((<span style="color:#a6e22e">book</span>) <span style="color:#f92672">=&gt;</span> (
+</span></span><span style="display:flex;"><span>          &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">key</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">book</span>.<span style="color:#a6e22e">id</span>} <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;flex items-center my-4&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">input</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;bg-gray-50 text-gray-900 text-sm rounded-lg border leading-6 py-3 px-4 mr-2 w-1/2&#34;</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">book</span>.<span style="color:#a6e22e">name</span>}
+</span></span><span style="display:flex;"><span>              <span style="color:#a6e22e">onChange</span><span style="color:#f92672">=</span>{(<span style="color:#a6e22e">e</span>) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">setBooks</span>(
+</span></span><span style="display:flex;"><span>                  <span style="color:#a6e22e">books</span>.<span style="color:#a6e22e">map</span>((<span style="color:#a6e22e">b</span>) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">id</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">book</span>.<span style="color:#a6e22e">id</span>) {
+</span></span><span style="display:flex;"><span>                      <span style="color:#66d9ef">return</span> {
+</span></span><span style="display:flex;"><span>                        ...<span style="color:#a6e22e">book</span>,
+</span></span><span style="display:flex;"><span>                        <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">e.target.value</span>,
+</span></span><span style="display:flex;"><span>                      };
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">b</span>;
+</span></span><span style="display:flex;"><span>                  })
+</span></span><span style="display:flex;"><span>                );
+</span></span><span style="display:flex;"><span>              }}
+</span></span><span style="display:flex;"><span>            /&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">button</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;bg-green-400 rounded-md p-4 disabled:opacity-50&#34;</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#a6e22e">disabled</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">book</span>.<span style="color:#a6e22e">id</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">favoriteBookId</span>}
+</span></span><span style="display:flex;"><span>              <span style="color:#a6e22e">onClick</span><span style="color:#f92672">=</span>{() <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">setFavoriteBookId</span>(<span style="color:#a6e22e">book</span>.<span style="color:#a6e22e">id</span>);
+</span></span><span style="display:flex;"><span>              }}
+</span></span><span style="display:flex;"><span>            &gt;
+</span></span><span style="display:flex;"><span>              <span style="color:#a6e22e">Select</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">favorite</span> <span style="color:#a6e22e">book</span>
+</span></span><span style="display:flex;"><span>            &lt;/<span style="color:#f92672">button</span>&gt;
+</span></span><span style="display:flex;"><span>          &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>        ))}
+</span></span><span style="display:flex;"><span>      &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="5-tránh-sử-dụng-state-lồng-ghép-nhiều-cấp">5. Tránh sử dụng state lồng ghép nhiều cấp</h3>
+<h2 id="phần-2-các-ví-dụ-thực-tế">Phần 2: Các ví dụ thực tế</h2>
+<p>Trong phạm vi của bài viết này, toàn bộ ví dụ sẽ được viết theo dạng functional và react hooks.</p>
+<p>Khi ứng dụng càng lớn, hoặc trong cùng 1 màn hình lại có rất nhiều tính năng và chúng lại có liên quan mật thiết với nhau. Thì việc thiết kế và tổ chức cấu trúc dữ liệu cho state là điều tối quan trọng.</p>
+<p>Để dễ dàng nắm bắt được các phương pháp khi làm việc với state, chúng ta sẽ đi qua lần lượt các trường hợp sau:</p>
+<ol>
+<li>Internal UI states: phần state được sử dụng để hiển thị hoặc thay đổi về mặt giao diện người dùng như disabled, đổi màu sắc, hiển thị thông báo thành công/lỗi</li>
+<li>Interal data states: phần state được sử dụng để chứa dữ liệu chính hiển thị cho người dùng</li>
+<li>Shared UI states: phần state chung được sử dụng thay đổi về mặt UI ở toàn bộ ứng dụng hoặc các cụm màn hình chung</li>
+<li>Shared data states: phần state được sử dụng để chứa các dữ liệu chung của toàn bộ ứng dụng hoặc 1 cụm các màn hình chung</li>
+</ol>
+<h2 id="internal-ui-states">Internal UI states</h2>
+<p>Về loại này chúng ta có thể đi qua các ví dụ cụ thể như sau:</p>
+<h3 id="1-on-off-buttons">1. On-Off buttons</h3>
+<p>Giả sử chúng ta có 6 bóng đèn, mỗi bóng đều có công tắc , và ngoài ra còn 1 công tắc điện tổng. Yêu cầu: xây dựng màn hình hiển thị 6 bóng đèn với các công tắc tương ứng. Mặc định ban đầu: toàn bộ các bóng đèn và công tắc điện tổng đều tắt.</p>
+<p>Đối với loại này, có các điểm sau cần lưu ý:</p>
+<ul>
+<li>State dành cho trạng thái của công tắc điện tổng</li>
+<li>State dành cho trạng thái của từng bóng đèn</li>
+</ul>
+<p>Code sample</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">React</span>, { <span style="color:#a6e22e">useState</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;react&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">LightBulbProps</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">number</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">status</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;on&#34;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#34;off&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">LightBulbStates</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">lightBulbs</span>: <span style="color:#66d9ef">LightBulbProps</span>[];
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">powerStatus</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;on&#34;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#34;off&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">PowerSwitchProps</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">status</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;on&#34;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#34;off&#34;</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">switchPowerState</span><span style="color:#f92672">:</span> (<span style="color:#a6e22e">status</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;on&#34;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#34;off&#34;</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">void</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">PowerSwitch</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">props</span>: <span style="color:#66d9ef">PowerSwitchProps</span>) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">status</span>, <span style="color:#a6e22e">switchPowerState</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">props</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">iconName</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">status</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;on&#34;</span> <span style="color:#f92672">?</span> <span style="color:#e6db74">&#34;toggle_on&#34;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;toggle_off&#34;</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">oppositeStatus</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">status</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;on&#34;</span> <span style="color:#f92672">?</span> <span style="color:#e6db74">&#34;off&#34;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;on&#34;</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> (
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">button</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text-center&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">onClick</span><span style="color:#f92672">=</span>{() <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">switchPowerState</span>(<span style="color:#a6e22e">oppositeStatus</span>);
+</span></span><span style="display:flex;"><span>      }}
+</span></span><span style="display:flex;"><span>    &gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;material-icons-outlined md-48&#34;</span>&gt;{<span style="color:#a6e22e">iconName</span>}&lt;/<span style="color:#f92672">span</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">br</span> /&gt;
+</span></span><span style="display:flex;"><span>      {<span style="color:#a6e22e">status</span>.<span style="color:#a6e22e">toUpperCase</span>()}
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">button</span>&gt;
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">LightBulb</span> <span style="color:#f92672">=</span> (
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">props</span>: <span style="color:#66d9ef">LightBulbProps</span> <span style="color:#f92672">&amp;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">switchBulbState</span><span style="color:#f92672">:</span> (<span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">number</span>, <span style="color:#a6e22e">status</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;on&#34;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#34;off&#34;</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">void</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">id</span>, <span style="color:#a6e22e">status</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">props</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">className</span> <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">status</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;on&#34;</span> <span style="color:#f92672">?</span> <span style="color:#e6db74">&#34;material-icons-outlined&#34;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;material-icons&#34;</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">oppositeStatus</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">status</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;on&#34;</span> <span style="color:#f92672">?</span> <span style="color:#e6db74">&#34;off&#34;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;on&#34;</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> (
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text-center&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">h2</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;m-4&#34;</span>&gt;{<span style="color:#a6e22e">id</span>}&lt;/<span style="color:#f92672">h2</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">button</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">onClick</span><span style="color:#f92672">=</span>{() <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">props</span>.<span style="color:#a6e22e">switchBulbState</span>(<span style="color:#a6e22e">id</span>, <span style="color:#a6e22e">oppositeStatus</span>);
+</span></span><span style="display:flex;"><span>        }}
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span>{<span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">id</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>}
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">className</span>}
+</span></span><span style="display:flex;"><span>      &gt;
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">lightbulb</span>
+</span></span><span style="display:flex;"><span>      &lt;/<span style="color:#f92672">button</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">StateManagementUserInterface() {</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">initialStates</span>: <span style="color:#66d9ef">LightBulbStates</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">lightBulbs</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>      { <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">1</span>, <span style="color:#a6e22e">status</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;off&#34;</span> },
+</span></span><span style="display:flex;"><span>      { <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">2</span>, <span style="color:#a6e22e">status</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;off&#34;</span> },
+</span></span><span style="display:flex;"><span>      { <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">3</span>, <span style="color:#a6e22e">status</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;off&#34;</span> },
+</span></span><span style="display:flex;"><span>      { <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">4</span>, <span style="color:#a6e22e">status</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;off&#34;</span> },
+</span></span><span style="display:flex;"><span>      { <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">5</span>, <span style="color:#a6e22e">status</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;off&#34;</span> },
+</span></span><span style="display:flex;"><span>      { <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">6</span>, <span style="color:#a6e22e">status</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;off&#34;</span> },
+</span></span><span style="display:flex;"><span>    ],
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">powerStatus</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;off&#34;</span>,
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// define states
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">const</span> [<span style="color:#a6e22e">lightBulbStates</span>, <span style="color:#a6e22e">setLightBulbStates</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">useState</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">initialStates</span>.<span style="color:#a6e22e">lightBulbs</span>
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> [<span style="color:#a6e22e">powerStatus</span>, <span style="color:#a6e22e">setPowerStatus</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">useState</span>(<span style="color:#a6e22e">initialStates</span>.<span style="color:#a6e22e">powerStatus</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// define actions
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">switchBulbState</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">bulbId</span>: <span style="color:#66d9ef">number</span>, <span style="color:#a6e22e">newStatus</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;on&#34;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#34;off&#34;</span>) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// clone
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">targetBulbIndex</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">lightBulbStates</span>.<span style="color:#a6e22e">findIndex</span>((<span style="color:#a6e22e">b</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">b</span>.<span style="color:#a6e22e">id</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">bulbId</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">newLightBulbStates</span> <span style="color:#f92672">=</span> [...<span style="color:#a6e22e">lightBulbStates</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">newLightBulbStates</span>[<span style="color:#a6e22e">targetBulbIndex</span>].<span style="color:#a6e22e">status</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">newStatus</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// update status
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">setLightBulbStates</span>(<span style="color:#a6e22e">newLightBulbStates</span>);
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">switchPowerState</span> <span style="color:#f92672">=</span> () <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">setPowerStatus</span>(<span style="color:#a6e22e">powerStatus</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;on&#34;</span> <span style="color:#f92672">?</span> <span style="color:#e6db74">&#34;off&#34;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;on&#34;</span>);
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> (
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;container&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">h1</span>&gt;<span style="color:#a6e22e">StateManagementUserInterface</span>&lt;/<span style="color:#f92672">h1</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;my-2&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">PowerSwitch</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">status</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">powerStatus</span>}
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">switchPowerState</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">switchPowerState</span>}
+</span></span><span style="display:flex;"><span>        &gt;&lt;/<span style="color:#f92672">PowerSwitch</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;grid grid-cols-6&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        {<span style="color:#a6e22e">lightBulbStates</span>.<span style="color:#a6e22e">map</span>((<span style="color:#a6e22e">bulb</span>) <span style="color:#f92672">=&gt;</span> (
+</span></span><span style="display:flex;"><span>          &lt;<span style="color:#f92672">LightBulb</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">switchBulbState</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">switchBulbState</span>}
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">key</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">bulb</span>.<span style="color:#a6e22e">id</span>}
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">bulb</span>.<span style="color:#a6e22e">id</span>}
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">status</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">powerStatus</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;off&#34;</span> <span style="color:#f92672">?</span> <span style="color:#e6db74">&#34;off&#34;</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">bulb</span>.<span style="color:#a6e22e">status</span>}
+</span></span><span style="display:flex;"><span>          /&gt;
+</span></span><span style="display:flex;"><span>        ))}
+</span></span><span style="display:flex;"><span>      &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="2-react-to-input-state">2. React to Input State</h3>
+<p>Ứng dụng react state để tạo form validate dữ liệu. Yêu cầu:</p>
+<ul>
+<li>Form thu thập thông tin khách hàng: họ tên, email, số điện thoại</li>
+<li>Highlight các field sai format</li>
+<li>Disabled nút submit nếu dữ liệu không hợp lệ</li>
+<li>Disabled toàn bộ form trong thời gian chờ đợi form được submit thành công</li>
+<li>Hiển thị thông báo lỗi nếu có lỗi sau khi submit</li>
+<li>Hiển thị thông báo thành công nếu submit được chấp nhận</li>
+</ul>
+<p>Đối với loại này, có các điểm sau cần lưu ý:</p>
+<ul>
+<li>State dành cho input values</li>
+<li>State dành cho trạng thái của các input, của form</li>
+<li>State dành cho trạng thái submit</li>
+<li>State dành cho thông báo lỗi/thành công</li>
+</ul>
+<p>Code sample</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#75715e">/* eslint-disable no-template-curly-in-string */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">React</span>, { <span style="color:#a6e22e">ChangeEvent</span>, <span style="color:#a6e22e">FormEvent</span>, <span style="color:#a6e22e">useEffect</span>, <span style="color:#a6e22e">useState</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;react&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">yup</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;yup&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">useDebounce</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;../helpers/hooks.helpers&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// import { debounce } from &#39;lodash&#39;;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">EMAIL_REGEX</span> <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">ErrorObject</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  [<span style="color:#a6e22e">field</span>: <span style="color:#66d9ef">string</span>]<span style="color:#f92672">:</span> <span style="color:#66d9ef">string</span>[];
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">initialStates</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">formData</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fullname</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">email</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">formValidationObserver</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">isValid</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">dirty</span><span style="color:#f92672">:</span> {},
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">errorObject</span><span style="color:#f92672">:</span> {},
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">FieldName</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;fullname&#34;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#34;email&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">fakeAPICall</span>&lt;<span style="color:#f92672">T</span>&gt;(<span style="color:#a6e22e">res</span>: <span style="color:#66d9ef">any</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Promise</span>&lt;<span style="color:#f92672">T</span>&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Promise</span>((<span style="color:#a6e22e">resolve</span>) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">setTimeout</span>(() <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;fake api call&#34;</span>);
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">resolve</span>(<span style="color:#a6e22e">res</span>);
+</span></span><span style="display:flex;"><span>    }, <span style="color:#ae81ff">300</span>);
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">yup</span>.<span style="color:#a6e22e">setLocale</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// use constant translation keys for messages without values
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">mixed</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">default</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;invalid&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">required</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;required&#34;</span>,
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Convert yup error into an error object where the keys are the fields and the values are the errors for that field
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @param {ValidationError} err The yup error to convert
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * @returns {ErrorObject} The error object
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">yupErrorToErrorObject</span>(<span style="color:#a6e22e">err</span>: <span style="color:#66d9ef">yup.ValidationError</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">ErrorObject</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">object</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">ErrorObject</span> <span style="color:#f92672">=</span> {};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">err</span>.<span style="color:#a6e22e">inner</span>.<span style="color:#a6e22e">forEach</span>((<span style="color:#a6e22e">x</span>) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">x</span>.<span style="color:#a6e22e">path</span> <span style="color:#f92672">!==</span> <span style="color:#66d9ef">undefined</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">object</span>[<span style="color:#a6e22e">x</span>.<span style="color:#a6e22e">path</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">x</span>.<span style="color:#a6e22e">errors</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">object</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">subcribeFormSchema</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">yup</span>.<span style="color:#66d9ef">object</span>().<span style="color:#a6e22e">shape</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fullname</span>: <span style="color:#66d9ef">yup.string</span>().<span style="color:#a6e22e">required</span>().<span style="color:#a6e22e">label</span>(<span style="color:#e6db74">&#34;fullname&#34;</span>),
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">email</span>: <span style="color:#66d9ef">yup</span>
+</span></span><span style="display:flex;"><span>    .<span style="color:#66d9ef">string</span>()
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">required</span>()
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">label</span>(<span style="color:#e6db74">&#34;email&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// eslint-disable-next-line no-template-curly-in-string
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    .<span style="color:#a6e22e">test</span>(<span style="color:#e6db74">&#34;is_valid&#34;</span>, <span style="color:#e6db74">&#34;invalid&#34;</span>, (<span style="color:#a6e22e">value</span>, <span style="color:#a6e22e">context</span>) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">value</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">EMAIL_REGEX</span>.<span style="color:#a6e22e">test</span>(<span style="color:#a6e22e">value</span>);
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// eslint-disable-next-line no-template-curly-in-string
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    .<span style="color:#a6e22e">test</span>(<span style="color:#e6db74">&#34;is_unique&#34;</span>, <span style="color:#e6db74">&#34;unique&#34;</span>, <span style="color:#66d9ef">async</span> (<span style="color:#a6e22e">value</span>, <span style="color:#a6e22e">_context</span>) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">value</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">EMAIL_REGEX</span>.<span style="color:#a6e22e">test</span>(<span style="color:#a6e22e">value</span>)) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">isUnique</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">fakeAPICall</span>&lt;<span style="color:#f92672">boolean</span>&gt;(<span style="color:#66d9ef">true</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">isUnique</span>;
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>    }),
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">StateManagementFormValidation() {</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// default state
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">const</span> [<span style="color:#a6e22e">formData</span>, <span style="color:#a6e22e">setFormData</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">useState</span>(<span style="color:#a6e22e">initialStates</span>.<span style="color:#a6e22e">formData</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> [<span style="color:#a6e22e">formValidationObserver</span>, <span style="color:#a6e22e">setFormValidationObserver</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">useState</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">initialStates</span>.<span style="color:#a6e22e">formValidationObserver</span>
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">debounceFormData</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">useDebounce</span>(<span style="color:#a6e22e">formData</span>, <span style="color:#ae81ff">300</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> [<span style="color:#a6e22e">step</span>, <span style="color:#a6e22e">setStep</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">useState</span><span style="color:#f92672">&lt;</span><span style="color:#e6db74">&#34;default&#34;</span> <span style="color:#f92672">|</span> <span style="color:#e6db74">&#34;thank&#34;</span><span style="color:#f92672">&gt;</span>(<span style="color:#e6db74">&#34;default&#34;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> [<span style="color:#a6e22e">errorMessage</span>, <span style="color:#a6e22e">setErrorMessage</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">useState</span>&lt;<span style="color:#f92672">string</span>&gt;(<span style="color:#e6db74">&#34;&#34;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> [<span style="color:#a6e22e">successMessage</span>, <span style="color:#a6e22e">setSuccessMessage</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">useState</span>&lt;<span style="color:#f92672">string</span>&gt;(<span style="color:#e6db74">&#34;&#34;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">classNames</span> <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500&#34;</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// methods
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">validateData</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">schema</span>: <span style="color:#66d9ef">typeof</span> <span style="color:#a6e22e">subcribeFormSchema</span>, <span style="color:#a6e22e">data</span>: <span style="color:#66d9ef">any</span>) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">schema</span>
+</span></span><span style="display:flex;"><span>      .<span style="color:#a6e22e">validate</span>(<span style="color:#a6e22e">data</span>, { <span style="color:#a6e22e">abortEarly</span>: <span style="color:#66d9ef">false</span> })
+</span></span><span style="display:flex;"><span>      .<span style="color:#a6e22e">then</span>(() <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">setFormValidationObserver</span>({
+</span></span><span style="display:flex;"><span>          ...<span style="color:#a6e22e">formValidationObserver</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">isValid</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">errorObject</span><span style="color:#f92672">:</span> {},
+</span></span><span style="display:flex;"><span>        });
+</span></span><span style="display:flex;"><span>      })
+</span></span><span style="display:flex;"><span>      .<span style="color:#66d9ef">catch</span>((<span style="color:#a6e22e">err</span>: <span style="color:#66d9ef">yup.ValidationError</span>) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">err</span>) {
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">errorObject</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">yupErrorToErrorObject</span>(<span style="color:#a6e22e">err</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">setFormValidationObserver</span>({
+</span></span><span style="display:flex;"><span>            ...<span style="color:#a6e22e">formValidationObserver</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">isValid</span><span style="color:#f92672">:</span> <span style="color:#f92672">!</span><span style="color:#a6e22e">err</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">errorObject</span>,
+</span></span><span style="display:flex;"><span>          });
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>      });
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Handle events
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">onBlurField</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">field</span>: <span style="color:#66d9ef">string</span>) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">Reflect</span>.<span style="color:#66d9ef">get</span>(<span style="color:#a6e22e">formValidationObserver</span>, <span style="color:#a6e22e">field</span>)) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">dirty</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">formValidationObserver</span>.<span style="color:#a6e22e">dirty</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">Reflect</span>.<span style="color:#66d9ef">set</span>(<span style="color:#a6e22e">dirty</span>, <span style="color:#a6e22e">field</span>, <span style="color:#66d9ef">true</span>);
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">setFormValidationObserver</span>({
+</span></span><span style="display:flex;"><span>        ...<span style="color:#a6e22e">formValidationObserver</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">dirty</span>,
+</span></span><span style="display:flex;"><span>      });
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// sync input&#39;s values with its state
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">onFieldChange</span> <span style="color:#f92672">=</span> (
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fieldName</span>: <span style="color:#66d9ef">FieldName</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">event</span>: <span style="color:#66d9ef">ChangeEvent</span>&lt;<span style="color:#f92672">HTMLInputElement</span>&gt;
+</span></span><span style="display:flex;"><span>  ) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">formData</span>[<span style="color:#a6e22e">fieldName</span>] <span style="color:#f92672">!==</span> <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">value</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">newFormData</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        ...<span style="color:#a6e22e">formData</span>,
+</span></span><span style="display:flex;"><span>      };
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">newFormData</span>[<span style="color:#a6e22e">fieldName</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">value</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">setFormData</span>(<span style="color:#a6e22e">newFormData</span>);
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">setFormValidationObserver</span>({
+</span></span><span style="display:flex;"><span>        ...<span style="color:#a6e22e">formValidationObserver</span>,
+</span></span><span style="display:flex;"><span>      });
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// onFormSubmit
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">onFormSubmit</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">e</span>: <span style="color:#66d9ef">FormEvent</span>) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">preventDefault</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">formData</span>.<span style="color:#a6e22e">email</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;learnenoughtobebetter@nextjsvietnam.com&#34;</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">setErrorMessage</span>(<span style="color:#e6db74">&#34;You have been registered before!&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">fakeAPICall</span>(<span style="color:#a6e22e">formData</span>)
+</span></span><span style="display:flex;"><span>      .<span style="color:#a6e22e">then</span>((<span style="color:#a6e22e">res</span>: <span style="color:#66d9ef">any</span>) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">setSuccessMessage</span>(<span style="color:#e6db74">`Xin chuc mung &lt;strong&gt;</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">fullname</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&lt;/strong&gt;, ban da dang ky thanh cong. Ban
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        se som nhan duoc qua tang cua he thong!`</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">setStep</span>(<span style="color:#e6db74">&#34;thank&#34;</span>);
+</span></span><span style="display:flex;"><span>      })
+</span></span><span style="display:flex;"><span>      .<span style="color:#66d9ef">catch</span>((<span style="color:#a6e22e">err</span>) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">setErrorMessage</span>(<span style="color:#a6e22e">err</span>);
+</span></span><span style="display:flex;"><span>      });
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// validate data everytime formData changes
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">useEffect</span>(() <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">validateData</span>(<span style="color:#a6e22e">subcribeFormSchema</span>, <span style="color:#a6e22e">debounceFormData</span>);
+</span></span><span style="display:flex;"><span>  }, [<span style="color:#a6e22e">debounceFormData</span>]);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> (
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;container&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;flex justify-center&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;w-96 p-8 border border-gray-200 shadow&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>          &lt;<span style="color:#f92672">h1</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;mb-4&#34;</span>&gt;<span style="color:#a6e22e">Nhan</span> <span style="color:#a6e22e">thong</span> <span style="color:#a6e22e">bao</span> <span style="color:#a6e22e">va</span> <span style="color:#a6e22e">qua</span> <span style="color:#a6e22e">tang</span> <span style="color:#a6e22e">dinh</span> <span style="color:#a6e22e">ky</span>&lt;/<span style="color:#f92672">h1</span>&gt;
+</span></span><span style="display:flex;"><span>          &lt;<span style="color:#f92672">p</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text-gray-400 mb-4&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">Bang</span> <span style="color:#a6e22e">cach</span> <span style="color:#a6e22e">dang</span> <span style="color:#a6e22e">ky</span> <span style="color:#a6e22e">thanh</span> <span style="color:#a6e22e">vien</span> <span style="color:#a6e22e">cua</span> <span style="color:#a6e22e">cong</span> <span style="color:#a6e22e">dong</span> <span style="color:#a6e22e">NEXTJSVIETNAM</span>
+</span></span><span style="display:flex;"><span>          &lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>          {<span style="color:#a6e22e">step</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;default&#34;</span> <span style="color:#f92672">&amp;&amp;</span> (
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">form</span> <span style="color:#a6e22e">onSubmit</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">onFormSubmit</span>}&gt;
+</span></span><span style="display:flex;"><span>              &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;mb-4 bg-red-300&#34;</span>&gt;{<span style="color:#a6e22e">errorMessage</span>}&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>              &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;mb-4&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;<span style="color:#f92672">input</span>
+</span></span><span style="display:flex;"><span>                  <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">formData</span>.<span style="color:#a6e22e">fullname</span>}
+</span></span><span style="display:flex;"><span>                  <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span>
+</span></span><span style="display:flex;"><span>                  <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;fullname&#34;</span>
+</span></span><span style="display:flex;"><span>                  <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span>{<span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">classNames</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> </span><span style="color:#e6db74">${</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">Reflect</span>.<span style="color:#66d9ef">get</span>(<span style="color:#a6e22e">formValidationObserver</span>.<span style="color:#a6e22e">dirty</span>, <span style="color:#e6db74">&#34;fullname&#34;</span>) <span style="color:#f92672">&amp;&amp;</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">Reflect</span>.<span style="color:#a6e22e">has</span>(<span style="color:#a6e22e">formValidationObserver</span>.<span style="color:#a6e22e">errorObject</span>, <span style="color:#e6db74">&#34;fullname&#34;</span>)
+</span></span><span style="display:flex;"><span>                      <span style="color:#f92672">?</span> <span style="color:#e6db74">&#34;border border-red-600&#34;</span>
+</span></span><span style="display:flex;"><span>                      <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;border border-gray-300&#34;</span>
+</span></span><span style="display:flex;"><span>                  <span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>}
+</span></span><span style="display:flex;"><span>                  <span style="color:#a6e22e">placeholder</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Your name&#34;</span>
+</span></span><span style="display:flex;"><span>                  <span style="color:#a6e22e">onChange</span><span style="color:#f92672">=</span>{(<span style="color:#a6e22e">e</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">onFieldChange</span>(<span style="color:#e6db74">&#34;fullname&#34;</span>, <span style="color:#a6e22e">e</span>)}
+</span></span><span style="display:flex;"><span>                  <span style="color:#a6e22e">onBlur</span><span style="color:#f92672">=</span>{(<span style="color:#a6e22e">e</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">onBlurField</span>(<span style="color:#e6db74">&#34;fullname&#34;</span>)}
+</span></span><span style="display:flex;"><span>                  <span style="color:#a6e22e">required</span>
+</span></span><span style="display:flex;"><span>                /&gt;
+</span></span><span style="display:flex;"><span>              &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>              &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;mb-4&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;<span style="color:#f92672">input</span>
+</span></span><span style="display:flex;"><span>                  <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;email&#34;</span>
+</span></span><span style="display:flex;"><span>                  <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">formData</span>.<span style="color:#a6e22e">email</span>}
+</span></span><span style="display:flex;"><span>                  <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;email&#34;</span>
+</span></span><span style="display:flex;"><span>                  <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span>{<span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">classNames</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> </span><span style="color:#e6db74">${</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">Reflect</span>.<span style="color:#66d9ef">get</span>(<span style="color:#a6e22e">formValidationObserver</span>.<span style="color:#a6e22e">dirty</span>, <span style="color:#e6db74">&#34;email&#34;</span>) <span style="color:#f92672">&amp;&amp;</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#a6e22e">Reflect</span>.<span style="color:#a6e22e">has</span>(<span style="color:#a6e22e">formValidationObserver</span>.<span style="color:#a6e22e">errorObject</span>, <span style="color:#e6db74">&#34;email&#34;</span>)
+</span></span><span style="display:flex;"><span>                      <span style="color:#f92672">?</span> <span style="color:#e6db74">&#34;border border-red-600&#34;</span>
+</span></span><span style="display:flex;"><span>                      <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;border border-gray-300&#34;</span>
+</span></span><span style="display:flex;"><span>                  <span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>}
+</span></span><span style="display:flex;"><span>                  <span style="color:#a6e22e">placeholder</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Email&#34;</span>
+</span></span><span style="display:flex;"><span>                  <span style="color:#a6e22e">onChange</span><span style="color:#f92672">=</span>{(<span style="color:#a6e22e">e</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">onFieldChange</span>(<span style="color:#e6db74">&#34;email&#34;</span>, <span style="color:#a6e22e">e</span>)}
+</span></span><span style="display:flex;"><span>                  <span style="color:#a6e22e">onBlur</span><span style="color:#f92672">=</span>{(<span style="color:#a6e22e">e</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">onBlurField</span>(<span style="color:#e6db74">&#34;email&#34;</span>)}
+</span></span><span style="display:flex;"><span>                  <span style="color:#a6e22e">required</span>
+</span></span><span style="display:flex;"><span>                /&gt;
+</span></span><span style="display:flex;"><span>              &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>              &lt;<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;<span style="color:#f92672">button</span>
+</span></span><span style="display:flex;"><span>                  <span style="color:#a6e22e">disabled</span><span style="color:#f92672">=</span>{<span style="color:#f92672">!</span><span style="color:#a6e22e">formValidationObserver</span>.<span style="color:#a6e22e">isValid</span>}
+</span></span><span style="display:flex;"><span>                  <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;bg-red-800 hover:bg-red-600 focus:bg-red-600 text-white leading-16 py-2 block w-full disabled:opacity-50&#34;</span>
+</span></span><span style="display:flex;"><span>                &gt;
+</span></span><span style="display:flex;"><span>                  <span style="color:#a6e22e">Subcribe</span>
+</span></span><span style="display:flex;"><span>                &lt;/<span style="color:#f92672">button</span>&gt;
+</span></span><span style="display:flex;"><span>              &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;/<span style="color:#f92672">form</span>&gt;
+</span></span><span style="display:flex;"><span>          )}
+</span></span><span style="display:flex;"><span>          {<span style="color:#a6e22e">step</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;thank&#34;</span> <span style="color:#f92672">&amp;&amp;</span> (
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">div</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;mb-4 bg-green-400 p-8&#34;</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#a6e22e">dangerouslySetInnerHTML</span><span style="color:#f92672">=</span>{{
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">__html</span>: <span style="color:#66d9ef">successMessage</span>,
+</span></span><span style="display:flex;"><span>              }}
+</span></span><span style="display:flex;"><span>            /&gt;
+</span></span><span style="display:flex;"><span>          )}
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="share-ui-states-for-entire-application-or-between-components-have-the-same-ancestor">Share UI states for entire application or between component&rsquo;s have the same ancestor</h2>
+<h3 id="1-react-to">1. React to</h3>
+<h2 id="share-data-states-for-entire-application-or-between-components-have-the-same-ancestor">Share Data states for entire application or between component&rsquo;s have the same ancestor</h2>
+        
+      
+      <div class="m-1 p-1">
+        
+          <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="https://nextjsvietnam.com/categories/frameworks">frameworks</a>
+        
+      </div>
+    </div>
+  </section>
+  <section class="container section">
+    <div class="max-w-2xl mx-auto">
+      <div class="font-heading text-2xl font-semibold">You Might Also Like</div>
+      <div class="mt-8 grid  gap-8">
+        
+        
+        
+        
+        <ul class="sidebar-links">
+        
+        
+            <li><a href="/post/khoa-hoc-nestjs/">Khóa học NestJS - Bài 01 - Lộ trình các bài học về NestJS Framework</a></li>
+        
+            <li><a href="/post/khoa-hoc-reactjs/">Khóa học ReactJS - Bài 01 - Lộ trình các bài học về ReactJS</a></li>
+        
+            <li><a href="/post/build-restful-api-with-nestjs-the-right-way/">Build Restful Api With Nestjs the Right Way</a></li>
+        
+            <li><a href="/post/the-best-way-to-upload-file-in-nestjs/">The Best Way to Upload File in Nestjs</a></li>
+        
+            <li><a href="/post/vuejs-how-to-add-tailwind-in-your-application/">Vuejs How to Add TailwindCSS in Your Application</a></li>
+        
+            <li><a href="/post/nestjs-request-and-response-object/">Nestjs Request and Response Object</a></li>
+        
+            <li><a href="/post/nestjs-pipes/">Nestjs Pipes</a></li>
+        
+        </ul>
+                
+      </div>
+    </div>
+  </section>
+
+    
+    </main>
+    <footer class="footer">
+      <div class="container md:flex">
+        <section class="footer-section-info md:basis-1/4">
+          <div class="address">
+            <a class="logo" href="https://nextjsvietnam.com" title="NextJSVietNam">
+              NextJSVietNam
+            </a>
+            <h4 class="footer-heading">
+               PRODUCTION MODE  
+            <h4>                
+          </div>
+        </section>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">NestJS</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="https://nextjsvietnam.com/post/khoa-hoc-nestjs/">Khóa học NestJS - Bài 01 - Lộ trình các bài học về NestJS Framework</a></li>              
+            
+              <li><a href="https://nextjsvietnam.com/post/build-restful-api-with-nestjs-the-right-way/">Build Restful Api With Nestjs the Right Way</a></li>              
+            
+              <li><a href="https://nextjsvietnam.com/post/the-best-way-to-upload-file-in-nestjs/">The Best Way to Upload File in Nestjs</a></li>              
+            
+              <li><a href="https://nextjsvietnam.com/post/nestjs-request-and-response-object/">Nestjs Request and Response Object</a></li>              
+            
+              <li><a href="https://nextjsvietnam.com/post/nestjs-pipes/">Nestjs Pipes</a></li>              
+             
+          </ul>
+        </div>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">NextJS</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="https://nextjsvietnam.com/post/create-new-website-with-nextjs/">Create New Website With Nextjs</a></li>              
+             
+          </ul>
+        </div>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">Cheatsheet</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="https://nextjsvietnam.com/post/100-frontend-interview-questions/">100 Frontend Interview Questions</a></li>              
+            
+              <li><a href="https://nextjsvietnam.com/post/chatgpt-what-can-chat-gpt-do/">Chatgpt What Can Chat Gpt Do</a></li>              
+            
+              <li><a href="https://nextjsvietnam.com/post/learn-enough-oop-to-be-dangerous/">Learn Enough Oop to Be Dangerous</a></li>              
+            
+              <li><a href="https://nextjsvietnam.com/post/the-future-of-hr/">The Future of Hr</a></li>              
+            
+              <li><a href="https://nextjsvietnam.com/post/how-to-test-the-database/">How to Test the Database</a></li>              
+             
+          </ul>
+        </div>
+      </div>
+      <div class="container">
+        <div class="text-center">
+          <a href=""><span class="material-icons text-4xl m-4">facebook</span></a>
+          <a href=""><span class="material-icons text-4xl  m-4">smart_display</span></a>
+        </div>
+        <div class="text-center text-lg py-4">
+          Copyright @ NextJSVietNam 2022
+        </div>
+        <div class="text-center text-sm">
+          Powered by <a class="font-bold text-primary" href="https://gohugo.io/">Go Hugo</a> - Made
+          with love from <a class="font-bold text-primary" href="https://nextjsvietnam.com">NextJSVietNam</a> -
+          Build
+          Version 2023-06-12 13:47:24 &#43;0700 &#43;07
+        </div>
+      </div>
+    </footer>
+
+    
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="https://nextjsvietnam.com/core/jquery-3.6.0.min.js"></script>
+        
+             
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="https://nextjsvietnam.com/themes/2022/public/main.js"></script>
+        
+             
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="https://nextjsvietnam.com/themes/2022/public/home.js"></script>
+        
+             
+    
+
+  
+  <script async>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1760611910980690');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1760611910980690&ev=PageView&noscript=1"
+    /></noscript>
+        
+  </body>
+</html>

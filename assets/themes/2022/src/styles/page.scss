@@ -35,6 +35,9 @@
     padding: 1rem;
   }
   a {
-    @apply text-primary;
+    @apply bg-primary;
+    font-weight: 600;
+    padding: 0.25rem;
+    color: white;
   }
 }

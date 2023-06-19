@@ -1,15 +1,15 @@
 ---
 title: "Khóa học NestJS - Bài 01 - Lộ trình các bài học về NestJS Framework"
 type: "post"
-date: 2022-08-04T10:46:09+07:00
+date: 2023-05-19T22:00:00+07:00
 description: "Giáo án tự học NestJS cho người mới bắt đầu"
 keywords: ["nestjs", "dto", "validation"]
-categories: ["nestjs-tutorial", "frameworks"]
+categories: ["nestjs-tutorial"]
 tags: ["nestjs"]
 image: "https://user-images.githubusercontent.com/31009750/181449337-70081a76-5a01-4229-805e-39ed0ded6b5b.png"
 ---
 
-**Note**: Toàn bộ mã nguồn của khóa học này đều được công khai trên github tại [NestJS Tutorial 2023](git@github.com:misostack/nestjs-tutorial-2023.git)
+**Note**: Toàn bộ mã nguồn của khóa học này đều được công khai trên github tại [NestJS Tutorial 2023](//github.com/misostack/nestjs-tutorial-2023)
 
 Trước khi bắt đầu nội dung chi tiết của khóa học này, tôi sẽ liệt kê một số câu hỏi thường gặp, cũng như câu trả lời của nó.
 

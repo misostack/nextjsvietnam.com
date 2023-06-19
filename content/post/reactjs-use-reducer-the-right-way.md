@@ -4,9 +4,9 @@ type: "post"
 date: 2022-10-08T23:11:52+07:00
 description: "In this article, we will learn how to extract state logic into reducer"
 keywords: ["reactjs", "reactjs reducer"]
-categories: ["cheatsheet"]
+categories: ["reactjs"]
 tags: ["reactjs"]
-image: "/common/no-image.png"
+image: "https://user-images.githubusercontent.com/31009750/246856332-ece36caa-82ef-4a4f-86d9-9dad4a108929.png"
 ---
 
 Trong các dự án thực tế, việc 1 component chứa quá nhiều code thực hiện update states thông qua việc xử lý các sự kiện tương ứng của người dùng, sẽ khiến chúng ta thực sự bị choáng ko hề nhẹ.

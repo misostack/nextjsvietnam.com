@@ -17,7 +17,12 @@
         "name": "ReactJS",
         "url": "categories/reactjs",
         "childrens": []
-      }
+      },
+      {
+        "name": "NextJS",
+        "url": "categories/nextjs",
+        "childrens": []
+      }      
     ]
   },
   {
@@ -28,7 +33,17 @@
         "name": "NestJS Tutorial",
         "url": "categories/nestjs-tutorial",
         "childrens": []
-      }
+      },
+      {
+        "name": "ReactJS Tutorial",
+        "url": "categories/reactjs-tutorial",
+        "childrens": []
+      },
+      {
+        "name": "NextJS Tutorial",
+        "url": "categories/nextjs-tutorial",
+        "childrens": []
+      }            
     ]
   },
   {

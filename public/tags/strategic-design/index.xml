@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>strategic design on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+    <link>https://nextjsvietnam.com/tags/strategic-design/</link>
+    <description>Recent content in strategic design on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 12 Jun 2023 13:47:24 +0700</lastBuildDate><atom:link href="https://nextjsvietnam.com/tags/strategic-design/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Domain Driven Design trong 30 giây</title>
+      <link>https://nextjsvietnam.com/post/domain-driven-design-trong-30-giay/</link>
+      <pubDate>Mon, 12 Jun 2023 13:47:24 +0700</pubDate>
+      
+      <guid>https://nextjsvietnam.com/post/domain-driven-design-trong-30-giay/</guid>
+      <description>Trong một mô hình thiết kế phần mềm truyền thống, khi chúng ta nhận 1 dự án, việc đầu tiên là phân tích các nghiệp vụ từ yêu cầu phần mềm, thu thập dữ liệu, và bắt đầu bằng việc thiết kế cơ sở dữ liệu, sau đó mới phân tách thành các chức năng cho các thành viên trong dự án để làm việc.
+Đôi khi chúng ta sẽ nhận thấy rằng, trong mã nguồn, phần logic nghiệp vụ, đôi khi xen kẽ chung với cả phần giao diện người dùng hay thậm chí có cả kết nối database trong đó.</description>
+    </item>
+    
+  </channel>
+</rss>

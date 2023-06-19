@@ -5,8 +5,8 @@ date: 2023-03-16T01:49:48+07:00
 description: "The fast and furious way to add multi language in your react application."
 keywords: ["React Multi Language App"]
 categories: ["reactjs"]
-tags: []
-image: "/common/no-image.png"
+tags: ["reactjs"]
+image: "https://user-images.githubusercontent.com/31009750/246856332-ece36caa-82ef-4a4f-86d9-9dad4a108929.png"
 ---
 
 The key is using the right tool. I've find out i18n-next is the best one for javascript ecosystem. It also supports ReactJS, VueJS, Angular, and many

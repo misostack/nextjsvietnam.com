@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="home" href="https://nextjsvietnam.com" />
+    <meta name="generator" content="jsguru cms" />
+
+    
+    
+
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    
+    
+      
+              
+        
+        <link rel="stylesheet" href="https://nextjsvietnam.com/themes/2022/public/main.css" />
+             
+    
+      
+              
+        
+        <link rel="stylesheet" href="https://nextjsvietnam.com/themes/2022/public/home.css" />
+             
+    
+      
+              
+        
+        <link rel="stylesheet" href="https://nextjsvietnam.com/themes/2022/public/page.css" />
+             
+        
+    
+    
+    
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWE4MLJYE6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-RWE4MLJYE6');
+      
+    </script>    
+    
+    
+<title>Rest Api Implementation Guidelines | This guidance describes issues that you should consider when designing a web API | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+<meta name="robots" content="all" />
+<meta name="keywords" content="rest api" />
+<meta name="description" content="This guidance describes issues that you should consider when designing a web API" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://nextjsvietnam.com/common/no-image.png" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="750" />
+<meta property="og:image:height" content="300" />
+<meta
+  property="article:publisher"
+  content="https://www.facebook.com/nextjsvietnam"
+/>
+
+<meta property="article:published_time" content="2022-09-27T08:49:59+07:00" />
+<meta property="article:modified_time" content="2022-09-27T08:49:59+07:00" />
+
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png" />
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png" />
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png" />
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png" />
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png" />
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png" />
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="192x192"
+  href="/android-icon-192x192.png"
+/>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="manifest" href="/manifest.json" />
+<meta name="msapplication-TileColor" content="#ffffff" />
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
+<meta name="theme-color" content="#ffffff" />
+
+  </head>
+  <body class="body-nav-fixed">
+    <nav class="nav-fixed nav-default z-50">
+    <div class="container">
+      <div class="nav-container flex flex-wrap justify-between items-center">
+        <a href="https://nextjsvietnam.com" class="nav-brand inline-block">
+          
+          <img class="h-12" src="https://nextjsvietnam.com/themes/2022/src/assets/images/logo.png" 
+          alt="Stunning" />
+        </a>
+        <a href="javascript:void(0);" data-menu="#menu-main_menu" class="nav-menu-toggle"><span
+          class="material-icons">menu</span></a>
+        <ul id="menu-main_menu" class="nav-menu h-0 md:h-auto">
+          <form class="nav-menu-search-bar md:hidden relative">
+            <button class="nav-menu-search-bar-search-btn absolute h-full">
+              <svg class="w-3 h-3 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24">
+                <path
+                  d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z">
+                </path>
+              </svg>
+            </button>
+            <input name="s" type="text" class="w-full" />
+          </form>
+          
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="https://nextjsvietnam.com/categories/cheatsheet">Cheatsheet
+                
+            </a>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="https://nextjsvietnam.com/categories/frameworks">Frameworks
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://nextjsvietnam.com/categories/nestjs">NestJS</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://nextjsvietnam.com/categories/reactjs">ReactJS</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="https://nextjsvietnam.com">Tutorials
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://nextjsvietnam.com/categories/nestjs-tutorial">NestJS Tutorial</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="https://nextjsvietnam.com">Tools
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://regex101.com/">Online Regex</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://www.bashoneliners.com/">Bash Online</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://www.epochconverter.com/">Unix Timestamp Conversion</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://ryanstutorials.net/bash-scripting-tutorial/">Bash Scripting</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://explainshell.com/">Explain Shell</a></li>
+                
+                </ul>
+            
+            </li>
+          
+          <form class="nav-menu-search-bar hidden md:flex relative">
+            <button class="nav-menu-search-bar-search-btn absolute h-full">
+              <svg class="w-3 h-3 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24">
+                <path
+                  d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z">
+                </path>
+              </svg>
+            </button>
+            <input name="s" type="text" class="w-full" />
+          </form>
+        </ul>
+      </div>
+    </div>
+</nav>
+
+    <main>
+    
+  <section class="container section">
+    <div class="page-content max-w-2xl mx-auto">
+        <img src="https://nextjsvietnam.com/common/no-image.png" class="img-responsive" alt="Rest Api Implementation Guidelines" />
+        <h1>Rest Api Implementation Guidelines</h1>
+        
+          
+          
+          <p><strong>Post Date</strong> : 2022-09-27T08:49:59+07:00</p>
+          <p><strong>Modified Date</strong> : 2022-09-27T08:49:59+07:00</p>
+        <p>
+            <strong>Category:</strong>
+            
+            <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="https://nextjsvietnam.com/categories/cheatsheet">cheatsheet</a>
+            
+        </p>
+        <p>
+          <strong>Tags:</strong>
+          
+        </p>        
+        <p>Các chủ đề chính sẽ đi qua trong bài viết ngày hôm nay:</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Các thuật ngữ và khái niệm thường gặp khi thiết kế web API</li>
+<li><input checked="" disabled="" type="checkbox"> Các vấn đề và giải pháp</li>
+<li><input checked="" disabled="" type="checkbox"> Trình tự các bước khi thiết kế và lập trình web API</li>
+</ul>
+<p>Cách thức trình bày của bài viết này là chúng ta sẽ bắt đầu với thứ đơn giản nhất, sau đó nâng cấp dần, và cuối cùng là hệ thống hóa lại các bước cụ thể khi thiết kế web API.</p>
+<h2 id="các-thuật-ngữ-và-khái-niệm-thường-gặp-khi-thiết-kế-web-api">Các thuật ngữ và khái niệm thường gặp khi thiết kế web API</h2>
+<p><strong>REST</strong> : Representational state transfer - quy tắc khi thiết kế API.</p>
+<p><strong>Resources</strong> : Các đối tượng, dữ liệu, dịch vụ mà cho phép client truy cập và sử dụng.</p>
+<p><strong>Identifier</strong> : Mỗi <strong>resource</strong> sẽ có định danh riêng nó là <strong>URI</strong> để truy cập resource này và có tính duy nhất để phân biệt. Ví dụ: <a href="https://api.nextjsvietnam.com/customers/1">https://api.nextjsvietnam.com/customers/1</a> -&gt; Truy cập resource customer có mã khách hàng là 1.</p>
+<p><strong>Representation</strong> : Client tương tác với server thông qua việc trao đổi các trạng thái của resource. Nhiều trang web sử dụng JSON format cho các trạng thái này. Ví dụ</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Nguyễn Minh Sơn&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;email&#34;</span>: <span style="color:#e6db74">&#34;contact@nextjsvietnam.com&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>Maturity Model</strong> : Các tiêu chí phân loại cấp độ của REST Api</p>
+<p>Level 0 : 1 URI, toàn bộ operations sử dụng POST requests.
+Level 1 : Mỗi resource sẽ có URI riêng
+Level 2 : Sử dụng HTTP methods để định nghĩa operations cho từng URI
+Level 3 : Sử dụng hypermedia (HATEOAS) để link tới các resource có liên quan được lồng ghép trong resource hiện tại</p>
+<p>Thông thường, các web api ngày nay đáp ứng được tiêu chuẩn ở cấp độ 2.</p>
+<p><strong>HTTP Verbs</strong>: GET, POST, PUT, PATCH, DELETE, OPTIONS</p>
+<p><strong>Stateless Request Model</strong> : Các request độc lập với nhau, do đó 1 request cần phải chứa đầy đủ thông tin mà server cần để xác nhận.</p>
+<p><strong>Hypermedia links</strong> : tạo liên kết với các resource liên quan</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;order_date&#34;</span>: <span style="color:#e6db74">&#34;2020-15-08T09:30:00&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;total_price&#34;</span>: <span style="color:#ae81ff">4.99</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;status&#34;</span>: <span style="color:#e6db74">&#34;open&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;payment_date&#34;</span>: <span style="color:#66d9ef">null</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;items&#34;</span>: [ <span style="color:#960050;background-color:#1e0010">...</span> ],
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;links&#34;</span> : [
+</span></span><span style="display:flex;"><span>        { <span style="color:#f92672">&#34;rel&#34;</span>: <span style="color:#e6db74">&#34;buyer&#34;</span>, <span style="color:#f92672">&#34;href&#34;</span>: <span style="color:#e6db74">&#34;/customers/456&#34;</span> },
+</span></span><span style="display:flex;"><span>        { <span style="color:#f92672">&#34;rel&#34;</span>: <span style="color:#e6db74">&#34;payment&#34;</span>, <span style="color:#f92672">&#34;href&#34;</span>: <span style="color:#e6db74">&#34;/orders/123/payment&#34;</span> },
+</span></span><span style="display:flex;"><span>        { <span style="color:#f92672">&#34;rel&#34;</span>: <span style="color:#e6db74">&#34;cancellation&#34;</span>, <span style="color:#f92672">&#34;href&#34;</span>: <span style="color:#e6db74">&#34;/orders/123/cancellation&#34;</span> }
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>Business Entity</strong>: đối tượng nghiệp vụ. Ví dụ : user</p>
+<h2 id="một-số-nguyên-tắc-khi-thiết-kế-api">Một số nguyên tắc khi thiết kế API</h2>
+<h3 id="nguyên-tắc-số-1-resource-oriented-design">Nguyên tắc số 1. Resource-oriented design</h3>
+<ul>
+<li>Việc xây dựng API cần xoay quanh resources và mối quan hệ(relation) hay trật tự(hierarchy) giữa chúng nếu có.</li>
+<li>Sử dụng các standard methods( verbs ) cho hầu hết các operation của resource. Tuy nhiên trong 1 số trường hợp custom methods vẫn được cho phép để đáp ứng yêu cầu thực tế.</li>
+<li>Stateless Protocol: cần đảm bảo rằng giao tiếp giữa client và server là độc lập, cả 2 đều có vai trò riêng và rõ ràng.</li>
+</ul>
+<p>Do vậy khi thiết kế 1 resource, bạn cần quan tâm các vấn đề theo thứ tự logic như sau:</p>
+<p><strong>1.Resources mà API sẽ cung cấp</strong></p>
+<p>/customers : collection of customers
+/customers/1: customer&rsquo;s data ( customer with id = 1)</p>
+<p>Điểm đặc biệt quan trọng khi thiết kế API</p>
+<blockquote>
+<p><strong>Không nên mong đợi rằng API sẽ là ánh xạ của database schema</strong></p>
+</blockquote>
+<p><strong>2.Mối quan hệ hay trật tự giữa chúng</strong></p>
+<p>/customers/1/orders: sub collection - order of customer 1</p>
+<p><strong>3.Schema cho mỗi resource</strong></p>
+<p><strong>4.Các methods (verbs) mà mỗi resource cung cấp, cố gắng sử dụng standard verbs nhiều nhất có thể cho các trường hợp thông thường như sau:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-md" data-lang="md"><span style="display:flex;"><span>Create: POST /resources
+</span></span><span style="display:flex;"><span>Get: GET /resources/:id
+</span></span><span style="display:flex;"><span>List : GET /resources
+</span></span><span style="display:flex;"><span>Update: PUT/PATCH /resources/:id - PUT/PATCH /resources ( batch update )
+</span></span><span style="display:flex;"><span>Delete: PUT/PATCH /resources/:id - PUT/PATCH /resources ( batch delete )
+</span></span></code></pre></div><p><strong>5.Stateless protocol</strong></p>
+<ul>
+<li>Ví dụ : 1 số Stateless Protocol hay sử dụng như HTTP (Hypertext Transfer Protocol), UDP (User Datagram Protocol), DNS (Domain Name System)</li>
+<li>WebSockets, không giống HTTP, là stateful communications protocol hoạt động thông qua TCP</li>
+</ul>
+<p><strong>Vai trò nhiệm vụ giữa client-server</strong></p>
+<p>Server : persisting data - đảm bảo tính nhất quán của dữ liệu - có thể được chia sẻ giữa các client
+Client : sole responsibility and authority for maintaining the application state - tự chịu trách nhiệm và có thẩm quyền để duy trì trạng thái của ứng dụng</p>
+<h3 id="nguyên-tắc-số-2-resource-names">Nguyên tắc số 2. Resource names</h3>
+<h4 id="resource-name-phải-là-duy-nhất-trong-api-và-tuân-theo-format-uri-như-sau">Resource name phải là duy nhất trong API và tuân theo format URI như sau:</h4>
+<ul>
+<li><a href="https://datatracker.ietf.org/doc/html/rfc3986#appendix-A">Full URI format</a></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-md" data-lang="md"><span style="display:flex;"><span>[$scheme]//[$authority][$path]?[$query]#[$fragment]
+</span></span></code></pre></div><p>Ví dụ: <a href="https://api.nextjsvietnam.com/customers?filters%5Bid%5D=1&amp;filters%5Bid%5D=2#lastedOrders">https://api.nextjsvietnam.com/customers?filters[id]=1&amp;filters[id]=2#lastedOrders</a></p>
+<h4 id="thành-phần-của-resource-name-luôn-bao-gồm-collection-identifierscustomers-và-resource-ids123-sku789">Thành phần của resource name luôn bao gồm: collection identifiers(customers) và resource IDs(123, sku789)</h4>
+<p>Ví dụ : /customers/12</p>
+<h4 id="resource-name-phải-dùng-dấu--để-chia-tách-các-segment-với-nhau">Resource name phải dùng dấu <strong>/</strong> để chia tách các segment với nhau</h4>
+<ul>
+<li>Các segment của resource name không chứa dấu <strong>/</strong></li>
+<li>Segment cuối của resource name không nên chứa dấu <strong>/</strong></li>
+</ul>
+<h4 id="resource-names-chỉ-nên-sử-dụng-các-kí-tự-được-cho-phép-của-dns">Resource names chỉ nên sử dụng các kí tự được cho phép của DNS</h4>
+<p><a href="https://www.rfc-editor.org/rfc/rfc1123">Allowed DNS&rsquo;s characters</a></p>
+<ul>
+<li>Resource IDs không nên dùng các kí tự viết hoa</li>
+<li>Đặc biệt không nên dùng các kí tự yêu cầu <a href="https://docs.microfocus.com/OMi/10.62/Content/OMi/ExtGuide/ExtApps/URL_encoding.htm">URL escape</a> hoặc các kí tự nằm ngoài bảng mã ASCII</li>
+<li>Nếu bắt buộc phải dùng kí tự unicode, resource name bắt buộc phải lưu ở dạng <a href="https://unicode.org/reports/tr15/">Normalization Form C</a>. Eg : <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/normalize">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/normalize</a></li>
+</ul>
+<h4 id="resource-phải-expose-được-name-field-chứa-tên-của-nó">Resource phải expose được <strong>name</strong> field chứa tên của nó</h4>
+<ul>
+<li>Ví dụ, trong resource customer sẽ có field customerId chính là resource ID</li>
+<li>Hoặc expose id do system generate làm unique ID field (uid)</li>
+<li>Tất cả các id field nên là <strong>string</strong></li>
+</ul>
+<h3 id="nguyên-tắc-số-3-collection-identifiers">Nguyên tắc số 3. Collection identifiers</h3>
+<ul>
+<li>Là danh từ và phải là số nhiều. Ví dụ: publishers</li>
+<li>Phải là camelCase</li>
+<li>Phải là các từ tiếng Anh</li>
+<li>Phải bắt đầu với các kí tự viết thường và nằm trong bảng ASCII - (/[a-z][a-za-z0-9]*/). Nếu từ đó không có số nhiều, vẫn có thể dùng nguyên văn, không cần thêm &ldquo;s&rdquo; phía sau. Ví dụ: info, moose</li>
+<li>Nested collection</li>
+</ul>
+<p>Thay vì users/vhugo1802/userEvents/birthday-dinner-226 nên sử dụng users/vhugo1802/events/birthday-dinner-226</p>
+<h3 id="nguyên-tắc-số-4-resource-id-segments">Nguyên tắc số 4. Resource ID segments</h3>
+<ul>
+<li>Resource ID segment là định dang của chính nó trong collection nội tại</li>
+</ul>
+<p>Ví dụ: Ta có resource như sau</p>
+<blockquote>
+<p>/users/789/orders/3</p>
+</blockquote>
+<p>Thì 789 là resource ID của user, còn 3 là resource id của order</p>
+<p>Đồng thời khi thiết kế cần lưu ý 3 trường hợp sau:</p>
+<p><strong>Trường hợp 1: Resource IDs luôn được user tạo ra</strong></p>
+<ul>
+<li>Thì API phải document format hợp lệ.</li>
+<li>Luôn tuân theo <a href="https://www.rfc-editor.org/rfc/rfc1034">chuẩn của DNS</a>.</li>
+</ul>
+<p><strong>Ví dụ:</strong></p>
+<ul>
+<li>Format cho resource ID chỉ được bao gồm : các kí chữ cái, số, gạch ngang &ldquo;-&rdquo;</li>
+<li>Kí tự đầu tiên là chữ cái, kí tự cuối cùng phải là số hoặc chữ cái.</li>
+<li>Luôn sử dụng chữ thường ( lowercase ), tối đa 63 kí tự</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span>(<span style="color:#f92672">^</span>[<span style="color:#a6e22e">a</span><span style="color:#f92672">-</span><span style="color:#a6e22e">z</span>]([<span style="color:#a6e22e">a</span><span style="color:#f92672">-</span><span style="color:#a6e22e">z0</span><span style="color:#f92672">-</span><span style="color:#ae81ff">9</span><span style="color:#f92672">-</span>]{<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">61</span>}[<span style="color:#a6e22e">a</span><span style="color:#f92672">-</span><span style="color:#a6e22e">z0</span><span style="color:#f92672">-</span><span style="color:#ae81ff">9</span>])<span style="color:#f92672">?</span><span style="color:#a6e22e">$</span>).
+</span></span></code></pre></div><p><strong>Trường hợp 2: Resource IDs luôn do hệ thống tự generate</strong></p>
+<ul>
+<li>Thì API phải document format hợp lệ.</li>
+<li>Quy định giới hạn tối đa 63 kí tự</li>
+</ul>
+<p><strong>Trường hợp 3: Resource IDs được user tạo ra hoặc hệ thống tự generate</strong></p>
+<ul>
+<li>Phải tạo ra quy tắc chung cho cả 2 trường hợp tương tự như trường hợp 1 hoặc 2</li>
+</ul>
+<p>Đối với cả 3 trường hợp trên phải đảm bảo rằng:</p>
+<ul>
+<li>Resource ID là bất biến sau khi đã được tạo ra</li>
+</ul>
+<h3 id="nguyên-tắc-số-5-resource-id-aliases">Nguyên tắc số 5. Resource ID aliases</h3>
+<ul>
+<li>Đôi khi API cần phải tạo ra các alias cho 1 số resource cụ thể. Ví dụ, users/me dùng để truy vấn thông tin của user đã xác thực.</li>
+</ul>
+<h3 id="nguyên-tắc-số-6-full-resource-names">Nguyên tắc số 6. Full resource names</h3>
+<p>Trong đa số các trường hợp resource name được sử dụng trong cùng 1 API duy nhất. Hoặc trong 1 hoàn cảnh cụ thể.</p>
+<p>Tuy nhiên đôi khi nếu resource liên quan lại thuộc về 1 service khác, full resource name (schemeless URI ) cần được sử dụng.</p>
+<p>Ví dụ:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">//api.books.nextjsvietnam.com/publishers/123/books/rest-api-design-pattern
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//api.nextjsvietnam.com/users/1
+</span></span></span></code></pre></div><h3 id="nguyên-tắc-số-7-resource-uris">Nguyên tắc số 7. Resource URIs</h3>
+<p>Resource URIs sẽ phải bao gồm:</p>
+<ul>
+<li>Scheme : http hoặc https</li>
+<li>API Version: v1, v2, &hellip;vN</li>
+</ul>
+<p>Tại sao version không thuộc về full resource name, lí do rất đơn giản. Vì full resource name phải nhất quán giữa các version.</p>
+<h3 id="nguyên-tắc-số-8-optional-fields-representing-resource-names">Nguyên tắc số 8 (optional). Fields representing resource names</h3>
+<ul>
+<li>Khi define 1 resource, thì field đầu tiên nên là &ldquo;resource name&rdquo;, field này bắt buộc phải là &ldquo;string&rdquo; và gọi là <em>name</em> và để làm resource name.</li>
+</ul>
+<p>Ví dụ: Format: publishers/{publisher}/books/{book}</p>
+<h3 id="nguyên-tắc-số-9-optional-fields-representing-a-resources-parent">Nguyên tắc số 9 (optional). Fields representing a resource&rsquo;s parent</h3>
+<h3 id="nguyên-tắc-số-10-optional-fields-representing-another-resource">Nguyên tắc số 10 (optional). Fields representing another resource</h3>
+<ul>
+<li>When referencing a resource name for a different resource</li>
+<li>Field names có thể sử dụng các tính từ làm prefix nếu cần thiết.</li>
+<li>Field names không nên sử dụng suffix name trừ trường hợp bắt buộc (crypto_key_name)</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Book</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// The resource name of the book.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Other fields ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><h2 id="các-vấn-đề-thường-gặp-và-giải-pháp">Các vấn đề thường gặp và giải pháp</h2>
+<p>Chúng ta sẽ bắt đầu với bài toán đầu tiên, thiết kế API cho 2 chức năng sau:</p>
+<ul>
+<li>Quản lí user: thêm, cập nhật, xóa, tìm kiếm</li>
+<li>Đăng nhập: xác nhận tài khoản, đăng nhập 2 bước, khôi mật khẩu</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/31009750/191477726-a741c79f-577f-497a-88a1-0d3d87d06f6b.png" alt="Sơ đồ chức năng"></p>
+<p>Sơ đồ bảng dữ liệu tối giản</p>
+<p><img src="https://user-images.githubusercontent.com/31009750/191485329-15f54413-c2af-4c61-86d8-0659cb789147.png" alt="Database Schema"></p>
+<h3 id="bước-1-phân-tích-các-resource">Bước 1. Phân tích các resource</h3>
+<blockquote>
+<p>Resource: object, data hoặc service</p>
+</blockquote>
+<ul>
+<li><strong>users</strong> : user service to manage user&rsquo;s data</li>
+<li><strong>auth</strong> : authentication service for login, reset password, confirmed account</li>
+</ul>
+<p>Confirmed user&rsquo;s account: activate and login</p>
+<h3 id="bước-2-xây-dựng-các-endpoint-định-nghĩa-các-uris-và-sử-dụng-http-verbs-để-đáp-ứng-chức-năng">Bước 2. Xây dựng các endpoint định nghĩa các URIs và sử dụng HTTP Verbs để đáp ứng chức năng</h3>
+<p><strong>2.1. Manage users</strong></p>
+<blockquote>
+<p>POST /users : tạo user</p>
+</blockquote>
+<blockquote>
+<p>GET /users : truy vấn thông tin của toàn bộ user</p>
+</blockquote>
+<blockquote>
+<p>PUT /users : cập nhật nhiều user 1 lúc ( batch update )</p>
+</blockquote>
+<blockquote>
+<p>DELETE /users: xóa nhiều user 1 lúc</p>
+</blockquote>
+<blockquote>
+<p>GET /users/:id truy vấn thông tin của 1 user cụ thể - Ví dụ : GET /users/1</p>
+</blockquote>
+<blockquote>
+<p>PUT/PATCH /users/:id : cập nhật 1 user cụ thể - Ví dụ : PATCH /users/1</p>
+</blockquote>
+<blockquote>
+<p>DELETE /users/:id xóa 1 user cụ thể - Ví dụ: DELETE /users/1</p>
+</blockquote>
+<blockquote>
+<p>POST /users/:id/change-password : thay đổi mật khẩu của 1 user cụ thể. Ví dụ : POST /users/1/change-password</p>
+</blockquote>
+<blockquote>
+<p>POST /users/:id/reset-password : gửi link reset mật khẩu của 1 user cụ thể. Ví dụ : POST /users/1/reset-password</p>
+</blockquote>
+<blockquote>
+<p>POST /users/:id/send-activate-link : gửi lại link kích hoạt tài khoản của 1 user cụ thể. Ví dụ : POST /users/1/send-activate-link</p>
+</blockquote>
+<p><strong>2.2. Authentication</strong></p>
+<blockquote>
+<p>POST /accounts/sign-in-with-password : đăng nhập</p>
+</blockquote>
+<blockquote>
+<p>POST /accounts/verify-secure-code: xác thực mã bảo mật 2 lớp</p>
+</blockquote>
+<blockquote>
+<p>POST /accounts/resend-secure-code: yêu cầu gửi lại mã xác thực 2 lớp</p>
+</blockquote>
+<blockquote>
+<p>POST /accounts/reset-password/request: gửi yêu cầu khôi phục mật khẩu</p>
+</blockquote>
+<blockquote>
+<p>POST /accounts/reset-password: cập nhật mật khẩu mới</p>
+</blockquote>
+<h2 id="tài-liệu-tham-khảo">Tài liệu tham khảo</h2>
+<ul>
+<li><a href="https://google.aip.dev/122">Google API Dev</a></li>
+</ul>
+        
+      
+      <div class="m-1 p-1">
+        
+          <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="https://nextjsvietnam.com/categories/cheatsheet">cheatsheet</a>
+        
+      </div>
+    </div>
+  </section>
+  <section class="container section">
+    <div class="max-w-2xl mx-auto">
+      <div class="font-heading text-2xl font-semibold">You Might Also Like</div>
+      <div class="mt-8 grid  gap-8">
+        
+        
+        
+        
+        <ul class="sidebar-links">
+        
+        
+            <li><a href="/post/100-frontend-interview-questions/">100 Frontend Interview Questions</a></li>
+        
+            <li><a href="/post/chatgpt-what-can-chat-gpt-do/">Chatgpt What Can Chat Gpt Do</a></li>
+        
+            <li><a href="/post/learn-enough-oop-to-be-dangerous/">Learn Enough Oop to Be Dangerous</a></li>
+        
+            <li><a href="/post/the-future-of-hr/">The Future of Hr</a></li>
+        
+            <li><a href="/post/how-to-test-the-database/">How to Test the Database</a></li>
+        
+            <li><a href="/post/the-art-of-programming/">The Art of Programming</a></li>
+        
+            <li><a href="/post/100-nodejs-interview-questions/">100 Nodejs Interview Questions</a></li>
+        
+        </ul>
+                
+      </div>
+    </div>
+  </section>
+
+    
+    </main>
+    <footer class="footer">
+      <div class="container md:flex">
+        <section class="footer-section-info md:basis-1/4">
+          <div class="address">
+            <a class="logo" href="https://nextjsvietnam.com" title="NextJSVietNam">
+              NextJSVietNam
+            </a>
+            <h4 class="footer-heading">
+               PRODUCTION MODE  
+            <h4>                
+          </div>
+        </section>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">NestJS</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="https://nextjsvietnam.com/post/khoa-hoc-nestjs/">Khóa học NestJS - Bài 01 - Lộ trình các bài học về NestJS Framework</a></li>              
+            
+              <li><a href="https://nextjsvietnam.com/post/build-restful-api-with-nestjs-the-right-way/">Build Restful Api With Nestjs the Right Way</a></li>              
+            
+              <li><a href="https://nextjsvietnam.com/post/the-best-way-to-upload-file-in-nestjs/">The Best Way to Upload File in Nestjs</a></li>              
+            
+              <li><a href="https://nextjsvietnam.com/post/nestjs-request-and-response-object/">Nestjs Request and Response Object</a></li>              
+            
+              <li><a href="https://nextjsvietnam.com/post/nestjs-pipes/">Nestjs Pipes</a></li>              
+             
+          </ul>
+        </div>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">NextJS</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="https://nextjsvietnam.com/post/create-new-website-with-nextjs/">Create New Website With Nextjs</a></li>              
+             
+          </ul>
+        </div>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">Cheatsheet</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="https://nextjsvietnam.com/post/100-frontend-interview-questions/">100 Frontend Interview Questions</a></li>              
+            
+              <li><a href="https://nextjsvietnam.com/post/chatgpt-what-can-chat-gpt-do/">Chatgpt What Can Chat Gpt Do</a></li>              
+            
+              <li><a href="https://nextjsvietnam.com/post/learn-enough-oop-to-be-dangerous/">Learn Enough Oop to Be Dangerous</a></li>              
+            
+              <li><a href="https://nextjsvietnam.com/post/the-future-of-hr/">The Future of Hr</a></li>              
+            
+              <li><a href="https://nextjsvietnam.com/post/how-to-test-the-database/">How to Test the Database</a></li>              
+             
+          </ul>
+        </div>
+      </div>
+      <div class="container">
+        <div class="text-center">
+          <a href=""><span class="material-icons text-4xl m-4">facebook</span></a>
+          <a href=""><span class="material-icons text-4xl  m-4">smart_display</span></a>
+        </div>
+        <div class="text-center text-lg py-4">
+          Copyright @ NextJSVietNam 2022
+        </div>
+        <div class="text-center text-sm">
+          Powered by <a class="font-bold text-primary" href="https://gohugo.io/">Go Hugo</a> - Made
+          with love from <a class="font-bold text-primary" href="https://nextjsvietnam.com">NextJSVietNam</a> -
+          Build
+          Version 2023-06-12 13:47:24 &#43;0700 &#43;07
+        </div>
+      </div>
+    </footer>
+
+    
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="https://nextjsvietnam.com/core/jquery-3.6.0.min.js"></script>
+        
+             
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="https://nextjsvietnam.com/themes/2022/public/main.js"></script>
+        
+             
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="https://nextjsvietnam.com/themes/2022/public/home.js"></script>
+        
+             
+    
+
+  
+  <script async>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1760611910980690');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1760611910980690&ev=PageView&noscript=1"
+    /></noscript>
+        
+  </body>
+</html>

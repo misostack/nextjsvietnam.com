@@ -145,7 +145,7 @@ input {
     @apply text-sm text-gray-500 hover:text-primary;
   }
   &-image {
-    @apply object-cover w-full h-48;
+    @apply object-contain w-full h-48;
   }
   &-date {
     @apply text-sm;

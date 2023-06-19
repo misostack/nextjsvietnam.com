@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>database on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+    <link>https://nextjsvietnam.com/tags/database/</link>
+    <description>Recent content in database on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 12 Nov 2022 18:31:01 +0700</lastBuildDate><atom:link href="https://nextjsvietnam.com/tags/database/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to Test the Database</title>
+      <link>https://nextjsvietnam.com/post/how-to-test-the-database/</link>
+      <pubDate>Sat, 12 Nov 2022 18:31:01 +0700</pubDate>
+      
+      <guid>https://nextjsvietnam.com/post/how-to-test-the-database/</guid>
+      <description>Things you may concern when test your database
+Basic CRUD Data mapping Steps Setup environment Prepare data and testcases Run tests Report Details Schema Database Table, Column Keys and Indexes Stored Procedures Trigger Database Server Configuration Functional Data integrity and consistency Non functional testing
+Performance testing Load testing Stress testing Endurance testing Spike testing Volume testing Scalability testing Common Performance Problems Long Load time Poor response time Poor scalability Bottlenecking Common performance bottlenecks CPU utilization Memory utilization Network utilization Operating System limitations Disk usage References https://www.</description>
+    </item>
+    
+  </channel>
+</rss>
