@@ -4,7 +4,7 @@ type: "post"
 date: 2022-08-05T10:06:04+07:00
 description: "As you've known, in a request we will have Route Params, Query Params, Body, Headers ..."
 keywords: ["nestjs", "request", "response", "express"]
-categories: ["frameworks"]
+categories: ["nestjs", "frameworks"]
 tags: ["nestjs"]
 image: "https://user-images.githubusercontent.com/31009750/181449337-70081a76-5a01-4229-805e-39ed0ded6b5b.png"
 ---

@@ -1,6 +1,12 @@
 {{ define "main" }}
 <section class="container section hero-section">
-  <h1 class="hero-section-heading">{{ .Title }}</h1>
+  <h1 class="hero-section-heading">
+  {{ if isset .Site.Data.layouts.categories .Title}}
+    {{ index .Site.Data.layouts.categories .Title }}
+  {{ else }}
+    {{  .Title }}
+  {{ end }}
+  </h1>
 </section>
 <section class="container section grid md:grid-cols-4 gap-8">
   {{ $paginator := .Paginate .Data.Pages .Site.Params.blog_pager }} {{ range

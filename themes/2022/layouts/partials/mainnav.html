@@ -20,7 +20,7 @@
             </button>
             <input name="s" type="text" class="w-full" />
           </form>
-          {{ range $taxonomyname, $taxonomy := .Site.Taxonomies }}
+          {{/*  {{ range $taxonomyname, $taxonomy := .Site.Taxonomies }}
             {{ if eq $taxonomyname "categories" }}
                 {{ range $key, $value := $taxonomy }}
                     {{ $categoryUrl := $key | printf "%s%s" "categories/" | printf "%s" }}
@@ -28,7 +28,7 @@
                         href="{{ $categoryUrl | absURL }}">{{ $key }}</a></li>
                 {{ end }}
             {{ end }}
-          {{ end }}
+          {{ end }}  */}}
           {{ range $navitem := .Site.Data.layouts.navitems }}
             <li class="nav-menu-item">
             <a class="nav-menu-link" href="{{ $navitem.url | absURL }}">{{ $navitem.name }}

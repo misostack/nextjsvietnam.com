@@ -4,7 +4,7 @@ type: "post"
 date: 2022-07-28T14:41:08+07:00
 description: "Providers are plain JavaScript classes that are declared as providers in a module"
 keywords: ["Nestjs Provider"]
-categories: ["frameworks"]
+categories: ["nestjs", "frameworks"]
 tags: ["nestjs"]
 image: "https://user-images.githubusercontent.com/31009750/181449337-70081a76-5a01-4229-805e-39ed0ded6b5b.png"
 ---

@@ -31,7 +31,7 @@
             </div>
           </article>
           {{ end }}
-          {{ $systemdesignCategory := .Site.Taxonomies.categories.lifestyle }}
+          {{ $systemdesignCategory := index .Site.Taxonomies.categories "nestjs-tutorial" }}
           {{ range first 5 (sort $systemdesignCategory.Pages "Date" "desc") }}
             <article class="card-post card-post-picked">
               <a href="{{ .Permalink }}">

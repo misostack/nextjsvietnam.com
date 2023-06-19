@@ -4,7 +4,7 @@ type: "post"
 date: 2022-08-04T10:46:09+07:00
 description: "Nest interposes a pipe just before a method is invoked, and the pipe receives the arguments destined for the method and operates on them"
 keywords: ["nestjs", "dto", "validation"]
-categories: ["frameworks"]
+categories: ["nestjs", "frameworks"]
 tags: ["nestjs"]
 image: "https://user-images.githubusercontent.com/31009750/181449337-70081a76-5a01-4229-805e-39ed0ded6b5b.png"
 ---
