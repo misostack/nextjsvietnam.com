@@ -11,8 +11,18 @@
 <link rel=stylesheet href=https://nextjsvietnam.com/themes/2022/public/page.css>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWE4MLJYE6"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-RWE4MLJYE6')</script>
-<title>NODEJS | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
-<meta name=robots content="noindex">
+<title>Khóa học Nestjs - Ngày 02 | Xây dựng Pet Website bằng NestJS - Ngày 02 | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+<meta name=robots content="all">
+<meta name=keywords content="nestjs,nestjs-mvc,nestjs-tutorial">
+<meta name=description content="Xây dựng Pet Website bằng NestJS - Ngày 02">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://user-images.githubusercontent.com/31009750/181449337-70081a76-5a01-4229-805e-39ed0ded6b5b.png">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="750">
+<meta property="og:image:height" content="300">
+<meta property="article:publisher" content="https://www.facebook.com/nextjsvietnam">
+<meta property="article:published_time" content="2023-06-20T14:57:33+07:00">
+<meta property="article:modified_time" content="2023-06-20T14:57:33+07:00">
 <link rel=apple-touch-icon sizes=57x57 href=/apple-icon-57x57.png>
 <link rel=apple-touch-icon sizes=60x60 href=/apple-icon-60x60.png>
 <link rel=apple-touch-icon sizes=72x72 href=/apple-icon-72x72.png>
@@ -91,23 +101,102 @@
 </div>
 </nav>
 <main>
-<section class="container section hero-section">
-<h1 class=hero-section-heading>NODEJS</h1>
+<section class="container section">
+<div class="page-content max-w-2xl mx-auto">
+<img src=https://user-images.githubusercontent.com/31009750/181449337-70081a76-5a01-4229-805e-39ed0ded6b5b.png class=img-responsive alt="Khóa học Nestjs - Ngày 02">
+<h1>Khóa học Nestjs - Ngày 02</h1>
+<p><strong>Post Date</strong> : 2023-06-20T14:57:33+07:00</p>
+<p><strong>Modified Date</strong> : 2023-06-20T14:57:33+07:00</p>
+<p>
+<strong>Category:</strong>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/nestjs-tutorial>nestjs-tutorial</a>
+</p>
+<p>
+<strong>Tags:</strong>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=/tags/nestjs>nestjs</a>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=/tags/nestjs-pet-website>, nestjs-pet-website</a>
+</p>
+<h2 id=mục-tiêu>Mục tiêu</h2>
+<ol>
+<li>Phân tích yêu cầu thiết kế sơ bộ</li>
+<li>Thiết lập cấu trúc dự án</li>
+<li>Giới thiệu tổng quan về các lớp trong mô hình MVC và code thực hành</li>
+</ol>
+<h3 id=phân-tích-yêu-cầu>Phân tích yêu cầu</h3>
+<h4 id=sitemap>Sitemap</h4>
+<p><img src=https://user-images.githubusercontent.com/31009750/247061383-15931be5-9bb5-4e85-9577-8fa6faa3f16f.png alt=image></p>
+<h4 id=functional-details>Functional details</h4>
+<p><img src=https://user-images.githubusercontent.com/31009750/247061467-18d4c3e4-f726-47e9-9b83-35136cfbb876.png alt=image></p>
+<h4 id=thiết-kế-cơ-sở-dữ-liệu>Thiết kế cơ sở dữ liệu</h4>
+<p><img src=https://user-images.githubusercontent.com/31009750/247068026-284c4402-5853-479e-b086-647db777d17b.png alt=image></p>
+<h3 id=thiết-lập-cấu-trúc-dự-án>Thiết lập cấu trúc dự án</h3>
+<ol>
+<li>Tạo 1 dự án mới với NestJS</li>
+<li>Cấu trúc thư mục dự án theo cấu trúc module và mô hình MVC</li>
+<li>Debug dự án NestJS với VSCode</li>
+</ol>
+<h4 id=tạo-1-dự-án-mới-với-nestjs>Tạo 1 dự án mới với NestJS</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>nest new nestjs-tutorial-2023 --skip-install
+cd nestjs-tutorial-2023
+npm i
+</code></pre></div><p><img src=https://user-images.githubusercontent.com/31009750/247071423-19b685cc-56ea-463b-be0a-4d0de94993ef.png alt=image></p>
+<p>Sau khi khởi tạo dự án , cấu trúc cây thư mục của dự án sẽ giống như hình bên dưới:</p>
+<p><img src=https://user-images.githubusercontent.com/31009750/247074456-6dedab95-aee1-4029-ab02-f0a1a948dc6c.png alt=image></p>
+<h4 id=cấu-trúc-thư-mục-dự-án-theo-cấu-trúc-module-và-mô-hình-mvc>Cấu trúc thư mục dự án theo cấu trúc module và mô hình MVC</h4>
+<ol>
+<li>Cài đặt NestJS hỗ trợ template Engine EJS</li>
+</ol>
+<p>Chúng ta cùng quay lại một chút với kiến trúc của expressjs, bạn cần thiết lập 1 số thông số như sau:</p>
+<ul>
+<li>Template Engine : một số template engine phổ biến như pug, ejs, hbs</li>
+<li>Static Assets: thư mục chứa các file tĩnh như css, js, images của website</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>express</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>require</span>(<span style=color:#e6db74>&#34;express&#34;</span>);
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>app</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>express</span>();
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>port</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>process</span>.<span style=color:#a6e22e>env</span>.<span style=color:#a6e22e>PORT</span> <span style=color:#f92672>||</span> <span style=color:#ae81ff>1337</span>;
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>path</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>require</span>(<span style=color:#e6db74>&#34;path&#34;</span>);
+
+<span style=color:#75715e>// static assets
+</span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>publicAssetsPath</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>path</span>.<span style=color:#a6e22e>resolve</span>(<span style=color:#a6e22e>process</span>.<span style=color:#a6e22e>cwd</span>(), <span style=color:#e6db74>&#34;public&#34;</span>);
+<span style=color:#75715e>// using express static middleware
+</span><span style=color:#75715e></span><span style=color:#a6e22e>app</span>.<span style=color:#a6e22e>use</span>(<span style=color:#e6db74>&#34;/public&#34;</span>, <span style=color:#a6e22e>express</span>.<span style=color:#66d9ef>static</span>(<span style=color:#a6e22e>publicAssetsPath</span>));
+<span style=color:#75715e>// Your asset will be placed at : http://localhost:1337/public/assets/main.css
+</span><span style=color:#75715e></span>
+<span style=color:#75715e>// select view engine is ejs
+</span><span style=color:#75715e></span><span style=color:#a6e22e>app</span>.<span style=color:#a6e22e>set</span>(<span style=color:#e6db74>&#34;view engine&#34;</span>, <span style=color:#e6db74>&#34;ejs&#34;</span>);
+
+<span style=color:#75715e>// set view folder
+</span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>viewsPath</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>process</span>.<span style=color:#a6e22e>cwd</span>() <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34;/views&#34;</span>;
+<span style=color:#a6e22e>app</span>.<span style=color:#a6e22e>set</span>(<span style=color:#e6db74>&#34;views&#34;</span>, [<span style=color:#a6e22e>viewsPath</span>]);
+
+<span style=color:#75715e>// global variable through app
+</span><span style=color:#75715e></span><span style=color:#a6e22e>app</span>.<span style=color:#a6e22e>locals</span> <span style=color:#f92672>=</span> {
+  <span style=color:#a6e22e>title</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;MVC Tutorial&#34;</span>,
+};
+
+<span style=color:#75715e>// home page
+</span><span style=color:#75715e></span><span style=color:#a6e22e>app</span>.<span style=color:#a6e22e>get</span>(<span style=color:#e6db74>&#34;/&#34;</span>, (<span style=color:#a6e22e>req</span>, <span style=color:#a6e22e>res</span>) =&gt; {
+  <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>render</span>(<span style=color:#e6db74>&#34;index&#34;</span>, { <span style=color:#a6e22e>heading</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Home page&#34;</span> });
+});
+
+<span style=color:#a6e22e>app</span>.<span style=color:#a6e22e>listen</span>(<span style=color:#a6e22e>port</span>, () =&gt; {
+  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>`Example app listening at http://localhost:</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>port</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>);
+});
+</code></pre></div>
+<div class="m-1 p-1">
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/nestjs-tutorial>nestjs-tutorial</a>
+</div>
+</div>
 </section>
-<section class="container section gap-8">
-<div class="card card-post-default">
-<div class="px-6 py-4">
-<h2 class=card-post-title>
-<a href=https://nextjsvietnam.com/post/developer-your-rest-api-with-nestjs/>Developer Your Rest Api With Nestjs</a>
-</h2>
-<div>
-<span class=card-post-date>12 Jul, 2022</span>
-</div>
-<div class=card-post-description>How to setup a nestjs boillerplate to developer a Restful Api Project</div>
+<section class="container section">
+<div class="max-w-2xl mx-auto">
+<div class="font-heading text-2xl font-semibold">You Might Also Like</div>
+<div class="mt-8 grid gap-8">
+<ul class=sidebar-links>
+<li><a href=/post/khoa-hoc-nestjs/>Khóa học NestJS - Bài 01 - Lộ trình các bài học về NestJS Framework</a></li>
+</ul>
 </div>
 </div>
-</section>
-<section class=container>
 </section>
 </main>
 <footer class=footer>
