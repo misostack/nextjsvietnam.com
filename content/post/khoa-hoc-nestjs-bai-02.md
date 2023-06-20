@@ -1,8 +1,8 @@
 ---
-title: "Khóa học Nestjs - Bài 02"
+title: "Khóa học Nestjs - Bài 02 - Xây dựng Pet Website bằng NestJS"
 type: "post"
 date: 2023-06-20T14:57:33+07:00
-description: "Xây dựng Pet Website bằng NestJS - Bài 02 : MVC"
+description: "Cùng tìm hiểu mô hình MVC và NestJS bằng cách xây dựng một website chuyên về thú cưng"
 keywords: ["nestjs", "nestjs-mvc", "nestjs-tutorial"]
 categories: ["nestjs-tutorial"]
 tags: ["nestjs", "nestjs-pet-website"]
