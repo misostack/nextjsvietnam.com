@@ -61,6 +61,8 @@ Nhận thấy được điều này, thay vì tiếp tục viết nhật kí tr�
 
 ### Phần 1 - Pet Website
 
+- [Chi tiết yêu cầu](https://docs.google.com/document/d/1_WRHoaIVnI2-8RLRah2P6pP-ZbaBfRHStVvCBF3v5xw/edit?usp=sharing)
+
 > Yêu cầu:
 
 - Xây dựng website tìm kiếm thông tin về thú cưng ( chó/mèo ), phân loại thông tin theo chủng loại, đặc điểm sinh học của các giống chó/mèo.
