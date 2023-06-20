@@ -13,7 +13,7 @@ image: "https://user-images.githubusercontent.com/31009750/181449337-70081a76-5a
 
 - [Session 002 Source Code](https://github.com/misostack/nestjs-tutorial-2023/tree/day02)
 
-## Mục tiêu
+## Bài 02 - Ngày 001
 
 1. Phân tích yêu cầu thiết kế sơ bộ
 2. Thiết lập cấu trúc dự án

@@ -59,7 +59,7 @@ Nhận thấy được điều này, thay vì tiếp tục viết nhật kí tr�
 
 ## Lộ trình chi tiết
 
-### Phần 1 - Pet Website
+### Bài 2 - Pet Website
 
 - [Chi tiết yêu cầu](https://docs.google.com/document/d/1_WRHoaIVnI2-8RLRah2P6pP-ZbaBfRHStVvCBF3v5xw/edit?usp=sharing)
 
@@ -82,7 +82,7 @@ Nhận thấy được điều này, thay vì tiếp tục viết nhật kí tr�
 9. Day 9 : Caching
 10. Day 10 : Deployment
 
-### Phần 1 - Pet API
+### Bài 3 - Pet API
 
 > Về mặt tính năng là tương tự - tuy nhiên thay vì xây dựng 1 trang web, hãy xây dựng API và áp dụng 1 số kĩ thuật có sẵn trong NestJS
 
