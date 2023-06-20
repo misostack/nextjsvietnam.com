@@ -116,6 +116,10 @@
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=/tags/nestjs>nestjs</a>
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=/tags/nestjs-pet-website>, nestjs-pet-website</a>
 </p>
+<h2 id=source-code>Source Code</h2>
+<ul>
+<li><a href=https://github.com/misostack/nestjs-tutorial-2023/tree/day02>Day 002 Source Code</a></li>
+</ul>
 <h2 id=mục-tiêu>Mục tiêu</h2>
 <ol>
 <li>Phân tích yêu cầu thiết kế sơ bộ</li>
@@ -182,7 +186,82 @@ npm i
 <span style=color:#a6e22e>app</span>.<span style=color:#a6e22e>listen</span>(<span style=color:#a6e22e>port</span>, () =&gt; {
   <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>`Example app listening at http://localhost:</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>port</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>);
 });
-</code></pre></div>
+</code></pre></div><p>Còn trong NestJS, chúng ta sẽ làm thế nào</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>npm install --save @nestjs/serve-static
+npm i --save ejs
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#75715e>// src/app.module.ts
+</span><span style=color:#75715e></span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Module</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/common&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>AppController</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./app.controller&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>AppService</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./app.service&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>ServeStaticModule</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/serve-static&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>join</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;path&#34;</span>;
+
+<span style=color:#66d9ef>@Module</span>({
+  <span style=color:#a6e22e>imports</span><span style=color:#f92672>:</span> [
+    <span style=color:#75715e>// public folder
+</span><span style=color:#75715e></span>    <span style=color:#a6e22e>ServeStaticModule</span>.<span style=color:#a6e22e>forRoot</span>({
+      <span style=color:#a6e22e>rootPath</span>: <span style=color:#66d9ef>join</span>(<span style=color:#a6e22e>process</span>.<span style=color:#a6e22e>cwd</span>(), <span style=color:#e6db74>&#34;public&#34;</span>),
+      <span style=color:#75715e>// Your asset will be placed at : http://localhost:1337/public/assets/main.css
+</span><span style=color:#75715e></span>      <span style=color:#a6e22e>serveRoot</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;/public&#34;</span>,
+    }),
+  ],
+  <span style=color:#a6e22e>controllers</span><span style=color:#f92672>:</span> [<span style=color:#a6e22e>AppController</span>],
+  <span style=color:#a6e22e>providers</span><span style=color:#f92672>:</span> [<span style=color:#a6e22e>AppService</span>],
+})
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AppModule</span> {}
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#75715e>// src/main.ts
+</span><span style=color:#75715e></span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>NestFactory</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/core&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>AppModule</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./app.module&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>NestExpressApplication</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/platform-express&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>join</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;path&#34;</span>;
+
+<span style=color:#66d9ef>async</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>bootstrap() {</span>
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>app</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>NestFactory</span>.<span style=color:#a6e22e>create</span>&lt;<span style=color:#f92672>NestExpressApplication</span>&gt;(<span style=color:#a6e22e>AppModule</span>);
+
+  <span style=color:#75715e>// app.useStaticAssets(join(process.cwd(), &#39;public&#39;));
+</span><span style=color:#75715e></span>  <span style=color:#a6e22e>app</span>.<span style=color:#a6e22e>setViewEngine</span>(<span style=color:#e6db74>&#34;ejs&#34;</span>);
+  <span style=color:#a6e22e>app</span>.<span style=color:#a6e22e>setBaseViewsDir</span>([<span style=color:#a6e22e>join</span>(<span style=color:#a6e22e>process</span>.<span style=color:#a6e22e>cwd</span>(), <span style=color:#e6db74>&#34;views&#34;</span>)]);
+
+  <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>app</span>.<span style=color:#a6e22e>listen</span>(<span style=color:#ae81ff>3000</span>);
+}
+<span style=color:#a6e22e>bootstrap</span>();
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#75715e>// src/app.controller.ts
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Controller</span>, <span style=color:#a6e22e>Get</span>, <span style=color:#a6e22e>Render</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/common&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>AppService</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./app.service&#34;</span>;
+
+<span style=color:#66d9ef>@Controller</span>()
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AppController</span> {
+  <span style=color:#66d9ef>constructor</span>(<span style=color:#66d9ef>private</span> <span style=color:#66d9ef>readonly</span> <span style=color:#a6e22e>appService</span>: <span style=color:#66d9ef>AppService</span>) {}
+
+  <span style=color:#66d9ef>@Get</span>()
+  <span style=color:#66d9ef>@Render</span>(<span style=color:#e6db74>&#34;index&#34;</span>)
+  <span style=color:#a6e22e>homePage() {</span>
+    <span style=color:#66d9ef>return</span> {};
+  }
+}
+</code></pre></div><blockquote>
+<p>views/index.ejs</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=color:#75715e>&lt;!DOCTYPE html&gt;</span>
+&lt;<span style=color:#f92672>html</span> <span style=color:#a6e22e>lang</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;en&#34;</span>&gt;
+  &lt;<span style=color:#f92672>head</span>&gt;
+    &lt;<span style=color:#f92672>meta</span> <span style=color:#a6e22e>charset</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;UTF-8&#34;</span> /&gt;
+    &lt;<span style=color:#f92672>meta</span> <span style=color:#a6e22e>name</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;viewport&#34;</span> <span style=color:#a6e22e>content</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;width=device-width, initial-scale=1.0&#34;</span> /&gt;
+    &lt;<span style=color:#f92672>title</span>&gt;<span style=color:#960050;background-color:#1e0010>&lt;</span>%= title %&gt;&lt;/<span style=color:#f92672>title</span>&gt;
+    &lt;<span style=color:#f92672>link</span> <span style=color:#a6e22e>rel</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;stylesheet&#34;</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/public/assets/main.css&#34;</span> /&gt;
+  &lt;/<span style=color:#f92672>head</span>&gt;
+  &lt;<span style=color:#f92672>body</span>&gt;
+    &lt;<span style=color:#f92672>h1</span>&gt;<span style=color:#960050;background-color:#1e0010>&lt;</span>%= title %&gt;&lt;/<span style=color:#f92672>h1</span>&gt;
+    &lt;<span style=color:#f92672>img</span>
+      <span style=color:#a6e22e>src</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/public/assets/nestjs-tutorial-2023.png&#34;</span>
+      <span style=color:#a6e22e>alt</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;NestJS Tutorial 2023&#34;</span>
+    /&gt;
+    &lt;<span style=color:#f92672>script</span> <span style=color:#a6e22e>src</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/public/assets/main.js&#34;</span>&gt;&lt;/<span style=color:#f92672>script</span>&gt;
+  &lt;/<span style=color:#f92672>body</span>&gt;
+&lt;/<span style=color:#f92672>html</span>&gt;
+</code></pre></div><p>And here is what you get</p>
+<p><img src=https://user-images.githubusercontent.com/31009750/247096434-124def02-443d-4c01-bae9-1b2be8ac113e.png alt=image></p>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/nestjs-tutorial>nestjs-tutorial</a>
 </div>
