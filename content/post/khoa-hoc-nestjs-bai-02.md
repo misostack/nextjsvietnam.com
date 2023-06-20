@@ -1,8 +1,8 @@
 ---
-title: "Khóa học Nestjs - Ngày 02"
+title: "Khóa học Nestjs - Bài 02"
 type: "post"
 date: 2023-06-20T14:57:33+07:00
-description: "Xây dựng Pet Website bằng NestJS - Ngày 02"
+description: "Xây dựng Pet Website bằng NestJS - Bài 02 : MVC"
 keywords: ["nestjs", "nestjs-mvc", "nestjs-tutorial"]
 categories: ["nestjs-tutorial"]
 tags: ["nestjs", "nestjs-pet-website"]
@@ -11,7 +11,7 @@ image: "https://user-images.githubusercontent.com/31009750/181449337-70081a76-5a
 
 ## Source Code
 
-- [Day 002 Source Code](https://github.com/misostack/nestjs-tutorial-2023/tree/day02)
+- [Session 002 Source Code](https://github.com/misostack/nestjs-tutorial-2023/tree/day02)
 
 ## Mục tiêu
 
