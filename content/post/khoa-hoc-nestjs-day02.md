@@ -9,6 +9,10 @@ tags: ["nestjs", "nestjs-pet-website"]
 image: "https://user-images.githubusercontent.com/31009750/181449337-70081a76-5a01-4229-805e-39ed0ded6b5b.png"
 ---
 
+## Source Code
+
+- [Day 002 Source Code](https://github.com/misostack/nestjs-tutorial-2023/tree/day02)
+
 ## Mục tiêu
 
 1. Phân tích yêu cầu thiết kế sơ bộ
@@ -91,3 +95,96 @@ app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
 ```
+
+Còn trong NestJS, chúng ta sẽ làm thế nào
+
+```sh
+npm install --save @nestjs/serve-static
+npm i --save ejs
+```
+
+```ts
+// src/app.module.ts
+import { Module } from "@nestjs/common";
+import { AppController } from "./app.controller";
+import { AppService } from "./app.service";
+import { ServeStaticModule } from "@nestjs/serve-static";
+import { join } from "path";
+
+@Module({
+  imports: [
+    // public folder
+    ServeStaticModule.forRoot({
+      rootPath: join(process.cwd(), "public"),
+      // Your asset will be placed at : http://localhost:1337/public/assets/main.css
+      serveRoot: "/public",
+    }),
+  ],
+  controllers: [AppController],
+  providers: [AppService],
+})
+export class AppModule {}
+```
+
+```ts
+// src/main.ts
+import { NestFactory } from "@nestjs/core";
+import { AppModule } from "./app.module";
+import { NestExpressApplication } from "@nestjs/platform-express";
+import { join } from "path";
+
+async function bootstrap() {
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+
+  // app.useStaticAssets(join(process.cwd(), 'public'));
+  app.setViewEngine("ejs");
+  app.setBaseViewsDir([join(process.cwd(), "views")]);
+
+  await app.listen(3000);
+}
+bootstrap();
+```
+
+```ts
+// src/app.controller.ts
+
+import { Controller, Get, Render } from "@nestjs/common";
+import { AppService } from "./app.service";
+
+@Controller()
+export class AppController {
+  constructor(private readonly appService: AppService) {}
+
+  @Get()
+  @Render("index")
+  homePage() {
+    return {};
+  }
+}
+```
+
+> views/index.ejs
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/public/assets/main.css" />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <img
+      src="/public/assets/nestjs-tutorial-2023.png"
+      alt="NestJS Tutorial 2023"
+    />
+    <script src="/public/assets/main.js"></script>
+  </body>
+</html>
+```
+
+And here is what you get
+
+![image](https://user-images.githubusercontent.com/31009750/247096434-124def02-443d-4c01-bae9-1b2be8ac113e.png)
