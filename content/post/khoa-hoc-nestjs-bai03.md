@@ -45,8 +45,7 @@ Phía trên mô hình luồng dữ liệu từ khi người dùng thực hiện 
 
 **1.1. Controllers**
 
-- PetListController - /pets
-- PetDetailsController /pets/:petId
+- PetController - /pets - /pets/:petId
 - ManagePetController /admin/pets/
 - ManagePetCategoryController /admin/pet-categories
 - ManagePetAttributeController / admin/pet-attributes
@@ -62,3 +61,75 @@ Phía trên mô hình luồng dữ liệu từ khi người dùng thực hiện 
 - Pet
 - PetCategory
 - PetAttribute
+
+```bash
+# let's create a pet module
+nest g module pet
+# let's create controllers
+nest g controller pet/controllers/pet --flat
+```
+
+**app.module.ts**
+
+```ts
+// src/app.module.ts
+
+import { Module } from "@nestjs/common";
+import { ServeStaticModule } from "@nestjs/serve-static";
+import { join } from "path";
+import { PetModule } from "./pet/pet.module";
+
+@Module({
+  imports: [
+    // public folder
+    ServeStaticModule.forRoot({
+      rootPath: join(process.cwd(), "public"),
+      serveRoot: "/public",
+    }),
+    PetModule,
+  ],
+  controllers: [],
+  providers: [],
+})
+export class AppModule {}
+```
+
+**pet.module.ts**
+
+```ts
+// src/pet/pet.module.ts
+
+import { Module } from "@nestjs/common";
+
+@Module({})
+export class PetModule {}
+```
+
+```ts
+import { Controller, Get, Param } from "@nestjs/common";
+
+@Controller("pets")
+export class PetController {
+  @Get("")
+  petList() {
+    return "Pet List";
+  }
+
+  @Get(":id")
+  petDetail(@Param() { id }: { id: number }) {
+    return `Pet Detail ${id}`;
+  }
+}
+```
+
+**Tại bước này NestJS cung cấp 1 số cú pháp để khai báo handler cho mỗi path**
+
+- [Tài liệu tham khảo về route, params cho controller trong NestJS](https://docs.nestjs.com/controllers#route-parameters)
+
+Đến đây hãy thử chạy lại ứng dụng của bạn xem chúng ta có gì nào
+
+![image](https://user-images.githubusercontent.com/31009750/250266534-82dd679a-1b8c-4785-8360-5ca09862b12a.png)
+
+![image](https://user-images.githubusercontent.com/31009750/250266589-680113f5-8baa-46a8-b0a3-57f16a9ab2bc.png)
+
+![image](https://user-images.githubusercontent.com/31009750/250266598-8844188c-d6d9-463f-8fdf-adb597a3bbeb.png)
