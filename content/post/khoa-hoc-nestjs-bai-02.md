@@ -1,5 +1,5 @@
 ---
-title: "Khóa học Nestjs - Bài 02 - Xây dựng Pet Website bằng NestJS"
+title: "Khóa học Nestjs - Bài 02 - Giới thiệu mô hình MVC"
 type: "post"
 date: 2023-06-20T14:57:33+07:00
 description: "Cùng tìm hiểu mô hình MVC và NestJS bằng cách xây dựng một website chuyên về thú cưng"
@@ -13,7 +13,7 @@ image: "https://user-images.githubusercontent.com/31009750/181449337-70081a76-5a
 
 - [Session 002 Source Code](https://github.com/misostack/nestjs-tutorial-2023/tree/day02)
 
-## Bài 02 - Ngày 001
+## Bài 02
 
 1. Phân tích yêu cầu thiết kế sơ bộ
 2. Thiết lập cấu trúc dự án
