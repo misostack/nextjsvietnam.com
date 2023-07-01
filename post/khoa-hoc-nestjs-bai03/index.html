@@ -11,18 +11,18 @@
 <link rel=stylesheet href=https://nextjsvietnam.com/themes/2022/public/page.css>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWE4MLJYE6"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-RWE4MLJYE6')</script>
-<title>Khóa học NestJS - Bài 01 - Lộ trình các bài học về NestJS Framework | Giáo án tự học NestJS cho người mới bắt đầu | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+<title>Khóa học NestJS Bài 03 - Controllers & Views | Cùng tìm hiểu mô hình MVC và NestJS bằng cách xây dựng một website chuyên về thú cưng | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
 <meta name=robots content="all">
-<meta name=keywords content="nestjs,dto,validation">
-<meta name=description content="Giáo án tự học NestJS cho người mới bắt đầu">
+<meta name=keywords content="nestjs,nestjs-mvc,nestjs-tutorial">
+<meta name=description content="Cùng tìm hiểu mô hình MVC và NestJS bằng cách xây dựng một website chuyên về thú cưng">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://user-images.githubusercontent.com/31009750/181449337-70081a76-5a01-4229-805e-39ed0ded6b5b.png">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="750">
 <meta property="og:image:height" content="300">
 <meta property="article:publisher" content="https://www.facebook.com/nextjsvietnam">
-<meta property="article:published_time" content="2023-05-19T22:00:00+07:00">
-<meta property="article:modified_time" content="2023-05-19T22:00:00+07:00">
+<meta property="article:published_time" content="2023-06-21T14:59:42+07:00">
+<meta property="article:modified_time" content="2023-06-21T14:59:42+07:00">
 <link rel=apple-touch-icon sizes=57x57 href=/apple-icon-57x57.png>
 <link rel=apple-touch-icon sizes=60x60 href=/apple-icon-60x60.png>
 <link rel=apple-touch-icon sizes=72x72 href=/apple-icon-72x72.png>
@@ -103,10 +103,10 @@
 <main>
 <section class="container section">
 <div class="page-content max-w-2xl mx-auto">
-<img src=https://user-images.githubusercontent.com/31009750/181449337-70081a76-5a01-4229-805e-39ed0ded6b5b.png class=img-responsive alt="Khóa học NestJS - Bài 01 - Lộ trình các bài học về NestJS Framework">
-<h1>Khóa học NestJS - Bài 01 - Lộ trình các bài học về NestJS Framework</h1>
-<p><strong>Post Date</strong> : 2023-05-19T22:00:00+07:00</p>
-<p><strong>Modified Date</strong> : 2023-05-19T22:00:00+07:00</p>
+<img src=https://user-images.githubusercontent.com/31009750/181449337-70081a76-5a01-4229-805e-39ed0ded6b5b.png class=img-responsive alt="Khóa học NestJS Bài 03 - Controllers & Views">
+<h1>Khóa học NestJS Bài 03 - Controllers & Views</h1>
+<p><strong>Post Date</strong> : 2023-06-21T14:59:42+07:00</p>
+<p><strong>Modified Date</strong> : 2023-06-21T14:59:42+07:00</p>
 <p>
 <strong>Category:</strong>
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/nestjs-tutorial>nestjs-tutorial</a>
@@ -114,96 +114,110 @@
 <p>
 <strong>Tags:</strong>
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=/tags/nestjs>nestjs</a>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=/tags/nestjs-pet-website>, nestjs-pet-website</a>
 </p>
-<p><strong>Note</strong>: Toàn bộ mã nguồn của khóa học này đều được công khai trên github tại <a href=//github.com/misostack/nestjs-tutorial-2023>NestJS Tutorial 2023</a></p>
-<p>Trước khi bắt đầu nội dung chi tiết của khóa học này, tôi sẽ liệt kê một số câu hỏi thường gặp, cũng như câu trả lời của nó.</p>
-<h2 id=lời-nói-đầu>Lời nói đầu</h2>
-<h3 id=câu-hỏi-số-1--tại-sao-khóa-học-này-xuất-hiện>Câu hỏi số 1 : Tại sao khóa học này xuất hiện?</h3>
-<blockquote>
-<h3 id=câu-trả-lời-là-niềm-tự-hào-dân-tộc>Câu trả lời là &ldquo;Niềm tự hào dân tộc&rdquo;.</h3>
-</blockquote>
-<p>Phần lớn tài liệu dành cho lập trình viên được viết bằng &ldquo;Tiếng Anh&rdquo;, tuy nhiên một số quốc gia như &ldquo;Trung Quốc&rdquo;, &ldquo;Nhật Bản&rdquo;, &ldquo;Hàn Quốc&rdquo;, hay các nước lớn như &ldquo;Pháp&rdquo;, &ldquo;Đức&rdquo; đều có những tài liệu lập trình được địa phương hóa, với rất nhiều kiến thức chuyên sâu, cũng như các chú giải/kinh nghiệm của người đi trước được truyền tải lại.</p>
-<p>Nhận thấy được điều này, thay vì tiếp tục viết nhật kí trực tuyến (blog) bằng tiếng Anh, tôi quyết định vẫn tiếp tục chia sẻ kiến thức bằng các nội dung tiếng Việt - đồng thời sẽ dùng google translate dịch toàn bộ nội dung tiếng Việt sang tiếng Anh để chia sẻ trên medium/devto và dẫn liên kết ngược trở lại trang nhật kí này.</p>
-<h3 id=câu-hỏi-số-2--khóa-học-này-có-tốn-phí>Câu hỏi số 2 : Khóa học này có tốn phí?</h3>
-<blockquote>
-<h3 id=khóa-học-hoàn-toàn-miễn-phí>Khóa học hoàn toàn miễn phí</h3>
-</blockquote>
+<h2 id=source-code>Source Code</h2>
 <ul>
-<li>Tuy nhiên bạn vẫn tốn thời gian để đọc và thực hành. Điều quan trọng nhất vẫn là tự bản thân bạn phải thực hành được những kiến thức được chia sẻ trong các bài học và biến nó thành của riêng bạn.</li>
+<li><a href=https://github.com/misostack/nestjs-tutorial-2023/tree/lession03>Lession 03 Source Code</a></li>
 </ul>
-<h3 id=câu-hỏi-số-3--khóa-học-này-dành-cho-ai>Câu hỏi số 3 : Khóa học này dành cho ai?</h3>
-<blockquote>
-<h3 id=khóa-học-dành-cho-các-lập-trình-viên-đã-có-hiểu-biết-về-nodejs-và-typescript-và-expressjs>Khóa học dành cho các lập trình viên đã có hiểu biết về nodejs và typescript và expressjs.</h3>
-</blockquote>
-<ul>
-<li>Nếu bạn chưa có kiến thức về nodejs và typescript, hãy tạm dừng và quay trở lại khi đã có kiến thức căn bản về 3 món vũ khí trên.</li>
-</ul>
-<h3 id=câu-hỏi-số-4--khóa-học-này-gồm-những-gì>Câu hỏi số 4 : Khóa học này gồm những gì?</h3>
-<blockquote>
-<h3 id=khóa-học-bao-gồm-4-phần>Khóa học bao gồm 4 phần</h3>
-</blockquote>
-<ul>
-<li>Kiến thức nền tảng của framework NestJS</li>
-<li>Cách sử dụng các module sẵn có trong hệ sinh thái của NestJS</li>
-<li>Cách cấu trúc 1 dự án NestJS trong thực tế</li>
-<li>Chia sẻ kinh nghiệm và hỏi đáp</li>
-</ul>
-<h3 id=câu-hỏi-số-5--khóa-học-này-sẽ-diễn-ra-trong-bao-lâu>Câu hỏi số 5 : Khóa học này sẽ diễn ra trong bao lâu?</h3>
-<blockquote>
-<h3 id=thời-gian-khóa-học-kéo-dài-sẽ-phụ-thuộc-vào-việc-tôi-sẽ-sắp-xếp-được-thời-gian-để-lên-bài-cũng-như-số-lượng-người-theo-dõi>Thời gian khóa học kéo dài sẽ phụ thuộc vào việc tôi sẽ sắp xếp được thời gian để lên bài, cũng như số lượng người theo dõi</h3>
-</blockquote>
-<ul>
-<li>Khóa học này sẽ diễn ra trong 1 thời gian dài nhất có thể.</li>
-<li>Mục tiêu để có được bài học chất lượng, nên mục tiêu xuất bản sẽ rơi vào khoảng 1 bài học/tuần.</li>
-</ul>
-<h3 id=câu-hỏi-số-6--nếu-bạn-muốn-gửi-câu-hỏi-thì-sẽ-gửi-vào-đâu>Câu hỏi số 6 : Nếu bạn muốn gửi câu hỏi, thì sẽ gửi vào đâu</h3>
-<ul>
-<li>Nếu bạn có câu hỏi vui lòng cung cấp một số thông tin <a href=https://forms.gle/dn1BNHmwGJWeCw7f8>theo mẫu sau</a></li>
-</ul>
-<p><a href=https://forms.gle/dn1BNHmwGJWeCw7f8><img src=https://user-images.githubusercontent.com/31009750/246770149-f019c2c1-c641-4598-b5ae-e7ccb90edd3a.png alt=image></a></p>
-<h2 id=lộ-trình-chi-tiết>Lộ trình chi tiết</h2>
-<h3 id=bài-2---pet-website>Bài 2 - Pet Website</h3>
-<ul>
-<li><a href="https://docs.google.com/document/d/1_WRHoaIVnI2-8RLRah2P6pP-ZbaBfRHStVvCBF3v5xw/edit?usp=sharing">Chi tiết yêu cầu</a></li>
-</ul>
-<blockquote>
-<p>Yêu cầu:</p>
-</blockquote>
-<ul>
-<li>Xây dựng website tìm kiếm thông tin về thú cưng ( chó/mèo ), phân loại thông tin theo chủng loại, đặc điểm sinh học của các giống chó/mèo.</li>
-<li>Thông tin chính : có kèm hình ảnh về thú cưng, mô tả cơ bản, link video nếu có</li>
-<li>Thống kê lượt xem</li>
-<li>Có tính năng vote cho từng thú cưng: like ( tự do vote - mỗi lượt truy cập vote 1 lần )</li>
-<li>Được phép chia sẻ thông tin thú cưng lên mạng xã hội ( facebook )</li>
-</ul>
+<h2 id=bài-03>Bài 03</h2>
 <ol>
-<li>Day 1 : Setup Project - MVC Architecture</li>
-<li>Day 2 : Controller & Data Validation</li>
-<li>Day 3 : Model & Migrations & Seeds</li>
-<li>Day 4 : Service & Dependency Injection</li>
-<li>Day 5 : Upload File</li>
-<li>Day 6 : Secure your Application</li>
-<li>Day 7 : Logging</li>
-<li>Day 8 : Queue, Scheduling</li>
-<li>Day 9 : Caching</li>
-<li>Day 10 : Deployment</li>
+<li>Tìm hiểu về module trong NestJS - ứng dụng xây dựng cấu trúc thư mục cho Pet Website</li>
+<li>Tìm hiểu về EJS và cách tạo layout chung</li>
+<li>Làm việc với form và kiểm tra dữ liệu đầu vào</li>
 </ol>
-<h3 id=bài-3---pet-api>Bài 3 - Pet API</h3>
-<blockquote>
-<p>Về mặt tính năng là tương tự - tuy nhiên thay vì xây dựng 1 trang web, hãy xây dựng API và áp dụng 1 số kĩ thuật có sẵn trong NestJS</p>
-</blockquote>
+<h3 id=tổng-quan>Tổng quan</h3>
+<h4 id=mô-hình-mvc>Mô hình MVC</h4>
+<p><img src=https://user-images.githubusercontent.com/31009750/250263049-03852064-b404-40a9-8292-8d14cdf48138.png alt=image></p>
+<p>Phía trên mô hình luồng dữ liệu từ khi người dùng thực hiện yêu cầu cho đến khi nhận được kết quả.</p>
 <ol>
-<li>Day 1 : REST API - Layer Architecture</li>
-<li>Day 2 : Authentication & Authorization</li>
-<li>Day 3 : Store your file with AWS S3</li>
-<li>Day 4 : Data Validation</li>
-<li>Day 5 : API Doc</li>
-<li>Day 6 : Testing</li>
-<li>Day 7 : Mongodb</li>
-<li>Day 8 : GraphQL</li>
-<li>Day 9 : Microservices</li>
-<li>Day 10 : Deployment</li>
+<li>Bước 1 : Controller nhận dữ liệu từ User (www/form-data, multiplart/form-data, uri segements, query params, headers, &mldr;)</li>
+<li>Bước 2 : Gọi tới Service để yêu cầu xử lý nghiệp vụ tương ứng, input là data từ user</li>
+<li>Bước 3 : Service thực hiện gọi tới Model để đọc/ghi dữ liệu tương ứng</li>
+<li>Bước 4: Model thực hiện đọc/ghi dữ liệu tương ứng trong database</li>
+<li>Bước 5: Service gửi trả cho controller dữ liệu đã được đọc/ghi/xử lý nghiệp vụ tương ứng</li>
+<li>Bước 6: Controller đọc template tương ứng cho phần giao diện kết hợp với data nhận được từ service để render phần view cho người dùng.</li>
+<li>Bước 7: Sau khi render được phần view tương ứng, controller gửi kết quả này lại cho người dùng -> HTML/JSON, &mldr;</li>
 </ol>
+<h4 id=áp-dụng-kiến-trúc-mvc-này-vào-dự-án-đồng-thời-phân-chia-dự-án-theo-từng-module>Áp dụng kiến trúc MVC này vào dự án đồng thời phân chia dự án theo từng module</h4>
+<p><img src=https://user-images.githubusercontent.com/31009750/250264066-b17799f6-b81f-4068-8f77-e90b3221bd27.png alt=image></p>
+<h3 id=thực-hành>Thực hành</h3>
+<ol>
+<li>Xây dựng module Pet</li>
+</ol>
+<p><strong>1.1. Controllers</strong></p>
+<ul>
+<li>PetController - /pets - /pets/:petId</li>
+<li>ManagePetController /admin/pets/</li>
+<li>ManagePetCategoryController /admin/pet-categories</li>
+<li>ManagePetAttributeController / admin/pet-attributes</li>
+</ul>
+<p><strong>1.2. Services</strong></p>
+<ul>
+<li>PetService</li>
+<li>PetCategoryService</li>
+<li>PetAttributeService</li>
+</ul>
+<p><strong>1.3. Models</strong></p>
+<ul>
+<li>Pet</li>
+<li>PetCategory</li>
+<li>PetAttribute</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># let&#39;s create a pet module</span>
+nest g module pet
+<span style=color:#75715e># let&#39;s create controllers</span>
+nest g controller pet/controllers/pet --flat
+</code></pre></div><p><strong>app.module.ts</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#75715e>// src/app.module.ts
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Module</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/common&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>ServeStaticModule</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/serve-static&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>join</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;path&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>PetModule</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./pet/pet.module&#34;</span>;
+
+<span style=color:#66d9ef>@Module</span>({
+  <span style=color:#a6e22e>imports</span><span style=color:#f92672>:</span> [
+    <span style=color:#75715e>// public folder
+</span><span style=color:#75715e></span>    <span style=color:#a6e22e>ServeStaticModule</span>.<span style=color:#a6e22e>forRoot</span>({
+      <span style=color:#a6e22e>rootPath</span>: <span style=color:#66d9ef>join</span>(<span style=color:#a6e22e>process</span>.<span style=color:#a6e22e>cwd</span>(), <span style=color:#e6db74>&#34;public&#34;</span>),
+      <span style=color:#a6e22e>serveRoot</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;/public&#34;</span>,
+    }),
+    <span style=color:#a6e22e>PetModule</span>,
+  ],
+  <span style=color:#a6e22e>controllers</span><span style=color:#f92672>:</span> [],
+  <span style=color:#a6e22e>providers</span><span style=color:#f92672>:</span> [],
+})
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AppModule</span> {}
+</code></pre></div><p><strong>pet.module.ts</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#75715e>// src/pet/pet.module.ts
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Module</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/common&#34;</span>;
+
+<span style=color:#66d9ef>@Module</span>({})
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>PetModule</span> {}
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Controller</span>, <span style=color:#a6e22e>Get</span>, <span style=color:#a6e22e>Param</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/common&#34;</span>;
+
+<span style=color:#66d9ef>@Controller</span>(<span style=color:#e6db74>&#34;pets&#34;</span>)
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>PetController</span> {
+  <span style=color:#66d9ef>@Get</span>(<span style=color:#e6db74>&#34;&#34;</span>)
+  <span style=color:#a6e22e>petList() {</span>
+    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;Pet List&#34;</span>;
+  }
+
+  <span style=color:#66d9ef>@Get</span>(<span style=color:#e6db74>&#34;:id&#34;</span>)
+  <span style=color:#a6e22e>petDetail</span>(<span style=color:#66d9ef>@Param</span>() { <span style=color:#a6e22e>id</span> }<span style=color:#f92672>:</span> { <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>number</span> }) {
+    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>`Pet Detail </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>id</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>;
+  }
+}
+</code></pre></div><p><strong>Tại bước này NestJS cung cấp 1 số cú pháp để khai báo handler cho mỗi path</strong></p>
+<ul>
+<li><a href=https://docs.nestjs.com/controllers#route-parameters>Tài liệu tham khảo về route, params cho controller trong NestJS</a></li>
+</ul>
+<p>Đến đây hãy thử chạy lại ứng dụng của bạn xem chúng ta có gì nào</p>
+<p><img src=https://user-images.githubusercontent.com/31009750/250266534-82dd679a-1b8c-4785-8360-5ca09862b12a.png alt=image></p>
+<p><img src=https://user-images.githubusercontent.com/31009750/250266589-680113f5-8baa-46a8-b0a3-57f16a9ab2bc.png alt=image></p>
+<p><img src=https://user-images.githubusercontent.com/31009750/250266598-8844188c-d6d9-463f-8fdf-adb597a3bbeb.png alt=image></p>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/nestjs-tutorial>nestjs-tutorial</a>
 </div>
@@ -214,8 +228,8 @@
 <div class="font-heading text-2xl font-semibold">You Might Also Like</div>
 <div class="mt-8 grid gap-8">
 <ul class=sidebar-links>
-<li><a href=/post/khoa-hoc-nestjs-bai03/>Khóa học NestJS Bài 03 - Controllers & Views</a></li>
 <li><a href=/post/khoa-hoc-nestjs-bai-02/>Khóa học Nestjs - Bài 02 - Giới thiệu mô hình MVC</a></li>
+<li><a href=/post/khoa-hoc-nestjs/>Khóa học NestJS - Bài 01 - Lộ trình các bài học về NestJS Framework</a></li>
 </ul>
 </div>
 </div>
