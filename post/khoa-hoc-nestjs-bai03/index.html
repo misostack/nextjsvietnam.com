@@ -168,6 +168,10 @@
 nest g module pet
 <span style=color:#75715e># let&#39;s create controllers</span>
 nest g controller pet/controllers/pet --flat
+<span style=color:#75715e># for admin pages</span>
+nest g controller pet/controllers/admin/manage-pet --flat
+nest g controller pet/controllers/admin/manage-pet-category --flat
+nest g controller pet/controllers/admin/manage-pet-attribute --flat
 </code></pre></div><p><strong>app.module.ts</strong></p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#75715e>// src/app.module.ts
 </span><span style=color:#75715e></span>
@@ -201,12 +205,12 @@ nest g controller pet/controllers/pet --flat
 <span style=color:#66d9ef>@Controller</span>(<span style=color:#e6db74>&#34;pets&#34;</span>)
 <span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>PetController</span> {
   <span style=color:#66d9ef>@Get</span>(<span style=color:#e6db74>&#34;&#34;</span>)
-  <span style=color:#a6e22e>petList() {</span>
+  <span style=color:#a6e22e>getList() {</span>
     <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;Pet List&#34;</span>;
   }
 
   <span style=color:#66d9ef>@Get</span>(<span style=color:#e6db74>&#34;:id&#34;</span>)
-  <span style=color:#a6e22e>petDetail</span>(<span style=color:#66d9ef>@Param</span>() { <span style=color:#a6e22e>id</span> }<span style=color:#f92672>:</span> { <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>number</span> }) {
+  <span style=color:#a6e22e>getDetail</span>(<span style=color:#66d9ef>@Param</span>() { <span style=color:#a6e22e>id</span> }<span style=color:#f92672>:</span> { <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>number</span> }) {
     <span style=color:#66d9ef>return</span> <span style=color:#e6db74>`Pet Detail </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>id</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>;
   }
 }
@@ -218,6 +222,100 @@ nest g controller pet/controllers/pet --flat
 <p><img src=https://user-images.githubusercontent.com/31009750/250266534-82dd679a-1b8c-4785-8360-5ca09862b12a.png alt=image></p>
 <p><img src=https://user-images.githubusercontent.com/31009750/250266589-680113f5-8baa-46a8-b0a3-57f16a9ab2bc.png alt=image></p>
 <p><img src=https://user-images.githubusercontent.com/31009750/250266598-8844188c-d6d9-463f-8fdf-adb597a3bbeb.png alt=image></p>
+<p>Cho admin</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Controller</span>, <span style=color:#a6e22e>Get</span>, <span style=color:#a6e22e>Param</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/common&#34;</span>;
+
+<span style=color:#66d9ef>@Controller</span>(<span style=color:#e6db74>&#34;admin/pets&#34;</span>)
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ManagePetController</span> {
+  <span style=color:#66d9ef>@Get</span>(<span style=color:#e6db74>&#34;&#34;</span>)
+  <span style=color:#a6e22e>getList() {</span>
+    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;admin pet list&#34;</span>;
+  }
+
+  <span style=color:#66d9ef>@Get</span>(<span style=color:#e6db74>&#34;:id&#34;</span>)
+  <span style=color:#a6e22e>getDetail</span>(<span style=color:#66d9ef>@Param</span>() { <span style=color:#a6e22e>id</span> }<span style=color:#f92672>:</span> { <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>string</span> }) {
+    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>`admin pet detail </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>id</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>;
+  }
+}
+
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Controller</span>, <span style=color:#a6e22e>Get</span>, <span style=color:#a6e22e>Param</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/common&#34;</span>;
+
+<span style=color:#66d9ef>@Controller</span>(<span style=color:#e6db74>&#34;admin/pet-categories&#34;</span>)
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ManagePetCategoryController</span> {
+  <span style=color:#66d9ef>@Get</span>(<span style=color:#e6db74>&#34;&#34;</span>)
+  <span style=color:#a6e22e>getList() {</span>
+    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;admin pet categories&#34;</span>;
+  }
+
+  <span style=color:#66d9ef>@Get</span>(<span style=color:#e6db74>&#34;:id&#34;</span>)
+  <span style=color:#a6e22e>getDetail</span>(<span style=color:#66d9ef>@Param</span>() { <span style=color:#a6e22e>id</span> }<span style=color:#f92672>:</span> { <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>string</span> }) {
+    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>`admin pet category detail </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>id</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>;
+  }
+}
+
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Controller</span>, <span style=color:#a6e22e>Get</span>, <span style=color:#a6e22e>Param</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/common&#34;</span>;
+
+<span style=color:#66d9ef>@Controller</span>(<span style=color:#e6db74>&#34;admin/pet-attributes&#34;</span>)
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ManagePetAttributeController</span> {
+  <span style=color:#66d9ef>@Get</span>(<span style=color:#e6db74>&#34;&#34;</span>)
+  <span style=color:#a6e22e>getList() {</span>
+    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;admin pet attribute list&#34;</span>;
+  }
+
+  <span style=color:#66d9ef>@Get</span>(<span style=color:#e6db74>&#34;:id&#34;</span>)
+  <span style=color:#a6e22e>getDetail</span>(<span style=color:#66d9ef>@Param</span>() { <span style=color:#a6e22e>id</span> }<span style=color:#f92672>:</span> { <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>string</span> }) {
+    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>`admin pet attribute detail </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>id</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>;
+  }
+}
+</code></pre></div><p><strong>Chúng ta hãy bắt đầu với form tạo 1 pet category</strong></p>
+<ul>
+<li>Tích hợp với bootstrap (<a href=https://getbootstrap.com/docs/5.0/getting-started/download/>https://getbootstrap.com/docs/5.0/getting-started/download/</a>)</li>
+<li>Sử dụng ejs partial ( tách các phần chung của trang web - header, footer, và sử dụng lại trong từng template khác nhau)</li>
+<li>Tạo route</li>
+<li>Kết nối với view</li>
+<li>Nhận dữ liệu từ form và xử lý kết quả (fake data)</li>
+</ul>
+<p>Cấu trúc thư mục view sẽ có dạng như sau</p>
+<blockquote>
+<p>views\pet\admin\manage-pet-category\create.ejs</p>
+</blockquote>
+<p>Do đó khi sử dụng ta chỉ cần chỉ đường dẫn tới file template nằm trong thư mục view</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>@Render</span>(<span style=color:#e6db74>&#34;pet/admin/manage-pet-category/create&#34;</span>)
+</code></pre></div><p>Sau khi sử dụng 1 số example có sẵn tại bootstrap ta có thể sử dụng template như bên dưới:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Controller</span>, <span style=color:#a6e22e>Get</span>, <span style=color:#a6e22e>Param</span>, <span style=color:#a6e22e>Post</span>, <span style=color:#a6e22e>Render</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/common&#34;</span>;
+
+<span style=color:#66d9ef>@Controller</span>(<span style=color:#e6db74>&#34;admin/pet-categories&#34;</span>)
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ManagePetCategoryController</span> {
+  <span style=color:#66d9ef>@Get</span>(<span style=color:#e6db74>&#34;&#34;</span>)
+  <span style=color:#a6e22e>getList() {</span>
+    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;admin pet categories&#34;</span>;
+  }
+
+  <span style=color:#66d9ef>@Get</span>(<span style=color:#e6db74>&#34;create&#34;</span>)
+  <span style=color:#66d9ef>@Post</span>(<span style=color:#e6db74>&#34;create&#34;</span>)
+  <span style=color:#66d9ef>@Render</span>(<span style=color:#e6db74>&#34;pet/admin/manage-pet-category/create&#34;</span>)
+  <span style=color:#a6e22e>create() {</span>
+    <span style=color:#75715e>// a form
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>return</span> {};
+  }
+
+  <span style=color:#66d9ef>@Get</span>(<span style=color:#e6db74>&#34;:id&#34;</span>)
+  <span style=color:#a6e22e>getDetail</span>(<span style=color:#66d9ef>@Param</span>() { <span style=color:#a6e22e>id</span> }<span style=color:#f92672>:</span> { <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>string</span> }) {
+    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>`admin pet category detail </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>id</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>;
+  }
+}
+</code></pre></div><p>Trong đó phần header, footer sẽ chứa những thành phần dùng chung trong template</p>
+<pre tabindex=0><code class=language-ejs data-lang=ejs>&lt;%- include('layouts/admin/header'); %&gt;
+&lt;h1&gt;Manage Pet Category - Create New Pet Category&lt;/h1&gt;
+&lt;%- include('layouts/admin/footer'); %&gt;
+</code></pre><p><img src=https://user-images.githubusercontent.com/31009750/250268918-ee065a07-00fe-4036-8035-280fdd3345c3.png alt=image></p>
+<p>You can find all the related source code here:</p>
+<ul>
+<li><a href=https://github.com/misostack/nestjs-tutorial-2023/tree/lession03/public/assets>Assets</a></li>
+<li><a href=https://github.com/misostack/nestjs-tutorial-2023/tree/lession03/views/layouts/admin>Layouts</a></li>
+</ul>
+<p>Và chúng ta có kết quả như sau:</p>
+<p><img src=https://user-images.githubusercontent.com/31009750/250269750-766734ec-d18f-4c5f-b713-26a6e594bbf7.png alt=image></p>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/nestjs-tutorial>nestjs-tutorial</a>
 </div>
