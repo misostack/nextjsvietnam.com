@@ -250,3 +250,186 @@ You can find all the related source code here:
 Và chúng ta có kết quả như sau:
 
 ![image](https://user-images.githubusercontent.com/31009750/250269750-766734ec-d18f-4c5f-b713-26a6e594bbf7.png)
+
+Okie và hãy tới bước tiếp theo nào, hãy thiết kế 1 form để nhập và xử lý dữ liệu cho 1 PetCategory
+
+Hãy chú ý rằng chúng ta có 3 trường hợp sử dụng cùng 1 view create form của admin pet category:
+
+- Create New Pet Category
+- Create New Pet Category thành công/thất bại
+- Edit Pet Category
+- Update Pet Categeory thành công/thất bại
+
+Một số ràng buộc của form này:
+
+- Pet category chỉ có title
+- Pet category title không được để trống
+- Pet category title không được dài hơn 150 kí tự
+
+```sh
+# to support multipart/form-data
+npm install nestjs-form-data --save
+# to support data validation and transformation
+npm install class-transformer reflect-metadata --save
+```
+
+**Để sử dụng được multiplart/form-data**, chúng ta cần import module NestJSFormData như bên dưới.
+Do mặc định NestJS được cấu hình chỉ để support json d
+
+```ts
+// src/pet/pet.module.ts
+
+import { Module } from "@nestjs/common";
+import { PetController } from "./controllers/pet.controller";
+import { ManagePetController } from "./controllers/admin/manage-pet.controller";
+import { ManagePetCategoryController } from "./controllers/admin/manage-pet-category.controller";
+import { ManagePetAttributeController } from "./controllers/admin/manage-pet-attribute.controller";
+import { NestjsFormDataModule } from "nestjs-form-data";
+@Module({
+  imports: [NestjsFormDataModule],
+  controllers: [
+    PetController,
+    ManagePetController,
+    ManagePetCategoryController,
+    ManagePetAttributeController,
+  ],
+})
+export class PetModule {}
+```
+
+```ts
+// pet-dto.ts
+
+import { IsNotEmpty, MaxLength } from "class-validator";
+
+class CreatePetCategoryDto {
+  @MaxLength(50)
+  @IsNotEmpty()
+  title: string;
+}
+
+export { CreatePetCategoryDto };
+```
+
+```ts
+import { Body, Controller, Get, Param, Post, Render } from "@nestjs/common";
+import { CreatePetCategoryDto } from "src/pet/dtos/pet-dto";
+import { plainToInstance } from "class-transformer";
+import { validate, ValidationError } from "class-validator";
+import { FormDataRequest } from "nestjs-form-data";
+
+const transformError = (error: ValidationError) => {
+  const { property, constraints } = error;
+  return {
+    property,
+    constraints,
+  };
+};
+@Controller("admin/pet-categories")
+export class ManagePetCategoryController {
+  @Get("")
+  getList() {
+    return "admin pet categories";
+  }
+
+  @Get("create")
+  @Render("pet/admin/manage-pet-category/create")
+  view_create() {
+    // a form
+    return {
+      data: {
+        mode: "create",
+      },
+    };
+  }
+
+  @Post("create")
+  @Render("pet/admin/manage-pet-category/create")
+  @FormDataRequest()
+  async create(@Body() createPetCategoryDto: CreatePetCategoryDto) {
+    const data = {
+      mode: "create",
+    };
+    // validation
+    const object = plainToInstance(CreatePetCategoryDto, createPetCategoryDto);
+    const errors = await validate(object, {
+      stopAtFirstError: true,
+    });
+    if (errors.length > 0) {
+      Reflect.set(data, "error", "Please correct all fields!");
+      const responseError = {};
+      errors.map((error) => {
+        const rawError = transformError(error);
+        Reflect.set(
+          responseError,
+          rawError.property,
+          Object.values(rawError.constraints)[0]
+        );
+      });
+      Reflect.set(data, "errors", responseError);
+      return { data };
+    }
+    // set value and show success message
+    Reflect.set(data, "values", object);
+    Reflect.set(
+      data,
+      "success",
+      `Pet Category : ${object.title} has been created!`
+    );
+    // success
+    return { data };
+  }
+
+  @Get(":id")
+  getDetail(@Param() { id }: { id: string }) {
+    return `admin pet category detail ${id}`;
+  }
+}
+```
+
+```html
+<%- include('layouts/admin/header'); %>
+<section class="col-6">
+  <form method="post" enctype="multipart/form-data">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">
+          <% if (data.mode === 'create') { %> New Pet Category <% } %>
+        </h5>
+        <!-- error -->
+        <% if (data.error){ %>
+        <div class="alert alert-danger" role="alert"><%= data.error %></div>
+        <% } %>
+        <!-- success -->
+        <% if (data.success){ %>
+        <div class="alert alert-success" role="alert"><%= data.success %></div>
+        <% } %>
+        <div class="mb-3">
+          <label for="title" class="form-label">Title</label>
+          <div class="input-group has-validation">
+            <input
+              type="text"
+              class="form-control <%= data.errors && data.errors['title'] ? 'is-invalid': '' %>"
+              id="title"
+              name="title"
+              value="<%= data.values && data.values['title'] %>"
+              placeholder="Pet Category Title"
+            />
+            <% if (data.errors && data.errors['title']) { %>
+            <div id="validationServerUsernameFeedback" class="invalid-feedback">
+              <%= data.errors['title'] %>
+            </div>
+            <% } %>
+          </div>
+        </div>
+      </div>
+      <% if(!data.success) { %>
+      <div class="mb-3 col-12 text-center">
+        <button type="submit" class="btn btn-primary">Save</button>
+      </div>
+      <% } %>
+    </div>
+  </form>
+</section>
+<%- include('layouts/admin/footer'); %>
+```
