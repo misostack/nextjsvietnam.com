@@ -67,6 +67,10 @@ Phía trên mô hình luồng dữ liệu từ khi người dùng thực hiện 
 nest g module pet
 # let's create controllers
 nest g controller pet/controllers/pet --flat
+# for admin pages
+nest g controller pet/controllers/admin/manage-pet --flat
+nest g controller pet/controllers/admin/manage-pet-category --flat
+nest g controller pet/controllers/admin/manage-pet-attribute --flat
 ```
 
 **app.module.ts**
@@ -111,12 +115,12 @@ import { Controller, Get, Param } from "@nestjs/common";
 @Controller("pets")
 export class PetController {
   @Get("")
-  petList() {
+  getList() {
     return "Pet List";
   }
 
   @Get(":id")
-  petDetail(@Param() { id }: { id: number }) {
+  getDetail(@Param() { id }: { id: number }) {
     return `Pet Detail ${id}`;
   }
 }
@@ -133,3 +137,116 @@ export class PetController {
 ![image](https://user-images.githubusercontent.com/31009750/250266589-680113f5-8baa-46a8-b0a3-57f16a9ab2bc.png)
 
 ![image](https://user-images.githubusercontent.com/31009750/250266598-8844188c-d6d9-463f-8fdf-adb597a3bbeb.png)
+
+Cho admin
+
+```ts
+import { Controller, Get, Param } from "@nestjs/common";
+
+@Controller("admin/pets")
+export class ManagePetController {
+  @Get("")
+  getList() {
+    return "admin pet list";
+  }
+
+  @Get(":id")
+  getDetail(@Param() { id }: { id: string }) {
+    return `admin pet detail ${id}`;
+  }
+}
+
+import { Controller, Get, Param } from "@nestjs/common";
+
+@Controller("admin/pet-categories")
+export class ManagePetCategoryController {
+  @Get("")
+  getList() {
+    return "admin pet categories";
+  }
+
+  @Get(":id")
+  getDetail(@Param() { id }: { id: string }) {
+    return `admin pet category detail ${id}`;
+  }
+}
+
+import { Controller, Get, Param } from "@nestjs/common";
+
+@Controller("admin/pet-attributes")
+export class ManagePetAttributeController {
+  @Get("")
+  getList() {
+    return "admin pet attribute list";
+  }
+
+  @Get(":id")
+  getDetail(@Param() { id }: { id: string }) {
+    return `admin pet attribute detail ${id}`;
+  }
+}
+```
+
+**Chúng ta hãy bắt đầu với form tạo 1 pet category**
+
+- Tích hợp với bootstrap (https://getbootstrap.com/docs/5.0/getting-started/download/)
+- Sử dụng ejs partial ( tách các phần chung của trang web - header, footer, và sử dụng lại trong từng template khác nhau)
+- Tạo route
+- Kết nối với view
+- Nhận dữ liệu từ form và xử lý kết quả (fake data)
+
+Cấu trúc thư mục view sẽ có dạng như sau
+
+> views\pet\admin\manage-pet-category\create.ejs
+
+Do đó khi sử dụng ta chỉ cần chỉ đường dẫn tới file template nằm trong thư mục view
+
+```ts
+@Render("pet/admin/manage-pet-category/create")
+```
+
+Sau khi sử dụng 1 số example có sẵn tại bootstrap ta có thể sử dụng template như bên dưới:
+
+```ts
+import { Controller, Get, Param, Post, Render } from "@nestjs/common";
+
+@Controller("admin/pet-categories")
+export class ManagePetCategoryController {
+  @Get("")
+  getList() {
+    return "admin pet categories";
+  }
+
+  @Get("create")
+  @Post("create")
+  @Render("pet/admin/manage-pet-category/create")
+  create() {
+    // a form
+    return {};
+  }
+
+  @Get(":id")
+  getDetail(@Param() { id }: { id: string }) {
+    return `admin pet category detail ${id}`;
+  }
+}
+```
+
+Trong đó phần header, footer sẽ chứa những thành phần dùng chung trong template
+
+```ejs
+<%- include('layouts/admin/header'); %>
+<h1>Manage Pet Category - Create New Pet Category</h1>
+<%- include('layouts/admin/footer'); %>
+```
+
+![image](https://user-images.githubusercontent.com/31009750/250268918-ee065a07-00fe-4036-8035-280fdd3345c3.png)
+
+You can find all the related source code here:
+
+- [Assets](https://github.com/misostack/nestjs-tutorial-2023/tree/lession03/public/assets)
+- [Layouts](https://github.com/misostack/nestjs-tutorial-2023/tree/lession03/views/layouts/admin)
+
+Và chúng ta có kết quả như sau:
+
+![image](https://user-images.githubusercontent.com/31009750/250269750-766734ec-d18f-4c5f-b713-26a6e594bbf7.png)

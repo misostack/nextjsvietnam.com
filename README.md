@@ -21,3 +21,7 @@ hugo new [archtype]/[post-name].md "Post title"
 
 hugo new post/hello.md "hello"
 ```
+
+### Get Remote Data
+
+- https://gohugo.io/templates/data-templates/
