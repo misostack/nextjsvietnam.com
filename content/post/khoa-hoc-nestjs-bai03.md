@@ -433,3 +433,9 @@ export class ManagePetCategoryController {
 </section>
 <%- include('layouts/admin/footer'); %>
 ```
+
+Và chúng ta có được 3 trạng thái của form như bên dưới
+
+![image](https://user-images.githubusercontent.com/31009750/250274557-9a8d1677-7737-4127-b8d7-4ad1ca7404c0.png)
+![image](https://user-images.githubusercontent.com/31009750/250274563-3952ec74-8aae-49ca-a093-39d2997eb8ed.png)
+![image](https://user-images.githubusercontent.com/31009750/250274577-33997f54-815c-4600-9dd3-acfc1b96fb38.png)
