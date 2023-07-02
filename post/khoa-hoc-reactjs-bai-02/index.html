@@ -115,51 +115,107 @@
 <strong>Tags:</strong>
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=/tags/reactjs>reactjs</a>
 </p>
-<p><strong>Note</strong>: Toàn bộ mã nguồn của khóa học này đều được công khai trên github tại <a href=//github.com/misostack/reactjs-tutorial-2023.git>ReactJS Tutorial 2023</a></p>
-<p>Trước khi bắt đầu nội dung chi tiết của khóa học này, tôi sẽ liệt kê một số câu hỏi thường gặp, cũng như câu trả lời của nó.</p>
-<h2 id=câu-hỏi-số-1--tại-sao-khóa-học-này-xuất-hiện>Câu hỏi số 1 : Tại sao khóa học này xuất hiện?</h2>
-<blockquote>
-<h3 id=câu-trả-lời-là-niềm-tự-hào-dân-tộc>Câu trả lời là &ldquo;Niềm tự hào dân tộc&rdquo;.</h3>
-</blockquote>
-<p>Phần lớn tài liệu dành cho lập trình viên được viết bằng &ldquo;Tiếng Anh&rdquo;, tuy nhiên một số quốc gia như &ldquo;Trung Quốc&rdquo;, &ldquo;Nhật Bản&rdquo;, &ldquo;Hàn Quốc&rdquo;, hay các nước lớn như &ldquo;Pháp&rdquo;, &ldquo;Đức&rdquo; đều có những tài liệu lập trình được địa phương hóa, với rất nhiều kiến thức chuyên sâu, cũng như các chú giải/kinh nghiệm của người đi trước được truyền tải lại.</p>
-<p>Nhận thấy được điều này, thay vì tiếp tục viết nhật kí trực tuyến (blog) bằng tiếng Anh, tôi quyết định vẫn tiếp tục chia sẻ kiến thức bằng các nội dung tiếng Việt - đồng thời sẽ dùng google translate dịch toàn bộ nội dung tiếng Việt sang tiếng Anh để chia sẻ trên medium/devto và dẫn liên kết ngược trở lại trang nhật kí này.</p>
-<h2 id=câu-hỏi-số-2--khóa-học-này-có-tốn-phí>Câu hỏi số 2 : Khóa học này có tốn phí?</h2>
-<blockquote>
-<h3 id=khóa-học-hoàn-toàn-miễn-phí>Khóa học hoàn toàn miễn phí</h3>
-</blockquote>
+<p><strong>Note</strong>: Toàn bộ mã nguồn của khóa học này đều được công khai trên github tại <a href=https://github.com/misostack/reactjs-tutorial-2023/tree/lession02>ReactJS Tutorial 2023</a></p>
+<h2 id=bài-02>Bài 02</h2>
+<ol>
+<li>Tạo dự án mới với vite</li>
+<li>Sử dụng Env Variables</li>
+<li>Rendering</li>
+</ol>
+<h3 id=tạo-dự-án-mới-với-vite>Tạo dự án mới với vite</h3>
 <ul>
-<li>Tuy nhiên bạn vẫn tốn thời gian để đọc và thực hành. Điều quan trọng nhất vẫn là tự bản thân bạn phải thực hành được những kiến thức được chia sẻ trong các bài học và biến nó thành của riêng bạn.</li>
+<li><a href=https://vitejs.dev/guide/>Tham khảo</a></li>
 </ul>
-<h2 id=câu-hỏi-số-3--khóa-học-này-dành-cho-ai>Câu hỏi số 3 : Khóa học này dành cho ai?</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>npm create vite@latest reactjs-tutorial-2023 -- --template react
+</code></pre></div><p>Ngoài react ra vite còn hỗ trợ 1 số template khác khi tạo dự án như: vanilla, vanilla-ts, vue, vue-ts, react, react-ts, react-swc, react-swc-ts, preact, preact-ts, lit, lit-ts, svelte, svelte-ts.</p>
+<p>Khi khởi tạo dự án bằng vite, anh chị sẽ có 3 command được thiết lập sẵn.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>npm run dev <span style=color:#75715e># run development mode - chế độ phát triển (chạy trên máy mình)</span>
+npm run build <span style=color:#75715e># build production - chế độ build (phiên bản sẽ được triển khai trên môi trường thật)</span>
+npm run preview <span style=color:#75715e># view production build ( xem thử bản build )</span>
+</code></pre></div><p>Tuy nhiên khi chạy ở chế độ phát triển (dev), vite sẽ tự động chọn port cho chúng ta, khá bất tiện. Do đó tôi xin hướng dẫn 1 cách phổ biến để cố định port này.</p>
 <blockquote>
-<h3 id=khóa-học-dành-cho-các-lập-trình-viên-đã-có-hiểu-biết-về-javascript-và-typescript-và-cơ-bản-của-htmlcss>Khóa học dành cho các lập trình viên đã có hiểu biết về javascript và typescript và cơ bản của HTML,CSS.</h3>
+<p>vite.config.js</p>
 </blockquote>
-<ul>
-<li>Nếu bạn chưa có kiến thức về javascript và typescript, HTML&CSS, hãy tạm dừng và quay trở lại khi đã có kiến thức căn bản về 3 món vũ khí trên.</li>
-</ul>
-<h2 id=câu-hỏi-số-4--khóa-học-này-gồm-những-gì>Câu hỏi số 4 : Khóa học này gồm những gì?</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>defineConfig</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;vite&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#a6e22e>react</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;@vitejs/plugin-react&#34;</span>;
+
+<span style=color:#75715e>// https://vitejs.dev/config/
+</span><span style=color:#75715e></span><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#a6e22e>defineConfig</span>({
+  <span style=color:#a6e22e>plugins</span><span style=color:#f92672>:</span> [<span style=color:#a6e22e>react</span>()],
+  <span style=color:#a6e22e>server</span><span style=color:#f92672>:</span> {
+    <span style=color:#a6e22e>port</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>3015</span>,
+  },
+});
+</code></pre></div><p>Sau khi điều chỉnh xong, khi ở chế độ nhà phát triển, trang web sẽ chạy tại cổng 3015.
+Ngoài ra còn 1 số config khác, anh chị có thể xem và thử <a href=https://vitejs.dev/config/build-options.html>tại đây</a></p>
+<h2 id=sử-dụng-env-variables>Sử dụng Env Variables</h2>
+<p>Khi phát triển 1 dự án ReactJS, đôi khi giữa các môi trường khác nhau, chúng ta cần sử dụng những biến khác nhau. Chẳng hạn: API Endpoint, App Name, và một số biến khác tùy thuộc dự án.
+Để làm điều này, vite cung cấp cho các anh chị một lựa chọn là sử dụng .env file để thiết lập các biến mình mong muốn, và sử dụng được chúng trong code js. Lưu ý các biến này sẽ được vite sử dụng khi bắt đầu chạy server dev( chế độ phát triển) hoặc khi tiến hành build ( chế độ production )</p>
+<p>Về thứ tự ưu tiên của vite khi có nhiều file môi trường khác nhau, anh chị có thể tham khảo bên dưới</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>.env                <span style=color:#75715e># ưu tiên cao nhất, trong mọi môi trường</span>
+.env.local          <span style=color:#75715e># ưu tiên cao thứ 2, trong mọi môi trường, thường bị add vào gitginore rồi</span>
+.env.<span style=color:#f92672>[</span>mode<span style=color:#f92672>]</span>         <span style=color:#75715e># ưu tiên cao thứ 3, và theo môi trường cụ thể</span>
+.env.<span style=color:#f92672>[</span>mode<span style=color:#f92672>]</span>.local   <span style=color:#75715e># ưu tiên cao thứ 4, và theo môi trường cụ thể, thường bị add vào gitginore rồi</span>
+</code></pre></div><p>Do có nhiều môi trường, nhưng về bản chất chúng ta chỉ cần thiết lập 1 file .env mẫu, ở mỗi môi trường khác nhau, chúng ta chỉ việc copy và thay đổi cho phù hợp là được.</p>
+<p>Đầu tiên, tạo 1 file .env mẫu</p>
 <blockquote>
-<h3 id=khóa-học-bao-gồm-4-phần>Khóa học bao gồm 4 phần</h3>
+<p>.env.template</p>
 </blockquote>
-<ul>
-<li>Kiến thức nền tảng của ReactJS</li>
-<li>Cách sử dụng các module sẵn có trong hệ sinh thái của ReactJS</li>
-<li>Cách cấu trúc 1 dự án ReactJS trong thực tế</li>
-<li>Chia sẻ kinh nghiệm và hỏi đáp</li>
-</ul>
-<h2 id=câu-hỏi-số-5--khóa-học-này-sẽ-diễn-ra-trong-bao-lâu>Câu hỏi số 5 : Khóa học này sẽ diễn ra trong bao lâu?</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>VITE_APP_VERSION<span style=color:#f92672>=</span>1.23
+VITE_APP_NAME<span style=color:#f92672>=</span>ReactJS Tutorial <span style=color:#ae81ff>2023</span>
+</code></pre></div><p><strong>Lưu ý quan trọng là các biến khai báo phải bắt đầu với prefix là VITE_ thì vite mới nhận được và cho anh chị sử dụng</strong></p>
+<p>Copy cho 2 môi trường : development, production</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>cp .env.template .env.development
+cp .env.template .env.production
+</code></pre></div><blockquote>
+<p>.env.development</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>VITE_APP_VERSION<span style=color:#f92672>=</span>1.23
+VITE_APP_NAME<span style=color:#f92672>=</span>ReactJS Tutorial 2023<span style=color:#f92672>(</span>Localhost<span style=color:#f92672>)</span>
+</code></pre></div><p>Sử dụng trong code</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>import</span>.<span style=color:#a6e22e>meta</span>.<span style=color:#a6e22e>env</span>.<span style=color:#a6e22e>VITE_</span>[<span style=color:#a6e22e>ANYTHING</span>];
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#75715e>// src\shared\environment.js
+</span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>enviroment</span> <span style=color:#f92672>=</span> {
+  <span style=color:#a6e22e>APP_NAME</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>import</span>.<span style=color:#a6e22e>meta</span>.<span style=color:#a6e22e>env</span>.<span style=color:#a6e22e>VITE_APP_NAME</span>,
+  <span style=color:#a6e22e>APP_VERSION</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>import</span>.<span style=color:#a6e22e>meta</span>.<span style=color:#a6e22e>env</span>.<span style=color:#a6e22e>VITE_APP_VERSION</span>,
+  <span style=color:#a6e22e>MODE</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>import</span>.<span style=color:#a6e22e>meta</span>.<span style=color:#a6e22e>env</span>.<span style=color:#a6e22e>MODE</span>,
+};
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#a6e22e>enviroment</span>;
+
+<span style=color:#75715e>// src\App.jsx
+</span><span style=color:#75715e></span><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#34;./App.css&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#a6e22e>enviroment</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;./shared/environment&#34;</span>;
+
+<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>App</span>() {
+  <span style=color:#66d9ef>return</span> (
+    <span style=color:#f92672>&lt;&gt;</span>
+      <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>header</span><span style=color:#f92672>&gt;</span>
+        <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>h1</span><span style=color:#f92672>&gt;</span>{<span style=color:#a6e22e>enviroment</span>.<span style=color:#a6e22e>APP_NAME</span>}<span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/h1&gt;</span>
+      <span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/header&gt;</span>
+      <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>main</span><span style=color:#f92672>&gt;</span><span style=color:#a6e22e>Content</span><span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/main&gt;</span>
+      <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>footer</span><span style=color:#f92672>&gt;</span>
+        <span style=color:#a6e22e>Copyright</span><span style=color:#960050;background-color:#1e0010>@</span><span style=color:#a6e22e>JSBase</span> <span style=color:#f92672>-</span> {<span style=color:#a6e22e>enviroment</span>.<span style=color:#a6e22e>APP_VERSION</span>} <span style=color:#f92672>-</span> {<span style=color:#a6e22e>enviroment</span>.<span style=color:#a6e22e>MODE</span>}
+      <span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/footer&gt;</span>
+    <span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/&gt;</span>
+  );
+}
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#a6e22e>App</span>;
+</code></pre></div><p>Còn bước nhỏ, nhưng khá quan trọng là nên điều chỉnh lại file .gitignore, nhằm tránh việc commit các file .env môi trường khác nhau</p>
 <blockquote>
-<h3 id=thời-gian-khóa-học-kéo-dài-sẽ-phụ-thuộc-vào-việc-tôi-sẽ-sắp-xếp-được-thời-gian-để-lên-bài-cũng-như-số-lượng-người-theo-dõi>Thời gian khóa học kéo dài sẽ phụ thuộc vào việc tôi sẽ sắp xếp được thời gian để lên bài, cũng như số lượng người theo dõi</h3>
+<p>.gitignore</p>
 </blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=color:#75715e># enviroment</span>
+.env.*
+!.env.template
+</code></pre></div><p>Chạy thử chế độ phát triển ta sẽ có</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>npm run dev
+</code></pre></div><p><img src=https://user-images.githubusercontent.com/31009750/250349748-7707095a-ab11-41de-86b3-987580b5967a.png alt=image></p>
+<h3 id=rendering>Rendering</h3>
 <ul>
-<li>Khóa học này sẽ diễn ra trong 1 thời gian dài nhất có thể.</li>
-<li>Mục tiêu để có được bài học chất lượng, nên mục tiêu xuất bản sẽ rơi vào khoảng 1 bài học/tuần.</li>
+<li><a href=https://react.dev/learn#>Tham khảo</a></li>
 </ul>
-<h2 id=câu-hỏi-số-6--nếu-bạn-muốn-gửi-câu-hỏi-thì-sẽ-gửi-vào-đâu>Câu hỏi số 6 : Nếu bạn muốn gửi câu hỏi, thì sẽ gửi vào đâu</h2>
-<ul>
-<li>Nếu bạn có câu hỏi vui lòng cung cấp một số thông tin <a href=https://forms.gle/CziyS5q77x71wrkB6>theo mẫu sau</a></li>
-</ul>
-<p><a href=https://forms.gle/CziyS5q77x71wrkB6><img src=https://user-images.githubusercontent.com/31009750/246770149-f019c2c1-c641-4598-b5ae-e7ccb90edd3a.png alt=image></a></p>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/reactjs-tutorial>reactjs-tutorial</a>
 </div>
@@ -170,7 +226,7 @@
 <div class="font-heading text-2xl font-semibold">You Might Also Like</div>
 <div class="mt-8 grid gap-8">
 <ul class=sidebar-links>
-<li><a href=/post/khoa-hoc-reactjs-bai-02/>Khóa học ReactJS - Bài 01 - Lộ trình các bài học về ReactJS</a></li>
+<li><a href=/post/khoa-hoc-reactjs/>Khóa học ReactJS - Bài 01 - Lộ trình các bài học về ReactJS</a></li>
 </ul>
 </div>
 </div>
