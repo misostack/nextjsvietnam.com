@@ -120,7 +120,7 @@
 <ol>
 <li>Tạo dự án mới với vite</li>
 <li>Sử dụng Env Variables</li>
-<li>Rendering</li>
+<li>Rendering: Khái niệm về component, JSX</li>
 </ol>
 <h3 id=tạo-dự-án-mới-với-vite>Tạo dự án mới với vite</h3>
 <ul>
@@ -213,7 +213,153 @@ VITE_APP_NAME<span style=color:#f92672>=</span>ReactJS Tutorial 2023<span style=
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>npm run dev
 </code></pre></div><p><img src=https://user-images.githubusercontent.com/31009750/250349748-7707095a-ab11-41de-86b3-987580b5967a.png alt=image></p>
 <h3 id=rendering>Rendering</h3>
+<h4 id=components>Components</h4>
+<p>Bản chất của ReactJS app là các anh chị sẽ thiết kế và tổ hợp các component lại. Vậy component bản chất là gì.</p>
+<p><img src=https://user-images.githubusercontent.com/31009750/250351107-f9625126-9cd6-46c8-8588-cadf48209588.png alt=image></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>MyButton</span>() {
+  <span style=color:#66d9ef>return</span> &lt;<span style=color:#f92672>button</span>&gt;<span style=color:#a6e22e>I</span><span style=color:#960050;background-color:#1e0010>&#39;</span><span style=color:#a6e22e>m</span> <span style=color:#a6e22e>a</span> <span style=color:#a6e22e>button</span>&lt;/<span style=color:#f92672>button</span>&gt;;
+}
+</code></pre></div><p>Bản chất của component là 1 function return 1 ReactElement, có 2 cách để tạo ra ReactElement:</p>
 <ul>
+<li>Sử dụng React.createElement</li>
+<li>Sử dụng JSX</li>
+</ul>
+<p>Nếu không dùng ReactJS, hãy xem xét đoạn code bên dưới, cách chúng ta tạo 1 thẻ h1 với nội dung là ReactJS Tutorial 2023.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>root</span> <span style=color:#f92672>=</span> document.<span style=color:#a6e22e>querySelector</span>(<span style=color:#e6db74>&#34;#root&#34;</span>);
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>heading</span> <span style=color:#f92672>=</span> document.<span style=color:#a6e22e>createElement</span>(<span style=color:#e6db74>&#34;h1&#34;</span>);
+<span style=color:#a6e22e>heading</span>.<span style=color:#a6e22e>innerText</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;ReactJS Tutorial 2023&#34;</span>;
+<span style=color:#a6e22e>root</span>.<span style=color:#a6e22e>append</span>(<span style=color:#a6e22e>heading</span>);
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>React</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;react&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#a6e22e>ReactDOM</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;react-dom/client&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#34;./index.css&#34;</span>;
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>heading</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>React</span>.<span style=color:#a6e22e>createElement</span>(<span style=color:#e6db74>&#34;h1&#34;</span>, {}, <span style=color:#e6db74>&#34;ReactJS Tutorial 2023&#34;</span>);
+<span style=color:#a6e22e>ReactDOM</span>.<span style=color:#a6e22e>createRoot</span>(document.<span style=color:#a6e22e>getElementById</span>(<span style=color:#e6db74>&#34;root&#34;</span>)).<span style=color:#a6e22e>render</span>(<span style=color:#a6e22e>heading</span>);
+</code></pre></div><p>Tuy nhiên để đơn giản ReactJS đã hỗ trợ chúng ta 1 syntax khác gọi là &ldquo;JSX&rdquo;, cho phép các anh chị có thể viết HTML Element trong Javascript mà ko cần tới createElement/appendChild.
+JSX sẽ tự động chuyển đổi HTML tags into react elements.</p>
+<p>Phiên bản JSX</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#34;./App.css&#34;</span>;
+
+<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>App</span>() {
+  <span style=color:#66d9ef>return</span> (
+    &lt;&gt;
+      &lt;<span style=color:#f92672>h1</span>&gt;<span style=color:#a6e22e>ReactJS</span> <span style=color:#a6e22e>Tutorial</span> <span style=color:#ae81ff>2023</span>&lt;/<span style=color:#f92672>h1</span>&gt;
+    &lt;/&gt;
+  );
+}
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#a6e22e>App</span>;
+</code></pre></div><p>Tuy nhiên sẽ có một số khác biệt giữa JSX và HTML, các anh chị có thể sử dụng <a href=https://transform.tools/html-to-jsx>công cụ chuyển đổi HTML sang JSX</a> này để tìm hiểu thêm. Ở đây tôi sẽ liệt kê một số điểm chính cần lưu ý khi sử dụng JSX.</p>
+<h4 id=jsx>JSX</h4>
+<ol>
+<li>JSX bắt buộc sử dụng thẻ đóng (close tags) - thay vì chỉ </li>
+<li>Một component không thể return nhiều JSX</li>
+<li>Sử dụng className thay vì class</li>
+<li>Inline style là 1 object</li>
+<li>Hiển thị data và hỗ trợ Javascript Expression</li>
+<li>Nếu data là array, React sẽ coi như mỗi phần tử trong mảng là 1 element, và render chúng theo thứ tự. Do đó nếu data của bạn là object, lẽ dĩ nhiên React sẽ không chấp nhận và nó sẽ báo lỗi.</li>
+<li>Render 1 danh sách</li>
+<li>Render có điều kiện</li>
+<li>Event handlers</li>
+</ol>
+<p><strong>Valid</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#34;./App.css&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#a6e22e>enviroment</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;./shared/environment&#34;</span>;
+
+<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>Hello</span>() {
+  <span style=color:#66d9ef>return</span> (
+    &lt;<span style=color:#f92672>li</span>&gt;
+      &lt;<span style=color:#f92672>strong</span>&gt;<span style=color:#a6e22e>Hello</span>&lt;/<span style=color:#f92672>strong</span>&gt;
+    &lt;/<span style=color:#f92672>li</span>&gt;
+  );
+}
+
+<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>App</span>() {
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>aString</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;aString&#34;</span>;
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>aBoolean</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>true</span>;
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>aNumber</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0.3</span>;
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>anObject</span> <span style=color:#f92672>=</span> {};
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>anArray</span> <span style=color:#f92672>=</span> [<span style=color:#e6db74>&#34;green&#34;</span>, <span style=color:#e6db74>&#34;red&#34;</span>, <span style=color:#e6db74>&#34;yellow&#34;</span>];
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>anArrayElements</span> <span style=color:#f92672>=</span> [&lt;<span style=color:#f92672>Hello</span> <span style=color:#a6e22e>key</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;1&#34;</span> /&gt;, &lt;<span style=color:#f92672>Hello</span> <span style=color:#a6e22e>key</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;2&#34;</span> /&gt;];
+  <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>index</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>3</span>; <span style=color:#a6e22e>index</span> <span style=color:#f92672>&lt;=</span> <span style=color:#ae81ff>10</span>; <span style=color:#a6e22e>index</span><span style=color:#f92672>++</span>) {
+    <span style=color:#a6e22e>anArrayElements</span>.<span style=color:#a6e22e>push</span>(&lt;<span style=color:#f92672>Hello</span> <span style=color:#a6e22e>key</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>index</span>} /&gt;);
+  }
+  <span style=color:#66d9ef>return</span> (
+    &lt;&gt;
+      &lt;<span style=color:#f92672>h1</span>&gt;<span style=color:#a6e22e>ReactJS</span> <span style=color:#a6e22e>Tutorial</span> <span style=color:#ae81ff>2023</span>&lt;/<span style=color:#f92672>h1</span>&gt;
+      &lt;<span style=color:#f92672>header</span>&gt;
+        &lt;<span style=color:#f92672>h1</span>&gt;{<span style=color:#a6e22e>enviroment</span>.<span style=color:#a6e22e>APP_NAME</span>}&lt;/<span style=color:#f92672>h1</span>&gt;
+      &lt;/<span style=color:#f92672>header</span>&gt;
+      &lt;<span style=color:#f92672>main</span>&gt;
+        &lt;<span style=color:#f92672>h2</span>&gt;<span style=color:#a6e22e>JSX</span>&lt;/<span style=color:#f92672>h2</span>&gt;
+        &lt;<span style=color:#f92672>br</span> /&gt;
+        &lt;<span style=color:#f92672>h3</span>
+          <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;success&#34;</span>
+          <span style=color:#a6e22e>style</span><span style=color:#f92672>=</span>{{
+            <span style=color:#a6e22e>fontSize</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;2rem&#34;</span>,
+          }}
+        &gt;
+          <span style=color:#a6e22e>Inline</span> <span style=color:#a6e22e>style</span> <span style=color:#a6e22e>and</span> <span style=color:#a6e22e>Class</span>
+        &lt;/<span style=color:#f92672>h3</span>&gt;
+        &lt;<span style=color:#f92672>p</span>&gt;<span style=color:#a6e22e>aString</span><span style=color:#f92672>:</span> {<span style=color:#a6e22e>aString</span>}&lt;/<span style=color:#f92672>p</span>&gt;
+        &lt;<span style=color:#f92672>p</span>&gt;<span style=color:#a6e22e>aBoolean</span><span style=color:#f92672>:</span> {<span style=color:#a6e22e>aBoolean</span>}&lt;/<span style=color:#f92672>p</span>&gt;
+        &lt;<span style=color:#f92672>p</span>&gt;<span style=color:#a6e22e>aNumber</span><span style=color:#f92672>:</span> {<span style=color:#a6e22e>aNumber</span>}&lt;/<span style=color:#f92672>p</span>&gt;
+        &lt;<span style=color:#f92672>p</span>&gt;<span style=color:#a6e22e>An</span> Array<span style=color:#f92672>:</span> {<span style=color:#a6e22e>anArray</span>}&lt;/<span style=color:#f92672>p</span>&gt;
+        &lt;<span style=color:#f92672>p</span>&gt;<span style=color:#a6e22e>An</span> Object<span style=color:#f92672>:</span> {<span style=color:#a6e22e>JSON</span>.<span style=color:#a6e22e>stringify</span>(<span style=color:#a6e22e>anObject</span>)}&lt;/<span style=color:#f92672>p</span>&gt;
+        &lt;<span style=color:#f92672>p</span>&gt;
+          {<span style=color:#a6e22e>anArray</span>.<span style=color:#a6e22e>length</span> <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>3</span> <span style=color:#f92672>?</span> (
+            &lt;<span style=color:#f92672>strong</span>&gt;<span style=color:#a6e22e>Long</span> <span style=color:#a6e22e>list</span>&lt;/<span style=color:#f92672>strong</span>&gt;
+          ) <span style=color:#f92672>:</span> (
+            &lt;<span style=color:#f92672>strong</span>&gt;<span style=color:#a6e22e>Short</span> <span style=color:#a6e22e>list</span>&lt;/<span style=color:#f92672>strong</span>&gt;
+          )}
+        &lt;/<span style=color:#f92672>p</span>&gt;
+        &lt;<span style=color:#f92672>div</span>&gt;
+          <span style=color:#a6e22e>An</span> Array <span style=color:#a6e22e>Of</span> <span style=color:#a6e22e>Elements</span><span style=color:#f92672>:</span> &lt;<span style=color:#f92672>ul</span>&gt;{<span style=color:#a6e22e>anArrayElements</span>}&lt;/<span style=color:#f92672>ul</span>&gt;
+        &lt;/<span style=color:#f92672>div</span>&gt;
+        &lt;<span style=color:#f92672>ol</span> <span style=color:#a6e22e>style</span><span style=color:#f92672>=</span>{{ <span style=color:#a6e22e>listStyleType</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;\\1F44&#34;</span> }}&gt;
+          {<span style=color:#a6e22e>anArrayElements</span>.<span style=color:#a6e22e>map</span>((<span style=color:#a6e22e>item</span>) =&gt; <span style=color:#a6e22e>item</span>)}
+        &lt;/<span style=color:#f92672>ol</span>&gt;
+        &lt;<span style=color:#f92672>button</span>
+          <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{() =&gt; {
+            <span style=color:#a6e22e>alert</span>(<span style=color:#e6db74>&#34;This button has been clicked!&#34;</span>);
+          }}
+        &gt;
+          <span style=color:#a6e22e>On</span> <span style=color:#a6e22e>click</span> <span style=color:#a6e22e>event</span> <span style=color:#a6e22e>handler</span>
+        &lt;/<span style=color:#f92672>button</span>&gt;
+      &lt;/<span style=color:#f92672>main</span>&gt;
+      &lt;<span style=color:#f92672>footer</span>&gt;
+        <span style=color:#a6e22e>Copyright</span><span style=color:#960050;background-color:#1e0010>@</span><span style=color:#a6e22e>JSBase</span> <span style=color:#f92672>-</span> {<span style=color:#a6e22e>enviroment</span>.<span style=color:#a6e22e>APP_VERSION</span>} <span style=color:#f92672>-</span> {<span style=color:#a6e22e>enviroment</span>.<span style=color:#a6e22e>MODE</span>}
+      &lt;/<span style=color:#f92672>footer</span>&gt;
+    &lt;/&gt;
+  );
+}
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#a6e22e>App</span>;
+</code></pre></div><p><strong>Invalid</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx>&lt;<span style=color:#f92672>p</span>&gt;<span style=color:#a6e22e>An</span> Object<span style=color:#f92672>:</span> {<span style=color:#a6e22e>anObject</span>}&lt;/<span style=color:#f92672>p</span>&gt;
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#34;./App.css&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#a6e22e>enviroment</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;./shared/environment&#34;</span>;
+
+<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>App</span>() {
+  <span style=color:#66d9ef>return</span> (
+    &lt;&gt;
+      &lt;<span style=color:#f92672>h1</span>&gt;<span style=color:#a6e22e>ReactJS</span> <span style=color:#a6e22e>Tutorial</span> <span style=color:#ae81ff>2023</span>&lt;/<span style=color:#f92672>h1</span>&gt;
+      &lt;<span style=color:#f92672>header</span>&gt;
+        &lt;<span style=color:#f92672>h1</span>&gt;{<span style=color:#a6e22e>enviroment</span>.<span style=color:#a6e22e>APP_NAME</span>}&lt;/<span style=color:#f92672>h1</span>&gt;
+      &lt;/<span style=color:#f92672>header</span>&gt;
+      &lt;<span style=color:#f92672>main</span>&gt;
+        &lt;<span style=color:#f92672>h2</span>&gt;<span style=color:#a6e22e>JSX</span>&lt;/<span style=color:#f92672>h2</span>&gt;
+        &lt;<span style=color:#f92672>br</span> /&gt;
+      &lt;/<span style=color:#f92672>main</span>&gt;
+      &lt;<span style=color:#f92672>footer</span>&gt;
+        <span style=color:#a6e22e>Copyright</span><span style=color:#960050;background-color:#1e0010>@</span><span style=color:#a6e22e>JSBase</span> <span style=color:#f92672>-</span> {<span style=color:#a6e22e>enviroment</span>.<span style=color:#a6e22e>APP_VERSION</span>} <span style=color:#f92672>-</span> {<span style=color:#a6e22e>enviroment</span>.<span style=color:#a6e22e>MODE</span>}
+      &lt;/<span style=color:#f92672>footer</span>&gt;
+    &lt;/&gt;
+  );
+}
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#a6e22e>App</span>;
+</code></pre></div><ul>
 <li><a href=https://react.dev/learn#>Tham khảo</a></li>
 </ul>
 <div class="m-1 p-1">
