@@ -1,7 +1,7 @@
 ---
-title: "Khóa học ReactJS - Bài 01 - Lộ trình các bài học về ReactJS"
+title: "Khóa học ReactJS - Bài 02 - Làm quen với ReactJS qua các khái niệm"
 type: "post"
-date: 2023-05-19T22:00:00+07:00
+date: 2023-07-02T22:00:00+07:00
 description: "Giáo án tự học ReactJS cho người mới bắt đầu"
 keywords: ["reactjs", "reactjs-beginner"]
 categories: ["reactjs-tutorial"]
