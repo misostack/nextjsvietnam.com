@@ -15,7 +15,7 @@ image: "https://user-images.githubusercontent.com/31009750/246856332-ece36caa-82
 
 1. Tạo dự án mới với vite
 2. Sử dụng Env Variables
-3. Rendering
+3. Rendering: Khái niệm về component, JSX
 
 ### Tạo dự án mới với vite
 
@@ -152,5 +152,181 @@ npm run dev
 ![image](https://user-images.githubusercontent.com/31009750/250349748-7707095a-ab11-41de-86b3-987580b5967a.png)
 
 ### Rendering
+
+#### Components
+
+Bản chất của ReactJS app là các anh chị sẽ thiết kế và tổ hợp các component lại. Vậy component bản chất là gì.
+
+![image](https://user-images.githubusercontent.com/31009750/250351107-f9625126-9cd6-46c8-8588-cadf48209588.png)
+
+```jsx
+function MyButton() {
+  return <button>I'm a button</button>;
+}
+```
+
+Bản chất của component là 1 function return 1 ReactElement, có 2 cách để tạo ra ReactElement:
+
+- Sử dụng React.createElement
+- Sử dụng JSX
+
+Nếu không dùng ReactJS, hãy xem xét đoạn code bên dưới, cách chúng ta tạo 1 thẻ h1 với nội dung là ReactJS Tutorial 2023.
+
+```js
+const root = document.querySelector("#root");
+const heading = document.createElement("h1");
+heading.innerText = "ReactJS Tutorial 2023";
+root.append(heading);
+```
+
+```js
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+
+const heading = React.createElement("h1", {}, "ReactJS Tutorial 2023");
+ReactDOM.createRoot(document.getElementById("root")).render(heading);
+```
+
+Tuy nhiên để đơn giản ReactJS đã hỗ trợ chúng ta 1 syntax khác gọi là "JSX", cho phép các anh chị có thể viết HTML Element trong Javascript mà ko cần tới createElement/appendChild.
+JSX sẽ tự động chuyển đổi HTML tags into react elements.
+
+Phiên bản JSX
+
+```jsx
+import "./App.css";
+
+function App() {
+  return (
+    <>
+      <h1>ReactJS Tutorial 2023</h1>
+    </>
+  );
+}
+
+export default App;
+```
+
+Tuy nhiên sẽ có một số khác biệt giữa JSX và HTML, các anh chị có thể sử dụng [công cụ chuyển đổi HTML sang JSX](https://transform.tools/html-to-jsx) này để tìm hiểu thêm. Ở đây tôi sẽ liệt kê một số điểm chính cần lưu ý khi sử dụng JSX.
+
+#### JSX
+
+1. JSX bắt buộc sử dụng thẻ đóng (close tags) - <br/> thay vì chỉ <br>
+2. Một component không thể return nhiều JSX
+3. Sử dụng className thay vì class
+4. Inline style là 1 object
+5. Hiển thị data và hỗ trợ Javascript Expression
+6. Nếu data là array, React sẽ coi như mỗi phần tử trong mảng là 1 element, và render chúng theo thứ tự. Do đó nếu data của bạn là object, lẽ dĩ nhiên React sẽ không chấp nhận và nó sẽ báo lỗi.
+7. Render 1 danh sách
+8. Render có điều kiện
+9. Event handlers
+
+**Valid**
+
+```jsx
+import "./App.css";
+import enviroment from "./shared/environment";
+
+function Hello() {
+  return (
+    <li>
+      <strong>Hello</strong>
+    </li>
+  );
+}
+
+function App() {
+  const aString = "aString";
+  const aBoolean = true;
+  const aNumber = 0.3;
+  const anObject = {};
+  const anArray = ["green", "red", "yellow"];
+  const anArrayElements = [<Hello key="1" />, <Hello key="2" />];
+  for (let index = 3; index <= 10; index++) {
+    anArrayElements.push(<Hello key={index} />);
+  }
+  return (
+    <>
+      <h1>ReactJS Tutorial 2023</h1>
+      <header>
+        <h1>{enviroment.APP_NAME}</h1>
+      </header>
+      <main>
+        <h2>JSX</h2>
+        <br />
+        <h3
+          className="success"
+          style={{
+            fontSize: "2rem",
+          }}
+        >
+          Inline style and Class
+        </h3>
+        <p>aString: {aString}</p>
+        <p>aBoolean: {aBoolean}</p>
+        <p>aNumber: {aNumber}</p>
+        <p>An Array: {anArray}</p>
+        <p>An Object: {JSON.stringify(anObject)}</p>
+        <p>
+          {anArray.length > 3 ? (
+            <strong>Long list</strong>
+          ) : (
+            <strong>Short list</strong>
+          )}
+        </p>
+        <div>
+          An Array Of Elements: <ul>{anArrayElements}</ul>
+        </div>
+        <ol style={{ listStyleType: "\\1F44" }}>
+          {anArrayElements.map((item) => item)}
+        </ol>
+        <button
+          onClick={() => {
+            alert("This button has been clicked!");
+          }}
+        >
+          On click event handler
+        </button>
+      </main>
+      <footer>
+        Copyright@JSBase - {enviroment.APP_VERSION} - {enviroment.MODE}
+      </footer>
+    </>
+  );
+}
+
+export default App;
+```
+
+**Invalid**
+
+```jsx
+<p>An Object: {anObject}</p>
+```
+
+```jsx
+import "./App.css";
+import enviroment from "./shared/environment";
+
+function App() {
+  return (
+    <>
+      <h1>ReactJS Tutorial 2023</h1>
+      <header>
+        <h1>{enviroment.APP_NAME}</h1>
+      </header>
+      <main>
+        <h2>JSX</h2>
+        <br />
+      </main>
+      <footer>
+        Copyright@JSBase - {enviroment.APP_VERSION} - {enviroment.MODE}
+      </footer>
+    </>
+  );
+}
+
+export default App;
+```
 
 - [Tham khảo](https://react.dev/learn#)
