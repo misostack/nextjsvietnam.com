@@ -11,6 +11,18 @@
 <link rel=stylesheet href=https://nextjsvietnam.com/themes/2022/public/page.css>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWE4MLJYE6"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-RWE4MLJYE6')</script>
+<title>Khóa học NestJS Bài 04 - Model and Repository Pattern | Cùng tìm hiểu về Model trong MVC và so sánh giữa ActiveRecord với Repository Pattern trong NestJS | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+<meta name=robots content="all">
+<meta name=keywords content="nestjs,nestjs-mvc,nestjs-tutorial">
+<meta name=description content="Cùng tìm hiểu về Model trong MVC và so sánh giữa ActiveRecord với Repository Pattern trong NestJS">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://user-images.githubusercontent.com/31009750/181449337-70081a76-5a01-4229-805e-39ed0ded6b5b.png">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="750">
+<meta property="og:image:height" content="300">
+<meta property="article:publisher" content="https://www.facebook.com/nextjsvietnam">
+<meta property="article:published_time" content="2023-07-03T14:29:29+07:00">
+<meta property="article:modified_time" content="2023-07-03T14:29:29+07:00">
 <link rel=apple-touch-icon sizes=57x57 href=/apple-icon-57x57.png>
 <link rel=apple-touch-icon sizes=60x60 href=/apple-icon-60x60.png>
 <link rel=apple-touch-icon sizes=72x72 href=/apple-icon-72x72.png>
@@ -89,121 +101,49 @@
 </div>
 </nav>
 <main>
-<section class="container section hero-section">
-<h1 class=hero-section-heading>
-frameworks
-</h1>
-</section>
-<section class="container section grid md:grid-cols-4 gap-8">
-<div class="card card-post-default">
-<a href=https://nextjsvietnam.com/post/build-restful-api-with-nestjs-the-right-way/><img class=card-post-image src=https://user-images.githubusercontent.com/31009750/181449337-70081a76-5a01-4229-805e-39ed0ded6b5b.png alt="Build Restful Api With Nestjs the Right Way"></a>
-<div class="px-6 py-4">
-<h2 class=card-post-title><a href=https://nextjsvietnam.com/post/build-restful-api-with-nestjs-the-right-way/>Build Restful Api With Nestjs the Right Way</a></h2>
-<div>
-<a class="category-tag category-frameworks" href=https://nextjsvietnam.com/categories/frameworks>frameworks</a>
-</div>
-<div>
-<span class=card-post-date>30 Oct, 2022</span>
-</div>
-<div class=card-post-description>The hands-on NestJS tutorial to build a standard Restful API</div>
-</div>
-</div>
-<div class="card card-post-default">
-<a href=https://nextjsvietnam.com/post/the-best-way-to-upload-file-in-nestjs/><img class=card-post-image src=https://nextjsvietnam.com/common/no-image.png alt="The Best Way to Upload File in Nestjs"></a>
-<div class="px-6 py-4">
-<h2 class=card-post-title><a href=https://nextjsvietnam.com/post/the-best-way-to-upload-file-in-nestjs/>The Best Way to Upload File in Nestjs</a></h2>
-<div>
-<a class="category-tag category-frameworks" href=https://nextjsvietnam.com/categories/frameworks>frameworks</a>
-</div>
-<div>
-<span class=card-post-date>10 Aug, 2022</span>
-</div>
-<div class=card-post-description>In this topic, we will learn how to use NestJS's built-in module (multer) to upload files</div>
-</div>
-</div>
-<div class="card card-post-default">
-<a href=https://nextjsvietnam.com/post/vuejs-how-to-add-tailwind-in-your-application/><img class=card-post-image src=https://user-images.githubusercontent.com/31009750/183083369-7c2d85de-bc3a-4c91-b88a-f85297d8e2c0.png alt="Vuejs How to Add TailwindCSS in Your Application"></a>
-<div class="px-6 py-4">
-<h2 class=card-post-title><a href=https://nextjsvietnam.com/post/vuejs-how-to-add-tailwind-in-your-application/>Vuejs How to Add TailwindCSS in Your Application</a></h2>
-<div>
-<a class="category-tag category-frameworks" href=https://nextjsvietnam.com/categories/frameworks>frameworks</a>
-</div>
-<div>
-<span class=card-post-date>05 Aug, 2022</span>
-</div>
-<div class=card-post-description>Tailwind CSS is the only framework that I've seen scale on large teams. It’s easy to customize, adapts to any design, and the build size is tiny </div>
-</div>
-</div>
-<div class="card card-post-default">
-<a href=https://nextjsvietnam.com/post/nestjs-request-and-response-object/><img class=card-post-image src=https://user-images.githubusercontent.com/31009750/181449337-70081a76-5a01-4229-805e-39ed0ded6b5b.png alt="Nestjs Request and Response Object"></a>
-<div class="px-6 py-4">
-<h2 class=card-post-title><a href=https://nextjsvietnam.com/post/nestjs-request-and-response-object/>Nestjs Request and Response Object</a></h2>
-<div>
-<a class="category-tag category-nestjs" href=https://nextjsvietnam.com/categories/nestjs>nestjs</a>
-<a class="category-tag category-frameworks" href=https://nextjsvietnam.com/categories/frameworks>frameworks</a>
-</div>
-<div>
-<span class=card-post-date>05 Aug, 2022</span>
-</div>
-<div class=card-post-description>As you've known, in a request we will have Route Params, Query Params, Body, Headers ...</div>
-</div>
-</div>
-<div class="card card-post-default">
-<a href=https://nextjsvietnam.com/post/nestjs-pipes/><img class=card-post-image src=https://user-images.githubusercontent.com/31009750/181449337-70081a76-5a01-4229-805e-39ed0ded6b5b.png alt="Nestjs Pipes"></a>
-<div class="px-6 py-4">
-<h2 class=card-post-title><a href=https://nextjsvietnam.com/post/nestjs-pipes/>Nestjs Pipes</a></h2>
-<div>
-<a class="category-tag category-nestjs" href=https://nextjsvietnam.com/categories/nestjs>nestjs</a>
-<a class="category-tag category-frameworks" href=https://nextjsvietnam.com/categories/frameworks>frameworks</a>
-</div>
-<div>
-<span class=card-post-date>04 Aug, 2022</span>
-</div>
-<div class=card-post-description>Nest interposes a pipe just before a method is invoked, and the pipe receives the arguments destined for the method and operates on them</div>
-</div>
-</div>
-<div class="card card-post-default">
-<a href=https://nextjsvietnam.com/post/validate-request-input-in-nestjs/><img class=card-post-image src=https://user-images.githubusercontent.com/31009750/181449337-70081a76-5a01-4229-805e-39ed0ded6b5b.png alt="Validate Request Input in Nestjs"></a>
-<div class="px-6 py-4">
-<h2 class=card-post-title><a href=https://nextjsvietnam.com/post/validate-request-input-in-nestjs/>Validate Request Input in Nestjs</a></h2>
-<div>
-<a class="category-tag category-frameworks" href=https://nextjsvietnam.com/categories/frameworks>frameworks</a>
-</div>
-<div>
-<span class=card-post-date>29 Jul, 2022</span>
-</div>
-<div class=card-post-description>It is best practice to validate the correctness of any data sent into a web application</div>
-</div>
-</div>
-<div class="card card-post-default">
-<a href=https://nextjsvietnam.com/post/nestjs-provider/><img class=card-post-image src=https://user-images.githubusercontent.com/31009750/181449337-70081a76-5a01-4229-805e-39ed0ded6b5b.png alt="Nestjs Provider"></a>
-<div class="px-6 py-4">
-<h2 class=card-post-title><a href=https://nextjsvietnam.com/post/nestjs-provider/>Nestjs Provider</a></h2>
-<div>
-<a class="category-tag category-nestjs" href=https://nextjsvietnam.com/categories/nestjs>nestjs</a>
-<a class="category-tag category-frameworks" href=https://nextjsvietnam.com/categories/frameworks>frameworks</a>
-</div>
-<div>
-<span class=card-post-date>28 Jul, 2022</span>
-</div>
-<div class=card-post-description>Providers are plain JavaScript classes that are declared as providers in a module</div>
-</div>
-</div>
-<div class="card card-post-default">
-<a href=https://nextjsvietnam.com/post/developer-your-rest-api-with-nestjs/><img class=card-post-image src=https://user-images.githubusercontent.com/31009750/179174927-7a62ee24-15c1-4884-875a-57838f31fdcf.png alt="Developer Your Rest Api With Nestjs"></a>
-<div class="px-6 py-4">
-<h2 class=card-post-title><a href=https://nextjsvietnam.com/post/developer-your-rest-api-with-nestjs/>Developer Your Rest Api With Nestjs</a></h2>
-<div>
-<a class="category-tag category-frameworks" href=https://nextjsvietnam.com/categories/frameworks>frameworks</a>
-</div>
-<div>
-<span class=card-post-date>12 Jul, 2022</span>
-</div>
-<div class=card-post-description>How to setup a nestjs boillerplate to developer a Restful Api Project</div>
+<section class="container section">
+<div class="page-content max-w-2xl mx-auto">
+<img src=https://user-images.githubusercontent.com/31009750/181449337-70081a76-5a01-4229-805e-39ed0ded6b5b.png class=img-responsive alt="Khóa học NestJS Bài 04 - Model and Repository Pattern">
+<h1>Khóa học NestJS Bài 04 - Model and Repository Pattern</h1>
+<p><strong>Post Date</strong> : 2023-07-03T14:29:29+07:00</p>
+<p><strong>Modified Date</strong> : 2023-07-03T14:29:29+07:00</p>
+<p>
+<strong>Category:</strong>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/nestjs-tutorial>nestjs-tutorial</a>
+</p>
+<p>
+<strong>Tags:</strong>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=/tags/nestjs>nestjs</a>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=/tags/nestjs-pet-website>, nestjs-pet-website</a>
+</p>
+<h2 id=source-code>Source Code</h2>
+<ul>
+<li><a href=https://github.com/misostack/nestjs-tutorial-2023/tree/lession04>Lession 04 Source Code</a></li>
+</ul>
+<h2 id=bài-04>Bài 04</h2>
+<ol>
+<li>Cấu hình cho NestJS làm với với MySQL thông qua TypeORM</li>
+<li>Tìm hiểu về ActiveRecord Pattern trong TypeORM</li>
+<li>Tìm hiểu về Repository Pattern trong TypeORM</li>
+<li>Ứng dụng để tạo database schema với TypeORM trong NestJS</li>
+<li>Ứng dụng để tạo data seed trong NestJS</li>
+</ol>
+<div class="m-1 p-1">
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/nestjs-tutorial>nestjs-tutorial</a>
 </div>
 </div>
 </section>
-<section class=container>
+<section class="container section">
+<div class="max-w-2xl mx-auto">
+<div class="font-heading text-2xl font-semibold">You Might Also Like</div>
+<div class="mt-8 grid gap-8">
+<ul class=sidebar-links>
+<li><a href=/post/khoa-hoc-nestjs-bai03/>Khóa học NestJS Bài 03 - Controllers & Views</a></li>
+<li><a href=/post/khoa-hoc-nestjs-bai-02/>Khóa học Nestjs - Bài 02 - Giới thiệu mô hình MVC</a></li>
+<li><a href=/post/khoa-hoc-nestjs/>Khóa học NestJS - Bài 01 - Lộ trình các bài học về NestJS Framework</a></li>
+</ul>
+</div>
+</div>
 </section>
 </main>
 <footer class=footer>
