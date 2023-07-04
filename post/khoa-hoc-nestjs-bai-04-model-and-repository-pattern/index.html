@@ -122,12 +122,256 @@
 </ul>
 <h2 id=bài-04>Bài 04</h2>
 <ol>
-<li>Cấu hình cho NestJS làm với với MySQL thông qua TypeORM</li>
-<li>Tìm hiểu về ActiveRecord Pattern trong TypeORM</li>
-<li>Tìm hiểu về Repository Pattern trong TypeORM</li>
+<li>Giới thiệu sơ qua về một số ORM phổ biến : Sequelize, TypeORM, Mongoose</li>
+<li>Tìm hiểu về ActiveRecord Pattern</li>
+<li>Tìm hiểu về Repository Pattern</li>
 <li>Ứng dụng để tạo database schema với TypeORM trong NestJS</li>
 <li>Ứng dụng để tạo data seed trong NestJS</li>
 </ol>
+<h3 id=1-cấu-hình-cho-nestjs-làm-với-với-mysql-thông-qua-typeorm>1. Cấu hình cho NestJS làm với với MySQL thông qua TypeORM</h3>
+<p>Đầu tiên bạn cần tạo database trước
+Database name : <strong>nestjs_tutorial_2023</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sql data-lang=sql><span style=color:#66d9ef>CREATE</span> <span style=color:#66d9ef>DATABASE</span> <span style=color:#f92672>`</span>nestjs_tutorial_2023<span style=color:#f92672>`</span> CHARACTER <span style=color:#66d9ef>SET</span> <span style=color:#e6db74>&#39;utf8mb4&#39;</span> <span style=color:#66d9ef>COLLATE</span> <span style=color:#e6db74>&#39;utf8mb4_bin&#39;</span>;
+</code></pre></div><p><img src=https://user-images.githubusercontent.com/31009750/250492489-8e106e4c-640f-4aea-84d4-d3663f223c02.png alt=image></p>
+<ul>
+<li>Kết nối với MYSQL bằng Sequelize</li>
+<li>Kết nối với PostgreSQL bằng TypeORM</li>
+<li>Kết nối với MongoDB bằng Mongoose</li>
+</ul>
+<p><strong>1.1. Kết nối với MYSQL bằng Sequelize</strong></p>
+<p>Cài đặt các packages</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>npm install --save @nestjs/sequelize sequelize sequelize-typescript mysql2
+npm install --save-dev @types/sequelize
+npm install --save-dev sequelize-cli
+npx sequelize-cli init
+</code></pre></div><p>Trong phần này tôi xin giới thiệu với các anh chị 3 bước chính làm việc với database:</p>
+<ol>
+<li><input checked disabled type=checkbox> Thiết lập kết nối</li>
+<li><input checked disabled type=checkbox> Khai báo model</li>
+<li><input checked disabled type=checkbox> Cấu trúc thư mục database migration - khởi tạo, cập nhật database schema</li>
+</ol>
+<blockquote>
+<p>Thiết lập kết nối</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#75715e>// src/app.module.ts
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Module</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/common&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>ServeStaticModule</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/serve-static&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>join</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;path&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>PetModule</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./pet/pet.module&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>SequelizeModule</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/sequelize&#34;</span>;
+
+<span style=color:#66d9ef>@Module</span>({
+  <span style=color:#a6e22e>imports</span><span style=color:#f92672>:</span> [
+    <span style=color:#75715e>// public folder
+</span><span style=color:#75715e></span>    <span style=color:#a6e22e>ServeStaticModule</span>.<span style=color:#a6e22e>forRoot</span>({
+      <span style=color:#a6e22e>rootPath</span>: <span style=color:#66d9ef>join</span>(<span style=color:#a6e22e>process</span>.<span style=color:#a6e22e>cwd</span>(), <span style=color:#e6db74>&#34;public&#34;</span>),
+      <span style=color:#a6e22e>serveRoot</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;/public&#34;</span>,
+    }),
+    <span style=color:#a6e22e>PetModule</span>,
+    <span style=color:#a6e22e>SequelizeModule</span>.<span style=color:#a6e22e>forRoot</span>({
+      <span style=color:#a6e22e>dialect</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;mysql&#34;</span>,
+      <span style=color:#a6e22e>host</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;localhost&#34;</span>,
+      <span style=color:#a6e22e>port</span>: <span style=color:#66d9ef>3306</span>,
+      <span style=color:#a6e22e>username</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;root&#34;</span>,
+      <span style=color:#a6e22e>password</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;123456&#34;</span>,
+      <span style=color:#a6e22e>database</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;nestjs_tutorial_2023&#34;</span>,
+      <span style=color:#a6e22e>models</span><span style=color:#f92672>:</span> [],
+    }),
+  ],
+  <span style=color:#a6e22e>providers</span><span style=color:#f92672>:</span> [],
+})
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AppModule</span> {}
+</code></pre></div><blockquote>
+<p>Khai báo model</p>
+</blockquote>
+<p><strong>Model trong ORM:</strong></p>
+<ul>
+<li>Chính là ánh xạ của 1 thực thể trong cơ sở dữ liệu, thông qua ORM chúng ta chỉ cần làm việc với các phương thức (method) của Model, phần còn lại là các câu lệnh SQL/NoSQL sẽ được ORM xử lý. Ưu điểm là việc lập trình sẽ trở nên dễ dàng và có tính nhất quán hơn. Nhược điểm là đôi khi 1 số câu query sẽ chậm và khó để triển khai các query có tính chất phức tạp. Tuy nhiên với trường hợp đó ORM vẫn hỗ trợ chúng thực hiện SQL/NoSQL query truyền thống.</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Column</span>, <span style=color:#a6e22e>DataType</span>, <span style=color:#a6e22e>Model</span>, <span style=color:#a6e22e>Table</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;sequelize-typescript&#34;</span>;
+
+<span style=color:#66d9ef>@Table</span>({
+  <span style=color:#a6e22e>tableName</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;pet_categories&#34;</span>,
+})
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>PetCategory</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>Model</span> {
+  <span style=color:#66d9ef>@Column</span>({
+    <span style=color:#a6e22e>primaryKey</span>: <span style=color:#66d9ef>true</span>,
+    <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>DataType</span>.<span style=color:#a6e22e>UUID</span>,
+    <span style=color:#a6e22e>defaultValue</span>: <span style=color:#66d9ef>DataType.UUIDV4</span>,
+  })
+  <span style=color:#a6e22e>id?</span>: <span style=color:#66d9ef>string</span>;
+
+  <span style=color:#66d9ef>@Column</span>({
+    <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>DataType</span>.<span style=color:#a6e22e>STRING</span>(<span style=color:#ae81ff>60</span>),
+    <span style=color:#a6e22e>allowNull</span>: <span style=color:#66d9ef>false</span>,
+  })
+  <span style=color:#a6e22e>name</span>: <span style=color:#66d9ef>string</span>;
+}
+</code></pre></div><blockquote>
+<p>Điều chỉnh lại config để sử dụng model và sử dụng database uri</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#75715e>// src/app.module.ts
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Module</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/common&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>ServeStaticModule</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/serve-static&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>join</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;path&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>PetModule</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./pet/pet.module&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>SequelizeModule</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/sequelize&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#a6e22e>models</span> <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./pet/models&#34;</span>;
+
+<span style=color:#66d9ef>@Module</span>({
+  <span style=color:#a6e22e>imports</span><span style=color:#f92672>:</span> [
+    <span style=color:#75715e>// public folder
+</span><span style=color:#75715e></span>    <span style=color:#a6e22e>ServeStaticModule</span>.<span style=color:#a6e22e>forRoot</span>({
+      <span style=color:#a6e22e>rootPath</span>: <span style=color:#66d9ef>join</span>(<span style=color:#a6e22e>process</span>.<span style=color:#a6e22e>cwd</span>(), <span style=color:#e6db74>&#34;public&#34;</span>),
+      <span style=color:#a6e22e>serveRoot</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;/public&#34;</span>,
+    }),
+    <span style=color:#a6e22e>PetModule</span>,
+    <span style=color:#a6e22e>SequelizeModule</span>.<span style=color:#a6e22e>forRoot</span>({
+      <span style=color:#a6e22e>uri</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;mysql://root:123456@localhost/nestjs_tutorial_2023&#34;</span>,
+      <span style=color:#a6e22e>dialect</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;mysql&#34;</span>,
+      <span style=color:#a6e22e>models</span>: <span style=color:#66d9ef>models</span>,
+    }),
+  ],
+  <span style=color:#a6e22e>providers</span><span style=color:#f92672>:</span> [],
+})
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AppModule</span> {}
+</code></pre></div><blockquote>
+<p>Cấu trúc thư mục database migration - khởi tạo, cập nhật database schema</p>
+</blockquote>
+<p>Đôi lời giải thích tại sao chúng ta cần sử dụng sequelize-cli để cập nhật database.
+Trong quá trình phát triển dự án, khi có 1 bảng dữ liệu cần thêm mới/xóa hoặc cập nhật các cột trong bảng. Cách trực tiếp nhất là các câu lệnh SQL, mặc dù chúng ta vẫn có thể quản lí được câu lệnh nào đã chạy hoặc chưa và việc chia sẻ với các thành viên trong team hoặc người phụ trách triển khai sản phẩm trên môi trường production.</p>
+<p>Trong các ORM hiện đại ngày nay, để thống nhất cách làm và quy chuẩn hóa, thông thường chúng ta sẽ sử dụng cli của các ORM này liên quan đến với tạo/chỉnh sửa database, table.
+Và thực hiện việc migrate qua các dòng lệnh. Còn cấu trúc các bảng dữ liệu sẽ được triển khai thông qua code - nhằm mang tính thống nhất với model đã được quản lí bởi ORM.</p>
+<p>Sau khi chạy câu lệnh mặc định sau của sequelize-cli chúng ta sẽ có cấu trúc thư mục mặc định như sau.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>npx sequelize-cli init
+</code></pre></div><pre tabindex=0><code class=language-xs data-lang=xs>config
+  database.json
+db
+  models
+  seeders
+  migrations
+</code></pre><blockquote>
+<p><strong>.sequelizerc</strong></p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#75715e>// .sequelizerc
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>path</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>require</span>(<span style=color:#e6db74>&#34;path&#34;</span>);
+
+<span style=color:#a6e22e>module</span>.<span style=color:#a6e22e>exports</span> <span style=color:#f92672>=</span> {
+  <span style=color:#a6e22e>config</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>path</span>.<span style=color:#a6e22e>resolve</span>(<span style=color:#e6db74>&#34;config&#34;</span>, <span style=color:#e6db74>&#34;database.json&#34;</span>),
+  <span style=color:#e6db74>&#34;models-path&#34;</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>path</span>.<span style=color:#a6e22e>resolve</span>(<span style=color:#e6db74>&#34;db&#34;</span>, <span style=color:#e6db74>&#34;models&#34;</span>),
+  <span style=color:#e6db74>&#34;seeders-path&#34;</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>path</span>.<span style=color:#a6e22e>resolve</span>(<span style=color:#e6db74>&#34;db&#34;</span>, <span style=color:#e6db74>&#34;seeders&#34;</span>),
+  <span style=color:#e6db74>&#34;migrations-path&#34;</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>path</span>.<span style=color:#a6e22e>resolve</span>(<span style=color:#e6db74>&#34;db&#34;</span>, <span style=color:#e6db74>&#34;migrations&#34;</span>),
+};
+</code></pre></div><p>Tuy nhiên để phù hợp với cấu trúc hiện tại của dự án, ta cần điều chỉnh lại 1 chút như sau</p>
+<pre tabindex=0><code class=language-xss data-lang=xss>src
+    database
+        config
+            config.ts
+    migrations
+        *.ts
+    seeds
+        *.ts
+</code></pre><blockquote>
+<p><strong>.sequelizerc</strong></p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>path</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>require</span>(<span style=color:#e6db74>&#34;path&#34;</span>);
+
+<span style=color:#a6e22e>module</span>.<span style=color:#a6e22e>exports</span> <span style=color:#f92672>=</span> {
+  <span style=color:#a6e22e>config</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>path</span>.<span style=color:#a6e22e>resolve</span>(<span style=color:#e6db74>&#34;./dist/database/config/config.js&#34;</span>),
+  <span style=color:#e6db74>&#34;seeders-path&#34;</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>path</span>.<span style=color:#a6e22e>resolve</span>(<span style=color:#e6db74>&#34;./dist/database/seeders&#34;</span>),
+  <span style=color:#e6db74>&#34;migrations-path&#34;</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>path</span>.<span style=color:#a6e22e>resolve</span>(<span style=color:#e6db74>&#34;./dist/database/migrations&#34;</span>),
+};
+</code></pre></div><p>Ở đây, thay vì chạy trực tiếp bản source, chúng ta sẽ chạy bản build của chúng</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#75715e>// config.ts
+</span><span style=color:#75715e></span><span style=color:#66d9ef>module</span><span style=color:#a6e22e>.exports</span> <span style=color:#f92672>=</span> {
+  <span style=color:#a6e22e>production</span><span style=color:#f92672>:</span> {
+    <span style=color:#a6e22e>url</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;mysql://root:123456@localhost/nestjs_tutorial_2023&#34;</span>,
+    <span style=color:#a6e22e>dialect</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;mysql&#34;</span>,
+  },
+};
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#75715e>// src\database\migrations\20230704043449-create-pet-category-table.ts
+</span><span style=color:#75715e></span><span style=color:#e6db74>&#34;use strict&#34;</span>;
+
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>PetCategory</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;src/pet/models/pet-category.model&#34;</span>;
+
+<span style=color:#75715e>/** @type {import(&#39;sequelize-cli&#39;).Migration} */</span>
+
+<span style=color:#66d9ef>module</span><span style=color:#a6e22e>.exports</span> <span style=color:#f92672>=</span> {
+  <span style=color:#66d9ef>async</span> <span style=color:#a6e22e>up</span>(<span style=color:#a6e22e>queryInterface</span>, <span style=color:#a6e22e>Sequelize</span>) {
+    <span style=color:#75715e>/**
+</span><span style=color:#75715e>     * Add altering commands here.
+</span><span style=color:#75715e>     *
+</span><span style=color:#75715e>     * Example:
+</span><span style=color:#75715e>     * await queryInterface.createTable(&#39;users&#39;, { id: Sequelize.INTEGER });
+</span><span style=color:#75715e>     */</span>
+    <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>queryInterface</span>.<span style=color:#a6e22e>createTable</span>(<span style=color:#e6db74>&#34;pet_categories&#34;</span>, {
+      <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> {
+        <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>Sequelize</span>.<span style=color:#a6e22e>UUID</span>,
+        <span style=color:#a6e22e>defaultValue</span>: <span style=color:#66d9ef>Sequelize.UUIDV4</span>,
+        <span style=color:#a6e22e>primaryKey</span>: <span style=color:#66d9ef>true</span>,
+      },
+      <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> {
+        <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>Sequelize</span>.<span style=color:#a6e22e>STRING</span>(<span style=color:#ae81ff>60</span>),
+        <span style=color:#a6e22e>allowNull</span>: <span style=color:#66d9ef>false</span>,
+      },
+    });
+  },
+
+  <span style=color:#66d9ef>async</span> <span style=color:#a6e22e>down</span>(<span style=color:#a6e22e>queryInterface</span>, <span style=color:#a6e22e>Sequelize</span>) {
+    <span style=color:#75715e>/**
+</span><span style=color:#75715e>     * Add reverting commands here.
+</span><span style=color:#75715e>     *
+</span><span style=color:#75715e>     * Example:
+</span><span style=color:#75715e>     * await queryInterface.dropTable(&#39;users&#39;);
+</span><span style=color:#75715e>     */</span>
+    <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>queryInterface</span>.<span style=color:#a6e22e>dropTable</span>(<span style=color:#e6db74>&#34;pet_categories&#34;</span>);
+  },
+};
+</code></pre></div><p><strong>Một số command phổ biến</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>$ npx sequelize-cli --help
+
+Sequelize CLI <span style=color:#f92672>[</span>Node: 16.19.1, CLI: 6.6.1, ORM: 6.32.1<span style=color:#f92672>]</span>
+
+sequelize &lt;command&gt;
+
+Commands:
+  sequelize db:migrate                        Run pending migrations
+  sequelize db:migrate:schema:timestamps:add  Update migration table to have timestamps
+  sequelize db:migrate:status                 List the status of all migrations
+  sequelize db:migrate:undo                   Reverts a migration
+  sequelize db:migrate:undo:all               Revert all migrations ran
+  sequelize db:seed                           Run specified seeder
+  sequelize db:seed:undo                      Deletes data from the database
+  sequelize db:seed:all                       Run every seeder
+  sequelize db:seed:undo:all                  Deletes data from the database
+  sequelize db:create                         Create database specified by configuration
+  sequelize db:drop                           Drop database specified by configuration
+  sequelize init                              Initializes project
+  sequelize init:config                       Initializes configuration
+  sequelize init:migrations                   Initializes migrations
+  sequelize init:models                       Initializes models
+  sequelize init:seeders                      Initializes seeders
+  sequelize migration:generate                Generates a new migration file
+  sequelize migration:create                  Generates a new migration file
+  sequelize model:generate                    Generates a model and its migration
+  sequelize model:create                      Generates a model and its migration
+  sequelize seed:generate                     Generates a new seed file
+  sequelize seed:create                       Generates a new seed file
+</code></pre></div><p><strong>Tôi xin ví dụ command để thực hiện tạo file migration, sau đó build, và chạy</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=color:#75715e># create migration</span>
+npx sequelize-cli migration:create --name create-pet-category-table --migrations-path ./src/database/migrations
+<span style=color:#75715e># build</span>
+npm run build
+<span style=color:#75715e># run migration</span>
+npx sequelize-cli db:migrate --env production
+</code></pre></div><p>Lưu ý nếu không chỉ định env thì mặc định là development. Như trong file config ở trên chúng ta chỉ set duy nhất một môi trường là production. Và các config sẽ được thay thế bằng biến môi trường.</p>
+<p>Sau khi chạy migrate xong lúc này kiểm tra database ta sẽ thấy</p>
+<p><img src=https://user-images.githubusercontent.com/31009750/250809387-f3fc13a6-8ece-4e34-bb45-c813f59828b2.png alt=image></p>
+<p><img src=https://user-images.githubusercontent.com/31009750/250809558-b78684c7-a441-4eec-ab4c-0cc201ef78bc.png alt=image></p>
+<p>Bước tiếp theo, chúng ta bắt đầu test thử một số method cơ bản của Model: thêm, cập nhật, xóa, tìm kiếm</p>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/nestjs-tutorial>nestjs-tutorial</a>
 </div>
