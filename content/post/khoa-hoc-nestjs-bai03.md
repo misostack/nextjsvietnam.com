@@ -234,7 +234,7 @@ export class ManagePetCategoryController {
 
 Trong đó phần header, footer sẽ chứa những thành phần dùng chung trong template
 
-```ejs
+```html
 <%- include('layouts/admin/header'); %>
 <h1>Manage Pet Category - Create New Pet Category</h1>
 <%- include('layouts/admin/footer'); %>

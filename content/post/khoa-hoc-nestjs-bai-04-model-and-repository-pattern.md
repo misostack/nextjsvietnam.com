@@ -94,25 +94,51 @@ export class AppModule {}
 - Chính là ánh xạ của 1 thực thể trong cơ sở dữ liệu, thông qua ORM chúng ta chỉ cần làm việc với các phương thức (method) của Model, phần còn lại là các câu lệnh SQL/NoSQL sẽ được ORM xử lý. Ưu điểm là việc lập trình sẽ trở nên dễ dàng và có tính nhất quán hơn. Nhược điểm là đôi khi 1 số câu query sẽ chậm và khó để triển khai các query có tính chất phức tạp. Tuy nhiên với trường hợp đó ORM vẫn hỗ trợ chúng thực hiện SQL/NoSQL query truyền thống.
 
 ```ts
-import { Column, DataType, Model, Table } from "sequelize-typescript";
+"use strict";
 
-@Table({
-  tableName: "pet_categories",
-})
-export class PetCategory extends Model {
-  @Column({
-    primaryKey: true,
-    type: DataType.UUID,
-    defaultValue: DataType.UUIDV4,
-  })
-  id?: string;
+import { PetCategory } from "src/pet/models/pet-category.model";
 
-  @Column({
-    type: DataType.STRING(60),
-    allowNull: false,
-  })
-  name: string;
-}
+/** @type {import('sequelize-cli').Migration} */
+
+module.exports = {
+  async up(queryInterface, Sequelize) {
+    /**
+     * Add altering commands here.
+     *
+     * Example:
+     * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
+     */
+    await queryInterface.createTable("pet_categories", {
+      id: {
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4,
+        primaryKey: true,
+      },
+      name: {
+        type: Sequelize.STRING(60),
+        allowNull: false,
+      },
+      createdAt: {
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn("NOW"),
+      },
+      updatedAt: {
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn("NOW"),
+      },
+    });
+  },
+
+  async down(queryInterface, Sequelize) {
+    /**
+     * Add reverting commands here.
+     *
+     * Example:
+     * await queryInterface.dropTable('users');
+     */
+    await queryInterface.dropTable("pet_categories");
+  },
+};
 ```
 
 > Điều chỉnh lại config để sử dụng model và sử dụng database uri
@@ -222,6 +248,29 @@ module.exports = {
 ```
 
 ```ts
+// src/pet/models/pet-category.model
+import { Column, DataType, Model, Table } from "sequelize-typescript";
+
+@Table({
+  tableName: "pet_categories",
+})
+export class PetCategory extends Model {
+  @Column({
+    primaryKey: true,
+    type: DataType.UUID,
+    defaultValue: DataType.UUIDV4,
+  })
+  id?: string;
+
+  @Column({
+    type: DataType.STRING(60),
+    allowNull: false,
+  })
+  name: string;
+}
+```
+
+```ts
 // src\database\migrations\20230704043449-create-pet-category-table.ts
 "use strict";
 
@@ -260,6 +309,21 @@ module.exports = {
     await queryInterface.dropTable("pet_categories");
   },
 };
+```
+
+### Lưu ý đặc biệt cho model ở đây
+
+Do PetCategory Model trong ví dụ có kế thừa từ Model từ sequelize nên sẽ thừa kế 1 số field định sẵn, dù trong code của Model PetCategory ta không thấy chúng xuất hiện.
+Do vậy khi tạo script migrate cho PetCategory cần lưu ý thêm 2 cột mặc định này.
+
+```ts
+export declare abstract class Model<TModelAttributes extends {} = any, TCreationAttributes extends {} = TModelAttributes> extends OriginModel<TModelAttributes, TCreationAttributes> {
+    id?: number | any;
+    createdAt?: Date | any;
+    updatedAt?: Date | any;
+    deletedAt?: Date | any;
+    version?: number | any;
+    static isInitialized: boolean;
 ```
 
 **Một số command phổ biến**
@@ -311,8 +375,125 @@ Lưu ý nếu không chỉ định env thì mặc định là development. Như 
 
 Sau khi chạy migrate xong lúc này kiểm tra database ta sẽ thấy
 
-![image](https://user-images.githubusercontent.com/31009750/250809387-f3fc13a6-8ece-4e34-bb45-c813f59828b2.png)
-
-![image](https://user-images.githubusercontent.com/31009750/250809558-b78684c7-a441-4eec-ab4c-0cc201ef78bc.png)
+![image](https://user-images.githubusercontent.com/31009750/250823645-6f52bcab-9a90-4c76-b658-04612fb44db2.png)
+![image](https://user-images.githubusercontent.com/31009750/250823856-425b437a-6107-4f75-ba83-48f7ea63bef4.png)
 
 Bước tiếp theo, chúng ta bắt đầu test thử một số method cơ bản của Model: thêm, cập nhật, xóa, tìm kiếm
+
+Lưu ý nhỏ khi tiếp tục bài học với ví dụ của Pet Category hiện tại, chúng ta cần cập nhật PetCategory Model lại 1 chút, thay vì column title -> sẽ chuyển sang column name, cho tương thích với database lúc này.
+
+> Thêm PetCategory
+
+```ts
+import { PetCategory } from "src/pet/models/pet-category.model";
+await PetCategory.create({ ...object });
+```
+
+```ts
+@Controller("admin/pet-categories")
+export class ManagePetCategoryController {
+  @Post("create")
+  @Render("pet/admin/manage-pet-category/create")
+  @FormDataRequest()
+  async create(@Body() createPetCategoryDto: CreatePetCategoryDto) {
+    const data = {
+      mode: "create",
+    };
+    // validation
+    const object = plainToInstance(CreatePetCategoryDto, createPetCategoryDto);
+
+    // ...
+
+    // set value and show success message
+    Reflect.set(data, "values", object);
+
+    // create PetCategory
+    const newPetCategory = await PetCategory.create({ ...object });
+
+    Reflect.set(
+      data,
+      "success",
+      `Pet Category : ${newPetCategory.id} - ${newPetCategory.name} has been created!`
+    );
+    // success
+    return { data };
+  }
+}
+```
+
+Sau khi chạy thử http://localhost:3000/admin/pet-categories/create chúng ta có được kết quả như bên dưới
+
+![image](https://user-images.githubusercontent.com/31009750/250825079-e29b1b36-bc07-4a48-bb9e-cfba92dc3129.png)
+
+Ngoài ra Sequelize còn hỗ trợ bạn cấu hình để có thể xem chi tiết được câu sql được ORM tạo ra. Thay đổi một chút ở phần config cho kết nối database tại app module.
+
+```ts
+SequelizeModule.forRoot({
+  uri: 'mysql://root:123456@localhost/nestjs_tutorial_2023',
+  dialect: 'mysql',
+  models: models,
+  logging: console.log,
+}),
+```
+
+![image](https://user-images.githubusercontent.com/31009750/250826619-d4ddb66e-31b7-41b2-b828-527924474ef7.png)
+
+> Tìm kiếm PetCategory - danh sách
+
+```ts
+@Controller('admin/pet-categories')
+export class ManagePetCategoryController {
+  @Get('')
+  @Render('pet/admin/manage-pet-category/list')
+  async getList() {
+    const petCategories = await PetCategory.findAll();
+    return {
+      petCategories,
+    };
+  }
+```
+
+```html
+<%- include('layouts/admin/header'); %>
+<section class="col-12">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">List Pet Categories</h5>
+      <div class="table-responsive">
+        <table class="table table-light table-striped">
+          <thead>
+            <tr>
+              <th scope="col" style="width: 360px">ID</th>
+              <th scope="col">Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% petCategories.forEach(petCategory => { %>
+            <tr class="">
+              <td><%= petCategory.id %></td>
+              <td><%= petCategory.name %></td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+<%- include('layouts/admin/footer'); %>
+```
+
+![image](https://user-images.githubusercontent.com/31009750/250829442-dbb50893-c56f-4842-a130-58d559fd90e0.png)
+
+```ts
+// find all
+const petCategories = await PetCategory.findAll();
+// delete
+await PetCategory.destroy({ where: { id } });
+// create
+const newPetCategory = await PetCategory.create({ ...object });
+// find by primary key
+const petCategory = await PetCategory.findByPk(id);
+// update
+await petCategory.update(object);
+```
