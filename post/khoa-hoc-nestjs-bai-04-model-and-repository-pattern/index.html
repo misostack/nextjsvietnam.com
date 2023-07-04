@@ -189,25 +189,51 @@ npx sequelize-cli init
 <ul>
 <li>Chính là ánh xạ của 1 thực thể trong cơ sở dữ liệu, thông qua ORM chúng ta chỉ cần làm việc với các phương thức (method) của Model, phần còn lại là các câu lệnh SQL/NoSQL sẽ được ORM xử lý. Ưu điểm là việc lập trình sẽ trở nên dễ dàng và có tính nhất quán hơn. Nhược điểm là đôi khi 1 số câu query sẽ chậm và khó để triển khai các query có tính chất phức tạp. Tuy nhiên với trường hợp đó ORM vẫn hỗ trợ chúng thực hiện SQL/NoSQL query truyền thống.</li>
 </ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Column</span>, <span style=color:#a6e22e>DataType</span>, <span style=color:#a6e22e>Model</span>, <span style=color:#a6e22e>Table</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;sequelize-typescript&#34;</span>;
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#e6db74>&#34;use strict&#34;</span>;
 
-<span style=color:#66d9ef>@Table</span>({
-  <span style=color:#a6e22e>tableName</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;pet_categories&#34;</span>,
-})
-<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>PetCategory</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>Model</span> {
-  <span style=color:#66d9ef>@Column</span>({
-    <span style=color:#a6e22e>primaryKey</span>: <span style=color:#66d9ef>true</span>,
-    <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>DataType</span>.<span style=color:#a6e22e>UUID</span>,
-    <span style=color:#a6e22e>defaultValue</span>: <span style=color:#66d9ef>DataType.UUIDV4</span>,
-  })
-  <span style=color:#a6e22e>id?</span>: <span style=color:#66d9ef>string</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>PetCategory</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;src/pet/models/pet-category.model&#34;</span>;
 
-  <span style=color:#66d9ef>@Column</span>({
-    <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>DataType</span>.<span style=color:#a6e22e>STRING</span>(<span style=color:#ae81ff>60</span>),
-    <span style=color:#a6e22e>allowNull</span>: <span style=color:#66d9ef>false</span>,
-  })
-  <span style=color:#a6e22e>name</span>: <span style=color:#66d9ef>string</span>;
-}
+<span style=color:#75715e>/** @type {import(&#39;sequelize-cli&#39;).Migration} */</span>
+
+<span style=color:#66d9ef>module</span><span style=color:#a6e22e>.exports</span> <span style=color:#f92672>=</span> {
+  <span style=color:#66d9ef>async</span> <span style=color:#a6e22e>up</span>(<span style=color:#a6e22e>queryInterface</span>, <span style=color:#a6e22e>Sequelize</span>) {
+    <span style=color:#75715e>/**
+</span><span style=color:#75715e>     * Add altering commands here.
+</span><span style=color:#75715e>     *
+</span><span style=color:#75715e>     * Example:
+</span><span style=color:#75715e>     * await queryInterface.createTable(&#39;users&#39;, { id: Sequelize.INTEGER });
+</span><span style=color:#75715e>     */</span>
+    <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>queryInterface</span>.<span style=color:#a6e22e>createTable</span>(<span style=color:#e6db74>&#34;pet_categories&#34;</span>, {
+      <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> {
+        <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>Sequelize</span>.<span style=color:#a6e22e>UUID</span>,
+        <span style=color:#a6e22e>defaultValue</span>: <span style=color:#66d9ef>Sequelize.UUIDV4</span>,
+        <span style=color:#a6e22e>primaryKey</span>: <span style=color:#66d9ef>true</span>,
+      },
+      <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> {
+        <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>Sequelize</span>.<span style=color:#a6e22e>STRING</span>(<span style=color:#ae81ff>60</span>),
+        <span style=color:#a6e22e>allowNull</span>: <span style=color:#66d9ef>false</span>,
+      },
+      <span style=color:#a6e22e>createdAt</span><span style=color:#f92672>:</span> {
+        <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>Sequelize</span>.<span style=color:#a6e22e>DATE</span>,
+        <span style=color:#a6e22e>defaultValue</span>: <span style=color:#66d9ef>Sequelize.fn</span>(<span style=color:#e6db74>&#34;NOW&#34;</span>),
+      },
+      <span style=color:#a6e22e>updatedAt</span><span style=color:#f92672>:</span> {
+        <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>Sequelize</span>.<span style=color:#a6e22e>DATE</span>,
+        <span style=color:#a6e22e>defaultValue</span>: <span style=color:#66d9ef>Sequelize.fn</span>(<span style=color:#e6db74>&#34;NOW&#34;</span>),
+      },
+    });
+  },
+
+  <span style=color:#66d9ef>async</span> <span style=color:#a6e22e>down</span>(<span style=color:#a6e22e>queryInterface</span>, <span style=color:#a6e22e>Sequelize</span>) {
+    <span style=color:#75715e>/**
+</span><span style=color:#75715e>     * Add reverting commands here.
+</span><span style=color:#75715e>     *
+</span><span style=color:#75715e>     * Example:
+</span><span style=color:#75715e>     * await queryInterface.dropTable(&#39;users&#39;);
+</span><span style=color:#75715e>     */</span>
+    <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>queryInterface</span>.<span style=color:#a6e22e>dropTable</span>(<span style=color:#e6db74>&#34;pet_categories&#34;</span>);
+  },
+};
 </code></pre></div><blockquote>
 <p>Điều chỉnh lại config để sử dụng model và sử dụng database uri</p>
 </blockquote>
@@ -292,6 +318,26 @@ db
     <span style=color:#a6e22e>dialect</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;mysql&#34;</span>,
   },
 };
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#75715e>// src/pet/models/pet-category.model
+</span><span style=color:#75715e></span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Column</span>, <span style=color:#a6e22e>DataType</span>, <span style=color:#a6e22e>Model</span>, <span style=color:#a6e22e>Table</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;sequelize-typescript&#34;</span>;
+
+<span style=color:#66d9ef>@Table</span>({
+  <span style=color:#a6e22e>tableName</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;pet_categories&#34;</span>,
+})
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>PetCategory</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>Model</span> {
+  <span style=color:#66d9ef>@Column</span>({
+    <span style=color:#a6e22e>primaryKey</span>: <span style=color:#66d9ef>true</span>,
+    <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>DataType</span>.<span style=color:#a6e22e>UUID</span>,
+    <span style=color:#a6e22e>defaultValue</span>: <span style=color:#66d9ef>DataType.UUIDV4</span>,
+  })
+  <span style=color:#a6e22e>id?</span>: <span style=color:#66d9ef>string</span>;
+
+  <span style=color:#66d9ef>@Column</span>({
+    <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>DataType</span>.<span style=color:#a6e22e>STRING</span>(<span style=color:#ae81ff>60</span>),
+    <span style=color:#a6e22e>allowNull</span>: <span style=color:#66d9ef>false</span>,
+  })
+  <span style=color:#a6e22e>name</span>: <span style=color:#66d9ef>string</span>;
+}
 </code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#75715e>// src\database\migrations\20230704043449-create-pet-category-table.ts
 </span><span style=color:#75715e></span><span style=color:#e6db74>&#34;use strict&#34;</span>;
 
@@ -330,6 +376,16 @@ db
     <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>queryInterface</span>.<span style=color:#a6e22e>dropTable</span>(<span style=color:#e6db74>&#34;pet_categories&#34;</span>);
   },
 };
+</code></pre></div><h3 id=lưu-ý-đặc-biệt-cho-model-ở-đây>Lưu ý đặc biệt cho model ở đây</h3>
+<p>Do PetCategory Model trong ví dụ có kế thừa từ Model từ sequelize nên sẽ thừa kế 1 số field định sẵn, dù trong code của Model PetCategory ta không thấy chúng xuất hiện.
+Do vậy khi tạo script migrate cho PetCategory cần lưu ý thêm 2 cột mặc định này.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>declare</span> <span style=color:#66d9ef>abstract</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Model</span>&lt;<span style=color:#f92672>TModelAttributes</span> <span style=color:#a6e22e>extends</span> {} <span style=color:#960050;background-color:#1e0010>=</span> <span style=color:#a6e22e>any</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>TCreationAttributes</span> <span style=color:#a6e22e>extends</span> {} <span style=color:#960050;background-color:#1e0010>=</span> <span style=color:#a6e22e>TModelAttributes</span>&gt; <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>OriginModel</span>&lt;<span style=color:#f92672>TModelAttributes</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>TCreationAttributes</span>&gt; {
+    <span style=color:#a6e22e>id?</span>: <span style=color:#66d9ef>number</span> <span style=color:#f92672>|</span> <span style=color:#66d9ef>any</span>;
+    <span style=color:#a6e22e>createdAt?</span>: <span style=color:#66d9ef>Date</span> <span style=color:#f92672>|</span> <span style=color:#66d9ef>any</span>;
+    <span style=color:#a6e22e>updatedAt?</span>: <span style=color:#66d9ef>Date</span> <span style=color:#f92672>|</span> <span style=color:#66d9ef>any</span>;
+    <span style=color:#a6e22e>deletedAt?</span>: <span style=color:#66d9ef>Date</span> <span style=color:#f92672>|</span> <span style=color:#66d9ef>any</span>;
+    <span style=color:#a6e22e>version?</span>: <span style=color:#66d9ef>number</span> <span style=color:#f92672>|</span> <span style=color:#66d9ef>any</span>;
+    <span style=color:#66d9ef>static</span> <span style=color:#a6e22e>isInitialized</span>: <span style=color:#66d9ef>boolean</span>;
 </code></pre></div><p><strong>Một số command phổ biến</strong></p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>$ npx sequelize-cli --help
 
@@ -369,9 +425,106 @@ npm run build
 npx sequelize-cli db:migrate --env production
 </code></pre></div><p>Lưu ý nếu không chỉ định env thì mặc định là development. Như trong file config ở trên chúng ta chỉ set duy nhất một môi trường là production. Và các config sẽ được thay thế bằng biến môi trường.</p>
 <p>Sau khi chạy migrate xong lúc này kiểm tra database ta sẽ thấy</p>
-<p><img src=https://user-images.githubusercontent.com/31009750/250809387-f3fc13a6-8ece-4e34-bb45-c813f59828b2.png alt=image></p>
-<p><img src=https://user-images.githubusercontent.com/31009750/250809558-b78684c7-a441-4eec-ab4c-0cc201ef78bc.png alt=image></p>
+<p><img src=https://user-images.githubusercontent.com/31009750/250823645-6f52bcab-9a90-4c76-b658-04612fb44db2.png alt=image>
+<img src=https://user-images.githubusercontent.com/31009750/250823856-425b437a-6107-4f75-ba83-48f7ea63bef4.png alt=image></p>
 <p>Bước tiếp theo, chúng ta bắt đầu test thử một số method cơ bản của Model: thêm, cập nhật, xóa, tìm kiếm</p>
+<p>Lưu ý nhỏ khi tiếp tục bài học với ví dụ của Pet Category hiện tại, chúng ta cần cập nhật PetCategory Model lại 1 chút, thay vì column title -> sẽ chuyển sang column name, cho tương thích với database lúc này.</p>
+<blockquote>
+<p>Thêm PetCategory</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>PetCategory</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;src/pet/models/pet-category.model&#34;</span>;
+<span style=color:#66d9ef>await</span> <span style=color:#a6e22e>PetCategory</span>.<span style=color:#a6e22e>create</span>({ ...<span style=color:#66d9ef>object</span> });
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>@Controller</span>(<span style=color:#e6db74>&#34;admin/pet-categories&#34;</span>)
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ManagePetCategoryController</span> {
+  <span style=color:#66d9ef>@Post</span>(<span style=color:#e6db74>&#34;create&#34;</span>)
+  <span style=color:#66d9ef>@Render</span>(<span style=color:#e6db74>&#34;pet/admin/manage-pet-category/create&#34;</span>)
+  <span style=color:#66d9ef>@FormDataRequest</span>()
+  <span style=color:#66d9ef>async</span> <span style=color:#a6e22e>create</span>(<span style=color:#66d9ef>@Body</span>() <span style=color:#a6e22e>createPetCategoryDto</span>: <span style=color:#66d9ef>CreatePetCategoryDto</span>) {
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>data</span> <span style=color:#f92672>=</span> {
+      <span style=color:#a6e22e>mode</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;create&#34;</span>,
+    };
+    <span style=color:#75715e>// validation
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>const</span> <span style=color:#66d9ef>object</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>plainToInstance</span>(<span style=color:#a6e22e>CreatePetCategoryDto</span>, <span style=color:#a6e22e>createPetCategoryDto</span>);
+
+    <span style=color:#75715e>// ...
+</span><span style=color:#75715e></span>
+    <span style=color:#75715e>// set value and show success message
+</span><span style=color:#75715e></span>    <span style=color:#a6e22e>Reflect</span>.<span style=color:#66d9ef>set</span>(<span style=color:#a6e22e>data</span>, <span style=color:#e6db74>&#34;values&#34;</span>, <span style=color:#66d9ef>object</span>);
+
+    <span style=color:#75715e>// create PetCategory
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>newPetCategory</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>PetCategory</span>.<span style=color:#a6e22e>create</span>({ ...<span style=color:#66d9ef>object</span> });
+
+    <span style=color:#a6e22e>Reflect</span>.<span style=color:#66d9ef>set</span>(
+      <span style=color:#a6e22e>data</span>,
+      <span style=color:#e6db74>&#34;success&#34;</span>,
+      <span style=color:#e6db74>`Pet Category : </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>newPetCategory</span>.<span style=color:#a6e22e>id</span><span style=color:#e6db74>}</span><span style=color:#e6db74> - </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>newPetCategory</span>.<span style=color:#a6e22e>name</span><span style=color:#e6db74>}</span><span style=color:#e6db74> has been created!`</span>
+    );
+    <span style=color:#75715e>// success
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>return</span> { <span style=color:#a6e22e>data</span> };
+  }
+}
+</code></pre></div><p>Sau khi chạy thử http://localhost:3000/admin/pet-categories/create chúng ta có được kết quả như bên dưới</p>
+<p><img src=https://user-images.githubusercontent.com/31009750/250825079-e29b1b36-bc07-4a48-bb9e-cfba92dc3129.png alt=image></p>
+<p>Ngoài ra Sequelize còn hỗ trợ bạn cấu hình để có thể xem chi tiết được câu sql được ORM tạo ra. Thay đổi một chút ở phần config cho kết nối database tại app module.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#a6e22e>SequelizeModule</span>.<span style=color:#a6e22e>forRoot</span>({
+  <span style=color:#a6e22e>uri</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;mysql://root:123456@localhost/nestjs_tutorial_2023&#39;</span>,
+  <span style=color:#a6e22e>dialect</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;mysql&#39;</span>,
+  <span style=color:#a6e22e>models</span>: <span style=color:#66d9ef>models</span>,
+  <span style=color:#a6e22e>logging</span>: <span style=color:#66d9ef>console.log</span>,
+}),
+</code></pre></div><p><img src=https://user-images.githubusercontent.com/31009750/250826619-d4ddb66e-31b7-41b2-b828-527924474ef7.png alt=image></p>
+<blockquote>
+<p>Tìm kiếm PetCategory - danh sách</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>@Controller</span>(<span style=color:#e6db74>&#39;admin/pet-categories&#39;</span>)
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ManagePetCategoryController</span> {
+  <span style=color:#66d9ef>@Get</span>(<span style=color:#e6db74>&#39;&#39;</span>)
+  <span style=color:#66d9ef>@Render</span>(<span style=color:#e6db74>&#39;pet/admin/manage-pet-category/list&#39;</span>)
+  <span style=color:#66d9ef>async</span> <span style=color:#a6e22e>getList() {</span>
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>petCategories</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>PetCategory</span>.<span style=color:#a6e22e>findAll</span>();
+    <span style=color:#66d9ef>return</span> {
+      <span style=color:#a6e22e>petCategories</span>,
+    };
+  }
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=color:#960050;background-color:#1e0010>&lt;</span>%- include(&#39;layouts/admin/header&#39;); %&gt;
+&lt;<span style=color:#f92672>section</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;col-12&#34;</span>&gt;
+  &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;card&#34;</span>&gt;
+    &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;card-body&#34;</span>&gt;
+      &lt;<span style=color:#f92672>h5</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;card-title&#34;</span>&gt;List Pet Categories&lt;/<span style=color:#f92672>h5</span>&gt;
+      &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;table-responsive&#34;</span>&gt;
+        &lt;<span style=color:#f92672>table</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;table table-light table-striped&#34;</span>&gt;
+          &lt;<span style=color:#f92672>thead</span>&gt;
+            &lt;<span style=color:#f92672>tr</span>&gt;
+              &lt;<span style=color:#f92672>th</span> <span style=color:#a6e22e>scope</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;col&#34;</span> <span style=color:#a6e22e>style</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;width: 360px&#34;</span>&gt;ID&lt;/<span style=color:#f92672>th</span>&gt;
+              &lt;<span style=color:#f92672>th</span> <span style=color:#a6e22e>scope</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;col&#34;</span>&gt;Name&lt;/<span style=color:#f92672>th</span>&gt;
+            &lt;/<span style=color:#f92672>tr</span>&gt;
+          &lt;/<span style=color:#f92672>thead</span>&gt;
+          &lt;<span style=color:#f92672>tbody</span>&gt;
+            <span style=color:#960050;background-color:#1e0010>&lt;</span>% petCategories.forEach(petCategory =&gt; { %&gt;
+            &lt;<span style=color:#f92672>tr</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;&#34;</span>&gt;
+              &lt;<span style=color:#f92672>td</span>&gt;<span style=color:#960050;background-color:#1e0010>&lt;</span>%= petCategory.id %&gt;&lt;/<span style=color:#f92672>td</span>&gt;
+              &lt;<span style=color:#f92672>td</span>&gt;<span style=color:#960050;background-color:#1e0010>&lt;</span>%= petCategory.name %&gt;&lt;/<span style=color:#f92672>td</span>&gt;
+            &lt;/<span style=color:#f92672>tr</span>&gt;
+            <span style=color:#960050;background-color:#1e0010>&lt;</span>% }) %&gt;
+          &lt;/<span style=color:#f92672>tbody</span>&gt;
+        &lt;/<span style=color:#f92672>table</span>&gt;
+      &lt;/<span style=color:#f92672>div</span>&gt;
+    &lt;/<span style=color:#f92672>div</span>&gt;
+  &lt;/<span style=color:#f92672>div</span>&gt;
+&lt;/<span style=color:#f92672>section</span>&gt;
+<span style=color:#960050;background-color:#1e0010>&lt;</span>%- include(&#39;layouts/admin/footer&#39;); %&gt;
+</code></pre></div><p><img src=https://user-images.githubusercontent.com/31009750/250829442-dbb50893-c56f-4842-a130-58d559fd90e0.png alt=image></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#75715e>// find all
+</span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>petCategories</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>PetCategory</span>.<span style=color:#a6e22e>findAll</span>();
+<span style=color:#75715e>// delete
+</span><span style=color:#75715e></span><span style=color:#66d9ef>await</span> <span style=color:#a6e22e>PetCategory</span>.<span style=color:#a6e22e>destroy</span>({ <span style=color:#a6e22e>where</span><span style=color:#f92672>:</span> { <span style=color:#a6e22e>id</span> } });
+<span style=color:#75715e>// create
+</span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>newPetCategory</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>PetCategory</span>.<span style=color:#a6e22e>create</span>({ ...<span style=color:#66d9ef>object</span> });
+<span style=color:#75715e>// find by primary key
+</span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>petCategory</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>PetCategory</span>.<span style=color:#a6e22e>findByPk</span>(<span style=color:#a6e22e>id</span>);
+<span style=color:#75715e>// update
+</span><span style=color:#75715e></span><span style=color:#66d9ef>await</span> <span style=color:#a6e22e>petCategory</span>.<span style=color:#a6e22e>update</span>(<span style=color:#66d9ef>object</span>);
+</code></pre></div>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/nestjs-tutorial>nestjs-tutorial</a>
 </div>
