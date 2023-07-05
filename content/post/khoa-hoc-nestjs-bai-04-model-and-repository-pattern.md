@@ -21,7 +21,7 @@ image: "https://user-images.githubusercontent.com/31009750/181449337-70081a76-5a
 4. Ứng dụng để tạo database schema với TypeORM trong NestJS
 5. Ứng dụng để tạo data seed trong NestJS
 
-### 1. Cấu hình cho NestJS làm với với MySQL thông qua TypeORM
+### 1. Cấu hình cho NestJS làm với với MySQL thông qua Sequelize
 
 Đầu tiên bạn cần tạo database trước
 Database name : **nestjs_tutorial_2023**
