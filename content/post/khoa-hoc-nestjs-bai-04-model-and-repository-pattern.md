@@ -497,3 +497,258 @@ const petCategory = await PetCategory.findByPk(id);
 // update
 await petCategory.update(object);
 ```
+
+Update source code of ManagePetCategory controllers and views
+
+```ts
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Redirect,
+  Render,
+} from "@nestjs/common";
+import { CreatePetCategoryDto } from "src/pet/dtos/pet-dto";
+import { plainToInstance } from "class-transformer";
+import { validate, ValidationError } from "class-validator";
+import { FormDataRequest } from "nestjs-form-data";
+import { PetCategory } from "src/pet/models/pet-category.model";
+import { Response } from "express";
+
+const transformError = (error: ValidationError) => {
+  const { property, constraints } = error;
+  return {
+    property,
+    constraints,
+  };
+};
+@Controller("admin/pet-categories")
+export class ManagePetCategoryController {
+  @Get("")
+  @Render("pet/admin/manage-pet-category/list")
+  async getList() {
+    const petCategories = await PetCategory.findAll();
+    return {
+      petCategories,
+    };
+  }
+
+  @Post("delete/:id")
+  @Redirect("/admin/pet-categories/")
+  async deleteOne(@Param() { id }: { id: string }) {
+    await PetCategory.destroy({ where: { id } });
+  }
+
+  @Get("create")
+  @Render("pet/admin/manage-pet-category/create")
+  view_create() {
+    // a form
+    return {
+      data: {
+        mode: "create",
+      },
+    };
+  }
+
+  @Post("create")
+  @Render("pet/admin/manage-pet-category/create")
+  @FormDataRequest()
+  async create(@Body() createPetCategoryDto: CreatePetCategoryDto) {
+    const data = {
+      mode: "create",
+    };
+    // validation
+    const object = plainToInstance(CreatePetCategoryDto, createPetCategoryDto);
+    const errors = await validate(object, {
+      stopAtFirstError: true,
+    });
+    if (errors.length > 0) {
+      Reflect.set(data, "error", "Please correct all fields!");
+      const responseError = {};
+      errors.map((error) => {
+        const rawError = transformError(error);
+        Reflect.set(
+          responseError,
+          rawError.property,
+          Object.values(rawError.constraints)[0]
+        );
+      });
+      Reflect.set(data, "errors", responseError);
+      return { data };
+    }
+    // set value and show success message
+    Reflect.set(data, "values", object);
+
+    // create PetCategory
+    const newPetCategory = await PetCategory.create({ ...object });
+
+    Reflect.set(
+      data,
+      "success",
+      `Pet Category : ${newPetCategory.id} - ${newPetCategory.name} has been created!`
+    );
+    // success
+    return { data };
+  }
+
+  @Get(":id")
+  @Render("pet/admin/manage-pet-category/create")
+  async getDetail(@Param() { id }: { id: string }) {
+    const data = {
+      mode: "edit",
+    };
+    const petCategory = await PetCategory.findByPk(id);
+    Reflect.set(data, "values", petCategory);
+    return { data };
+  }
+
+  @Post(":id")
+  @Render("pet/admin/manage-pet-category/create")
+  @FormDataRequest()
+  async updateOne(
+    @Param() { id }: { id: string },
+    @Body() createPetCategoryDto: CreatePetCategoryDto
+  ) {
+    const data = {
+      mode: "edit",
+    };
+    const petCategory = await PetCategory.findByPk(id);
+    // validation
+    const object = plainToInstance(CreatePetCategoryDto, createPetCategoryDto);
+    const errors = await validate(object, {
+      stopAtFirstError: true,
+    });
+    if (errors.length > 0) {
+      Reflect.set(data, "error", "Please correct all fields!");
+      const responseError = {};
+      errors.map((error) => {
+        const rawError = transformError(error);
+        Reflect.set(
+          responseError,
+          rawError.property,
+          Object.values(rawError.constraints)[0]
+        );
+      });
+      Reflect.set(data, "errors", responseError);
+      return { data };
+    }
+    // set value and show success message
+    await petCategory.update(object);
+
+    Reflect.set(data, "values", petCategory);
+    return { data };
+  }
+}
+```
+
+> Views - list.html
+
+```html
+<%- include('layouts/admin/header'); %>
+<section class="col-12">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">List Pet Categories</h5>
+      <div class="pb-4">
+        <a
+          class="btn btn-primary"
+          href="/admin/pet-categories/create"
+          role="button"
+          >New Pet Category</a
+        >
+      </div>
+      <div class="table-responsive">
+        <table class="table table-light table-striped">
+          <thead>
+            <tr>
+              <th scope="col" style="width: 360px">ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% petCategories.forEach(petCategory => { %>
+            <tr class="">
+              <td><%= petCategory.id %></td>
+              <td><%= petCategory.name %></td>
+              <td>
+                <a
+                  href="/admin/pet-categories/<%= petCategory.id %>"
+                  title="Edit"
+                  >Edit</a
+                >
+                <form
+                  action="/admin/pet-categories/delete/<%= petCategory.id %>"
+                  method="post"
+                >
+                  <button type="submit">Delete</button>
+                </form>
+              </td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+<%- include('layouts/admin/footer'); %>
+```
+
+> Views - Create/Edit
+
+```html
+<%- include('layouts/admin/header'); %>
+<section class="col-6">
+  <form method="post" enctype="multipart/form-data">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">
+          <% if (data.mode === 'create') { %> New Pet Category <% } %> <% if
+          (data.mode === 'edit') { %> Edit Pet Category <% } %>
+        </h5>
+        <!-- error -->
+        <% if (data.error){ %>
+        <div class="alert alert-danger" role="alert"><%= data.error %></div>
+        <% } %>
+        <!-- success -->
+        <% if (data.success){ %>
+        <div class="alert alert-success" role="alert"><%= data.success %></div>
+        <script type="text/javascript">
+          setTimeout(() => {
+            window.location.href = "/admin/pet-categories/";
+          }, 2000);
+        </script>
+        <% } %>
+        <div class="mb-3">
+          <label for="title" class="form-label">Name</label>
+          <div class="input-group has-validation">
+            <input
+              type="text"
+              class="form-control <%= data.errors && data.errors['name'] ? 'is-invalid': '' %>"
+              id="name"
+              name="name"
+              value="<%= data.values && data.values['name'] %>"
+              placeholder="Pet Category name"
+            />
+            <% if (data.errors && data.errors['name']) { %>
+            <div id="validationServerUsernameFeedback" class="invalid-feedback">
+              <%= data.errors['name'] %>
+            </div>
+            <% } %>
+          </div>
+        </div>
+      </div>
+      <% if(!data.success) { %>
+      <div class="mb-3 col-12 text-center">
+        <button type="submit" class="btn btn-primary">Save</button>
+      </div>
+      <% } %>
+    </div>
+  </form>
+</section>
+<%- include('layouts/admin/footer'); %>
+```
