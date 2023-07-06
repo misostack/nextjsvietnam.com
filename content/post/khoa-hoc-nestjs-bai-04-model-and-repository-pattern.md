@@ -753,7 +753,7 @@ export class ManagePetCategoryController {
 <%- include('layouts/admin/footer'); %>
 ```
 
-### Tạo data seed với sequlize-cli
+### Tạo data seed với sequelize-cli
 
 > Lưu ý tại bước này, nếu sử dụng generate của cli, thư mục target trong config của sequelize lúc này là thư mục dist.
 
