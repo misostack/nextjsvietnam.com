@@ -15,13 +15,13 @@ image: "https://user-images.githubusercontent.com/31009750/181449337-70081a76-5a
 
 ## Bài 04
 
-1. Giới thiệu sơ qua về một số ORM phổ biến : Sequelize, TypeORM, Mongoose
+1. Giới thiệu sơ qua về một số ORM phổ biến : Sequelize
 2. Tìm hiểu về ActiveRecord Pattern
-3. Tìm hiểu về Repository Pattern
-4. Ứng dụng để tạo database schema với TypeORM trong NestJS
+3. Ứng dụng để tạo database schema với Sequelize trong NestJS
+4. Ứng dụng thêm,xóa,sửa,tìm kiếm với Model cho PetCategory
 5. Ứng dụng để tạo data seed trong NestJS
 
-### 1. Cấu hình cho NestJS làm với với MySQL thông qua Sequelize
+### Cấu hình cho NestJS làm với với MySQL thông qua Sequelize
 
 Đầu tiên bạn cần tạo database trước
 Database name : **nestjs_tutorial_2023**
@@ -752,3 +752,176 @@ export class ManagePetCategoryController {
 </section>
 <%- include('layouts/admin/footer'); %>
 ```
+
+### Tạo data seed với sequlize-cli
+
+> Lưu ý tại bước này, nếu sử dụng generate của cli, thư mục target trong config của sequelize lúc này là thư mục dist.
+
+Do đó, ta cần điều chỉnh một chút lại config cho **.sequelizerc** như sau. Một lưu ý tiếp theo, là hãy nhớ chỉnh lại file extension cho file seeding hay migrations sang đuôi ts nhé.
+
+```js
+const path = require("path");
+
+const database_dist = process.env.NODE_ENV === "production" ? "dist" : "src";
+
+module.exports = {
+  config: path.resolve(`./${database_dist}/database/config/config.js`),
+  "seeders-path": path.resolve(`./${database_dist}/database/seeders`),
+  "migrations-path": path.resolve(`./${database_dist}/database/migrations`),
+};
+```
+
+```sh
+# create migration
+npx sequelize-cli migration:create --name create-pet-category-table --migrations-path ./src/database/migrations
+# create seed
+npx sequelize-cli seed:generate --name pet-category
+# build
+npm run build
+# run migration/seeds
+NODE_ENV=production npx sequelize-cli db:migrate --env production
+```
+
+```ts
+import { Column, DataType, Model, Table } from "sequelize-typescript";
+
+export const PetCategoryTableName = "pet_categories";
+
+@Table({
+  tableName: PetCategoryTableName,
+})
+export class PetCategory extends Model {
+  @Column({
+    primaryKey: true,
+    type: DataType.UUID,
+    defaultValue: DataType.UUIDV4,
+  })
+  id?: string;
+
+  @Column({
+    type: DataType.STRING(60),
+    allowNull: false,
+  })
+  name: string;
+}
+```
+
+> src\database\seeders\20230706141027-pet-category.ts
+
+```ts
+"use strict";
+
+import {
+  PetCategory,
+  PetCategoryTableName,
+} from "src/pet/models/pet-category.model";
+
+/** @type {import('sequelize-cli').Migration} */
+module.exports = {
+  async up(queryInterface, Sequelize) {
+    /**
+     * Add seed commands here.
+     *
+     * Example:
+     * await queryInterface.bulkInsert('People', [{
+     *   name: 'John Doe',
+     *   isBetaMember: false
+     * }], {});
+     */
+    await queryInterface.bulkInsert(
+      PetCategoryTableName,
+      [
+        { name: "Dogs" },
+        { name: "Cats" },
+        { name: "Pigs" },
+        { name: "Birds" },
+        { name: "Others" },
+      ],
+      {}
+    );
+  },
+
+  async down(queryInterface, Sequelize) {
+    /**
+     * Add commands to revert seed here.
+     *
+     * Example:
+     * await queryInterface.bulkDelete('People', null, {});
+     */
+    await queryInterface.bulkDelete(PetCategoryTableName, null, {});
+  },
+};
+```
+
+Mọi thứ trông có vẻ ổn, tuy nhiên, khi chạy câu lệnh migrate seed, bạn có thể gặp phải lỗi được mô tả tại [đây](https://github.com/sequelize/sequelize/issues/13224)
+
+```sh
+Loaded configuration file "dist\database\config\config.js".
+Using environment "production".
+== 20230706141027-pet-category: migrating =======
+
+ERROR: Field 'id' doesn't have a default value
+```
+
+Để bypass issue này trong lúc sequelize chưa có bản vá cho lỗi này, ngay lúc migrate, chúng ta sẽ phải generate uuid trực tiếp, bằng package [này](https://www.npmjs.com/package/uuid)
+
+Cập nhật lại 1 chút file seed src\database\seeders\20230706141027-pet-category.ts
+
+```ts
+"use strict";
+
+import { PetCategoryTableName } from "src/pet/models/pet-category.model";
+
+import { v4 as uuidv4 } from "uuid";
+
+/** @type {import('sequelize-cli').Migration} */
+module.exports = {
+  async up(queryInterface, Sequelize) {
+    /**
+     * Add seed commands here.
+     *
+     * Example:
+     * await queryInterface.bulkInsert('People', [{
+     *   name: 'John Doe',
+     *   isBetaMember: false
+     * }], {});
+     */
+    await queryInterface.bulkInsert(
+      PetCategoryTableName,
+      [
+        { id: uuidv4(), name: "Dogs" },
+        { id: uuidv4(), name: "Cats" },
+        { id: uuidv4(), name: "Pigs" },
+        { id: uuidv4(), name: "Birds" },
+        { id: uuidv4(), name: "Others" },
+      ],
+      {}
+    );
+  },
+
+  async down(queryInterface, Sequelize) {
+    /**
+     * Add commands to revert seed here.
+     *
+     * Example:
+     * await queryInterface.bulkDelete('People', null, {});
+     */
+    await queryInterface.bulkDelete(PetCategoryTableName, null, {});
+  },
+};
+```
+
+```bash
+$ NODE_ENV=production npx sequelize-cli db:seed:all
+
+Sequelize CLI [Node: 16.19.1, CLI: 6.6.1, ORM: 6.32.1]
+
+Loaded configuration file "dist\database\config\config.js".
+Using environment "production".
+== 20230706141027-pet-category: migrating =======
+== 20230706141027-pet-category: migrated (0.155s)
+```
+
+Và kết quả
+
+![image](https://user-images.githubusercontent.com/31009750/251483919-c00301f0-70f8-4342-b745-090547146eb2.png)
