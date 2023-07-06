@@ -122,13 +122,13 @@
 </ul>
 <h2 id=bài-04>Bài 04</h2>
 <ol>
-<li>Giới thiệu sơ qua về một số ORM phổ biến : Sequelize, TypeORM, Mongoose</li>
+<li>Giới thiệu sơ qua về một số ORM phổ biến : Sequelize</li>
 <li>Tìm hiểu về ActiveRecord Pattern</li>
-<li>Tìm hiểu về Repository Pattern</li>
-<li>Ứng dụng để tạo database schema với TypeORM trong NestJS</li>
+<li>Ứng dụng để tạo database schema với Sequelize trong NestJS</li>
+<li>Ứng dụng thêm,xóa,sửa,tìm kiếm với Model cho PetCategory</li>
 <li>Ứng dụng để tạo data seed trong NestJS</li>
 </ol>
-<h3 id=1-cấu-hình-cho-nestjs-làm-với-với-mysql-thông-qua-sequelize>1. Cấu hình cho NestJS làm với với MySQL thông qua Sequelize</h3>
+<h3 id=cấu-hình-cho-nestjs-làm-với-với-mysql-thông-qua-sequelize>Cấu hình cho NestJS làm với với MySQL thông qua Sequelize</h3>
 <p>Đầu tiên bạn cần tạo database trước
 Database name : <strong>nestjs_tutorial_2023</strong></p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sql data-lang=sql><span style=color:#66d9ef>CREATE</span> <span style=color:#66d9ef>DATABASE</span> <span style=color:#f92672>`</span>nestjs_tutorial_2023<span style=color:#f92672>`</span> CHARACTER <span style=color:#66d9ef>SET</span> <span style=color:#e6db74>&#39;utf8mb4&#39;</span> <span style=color:#66d9ef>COLLATE</span> <span style=color:#e6db74>&#39;utf8mb4_bin&#39;</span>;
@@ -771,7 +771,153 @@ npx sequelize-cli db:migrate --env production
   &lt;/<span style=color:#f92672>form</span>&gt;
 &lt;/<span style=color:#f92672>section</span>&gt;
 <span style=color:#960050;background-color:#1e0010>&lt;</span>%- include(&#39;layouts/admin/footer&#39;); %&gt;
-</code></pre></div>
+</code></pre></div><h3 id=tạo-data-seed-với-sequlize-cli>Tạo data seed với sequlize-cli</h3>
+<blockquote>
+<p>Lưu ý tại bước này, nếu sử dụng generate của cli, thư mục target trong config của sequelize lúc này là thư mục dist.</p>
+</blockquote>
+<p>Do đó, ta cần điều chỉnh một chút lại config cho <strong>.sequelizerc</strong> như sau. Một lưu ý tiếp theo, là hãy nhớ chỉnh lại file extension cho file seeding hay migrations sang đuôi ts nhé.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>path</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>require</span>(<span style=color:#e6db74>&#34;path&#34;</span>);
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>database_dist</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>process</span>.<span style=color:#a6e22e>env</span>.<span style=color:#a6e22e>NODE_ENV</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#34;production&#34;</span> <span style=color:#f92672>?</span> <span style=color:#e6db74>&#34;dist&#34;</span> <span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;src&#34;</span>;
+
+<span style=color:#a6e22e>module</span>.<span style=color:#a6e22e>exports</span> <span style=color:#f92672>=</span> {
+  <span style=color:#a6e22e>config</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>path</span>.<span style=color:#a6e22e>resolve</span>(<span style=color:#e6db74>`./</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>database_dist</span><span style=color:#e6db74>}</span><span style=color:#e6db74>/database/config/config.js`</span>),
+  <span style=color:#e6db74>&#34;seeders-path&#34;</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>path</span>.<span style=color:#a6e22e>resolve</span>(<span style=color:#e6db74>`./</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>database_dist</span><span style=color:#e6db74>}</span><span style=color:#e6db74>/database/seeders`</span>),
+  <span style=color:#e6db74>&#34;migrations-path&#34;</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>path</span>.<span style=color:#a6e22e>resolve</span>(<span style=color:#e6db74>`./</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>database_dist</span><span style=color:#e6db74>}</span><span style=color:#e6db74>/database/migrations`</span>),
+};
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=color:#75715e># create migration</span>
+npx sequelize-cli migration:create --name create-pet-category-table --migrations-path ./src/database/migrations
+<span style=color:#75715e># create seed</span>
+npx sequelize-cli seed:generate --name pet-category
+<span style=color:#75715e># build</span>
+npm run build
+<span style=color:#75715e># run migration/seeds</span>
+NODE_ENV<span style=color:#f92672>=</span>production npx sequelize-cli db:migrate --env production
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Column</span>, <span style=color:#a6e22e>DataType</span>, <span style=color:#a6e22e>Model</span>, <span style=color:#a6e22e>Table</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;sequelize-typescript&#34;</span>;
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>PetCategoryTableName</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;pet_categories&#34;</span>;
+
+<span style=color:#66d9ef>@Table</span>({
+  <span style=color:#a6e22e>tableName</span>: <span style=color:#66d9ef>PetCategoryTableName</span>,
+})
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>PetCategory</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>Model</span> {
+  <span style=color:#66d9ef>@Column</span>({
+    <span style=color:#a6e22e>primaryKey</span>: <span style=color:#66d9ef>true</span>,
+    <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>DataType</span>.<span style=color:#a6e22e>UUID</span>,
+    <span style=color:#a6e22e>defaultValue</span>: <span style=color:#66d9ef>DataType.UUIDV4</span>,
+  })
+  <span style=color:#a6e22e>id?</span>: <span style=color:#66d9ef>string</span>;
+
+  <span style=color:#66d9ef>@Column</span>({
+    <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>DataType</span>.<span style=color:#a6e22e>STRING</span>(<span style=color:#ae81ff>60</span>),
+    <span style=color:#a6e22e>allowNull</span>: <span style=color:#66d9ef>false</span>,
+  })
+  <span style=color:#a6e22e>name</span>: <span style=color:#66d9ef>string</span>;
+}
+</code></pre></div><blockquote>
+<p>src\database\seeders\20230706141027-pet-category.ts</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#e6db74>&#34;use strict&#34;</span>;
+
+<span style=color:#66d9ef>import</span> {
+  <span style=color:#a6e22e>PetCategory</span>,
+  <span style=color:#a6e22e>PetCategoryTableName</span>,
+} <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;src/pet/models/pet-category.model&#34;</span>;
+
+<span style=color:#75715e>/** @type {import(&#39;sequelize-cli&#39;).Migration} */</span>
+<span style=color:#66d9ef>module</span><span style=color:#a6e22e>.exports</span> <span style=color:#f92672>=</span> {
+  <span style=color:#66d9ef>async</span> <span style=color:#a6e22e>up</span>(<span style=color:#a6e22e>queryInterface</span>, <span style=color:#a6e22e>Sequelize</span>) {
+    <span style=color:#75715e>/**
+</span><span style=color:#75715e>     * Add seed commands here.
+</span><span style=color:#75715e>     *
+</span><span style=color:#75715e>     * Example:
+</span><span style=color:#75715e>     * await queryInterface.bulkInsert(&#39;People&#39;, [{
+</span><span style=color:#75715e>     *   name: &#39;John Doe&#39;,
+</span><span style=color:#75715e>     *   isBetaMember: false
+</span><span style=color:#75715e>     * }], {});
+</span><span style=color:#75715e>     */</span>
+    <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>queryInterface</span>.<span style=color:#a6e22e>bulkInsert</span>(
+      <span style=color:#a6e22e>PetCategoryTableName</span>,
+      [
+        { <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Dogs&#34;</span> },
+        { <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Cats&#34;</span> },
+        { <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Pigs&#34;</span> },
+        { <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Birds&#34;</span> },
+        { <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Others&#34;</span> },
+      ],
+      {}
+    );
+  },
+
+  <span style=color:#66d9ef>async</span> <span style=color:#a6e22e>down</span>(<span style=color:#a6e22e>queryInterface</span>, <span style=color:#a6e22e>Sequelize</span>) {
+    <span style=color:#75715e>/**
+</span><span style=color:#75715e>     * Add commands to revert seed here.
+</span><span style=color:#75715e>     *
+</span><span style=color:#75715e>     * Example:
+</span><span style=color:#75715e>     * await queryInterface.bulkDelete(&#39;People&#39;, null, {});
+</span><span style=color:#75715e>     */</span>
+    <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>queryInterface</span>.<span style=color:#a6e22e>bulkDelete</span>(<span style=color:#a6e22e>PetCategoryTableName</span>, <span style=color:#66d9ef>null</span>, {});
+  },
+};
+</code></pre></div><p>Mọi thứ trông có vẻ ổn, tuy nhiên, khi chạy câu lệnh migrate seed, bạn có thể gặp phải lỗi được mô tả tại <a href=https://github.com/sequelize/sequelize/issues/13224>đây</a></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>Loaded configuration file <span style=color:#e6db74>&#34;dist\database\config\config.js&#34;</span>.
+Using environment <span style=color:#e6db74>&#34;production&#34;</span>.
+<span style=color:#f92672>==</span> 20230706141027-pet-category: migrating <span style=color:#f92672>=======</span>
+
+ERROR: Field <span style=color:#e6db74>&#39;id&#39;</span> doesn<span style=color:#960050;background-color:#1e0010>&#39;</span>t have a default value
+</code></pre></div><p>Để bypass issue này trong lúc sequelize chưa có bản vá cho lỗi này, ngay lúc migrate, chúng ta sẽ phải generate uuid trực tiếp, bằng package <a href=https://www.npmjs.com/package/uuid>này</a></p>
+<p>Cập nhật lại 1 chút file seed src\database\seeders\20230706141027-pet-category.ts</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#e6db74>&#34;use strict&#34;</span>;
+
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>PetCategoryTableName</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;src/pet/models/pet-category.model&#34;</span>;
+
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>v4</span> <span style=color:#66d9ef>as</span> <span style=color:#a6e22e>uuidv4</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;uuid&#34;</span>;
+
+<span style=color:#75715e>/** @type {import(&#39;sequelize-cli&#39;).Migration} */</span>
+<span style=color:#66d9ef>module</span><span style=color:#a6e22e>.exports</span> <span style=color:#f92672>=</span> {
+  <span style=color:#66d9ef>async</span> <span style=color:#a6e22e>up</span>(<span style=color:#a6e22e>queryInterface</span>, <span style=color:#a6e22e>Sequelize</span>) {
+    <span style=color:#75715e>/**
+</span><span style=color:#75715e>     * Add seed commands here.
+</span><span style=color:#75715e>     *
+</span><span style=color:#75715e>     * Example:
+</span><span style=color:#75715e>     * await queryInterface.bulkInsert(&#39;People&#39;, [{
+</span><span style=color:#75715e>     *   name: &#39;John Doe&#39;,
+</span><span style=color:#75715e>     *   isBetaMember: false
+</span><span style=color:#75715e>     * }], {});
+</span><span style=color:#75715e>     */</span>
+    <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>queryInterface</span>.<span style=color:#a6e22e>bulkInsert</span>(
+      <span style=color:#a6e22e>PetCategoryTableName</span>,
+      [
+        { <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>uuidv4</span>(), <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Dogs&#34;</span> },
+        { <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>uuidv4</span>(), <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Cats&#34;</span> },
+        { <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>uuidv4</span>(), <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Pigs&#34;</span> },
+        { <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>uuidv4</span>(), <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Birds&#34;</span> },
+        { <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>uuidv4</span>(), <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Others&#34;</span> },
+      ],
+      {}
+    );
+  },
+
+  <span style=color:#66d9ef>async</span> <span style=color:#a6e22e>down</span>(<span style=color:#a6e22e>queryInterface</span>, <span style=color:#a6e22e>Sequelize</span>) {
+    <span style=color:#75715e>/**
+</span><span style=color:#75715e>     * Add commands to revert seed here.
+</span><span style=color:#75715e>     *
+</span><span style=color:#75715e>     * Example:
+</span><span style=color:#75715e>     * await queryInterface.bulkDelete(&#39;People&#39;, null, {});
+</span><span style=color:#75715e>     */</span>
+    <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>queryInterface</span>.<span style=color:#a6e22e>bulkDelete</span>(<span style=color:#a6e22e>PetCategoryTableName</span>, <span style=color:#66d9ef>null</span>, {});
+  },
+};
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ NODE_ENV<span style=color:#f92672>=</span>production npx sequelize-cli db:seed:all
+
+Sequelize CLI <span style=color:#f92672>[</span>Node: 16.19.1, CLI: 6.6.1, ORM: 6.32.1<span style=color:#f92672>]</span>
+
+Loaded configuration file <span style=color:#e6db74>&#34;dist\database\config\config.js&#34;</span>.
+Using environment <span style=color:#e6db74>&#34;production&#34;</span>.
+<span style=color:#f92672>==</span> 20230706141027-pet-category: migrating <span style=color:#f92672>=======</span>
+<span style=color:#f92672>==</span> 20230706141027-pet-category: migrated <span style=color:#f92672>(</span>0.155s<span style=color:#f92672>)</span>
+</code></pre></div><p>Và kết quả</p>
+<p><img src=https://user-images.githubusercontent.com/31009750/251483919-c00301f0-70f8-4342-b745-090547146eb2.png alt=image></p>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/nestjs-tutorial>nestjs-tutorial</a>
 </div>
