@@ -11,8 +11,18 @@
 <link rel=stylesheet href=https://nextjsvietnam.com/themes/2022/public/page.css>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWE4MLJYE6"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-RWE4MLJYE6')</script>
-<title>STRATEGIC DESIGN | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
-<meta name=robots content="noindex">
+<title>Khóa học NestJS Bài 05 - Repository Pattern | Cùng tìm hiểu về Repository Pattern trong NestJS | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+<meta name=robots content="all">
+<meta name=keywords content="nestjs,nestjs-mvc,nestjs-tutorial">
+<meta name=description content="Cùng tìm hiểu về Repository Pattern trong NestJS">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://user-images.githubusercontent.com/31009750/181449337-70081a76-5a01-4229-805e-39ed0ded6b5b.png">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="750">
+<meta property="og:image:height" content="300">
+<meta property="article:publisher" content="https://www.facebook.com/nextjsvietnam">
+<meta property="article:published_time" content="2023-07-06T21:46:31+07:00">
+<meta property="article:modified_time" content="2023-07-06T21:46:31+07:00">
 <link rel=apple-touch-icon sizes=57x57 href=/apple-icon-57x57.png>
 <link rel=apple-touch-icon sizes=60x60 href=/apple-icon-60x60.png>
 <link rel=apple-touch-icon sizes=72x72 href=/apple-icon-72x72.png>
@@ -91,23 +101,48 @@
 </div>
 </nav>
 <main>
-<section class="container section hero-section">
-<h1 class=hero-section-heading>STRATEGIC DESIGN</h1>
+<section class="container section">
+<div class="page-content max-w-2xl mx-auto">
+<img src=https://user-images.githubusercontent.com/31009750/181449337-70081a76-5a01-4229-805e-39ed0ded6b5b.png class=img-responsive alt="Khóa học NestJS Bài 05 - Repository Pattern">
+<h1>Khóa học NestJS Bài 05 - Repository Pattern</h1>
+<p><strong>Post Date</strong> : 2023-07-06T21:46:31+07:00</p>
+<p><strong>Modified Date</strong> : 2023-07-06T21:46:31+07:00</p>
+<p>
+<strong>Category:</strong>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/nestjs-tutorial>nestjs-tutorial</a>
+</p>
+<p>
+<strong>Tags:</strong>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=/tags/nestjs>nestjs</a>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=/tags/nestjs-pet-website>, nestjs-pet-website</a>
+</p>
+<ul>
+<li><a href=https://github.com/misostack/nestjs-tutorial-2023/tree/lession05>Lession 05 Source Code</a></li>
+</ul>
+<h2 id=bài-05>Bài 05</h2>
+<ol>
+<li>Giới thiệu sơ qua về repository pattern</li>
+<li>Giới thiệu về service trong NestJS</li>
+<li>Refactor code PetCategory áp dụng repository pattern</li>
+</ol>
+<div class="m-1 p-1">
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/nestjs-tutorial>nestjs-tutorial</a>
+</div>
+</div>
 </section>
-<section class="container section gap-8">
-<div class="card card-post-default">
-<div class="px-6 py-4">
-<h2 class=card-post-title>
-<a href=https://nextjsvietnam.com/post/domain-driven-design-trong-30-giay/>Domain Driven Design trong 30 giây</a>
-</h2>
-<div>
-<span class=card-post-date>12 Jun, 2023</span>
+<section class="container section">
+<div class="max-w-2xl mx-auto">
+<div class="font-heading text-2xl font-semibold">You Might Also Like</div>
+<div class="mt-8 grid gap-8">
+<ul class=sidebar-links>
+<li><a href=/post/khoa-hoc-nestjs-bai-06-viet-unit-test/>Khóa học NestJS - Bài 06 Hướng dẫn viết Unit Test</a></li>
+<li><a href=/post/khoa-hoc-nestjs-bai-04-model-and-repository-pattern/>Khóa học NestJS Bài 04 - Model and Repository Pattern</a></li>
+<li><a href=/post/khoa-hoc-nestjs-bai03/>Khóa học NestJS Bài 03 - Controllers & Views</a></li>
+<li><a href=/post/khoa-hoc-nestjs-bai-02/>Khóa học Nestjs - Bài 02 - Giới thiệu mô hình MVC</a></li>
+<li><a href=/post/khoa-hoc-nestjs/>Khóa học NestJS - Bài 01 - Lộ trình các bài học về NestJS Framework</a></li>
+</ul>
 </div>
-<div class=card-post-description>Cùng tìm hiểu Domain Driven Design trong 30 giây</div>
 </div>
-</div>
-</section>
-<section class=container>
 </section>
 </main>
 <footer class=footer>
