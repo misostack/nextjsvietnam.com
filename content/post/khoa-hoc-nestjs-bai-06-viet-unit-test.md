@@ -12,3 +12,8 @@ image: "https://user-images.githubusercontent.com/31009750/181449337-70081a76-5a
 - [Lession 06 Source Code](https://github.com/misostack/nestjs-tutorial-2023/tree/lession06)
 
 ## Bài 06
+
+1. Giới thiệu sơ qua về Unit Test
+2. Cách test một service trong NestJS
+3. Hướng dẫn debug unit test trong NestJS
+4. Ứng dụng viết Unit Test cho PetCategory
