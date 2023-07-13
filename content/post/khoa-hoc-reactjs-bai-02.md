@@ -2,7 +2,7 @@
 title: "Khóa học ReactJS - Bài 02 - Làm quen với ReactJS qua các khái niệm"
 type: "post"
 date: 2023-07-02T20:08:16+07:00
-description: "Giáo án tự học ReactJS cho người mới bắt đầu"
+description: "Tạo dự án ReactJS với vite, tìm hiểu cách sử dụng biến môi trường, khái niệm về component và 1 số cú pháp của JSX"
 keywords: ["reactjs", "reactjs-beginner"]
 categories: ["reactjs-tutorial"]
 tags: ["reactjs"]

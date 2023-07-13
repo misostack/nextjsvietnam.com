@@ -2,7 +2,7 @@
 title: "Khóa học ReactJS - Bài 01 - Lộ trình các bài học về ReactJS"
 type: "post"
 date: 2023-05-19T22:00:00+07:00
-description: "Giáo án tự học ReactJS cho người mới bắt đầu"
+description: "Giáo án tự học ReactJS cho người mới bắt đầu. Kiến thức nền tảng của ReactJS, Cách sử dụng các module sẵn có trong hệ sinh thái của ReactJS, Cách cấu trúc 1 dự án ReactJS trong thực tế, Chia sẻ kinh nghiệm và hỏi đáp."
 keywords: ["reactjs", "reactjs-beginner"]
 categories: ["reactjs-tutorial"]
 tags: ["reactjs"]
