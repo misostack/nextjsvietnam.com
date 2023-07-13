@@ -11,18 +11,18 @@
 <link rel=stylesheet href=https://nextjsvietnam.com/themes/2022/public/page.css>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWE4MLJYE6"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-RWE4MLJYE6')</script>
-<title>Khóa học NestJS - Bài 06 Hướng dẫn viết Unit Test | Cùng tìm hiểu cách viết unit test và cách mà nó giúp ích cho bạn cũng như dự án | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+<title>Khóa học ReactJS - Bài 03 - Props và States | Tìm hiểu và nắm vững khái niệm về props và states. Một số pattern phổ biến trong ReactJS. | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
 <meta name=robots content="all">
-<meta name=keywords content="nestjs,nestjs-mvc,nestjs-tutorial">
-<meta name=description content="Cùng tìm hiểu cách viết unit test và cách mà nó giúp ích cho bạn cũng như dự án">
+<meta name=keywords content="reactjs,reactjs-beginner">
+<meta name=description content="Tìm hiểu và nắm vững khái niệm về props và states. Một số pattern phổ biến trong ReactJS.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://user-images.githubusercontent.com/31009750/181449337-70081a76-5a01-4229-805e-39ed0ded6b5b.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/31009750/246856332-ece36caa-82ef-4a4f-86d9-9dad4a108929.png">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="750">
 <meta property="og:image:height" content="300">
 <meta property="article:publisher" content="https://www.facebook.com/nextjsvietnam">
-<meta property="article:published_time" content="2023-07-06T21:52:16+07:00">
-<meta property="article:modified_time" content="2023-07-06T21:52:16+07:00">
+<meta property="article:published_time" content="2023-07-13T21:45:10+07:00">
+<meta property="article:modified_time" content="2023-07-13T21:45:10+07:00">
 <link rel=apple-touch-icon sizes=57x57 href=/apple-icon-57x57.png>
 <link rel=apple-touch-icon sizes=60x60 href=/apple-icon-60x60.png>
 <link rel=apple-touch-icon sizes=72x72 href=/apple-icon-72x72.png>
@@ -103,31 +103,51 @@
 <main>
 <section class="container section">
 <div class="page-content max-w-2xl mx-auto">
-<img src=https://user-images.githubusercontent.com/31009750/181449337-70081a76-5a01-4229-805e-39ed0ded6b5b.png class=img-responsive alt="Khóa học NestJS - Bài 06 Hướng dẫn viết Unit Test">
-<h1>Khóa học NestJS - Bài 06 Hướng dẫn viết Unit Test</h1>
-<p><strong>Post Date</strong> : 2023-07-06T21:52:16+07:00</p>
-<p><strong>Modified Date</strong> : 2023-07-06T21:52:16+07:00</p>
+<img src=https://user-images.githubusercontent.com/31009750/246856332-ece36caa-82ef-4a4f-86d9-9dad4a108929.png class=img-responsive alt="Khóa học ReactJS - Bài 03 - Props và States">
+<h1>Khóa học ReactJS - Bài 03 - Props và States</h1>
+<p><strong>Post Date</strong> : 2023-07-13T21:45:10+07:00</p>
+<p><strong>Modified Date</strong> : 2023-07-13T21:45:10+07:00</p>
 <p>
 <strong>Category:</strong>
-<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/nestjs-tutorial>nestjs-tutorial</a>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/reactjs-tutorial>reactjs-tutorial</a>
 </p>
 <p>
 <strong>Tags:</strong>
-<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=/tags/nestjs>nestjs</a>
-<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=/tags/nestjs-pet-website>, nestjs-pet-website</a>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=/tags/reactjs>reactjs</a>
 </p>
+<p>Trong bài trước, các anh chị đã tìm hiểu được cấu trúc 1 ứng dụng ReactJS chính là tổ hợp các component.
+Tuy nhiên, trong ứng dụng thực tế, chúng ta cần giải quyết nhiều câu hỏi hóc búa hơn. Trong phạm vi bài học này, chúng ta cùng tìm cách trả lời các câu hỏi sau.</p>
+<p>Giả sử, các anh chị phải xây dựng 1 ứng dụng nhỏ, nhằm quản lí 1 danh sách các liên kết.
+Mỗi liên kết có thể là: Link website, Hình Ảnh(png/jpg/jpeg), Link Youtube.</p>
+<p>Ứng dụng sẽ gồm 1 màn hình duy nhất, các tác vụ thêm, sửa sẽ mở 1 modal cho phép người dùng nhập/thay đổi thông tin, sau khi lưu lại, thông tin trong danh sách sẽ được cập nhật.</p>
+<p>Các tính năng chính của ứng dụng gồm:</p>
 <ul>
-<li><a href=https://github.com/misostack/nestjs-tutorial-2023/tree/lession06>Lession 06 Source Code</a></li>
+<li>Thêm, Sửa, Xoá Link</li>
+<li>Hiển thị liên kết theo 3 format: website(dạng link với tiêu đề đã nhập, nếu để trống tiêu đề, sử dụng link), hình ảnh(dạng image với tiêu đề đã nhập, nếu để trống, sử dụng link), link youtube ( dạng iframe với embed link)</li>
+<li>Lưu trữ thông tin ứng dụng trên máy người dùng, để khi tắt ứng dụng mở lại, thông tin đã lưu vẫn còn tồn tại.</li>
 </ul>
-<h2 id=bài-06>Bài 06</h2>
+<p>Khi thực hiện ứng dụng trên, các anh chị cần phải trả lời được các câu hỏi sau:
+được các thông tin vừa nhập?</p>
 <ol>
-<li>Giới thiệu sơ qua về Unit Test</li>
-<li>Cách test một service trong NestJS</li>
-<li>Hướng dẫn debug unit test trong NestJS</li>
-<li>Ứng dụng viết Unit Test cho PetCategory</li>
+<li>Làm thế nào để lấy được thông tin trong form nhập liệu của link để tiếp tục xử lý</li>
+<li>Làm cách nào truyền được data từ danh sách lên modal.</li>
+<li>Khi người dùng nhập mới/cập nhật thông tin của liên kết, làm thế nào để màn hình danh sách hiển thị.</li>
+<li>Làm thế nào để nạp thông tin đã lưu trên ứng dụng, khi user mở lại ứng dụng.</li>
+<li>Nên lưu thông tin ứng dụng trên máy user vào đâu.</li>
 </ol>
+<p>Để giải quyết được bài tập này, tôi sẽ gợi ý 1 số bước mà các anh chị cần phải thực hiện như sau:</p>
+<h3 id=bước-số-1-chia-nhỏ-ứng-dụng-thành-các-component>Bước số 1. Chia nhỏ ứng dụng thành các component.</h3>
+<p>Nguyên tắc chia sẽ giống như việc cắt giao diện HTML từ file design cho trước. Từ trên xuống dưới, từ ngoài vào trong.</p>
+<h3 id=bước-số-2-xây-dựng-cấu-trúc-dữ-liệu-chung-cho-ứng-dụng>Bước số 2. Xây dựng cấu trúc dữ liệu chung cho ứng dụng</h3>
+<p>Chính là trạng thái của dữ liệu từ lúc bắt đầu, trong lúc hoạt động, cho đến khi kết thúc.
+Điều này cực kì quan trọng, vì ứng dụng ngoài yêu cầu phải tương tác với người dùng, thì nhiệm vụ chính của nó là thể hiện các trạng thái hiện tại của dữ liệu: ban đầu, sau khi biến đổi, khi kết thúc.</p>
+<h3 id=bước-số-3-xây-dựng-chi-tiết-bắt-đầu-từ-các-component-nhỏ-nhất>Bước số 3. Xây dựng chi tiết, bắt đầu từ các component nhỏ nhất.</h3>
+<p>Nguyên tắc là xây dựng các component nhỏ độc lập, nhận input và trả ra output nếu cần.
+Các component lớn hơn, có thể có trạng thái riêng và là tổ hợp chứa nhiều component nhỏ hơn.</p>
+<h3 id=bước-số-4-tích-hợp-toàn-bộ-các-component-lại-thành-1-ứng-dụng-hoàn-chỉnh>Bước số 4. Tích hợp toàn bộ các component lại thành 1 ứng dụng hoàn chỉnh</h3>
+<p>Đây là bước cuối cùng, lắp ráp lại kết quả của các bước trên, nhằm tạo ra 1 ứng dụng hoàn chỉnh cho người dùng.</p>
 <div class="m-1 p-1">
-<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/nestjs-tutorial>nestjs-tutorial</a>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/reactjs-tutorial>reactjs-tutorial</a>
 </div>
 </div>
 </section>
@@ -136,11 +156,8 @@
 <div class="font-heading text-2xl font-semibold">You Might Also Like</div>
 <div class="mt-8 grid gap-8">
 <ul class=sidebar-links>
-<li><a href=/post/khoa-hoc-nestjs-bai-05-repository-pattern/>Khóa học NestJS Bài 05 - Repository Pattern</a></li>
-<li><a href=/post/khoa-hoc-nestjs-bai-04-model-and-repository-pattern/>Khóa học NestJS Bài 04 - Model and Repository Pattern</a></li>
-<li><a href=/post/khoa-hoc-nestjs-bai03/>Khóa học NestJS Bài 03 - Controllers & Views</a></li>
-<li><a href=/post/khoa-hoc-nestjs-bai-02/>Khóa học Nestjs - Bài 02 - Giới thiệu mô hình MVC</a></li>
-<li><a href=/post/khoa-hoc-nestjs/>Khóa học NestJS - Bài 01 - Lộ trình các bài học về NestJS Framework</a></li>
+<li><a href=/post/khoa-hoc-reactjs-bai-02/>Khóa học ReactJS - Bài 02 - Làm quen với ReactJS qua các khái niệm</a></li>
+<li><a href=/post/khoa-hoc-reactjs/>Khóa học ReactJS - Bài 01 - Lộ trình các bài học về ReactJS</a></li>
 </ul>
 </div>
 </div>
