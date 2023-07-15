@@ -272,7 +272,7 @@ Có lẽ là 6 hay chăng? Không kết quả là chỉ có setCounter(counter+3
 
 ![image](https://user-images.githubusercontent.com/31009750/253736507-c6fa9749-1c63-4c54-8bde-82219b5baf51.png)
 
-Giải thích: Trong 1 sự kiện , khi diễn ra việc cập nhật state, ReactJS sẽ gom các cập nhật này và thực hiện 1 lần, trong quá trình này nó sẽ tự động loại bỏ các sự kiện cập nhật state bị trùng lặp và sử dụng sự kiện cuối cùng.
+Giải thích: Trong 1 sự kiện , khi diễn ra việc cập nhật state, ReactJS sẽ gom các cập nhật này và thực hiện 1 lần, lúc này state counter sẽ là 1 giá trị cố định trong mỗi event cập nhật, do đó dù các event update state trước đó là +1,+2 được thực hiện nhưng tại bước số +3, giá trị counter vẫn được lấy từ giá trị ban đầu, do đó kết quả sẽ như ta đã thấy.
 Cùng test thử việc cập nhật 2 state riêng biệt trong cùng 1 event và kiểm tra xem ReactJS sẽ render bao nhiêu lần.
 
 ```jsx
@@ -309,6 +309,46 @@ export default Lession003;
 ```
 
 ![image](https://user-images.githubusercontent.com/31009750/253738458-3e7f09c2-0a0b-4964-b24c-443a612386f2.png)
+
+Nếu thay vì sử dụng giá trị state trực tiếp trong component, và cập nhật state sử dụng callback function như bên dứoi
+
+```jsx
+import { useState } from "react";
+import enviroment from "./shared/environment";
+
+const Lession003 = () => {
+  const [counter, setCounter] = useState(0);
+  const [counter2, setCounter2] = useState(1);
+  console.log("Before render, counter:", counter, "counter2:", counter2);
+  return (
+    <>
+      <h2>State and Event</h2>
+      <h3>Counter: {counter}</h3>
+      <h3>Counter2: {counter2}</h3>
+      <button
+        type="button"
+        className="btn btn-primary"
+        onClick={(e) => {
+          e.preventDefault();
+          console.log(`Increase counter from ${counter} to ${counter + 2}`);
+          console.log(`Increase counter from ${counter2} to ${counter2 + 3}`);
+          setCounter((counter) => counter + 2);
+          setCounter((counter) => counter + 4);
+          setCounter2((counter2) => counter2 + 3);
+        }}
+      >
+        Increase counter
+      </button>
+    </>
+  );
+};
+
+export default Lession003;
+```
+
+Kết quả nhận được đúng như những gì được mô tả
+
+![image](https://user-images.githubusercontent.com/31009750/253738818-448d77fe-f25f-4bae-a0a9-b0ec5f8a5078.png)
 
 #### Xây dựng cấu trúc dữ liệu chung cho ứng dụng
 
