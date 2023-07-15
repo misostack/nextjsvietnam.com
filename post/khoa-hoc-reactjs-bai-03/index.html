@@ -410,8 +410,45 @@ Cùng test thử việc cập nhật 2 state riêng biệt trong cùng 1 event v
 };
 
 <span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#a6e22e>Lession003</span>;
-</code></pre></div><p>Kết quả nhận được đúng như những gì được mô tả</p>
+</code></pre></div><p>Kết quả nhận được đúng như những gì được mô tả.</p>
 <p><img src=https://user-images.githubusercontent.com/31009750/253738818-448d77fe-f25f-4bae-a0a9-b0ec5f8a5078.png alt=image></p>
+<p>Tiếp tục thử nghiệm với setTimeOut,</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>useState</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;react&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#a6e22e>enviroment</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;./shared/environment&#34;</span>;
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>Lession003</span> <span style=color:#f92672>=</span> () =&gt; {
+  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>counter</span>, <span style=color:#a6e22e>setCounter</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(<span style=color:#ae81ff>0</span>);
+  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>counter2</span>, <span style=color:#a6e22e>setCounter2</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(<span style=color:#ae81ff>1</span>);
+  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;Before render, counter:&#34;</span>, <span style=color:#a6e22e>counter</span>, <span style=color:#e6db74>&#34;counter2:&#34;</span>, <span style=color:#a6e22e>counter2</span>);
+  <span style=color:#66d9ef>return</span> (
+    &lt;&gt;
+      &lt;<span style=color:#f92672>h2</span>&gt;<span style=color:#a6e22e>State</span> <span style=color:#a6e22e>and</span> <span style=color:#a6e22e>Event</span>&lt;/<span style=color:#f92672>h2</span>&gt;
+      &lt;<span style=color:#f92672>h3</span>&gt;<span style=color:#a6e22e>Counter</span><span style=color:#f92672>:</span> {<span style=color:#a6e22e>counter</span>}&lt;/<span style=color:#f92672>h3</span>&gt;
+      &lt;<span style=color:#f92672>h3</span>&gt;<span style=color:#a6e22e>Counter2</span><span style=color:#f92672>:</span> {<span style=color:#a6e22e>counter2</span>}&lt;/<span style=color:#f92672>h3</span>&gt;
+      &lt;<span style=color:#f92672>button</span>
+        <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;button&#34;</span>
+        <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;btn btn-primary&#34;</span>
+        <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{(<span style=color:#a6e22e>e</span>) =&gt; {
+          <span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>preventDefault</span>();
+          <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>`Increase counter from </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>counter</span><span style=color:#e6db74>}</span><span style=color:#e6db74> to </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>counter</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>2</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>);
+          <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>`Increase counter from </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>counter2</span><span style=color:#e6db74>}</span><span style=color:#e6db74> to </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>counter2</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>3</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>);
+          <span style=color:#a6e22e>setCounter</span>((<span style=color:#a6e22e>counter</span>) =&gt; <span style=color:#a6e22e>counter</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>2</span>);
+          <span style=color:#a6e22e>setCounter</span>((<span style=color:#a6e22e>counter</span>) =&gt; <span style=color:#a6e22e>counter</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>4</span>);
+          <span style=color:#a6e22e>setTimeout</span>(() =&gt; {
+            <span style=color:#a6e22e>setCounter</span>((<span style=color:#a6e22e>counter</span>) =&gt; <span style=color:#a6e22e>counter</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>6</span>);
+          }, <span style=color:#ae81ff>0</span>);
+          <span style=color:#a6e22e>setCounter2</span>((<span style=color:#a6e22e>counter2</span>) =&gt; <span style=color:#a6e22e>counter2</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>3</span>);
+        }}
+      &gt;
+        <span style=color:#a6e22e>Increase</span> <span style=color:#a6e22e>counter</span>
+      &lt;/<span style=color:#f92672>button</span>&gt;
+    &lt;/&gt;
+  );
+};
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#a6e22e>Lession003</span>;
+</code></pre></div><p>Kết quả ta có 2 lần render, vì lần cập nhật state counter + 6 diễn ra trong 1 tiến trình khác.</p>
+<p><img src=https://user-images.githubusercontent.com/31009750/253738943-b6630f8f-dc06-4755-a0d8-2cfa12e5ea98.png alt=image></p>
 <h4 id=xây-dựng-cấu-trúc-dữ-liệu-chung-cho-ứng-dụng>Xây dựng cấu trúc dữ liệu chung cho ứng dụng</h4>
 <p>Chính là trạng thái của dữ liệu từ lúc bắt đầu, trong lúc hoạt động, cho đến khi kết thúc.
 Điều này cực kì quan trọng, vì ứng dụng ngoài yêu cầu phải tương tác với người dùng, thì nhiệm vụ chính của nó là thể hiện các trạng thái hiện tại của dữ liệu: ban đầu, sau khi biến đổi, khi kết thúc.</p>
