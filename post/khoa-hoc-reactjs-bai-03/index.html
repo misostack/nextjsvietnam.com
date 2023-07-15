@@ -312,6 +312,7 @@ $danger<span style=color:#f92672>:</span> <span style=color:#ae81ff>#ff4136</spa
 <li>Không thể cập nhật state trực tiếp, chỉ có thể dùng hàm setState được cung cấp.</li>
 <li>Khi hàm setState được gọi, giá trị của state không thay đổi ngay lập tức.</li>
 <li>Sau khi Component được render lại, chúng ta mới thấy được giá trị mới của state.</li>
+<li>Nếu state là một object, cần lưu ý, giá trị mới của state phải tạo thành 1 object mới, thì React mới nhận biết được state đã thay đổi mà render lại (do object trong javascript luôn được tham chiếu tới 1 địa chỉ cố định lúc khởi tạo và trong quá trình thay đổi giá trị, địa chỉ tham chiếu này vẫn không đổi).</li>
 </ol>
 <p>Giả sử, chúng ta gọi hàm cập nhật state liên tiếp nhau thì điều gì sẽ xảy ra:</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>useState</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;react&#34;</span>;
@@ -449,6 +450,89 @@ Cùng test thử việc cập nhật 2 state riêng biệt trong cùng 1 event v
 <span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#a6e22e>Lession003</span>;
 </code></pre></div><p>Kết quả ta có 2 lần render, vì lần cập nhật state counter + 6 diễn ra trong 1 tiến trình khác.</p>
 <p><img src=https://user-images.githubusercontent.com/31009750/253738943-b6630f8f-dc06-4755-a0d8-2cfa12e5ea98.png alt=image></p>
+<p>Cùng thử nghiệm với object cho statestate</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>useState</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;react&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#a6e22e>enviroment</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;./shared/environment&#34;</span>;
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>Lession003</span> <span style=color:#f92672>=</span> () =&gt; {
+  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>stateObject</span>, <span style=color:#a6e22e>setStateObject</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>({
+    <span style=color:#a6e22e>a</span><span style=color:#f92672>:</span> {
+      <span style=color:#a6e22e>b</span><span style=color:#f92672>:</span> {
+        <span style=color:#a6e22e>c</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>1</span>,
+      },
+    },
+  });
+  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;Before render, stateObject.a.b.c:&#34;</span>, <span style=color:#a6e22e>stateObject</span>.<span style=color:#a6e22e>a</span>.<span style=color:#a6e22e>b</span>.<span style=color:#a6e22e>c</span>);
+  <span style=color:#66d9ef>return</span> (
+    &lt;&gt;
+      &lt;<span style=color:#f92672>h2</span>&gt;<span style=color:#a6e22e>State</span> <span style=color:#a6e22e>and</span> <span style=color:#a6e22e>Event</span>&lt;/<span style=color:#f92672>h2</span>&gt;
+      &lt;<span style=color:#f92672>h3</span>&gt;<span style=color:#a6e22e>StateObject</span><span style=color:#f92672>:</span> {<span style=color:#a6e22e>JSON</span>.<span style=color:#a6e22e>stringify</span>(<span style=color:#a6e22e>stateObject</span>)}&lt;/<span style=color:#f92672>h3</span>&gt;
+      &lt;<span style=color:#f92672>button</span>
+        <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;button&#34;</span>
+        <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;btn btn-primary&#34;</span>
+        <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{(<span style=color:#a6e22e>e</span>) =&gt; {
+          <span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>preventDefault</span>();
+          <span style=color:#a6e22e>setStateObject</span>((<span style=color:#a6e22e>obj</span>) =&gt; {
+            <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>obj</span>.<span style=color:#a6e22e>a</span>.<span style=color:#a6e22e>b</span>.<span style=color:#a6e22e>c</span>, <span style=color:#e6db74>&#34;obj === stateObject&#34;</span>, <span style=color:#a6e22e>obj</span> <span style=color:#f92672>===</span> <span style=color:#a6e22e>stateObject</span>);
+            <span style=color:#a6e22e>obj</span>.<span style=color:#a6e22e>a</span>.<span style=color:#a6e22e>b</span>.<span style=color:#a6e22e>c</span> <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>;
+            <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>obj</span>;
+          });
+        }}
+      &gt;
+        <span style=color:#a6e22e>Increase</span> <span style=color:#a6e22e>counter</span>
+      &lt;/<span style=color:#f92672>button</span>&gt;
+    &lt;/&gt;
+  );
+};
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#a6e22e>Lession003</span>;
+</code></pre></div><p>Kết quả, dù ta thấy value c có thay đổi nhưng thực tế trên UI vẫn không hề render lại.</p>
+<p><img src=https://user-images.githubusercontent.com/31009750/253748442-c7c9b1f3-a71b-48e8-9377-7fa9a0a65f1f.png alt=image></p>
+<p>Do đó việc mutate trực tiếp object và kết quả sau khi đổi vẫn tham chiếu tới cùng 1 object, sẽ khiến React Component không nhận biết được sẽ phải render lại, do nó thực hiện phép so sánh giữa 2 object với nhau.
+Vì vậy, việc bắt buộc là anh/chị không được thay đổi trực tiếp object này, mà nên tạo 1 object bao gồm các gía trị của object cũ được trộn với giá trị mới đã thay đổi.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>useState</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;react&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#a6e22e>enviroment</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;./shared/environment&#34;</span>;
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>Lession003</span> <span style=color:#f92672>=</span> () =&gt; {
+  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>stateObject</span>, <span style=color:#a6e22e>setStateObject</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>({
+    <span style=color:#a6e22e>a</span><span style=color:#f92672>:</span> {
+      <span style=color:#a6e22e>b</span><span style=color:#f92672>:</span> {
+        <span style=color:#a6e22e>c</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>1</span>,
+      },
+    },
+  });
+  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;Before render, stateObject.a.b.c:&#34;</span>, <span style=color:#a6e22e>stateObject</span>.<span style=color:#a6e22e>a</span>.<span style=color:#a6e22e>b</span>.<span style=color:#a6e22e>c</span>);
+  <span style=color:#66d9ef>return</span> (
+    &lt;&gt;
+      &lt;<span style=color:#f92672>h2</span>&gt;<span style=color:#a6e22e>State</span> <span style=color:#a6e22e>and</span> <span style=color:#a6e22e>Event</span>&lt;/<span style=color:#f92672>h2</span>&gt;
+      &lt;<span style=color:#f92672>h3</span>&gt;<span style=color:#a6e22e>StateObject</span><span style=color:#f92672>:</span> {<span style=color:#a6e22e>JSON</span>.<span style=color:#a6e22e>stringify</span>(<span style=color:#a6e22e>stateObject</span>)}&lt;/<span style=color:#f92672>h3</span>&gt;
+      &lt;<span style=color:#f92672>button</span>
+        <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;button&#34;</span>
+        <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;btn btn-primary&#34;</span>
+        <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{(<span style=color:#a6e22e>e</span>) =&gt; {
+          <span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>preventDefault</span>();
+          <span style=color:#a6e22e>setStateObject</span>((<span style=color:#a6e22e>obj</span>) =&gt; {
+            <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>obj</span>.<span style=color:#a6e22e>a</span>.<span style=color:#a6e22e>b</span>.<span style=color:#a6e22e>c</span>, <span style=color:#e6db74>&#34;obj === stateObject&#34;</span>, <span style=color:#a6e22e>obj</span> <span style=color:#f92672>===</span> <span style=color:#a6e22e>stateObject</span>);
+            <span style=color:#66d9ef>return</span> {
+              ...<span style=color:#a6e22e>obj</span>,
+              <span style=color:#a6e22e>a</span><span style=color:#f92672>:</span> {
+                <span style=color:#a6e22e>b</span><span style=color:#f92672>:</span> {
+                  <span style=color:#a6e22e>c</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>obj</span>.<span style=color:#a6e22e>a</span>.<span style=color:#a6e22e>b</span>.<span style=color:#a6e22e>c</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>,
+                },
+              },
+            };
+          });
+        }}
+      &gt;
+        <span style=color:#a6e22e>Increase</span> <span style=color:#a6e22e>counter</span>
+      &lt;/<span style=color:#f92672>button</span>&gt;
+    &lt;/&gt;
+  );
+};
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#a6e22e>Lession003</span>;
+</code></pre></div><p><img src=https://user-images.githubusercontent.com/31009750/253748682-a14a9340-d363-4063-aee4-e3c2457c04c7.png alt=image></p>
+<p>Lúc này cả trên UI, lẫn console, giá trị của c đều được cập nhật tương ứng.</p>
 <h4 id=xây-dựng-cấu-trúc-dữ-liệu-chung-cho-ứng-dụng>Xây dựng cấu trúc dữ liệu chung cho ứng dụng</h4>
 <p>Chính là trạng thái của dữ liệu từ lúc bắt đầu, trong lúc hoạt động, cho đến khi kết thúc.
 Điều này cực kì quan trọng, vì ứng dụng ngoài yêu cầu phải tương tác với người dùng, thì nhiệm vụ chính của nó là thể hiện các trạng thái hiện tại của dữ liệu: ban đầu, sau khi biến đổi, khi kết thúc.</p>
