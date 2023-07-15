@@ -233,6 +233,7 @@ Sau khi viết lại đoạn code ban đầu, bằng cách sử dụng cú pháp
 1. Không thể cập nhật state trực tiếp, chỉ có thể dùng hàm setState được cung cấp.
 2. Khi hàm setState được gọi, giá trị của state không thay đổi ngay lập tức.
 3. Sau khi Component được render lại, chúng ta mới thấy được giá trị mới của state.
+4. Nếu state là một object, cần lưu ý, giá trị mới của state phải tạo thành 1 object mới, thì React mới nhận biết được state đã thay đổi mà render lại (do object trong javascript luôn được tham chiếu tới 1 địa chỉ cố định lúc khởi tạo và trong quá trình thay đổi giá trị, địa chỉ tham chiếu này vẫn không đổi).
 
 Giả sử, chúng ta gọi hàm cập nhật state liên tiếp nhau thì điều gì sẽ xảy ra:
 
@@ -392,6 +393,101 @@ export default Lession003;
 Kết quả ta có 2 lần render, vì lần cập nhật state counter + 6 diễn ra trong 1 tiến trình khác.
 
 ![image](https://user-images.githubusercontent.com/31009750/253738943-b6630f8f-dc06-4755-a0d8-2cfa12e5ea98.png)
+
+Cùng thử nghiệm với object cho statestate
+
+```jsx
+import { useState } from "react";
+import enviroment from "./shared/environment";
+
+const Lession003 = () => {
+  const [stateObject, setStateObject] = useState({
+    a: {
+      b: {
+        c: 1,
+      },
+    },
+  });
+  console.log("Before render, stateObject.a.b.c:", stateObject.a.b.c);
+  return (
+    <>
+      <h2>State and Event</h2>
+      <h3>StateObject: {JSON.stringify(stateObject)}</h3>
+      <button
+        type="button"
+        className="btn btn-primary"
+        onClick={(e) => {
+          e.preventDefault();
+          setStateObject((obj) => {
+            console.log(obj.a.b.c, "obj === stateObject", obj === stateObject);
+            obj.a.b.c += 1;
+            return obj;
+          });
+        }}
+      >
+        Increase counter
+      </button>
+    </>
+  );
+};
+
+export default Lession003;
+```
+
+Kết quả, dù ta thấy value c có thay đổi nhưng thực tế trên UI vẫn không hề render lại.
+
+![image](https://user-images.githubusercontent.com/31009750/253748442-c7c9b1f3-a71b-48e8-9377-7fa9a0a65f1f.png)
+
+Do đó việc mutate trực tiếp object và kết quả sau khi đổi vẫn tham chiếu tới cùng 1 object, sẽ khiến React Component không nhận biết được sẽ phải render lại, do nó thực hiện phép so sánh giữa 2 object với nhau.
+Vì vậy, việc bắt buộc là anh/chị không được thay đổi trực tiếp object này, mà nên tạo 1 object bao gồm các gía trị của object cũ được trộn với giá trị mới đã thay đổi.
+
+```jsx
+import { useState } from "react";
+import enviroment from "./shared/environment";
+
+const Lession003 = () => {
+  const [stateObject, setStateObject] = useState({
+    a: {
+      b: {
+        c: 1,
+      },
+    },
+  });
+  console.log("Before render, stateObject.a.b.c:", stateObject.a.b.c);
+  return (
+    <>
+      <h2>State and Event</h2>
+      <h3>StateObject: {JSON.stringify(stateObject)}</h3>
+      <button
+        type="button"
+        className="btn btn-primary"
+        onClick={(e) => {
+          e.preventDefault();
+          setStateObject((obj) => {
+            console.log(obj.a.b.c, "obj === stateObject", obj === stateObject);
+            return {
+              ...obj,
+              a: {
+                b: {
+                  c: obj.a.b.c + 1,
+                },
+              },
+            };
+          });
+        }}
+      >
+        Increase counter
+      </button>
+    </>
+  );
+};
+
+export default Lession003;
+```
+
+![image](https://user-images.githubusercontent.com/31009750/253748682-a14a9340-d363-4063-aee4-e3c2457c04c7.png)
+
+Lúc này cả trên UI, lẫn console, giá trị của c đều được cập nhật tương ứng.
 
 #### Xây dựng cấu trúc dữ liệu chung cho ứng dụng
 
