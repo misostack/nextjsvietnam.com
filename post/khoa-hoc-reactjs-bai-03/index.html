@@ -152,7 +152,7 @@ Mỗi liên kết có thể là: Link website, Hình Ảnh(png/jpg/jpeg), Link Y
 <li>Nên lưu thông tin ứng dụng trên máy user vào đâu.</li>
 </ol>
 <p>Để giải quyết được bài tập này, tôi sẽ gợi ý 1 số bước mà các anh chị cần phải thực hiện như sau:</p>
-<h4 id=bước-số-1-chia-nhỏ-ứng-dụng-thành-các-component>Bước số 1. Chia nhỏ ứng dụng thành các component</h4>
+<h3 id=chia-nhỏ-ứng-dụng-thành-các-component>Chia nhỏ ứng dụng thành các component</h3>
 <p>Nguyên tắc chia sẽ giống như việc cắt giao diện HTML từ file design cho trước. Từ trên xuống dưới, từ ngoài vào trong.</p>
 <p>Tại bước này các anh/chị phải phân tích và chia nhỏ các cần component cần được xây dựng, dùng để lắp ghép cho sản phẩm cuối cùng.</p>
 <ol>
@@ -186,13 +186,205 @@ Mỗi liên kết có thể là: Link website, Hình Ảnh(png/jpg/jpeg), Link Y
 </ul>
 <p>Sau bước này, các anh chị sẽ phần nào hình dung được khối lượng công việc cần phải làm để xây dựng ứng dụng này.</p>
 <p>Bước tiếp theo hãy cùng tìm hiểu chi tiết về cơ chế hoạt động của ReactJS và cái khái niệm cơ bản như prop,state, hook, và cách mà ReactJS sẽ cập nhật lại giao diện sau mỗi tương tác của người dùng.</p>
-<p><strong>Bước số 2. Xây dựng cấu trúc dữ liệu chung cho ứng dụng</strong></p>
+<h3 id=tìm-hiểu-về-prop-state-hook-thông-qua-các-ví-dụ>Tìm hiểu về prop, state, hook thông qua các ví dụ</h3>
+<ol>
+<li>Thiết kế nút &ldquo;New Link&rdquo; và LinkFormComponent</li>
+</ol>
+<ul>
+<li>Cài đặt bootstrap</li>
+<li>Handle Event khi ấn nút &ldquo;New Link&rdquo; sẽ thực hiện mở Modal chưas Form nhập liệu cho liên kết mới</li>
+<li>Trong Form nhập liệu cho liên kết mới, yêu cầu phải nhập link, phần title nếu ngừoi dùng để trống, sử dụng chính link đã nhập để làm title.</li>
+<li>Khi bấm Close/Esc sẽ đóng modal. Khi mở lại Modal cho New Link, form dữ liệu phải trống.</li>
+<li>Khi bấm Save Changes trong màn hình chính, sẽ hiển thị dạng JSON của những link đã được thêm.</li>
+</ul>
+<blockquote>
+<p>Using bootstrap</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>npm install bootstrap sass --save
+</code></pre></div><blockquote>
+<p>index.html</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=color:#75715e>&lt;!DOCTYPE html&gt;</span>
+&lt;<span style=color:#f92672>html</span> <span style=color:#a6e22e>lang</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;en&#34;</span>&gt;
+  &lt;<span style=color:#f92672>head</span>&gt;
+    &lt;<span style=color:#f92672>meta</span> <span style=color:#a6e22e>charset</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;UTF-8&#34;</span> /&gt;
+    &lt;<span style=color:#f92672>link</span> <span style=color:#a6e22e>rel</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;icon&#34;</span> <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;image/svg+xml&#34;</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/vite.svg&#34;</span> /&gt;
+    &lt;<span style=color:#f92672>meta</span> <span style=color:#a6e22e>name</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;viewport&#34;</span> <span style=color:#a6e22e>content</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;width=device-width, initial-scale=1.0&#34;</span> /&gt;
+    &lt;<span style=color:#f92672>title</span>&gt;%VITE_APP_NAME% - %MODE%&lt;/<span style=color:#f92672>title</span>&gt;
+  &lt;/<span style=color:#f92672>head</span>&gt;
+  &lt;<span style=color:#f92672>body</span>&gt;
+    &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>id</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;root&#34;</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;container&#34;</span>&gt;&lt;/<span style=color:#f92672>div</span>&gt;
+    &lt;<span style=color:#f92672>script</span> <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;module&#34;</span> <span style=color:#a6e22e>src</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/src/main.jsx&#34;</span>&gt;&lt;/<span style=color:#f92672>script</span>&gt;
+  &lt;/<span style=color:#f92672>body</span>&gt;
+&lt;/<span style=color:#f92672>html</span>&gt;
+</code></pre></div><blockquote>
+<p>main.jsx</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>React</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;react&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#a6e22e>ReactDOM</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;react-dom/client&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#a6e22e>App</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;./App.jsx&#34;</span>;
+<span style=color:#75715e>// Bootstrap Bundle JS
+</span><span style=color:#75715e></span><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#34;bootstrap/dist/js/bootstrap.bundle.min&#34;</span>;
+<span style=color:#75715e>// reset css
+</span><span style=color:#75715e></span><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#34;./index.scss&#34;</span>;
+
+<span style=color:#a6e22e>ReactDOM</span>.<span style=color:#a6e22e>createRoot</span>(document.<span style=color:#a6e22e>getElementById</span>(<span style=color:#e6db74>&#34;root&#34;</span>)).<span style=color:#a6e22e>render</span>(
+  &lt;<span style=color:#f92672>React.StrictMode</span>&gt;
+    &lt;<span style=color:#f92672>App</span> /&gt;
+  &lt;/<span style=color:#f92672>React.StrictMode</span>&gt;
+);
+</code></pre></div><blockquote>
+<p>index.scss</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-scss data-lang=scss>$primary<span style=color:#f92672>:</span> <span style=color:#ae81ff>#176d16</span>;
+$danger<span style=color:#f92672>:</span> <span style=color:#ae81ff>#ff4136</span>;
+
+<span style=color:#66d9ef>@import</span> <span style=color:#e6db74>&#34;node_modules/bootstrap/scss/bootstrap&#34;</span>;
+</code></pre></div><blockquote>
+<p>Event Handler trong ReactJS</p>
+</blockquote>
+<blockquote>
+<p>State : bản chất chính là bộ nhớ của component, thể hiện trạng thái hiện tại của component và sẽ biến đổi khi người dùng tương tác với component</p>
+</blockquote>
+<p>Hãy xem xét ví dụ sau</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>enviroment</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;./shared/environment&#34;</span>;
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>Lession003</span> <span style=color:#f92672>=</span> () =&gt; {
+  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>counter</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
+  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;Before render&#34;</span>);
+  <span style=color:#66d9ef>return</span> (
+    &lt;&gt;
+      &lt;<span style=color:#f92672>h2</span>&gt;<span style=color:#a6e22e>State</span> <span style=color:#a6e22e>and</span> <span style=color:#a6e22e>Event</span>&lt;/<span style=color:#f92672>h2</span>&gt;
+      &lt;<span style=color:#f92672>h3</span>&gt;<span style=color:#a6e22e>Counter</span><span style=color:#f92672>:</span> {<span style=color:#a6e22e>counter</span>}&lt;/<span style=color:#f92672>h3</span>&gt;
+      &lt;<span style=color:#f92672>button</span>
+        <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;button&#34;</span>
+        <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;btn btn-primary&#34;</span>
+        <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{(<span style=color:#a6e22e>e</span>) =&gt; {
+          <span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>preventDefault</span>();
+          <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>`Increase counter from </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>counter</span><span style=color:#e6db74>}</span><span style=color:#e6db74> to </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>counter</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>);
+          <span style=color:#a6e22e>counter</span> <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>;
+          <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;After counter increased!&#34;</span>, <span style=color:#a6e22e>counter</span>);
+        }}
+      &gt;
+        <span style=color:#a6e22e>Increase</span> <span style=color:#a6e22e>counter</span>
+      &lt;/<span style=color:#f92672>button</span>&gt;
+    &lt;/&gt;
+  );
+};
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#a6e22e>Lession003</span>;
+</code></pre></div><p>Như ta đã thấy thì việc handler event cũng rất giống với việc handle một event trên DOM, chỉ khác 1 chút về cú pháp, là thay vì gọi function ngay lập tức, trong JSX anh/chị cần assign 1 event cho 1 function. Function này có thể là anonymous function như trong ví dụ, hoặc một function được khai báo trước đó.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>&lt;<span style=color:#f92672>button</span> <span style=color:#a6e22e>onclick</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;myFunction()&#34;</span>&gt;Click me&lt;/<span style=color:#f92672>button</span>&gt;
+</code></pre></div><p>Nhìn vào đoạn code trên, anh/chị sẽ nghĩ, khi biến counter thay đổi, trên màn hình lúc này, anh/chị sẽ thấy được giá trị mới của nó. Tuy nhiên hãy theo dõi console.log và kết quả của mỗi lần click vào nút Increase counter.</p>
+<p><img src=https://user-images.githubusercontent.com/31009750/253735920-7b913847-85a2-4888-815a-505d0a130743.png alt=image></p>
+<p>Đáng lí kết quả nhận được theo như phỏng đoán, là sau mỗi lần counter biến đổi, console.log sẽ ghi nhận thêm 1 dòng của &ldquo;Before render&rdquo;. Và counter trên giao diện cũng sẽ được cập nhật.</p>
+<p>Đáp án là, React Component không có lí do để render lại, nó chỉ render lại khi và chỉ khi <strong>state</strong> biến đổi. Dưới đây là cú pháp để khai báo và sử dụng state trong ReactJS.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>useState</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;react&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#a6e22e>enviroment</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;./shared/environment&#34;</span>;
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>Lession003</span> <span style=color:#f92672>=</span> () =&gt; {
+  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>counter</span>, <span style=color:#a6e22e>setCounter</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(<span style=color:#ae81ff>0</span>);
+  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;Before render, counter:&#34;</span>, <span style=color:#a6e22e>counter</span>);
+  <span style=color:#66d9ef>return</span> (
+    &lt;&gt;
+      &lt;<span style=color:#f92672>h2</span>&gt;<span style=color:#a6e22e>State</span> <span style=color:#a6e22e>and</span> <span style=color:#a6e22e>Event</span>&lt;/<span style=color:#f92672>h2</span>&gt;
+      &lt;<span style=color:#f92672>h3</span>&gt;<span style=color:#a6e22e>Counter</span><span style=color:#f92672>:</span> {<span style=color:#a6e22e>counter</span>}&lt;/<span style=color:#f92672>h3</span>&gt;
+      &lt;<span style=color:#f92672>button</span>
+        <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;button&#34;</span>
+        <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;btn btn-primary&#34;</span>
+        <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{(<span style=color:#a6e22e>e</span>) =&gt; {
+          <span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>preventDefault</span>();
+          <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>`Increase counter from </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>counter</span><span style=color:#e6db74>}</span><span style=color:#e6db74> to </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>counter</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>);
+          <span style=color:#a6e22e>setCounter</span>(<span style=color:#a6e22e>counter</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>);
+          <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;After counter increased!&#34;</span>, <span style=color:#a6e22e>counter</span>);
+        }}
+      &gt;
+        <span style=color:#a6e22e>Increase</span> <span style=color:#a6e22e>counter</span>
+      &lt;/<span style=color:#f92672>button</span>&gt;
+    &lt;/&gt;
+  );
+};
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#a6e22e>Lession003</span>;
+</code></pre></div><p><img src=https://user-images.githubusercontent.com/31009750/253736315-136a0174-6b34-4d4f-af22-078c7f7d083e.png alt=image></p>
+<p>Sau khi viết lại đoạn code ban đầu, bằng cách sử dụng cú pháp trong React để khai báo và cập nhật state. Chúng ta nhận thấy 3 điều sau:</p>
+<ol>
+<li>Không thể cập nhật state trực tiếp, chỉ có thể dùng hàm setState được cung cấp.</li>
+<li>Khi hàm setState được gọi, giá trị của state không thay đổi ngay lập tức.</li>
+<li>Sau khi Component được render lại, chúng ta mới thấy được giá trị mới của state.</li>
+</ol>
+<p>Giả sử, chúng ta gọi hàm cập nhật state liên tiếp nhau thì điều gì sẽ xảy ra:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>useState</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;react&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#a6e22e>enviroment</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;./shared/environment&#34;</span>;
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>Lession003</span> <span style=color:#f92672>=</span> () =&gt; {
+  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>counter</span>, <span style=color:#a6e22e>setCounter</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(<span style=color:#ae81ff>0</span>);
+  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;Before render, counter:&#34;</span>, <span style=color:#a6e22e>counter</span>);
+  <span style=color:#66d9ef>return</span> (
+    &lt;&gt;
+      &lt;<span style=color:#f92672>h2</span>&gt;<span style=color:#a6e22e>State</span> <span style=color:#a6e22e>and</span> <span style=color:#a6e22e>Event</span>&lt;/<span style=color:#f92672>h2</span>&gt;
+      &lt;<span style=color:#f92672>h3</span>&gt;<span style=color:#a6e22e>Counter</span><span style=color:#f92672>:</span> {<span style=color:#a6e22e>counter</span>}&lt;/<span style=color:#f92672>h3</span>&gt;
+      &lt;<span style=color:#f92672>button</span>
+        <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;button&#34;</span>
+        <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;btn btn-primary&#34;</span>
+        <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{(<span style=color:#a6e22e>e</span>) =&gt; {
+          <span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>preventDefault</span>();
+          <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>`Increase counter from </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>counter</span><span style=color:#e6db74>}</span><span style=color:#e6db74> to </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>counter</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>);
+          <span style=color:#a6e22e>setCounter</span>(<span style=color:#a6e22e>counter</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>);
+          <span style=color:#a6e22e>setCounter</span>(<span style=color:#a6e22e>counter</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>2</span>);
+          <span style=color:#a6e22e>setCounter</span>(<span style=color:#a6e22e>counter</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>3</span>);
+          <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;After counter increased!&#34;</span>, <span style=color:#a6e22e>counter</span>);
+        }}
+      &gt;
+        <span style=color:#a6e22e>Increase</span> <span style=color:#a6e22e>counter</span>
+      &lt;/<span style=color:#f92672>button</span>&gt;
+    &lt;/&gt;
+  );
+};
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#a6e22e>Lession003</span>;
+</code></pre></div><p>Có lẽ là 6 hay chăng? Không kết quả là chỉ có setCounter(counter+3) được thực thi.</p>
+<p><img src=https://user-images.githubusercontent.com/31009750/253736507-c6fa9749-1c63-4c54-8bde-82219b5baf51.png alt=image></p>
+<p>Giải thích: Trong 1 sự kiện , khi diễn ra việc cập nhật state, ReactJS sẽ gom các cập nhật này và thực hiện 1 lần, trong quá trình này nó sẽ tự động loại bỏ các sự kiện cập nhật state bị trùng lặp và sử dụng sự kiện cuối cùng.
+Cùng test thử việc cập nhật 2 state riêng biệt trong cùng 1 event và kiểm tra xem ReactJS sẽ render bao nhiêu lần.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>useState</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;react&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#a6e22e>enviroment</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;./shared/environment&#34;</span>;
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>Lession003</span> <span style=color:#f92672>=</span> () =&gt; {
+  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>counter</span>, <span style=color:#a6e22e>setCounter</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(<span style=color:#ae81ff>0</span>);
+  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>counter2</span>, <span style=color:#a6e22e>setCounter2</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(<span style=color:#ae81ff>1</span>);
+  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;Before render, counter:&#34;</span>, <span style=color:#a6e22e>counter</span>, <span style=color:#e6db74>&#34;counter2:&#34;</span>, <span style=color:#a6e22e>counter2</span>);
+  <span style=color:#66d9ef>return</span> (
+    &lt;&gt;
+      &lt;<span style=color:#f92672>h2</span>&gt;<span style=color:#a6e22e>State</span> <span style=color:#a6e22e>and</span> <span style=color:#a6e22e>Event</span>&lt;/<span style=color:#f92672>h2</span>&gt;
+      &lt;<span style=color:#f92672>h3</span>&gt;<span style=color:#a6e22e>Counter</span><span style=color:#f92672>:</span> {<span style=color:#a6e22e>counter</span>}&lt;/<span style=color:#f92672>h3</span>&gt;
+      &lt;<span style=color:#f92672>h3</span>&gt;<span style=color:#a6e22e>Counter2</span><span style=color:#f92672>:</span> {<span style=color:#a6e22e>counter2</span>}&lt;/<span style=color:#f92672>h3</span>&gt;
+      &lt;<span style=color:#f92672>button</span>
+        <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;button&#34;</span>
+        <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;btn btn-primary&#34;</span>
+        <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{(<span style=color:#a6e22e>e</span>) =&gt; {
+          <span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>preventDefault</span>();
+          <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>`Increase counter from </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>counter</span><span style=color:#e6db74>}</span><span style=color:#e6db74> to </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>counter</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>2</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>);
+          <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>`Increase counter from </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>counter2</span><span style=color:#e6db74>}</span><span style=color:#e6db74> to </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>counter2</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>3</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>);
+          <span style=color:#a6e22e>setCounter</span>(<span style=color:#a6e22e>counter</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>2</span>);
+          <span style=color:#a6e22e>setCounter2</span>(<span style=color:#a6e22e>counter2</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>3</span>);
+        }}
+      &gt;
+        <span style=color:#a6e22e>Increase</span> <span style=color:#a6e22e>counter</span>
+      &lt;/<span style=color:#f92672>button</span>&gt;
+    &lt;/&gt;
+  );
+};
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#a6e22e>Lession003</span>;
+</code></pre></div><p><img src=https://user-images.githubusercontent.com/31009750/253738458-3e7f09c2-0a0b-4964-b24c-443a612386f2.png alt=image></p>
+<h4 id=xây-dựng-cấu-trúc-dữ-liệu-chung-cho-ứng-dụng>Xây dựng cấu trúc dữ liệu chung cho ứng dụng</h4>
 <p>Chính là trạng thái của dữ liệu từ lúc bắt đầu, trong lúc hoạt động, cho đến khi kết thúc.
 Điều này cực kì quan trọng, vì ứng dụng ngoài yêu cầu phải tương tác với người dùng, thì nhiệm vụ chính của nó là thể hiện các trạng thái hiện tại của dữ liệu: ban đầu, sau khi biến đổi, khi kết thúc.</p>
-<p><strong>Bước số 3. Xây dựng chi tiết, bắt đầu từ các component nhỏ nhất.</strong></p>
+<h4 id=bước-số-3-xây-dựng-chi-tiết-bắt-đầu-từ-các-component-nhỏ-nhất>Bước số 3. Xây dựng chi tiết, bắt đầu từ các component nhỏ nhất.</h4>
 <p>Nguyên tắc là xây dựng các component nhỏ độc lập, nhận input và trả ra output nếu cần.
 Các component lớn hơn, có thể có trạng thái riêng và là tổ hợp chứa nhiều component nhỏ hơn.</p>
-<p><strong>Bước số 4. Tích hợp toàn bộ các component lại thành 1 ứng dụng hoàn chỉnh</strong></p>
+<h4 id=bước-số-4-tích-hợp-toàn-bộ-các-component-lại-thành-1-ứng-dụng-hoàn-chỉnh>Bước số 4. Tích hợp toàn bộ các component lại thành 1 ứng dụng hoàn chỉnh</h4>
 <p>Đây là bước cuối cùng, lắp ráp lại kết quả của các bước trên, nhằm tạo ra 1 ứng dụng hoàn chỉnh cho người dùng.</p>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/reactjs-tutorial>reactjs-tutorial</a>
