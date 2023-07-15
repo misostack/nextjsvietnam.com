@@ -346,9 +346,52 @@ const Lession003 = () => {
 export default Lession003;
 ```
 
-Kết quả nhận được đúng như những gì được mô tả
+Kết quả nhận được đúng như những gì được mô tả.
 
 ![image](https://user-images.githubusercontent.com/31009750/253738818-448d77fe-f25f-4bae-a0a9-b0ec5f8a5078.png)
+
+Tiếp tục thử nghiệm với setTimeOut,
+
+```jsx
+import { useState } from "react";
+import enviroment from "./shared/environment";
+
+const Lession003 = () => {
+  const [counter, setCounter] = useState(0);
+  const [counter2, setCounter2] = useState(1);
+  console.log("Before render, counter:", counter, "counter2:", counter2);
+  return (
+    <>
+      <h2>State and Event</h2>
+      <h3>Counter: {counter}</h3>
+      <h3>Counter2: {counter2}</h3>
+      <button
+        type="button"
+        className="btn btn-primary"
+        onClick={(e) => {
+          e.preventDefault();
+          console.log(`Increase counter from ${counter} to ${counter + 2}`);
+          console.log(`Increase counter from ${counter2} to ${counter2 + 3}`);
+          setCounter((counter) => counter + 2);
+          setCounter((counter) => counter + 4);
+          setTimeout(() => {
+            setCounter((counter) => counter + 6);
+          }, 0);
+          setCounter2((counter2) => counter2 + 3);
+        }}
+      >
+        Increase counter
+      </button>
+    </>
+  );
+};
+
+export default Lession003;
+```
+
+Kết quả ta có 2 lần render, vì lần cập nhật state counter + 6 diễn ra trong 1 tiến trình khác.
+
+![image](https://user-images.githubusercontent.com/31009750/253738943-b6630f8f-dc06-4755-a0d8-2cfa12e5ea98.png)
 
 #### Xây dựng cấu trúc dữ liệu chung cho ứng dụng
 
