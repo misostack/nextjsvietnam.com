@@ -187,7 +187,7 @@ const Lession003 = () => {
   return (
     <>
       {values.map((v, index) => (
-        <Counter number={v} className="btn btn-primary">
+        <Counter key={index} number={v} className="btn btn-primary">
           Counter {index + 1}
         </Counter>
       ))}
