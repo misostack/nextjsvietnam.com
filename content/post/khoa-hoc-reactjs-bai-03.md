@@ -147,9 +147,72 @@ $danger: #ff4136;
 @import "node_modules/bootstrap/scss/bootstrap";
 ```
 
-> Event Handler trong ReactJS
+#### Event Handler trong ReactJS
 
-> State : bản chất chính là bộ nhớ của component, thể hiện trạng thái hiện tại của component và sẽ biến đổi khi người dùng tương tác với component
+```jsx
+<a
+  href="https://nextjsvietnam.com"
+  className="btn btn-primary"
+  onClick={(e) => {
+    e.preventDefault();
+    alert(`You're going to redirect to ${e.target.href}`);
+  }}
+>
+  Event Handler
+</a>
+```
+
+#### Props
+
+> Trong ReactJS, các component thường sử dụng props để giao tiếp với nhau. Các component cha thường sẽ truyền dữ liệu cho các component con thông qua props. Ngoài ra props còn bao gồm cả các thuộc tính HTML, các giá trị trong Javascript như: objects, arrays, kể cả functions.
+
+```jsx
+import { useState } from "react";
+import enviroment from "./shared/environment";
+
+const Counter = ({ number, children, ...props }) => {
+  return (
+    <>
+      <a {...props}>
+        Counter Name:{children}
+        <br />
+        Value: {number}
+      </a>
+    </>
+  );
+};
+
+const Lession003 = () => {
+  const values = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  return (
+    <>
+      {values.map((v, index) => (
+        <Counter number={v} className="btn btn-primary">
+          Counter {index + 1}
+        </Counter>
+      ))}
+    </>
+  );
+};
+
+export default Lession003;
+```
+
+Có 3 điểm cần lưu ý ở đây khi sử dụng props:
+
+1. Tất cả các thuộc tính được truyền vào dạng attribute của 1 tag/component đều được gộp vào props. Tuy nhiên hãy sử dụng spread operator để chọn ra các thuộc tính chắc chắn có, điều này giúp editor dễ dàng hỗ trợ anh/chị trong quá trình code.
+2. Trong ví dụ trên anh/chị sẽ thấy sự xuất hiện của **chidren**, từ khoá này mang ý nghĩa phần content bên trong 2 thẻ đóng mở của component sẽ được gán vào prop có key là **children**.
+3. Props là readonly, không bao giờ được cố gắng thay đổi value của props (immutable). Luôn sử dụng state bên dưới khi cần một loại biến để thay đổi giá trị mỗi lần user tương tác.
+
+Một lưu ý, khi render 1 list trong ReactJS, ta sẽ thấy lỗi sau xuất hiện trên console.
+
+![image](https://user-images.githubusercontent.com/31009750/253806885-a6677a9d-8787-4e55-8109-6d127052ea0e.png)
+
+Nguyên nhân là trong thiết kế của ReactJS, nhằm tối ưu hoá việc render, update DOM, khi render 1 list item, việc gán một key unique cho từng phần tử thuộc mảng, sẽ giúp ReactJS tối ưu được việc render khi một item được thêm/xoá/cập nhật.
+
+#### State
+
+> Bản chất chính là bộ nhớ của component, thể hiện trạng thái hiện tại của component và sẽ biến đổi khi người dùng tương tác với component
 
 Hãy xem xét ví dụ sau
 
