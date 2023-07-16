@@ -240,11 +240,62 @@ Mỗi liên kết có thể là: Link website, Hình Ảnh(png/jpg/jpeg), Link Y
 $danger<span style=color:#f92672>:</span> <span style=color:#ae81ff>#ff4136</span>;
 
 <span style=color:#66d9ef>@import</span> <span style=color:#e6db74>&#34;node_modules/bootstrap/scss/bootstrap&#34;</span>;
-</code></pre></div><blockquote>
-<p>Event Handler trong ReactJS</p>
-</blockquote>
+</code></pre></div><h4 id=event-handler-trong-reactjs>Event Handler trong ReactJS</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx>&lt;<span style=color:#f92672>a</span>
+  <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;https://nextjsvietnam.com&#34;</span>
+  <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;btn btn-primary&#34;</span>
+  <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{(<span style=color:#a6e22e>e</span>) =&gt; {
+    <span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>preventDefault</span>();
+    <span style=color:#a6e22e>alert</span>(<span style=color:#e6db74>`You&#39;re going to redirect to </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>target</span>.<span style=color:#a6e22e>href</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>);
+  }}
+&gt;
+  <span style=color:#a6e22e>Event</span> <span style=color:#a6e22e>Handler</span>
+&lt;/<span style=color:#f92672>a</span>&gt;
+</code></pre></div><h4 id=props>Props</h4>
 <blockquote>
-<p>State : bản chất chính là bộ nhớ của component, thể hiện trạng thái hiện tại của component và sẽ biến đổi khi người dùng tương tác với component</p>
+<p>Trong ReactJS, các component thường sử dụng props để giao tiếp với nhau. Các component cha thường sẽ truyền dữ liệu cho các component con thông qua props. Ngoài ra props còn bao gồm cả các thuộc tính HTML, các giá trị trong Javascript như: objects, arrays, kể cả functions.</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>useState</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;react&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#a6e22e>enviroment</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;./shared/environment&#34;</span>;
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>Counter</span> <span style=color:#f92672>=</span> ({ <span style=color:#a6e22e>number</span>, <span style=color:#a6e22e>children</span>, ...<span style=color:#a6e22e>props</span> }) =&gt; {
+  <span style=color:#66d9ef>return</span> (
+    &lt;&gt;
+      &lt;<span style=color:#f92672>a</span> {<span style=color:#a6e22e>...props</span>}&gt;
+        <span style=color:#a6e22e>Counter</span> <span style=color:#a6e22e>Name</span><span style=color:#f92672>:</span>{<span style=color:#a6e22e>children</span>}
+        &lt;<span style=color:#f92672>br</span> /&gt;
+        <span style=color:#a6e22e>Value</span><span style=color:#f92672>:</span> {<span style=color:#a6e22e>number</span>}
+      &lt;/<span style=color:#f92672>a</span>&gt;
+    &lt;/&gt;
+  );
+};
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>Lession003</span> <span style=color:#f92672>=</span> () =&gt; {
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>values</span> <span style=color:#f92672>=</span> [<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>5</span>, <span style=color:#ae81ff>6</span>, <span style=color:#ae81ff>7</span>, <span style=color:#ae81ff>8</span>, <span style=color:#ae81ff>9</span>];
+  <span style=color:#66d9ef>return</span> (
+    &lt;&gt;
+      {<span style=color:#a6e22e>values</span>.<span style=color:#a6e22e>map</span>((<span style=color:#a6e22e>v</span>, <span style=color:#a6e22e>index</span>) =&gt; (
+        &lt;<span style=color:#f92672>Counter</span> <span style=color:#a6e22e>number</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>v</span>} <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;btn btn-primary&#34;</span>&gt;
+          <span style=color:#a6e22e>Counter</span> {<span style=color:#a6e22e>index</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>}
+        &lt;/<span style=color:#f92672>Counter</span>&gt;
+      ))}
+    &lt;/&gt;
+  );
+};
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#a6e22e>Lession003</span>;
+</code></pre></div><p>Có 3 điểm cần lưu ý ở đây khi sử dụng props:</p>
+<ol>
+<li>Tất cả các thuộc tính được truyền vào dạng attribute của 1 tag/component đều được gộp vào props. Tuy nhiên hãy sử dụng spread operator để chọn ra các thuộc tính chắc chắn có, điều này giúp editor dễ dàng hỗ trợ anh/chị trong quá trình code.</li>
+<li>Trong ví dụ trên anh/chị sẽ thấy sự xuất hiện của <strong>chidren</strong>, từ khoá này mang ý nghĩa phần content bên trong 2 thẻ đóng mở của component sẽ được gán vào prop có key là <strong>children</strong>.</li>
+<li>Props là readonly, không bao giờ được cố gắng thay đổi value của props (immutable). Luôn sử dụng state bên dưới khi cần một loại biến để thay đổi giá trị mỗi lần user tương tác.</li>
+</ol>
+<p>Một lưu ý, khi render 1 list trong ReactJS, ta sẽ thấy lỗi sau xuất hiện trên console.</p>
+<p><img src=https://user-images.githubusercontent.com/31009750/253806885-a6677a9d-8787-4e55-8109-6d127052ea0e.png alt=image></p>
+<p>Nguyên nhân là trong thiết kế của ReactJS, nhằm tối ưu hoá việc render, update DOM, khi render 1 list item, việc gán một key unique cho từng phần tử thuộc mảng, sẽ giúp ReactJS tối ưu được việc render khi một item được thêm/xoá/cập nhật.</p>
+<h4 id=state>State</h4>
+<blockquote>
+<p>Bản chất chính là bộ nhớ của component, thể hiện trạng thái hiện tại của component và sẽ biến đổi khi người dùng tương tác với component</p>
 </blockquote>
 <p>Hãy xem xét ví dụ sau</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>enviroment</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;./shared/environment&#34;</span>;
