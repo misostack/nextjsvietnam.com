@@ -728,7 +728,7 @@ Trong phần này tôi sẽ hướng dẫn xây dựng cấu trúc dữ liệu c
 
 Sau một số bước phân tích, anh/chị sẽ có được 1 sơ đồ mô tả tóm tắt các props và states của các component trong ứng dụng trên như sau.
 
-![image](https://user-images.githubusercontent.com/31009750/253876164-c1e77796-7287-412a-af63-b4b81c22d1cf.png)
+![image](https://user-images.githubusercontent.com/31009750/253876828-38aa00a5-56f3-4f1b-9a62-2428ea4bfaac.png)
 
 #### Bước số 3. Xây dựng chi tiết, bắt đầu từ các component nhỏ nhất.
 
