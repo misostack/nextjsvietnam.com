@@ -739,9 +739,60 @@ Mỗi liên kết có thể là: Link website, Hình Ảnh(png/jpg/jpeg), Link Y
 <p>Trong phần này tôi sẽ hướng dẫn xây dựng cấu trúc dữ liệu cho ví dụ minh họa trong bài học này. Các anh chị có thể đọc thêm về cách xây dựng và lựa chọn cấu trúc dữ liệu cho state tại <a href=https://nextjsvietnam.com/post/manage-your-reactjs-state-the-right-way/>bài viết này</a>.</p>
 <p>Sau một số bước phân tích, anh/chị sẽ có được 1 sơ đồ mô tả tóm tắt các props và states của các component trong ứng dụng trên như sau.</p>
 <p><img src=https://user-images.githubusercontent.com/31009750/253876828-38aa00a5-56f3-4f1b-9a62-2428ea4bfaac.png alt=image></p>
+<p>Sau khi có cái nhìn tổng quan về cấu trúc dữ liệu của các component. Lúc này các anh/chị cần thiết kế luồng dữ liệu giữa các component trong ứng dụng.</p>
+<p><img src=https://user-images.githubusercontent.com/31009750/253907170-192c1260-1bdf-4f43-b200-457ac65d972d.png alt=image></p>
+<p>Sau khi phân tích xong, các anh/chị đã có thể tiến hành bước tiếp theo là implementation.</p>
 <h4 id=bước-số-3-xây-dựng-chi-tiết-bắt-đầu-từ-các-component-nhỏ-nhất>Bước số 3. Xây dựng chi tiết, bắt đầu từ các component nhỏ nhất.</h4>
 <p>Nguyên tắc là xây dựng các component nhỏ độc lập, nhận input và trả ra output nếu cần.
 Các component lớn hơn, có thể có trạng thái riêng và là tổ hợp chứa nhiều component nhỏ hơn.</p>
+<p>3.1. Xây dựng LinkFormComponent</p>
+<ul>
+<li>LinkFormComponent sẽ là một modal, trong đó chứa form add/edit 1 liên kết.</li>
+<li>Khi người dùng bấm cancel, modal sẽ đóng, dữ liệu đã nhập cần phải được xóa, để lần sau khi mở lại, form nhập liệu sẽ luôn ở trạng thái mới.</li>
+<li>Khi người dùng bấm save, dữ liệu cần được kiểm tra (validate) - ở đây chỉ cần kiểm tra link phải là dạng liên kết là được.</li>
+<li>Sau khi dữ liệu hợp lệ, dữ liệu sẽ được truyền ngược trở lại component cha là &ldquo;LinkManagementContainer&rdquo; để cập nhật state và render lại list link được hiển thị, link mới được cập nhật sẽ được hiển thị trên cùng.</li>
+</ul>
+<p>Cùng xem xét cách show 1 modal trong bootstrap</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html>&lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;modal&#34;</span> <span style=color:#a6e22e>tabindex</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;-1&#34;</span>&gt;
+  &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;modal-dialog&#34;</span>&gt;
+    &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;modal-content&#34;</span>&gt;
+      &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;modal-header&#34;</span>&gt;
+        &lt;<span style=color:#f92672>h5</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;modal-title&#34;</span>&gt;Modal title&lt;/<span style=color:#f92672>h5</span>&gt;
+        &lt;<span style=color:#f92672>button</span>
+          <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;button&#34;</span>
+          <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;btn-close&#34;</span>
+          <span style=color:#a6e22e>data-bs-dismiss</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;modal&#34;</span>
+          <span style=color:#a6e22e>aria-label</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Close&#34;</span>
+        &gt;&lt;/<span style=color:#f92672>button</span>&gt;
+      &lt;/<span style=color:#f92672>div</span>&gt;
+      &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;modal-body&#34;</span>&gt;
+        &lt;<span style=color:#f92672>p</span>&gt;Modal body text goes here.&lt;/<span style=color:#f92672>p</span>&gt;
+      &lt;/<span style=color:#f92672>div</span>&gt;
+      &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;modal-footer&#34;</span>&gt;
+        &lt;<span style=color:#f92672>button</span> <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;button&#34;</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;btn btn-secondary&#34;</span> <span style=color:#a6e22e>data-bs-dismiss</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;modal&#34;</span>&gt;
+          Close
+        &lt;/<span style=color:#f92672>button</span>&gt;
+        &lt;<span style=color:#f92672>button</span> <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;button&#34;</span> <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;btn btn-primary&#34;</span>&gt;Save changes&lt;/<span style=color:#f92672>button</span>&gt;
+      &lt;/<span style=color:#f92672>div</span>&gt;
+    &lt;/<span style=color:#f92672>div</span>&gt;
+  &lt;/<span style=color:#f92672>div</span>&gt;
+&lt;/<span style=color:#f92672>div</span>&gt;
+</code></pre></div><p>Để điều khiển modal này ẩn hiện các anh/chị cần dùng đoạn javascript như sau</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>myModal</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>bootstrap</span>.<span style=color:#a6e22e>Modal</span>(document.<span style=color:#a6e22e>getElementById</span>(<span style=color:#e6db74>&#34;myModal&#34;</span>), {
+  <span style=color:#a6e22e>backdrop</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>true</span>,
+  <span style=color:#a6e22e>focus</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>true</span>,
+  <span style=color:#a6e22e>keyboard</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>true</span>,
+});
+<span style=color:#75715e>// open modal
+</span><span style=color:#75715e></span><span style=color:#a6e22e>myModal</span>.<span style=color:#a6e22e>show</span>();
+<span style=color:#75715e>// close modal
+</span><span style=color:#75715e></span><span style=color:#a6e22e>myModal</span>.<span style=color:#a6e22e>close</span>();
+</code></pre></div><p>Trong bước này, chúng ta có 2 hướng xử lý:</p>
+<ol>
+<li>Hướng thứ 1: tạo 1 component duy nhất, nhận prop là link để phân biệt 2 trường hợp: add và edit.</li>
+<li>Hướng thứ 2: tạo 2 component riêng biệt, mỗi trường hợp là một component.</li>
+<li>Hướng thứ 3: tạo component modal, trong component modal thì gắn thêm LinkFormComponent và áp dụng hướng thứ 1 nhất, nhận prop là link để phân biệt 2 trường hợp.</li>
+</ol>
 <h4 id=bước-số-4-tích-hợp-toàn-bộ-các-component-lại-thành-1-ứng-dụng-hoàn-chỉnh>Bước số 4. Tích hợp toàn bộ các component lại thành 1 ứng dụng hoàn chỉnh</h4>
 <p>Đây là bước cuối cùng, lắp ráp lại kết quả của các bước trên, nhằm tạo ra 1 ứng dụng hoàn chỉnh cho người dùng.</p>
 <div class="m-1 p-1">
