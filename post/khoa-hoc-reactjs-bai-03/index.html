@@ -584,6 +584,93 @@ Vì vậy, việc bắt buộc là anh/chị không được thay đổi trực 
 <span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#a6e22e>Lession003</span>;
 </code></pre></div><p><img src=https://user-images.githubusercontent.com/31009750/253748682-a14a9340-d363-4063-aee4-e3c2457c04c7.png alt=image></p>
 <p>Lúc này cả trên UI, lẫn console, giá trị của c đều được cập nhật tương ứng.</p>
+<blockquote>
+<p>Làm thế nào để lấy được giá trị của form input</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>useState</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;react&#34;</span>;
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>Lession003</span> <span style=color:#f92672>=</span> () =&gt; {
+  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>input</span>, <span style=color:#a6e22e>setInput</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(<span style=color:#e6db74>&#34;&#34;</span>);
+  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>items</span>, <span style=color:#a6e22e>setItems</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>([]);
+
+  <span style=color:#66d9ef>return</span> (
+    &lt;&gt;
+      &lt;<span style=color:#f92672>h2</span>&gt;<span style=color:#a6e22e>State</span> Array&lt;/<span style=color:#f92672>h2</span>&gt;
+      &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;mb-3&#34;</span>&gt;
+        &lt;<span style=color:#f92672>label</span> <span style=color:#a6e22e>htmlFor</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;exampleFormControlInput1&#34;</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;form-label&#34;</span>&gt;
+          <span style=color:#a6e22e>Item</span> <span style=color:#a6e22e>name</span>
+        &lt;/<span style=color:#f92672>label</span>&gt;
+        &lt;<span style=color:#f92672>input</span>
+          <span style=color:#a6e22e>value</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>input</span>}
+          <span style=color:#a6e22e>onChange</span><span style=color:#f92672>=</span>{(<span style=color:#a6e22e>e</span>) =&gt; {
+            <span style=color:#a6e22e>setInput</span>(<span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>target</span>.<span style=color:#a6e22e>value</span>);
+          }}
+          <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;email&#34;</span>
+          <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;form-control&#34;</span>
+          <span style=color:#a6e22e>id</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;exampleFormControlInput1&#34;</span>
+          <span style=color:#a6e22e>placeholder</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;name&#34;</span>
+        /&gt;
+      &lt;/<span style=color:#f92672>div</span>&gt;
+      &lt;<span style=color:#f92672>button</span>
+        <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;button&#34;</span>
+        <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;btn btn-primary&#34;</span>
+        <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{(<span style=color:#a6e22e>e</span>) =&gt; {
+          <span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>preventDefault</span>();
+          <span style=color:#a6e22e>setItems</span>((<span style=color:#a6e22e>items</span>) =&gt; {
+            <span style=color:#66d9ef>return</span> [...<span style=color:#a6e22e>items</span>, <span style=color:#a6e22e>input</span>];
+          });
+        }}
+      &gt;
+        <span style=color:#a6e22e>Add</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>item</span>
+      &lt;/<span style=color:#f92672>button</span>&gt;
+      &lt;<span style=color:#f92672>ul</span>&gt;
+        {<span style=color:#a6e22e>items</span>.<span style=color:#a6e22e>map</span>((<span style=color:#a6e22e>item</span>, <span style=color:#a6e22e>index</span>) =&gt; (
+          &lt;<span style=color:#f92672>li</span> <span style=color:#a6e22e>key</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>index</span>}&gt;{<span style=color:#a6e22e>item</span>}&lt;/<span style=color:#f92672>li</span>&gt;
+        ))}
+      &lt;/<span style=color:#f92672>ul</span>&gt;
+    &lt;/&gt;
+  );
+};
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#a6e22e>Lession003</span>;
+</code></pre></div><p><img src=https://user-images.githubusercontent.com/31009750/253852462-a2dbe6dc-e78a-486a-a47b-7c45952bf739.png alt=image></p>
+<p>Như vậy ta có thể thấy rằng bằng cách sử dụng state, và event onChange, các anh/chị sẽ có thể đồng bộ được user input và state của input này. Nhờ vào cơ chế của ReactJS mà trong hình các anh/chị chỉ thấy phần được render lại chính là nội dung của input chứ ko phải toàn bộ, điều này giúp cho ứng dụng trở nên mượt mà là vậy.</p>
+<blockquote>
+<p>Cùng thử với state dạng array</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx>&lt;<span style=color:#f92672>button</span>
+  <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;button&#34;</span>
+  <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;btn btn-primary&#34;</span>
+  <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{(<span style=color:#a6e22e>e</span>) =&gt; {
+    <span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>preventDefault</span>();
+    <span style=color:#a6e22e>setItems</span>((<span style=color:#a6e22e>items</span>) =&gt; {
+      <span style=color:#66d9ef>return</span> [...<span style=color:#a6e22e>items</span>, <span style=color:#a6e22e>input</span>];
+    });
+  }}
+&gt;
+  <span style=color:#a6e22e>Add</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>item</span>
+&lt;/<span style=color:#f92672>button</span>&gt;
+</code></pre></div><p>Qua các ví dụ trên chúng ta đúc kết được như sau:</p>
+<p><img src=https://user-images.githubusercontent.com/31009750/253850183-5e54ca43-42e9-444a-8f06-6eeba6261bab.png alt=image></p>
+<h4 id=quá-trình-một-reactjs-component-render-sẽ-diễn-tiến-như-sau>Quá trình một ReactJS Component render sẽ diễn tiến như sau:</h4>
+<blockquote>
+<h3 id=trigger---render---commit>Trigger -> Render -> Commit</h3>
+</blockquote>
+<p><strong>Trigger:</strong></p>
+<ul>
+<li>Khi ứng dụng khởi tạo tại bước này ReactJS sẽ nhúng ứng dụng vào DOM node root, và thực hiện gọi phương thức <strong>render</strong> của các component.</li>
+<li>Re-render: mỗi khi component cập nhật state của nó, thì bản thân nó sẽ render lại, điều này dẫn đến việc các children components của nó cũng sẽ render lại.</li>
+</ul>
+<p><strong>Render</strong>:</p>
+<ul>
+<li>Như đã đề cập ở trên, khi ứng dụng khởi tạo, React sẽ gọi root component thực hiện render.</li>
+<li>Đối với các lần tiếp theo, React sẽ thực gọi các function component có state update trigger việc render này.</li>
+</ul>
+<p><strong>Commit</strong>:</p>
+<ul>
+<li>Khi ứng dụng khởi tạo, sau khi component root render thành công, React lúc này sẽ append toàn bộ DOM nodes được tạo vào cây DOM.</li>
+<li>Đối với các lần tiếp theo, React sẽ thực hiện so sánh và chỉ cập nhật cây DOM nếu thực sự có thay đổi.</li>
+</ul>
 <h4 id=xây-dựng-cấu-trúc-dữ-liệu-chung-cho-ứng-dụng>Xây dựng cấu trúc dữ liệu chung cho ứng dụng</h4>
 <p>Chính là trạng thái của dữ liệu từ lúc bắt đầu, trong lúc hoạt động, cho đến khi kết thúc.
 Điều này cực kì quan trọng, vì ứng dụng ngoài yêu cầu phải tương tác với người dùng, thì nhiệm vụ chính của nó là thể hiện các trạng thái hiện tại của dữ liệu: ban đầu, sau khi biến đổi, khi kết thúc.</p>
