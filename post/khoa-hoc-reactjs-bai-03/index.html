@@ -1201,7 +1201,274 @@ Các component lớn hơn, có thể có trạng thái riêng và là tổ hợp
 }
 
 <span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#a6e22e>App</span>;
-</code></pre></div><p><strong>2. Hướng thứ 2: tạo 2 component riêng biệt, mỗi trường hợp là một component.</strong></p>
+</code></pre></div><p>3.2. Xây dựng PaginationComponent</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>PaginationComponent</span> <span style=color:#f92672>=</span> ({
+  <span style=color:#a6e22e>numberOfPages</span>,
+  <span style=color:#a6e22e>currentPage</span>,
+  <span style=color:#a6e22e>onChangeCurrentPage</span>,
+  ...<span style=color:#a6e22e>props</span>
+}) =&gt; {
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>spaces</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>5</span>; <span style=color:#75715e>// 5 page links
+</span><span style=color:#75715e></span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>isDisabledPrevious</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>currentPage</span> <span style=color:#f92672>===</span> <span style=color:#ae81ff>1</span>;
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>isDisabledNext</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>currentPage</span> <span style=color:#f92672>===</span> <span style=color:#a6e22e>numberOfPages</span>;
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>pages</span> <span style=color:#f92672>=</span> [];
+  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>start</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>currentPage</span> <span style=color:#f92672>&lt;</span> <span style=color:#a6e22e>spaces</span> <span style=color:#f92672>?</span> <span style=color:#ae81ff>1</span> <span style=color:#f92672>:</span> <span style=color:#a6e22e>currentPage</span> <span style=color:#f92672>-</span> Math.<span style=color:#a6e22e>floor</span>(<span style=color:#a6e22e>spaces</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>2</span>);
+  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>end</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>start</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>spaces</span> <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>;
+  <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>end</span> <span style=color:#f92672>&gt;</span> <span style=color:#a6e22e>numberOfPages</span>) {
+    <span style=color:#a6e22e>end</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>numberOfPages</span>;
+    <span style=color:#a6e22e>start</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>numberOfPages</span> <span style=color:#f92672>-</span> <span style=color:#a6e22e>spaces</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>;
+  }
+  <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>index</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>start</span>; <span style=color:#a6e22e>index</span> <span style=color:#f92672>&lt;=</span> <span style=color:#a6e22e>end</span>; <span style=color:#a6e22e>index</span><span style=color:#f92672>++</span>) {
+    <span style=color:#a6e22e>pages</span>.<span style=color:#a6e22e>push</span>(<span style=color:#a6e22e>index</span>);
+  }
+
+  <span style=color:#66d9ef>return</span> (
+    &lt;&gt;
+      {<span style=color:#a6e22e>pages</span>}
+      {<span style=color:#a6e22e>pages</span>.<span style=color:#a6e22e>length</span> <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>1</span> <span style=color:#f92672>&amp;&amp;</span> (
+        &lt;<span style=color:#f92672>nav</span>&gt;
+          &lt;<span style=color:#f92672>ul</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;pagination&#34;</span>&gt;
+            &lt;<span style=color:#f92672>li</span>
+              <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span>{
+                <span style=color:#a6e22e>isDisabledPrevious</span> <span style=color:#f92672>?</span> <span style=color:#e6db74>&#34;page-item disabled&#34;</span> <span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;page-item&#34;</span>
+              }
+            &gt;
+              &lt;<span style=color:#f92672>a</span>
+                <span style=color:#a6e22e>style</span><span style=color:#f92672>=</span>{{
+                  <span style=color:#a6e22e>cursor</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;pointer&#34;</span>,
+                }}
+                <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;page-link&#34;</span>
+                <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{() =&gt; <span style=color:#a6e22e>onChangeCurrentPage</span>(<span style=color:#ae81ff>1</span>)}
+              &gt;
+                <span style=color:#a6e22e>First</span>
+              &lt;/<span style=color:#f92672>a</span>&gt;
+            &lt;/<span style=color:#f92672>li</span>&gt;
+            &lt;<span style=color:#f92672>li</span>
+              <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span>{
+                <span style=color:#a6e22e>isDisabledPrevious</span> <span style=color:#f92672>?</span> <span style=color:#e6db74>&#34;page-item disabled&#34;</span> <span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;page-item&#34;</span>
+              }
+            &gt;
+              &lt;<span style=color:#f92672>a</span>
+                <span style=color:#a6e22e>style</span><span style=color:#f92672>=</span>{{
+                  <span style=color:#a6e22e>cursor</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;pointer&#34;</span>,
+                }}
+                <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;page-link&#34;</span>
+                <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{() =&gt; <span style=color:#a6e22e>onChangeCurrentPage</span>(<span style=color:#a6e22e>currentPage</span> <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>)}
+              &gt;
+                <span style=color:#a6e22e>Previous</span>
+              &lt;/<span style=color:#f92672>a</span>&gt;
+            &lt;/<span style=color:#f92672>li</span>&gt;
+            {<span style=color:#a6e22e>pages</span>.<span style=color:#a6e22e>map</span>((<span style=color:#a6e22e>p</span>) =&gt; (
+              &lt;<span style=color:#f92672>li</span> <span style=color:#a6e22e>key</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>p</span>}&gt;
+                &lt;<span style=color:#f92672>a</span>
+                  <span style=color:#a6e22e>style</span><span style=color:#f92672>=</span>{{
+                    <span style=color:#a6e22e>cursor</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;pointer&#34;</span>,
+                  }}
+                  <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{() =&gt; <span style=color:#a6e22e>onChangeCurrentPage</span>(<span style=color:#a6e22e>p</span>)}
+                  <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span>{
+                    <span style=color:#a6e22e>p</span> <span style=color:#f92672>===</span> <span style=color:#a6e22e>currentPage</span> <span style=color:#f92672>?</span> <span style=color:#e6db74>&#34;page-link active&#34;</span> <span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;page-link&#34;</span>
+                  }
+                &gt;
+                  {<span style=color:#a6e22e>p</span>}
+                &lt;/<span style=color:#f92672>a</span>&gt;
+              &lt;/<span style=color:#f92672>li</span>&gt;
+            ))}
+            &lt;<span style=color:#f92672>li</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>isDisabledNext</span> <span style=color:#f92672>?</span> <span style=color:#e6db74>&#34;page-item disabled&#34;</span> <span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;page-item&#34;</span>}&gt;
+              &lt;<span style=color:#f92672>a</span>
+                <span style=color:#a6e22e>style</span><span style=color:#f92672>=</span>{{
+                  <span style=color:#a6e22e>cursor</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;pointer&#34;</span>,
+                }}
+                <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;page-link&#34;</span>
+                <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{() =&gt; <span style=color:#a6e22e>onChangeCurrentPage</span>(<span style=color:#a6e22e>currentPage</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>)}
+              &gt;
+                <span style=color:#a6e22e>Next</span>
+              &lt;/<span style=color:#f92672>a</span>&gt;
+            &lt;/<span style=color:#f92672>li</span>&gt;
+            &lt;<span style=color:#f92672>li</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>isDisabledNext</span> <span style=color:#f92672>?</span> <span style=color:#e6db74>&#34;page-item disabled&#34;</span> <span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;page-item&#34;</span>}&gt;
+              &lt;<span style=color:#f92672>a</span>
+                <span style=color:#a6e22e>style</span><span style=color:#f92672>=</span>{{
+                  <span style=color:#a6e22e>cursor</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;pointer&#34;</span>,
+                }}
+                <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;page-link&#34;</span>
+                <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{() =&gt; <span style=color:#a6e22e>onChangeCurrentPage</span>(<span style=color:#a6e22e>numberOfPages</span>)}
+              &gt;
+                <span style=color:#a6e22e>Last</span>
+              &lt;/<span style=color:#f92672>a</span>&gt;
+            &lt;/<span style=color:#f92672>li</span>&gt;
+          &lt;/<span style=color:#f92672>ul</span>&gt;
+        &lt;/<span style=color:#f92672>nav</span>&gt;
+      )}
+    &lt;/&gt;
+  );
+};
+
+<span style=color:#a6e22e>PaginationComponent</span>.<span style=color:#a6e22e>displayName</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;PaginationComponent&#34;</span>;
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#a6e22e>PaginationComponent</span>;
+</code></pre></div><p>Dùng thử</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>useCallback</span>, <span style=color:#a6e22e>useEffect</span>, <span style=color:#a6e22e>useRef</span>, <span style=color:#a6e22e>useState</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;react&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#34;./App.css&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#a6e22e>LinkFormComponent</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;./components/LinkFormComponent&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#a6e22e>enviroment</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;./shared/environment&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Modal</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;bootstrap&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>useImmer</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;use-immer&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#a6e22e>PaginationComponent</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;./components/PaginationComponent&#34;</span>;
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>LINK_TYPE</span> <span style=color:#f92672>=</span> {
+  <span style=color:#a6e22e>LINK</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;link&#34;</span>,
+  <span style=color:#a6e22e>YOUTUBE</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;youtube&#34;</span>,
+  <span style=color:#a6e22e>IMAGE</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;image&#34;</span>,
+};
+
+<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>App</span>() {
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>linkFormComponentModalInstance</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>useRef</span>(<span style=color:#66d9ef>null</span>);
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>linkFormComponentModal</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>useRef</span>(<span style=color:#66d9ef>null</span>);
+  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>editLink</span>, <span style=color:#a6e22e>setEditLink</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(<span style=color:#66d9ef>null</span>);
+  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>links</span>, <span style=color:#a6e22e>setLinks</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useImmer</span>([
+    {
+      <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>1</span>,
+      <span style=color:#a6e22e>link</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;https://nextjsvietnam.com&#34;</span>,
+      <span style=color:#a6e22e>title</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;https://nextjsvietnam.com&#34;</span>,
+      <span style=color:#a6e22e>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>LINK_TYPE</span>.<span style=color:#a6e22e>LINK</span>,
+    },
+  ]);
+  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>paginator</span>, <span style=color:#a6e22e>setPaginator</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useImmer</span>({
+    <span style=color:#a6e22e>currentPage</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>1</span>,
+    <span style=color:#a6e22e>numberOfPages</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>10</span>,
+    <span style=color:#a6e22e>rowsPerPage</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>5</span>,
+    <span style=color:#a6e22e>numberOfItems</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>50</span>,
+  });
+
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>openModal</span> <span style=color:#f92672>=</span> () =&gt; {
+    <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span><span style=color:#a6e22e>linkFormComponentModalInstance</span>.<span style=color:#a6e22e>current</span>) {
+      <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;new modal&#34;</span>, <span style=color:#a6e22e>linkFormComponentModalInstance</span>.<span style=color:#a6e22e>current</span>);
+      <span style=color:#a6e22e>linkFormComponentModalInstance</span>.<span style=color:#a6e22e>current</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Modal</span>(
+        <span style=color:#a6e22e>linkFormComponentModal</span>.<span style=color:#a6e22e>current</span>,
+        {
+          <span style=color:#a6e22e>backdrop</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>true</span>,
+          <span style=color:#a6e22e>focus</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>true</span>,
+          <span style=color:#a6e22e>keyboard</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>true</span>,
+        }
+      );
+      <span style=color:#a6e22e>linkFormComponentModalInstance</span>.<span style=color:#a6e22e>current</span>.<span style=color:#a6e22e>show</span>();
+      <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;created modal&#34;</span>, <span style=color:#a6e22e>linkFormComponentModalInstance</span>.<span style=color:#a6e22e>current</span>);
+      <span style=color:#75715e>// handler event close
+</span><span style=color:#75715e></span>      <span style=color:#a6e22e>linkFormComponentModal</span>.<span style=color:#a6e22e>current</span>.<span style=color:#a6e22e>addEventListener</span>(<span style=color:#e6db74>&#34;hide.bs.modal&#34;</span>, () =&gt; {
+        <span style=color:#75715e>// reset state
+</span><span style=color:#75715e></span>        <span style=color:#a6e22e>setEditLink</span>(<span style=color:#66d9ef>null</span>);
+      });
+      <span style=color:#66d9ef>return</span>;
+    }
+    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;existing modal&#34;</span>, <span style=color:#a6e22e>linkFormComponentModalInstance</span>.<span style=color:#a6e22e>current</span>);
+    <span style=color:#a6e22e>linkFormComponentModalInstance</span>.<span style=color:#a6e22e>current</span>.<span style=color:#a6e22e>show</span>();
+  };
+
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>onNewLink</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>e</span>) =&gt; {
+    <span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>preventDefault</span>();
+    <span style=color:#a6e22e>openModal</span>();
+  };
+
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>onEditLink</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>link</span>) =&gt; {
+    <span style=color:#75715e>// set editLink
+</span><span style=color:#75715e></span>    <span style=color:#a6e22e>setEditLink</span>(<span style=color:#a6e22e>link</span>);
+    <span style=color:#75715e>// open modal
+</span><span style=color:#75715e></span>    <span style=color:#a6e22e>openModal</span>();
+  };
+
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>onChangeCurrentPage</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>newCurrentPage</span>) =&gt; {
+    <span style=color:#a6e22e>setPaginator</span>((<span style=color:#a6e22e>p</span>) =&gt; {
+      <span style=color:#a6e22e>p</span>.<span style=color:#a6e22e>currentPage</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>newCurrentPage</span>;
+    });
+  };
+
+  <span style=color:#66d9ef>return</span> (
+    &lt;&gt;
+      &lt;<span style=color:#f92672>nav</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;navbar navbar-expand-lg&#34;</span>&gt;
+        &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;container-fluid&#34;</span>&gt;
+          &lt;<span style=color:#f92672>a</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;navbar-brand&#34;</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;#&#34;</span>&gt;
+            &lt;<span style=color:#f92672>img</span>
+              <span style=color:#a6e22e>src</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;https://nextjsvietnam.com/themes/2022/src/assets/images/logo.png&#34;</span>
+              <span style=color:#a6e22e>alt</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Bootstrap&#34;</span>
+            /&gt;
+          &lt;/<span style=color:#f92672>a</span>&gt;
+          &lt;<span style=color:#f92672>button</span>
+            <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;navbar-toggler&#34;</span>
+            <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;button&#34;</span>
+            <span style=color:#a6e22e>data</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#a6e22e>bs</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#a6e22e>toggle</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;collapse&#34;</span>
+            <span style=color:#a6e22e>data</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#a6e22e>bs</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#a6e22e>target</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;#navbarNav&#34;</span>
+            <span style=color:#a6e22e>aria</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#a6e22e>controls</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;navbarNav&#34;</span>
+            <span style=color:#a6e22e>aria</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#a6e22e>expanded</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;false&#34;</span>
+            <span style=color:#a6e22e>aria</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#a6e22e>label</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Toggle navigation&#34;</span>
+          &gt;
+            &lt;<span style=color:#f92672>span</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;navbar-toggler-icon&#34;</span>&gt;&lt;/<span style=color:#f92672>span</span>&gt;
+          &lt;/<span style=color:#f92672>button</span>&gt;
+          &lt;<span style=color:#f92672>div</span>
+            <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;collapse navbar-collapse justify-content-end&#34;</span>
+            <span style=color:#a6e22e>id</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;navbarNav&#34;</span>
+          &gt;
+            &lt;<span style=color:#f92672>ul</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;navbar-nav&#34;</span>&gt;
+              &lt;<span style=color:#f92672>li</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;nav-item&#34;</span>&gt;
+                &lt;<span style=color:#f92672>a</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;nav-link active&#34;</span> <span style=color:#a6e22e>aria</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#a6e22e>current</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;page&#34;</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;#&#34;</span>&gt;
+                  {<span style=color:#a6e22e>enviroment</span>.<span style=color:#a6e22e>APP_NAME</span>}
+                &lt;/<span style=color:#f92672>a</span>&gt;
+              &lt;/<span style=color:#f92672>li</span>&gt;
+            &lt;/<span style=color:#f92672>ul</span>&gt;
+          &lt;/<span style=color:#f92672>div</span>&gt;
+        &lt;/<span style=color:#f92672>div</span>&gt;
+      &lt;/<span style=color:#f92672>nav</span>&gt;
+      &lt;<span style=color:#f92672>main</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;mt-4&#34;</span>&gt;
+        &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;card&#34;</span>&gt;
+          &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;card-header text-bg-primary&#34;</span>&gt;
+            &lt;<span style=color:#f92672>h3</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;card-title&#34;</span>&gt;<span style=color:#a6e22e>Links</span>&lt;/<span style=color:#f92672>h3</span>&gt;
+          &lt;/<span style=color:#f92672>div</span>&gt;
+          &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;card-body&#34;</span>&gt;
+            &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;d-flex justify-content-end&#34;</span>&gt;
+              &lt;<span style=color:#f92672>button</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;btn btn-primary&#34;</span> <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>onNewLink</span>}&gt;
+                <span style=color:#a6e22e>New</span> <span style=color:#a6e22e>Link</span>
+              &lt;/<span style=color:#f92672>button</span>&gt;
+            &lt;/<span style=color:#f92672>div</span>&gt;
+            &lt;<span style=color:#f92672>div</span>&gt;
+              {<span style=color:#a6e22e>links</span>.<span style=color:#a6e22e>map</span>((<span style=color:#a6e22e>link</span>) =&gt; (
+                &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>key</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>link</span>.<span style=color:#a6e22e>id</span>}&gt;
+                  &lt;<span style=color:#f92672>h4</span>&gt;{<span style=color:#a6e22e>link</span>.<span style=color:#a6e22e>title</span>}&lt;/<span style=color:#f92672>h4</span>&gt;
+                  &lt;<span style=color:#f92672>button</span>
+                    <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;button&#34;</span>
+                    <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;btn btn-warning&#34;</span>
+                    <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{() =&gt; {
+                      <span style=color:#a6e22e>onEditLink</span>(<span style=color:#a6e22e>link</span>);
+                    }}
+                  &gt;
+                    <span style=color:#a6e22e>Edit</span>
+                  &lt;/<span style=color:#f92672>button</span>&gt;
+                &lt;/<span style=color:#f92672>div</span>&gt;
+              ))}
+            &lt;/<span style=color:#f92672>div</span>&gt;
+            &lt;<span style=color:#f92672>PaginationComponent</span>
+              <span style=color:#a6e22e>numberOfPages</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>paginator</span>.<span style=color:#a6e22e>numberOfPages</span>}
+              <span style=color:#a6e22e>currentPage</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>paginator</span>.<span style=color:#a6e22e>currentPage</span>}
+              <span style=color:#a6e22e>onChangeCurrentPage</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>onChangeCurrentPage</span>}
+            /&gt;
+          &lt;/<span style=color:#f92672>div</span>&gt;
+        &lt;/<span style=color:#f92672>div</span>&gt;
+      &lt;/<span style=color:#f92672>main</span>&gt;
+      &lt;<span style=color:#f92672>footer</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;mt-4&#34;</span>&gt;
+        &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;container&#34;</span>&gt;
+          &lt;<span style=color:#f92672>p</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;text-center&#34;</span>&gt;
+            <span style=color:#a6e22e>Copyright</span><span style=color:#960050;background-color:#1e0010>@</span><span style=color:#a6e22e>JSBase</span> <span style=color:#f92672>-</span> {<span style=color:#a6e22e>enviroment</span>.<span style=color:#a6e22e>APP_VERSION</span>} <span style=color:#f92672>-</span> {<span style=color:#a6e22e>enviroment</span>.<span style=color:#a6e22e>MODE</span>}
+          &lt;/<span style=color:#f92672>p</span>&gt;
+        &lt;/<span style=color:#f92672>div</span>&gt;
+      &lt;/<span style=color:#f92672>footer</span>&gt;
+      &lt;<span style=color:#f92672>LinkFormComponent</span>
+        <span style=color:#a6e22e>ref</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>linkFormComponentModal</span>}
+        <span style=color:#a6e22e>link</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>editLink</span>}
+      &gt;&lt;/<span style=color:#f92672>LinkFormComponent</span>&gt;
+    &lt;/&gt;
+  );
+}
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#a6e22e>App</span>;
+</code></pre></div><p><img src=https://user-images.githubusercontent.com/31009750/253977033-46fb6d62-a7c0-46a1-9933-c81715c8596b.png alt=image></p>
+<p><strong>2. Hướng thứ 2: tạo 2 component riêng biệt, mỗi trường hợp là một component.</strong></p>
 <p><strong>3. Hướng thứ 3: tạo component modal, trong component modal thì gắn thêm LinkFormComponent và áp dụng hướng thứ 1 nhất, nhận prop là link để phân biệt 2 trường hợp.</strong></p>
 <h4 id=bước-số-4-tích-hợp-toàn-bộ-các-component-lại-thành-1-ứng-dụng-hoàn-chỉnh>Bước số 4. Tích hợp toàn bộ các component lại thành 1 ứng dụng hoàn chỉnh</h4>
 <p>Đây là bước cuối cùng, lắp ráp lại kết quả của các bước trên, nhằm tạo ra 1 ứng dụng hoàn chỉnh cho người dùng.</p>
