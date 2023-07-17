@@ -552,6 +552,101 @@ export default Lession003;
 
 Lúc này cả trên UI, lẫn console, giá trị của c đều được cập nhật tương ứng.
 
+> Làm thế nào để lấy được giá trị của form input
+
+```jsx
+import { useState } from "react";
+
+const Lession003 = () => {
+  const [input, setInput] = useState("");
+  const [items, setItems] = useState([]);
+
+  return (
+    <>
+      <h2>State Array</h2>
+      <div className="mb-3">
+        <label htmlFor="exampleFormControlInput1" className="form-label">
+          Item name
+        </label>
+        <input
+          value={input}
+          onChange={(e) => {
+            setInput(e.target.value);
+          }}
+          type="email"
+          className="form-control"
+          id="exampleFormControlInput1"
+          placeholder="name"
+        />
+      </div>
+      <button
+        type="button"
+        className="btn btn-primary"
+        onClick={(e) => {
+          e.preventDefault();
+          setItems((items) => {
+            return [...items, input];
+          });
+        }}
+      >
+        Add new item
+      </button>
+      <ul>
+        {items.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
+    </>
+  );
+};
+
+export default Lession003;
+```
+
+![image](https://user-images.githubusercontent.com/31009750/253852462-a2dbe6dc-e78a-486a-a47b-7c45952bf739.png)
+
+Như vậy ta có thể thấy rằng bằng cách sử dụng state, và event onChange, các anh/chị sẽ có thể đồng bộ được user input và state của input này. Nhờ vào cơ chế của ReactJS mà trong hình các anh/chị chỉ thấy phần được render lại chính là nội dung của input chứ ko phải toàn bộ, điều này giúp cho ứng dụng trở nên mượt mà là vậy.
+
+> Cùng thử với state dạng array
+
+```jsx
+<button
+  type="button"
+  className="btn btn-primary"
+  onClick={(e) => {
+    e.preventDefault();
+    setItems((items) => {
+      return [...items, input];
+    });
+  }}
+>
+  Add new item
+</button>
+```
+
+Qua các ví dụ trên chúng ta đúc kết được như sau:
+
+![image](https://user-images.githubusercontent.com/31009750/253850183-5e54ca43-42e9-444a-8f06-6eeba6261bab.png)
+
+#### Quá trình một ReactJS Component render sẽ diễn tiến như sau:
+
+> ### Trigger -> Render -> Commit
+
+**Trigger:**
+
+- Khi ứng dụng khởi tạo tại bước này ReactJS sẽ nhúng ứng dụng vào DOM node root, và thực hiện gọi phương thức **render** của các component.
+- Re-render: mỗi khi component cập nhật state của nó, thì bản thân nó sẽ render lại, điều này dẫn đến việc các children components của nó cũng sẽ render lại.
+
+**Render**:
+
+- Như đã đề cập ở trên, khi ứng dụng khởi tạo, React sẽ gọi root component thực hiện render.
+- Đối với các lần tiếp theo, React sẽ thực gọi các function component có state update trigger việc render này.
+
+**Commit**:
+
+- Khi ứng dụng khởi tạo, sau khi component root render thành công, React lúc này sẽ append toàn bộ DOM nodes được tạo vào cây DOM.
+- Đối với các lần tiếp theo, React sẽ thực hiện so sánh và chỉ cập nhật cây DOM nếu thực sự có thay đổi.
+
 #### Xây dựng cấu trúc dữ liệu chung cho ứng dụng
 
 Chính là trạng thái của dữ liệu từ lúc bắt đầu, trong lúc hoạt động, cho đến khi kết thúc.
