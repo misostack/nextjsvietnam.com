@@ -730,10 +730,72 @@ Sau một số bước phân tích, anh/chị sẽ có được 1 sơ đồ mô 
 
 ![image](https://user-images.githubusercontent.com/31009750/253876828-38aa00a5-56f3-4f1b-9a62-2428ea4bfaac.png)
 
+Sau khi có cái nhìn tổng quan về cấu trúc dữ liệu của các component. Lúc này các anh/chị cần thiết kế luồng dữ liệu giữa các component trong ứng dụng.
+
+![image](https://user-images.githubusercontent.com/31009750/253907170-192c1260-1bdf-4f43-b200-457ac65d972d.png)
+
+Sau khi phân tích xong, các anh/chị đã có thể tiến hành bước tiếp theo là implementation.
+
 #### Bước số 3. Xây dựng chi tiết, bắt đầu từ các component nhỏ nhất.
 
 Nguyên tắc là xây dựng các component nhỏ độc lập, nhận input và trả ra output nếu cần.
 Các component lớn hơn, có thể có trạng thái riêng và là tổ hợp chứa nhiều component nhỏ hơn.
+
+3.1. Xây dựng LinkFormComponent
+
+- LinkFormComponent sẽ là một modal, trong đó chứa form add/edit 1 liên kết.
+- Khi người dùng bấm cancel, modal sẽ đóng, dữ liệu đã nhập cần phải được xóa, để lần sau khi mở lại, form nhập liệu sẽ luôn ở trạng thái mới.
+- Khi người dùng bấm save, dữ liệu cần được kiểm tra (validate) - ở đây chỉ cần kiểm tra link phải là dạng liên kết là được.
+- Sau khi dữ liệu hợp lệ, dữ liệu sẽ được truyền ngược trở lại component cha là "LinkManagementContainer" để cập nhật state và render lại list link được hiển thị, link mới được cập nhật sẽ được hiển thị trên cùng.
+
+Cùng xem xét cách show 1 modal trong bootstrap
+
+```html
+<div class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <p>Modal body text goes here.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+Để điều khiển modal này ẩn hiện các anh/chị cần dùng đoạn javascript như sau
+
+```js
+const myModal = new bootstrap.Modal(document.getElementById("myModal"), {
+  backdrop: true,
+  focus: true,
+  keyboard: true,
+});
+// open modal
+myModal.show();
+// close modal
+myModal.close();
+```
+
+Trong bước này, chúng ta có 2 hướng xử lý:
+
+1. Hướng thứ 1: tạo 1 component duy nhất, nhận prop là link để phân biệt 2 trường hợp: add và edit.
+2. Hướng thứ 2: tạo 2 component riêng biệt, mỗi trường hợp là một component.
+3. Hướng thứ 3: tạo component modal, trong component modal thì gắn thêm LinkFormComponent và áp dụng hướng thứ 1 nhất, nhận prop là link để phân biệt 2 trường hợp.
 
 #### Bước số 4. Tích hợp toàn bộ các component lại thành 1 ứng dụng hoàn chỉnh
 
