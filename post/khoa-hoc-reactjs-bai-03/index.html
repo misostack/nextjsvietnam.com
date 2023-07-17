@@ -122,70 +122,7 @@
 <li>Tìm hiểu lý thuyết về cách tổ chức cấu trúc dữ liệu trong ứng dụng và minh hoạ</li>
 <li>Tổng kết</li>
 </ol>
-<p>Trong bài trước, các anh chị đã tìm hiểu được cấu trúc 1 ứng dụng ReactJS chính là tổ hợp các component.
-Tuy nhiên, trong ứng dụng thực tế, chúng ta cần giải quyết nhiều câu hỏi hóc búa hơn. Trong phạm vi bài học này, chúng ta cùng tìm cách trả lời các câu hỏi sau.</p>
-<p>Giả sử, các anh chị phải xây dựng 1 ứng dụng nhỏ, nhằm quản lí 1 danh sách các liên kết.
-Mỗi liên kết có thể là: Link website, Hình Ảnh(png/jpg/jpeg), Link Youtube.</p>
-<p>Ứng dụng sẽ gồm 1 màn hình duy nhất, các tác vụ thêm, sửa sẽ mở 1 modal cho phép người dùng nhập/thay đổi thông tin, sau khi lưu lại, thông tin trong danh sách sẽ được cập nhật.</p>
-<p><strong>Các tính năng chính của ứng dụng gồm:</strong></p>
-<ul>
-<li>Thêm, Sửa, Xoá Link</li>
-<li>Hiển thị liên kết theo 3 format: website(dạng link với tiêu đề đã nhập, nếu để trống tiêu đề, sử dụng link), hình ảnh(dạng image với tiêu đề đã nhập, nếu để trống, sử dụng link), link youtube ( dạng iframe với embed link)</li>
-<li>Lưu trữ thông tin ứng dụng trên máy người dùng, để khi tắt ứng dụng mở lại, thông tin đã lưu vẫn còn tồn tại.</li>
-</ul>
-<p><strong>Yêu cầu về giao diện như sau</strong></p>
-<blockquote>
-<p>Màn hình chính</p>
-</blockquote>
-<p><img src=https://user-images.githubusercontent.com/31009750/253456804-a3f42811-9a61-438b-bd77-e5e00e128662.png alt="Màn hình chính"></p>
-<blockquote>
-<p>Modal thêm, sửa</p>
-</blockquote>
-<p><img src=https://user-images.githubusercontent.com/31009750/253457039-65cd0eb2-cfbd-4204-a757-c90d1fc3b834.png alt="Modal thêm,sửa"></p>
-<p>Khi thực hiện ứng dụng trên, các anh chị cần phải trả lời được các câu hỏi sau:
-được các thông tin vừa nhập?</p>
-<ol>
-<li>Làm thế nào để lấy được thông tin trong form nhập liệu của link để tiếp tục xử lý</li>
-<li>Làm cách nào truyền được data từ danh sách lên modal.</li>
-<li>Khi người dùng nhập mới/cập nhật thông tin của liên kết, làm thế nào để màn hình danh sách hiển thị.</li>
-<li>Làm thế nào để nạp thông tin đã lưu trên ứng dụng, khi user mở lại ứng dụng.</li>
-<li>Nên lưu thông tin ứng dụng trên máy user vào đâu.</li>
-</ol>
-<p>Để giải quyết được bài tập này, tôi sẽ gợi ý 1 số bước mà các anh chị cần phải thực hiện như sau:</p>
-<h3 id=chia-nhỏ-ứng-dụng-thành-các-component>Chia nhỏ ứng dụng thành các component</h3>
-<p>Nguyên tắc chia sẽ giống như việc cắt giao diện HTML từ file design cho trước. Từ trên xuống dưới, từ ngoài vào trong.</p>
-<p>Tại bước này các anh/chị phải phân tích và chia nhỏ các cần component cần được xây dựng, dùng để lắp ghép cho sản phẩm cuối cùng.</p>
-<ol>
-<li>LinkFormComponent</li>
-</ol>
-<ul>
-<li>Input: linkObject</li>
-<li>Output: linkObject</li>
-</ul>
-<p>LinkFormComponent sẽ được sử dụng cho cả 2 trường hợp thêm mới/chỉnh sửa 1 liên kết (link).</p>
-<ol start=2>
-<li>LinkDetailComponent</li>
-</ol>
-<ul>
-<li>Input: linkObject</li>
-</ul>
-<p><img src=https://user-images.githubusercontent.com/31009750/253543476-9facfd47-89aa-4889-9aeb-52c96ffbbc1a.png alt=image></p>
-<ol start=3>
-<li>PaginationComponent</li>
-</ol>
-<ul>
-<li>Input: paginationObject</li>
-<li>Output: activePage</li>
-</ul>
-<p><img src=https://user-images.githubusercontent.com/31009750/253543768-b3734491-77d9-4299-bd5b-9753dfd28876.png alt=image></p>
-<ol start=4>
-<li>LinkManagementContainer</li>
-</ol>
-<ul>
-<li>Là component bao quát toàn bộ ứng dụng quản lí liên kết.</li>
-</ul>
-<p>Sau bước này, các anh chị sẽ phần nào hình dung được khối lượng công việc cần phải làm để xây dựng ứng dụng này.</p>
-<p>Bước tiếp theo hãy cùng tìm hiểu chi tiết về cơ chế hoạt động của ReactJS và cái khái niệm cơ bản như prop,state, hook, và cách mà ReactJS sẽ cập nhật lại giao diện sau mỗi tương tác của người dùng.</p>
+<p>Trong bài trước, các anh chị đã tìm hiểu được cấu trúc 1 ứng dụng ReactJS chính là tổ hợp các component.</p>
 <h3 id=tìm-hiểu-về-prop-state-hook-thông-qua-các-ví-dụ>Tìm hiểu về prop, state, hook thông qua các ví dụ</h3>
 <ol>
 <li>Thiết kế nút &ldquo;New Link&rdquo; và LinkFormComponent</li>
@@ -724,7 +661,79 @@ Vì vậy, việc bắt buộc là anh/chị không được thay đổi trực 
 <li>Đối với các lần tiếp theo, React sẽ thực hiện so sánh và chỉ cập nhật cây DOM nếu thực sự có thay đổi.</li>
 </ul>
 <p>Vậy là các anh/chị đã có 1 cái nhìn tổng quan về state,props trong ReactJS và cách mà ReactJS render lại các component khi state thay đổi.</p>
-<h4 id=xây-dựng-cấu-trúc-dữ-liệu-chung-cho-ứng-dụng>Xây dựng cấu trúc dữ liệu chung cho ứng dụng</h4>
+<h3 id=thực-hành-xây-dựng-ứng-dụng-quản-lí-liên-kết>Thực hành xây dựng ứng dụng quản lí liên kết</h3>
+<h4 id=yêu-cầu-của-ứng-dụng>Yêu cầu của ứng dụng</h4>
+<p>Trong ứng dụng thực tế, chúng ta cần giải quyết nhiều câu hỏi hóc búa hơn. Trong phạm vi bài học này, chúng ta cùng tìm cách trả lời các câu hỏi sau.</p>
+<p>Giả sử, các anh chị phải xây dựng 1 ứng dụng nhỏ, nhằm quản lí 1 danh sách các liên kết.
+Mỗi liên kết có thể là: Link website, Hình Ảnh(png/jpg/jpeg), Link Youtube.</p>
+<p>Ứng dụng sẽ gồm 1 màn hình duy nhất, các tác vụ thêm, sửa sẽ mở 1 modal cho phép người dùng nhập/thay đổi thông tin, sau khi lưu lại, thông tin trong danh sách sẽ được cập nhật.</p>
+<p><strong>Các tính năng chính của ứng dụng gồm:</strong></p>
+<ul>
+<li>Thêm, Sửa, Xoá Link</li>
+<li>Hiển thị liên kết theo 3 format: website(dạng link với tiêu đề đã nhập, nếu để trống tiêu đề, sử dụng link), hình ảnh(dạng image với tiêu đề đã nhập, nếu để trống, sử dụng link), link youtube ( dạng iframe với embed link)</li>
+<li>Lưu trữ thông tin ứng dụng trên máy người dùng, để khi tắt ứng dụng mở lại, thông tin đã lưu vẫn còn tồn tại.</li>
+</ul>
+<p><strong>Yêu cầu về giao diện như sau</strong></p>
+<blockquote>
+<p>Màn hình chính</p>
+</blockquote>
+<p><img src=https://user-images.githubusercontent.com/31009750/253456804-a3f42811-9a61-438b-bd77-e5e00e128662.png alt="Màn hình chính"></p>
+<blockquote>
+<p>Modal thêm, sửa</p>
+</blockquote>
+<p><img src=https://user-images.githubusercontent.com/31009750/253457039-65cd0eb2-cfbd-4204-a757-c90d1fc3b834.png alt="Modal thêm,sửa"></p>
+<p>Khi thực hiện ứng dụng trên, các anh chị cần phải trả lời được các câu hỏi sau:
+được các thông tin vừa nhập?</p>
+<ol>
+<li>Làm thế nào để lấy được thông tin trong form nhập liệu của link để tiếp tục xử lý</li>
+<li>Làm cách nào truyền được data từ danh sách lên modal.</li>
+<li>Khi người dùng nhập mới/cập nhật thông tin của liên kết, làm thế nào để màn hình danh sách hiển thị.</li>
+<li>Làm thế nào để nạp thông tin đã lưu trên ứng dụng, khi user mở lại ứng dụng.</li>
+<li>Nên lưu thông tin ứng dụng trên máy user vào đâu.</li>
+</ol>
+<p>Để giải quyết được bài tập này, tôi sẽ gợi ý 1 số bước mà các anh chị cần phải thực hiện như sau:</p>
+<h3 id=các-bước-chính>Các bước chính:</h3>
+<ol>
+<li>Phân tích và chia nhỏ các cần component</li>
+<li>Thiết kế cấu trúc dữ liệu</li>
+<li>Xây dựng chi tiết, bắt đầu từ các component nhỏ nhất.</li>
+<li>Tích hợp toàn bộ các component lại thành 1 ứng dụng hoàn chỉnh</li>
+</ol>
+<h4 id=bước-1-phân-tích-và-chia-nhỏ-các-cần-component>Bước 1: Phân tích và chia nhỏ các cần component</h4>
+<p>Nguyên tắc chia sẽ giống như việc cắt giao diện HTML từ file design cho trước. Từ trên xuống dưới, từ ngoài vào trong.</p>
+<p>Tại bước này các anh/chị phải phân tích và chia nhỏ các cần component cần được xây dựng, dùng để lắp ghép cho sản phẩm cuối cùng.</p>
+<ol>
+<li>LinkFormComponent</li>
+</ol>
+<ul>
+<li>Input: linkObject</li>
+<li>Output: linkObject</li>
+</ul>
+<p>LinkFormComponent sẽ được sử dụng cho cả 2 trường hợp thêm mới/chỉnh sửa 1 liên kết (link).</p>
+<ol start=2>
+<li>LinkDetailComponent</li>
+</ol>
+<ul>
+<li>Input: linkObject</li>
+</ul>
+<p><img src=https://user-images.githubusercontent.com/31009750/253543476-9facfd47-89aa-4889-9aeb-52c96ffbbc1a.png alt=image></p>
+<ol start=3>
+<li>PaginationComponent</li>
+</ol>
+<ul>
+<li>Input: paginationObject</li>
+<li>Output: activePage</li>
+</ul>
+<p><img src=https://user-images.githubusercontent.com/31009750/253543768-b3734491-77d9-4299-bd5b-9753dfd28876.png alt=image></p>
+<ol start=4>
+<li>LinkManagementContainer</li>
+</ol>
+<ul>
+<li>Là component bao quát toàn bộ ứng dụng quản lí liên kết.</li>
+</ul>
+<p>Sau bước này, các anh chị sẽ phần nào hình dung được khối lượng công việc cần phải làm để xây dựng ứng dụng này.</p>
+<p>Bước tiếp theo hãy cùng tìm hiểu chi tiết về cơ chế hoạt động của ReactJS và cái khái niệm cơ bản như prop,state, hook, và cách mà ReactJS sẽ cập nhật lại giao diện sau mỗi tương tác của người dùng.</p>
+<h4 id=bước-2--thiết-kế-cấu-trúc-dữ-liệu>Bước 2 : Thiết kế cấu trúc dữ liệu</h4>
 <p>Chính là trạng thái của dữ liệu từ lúc bắt đầu, trong lúc hoạt động, cho đến khi kết thúc.
 Điều này cực kì quan trọng, vì ứng dụng ngoài yêu cầu phải tương tác với người dùng, thì nhiệm vụ chính của nó là thể hiện các trạng thái hiện tại của dữ liệu: ban đầu, sau khi biến đổi, khi kết thúc.</p>
 <p>Trong phần này tôi sẽ hướng dẫn xây dựng cấu trúc dữ liệu cho ví dụ minh họa trong bài học này. Các anh chị có thể đọc thêm về cách xây dựng và lựa chọn cấu trúc dữ liệu cho state tại <a href=https://nextjsvietnam.com/post/manage-your-reactjs-state-the-right-way/>bài viết này</a>.</p>
