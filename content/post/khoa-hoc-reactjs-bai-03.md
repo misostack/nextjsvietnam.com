@@ -628,6 +628,64 @@ Qua các ví dụ trên chúng ta đúc kết được như sau:
 
 ![image](https://user-images.githubusercontent.com/31009750/253850183-5e54ca43-42e9-444a-8f06-6eeba6261bab.png)
 
+> Tuy nhiên cách viết trên, làm đoạn code trông khá là phức tạp và khó bảo trì. Các anh/chị có thể sử dụng thư viên immer để vẫn đảm bảo tính immutable của state nhưng khi viết code thì trông như đang mutate vậy.
+
+```sh
+npm install use-immer --save
+```
+
+```jsx
+import { useState } from "react";
+import { useImmer } from "use-immer";
+
+const Lession003 = () => {
+  const [input, setInput] = useState("");
+  const [items, setItems] = useImmer([]);
+
+  return (
+    <>
+      <h2>State Array</h2>
+      <div className="mb-3">
+        <label htmlFor="exampleFormControlInput1" className="form-label">
+          Item name
+        </label>
+        <input
+          value={input}
+          onChange={(e) => {
+            setInput(e.target.value);
+          }}
+          type="email"
+          className="form-control"
+          id="exampleFormControlInput1"
+          placeholder="name"
+        />
+      </div>
+      <button
+        type="button"
+        className="btn btn-primary"
+        onClick={(e) => {
+          e.preventDefault();
+          setItems((items) => {
+            items.push(input);
+          });
+        }}
+      >
+        Add new item
+      </button>
+      <ul>
+        {items.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
+    </>
+  );
+};
+
+export default Lession003;
+```
+
+Đoạn code mới này trông clean hơn hẳn đúng không nào.
+
 #### Quá trình một ReactJS Component render sẽ diễn tiến như sau:
 
 > ### Trigger -> Render -> Commit
@@ -647,10 +705,14 @@ Qua các ví dụ trên chúng ta đúc kết được như sau:
 - Khi ứng dụng khởi tạo, sau khi component root render thành công, React lúc này sẽ append toàn bộ DOM nodes được tạo vào cây DOM.
 - Đối với các lần tiếp theo, React sẽ thực hiện so sánh và chỉ cập nhật cây DOM nếu thực sự có thay đổi.
 
+Vậy là các anh/chị đã có 1 cái nhìn tổng quan về state,props trong ReactJS và cách mà ReactJS render lại các component khi state thay đổi.
+
 #### Xây dựng cấu trúc dữ liệu chung cho ứng dụng
 
 Chính là trạng thái của dữ liệu từ lúc bắt đầu, trong lúc hoạt động, cho đến khi kết thúc.
 Điều này cực kì quan trọng, vì ứng dụng ngoài yêu cầu phải tương tác với người dùng, thì nhiệm vụ chính của nó là thể hiện các trạng thái hiện tại của dữ liệu: ban đầu, sau khi biến đổi, khi kết thúc.
+
+Trong phần này tôi sẽ hướng dẫn xây dựng cấu trúc dữ liệu cho ví dụ minh họa trong bài học này. Các anh chị có thể đọc thêm về cách xây dựng và lựa chọn cấu trúc dữ liệu cho state tại [bài viết này](https://nextjsvietnam.com/post/manage-your-reactjs-state-the-right-way/).
 
 #### Bước số 3. Xây dựng chi tiết, bắt đầu từ các component nhỏ nhất.
 
