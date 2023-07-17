@@ -788,11 +788,421 @@ Các component lớn hơn, có thể có trạng thái riêng và là tổ hợp
 <span style=color:#75715e>// close modal
 </span><span style=color:#75715e></span><span style=color:#a6e22e>myModal</span>.<span style=color:#a6e22e>close</span>();
 </code></pre></div><p>Trong bước này, chúng ta có 3 hướng xử lý:</p>
-<ol>
-<li>Hướng thứ 1: tạo 1 component duy nhất, nhận prop là link để phân biệt 2 trường hợp: add và edit.</li>
-<li>Hướng thứ 2: tạo 2 component riêng biệt, mỗi trường hợp là một component.</li>
-<li>Hướng thứ 3: tạo component modal, trong component modal thì gắn thêm LinkFormComponent và áp dụng hướng thứ 1 nhất, nhận prop là link để phân biệt 2 trường hợp.</li>
-</ol>
+<p><strong>1. Hướng thứ 1: tạo 1 component duy nhất, nhận prop là link để phân biệt 2 trường hợp: add và edit.</strong></p>
+<ul>
+<li>Để sử dụng được modal theo như doc của bootstrap, lúc này các anh/chị cần tìm cách khởi tạo được modal bằng cách truyền DOM Element của Modal chứa LinkForm.</li>
+<li>Và modal sau khi khởi tạo xong, cũng không cần thiết phải trigger việc render lại.</li>
+</ul>
+<p>ReactJS có giới thiệu cho các anh/chị 1 hook <strong>useRef</strong> để áp dụng trong trường hợp này.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>useCallback</span>, <span style=color:#a6e22e>useEffect</span>, <span style=color:#a6e22e>useRef</span>, <span style=color:#a6e22e>useState</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;react&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#34;./App.css&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#a6e22e>LinkFormComponent</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;./components/LinkFormComponent&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#a6e22e>enviroment</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;./shared/environment&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Modal</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;bootstrap&#34;</span>;
+
+<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>App</span>() {
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>linkFormComponentModalInstance</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>useRef</span>(<span style=color:#66d9ef>null</span>);
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>linkFormComponentModal</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>useRef</span>(<span style=color:#66d9ef>null</span>);
+  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>editLink</span>, <span style=color:#a6e22e>setEditLink</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(<span style=color:#66d9ef>null</span>);
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>onNewLink</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>e</span>) =&gt; {
+    <span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>preventDefault</span>();
+    <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span><span style=color:#a6e22e>linkFormComponentModalInstance</span>.<span style=color:#a6e22e>current</span>) {
+      <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;new modal&#34;</span>, <span style=color:#a6e22e>linkFormComponentModalInstance</span>.<span style=color:#a6e22e>current</span>);
+      <span style=color:#a6e22e>linkFormComponentModalInstance</span>.<span style=color:#a6e22e>current</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Modal</span>(
+        <span style=color:#a6e22e>linkFormComponentModal</span>.<span style=color:#a6e22e>current</span>,
+        {
+          <span style=color:#a6e22e>backdrop</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>true</span>,
+          <span style=color:#a6e22e>focus</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>true</span>,
+          <span style=color:#a6e22e>keyboard</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>true</span>,
+        }
+      );
+      <span style=color:#a6e22e>linkFormComponentModalInstance</span>.<span style=color:#a6e22e>current</span>.<span style=color:#a6e22e>show</span>();
+      <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;created modal&#34;</span>, <span style=color:#a6e22e>linkFormComponentModalInstance</span>.<span style=color:#a6e22e>current</span>);
+      <span style=color:#66d9ef>return</span>;
+    }
+    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;existing modal&#34;</span>, <span style=color:#a6e22e>linkFormComponentModalInstance</span>.<span style=color:#a6e22e>current</span>);
+    <span style=color:#a6e22e>linkFormComponentModalInstance</span>.<span style=color:#a6e22e>current</span>.<span style=color:#a6e22e>show</span>();
+  };
+  <span style=color:#66d9ef>return</span> (
+    &lt;&gt;
+      &lt;<span style=color:#f92672>nav</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;navbar navbar-expand-lg&#34;</span>&gt;
+        &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;container-fluid&#34;</span>&gt;
+          &lt;<span style=color:#f92672>a</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;navbar-brand&#34;</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;#&#34;</span>&gt;
+            &lt;<span style=color:#f92672>img</span>
+              <span style=color:#a6e22e>src</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;https://nextjsvietnam.com/themes/2022/src/assets/images/logo.png&#34;</span>
+              <span style=color:#a6e22e>alt</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Bootstrap&#34;</span>
+            /&gt;
+          &lt;/<span style=color:#f92672>a</span>&gt;
+          &lt;<span style=color:#f92672>button</span>
+            <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;navbar-toggler&#34;</span>
+            <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;button&#34;</span>
+            <span style=color:#a6e22e>data</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#a6e22e>bs</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#a6e22e>toggle</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;collapse&#34;</span>
+            <span style=color:#a6e22e>data</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#a6e22e>bs</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#a6e22e>target</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;#navbarNav&#34;</span>
+            <span style=color:#a6e22e>aria</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#a6e22e>controls</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;navbarNav&#34;</span>
+            <span style=color:#a6e22e>aria</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#a6e22e>expanded</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;false&#34;</span>
+            <span style=color:#a6e22e>aria</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#a6e22e>label</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Toggle navigation&#34;</span>
+          &gt;
+            &lt;<span style=color:#f92672>span</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;navbar-toggler-icon&#34;</span>&gt;&lt;/<span style=color:#f92672>span</span>&gt;
+          &lt;/<span style=color:#f92672>button</span>&gt;
+          &lt;<span style=color:#f92672>div</span>
+            <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;collapse navbar-collapse justify-content-end&#34;</span>
+            <span style=color:#a6e22e>id</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;navbarNav&#34;</span>
+          &gt;
+            &lt;<span style=color:#f92672>ul</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;navbar-nav&#34;</span>&gt;
+              &lt;<span style=color:#f92672>li</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;nav-item&#34;</span>&gt;
+                &lt;<span style=color:#f92672>a</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;nav-link active&#34;</span> <span style=color:#a6e22e>aria</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#a6e22e>current</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;page&#34;</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;#&#34;</span>&gt;
+                  {<span style=color:#a6e22e>enviroment</span>.<span style=color:#a6e22e>APP_NAME</span>}
+                &lt;/<span style=color:#f92672>a</span>&gt;
+              &lt;/<span style=color:#f92672>li</span>&gt;
+            &lt;/<span style=color:#f92672>ul</span>&gt;
+          &lt;/<span style=color:#f92672>div</span>&gt;
+        &lt;/<span style=color:#f92672>div</span>&gt;
+      &lt;/<span style=color:#f92672>nav</span>&gt;
+      &lt;<span style=color:#f92672>main</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;mt-4&#34;</span>&gt;
+        &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;card&#34;</span>&gt;
+          &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;card-header text-bg-primary&#34;</span>&gt;
+            &lt;<span style=color:#f92672>h3</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;card-title&#34;</span>&gt;<span style=color:#a6e22e>Links</span>&lt;/<span style=color:#f92672>h3</span>&gt;
+          &lt;/<span style=color:#f92672>div</span>&gt;
+          &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;card-body&#34;</span>&gt;
+            &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;d-flex justify-content-end&#34;</span>&gt;
+              &lt;<span style=color:#f92672>button</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;btn btn-primary&#34;</span> <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>onNewLink</span>}&gt;
+                <span style=color:#a6e22e>New</span> <span style=color:#a6e22e>Link</span>
+              &lt;/<span style=color:#f92672>button</span>&gt;
+            &lt;/<span style=color:#f92672>div</span>&gt;
+          &lt;/<span style=color:#f92672>div</span>&gt;
+        &lt;/<span style=color:#f92672>div</span>&gt;
+      &lt;/<span style=color:#f92672>main</span>&gt;
+      &lt;<span style=color:#f92672>footer</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;mt-4&#34;</span>&gt;
+        &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;container&#34;</span>&gt;
+          &lt;<span style=color:#f92672>p</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;text-center&#34;</span>&gt;
+            <span style=color:#a6e22e>Copyright</span><span style=color:#960050;background-color:#1e0010>@</span><span style=color:#a6e22e>JSBase</span> <span style=color:#f92672>-</span> {<span style=color:#a6e22e>enviroment</span>.<span style=color:#a6e22e>APP_VERSION</span>} <span style=color:#f92672>-</span> {<span style=color:#a6e22e>enviroment</span>.<span style=color:#a6e22e>MODE</span>}
+          &lt;/<span style=color:#f92672>p</span>&gt;
+        &lt;/<span style=color:#f92672>div</span>&gt;
+      &lt;/<span style=color:#f92672>footer</span>&gt;
+      &lt;<span style=color:#f92672>LinkFormComponent</span>
+        <span style=color:#a6e22e>id</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;LinkFormComponent&#34;</span>
+        <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;modal&#34;</span>
+        <span style=color:#a6e22e>tabIndex</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;-1&#34;</span>
+        <span style=color:#a6e22e>ref</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>linkFormComponentModal</span>}
+        <span style=color:#a6e22e>link</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>editLink</span>}
+      &gt;&lt;/<span style=color:#f92672>LinkFormComponent</span>&gt;
+    &lt;/&gt;
+  );
+}
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#a6e22e>App</span>;
+</code></pre></div><p>Tuy nhiên khi sử dụng ref cho function component, ReactJS sẽ hiện thị ra lỗi bên dưới.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>react-dom.development.js:86 Warning: Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef<span style=color:#f92672>()</span>?
+</code></pre></div><p>Lí do là ref chỉ xài được cho các native HTML Element, trường hợp anh/chị muốn sử dụng cho ReactComponent cần làm theo cú pháp sau. Do đó anh/chị cần refactor lại đoạn code trên 1 chút.</p>
+<blockquote>
+<p>App.jsx</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>useCallback</span>, <span style=color:#a6e22e>useEffect</span>, <span style=color:#a6e22e>useRef</span>, <span style=color:#a6e22e>useState</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;react&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#34;./App.css&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#a6e22e>LinkFormComponent</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;./components/LinkFormComponent&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#a6e22e>enviroment</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;./shared/environment&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Modal</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;bootstrap&#34;</span>;
+
+<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>App</span>() {
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>linkFormComponentModalInstance</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>useRef</span>(<span style=color:#66d9ef>null</span>);
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>linkFormComponentModal</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>useRef</span>(<span style=color:#66d9ef>null</span>);
+  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>editLink</span>, <span style=color:#a6e22e>setEditLink</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(<span style=color:#66d9ef>null</span>);
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>onNewLink</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>e</span>) =&gt; {
+    <span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>preventDefault</span>();
+    <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span><span style=color:#a6e22e>linkFormComponentModalInstance</span>.<span style=color:#a6e22e>current</span>) {
+      <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;new modal&#34;</span>, <span style=color:#a6e22e>linkFormComponentModalInstance</span>.<span style=color:#a6e22e>current</span>);
+      <span style=color:#a6e22e>linkFormComponentModalInstance</span>.<span style=color:#a6e22e>current</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Modal</span>(
+        <span style=color:#a6e22e>linkFormComponentModal</span>.<span style=color:#a6e22e>current</span>,
+        {
+          <span style=color:#a6e22e>backdrop</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>true</span>,
+          <span style=color:#a6e22e>focus</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>true</span>,
+          <span style=color:#a6e22e>keyboard</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>true</span>,
+        }
+      );
+      <span style=color:#a6e22e>linkFormComponentModalInstance</span>.<span style=color:#a6e22e>current</span>.<span style=color:#a6e22e>show</span>();
+      <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;created modal&#34;</span>, <span style=color:#a6e22e>linkFormComponentModalInstance</span>.<span style=color:#a6e22e>current</span>);
+      <span style=color:#66d9ef>return</span>;
+    }
+    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;existing modal&#34;</span>, <span style=color:#a6e22e>linkFormComponentModalInstance</span>.<span style=color:#a6e22e>current</span>);
+    <span style=color:#a6e22e>linkFormComponentModalInstance</span>.<span style=color:#a6e22e>current</span>.<span style=color:#a6e22e>show</span>();
+  };
+  <span style=color:#66d9ef>return</span> (
+    &lt;&gt;
+      &lt;<span style=color:#f92672>nav</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;navbar navbar-expand-lg&#34;</span>&gt;
+        &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;container-fluid&#34;</span>&gt;
+          &lt;<span style=color:#f92672>a</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;navbar-brand&#34;</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;#&#34;</span>&gt;
+            &lt;<span style=color:#f92672>img</span>
+              <span style=color:#a6e22e>src</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;https://nextjsvietnam.com/themes/2022/src/assets/images/logo.png&#34;</span>
+              <span style=color:#a6e22e>alt</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Bootstrap&#34;</span>
+            /&gt;
+          &lt;/<span style=color:#f92672>a</span>&gt;
+          &lt;<span style=color:#f92672>button</span>
+            <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;navbar-toggler&#34;</span>
+            <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;button&#34;</span>
+            <span style=color:#a6e22e>data</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#a6e22e>bs</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#a6e22e>toggle</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;collapse&#34;</span>
+            <span style=color:#a6e22e>data</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#a6e22e>bs</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#a6e22e>target</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;#navbarNav&#34;</span>
+            <span style=color:#a6e22e>aria</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#a6e22e>controls</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;navbarNav&#34;</span>
+            <span style=color:#a6e22e>aria</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#a6e22e>expanded</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;false&#34;</span>
+            <span style=color:#a6e22e>aria</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#a6e22e>label</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Toggle navigation&#34;</span>
+          &gt;
+            &lt;<span style=color:#f92672>span</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;navbar-toggler-icon&#34;</span>&gt;&lt;/<span style=color:#f92672>span</span>&gt;
+          &lt;/<span style=color:#f92672>button</span>&gt;
+          &lt;<span style=color:#f92672>div</span>
+            <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;collapse navbar-collapse justify-content-end&#34;</span>
+            <span style=color:#a6e22e>id</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;navbarNav&#34;</span>
+          &gt;
+            &lt;<span style=color:#f92672>ul</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;navbar-nav&#34;</span>&gt;
+              &lt;<span style=color:#f92672>li</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;nav-item&#34;</span>&gt;
+                &lt;<span style=color:#f92672>a</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;nav-link active&#34;</span> <span style=color:#a6e22e>aria</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#a6e22e>current</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;page&#34;</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;#&#34;</span>&gt;
+                  {<span style=color:#a6e22e>enviroment</span>.<span style=color:#a6e22e>APP_NAME</span>}
+                &lt;/<span style=color:#f92672>a</span>&gt;
+              &lt;/<span style=color:#f92672>li</span>&gt;
+            &lt;/<span style=color:#f92672>ul</span>&gt;
+          &lt;/<span style=color:#f92672>div</span>&gt;
+        &lt;/<span style=color:#f92672>div</span>&gt;
+      &lt;/<span style=color:#f92672>nav</span>&gt;
+      &lt;<span style=color:#f92672>main</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;mt-4&#34;</span>&gt;
+        &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;card&#34;</span>&gt;
+          &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;card-header text-bg-primary&#34;</span>&gt;
+            &lt;<span style=color:#f92672>h3</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;card-title&#34;</span>&gt;<span style=color:#a6e22e>Links</span>&lt;/<span style=color:#f92672>h3</span>&gt;
+          &lt;/<span style=color:#f92672>div</span>&gt;
+          &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;card-body&#34;</span>&gt;
+            &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;d-flex justify-content-end&#34;</span>&gt;
+              &lt;<span style=color:#f92672>button</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;btn btn-primary&#34;</span> <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>onNewLink</span>}&gt;
+                <span style=color:#a6e22e>New</span> <span style=color:#a6e22e>Link</span>
+              &lt;/<span style=color:#f92672>button</span>&gt;
+            &lt;/<span style=color:#f92672>div</span>&gt;
+          &lt;/<span style=color:#f92672>div</span>&gt;
+        &lt;/<span style=color:#f92672>div</span>&gt;
+      &lt;/<span style=color:#f92672>main</span>&gt;
+      &lt;<span style=color:#f92672>footer</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;mt-4&#34;</span>&gt;
+        &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;container&#34;</span>&gt;
+          &lt;<span style=color:#f92672>p</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;text-center&#34;</span>&gt;
+            <span style=color:#a6e22e>Copyright</span><span style=color:#960050;background-color:#1e0010>@</span><span style=color:#a6e22e>JSBase</span> <span style=color:#f92672>-</span> {<span style=color:#a6e22e>enviroment</span>.<span style=color:#a6e22e>APP_VERSION</span>} <span style=color:#f92672>-</span> {<span style=color:#a6e22e>enviroment</span>.<span style=color:#a6e22e>MODE</span>}
+          &lt;/<span style=color:#f92672>p</span>&gt;
+        &lt;/<span style=color:#f92672>div</span>&gt;
+      &lt;/<span style=color:#f92672>footer</span>&gt;
+      &lt;<span style=color:#f92672>LinkFormComponent</span>
+        <span style=color:#a6e22e>ref</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>linkFormComponentModal</span>}
+        <span style=color:#a6e22e>link</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>editLink</span>}
+      &gt;&lt;/<span style=color:#f92672>LinkFormComponent</span>&gt;
+    &lt;/&gt;
+  );
+}
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#a6e22e>App</span>;
+</code></pre></div><blockquote>
+<p>src\components\LinkFormComponent.jsx</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>forwardRef</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;react&#34;</span>;
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>LinkFormComponent</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>forwardRef</span>(({ <span style=color:#a6e22e>link</span>, ...<span style=color:#a6e22e>props</span> }, <span style=color:#a6e22e>ref</span>) =&gt; {
+  <span style=color:#66d9ef>return</span> (
+    &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>id</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;LinkFormComponent&#34;</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;modal&#34;</span> <span style=color:#a6e22e>tabIndex</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;-1&#34;</span> <span style=color:#a6e22e>ref</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>ref</span>}&gt;
+      &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;modal-dialog&#34;</span>&gt;
+        &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;modal-content&#34;</span>&gt;
+          &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;modal-header&#34;</span>&gt;
+            &lt;<span style=color:#f92672>h5</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;modal-title&#34;</span>&gt;{<span style=color:#a6e22e>link</span> <span style=color:#f92672>?</span> <span style=color:#e6db74>&#34;Edit Link&#34;</span> <span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Add Link&#34;</span>}&lt;/<span style=color:#f92672>h5</span>&gt;
+            &lt;<span style=color:#f92672>button</span>
+              <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;button&#34;</span>
+              <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;btn-close&#34;</span>
+              <span style=color:#a6e22e>data</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#a6e22e>bs</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#a6e22e>dismiss</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;modal&#34;</span>
+              <span style=color:#a6e22e>aria</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#a6e22e>label</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Close&#34;</span>
+            &gt;&lt;/<span style=color:#f92672>button</span>&gt;
+          &lt;/<span style=color:#f92672>div</span>&gt;
+          &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;modal-body&#34;</span>&gt;
+            &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;mb-3&#34;</span>&gt;
+              &lt;<span style=color:#f92672>label</span> <span style=color:#a6e22e>htmlFor</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;exampleFormControlInput1&#34;</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;form-label&#34;</span>&gt;
+                <span style=color:#a6e22e>Email</span> <span style=color:#a6e22e>address</span>
+              &lt;/<span style=color:#f92672>label</span>&gt;
+              &lt;<span style=color:#f92672>input</span>
+                <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;email&#34;</span>
+                <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;form-control&#34;</span>
+                <span style=color:#a6e22e>id</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;exampleFormControlInput1&#34;</span>
+                <span style=color:#a6e22e>placeholder</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;name@example.com&#34;</span>
+              /&gt;
+            &lt;/<span style=color:#f92672>div</span>&gt;
+            &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;mb-3&#34;</span>&gt;
+              &lt;<span style=color:#f92672>label</span>
+                <span style=color:#a6e22e>htmlFor</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;exampleFormControlTextarea1&#34;</span>
+                <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;form-label&#34;</span>
+              &gt;
+                <span style=color:#a6e22e>Example</span> <span style=color:#a6e22e>textarea</span>
+              &lt;/<span style=color:#f92672>label</span>&gt;
+              &lt;<span style=color:#f92672>textarea</span>
+                <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;form-control&#34;</span>
+                <span style=color:#a6e22e>id</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;exampleFormControlTextarea1&#34;</span>
+                <span style=color:#a6e22e>rows</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;3&#34;</span>
+              &gt;&lt;/<span style=color:#f92672>textarea</span>&gt;
+            &lt;/<span style=color:#f92672>div</span>&gt;
+          &lt;/<span style=color:#f92672>div</span>&gt;
+          &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;modal-footer&#34;</span>&gt;
+            &lt;<span style=color:#f92672>button</span>
+              <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;button&#34;</span>
+              <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;btn btn-secondary&#34;</span>
+              <span style=color:#a6e22e>data</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#a6e22e>bs</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#a6e22e>dismiss</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;modal&#34;</span>
+            &gt;
+              <span style=color:#a6e22e>Close</span>
+            &lt;/<span style=color:#f92672>button</span>&gt;
+            &lt;<span style=color:#f92672>button</span> <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;button&#34;</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;btn btn-primary&#34;</span>&gt;
+              <span style=color:#a6e22e>Save</span> <span style=color:#a6e22e>changes</span>
+            &lt;/<span style=color:#f92672>button</span>&gt;
+          &lt;/<span style=color:#f92672>div</span>&gt;
+        &lt;/<span style=color:#f92672>div</span>&gt;
+      &lt;/<span style=color:#f92672>div</span>&gt;
+    &lt;/<span style=color:#f92672>div</span>&gt;
+  );
+});
+
+<span style=color:#a6e22e>LinkFormComponent</span>.<span style=color:#a6e22e>displayName</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;LinkFormComponent&#34;</span>;
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#a6e22e>LinkFormComponent</span>;
+</code></pre></div><p>Tuy nhiên, anh/chị cần điều chỉnh một chút vì LinkFormComponent sẽ xài chung cho cả hai trường hợp</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>useCallback</span>, <span style=color:#a6e22e>useEffect</span>, <span style=color:#a6e22e>useRef</span>, <span style=color:#a6e22e>useState</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;react&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#34;./App.css&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#a6e22e>LinkFormComponent</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;./components/LinkFormComponent&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#a6e22e>enviroment</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;./shared/environment&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Modal</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;bootstrap&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>useImmer</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;use-immer&#34;</span>;
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>LINK_TYPE</span> <span style=color:#f92672>=</span> {
+  <span style=color:#a6e22e>LINK</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;link&#34;</span>,
+  <span style=color:#a6e22e>YOUTUBE</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;youtube&#34;</span>,
+  <span style=color:#a6e22e>IMAGE</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;image&#34;</span>,
+};
+
+<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>App</span>() {
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>linkFormComponentModalInstance</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>useRef</span>(<span style=color:#66d9ef>null</span>);
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>linkFormComponentModal</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>useRef</span>(<span style=color:#66d9ef>null</span>);
+  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>editLink</span>, <span style=color:#a6e22e>setEditLink</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(<span style=color:#66d9ef>null</span>);
+  <span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>links</span>, <span style=color:#a6e22e>setLinks</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useImmer</span>([
+    {
+      <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>1</span>,
+      <span style=color:#a6e22e>link</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;https://nextjsvietnam.com&#34;</span>,
+      <span style=color:#a6e22e>title</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;https://nextjsvietnam.com&#34;</span>,
+      <span style=color:#a6e22e>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>LINK_TYPE</span>.<span style=color:#a6e22e>LINK</span>,
+    },
+  ]);
+
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>openModal</span> <span style=color:#f92672>=</span> () =&gt; {
+    <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span><span style=color:#a6e22e>linkFormComponentModalInstance</span>.<span style=color:#a6e22e>current</span>) {
+      <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;new modal&#34;</span>, <span style=color:#a6e22e>linkFormComponentModalInstance</span>.<span style=color:#a6e22e>current</span>);
+      <span style=color:#a6e22e>linkFormComponentModalInstance</span>.<span style=color:#a6e22e>current</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Modal</span>(
+        <span style=color:#a6e22e>linkFormComponentModal</span>.<span style=color:#a6e22e>current</span>,
+        {
+          <span style=color:#a6e22e>backdrop</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>true</span>,
+          <span style=color:#a6e22e>focus</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>true</span>,
+          <span style=color:#a6e22e>keyboard</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>true</span>,
+        }
+      );
+      <span style=color:#a6e22e>linkFormComponentModalInstance</span>.<span style=color:#a6e22e>current</span>.<span style=color:#a6e22e>show</span>();
+      <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;created modal&#34;</span>, <span style=color:#a6e22e>linkFormComponentModalInstance</span>.<span style=color:#a6e22e>current</span>);
+      <span style=color:#75715e>// handler event close
+</span><span style=color:#75715e></span>      <span style=color:#a6e22e>linkFormComponentModal</span>.<span style=color:#a6e22e>current</span>.<span style=color:#a6e22e>addEventListener</span>(<span style=color:#e6db74>&#34;hide.bs.modal&#34;</span>, () =&gt; {
+        <span style=color:#75715e>// reset state
+</span><span style=color:#75715e></span>        <span style=color:#a6e22e>setEditLink</span>(<span style=color:#66d9ef>null</span>);
+      });
+      <span style=color:#66d9ef>return</span>;
+    }
+    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;existing modal&#34;</span>, <span style=color:#a6e22e>linkFormComponentModalInstance</span>.<span style=color:#a6e22e>current</span>);
+    <span style=color:#a6e22e>linkFormComponentModalInstance</span>.<span style=color:#a6e22e>current</span>.<span style=color:#a6e22e>show</span>();
+  };
+
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>onNewLink</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>e</span>) =&gt; {
+    <span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>preventDefault</span>();
+    <span style=color:#a6e22e>openModal</span>();
+  };
+
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>onEditLink</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>link</span>) =&gt; {
+    <span style=color:#75715e>// set editLink
+</span><span style=color:#75715e></span>    <span style=color:#a6e22e>setEditLink</span>(<span style=color:#a6e22e>link</span>);
+    <span style=color:#75715e>// open modal
+</span><span style=color:#75715e></span>    <span style=color:#a6e22e>openModal</span>();
+  };
+
+  <span style=color:#66d9ef>return</span> (
+    &lt;&gt;
+      &lt;<span style=color:#f92672>nav</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;navbar navbar-expand-lg&#34;</span>&gt;
+        &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;container-fluid&#34;</span>&gt;
+          &lt;<span style=color:#f92672>a</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;navbar-brand&#34;</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;#&#34;</span>&gt;
+            &lt;<span style=color:#f92672>img</span>
+              <span style=color:#a6e22e>src</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;https://nextjsvietnam.com/themes/2022/src/assets/images/logo.png&#34;</span>
+              <span style=color:#a6e22e>alt</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Bootstrap&#34;</span>
+            /&gt;
+          &lt;/<span style=color:#f92672>a</span>&gt;
+          &lt;<span style=color:#f92672>button</span>
+            <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;navbar-toggler&#34;</span>
+            <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;button&#34;</span>
+            <span style=color:#a6e22e>data</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#a6e22e>bs</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#a6e22e>toggle</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;collapse&#34;</span>
+            <span style=color:#a6e22e>data</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#a6e22e>bs</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#a6e22e>target</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;#navbarNav&#34;</span>
+            <span style=color:#a6e22e>aria</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#a6e22e>controls</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;navbarNav&#34;</span>
+            <span style=color:#a6e22e>aria</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#a6e22e>expanded</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;false&#34;</span>
+            <span style=color:#a6e22e>aria</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#a6e22e>label</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Toggle navigation&#34;</span>
+          &gt;
+            &lt;<span style=color:#f92672>span</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;navbar-toggler-icon&#34;</span>&gt;&lt;/<span style=color:#f92672>span</span>&gt;
+          &lt;/<span style=color:#f92672>button</span>&gt;
+          &lt;<span style=color:#f92672>div</span>
+            <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;collapse navbar-collapse justify-content-end&#34;</span>
+            <span style=color:#a6e22e>id</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;navbarNav&#34;</span>
+          &gt;
+            &lt;<span style=color:#f92672>ul</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;navbar-nav&#34;</span>&gt;
+              &lt;<span style=color:#f92672>li</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;nav-item&#34;</span>&gt;
+                &lt;<span style=color:#f92672>a</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;nav-link active&#34;</span> <span style=color:#a6e22e>aria</span><span style=color:#960050;background-color:#1e0010>-</span><span style=color:#a6e22e>current</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;page&#34;</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;#&#34;</span>&gt;
+                  {<span style=color:#a6e22e>enviroment</span>.<span style=color:#a6e22e>APP_NAME</span>}
+                &lt;/<span style=color:#f92672>a</span>&gt;
+              &lt;/<span style=color:#f92672>li</span>&gt;
+            &lt;/<span style=color:#f92672>ul</span>&gt;
+          &lt;/<span style=color:#f92672>div</span>&gt;
+        &lt;/<span style=color:#f92672>div</span>&gt;
+      &lt;/<span style=color:#f92672>nav</span>&gt;
+      &lt;<span style=color:#f92672>main</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;mt-4&#34;</span>&gt;
+        &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;card&#34;</span>&gt;
+          &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;card-header text-bg-primary&#34;</span>&gt;
+            &lt;<span style=color:#f92672>h3</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;card-title&#34;</span>&gt;<span style=color:#a6e22e>Links</span>&lt;/<span style=color:#f92672>h3</span>&gt;
+          &lt;/<span style=color:#f92672>div</span>&gt;
+          &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;card-body&#34;</span>&gt;
+            &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;d-flex justify-content-end&#34;</span>&gt;
+              &lt;<span style=color:#f92672>button</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;btn btn-primary&#34;</span> <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>onNewLink</span>}&gt;
+                <span style=color:#a6e22e>New</span> <span style=color:#a6e22e>Link</span>
+              &lt;/<span style=color:#f92672>button</span>&gt;
+            &lt;/<span style=color:#f92672>div</span>&gt;
+            &lt;<span style=color:#f92672>div</span>&gt;
+              {<span style=color:#a6e22e>links</span>.<span style=color:#a6e22e>map</span>((<span style=color:#a6e22e>link</span>) =&gt; (
+                &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>key</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>link</span>.<span style=color:#a6e22e>id</span>}&gt;
+                  &lt;<span style=color:#f92672>h4</span>&gt;{<span style=color:#a6e22e>link</span>.<span style=color:#a6e22e>title</span>}&lt;/<span style=color:#f92672>h4</span>&gt;
+                  &lt;<span style=color:#f92672>button</span>
+                    <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;button&#34;</span>
+                    <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;btn btn-warning&#34;</span>
+                    <span style=color:#a6e22e>onClick</span><span style=color:#f92672>=</span>{() =&gt; {
+                      <span style=color:#a6e22e>onEditLink</span>(<span style=color:#a6e22e>link</span>);
+                    }}
+                  &gt;
+                    <span style=color:#a6e22e>Edit</span>
+                  &lt;/<span style=color:#f92672>button</span>&gt;
+                &lt;/<span style=color:#f92672>div</span>&gt;
+              ))}
+            &lt;/<span style=color:#f92672>div</span>&gt;
+          &lt;/<span style=color:#f92672>div</span>&gt;
+        &lt;/<span style=color:#f92672>div</span>&gt;
+      &lt;/<span style=color:#f92672>main</span>&gt;
+      &lt;<span style=color:#f92672>footer</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;mt-4&#34;</span>&gt;
+        &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;container&#34;</span>&gt;
+          &lt;<span style=color:#f92672>p</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;text-center&#34;</span>&gt;
+            <span style=color:#a6e22e>Copyright</span><span style=color:#960050;background-color:#1e0010>@</span><span style=color:#a6e22e>JSBase</span> <span style=color:#f92672>-</span> {<span style=color:#a6e22e>enviroment</span>.<span style=color:#a6e22e>APP_VERSION</span>} <span style=color:#f92672>-</span> {<span style=color:#a6e22e>enviroment</span>.<span style=color:#a6e22e>MODE</span>}
+          &lt;/<span style=color:#f92672>p</span>&gt;
+        &lt;/<span style=color:#f92672>div</span>&gt;
+      &lt;/<span style=color:#f92672>footer</span>&gt;
+      &lt;<span style=color:#f92672>LinkFormComponent</span>
+        <span style=color:#a6e22e>ref</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>linkFormComponentModal</span>}
+        <span style=color:#a6e22e>link</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>editLink</span>}
+      &gt;&lt;/<span style=color:#f92672>LinkFormComponent</span>&gt;
+    &lt;/&gt;
+  );
+}
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#a6e22e>App</span>;
+</code></pre></div><p><strong>2. Hướng thứ 2: tạo 2 component riêng biệt, mỗi trường hợp là một component.</strong></p>
+<p><strong>3. Hướng thứ 3: tạo component modal, trong component modal thì gắn thêm LinkFormComponent và áp dụng hướng thứ 1 nhất, nhận prop là link để phân biệt 2 trường hợp.</strong></p>
 <h4 id=bước-số-4-tích-hợp-toàn-bộ-các-component-lại-thành-1-ứng-dụng-hoàn-chỉnh>Bước số 4. Tích hợp toàn bộ các component lại thành 1 ứng dụng hoàn chỉnh</h4>
 <p>Đây là bước cuối cùng, lắp ráp lại kết quả của các bước trên, nhằm tạo ra 1 ứng dụng hoàn chỉnh cho người dùng.</p>
 <div class="m-1 p-1">
