@@ -1223,6 +1223,282 @@ function App() {
 export default App;
 ```
 
+3.2. Xây dựng PaginationComponent
+
+```jsx
+const PaginationComponent = ({
+  numberOfPages,
+  currentPage,
+  onChangeCurrentPage,
+  ...props
+}) => {
+  const spaces = 5; // 5 page links
+  const isDisabledPrevious = currentPage === 1;
+  const isDisabledNext = currentPage === numberOfPages;
+  const pages = [];
+  let start = currentPage < spaces ? 1 : currentPage - Math.floor(spaces / 2);
+  let end = start + spaces - 1;
+  if (end > numberOfPages) {
+    end = numberOfPages;
+    start = numberOfPages - spaces + 1;
+  }
+  for (let index = start; index <= end; index++) {
+    pages.push(index);
+  }
+
+  return (
+    <>
+      {pages}
+      {pages.length > 1 && (
+        <nav>
+          <ul className="pagination">
+            <li
+              className={
+                isDisabledPrevious ? "page-item disabled" : "page-item"
+              }
+            >
+              <a
+                style={{
+                  cursor: "pointer",
+                }}
+                className="page-link"
+                onClick={() => onChangeCurrentPage(1)}
+              >
+                First
+              </a>
+            </li>
+            <li
+              className={
+                isDisabledPrevious ? "page-item disabled" : "page-item"
+              }
+            >
+              <a
+                style={{
+                  cursor: "pointer",
+                }}
+                className="page-link"
+                onClick={() => onChangeCurrentPage(currentPage - 1)}
+              >
+                Previous
+              </a>
+            </li>
+            {pages.map((p) => (
+              <li key={p}>
+                <a
+                  style={{
+                    cursor: "pointer",
+                  }}
+                  onClick={() => onChangeCurrentPage(p)}
+                  className={
+                    p === currentPage ? "page-link active" : "page-link"
+                  }
+                >
+                  {p}
+                </a>
+              </li>
+            ))}
+            <li className={isDisabledNext ? "page-item disabled" : "page-item"}>
+              <a
+                style={{
+                  cursor: "pointer",
+                }}
+                className="page-link"
+                onClick={() => onChangeCurrentPage(currentPage + 1)}
+              >
+                Next
+              </a>
+            </li>
+            <li className={isDisabledNext ? "page-item disabled" : "page-item"}>
+              <a
+                style={{
+                  cursor: "pointer",
+                }}
+                className="page-link"
+                onClick={() => onChangeCurrentPage(numberOfPages)}
+              >
+                Last
+              </a>
+            </li>
+          </ul>
+        </nav>
+      )}
+    </>
+  );
+};
+
+PaginationComponent.displayName = "PaginationComponent";
+
+export default PaginationComponent;
+```
+
+Dùng thử
+
+```jsx
+import { useCallback, useEffect, useRef, useState } from "react";
+import "./App.css";
+import LinkFormComponent from "./components/LinkFormComponent";
+import enviroment from "./shared/environment";
+import { Modal } from "bootstrap";
+import { useImmer } from "use-immer";
+import PaginationComponent from "./components/PaginationComponent";
+
+export const LINK_TYPE = {
+  LINK: "link",
+  YOUTUBE: "youtube",
+  IMAGE: "image",
+};
+
+function App() {
+  const linkFormComponentModalInstance = useRef(null);
+  const linkFormComponentModal = useRef(null);
+  const [editLink, setEditLink] = useState(null);
+  const [links, setLinks] = useImmer([
+    {
+      id: 1,
+      link: "https://nextjsvietnam.com",
+      title: "https://nextjsvietnam.com",
+      type: LINK_TYPE.LINK,
+    },
+  ]);
+  const [paginator, setPaginator] = useImmer({
+    currentPage: 1,
+    numberOfPages: 10,
+    rowsPerPage: 5,
+    numberOfItems: 50,
+  });
+
+  const openModal = () => {
+    if (!linkFormComponentModalInstance.current) {
+      console.log("new modal", linkFormComponentModalInstance.current);
+      linkFormComponentModalInstance.current = new Modal(
+        linkFormComponentModal.current,
+        {
+          backdrop: true,
+          focus: true,
+          keyboard: true,
+        }
+      );
+      linkFormComponentModalInstance.current.show();
+      console.log("created modal", linkFormComponentModalInstance.current);
+      // handler event close
+      linkFormComponentModal.current.addEventListener("hide.bs.modal", () => {
+        // reset state
+        setEditLink(null);
+      });
+      return;
+    }
+    console.log("existing modal", linkFormComponentModalInstance.current);
+    linkFormComponentModalInstance.current.show();
+  };
+
+  const onNewLink = (e) => {
+    e.preventDefault();
+    openModal();
+  };
+
+  const onEditLink = (link) => {
+    // set editLink
+    setEditLink(link);
+    // open modal
+    openModal();
+  };
+
+  const onChangeCurrentPage = (newCurrentPage) => {
+    setPaginator((p) => {
+      p.currentPage = newCurrentPage;
+    });
+  };
+
+  return (
+    <>
+      <nav className="navbar navbar-expand-lg">
+        <div className="container-fluid">
+          <a className="navbar-brand" href="#">
+            <img
+              src="https://nextjsvietnam.com/themes/2022/src/assets/images/logo.png"
+              alt="Bootstrap"
+            />
+          </a>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div
+            className="collapse navbar-collapse justify-content-end"
+            id="navbarNav"
+          >
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <a className="nav-link active" aria-current="page" href="#">
+                  {enviroment.APP_NAME}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <main className="mt-4">
+        <div className="card">
+          <div className="card-header text-bg-primary">
+            <h3 className="card-title">Links</h3>
+          </div>
+          <div className="card-body">
+            <div className="d-flex justify-content-end">
+              <button className="btn btn-primary" onClick={onNewLink}>
+                New Link
+              </button>
+            </div>
+            <div>
+              {links.map((link) => (
+                <div key={link.id}>
+                  <h4>{link.title}</h4>
+                  <button
+                    type="button"
+                    className="btn btn-warning"
+                    onClick={() => {
+                      onEditLink(link);
+                    }}
+                  >
+                    Edit
+                  </button>
+                </div>
+              ))}
+            </div>
+            <PaginationComponent
+              numberOfPages={paginator.numberOfPages}
+              currentPage={paginator.currentPage}
+              onChangeCurrentPage={onChangeCurrentPage}
+            />
+          </div>
+        </div>
+      </main>
+      <footer className="mt-4">
+        <div className="container">
+          <p className="text-center">
+            Copyright@JSBase - {enviroment.APP_VERSION} - {enviroment.MODE}
+          </p>
+        </div>
+      </footer>
+      <LinkFormComponent
+        ref={linkFormComponentModal}
+        link={editLink}
+      ></LinkFormComponent>
+    </>
+  );
+}
+
+export default App;
+```
+
+![image](https://user-images.githubusercontent.com/31009750/253977033-46fb6d62-a7c0-46a1-9933-c81715c8596b.png)
+
 **2. Hướng thứ 2: tạo 2 component riêng biệt, mỗi trường hợp là một component.**
 
 **3. Hướng thứ 3: tạo component modal, trong component modal thì gắn thêm LinkFormComponent và áp dụng hướng thứ 1 nhất, nhận prop là link để phân biệt 2 trường hợp.**
