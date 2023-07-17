@@ -791,7 +791,7 @@ myModal.show();
 myModal.close();
 ```
 
-Trong bước này, chúng ta có 2 hướng xử lý:
+Trong bước này, chúng ta có 3 hướng xử lý:
 
 1. Hướng thứ 1: tạo 1 component duy nhất, nhận prop là link để phân biệt 2 trường hợp: add và edit.
 2. Hướng thứ 2: tạo 2 component riêng biệt, mỗi trường hợp là một component.
