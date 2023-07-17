@@ -726,6 +726,10 @@ Chính là trạng thái của dữ liệu từ lúc bắt đầu, trong lúc ho
 
 Trong phần này tôi sẽ hướng dẫn xây dựng cấu trúc dữ liệu cho ví dụ minh họa trong bài học này. Các anh chị có thể đọc thêm về cách xây dựng và lựa chọn cấu trúc dữ liệu cho state tại [bài viết này](https://nextjsvietnam.com/post/manage-your-reactjs-state-the-right-way/).
 
+Sau một số bước phân tích, anh/chị sẽ có được 1 sơ đồ mô tả tóm tắt các props và states của các component trong ứng dụng trên như sau.
+
+![image](https://user-images.githubusercontent.com/31009750/253876164-c1e77796-7287-412a-af63-b4b81c22d1cf.png)
+
 #### Bước số 3. Xây dựng chi tiết, bắt đầu từ các component nhỏ nhất.
 
 Nguyên tắc là xây dựng các component nhỏ độc lập, nhận input và trả ra output nếu cần.
