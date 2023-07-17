@@ -793,9 +793,439 @@ myModal.close();
 
 Trong bước này, chúng ta có 3 hướng xử lý:
 
-1. Hướng thứ 1: tạo 1 component duy nhất, nhận prop là link để phân biệt 2 trường hợp: add và edit.
-2. Hướng thứ 2: tạo 2 component riêng biệt, mỗi trường hợp là một component.
-3. Hướng thứ 3: tạo component modal, trong component modal thì gắn thêm LinkFormComponent và áp dụng hướng thứ 1 nhất, nhận prop là link để phân biệt 2 trường hợp.
+**1. Hướng thứ 1: tạo 1 component duy nhất, nhận prop là link để phân biệt 2 trường hợp: add và edit.**
+
+- Để sử dụng được modal theo như doc của bootstrap, lúc này các anh/chị cần tìm cách khởi tạo được modal bằng cách truyền DOM Element của Modal chứa LinkForm.
+- Và modal sau khi khởi tạo xong, cũng không cần thiết phải trigger việc render lại.
+
+ReactJS có giới thiệu cho các anh/chị 1 hook **useRef** để áp dụng trong trường hợp này.
+
+```jsx
+import { useCallback, useEffect, useRef, useState } from "react";
+import "./App.css";
+import LinkFormComponent from "./components/LinkFormComponent";
+import enviroment from "./shared/environment";
+import { Modal } from "bootstrap";
+
+function App() {
+  const linkFormComponentModalInstance = useRef(null);
+  const linkFormComponentModal = useRef(null);
+  const [editLink, setEditLink] = useState(null);
+  const onNewLink = (e) => {
+    e.preventDefault();
+    if (!linkFormComponentModalInstance.current) {
+      console.log("new modal", linkFormComponentModalInstance.current);
+      linkFormComponentModalInstance.current = new Modal(
+        linkFormComponentModal.current,
+        {
+          backdrop: true,
+          focus: true,
+          keyboard: true,
+        }
+      );
+      linkFormComponentModalInstance.current.show();
+      console.log("created modal", linkFormComponentModalInstance.current);
+      return;
+    }
+    console.log("existing modal", linkFormComponentModalInstance.current);
+    linkFormComponentModalInstance.current.show();
+  };
+  return (
+    <>
+      <nav className="navbar navbar-expand-lg">
+        <div className="container-fluid">
+          <a className="navbar-brand" href="#">
+            <img
+              src="https://nextjsvietnam.com/themes/2022/src/assets/images/logo.png"
+              alt="Bootstrap"
+            />
+          </a>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div
+            className="collapse navbar-collapse justify-content-end"
+            id="navbarNav"
+          >
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <a className="nav-link active" aria-current="page" href="#">
+                  {enviroment.APP_NAME}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <main className="mt-4">
+        <div className="card">
+          <div className="card-header text-bg-primary">
+            <h3 className="card-title">Links</h3>
+          </div>
+          <div className="card-body">
+            <div className="d-flex justify-content-end">
+              <button className="btn btn-primary" onClick={onNewLink}>
+                New Link
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+      <footer className="mt-4">
+        <div className="container">
+          <p className="text-center">
+            Copyright@JSBase - {enviroment.APP_VERSION} - {enviroment.MODE}
+          </p>
+        </div>
+      </footer>
+      <LinkFormComponent
+        id="LinkFormComponent"
+        className="modal"
+        tabIndex="-1"
+        ref={linkFormComponentModal}
+        link={editLink}
+      ></LinkFormComponent>
+    </>
+  );
+}
+
+export default App;
+```
+
+Tuy nhiên khi sử dụng ref cho function component, ReactJS sẽ hiện thị ra lỗi bên dưới.
+
+```sh
+react-dom.development.js:86 Warning: Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
+```
+
+Lí do là ref chỉ xài được cho các native HTML Element, trường hợp anh/chị muốn sử dụng cho ReactComponent cần làm theo cú pháp sau. Do đó anh/chị cần refactor lại đoạn code trên 1 chút.
+
+> App.jsx
+
+```jsx
+import { useCallback, useEffect, useRef, useState } from "react";
+import "./App.css";
+import LinkFormComponent from "./components/LinkFormComponent";
+import enviroment from "./shared/environment";
+import { Modal } from "bootstrap";
+
+function App() {
+  const linkFormComponentModalInstance = useRef(null);
+  const linkFormComponentModal = useRef(null);
+  const [editLink, setEditLink] = useState(null);
+  const onNewLink = (e) => {
+    e.preventDefault();
+    if (!linkFormComponentModalInstance.current) {
+      console.log("new modal", linkFormComponentModalInstance.current);
+      linkFormComponentModalInstance.current = new Modal(
+        linkFormComponentModal.current,
+        {
+          backdrop: true,
+          focus: true,
+          keyboard: true,
+        }
+      );
+      linkFormComponentModalInstance.current.show();
+      console.log("created modal", linkFormComponentModalInstance.current);
+      return;
+    }
+    console.log("existing modal", linkFormComponentModalInstance.current);
+    linkFormComponentModalInstance.current.show();
+  };
+  return (
+    <>
+      <nav className="navbar navbar-expand-lg">
+        <div className="container-fluid">
+          <a className="navbar-brand" href="#">
+            <img
+              src="https://nextjsvietnam.com/themes/2022/src/assets/images/logo.png"
+              alt="Bootstrap"
+            />
+          </a>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div
+            className="collapse navbar-collapse justify-content-end"
+            id="navbarNav"
+          >
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <a className="nav-link active" aria-current="page" href="#">
+                  {enviroment.APP_NAME}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <main className="mt-4">
+        <div className="card">
+          <div className="card-header text-bg-primary">
+            <h3 className="card-title">Links</h3>
+          </div>
+          <div className="card-body">
+            <div className="d-flex justify-content-end">
+              <button className="btn btn-primary" onClick={onNewLink}>
+                New Link
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+      <footer className="mt-4">
+        <div className="container">
+          <p className="text-center">
+            Copyright@JSBase - {enviroment.APP_VERSION} - {enviroment.MODE}
+          </p>
+        </div>
+      </footer>
+      <LinkFormComponent
+        ref={linkFormComponentModal}
+        link={editLink}
+      ></LinkFormComponent>
+    </>
+  );
+}
+
+export default App;
+```
+
+> src\components\LinkFormComponent.jsx
+
+```jsx
+import { forwardRef } from "react";
+
+const LinkFormComponent = forwardRef(({ link, ...props }, ref) => {
+  return (
+    <div id="LinkFormComponent" className="modal" tabIndex="-1" ref={ref}>
+      <div className="modal-dialog">
+        <div className="modal-content">
+          <div className="modal-header">
+            <h5 className="modal-title">{link ? "Edit Link" : "Add Link"}</h5>
+            <button
+              type="button"
+              className="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div className="modal-body">
+            <div className="mb-3">
+              <label htmlFor="exampleFormControlInput1" className="form-label">
+                Email address
+              </label>
+              <input
+                type="email"
+                className="form-control"
+                id="exampleFormControlInput1"
+                placeholder="name@example.com"
+              />
+            </div>
+            <div className="mb-3">
+              <label
+                htmlFor="exampleFormControlTextarea1"
+                className="form-label"
+              >
+                Example textarea
+              </label>
+              <textarea
+                className="form-control"
+                id="exampleFormControlTextarea1"
+                rows="3"
+              ></textarea>
+            </div>
+          </div>
+          <div className="modal-footer">
+            <button
+              type="button"
+              className="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" className="btn btn-primary">
+              Save changes
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+});
+
+LinkFormComponent.displayName = "LinkFormComponent";
+
+export default LinkFormComponent;
+```
+
+Tuy nhiên, anh/chị cần điều chỉnh một chút vì LinkFormComponent sẽ xài chung cho cả hai trường hợp
+
+```jsx
+import { useCallback, useEffect, useRef, useState } from "react";
+import "./App.css";
+import LinkFormComponent from "./components/LinkFormComponent";
+import enviroment from "./shared/environment";
+import { Modal } from "bootstrap";
+import { useImmer } from "use-immer";
+
+export const LINK_TYPE = {
+  LINK: "link",
+  YOUTUBE: "youtube",
+  IMAGE: "image",
+};
+
+function App() {
+  const linkFormComponentModalInstance = useRef(null);
+  const linkFormComponentModal = useRef(null);
+  const [editLink, setEditLink] = useState(null);
+  const [links, setLinks] = useImmer([
+    {
+      id: 1,
+      link: "https://nextjsvietnam.com",
+      title: "https://nextjsvietnam.com",
+      type: LINK_TYPE.LINK,
+    },
+  ]);
+
+  const openModal = () => {
+    if (!linkFormComponentModalInstance.current) {
+      console.log("new modal", linkFormComponentModalInstance.current);
+      linkFormComponentModalInstance.current = new Modal(
+        linkFormComponentModal.current,
+        {
+          backdrop: true,
+          focus: true,
+          keyboard: true,
+        }
+      );
+      linkFormComponentModalInstance.current.show();
+      console.log("created modal", linkFormComponentModalInstance.current);
+      // handler event close
+      linkFormComponentModal.current.addEventListener("hide.bs.modal", () => {
+        // reset state
+        setEditLink(null);
+      });
+      return;
+    }
+    console.log("existing modal", linkFormComponentModalInstance.current);
+    linkFormComponentModalInstance.current.show();
+  };
+
+  const onNewLink = (e) => {
+    e.preventDefault();
+    openModal();
+  };
+
+  const onEditLink = (link) => {
+    // set editLink
+    setEditLink(link);
+    // open modal
+    openModal();
+  };
+
+  return (
+    <>
+      <nav className="navbar navbar-expand-lg">
+        <div className="container-fluid">
+          <a className="navbar-brand" href="#">
+            <img
+              src="https://nextjsvietnam.com/themes/2022/src/assets/images/logo.png"
+              alt="Bootstrap"
+            />
+          </a>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div
+            className="collapse navbar-collapse justify-content-end"
+            id="navbarNav"
+          >
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <a className="nav-link active" aria-current="page" href="#">
+                  {enviroment.APP_NAME}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <main className="mt-4">
+        <div className="card">
+          <div className="card-header text-bg-primary">
+            <h3 className="card-title">Links</h3>
+          </div>
+          <div className="card-body">
+            <div className="d-flex justify-content-end">
+              <button className="btn btn-primary" onClick={onNewLink}>
+                New Link
+              </button>
+            </div>
+            <div>
+              {links.map((link) => (
+                <div key={link.id}>
+                  <h4>{link.title}</h4>
+                  <button
+                    type="button"
+                    className="btn btn-warning"
+                    onClick={() => {
+                      onEditLink(link);
+                    }}
+                  >
+                    Edit
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </main>
+      <footer className="mt-4">
+        <div className="container">
+          <p className="text-center">
+            Copyright@JSBase - {enviroment.APP_VERSION} - {enviroment.MODE}
+          </p>
+        </div>
+      </footer>
+      <LinkFormComponent
+        ref={linkFormComponentModal}
+        link={editLink}
+      ></LinkFormComponent>
+    </>
+  );
+}
+
+export default App;
+```
+
+**2. Hướng thứ 2: tạo 2 component riêng biệt, mỗi trường hợp là một component.**
+
+**3. Hướng thứ 3: tạo component modal, trong component modal thì gắn thêm LinkFormComponent và áp dụng hướng thứ 1 nhất, nhận prop là link để phân biệt 2 trường hợp.**
 
 #### Bước số 4. Tích hợp toàn bộ các component lại thành 1 ứng dụng hoàn chỉnh
 
