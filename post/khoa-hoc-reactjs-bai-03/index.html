@@ -1780,7 +1780,107 @@ Các component lớn hơn, có thể có trạng thái riêng và là tổ hợp
 
 <span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#a6e22e>App</span>;
 </code></pre></div><p><img src=https://user-images.githubusercontent.com/31009750/253977033-46fb6d62-a7c0-46a1-9933-c81715c8596b.png alt=image></p>
-<h4 id=bước-số-4-tích-hợp-toàn-bộ-các-component-lại-thành-1-ứng-dụng-hoàn-chỉnh>Bước số 4. Tích hợp toàn bộ các component lại thành 1 ứng dụng hoàn chỉnh</h4>
+<h5 id=33-xây-dựng-linkdetailcomponent>3.3. Xây dựng LinkDetailComponent</h5>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>LINK_TYPE</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;../App&#34;</span>;
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>TextLink</span> <span style=color:#f92672>=</span> ({ <span style=color:#a6e22e>link</span>, ...<span style=color:#a6e22e>props</span> }) =&gt; {
+  <span style=color:#66d9ef>return</span> (
+    &lt;<span style=color:#f92672>a</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;#&#34;</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;d-flex gap-2 align-items-center&#34;</span> {<span style=color:#a6e22e>...props</span>}&gt;
+      &lt;<span style=color:#f92672>i</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;bi bi-link fs-3&#34;</span>&gt;&lt;/<span style=color:#f92672>i</span>&gt;
+      {<span style=color:#a6e22e>link</span>}
+    &lt;/<span style=color:#f92672>a</span>&gt;
+  );
+};
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>YoutubeLink</span> <span style=color:#f92672>=</span> ({ <span style=color:#a6e22e>link</span> }) =&gt; {
+  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>v</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;&#34;</span>;
+  <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>link</span>.<span style=color:#a6e22e>includes</span>(<span style=color:#e6db74>&#34;watch&#34;</span>)) {
+    <span style=color:#a6e22e>v</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>URL</span>(<span style=color:#a6e22e>link</span>).<span style=color:#a6e22e>searchParams</span>.<span style=color:#a6e22e>get</span>(<span style=color:#e6db74>&#34;v&#34;</span>);
+  }
+  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>src</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>link</span>.<span style=color:#a6e22e>includes</span>(<span style=color:#e6db74>&#34;embed&#34;</span>)
+    <span style=color:#f92672>?</span> <span style=color:#a6e22e>link</span>
+    <span style=color:#f92672>:</span> <span style=color:#e6db74>`https://www.youtube.com/embed/</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>v</span><span style=color:#e6db74>}</span><span style=color:#e6db74>?feature=oembed`</span>;
+  <span style=color:#66d9ef>return</span> (
+    &lt;&gt;
+      &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;embed-responsive ratio ratio-16x9&#34;</span>&gt;
+        &lt;<span style=color:#f92672>iframe</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;embed-responsive-item&#34;</span> <span style=color:#a6e22e>src</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>src</span>}&gt;&lt;/<span style=color:#f92672>iframe</span>&gt;
+      &lt;/<span style=color:#f92672>div</span>&gt;
+    &lt;/&gt;
+  );
+};
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>ImageLink</span> <span style=color:#f92672>=</span> ({ <span style=color:#a6e22e>link</span> }) =&gt; {
+  <span style=color:#66d9ef>return</span> (
+    &lt;<span style=color:#f92672>div</span>&gt;
+      &lt;<span style=color:#f92672>img</span> <span style=color:#a6e22e>src</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>link</span>} <span style=color:#a6e22e>class</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;rounded img-thumbnail&#34;</span>&gt;&lt;/<span style=color:#f92672>img</span>&gt;
+    &lt;/<span style=color:#f92672>div</span>&gt;
+  );
+};
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>LinkDetailComponent</span> <span style=color:#f92672>=</span> ({ <span style=color:#a6e22e>link</span>, ...<span style=color:#a6e22e>props</span> }) =&gt; {
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>linkTypeBadge</span> <span style=color:#f92672>=</span> {
+    [<span style=color:#a6e22e>LINK_TYPE</span>.<span style=color:#a6e22e>LINK</span>]<span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;text-bg-primary&#34;</span>,
+    [<span style=color:#a6e22e>LINK_TYPE</span>.<span style=color:#a6e22e>IMAGE</span>]<span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;text-bg-warning&#34;</span>,
+    [<span style=color:#a6e22e>LINK_TYPE</span>.<span style=color:#a6e22e>YOUTUBE</span>]<span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;text-bg-danger&#34;</span>,
+  };
+  <span style=color:#66d9ef>return</span> (
+    &lt;&gt;
+      &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;card my-4&#34;</span>&gt;
+        &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;card-title d-flex justify-content-between border-bottom p-3&#34;</span>&gt;
+          &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;d-flex justify-content-between gap-4&#34;</span>&gt;
+            &lt;<span style=color:#f92672>span</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;btn &#34;</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>linkTypeBadge</span>[<span style=color:#a6e22e>link</span>.<span style=color:#a6e22e>type</span>]}&gt;
+              {<span style=color:#a6e22e>link</span>.<span style=color:#a6e22e>type</span>}
+            &lt;/<span style=color:#f92672>span</span>&gt;
+            &lt;<span style=color:#f92672>h5</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;m-0 lh-lg&#34;</span>&gt;{<span style=color:#a6e22e>link</span>.<span style=color:#a6e22e>title</span>}&lt;/<span style=color:#f92672>h5</span>&gt;
+          &lt;/<span style=color:#f92672>div</span>&gt;
+          &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;btn text-bg-warning align-middle&#34;</span>&gt;
+            {<span style=color:#a6e22e>link</span>.<span style=color:#a6e22e>publishedDate</span>.<span style=color:#a6e22e>toISOString</span>()}
+          &lt;/<span style=color:#f92672>div</span>&gt;
+        &lt;/<span style=color:#f92672>div</span>&gt;
+        &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;card-body&#34;</span>&gt;
+          &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;row&#34;</span>&gt;
+            &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;col&#34;</span>&gt;
+              {<span style=color:#a6e22e>link</span>.<span style=color:#a6e22e>type</span> <span style=color:#f92672>===</span> <span style=color:#a6e22e>LINK_TYPE</span>.<span style=color:#a6e22e>LINK</span> <span style=color:#f92672>&amp;&amp;</span> &lt;<span style=color:#f92672>TextLink</span> <span style=color:#a6e22e>link</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>link</span>.<span style=color:#a6e22e>link</span>} /&gt;}
+              {<span style=color:#a6e22e>link</span>.<span style=color:#a6e22e>type</span> <span style=color:#f92672>===</span> <span style=color:#a6e22e>LINK_TYPE</span>.<span style=color:#a6e22e>YOUTUBE</span> <span style=color:#f92672>&amp;&amp;</span> (
+                &lt;<span style=color:#f92672>YoutubeLink</span> <span style=color:#a6e22e>link</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>link</span>.<span style=color:#a6e22e>link</span>} /&gt;
+              )}
+              {<span style=color:#a6e22e>link</span>.<span style=color:#a6e22e>type</span> <span style=color:#f92672>===</span> <span style=color:#a6e22e>LINK_TYPE</span>.<span style=color:#a6e22e>IMAGE</span> <span style=color:#f92672>&amp;&amp;</span> &lt;<span style=color:#f92672>ImageLink</span> <span style=color:#a6e22e>link</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>link</span>.<span style=color:#a6e22e>link</span>} /&gt;}
+            &lt;/<span style=color:#f92672>div</span>&gt;
+            &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;col d-flex justify-content-between flex-column&#34;</span>&gt;
+              {[<span style=color:#a6e22e>LINK_TYPE</span>.<span style=color:#a6e22e>YOUTUBE</span>, <span style=color:#a6e22e>LINK_TYPE</span>.<span style=color:#a6e22e>IMAGE</span>].<span style=color:#a6e22e>includes</span>(<span style=color:#a6e22e>link</span>.<span style=color:#a6e22e>type</span>) <span style=color:#f92672>&amp;&amp;</span> (
+                &lt;<span style=color:#f92672>TextLink</span>
+                  <span style=color:#a6e22e>link</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>link</span>.<span style=color:#a6e22e>link</span>}
+                  <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span>{
+                    <span style=color:#e6db74>&#34;d-flex gap-2 align-items-center justify-content-end&#34;</span>
+                  }
+                /&gt;
+              )}
+              &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;d-flex gap-2 justify-content-end align-self-end&#34;</span>&gt;
+                &lt;<span style=color:#f92672>button</span>
+                  <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;btn btn-warning&#34;</span>
+                  <span style=color:#a6e22e>style</span><span style=color:#f92672>=</span>{{ <span style=color:#a6e22e>width</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;120px&#34;</span>, <span style=color:#a6e22e>height</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;40px&#34;</span> }}
+                &gt;
+                  <span style=color:#a6e22e>Edit</span>
+                &lt;/<span style=color:#f92672>button</span>&gt;
+                &lt;<span style=color:#f92672>button</span>
+                  <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;btn btn-danger&#34;</span>
+                  <span style=color:#a6e22e>style</span><span style=color:#f92672>=</span>{{ <span style=color:#a6e22e>width</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;120px&#34;</span>, <span style=color:#a6e22e>height</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;40px&#34;</span> }}
+                &gt;
+                  <span style=color:#a6e22e>Delete</span>
+                &lt;/<span style=color:#f92672>button</span>&gt;
+              &lt;/<span style=color:#f92672>div</span>&gt;
+            &lt;/<span style=color:#f92672>div</span>&gt;
+          &lt;/<span style=color:#f92672>div</span>&gt;
+        &lt;/<span style=color:#f92672>div</span>&gt;
+      &lt;/<span style=color:#f92672>div</span>&gt;
+    &lt;/&gt;
+  );
+};
+
+<span style=color:#a6e22e>LinkDetailComponent</span>.<span style=color:#a6e22e>displayName</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;LinkDetailComponent&#34;</span>;
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#a6e22e>LinkDetailComponent</span>;
+</code></pre></div><h4 id=bước-số-4-tích-hợp-toàn-bộ-các-component-lại-thành-1-ứng-dụng-hoàn-chỉnh>Bước số 4. Tích hợp toàn bộ các component lại thành 1 ứng dụng hoàn chỉnh</h4>
 <p>Đây là bước cuối cùng, lắp ráp lại kết quả của các bước trên, nhằm tạo ra 1 ứng dụng hoàn chỉnh cho người dùng.</p>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/reactjs-tutorial>reactjs-tutorial</a>
