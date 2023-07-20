@@ -1558,7 +1558,7 @@ const PaginationComponent = ({
   let end = start + spaces - 1;
   if (end > numberOfPages) {
     end = numberOfPages;
-    start = numberOfPages - spaces + 1;
+    start = Math.max(1, numberOfPages - spaces + 1);
   }
   for (let index = start; index <= end; index++) {
     pages.push(index);
@@ -1566,7 +1566,6 @@ const PaginationComponent = ({
 
   return (
     <>
-      {pages}
       {pages.length > 1 && (
         <nav>
           <ul className="pagination">
@@ -1820,3 +1819,1015 @@ export default App;
 #### Bước số 4. Tích hợp toàn bộ các component lại thành 1 ứng dụng hoàn chỉnh
 
 Đây là bước cuối cùng, lắp ráp lại kết quả của các bước trên, nhằm tạo ra 1 ứng dụng hoàn chỉnh cho người dùng.
+
+Cùng sắp xếp lại code của ứng dụng một chút, ở bước này các anh/chị sẽ tách code trong App component thành 1 component khác chứa màn hình chính của ứng dụng.
+
+> src\App.jsx
+
+```jsx
+import "./App.css";
+import enviroment from "./shared/environment";
+
+import LinkManagementContainer from "./containers/LinkManagementContainer";
+
+function App() {
+  return (
+    <>
+      <nav className="navbar navbar-expand-lg">
+        <div className="container-fluid">
+          <a className="navbar-brand" href="#">
+            <img
+              src="https://nextjsvietnam.com/themes/2022/src/assets/images/logo.png"
+              alt="Bootstrap"
+            />
+          </a>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div
+            className="collapse navbar-collapse justify-content-end"
+            id="navbarNav"
+          >
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <a className="nav-link active" aria-current="page" href="#">
+                  {enviroment.APP_NAME}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <main className="mt-4">
+        <LinkManagementContainer />
+      </main>
+      <footer className="mt-4">
+        <div className="container">
+          <p className="text-center">
+            Copyright@JSBase - {enviroment.APP_VERSION} - {enviroment.MODE}
+          </p>
+        </div>
+      </footer>
+    </>
+  );
+}
+
+export default App;
+```
+
+> src\containers\LinkManagementContainer.jsx
+
+```jsx
+import { useRef, useState } from "react";
+import LinkFormComponent from "../components/LinkFormComponent";
+import { Modal } from "bootstrap";
+import { useImmer } from "use-immer";
+import PaginationComponent from "../components/PaginationComponent";
+import LinkDetailComponent from "../components/LinkDetailComponent";
+
+export const LINK_TYPE = {
+  LINK: "link",
+  YOUTUBE: "youtube",
+  IMAGE: "image",
+};
+
+const ROWS_PER_PAGE_OPTIONS = [5, 10, 15, 20, 25, 50, 100];
+const DEFAULT_ROWS_PER_PAGE = ROWS_PER_PAGE_OPTIONS[0];
+const LINK_TYPE_OPTIONS = Object.values(LINK_TYPE);
+
+const LinkManagementContainer = () => {
+  const linkFormComponentModalInstance = useRef(null);
+  const linkFormComponentModal = useRef(null);
+  const [editLink, setEditLink] = useState(null);
+  const [links, setLinks] = useImmer([
+    {
+      id: 1,
+      link: "https://nextjsvietnam.com",
+      title: "https://nextjsvietnam.com",
+      type: LINK_TYPE.LINK,
+      publishedDate: new Date(),
+    },
+    {
+      id: 2,
+      link: "https://www.youtube.com/watch?v=M9voXLBcKTk&t=2818s",
+      title: "Những Ca Khúc Nhạc Đỏ Cách Mạng",
+      type: LINK_TYPE.YOUTUBE,
+      publishedDate: new Date(),
+    },
+    {
+      id: 3,
+      link: "https://user-images.githubusercontent.com/31009750/246856332-ece36caa-82ef-4a4f-86d9-9dad4a108929.png",
+      title: "ReactJS Tutorial Banner",
+      type: LINK_TYPE.IMAGE,
+      publishedDate: new Date(),
+    },
+  ]);
+  const [paginator, setPaginator] = useImmer({
+    currentPage: 1,
+    numberOfPages: 10,
+    rowsPerPage: 5,
+    numberOfItems: 50,
+  });
+  const [query, setQuery] = useImmer({
+    rowsPerPage: DEFAULT_ROWS_PER_PAGE,
+    searchText: "",
+    type: "",
+    page: 1,
+  });
+
+  const openModal = () => {
+    if (!linkFormComponentModalInstance.current) {
+      console.log("new modal", linkFormComponentModalInstance.current);
+      linkFormComponentModalInstance.current = new Modal(
+        linkFormComponentModal.current,
+        {
+          backdrop: true,
+          focus: true,
+          keyboard: true,
+        }
+      );
+      linkFormComponentModalInstance.current.show();
+      console.log("created modal", linkFormComponentModalInstance.current);
+      // handler event close
+      linkFormComponentModal.current.addEventListener("hide.bs.modal", () => {
+        // reset state
+        setEditLink(null);
+      });
+      return;
+    }
+    console.log("existing modal", linkFormComponentModalInstance.current);
+    linkFormComponentModalInstance.current.show();
+  };
+
+  const closeModal = () => {
+    if (linkFormComponentModalInstance.current) {
+      linkFormComponentModalInstance.current.hide();
+    }
+  };
+
+  const onNewLink = (e) => {
+    e.preventDefault();
+    openModal();
+  };
+
+  const onEditLink = (link) => {
+    // set editLink
+    setEditLink(link);
+    // open modal
+    openModal();
+  };
+
+  const onDeleteLink = (link) => {
+    // delete link
+    setLinks((linkList) => {
+      const deleteLinkIndex = linkList.findIndex((l) => l.id === link.id);
+      linkList.splice(deleteLinkIndex, 1);
+    });
+  };
+
+  const onSaveLink = (data) => {
+    const link = structuredClone(data);
+    // new link has no id
+    // existed link has id
+    if (link && !link.id) {
+      setLinks((linkList) => {
+        Reflect.set(link, "id", Date.now());
+        Reflect.set(link, "publishedDate", new Date());
+        Reflect.set(link, "type", LINK_TYPE.LINK);
+        linkList.push(link);
+      });
+      // close modal
+      closeModal();
+      return;
+    }
+    // otherwise edit mode
+    if (link && link.id) {
+      setLinks((linkList) => {
+        Reflect.set(link, "publishedDate", new Date());
+        const editLinkIndex = linkList.findIndex((l) => l.id === link.id);
+        linkList[editLinkIndex] = link;
+      });
+      // close modal
+      closeModal();
+      return;
+    }
+  };
+
+  const onChangeCurrentPage = (newCurrentPage) => {
+    setPaginator((p) => {
+      p.currentPage = newCurrentPage;
+    });
+  };
+
+  const onChangeQueryField = (e) => {
+    setQuery((q) => {
+      q[e.target.name] = e.target.value;
+    });
+  };
+
+  return (
+    <>
+      <div className="card">
+        <div className="card-header text-bg-primary">
+          <h3 className="card-title">Links</h3>
+          {JSON.stringify(query)}
+        </div>
+        <div className="card-body">
+          <div className="d-flex justify-content-end">
+            <button className="btn btn-primary" onClick={onNewLink}>
+              New Link
+            </button>
+          </div>
+          <div className="mt-4 d-flex justify-content-between">
+            <select
+              className="form-select"
+              aria-label="Select rows per page"
+              name="rowsPerPage"
+              style={{
+                width: "120px",
+              }}
+              onChange={onChangeQueryField}
+            >
+              {ROWS_PER_PAGE_OPTIONS.map((v, idx) => (
+                <option value={v} key={idx}>{`${v} rows`}</option>
+              ))}
+            </select>
+            <div className="d-flex justify-content-end">
+              <select
+                className="form-select"
+                aria-label="Select rows per page"
+                style={{
+                  width: "120px",
+                }}
+                name="type"
+                onChange={onChangeQueryField}
+              >
+                <option value={""}>Type</option>
+                {LINK_TYPE_OPTIONS.map((v, idx) => (
+                  <option value={v} key={idx}>{`${v}`}</option>
+                ))}
+              </select>
+              <input
+                type="text"
+                name="searchText"
+                className="form-control ms-2"
+                placeholder="Search"
+                onChange={onChangeQueryField}
+              ></input>
+            </div>
+          </div>
+          <div className="mt-4">
+            {links.map((link) => (
+              <LinkDetailComponent
+                key={link.id}
+                link={link}
+                onEditLink={() => onEditLink(link)}
+                onDeleteLink={() => onDeleteLink(link)}
+              />
+            ))}
+          </div>
+          <PaginationComponent
+            numberOfPages={paginator.numberOfPages}
+            currentPage={paginator.currentPage}
+            onChangeCurrentPage={onChangeCurrentPage}
+          />
+        </div>
+      </div>
+      <LinkFormComponent
+        ref={linkFormComponentModal}
+        link={editLink}
+        onSaveLink={onSaveLink}
+      ></LinkFormComponent>
+    </>
+  );
+};
+
+export default LinkManagementContainer;
+```
+
+Màn hình chính lúc này, sau mỗi lần thêm kí tự mới vào ô tìm kiếm
+
+![image](https://user-images.githubusercontent.com/31009750/254897275-12d6d4da-c152-4bb6-904b-2e22834a4d6c.png)
+
+Hãy chú ý tới đoạn code bên dưới và phần console.log trong màn hình. 27 lần LinkDetailComponent:render. Điều này có nghĩa function LinkDetailComponent được gọi tới 27 lần mặc dù list link chưa hề được cập nhật.
+
+> console.log("LinkDetailComponent:render");
+
+```jsx
+const LinkDetailComponent = ({ link, onEditLink, onDeleteLink, ...props }) => {
+  const linkTypeBadge = {
+    [LINK_TYPE.LINK]: "text-bg-primary",
+    [LINK_TYPE.IMAGE]: "text-bg-warning",
+    [LINK_TYPE.YOUTUBE]: "text-bg-danger",
+  };
+  console.log("LinkDetailComponent:render");
+  // ...
+```
+
+Nguyên nhân là parent component của nó "LinkManagementContainer" đã render lại.
+Do đó việc component render lại lúc này không hợp lí, vì list link lúc này chưa hề được cập nhật lại.
+Để giải quyết vấn đề này, các anh/chị cần tối ưu lại như sau:
+
+- Tách thêm component để chứa phần state - giúp hạn chế tối đa việc re-render lại không cần thiết của màn hình chính.
+
+```jsx
+import { useImmer } from "use-immer";
+import { LINK_TYPE } from "../containers/LinkManagementContainer";
+
+const ROWS_PER_PAGE_OPTIONS = [5, 10, 15, 20, 25, 50, 100];
+const DEFAULT_ROWS_PER_PAGE = ROWS_PER_PAGE_OPTIONS[0];
+
+const LinkFilterComponent = () => {
+  const LINK_TYPE_OPTIONS = Object.values(LINK_TYPE);
+  const [query, setQuery] = useImmer({
+    rowsPerPage: DEFAULT_ROWS_PER_PAGE,
+    searchText: "",
+    type: "",
+    page: 1,
+  });
+  const onChangeQueryField = (e) => {
+    setQuery((q) => {
+      q[e.target.name] = e.target.value;
+    });
+  };
+  return (
+    <>
+      <div>{JSON.stringify(query)}</div>
+      <div className="mt-4 d-flex justify-content-between">
+        <select
+          className="form-select"
+          aria-label="Select rows per page"
+          name="rowsPerPage"
+          style={{
+            width: "120px",
+          }}
+          onChange={onChangeQueryField}
+        >
+          {ROWS_PER_PAGE_OPTIONS.map((v, idx) => (
+            <option value={v} key={idx}>{`${v} rows`}</option>
+          ))}
+        </select>
+        <div className="d-flex justify-content-end">
+          <select
+            className="form-select"
+            aria-label="Select rows per page"
+            style={{
+              width: "120px",
+            }}
+            name="type"
+            onChange={onChangeQueryField}
+          >
+            <option value={""}>Type</option>
+            {LINK_TYPE_OPTIONS.map((v, idx) => (
+              <option value={v} key={idx}>{`${v}`}</option>
+            ))}
+          </select>
+          <input
+            type="text"
+            name="searchText"
+            className="form-control ms-2"
+            placeholder="Search"
+            onChange={onChangeQueryField}
+          ></input>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default LinkFilterComponent;
+```
+
+> src\containers\LinkManagementContainer.jsx
+
+```jsx
+<div className="d-flex justify-content-end">
+  <button className="btn btn-primary" onClick={onNewLink}>
+    New Link
+  </button>
+</div>
+<LinkFilterComponent />
+```
+
+Sau khi tách xong
+![image](https://user-images.githubusercontent.com/31009750/254900426-c19bb80a-fa29-478c-a6f2-90fbc2b88e89.png)
+
+Sau khi xử lý xong vấn đề ở trên, lúc này các anh/chị cần làm 3 việc sau:
+
+1. Nhận query từ LinkFilterComponent và thực hiện tìm kiếm trên danh sách link hiện có.
+2. Cập nhật là pagination sau mỗi lần tiếp kiếm.
+3. Lưu trữ danh sách link trên browser và thực hiện khởi tạo danh sách link từ danh sách đã lưu trữ trên browser mỗi lần app được khởi động lại.
+
+#### Nhận query từ LinkFilterComponent và thực hiện tìm kiếm trên danh sách link hiện có - Cập nhật là pagination sau mỗi lần tiếp kiếm.
+
+```jsx
+import { useImmer } from "use-immer";
+import { LINK_TYPE } from "../containers/LinkManagementContainer";
+import { useEffect } from "react";
+
+const ROWS_PER_PAGE_OPTIONS = [5, 10, 15, 20, 25, 50, 100];
+const DEFAULT_ROWS_PER_PAGE = ROWS_PER_PAGE_OPTIONS[0];
+
+const LinkFilterComponent = ({ onFilterChanged, ...props }) => {
+  const LINK_TYPE_OPTIONS = Object.values(LINK_TYPE);
+  const [query, setQuery] = useImmer({
+    rowsPerPage: DEFAULT_ROWS_PER_PAGE,
+    searchText: "",
+    type: "",
+  });
+  const onChangeQueryField = (e) => {
+    setQuery((q) => {
+      q[e.target.name] = e.target.value;
+    });
+  };
+
+  useEffect(() => {
+    onFilterChanged(query);
+  }, [query]);
+
+  return (
+    <>
+      <div>{JSON.stringify(query)}</div>
+      <div className="mt-4 d-flex justify-content-between">
+        <select
+          className="form-select"
+          aria-label="Select rows per page"
+          name="rowsPerPage"
+          style={{
+            width: "120px",
+          }}
+          onChange={onChangeQueryField}
+        >
+          {ROWS_PER_PAGE_OPTIONS.map((v, idx) => (
+            <option value={v} key={idx}>{`${v} rows`}</option>
+          ))}
+        </select>
+        <div className="d-flex justify-content-end">
+          <select
+            className="form-select"
+            aria-label="Select rows per page"
+            style={{
+              width: "120px",
+            }}
+            name="type"
+            onChange={onChangeQueryField}
+          >
+            <option value={""}>Type</option>
+            {LINK_TYPE_OPTIONS.map((v, idx) => (
+              <option value={v} key={idx}>{`${v}`}</option>
+            ))}
+          </select>
+          <input
+            type="text"
+            name="searchText"
+            className="form-control ms-2"
+            placeholder="Search"
+            onChange={onChangeQueryField}
+          ></input>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default LinkFilterComponent;
+```
+
+```jsx
+import { useEffect, useRef, useState } from "react";
+import LinkFormComponent from "../components/LinkFormComponent";
+import { Modal } from "bootstrap";
+import { useImmer } from "use-immer";
+import PaginationComponent from "../components/PaginationComponent";
+import LinkDetailComponent from "../components/LinkDetailComponent";
+import LinkFilterComponent from "../components/LinkFilterComponent";
+
+export const LINK_TYPE = {
+  LINK: "link",
+  YOUTUBE: "youtube",
+  IMAGE: "image",
+};
+
+const searchLinkByQuery = (links, query) => {
+  let items = structuredClone(links);
+  if (query.type) {
+    items = items.filter((l) => l.type === query.type);
+  }
+  if (query.searchText) {
+    items = items.filter(
+      (l) =>
+        l.title.includes(query.searchText) || l.link.includes(query.searchText)
+    );
+  }
+  // pagination
+  const rowsPerPage = query.rowsPerPage || 1;
+  const currentPage = query.currentPage || 1;
+  const skip = (Math.max(1, currentPage) - 1) * Math.max(rowsPerPage, 0);
+  const numberOfItems = items.length;
+  const numberOfPages = Math.ceil(numberOfItems / rowsPerPage);
+
+  return {
+    currentPage,
+    rowsPerPage,
+    items: items.slice(skip, rowsPerPage),
+    numberOfItems,
+    numberOfPages,
+  };
+};
+
+const LinkManagementContainer = () => {
+  const linkFormComponentModalInstance = useRef(null);
+  const linkFormComponentModal = useRef(null);
+  const [editLink, setEditLink] = useState(null);
+  const [storedLinks, setStoredLinks] = useImmer([
+    {
+      id: 1,
+      link: "https://nextjsvietnam.com",
+      title: "https://nextjsvietnam.com",
+      type: LINK_TYPE.LINK,
+      publishedDate: new Date(),
+    },
+    {
+      id: 2,
+      link: "https://www.youtube.com/watch?v=M9voXLBcKTk&t=2818s",
+      title: "Những Ca Khúc Nhạc Đỏ Cách Mạng",
+      type: LINK_TYPE.YOUTUBE,
+      publishedDate: new Date(),
+    },
+    {
+      id: 3,
+      link: "https://user-images.githubusercontent.com/31009750/246856332-ece36caa-82ef-4a4f-86d9-9dad4a108929.png",
+      title: "ReactJS Tutorial Banner",
+      type: LINK_TYPE.IMAGE,
+      publishedDate: new Date(),
+    },
+  ]);
+  const [links, setLinks] = useImmer([]);
+  const [paginator, setPaginator] = useImmer({
+    currentPage: 1,
+    numberOfPages: 10,
+    rowsPerPage: 5,
+    numberOfItems: 50,
+  });
+
+  const saveLinks = (links) => {};
+
+  useEffect(() => {
+    setLinks(storedLinks);
+  }, [storedLinks]);
+
+  const openModal = () => {
+    if (!linkFormComponentModalInstance.current) {
+      console.log("new modal", linkFormComponentModalInstance.current);
+      linkFormComponentModalInstance.current = new Modal(
+        linkFormComponentModal.current,
+        {
+          backdrop: true,
+          focus: true,
+          keyboard: true,
+        }
+      );
+      linkFormComponentModalInstance.current.show();
+      console.log("created modal", linkFormComponentModalInstance.current);
+      // handler event close
+      linkFormComponentModal.current.addEventListener("hide.bs.modal", () => {
+        // reset state
+        setEditLink(null);
+      });
+      return;
+    }
+    console.log("existing modal", linkFormComponentModalInstance.current);
+    linkFormComponentModalInstance.current.show();
+  };
+
+  const closeModal = () => {
+    if (linkFormComponentModalInstance.current) {
+      linkFormComponentModalInstance.current.hide();
+    }
+  };
+
+  const onNewLink = (e) => {
+    e.preventDefault();
+    openModal();
+  };
+
+  const onEditLink = (link) => {
+    // set editLink
+    setEditLink(link);
+    // open modal
+    openModal();
+  };
+
+  const onDeleteLink = (link) => {
+    // delete link
+    setLinks((linkList) => {
+      const deleteLinkIndex = linkList.findIndex((l) => l.id === link.id);
+      linkList.splice(deleteLinkIndex, 1);
+    });
+  };
+
+  const onSaveLink = (data) => {
+    const link = structuredClone(data);
+    // new link has no id
+    // existed link has id
+    if (link && !link.id) {
+      setLinks((linkList) => {
+        Reflect.set(link, "id", Date.now());
+        Reflect.set(link, "publishedDate", new Date());
+        Reflect.set(link, "type", LINK_TYPE.LINK);
+        linkList.push(link);
+      });
+      // close modal
+      closeModal();
+      return;
+    }
+    // otherwise edit mode
+    if (link && link.id) {
+      setLinks((linkList) => {
+        Reflect.set(link, "publishedDate", new Date());
+        const editLinkIndex = linkList.findIndex((l) => l.id === link.id);
+        linkList[editLinkIndex] = link;
+      });
+      // close modal
+      closeModal();
+      return;
+    }
+  };
+
+  const onChangeCurrentPage = (newCurrentPage) => {
+    setPaginator((p) => {
+      p.currentPage = newCurrentPage;
+    });
+  };
+
+  const onFilterChanged = (filter) => {
+    const searchResult = searchLinkByQuery(storedLinks, {
+      ...filter,
+      currentPage: paginator.currentPage,
+    });
+    setLinks(searchResult.items);
+    setPaginator((p) => {
+      p.numberOfItems = searchResult.numberOfItems;
+      p.numberOfPages = searchResult.numberOfPages;
+    });
+  };
+
+  return (
+    <>
+      <div className="card">
+        <div className="card-header text-bg-primary">
+          <h3 className="card-title">Links</h3>
+        </div>
+        <div className="card-body">
+          <div className="d-flex justify-content-end">
+            <button className="btn btn-primary" onClick={onNewLink}>
+              New Link
+            </button>
+          </div>
+          <LinkFilterComponent onFilterChanged={onFilterChanged} />
+          <div className="mt-4">
+            {links.map((link) => (
+              <LinkDetailComponent
+                key={link.id}
+                link={link}
+                onEditLink={() => onEditLink(link)}
+                onDeleteLink={() => onDeleteLink(link)}
+              />
+            ))}
+          </div>
+          <PaginationComponent
+            numberOfPages={paginator.numberOfPages}
+            currentPage={paginator.currentPage}
+            onChangeCurrentPage={onChangeCurrentPage}
+          />
+        </div>
+      </div>
+      <LinkFormComponent
+        ref={linkFormComponentModal}
+        link={editLink}
+        onSaveLink={onSaveLink}
+      ></LinkFormComponent>
+    </>
+  );
+};
+
+export default LinkManagementContainer;
+```
+
+#### Lưu trữ danh sách link trên browser và thực hiện khởi tạo danh sách link từ danh sách đã lưu trữ trên browser mỗi lần app được khởi động lại.
+
+```jsx
+import { useEffect, useRef, useState } from "react";
+import LinkFormComponent from "../components/LinkFormComponent";
+import { Modal } from "bootstrap";
+import { useImmer } from "use-immer";
+import PaginationComponent from "../components/PaginationComponent";
+import LinkDetailComponent from "../components/LinkDetailComponent";
+import LinkFilterComponent from "../components/LinkFilterComponent";
+
+export const LINK_TYPE = {
+  LINK: "link",
+  YOUTUBE: "youtube",
+  IMAGE: "image",
+};
+
+const searchLinkByQuery = (links, query) => {
+  let items = structuredClone(links);
+  if (query.type) {
+    items = items.filter((l) => l.type === query.type);
+  }
+  if (query.searchText) {
+    items = items.filter(
+      (l) =>
+        l.title.includes(query.searchText) || l.link.includes(query.searchText)
+    );
+  }
+  // pagination
+  const rowsPerPage = query.rowsPerPage || 1;
+  const currentPage = query.currentPage || 1;
+  const skip = (Math.max(1, currentPage) - 1) * Math.max(rowsPerPage, 0);
+  const numberOfItems = items.length;
+  const numberOfPages = Math.ceil(numberOfItems / rowsPerPage);
+
+  return {
+    currentPage,
+    rowsPerPage,
+    items: items.slice(skip, rowsPerPage),
+    numberOfItems,
+    numberOfPages,
+  };
+};
+
+const extractLinkType = (link) => {
+  if (link.endsWith("png") || link.endsWith("jpg") || link.endsWith("jpeg")) {
+    return LINK_TYPE.IMAGE;
+  }
+  if (link.startsWith("https://www.youtube.com")) {
+    return LINK_TYPE.YOUTUBE;
+  }
+  return LINK_TYPE.LINK;
+};
+
+const DBName = "NextJSVietnam-LinkList";
+const CollectionName = "links";
+
+const LinkManagementContainer = () => {
+  const linkFormComponentModalInstance = useRef(null);
+  const linkFormComponentModal = useRef(null);
+  const [editLink, setEditLink] = useState(null);
+  const [storedLinks, setStoredLinks] = useImmer([]);
+  const [links, setLinks] = useImmer([]);
+  const [paginator, setPaginator] = useImmer({
+    currentPage: 1,
+    numberOfPages: 0,
+    rowsPerPage: 5,
+    numberOfItems: 0,
+  });
+  const [objectStore, setObjectStore] = useState(null);
+  const db = useRef(null);
+
+  const loadLinksFromStorage = () => {
+    if (db.current) {
+      const objectStore = db.current
+        .transaction(CollectionName, "readwrite")
+        .objectStore(CollectionName);
+      setObjectStore(objectStore);
+      const res = objectStore.getAll();
+      res.onsuccess = (e) => {
+        setStoredLinks(e.target.result);
+      };
+    }
+  };
+
+  // init
+  useEffect(() => {
+    const DBOpenRequest = window.indexedDB.open(DBName, 1);
+    // connection error
+    DBOpenRequest.onerror = () => {
+      alert("Can not connect IndexDB");
+    };
+    // for upgrade/init
+    DBOpenRequest.onupgradeneeded = (event) => {
+      const db = event.target.result;
+
+      db.onerror = () => {
+        alert("Can not connect IndexDB");
+      };
+
+      // Create an objectStore for this CollectionName
+
+      const objectStore = db.createObjectStore(CollectionName, {
+        keyPath: "id",
+      });
+
+      // define what data items the objectStore will contain
+      objectStore.createIndex("link", "link", { unique: true });
+      objectStore.createIndex("title", "title", { unique: false });
+      objectStore.createIndex("type", "type", { unique: false });
+      objectStore.createIndex("publishedDate", "publishedDate", {
+        unique: false,
+      });
+
+      alert("Object store created.");
+    };
+    // success
+    DBOpenRequest.onsuccess = (event) => {
+      console.log(event);
+      if (!objectStore) {
+        // Store the result of opening the database in the db variable. This is used a lot below
+        db.current = DBOpenRequest.result;
+        loadLinksFromStorage();
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    setLinks(storedLinks);
+  }, [storedLinks]);
+
+  const storeLink = (link, action) => {
+    // Open a read/write DB transaction, ready for adding the data
+    if (db.current) {
+      // Call an object store that's already been added to the database
+      const objectStore = db.current
+        .transaction(CollectionName, "readwrite")
+        .objectStore(CollectionName);
+      console.log(objectStore.indexNames);
+      console.log(objectStore.keyPath);
+      console.log(objectStore.name);
+      console.log(objectStore.transaction);
+      console.log(objectStore.autoIncrement);
+      let objectStoreRequest = null;
+      const { id } = link;
+
+      if (action === "add") {
+        objectStoreRequest = objectStore.add(link);
+      }
+      if (action === "edit") {
+        objectStoreRequest = objectStore.put(link);
+      }
+      if (action === "delete") {
+        objectStoreRequest = objectStore.delete(id);
+      }
+      if (objectStoreRequest) {
+        objectStoreRequest.onsuccess = () => {
+          console.log("object saved!");
+          loadLinksFromStorage();
+        };
+      }
+    }
+  };
+
+  const openModal = () => {
+    if (!linkFormComponentModalInstance.current) {
+      console.log("new modal", linkFormComponentModalInstance.current);
+      linkFormComponentModalInstance.current = new Modal(
+        linkFormComponentModal.current,
+        {
+          backdrop: true,
+          focus: true,
+          keyboard: true,
+        }
+      );
+      linkFormComponentModalInstance.current.show();
+      console.log("created modal", linkFormComponentModalInstance.current);
+      // handler event close
+      linkFormComponentModal.current.addEventListener("hide.bs.modal", () => {
+        // reset state
+        setEditLink(null);
+      });
+      return;
+    }
+    console.log("existing modal", linkFormComponentModalInstance.current);
+    linkFormComponentModalInstance.current.show();
+  };
+
+  const closeModal = () => {
+    if (linkFormComponentModalInstance.current) {
+      linkFormComponentModalInstance.current.hide();
+    }
+  };
+
+  const onNewLink = (e) => {
+    e.preventDefault();
+    openModal();
+  };
+
+  const onEditLink = (link) => {
+    // set editLink
+    setEditLink(link);
+    // open modal
+    openModal();
+  };
+
+  const onDeleteLink = (link) => {
+    // delete link
+    setLinks((linkList) => {
+      const deleteLinkIndex = linkList.findIndex((l) => l.id === link.id);
+      linkList.splice(deleteLinkIndex, 1);
+      storeLink(link, "delete");
+    });
+  };
+
+  const onSaveLink = (data) => {
+    const link = structuredClone(data);
+    // new link has no id
+    // existed link has id
+    if (link && !link.id) {
+      setLinks((linkList) => {
+        Reflect.set(link, "id", Date.now());
+        Reflect.set(link, "publishedDate", new Date());
+        Reflect.set(link, "type", extractLinkType(link.link));
+        linkList.push(link);
+      });
+      // close modal
+      closeModal();
+      // on add link
+      storeLink(link, "add");
+      return;
+    }
+    // otherwise edit mode
+    if (link && link.id) {
+      setLinks((linkList) => {
+        Reflect.set(link, "publishedDate", new Date());
+        Reflect.set(link, "type", extractLinkType(link.link));
+        const editLinkIndex = linkList.findIndex((l) => l.id === link.id);
+        linkList[editLinkIndex] = link;
+      });
+      // close modal
+      closeModal();
+      // on add link
+      storeLink(link, "edit");
+      return;
+    }
+  };
+
+  const onChangeCurrentPage = (newCurrentPage) => {
+    setPaginator((p) => {
+      p.currentPage = newCurrentPage;
+    });
+  };
+
+  const onFilterChanged = (filter) => {
+    const searchResult = searchLinkByQuery(storedLinks, {
+      ...filter,
+      currentPage: paginator.currentPage,
+    });
+    setLinks(searchResult.items);
+    setPaginator((p) => {
+      p.numberOfItems = searchResult.numberOfItems;
+      p.numberOfPages = searchResult.numberOfPages;
+    });
+  };
+
+  return (
+    <>
+      <div className="card">
+        <div className="card-header text-bg-primary">
+          <h3 className="card-title">Links</h3>
+        </div>
+        <div className="card-body">
+          <div className="d-flex justify-content-end">
+            <button className="btn btn-primary" onClick={onNewLink}>
+              New Link
+            </button>
+          </div>
+          <LinkFilterComponent onFilterChanged={onFilterChanged} />
+          <div className="mt-4">
+            {links.map((link) => (
+              <LinkDetailComponent
+                key={link.id}
+                link={link}
+                onEditLink={() => onEditLink(link)}
+                onDeleteLink={() => onDeleteLink(link)}
+              />
+            ))}
+          </div>
+          <PaginationComponent
+            numberOfPages={paginator.numberOfPages}
+            currentPage={paginator.currentPage}
+            onChangeCurrentPage={onChangeCurrentPage}
+          />
+        </div>
+      </div>
+      <LinkFormComponent
+        ref={linkFormComponentModal}
+        link={editLink}
+        onSaveLink={onSaveLink}
+      ></LinkFormComponent>
+    </>
+  );
+};
+
+export default LinkManagementContainer;
+```
+
+![image](https://user-images.githubusercontent.com/31009750/254928268-e8d9a8d7-ac84-44b4-b137-15033bdd7cbc.png)
