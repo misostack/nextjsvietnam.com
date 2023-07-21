@@ -1819,11 +1819,11 @@ export default App;
 ##### 3.3. Xây dựng LinkDetailComponent
 
 ```jsx
-import { LINK_TYPE } from "../App";
+import { LINK_TYPE } from "../containers/LinkManagementContainer";
 
 const TextLink = ({ link, ...props }) => {
   return (
-    <a href="#" className="d-flex gap-2 align-items-center" {...props}>
+    <a href={link} className="d-flex gap-2 align-items-center" {...props}>
       <i className="bi bi-link fs-3"></i>
       {link}
     </a>
@@ -1861,6 +1861,7 @@ const LinkDetailComponent = ({ link, onEditLink, onDeleteLink, ...props }) => {
     [LINK_TYPE.IMAGE]: "text-bg-warning",
     [LINK_TYPE.YOUTUBE]: "text-bg-danger",
   };
+  console.log("LinkDetailComponent:render");
   return (
     <>
       <div className="card my-4">
@@ -3150,15 +3151,17 @@ const LinkManagementContainer = () => {
             ))}
           </div>
           <div className="d-flex justify-content-between">
-            <div>
-              Showing {(paginator.currentPage - 1) * paginator.rowsPerPage + 1}{" "}
-              to{" "}
-              {Math.min(
-                paginator.currentPage * paginator.rowsPerPage,
-                paginator.numberOfItems
-              )}{" "}
-              of {paginator.numberOfItems}
-            </div>
+            {paginator.numberOfItems > 0 && (
+              <div>
+                Showing{" "}
+                {(paginator.currentPage - 1) * paginator.rowsPerPage + 1} to{" "}
+                {Math.min(
+                  paginator.currentPage * paginator.rowsPerPage,
+                  paginator.numberOfItems
+                )}{" "}
+                of {paginator.numberOfItems}
+              </div>
+            )}
             <PaginationComponent
               numberOfPages={paginator.numberOfPages}
               currentPage={paginator.currentPage}
@@ -3180,3 +3183,101 @@ export default LinkManagementContainer;
 ```
 
 ![image](https://user-images.githubusercontent.com/31009750/254928268-e8d9a8d7-ac84-44b4-b137-15033bdd7cbc.png)
+
+### Hướng dẫn triển khai ứng dụng ReactJS lên github miễn phí
+
+Các bước thực hiện
+
+1. Tạo github repo mới
+
+![image](https://user-images.githubusercontent.com/31009750/255149372-e1ef0e7b-7fe6-41e8-bfd9-1b61ff0df8c6.png)
+
+2. Copy source code trong bài ví dụ này sang repo mới
+
+Lưu ý các anh/chị chỉ cần copy các tập tin, thư mục trong hình là đủ
+
+![image](https://user-images.githubusercontent.com/31009750/255149865-cccd51c1-229a-41c0-84b5-ccb8b47d9191.png)
+
+Xong bước này các anh chị có thể push code lên repo mới trước. Đồng thời có thể chỉnh lại file env (production) để đặt tên cho ứng dụng.
+
+```sh
+VITE_APP_VERSION=1.0
+VITE_APP_NAME=Link Management App
+```
+
+3. Sử dụng github page và điều chỉnh config để build ứng dụng
+
+Điều chỉnh lại config cho vite để build ứng dụng vào thư mục **"docs"**. Lí do là github page cho phép chọn thư mục gốc của repo hoặc thư mục "docs" để host 1 website tĩnh với html,css và javascript.
+
+> vite.config.js
+
+```js
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react()],
+  server: {
+    port: 3015,
+  },
+  build: {
+    outDir: "docs",
+  },
+});
+```
+
+![image](https://user-images.githubusercontent.com/31009750/255152668-acee6b5f-6fe3-43cb-bb33-d182af21dd2f.png)
+
+Sau khi build xong, hãy push bản build + source code mới nhất lên git repo.
+
+![image](https://user-images.githubusercontent.com/31009750/255154262-e25c16c7-645c-4540-8fa0-1b1cf02679f1.png)
+
+Hãy truy cập repo trên github của các anh/chị rồi vào phần Settings -> Pages (tab)
+
+Ví dụ : https://github.com/[your-repository-link]/settings/pages
+
+Thiết lập như trong hình và save thôi.
+
+![image](https://user-images.githubusercontent.com/31009750/255151684-6f82b3af-a7b7-40af-bdae-c67995e8831b.png)
+
+Đợi khoảng 30s, rồi refresh lại trang setting này, các anh chị sẽ thấy link github page của repo đã sẵn sàng để truy cập như hình dưới
+
+![image](https://user-images.githubusercontent.com/31009750/255154933-87ba498c-77a3-4e3b-9c82-b85fdb1f0ec1.png)
+
+Hãy vào link xem thành quả thôi nào, tuy nhiên ...
+
+![image](https://user-images.githubusercontent.com/31009750/255155102-eff6a55b-642e-4343-a0a8-5362d6ce6d14.png)
+
+Nguyên nhân là ứng dụng của các anh/chị được host trong 1 folder, do đó đường dẫn tới các assets: js,css,images, đã không còn đúng nữa, vì ở bước đầu tiên, các anh/chị đã thiết lập config để build và chạy thử nghiệm ứng dụng nằm tại thư mục gốc, ko nằm trong 1 folder nào cả.
+
+Do đó các anh/chị cần chỉnh lại config, để bản build được như mong đợi như sau.
+
+![image](https://user-images.githubusercontent.com/31009750/255155969-04f69dc9-c327-4cd5-9e96-55d939e15583.png)
+
+Trong ví dụ này folder là app-link-management ( repo name ), do đó config tương ứng sẽ là
+
+```js
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  base: process.env.NODE_ENV === "production" ? "/app-link-management/" : "/",
+  plugins: [react()],
+  server: {
+    port: 3015,
+  },
+  build: {
+    outDir: "docs",
+  },
+});
+```
+
+Chạy thử dưới local
+
+![image](https://user-images.githubusercontent.com/31009750/255156571-778abb6e-2499-47ab-9d08-8fc2de0427b1.png)
+
+Kết quả sau khi push bản build mới lên github.
+
+![image](https://user-images.githubusercontent.com/31009750/255156887-8ffb845c-efa6-44fa-84e9-7d8d2f0dfad8.png)
