@@ -2669,7 +2669,7 @@ const searchLinkByQuery = (links, query) => {
   return {
     currentPage,
     rowsPerPage,
-    items: items.slice(skip, rowsPerPage),
+    items: items.slice(skip, skip + rowsPerPage),
     numberOfItems,
     numberOfPages,
   };
@@ -2892,7 +2892,7 @@ const searchLinkByQuery = (links, query) => {
   return {
     currentPage,
     rowsPerPage,
-    items: items.slice(skip, rowsPerPage),
+    items: items.slice(skip, skip + rowsPerPage),
     numberOfItems,
     numberOfPages,
   };
@@ -2915,14 +2915,11 @@ const LinkManagementContainer = () => {
   const linkFormComponentModalInstance = useRef(null);
   const linkFormComponentModal = useRef(null);
   const [editLink, setEditLink] = useState(null);
-  const [storedLinks, setStoredLinks] = useImmer([]);
   const [links, setLinks] = useImmer([]);
-  const [paginator, setPaginator] = useImmer({
+  const [query, setQuery] = useImmer({
     currentPage: 1,
-    numberOfPages: 0,
-    rowsPerPage: 5,
-    numberOfItems: 0,
   });
+
   const [objectStore, setObjectStore] = useState(null);
   const db = useRef(null);
 
@@ -2934,7 +2931,7 @@ const LinkManagementContainer = () => {
       setObjectStore(objectStore);
       const res = objectStore.getAll();
       res.onsuccess = (e) => {
-        setStoredLinks(e.target.result);
+        setLinks(e.target.result);
       };
     }
   };
@@ -2981,10 +2978,6 @@ const LinkManagementContainer = () => {
     };
   }, []);
 
-  useEffect(() => {
-    setLinks(storedLinks);
-  }, [storedLinks]);
-
   const storeLink = (link, action) => {
     // Open a read/write DB transaction, ready for adding the data
     if (db.current) {
@@ -3012,7 +3005,6 @@ const LinkManagementContainer = () => {
       if (objectStoreRequest) {
         objectStoreRequest.onsuccess = () => {
           console.log("object saved!");
-          loadLinksFromStorage();
         };
       }
     }
@@ -3103,22 +3095,25 @@ const LinkManagementContainer = () => {
   };
 
   const onChangeCurrentPage = (newCurrentPage) => {
-    setPaginator((p) => {
-      p.currentPage = newCurrentPage;
+    setQuery((q) => {
+      q.currentPage = newCurrentPage;
     });
   };
 
   const onFilterChanged = (filter) => {
-    const searchResult = searchLinkByQuery(storedLinks, {
-      ...filter,
-      currentPage: paginator.currentPage,
-    });
-    setLinks(searchResult.items);
-    setPaginator((p) => {
-      p.numberOfItems = searchResult.numberOfItems;
-      p.numberOfPages = searchResult.numberOfPages;
+    setQuery((q) => {
+      return { ...q, ...filter };
     });
   };
+  const res = searchLinkByQuery(links, query);
+  // computed values
+  const paginator = {
+    numberOfPages: res.numberOfPages,
+    numberOfItems: res.numberOfItems,
+    rowsPerPage: res.rowsPerPage,
+    currentPage: res.currentPage,
+  };
+  const items = res.items;
 
   return (
     <>
@@ -3134,7 +3129,7 @@ const LinkManagementContainer = () => {
           </div>
           <LinkFilterComponent onFilterChanged={onFilterChanged} />
           <div className="mt-4">
-            {links.map((link) => (
+            {items.map((link) => (
               <LinkDetailComponent
                 key={link.id}
                 link={link}
@@ -3143,11 +3138,22 @@ const LinkManagementContainer = () => {
               />
             ))}
           </div>
-          <PaginationComponent
-            numberOfPages={paginator.numberOfPages}
-            currentPage={paginator.currentPage}
-            onChangeCurrentPage={onChangeCurrentPage}
-          />
+          <div className="d-flex justify-content-between">
+            <div>
+              Showing {(paginator.currentPage - 1) * paginator.rowsPerPage + 1}{" "}
+              to{" "}
+              {Math.min(
+                paginator.currentPage * paginator.rowsPerPage,
+                paginator.numberOfItems
+              )}{" "}
+              of {paginator.numberOfItems}
+            </div>
+            <PaginationComponent
+              numberOfPages={paginator.numberOfPages}
+              currentPage={paginator.currentPage}
+              onChangeCurrentPage={onChangeCurrentPage}
+            />
+          </div>
         </div>
       </div>
       <LinkFormComponent
