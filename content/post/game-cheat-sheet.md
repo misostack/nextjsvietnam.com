@@ -4,8 +4,8 @@ type: "post"
 date: 2023-07-21T10:24:34+07:00
 description: "Game Cheat Sheet"
 keywords: ["Game Cheat Sheet"]
-categories: ["cheatsheet"]
-tags: []
+categories: ["games"]
+tags: ["games"]
 image: "https://user-images.githubusercontent.com/31009750/255064717-223972b9-3cc1-4941-bf2b-03edc4cf67ad.png"
 ---
 
