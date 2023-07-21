@@ -33,9 +33,11 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', '{{.Site.Params.GACode}}');
-      
+      gtag('config', '{{.Site.Params.GACode}}');    
     </script>    
+    <!-- Google Adsense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1642510310947288"
+    crossorigin="anonymous"></script>    
     {{ block "meta" . }}{{ end }}
     {{ partial "meta" . }}    
     {{ partial "favicon" . }}
