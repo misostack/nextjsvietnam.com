@@ -197,7 +197,8 @@ Trong bài trước, Model được chúng trực tiếp trong Controller như s
   }
   <span style=color:#75715e>// ...
 </span><span style=color:#75715e></span>}
-</code></pre></div><p>Lưu ý trong 3 đoạn code minh hoạt trên, để sử dụng được repository, có thể thấy, các anh/chị cần làm 3 việc:</p>
+</code></pre></div><h3 id=giới-thiệu-sơ-qua-về-dependency-injection>Giới thiệu sơ qua về dependency injection</h3>
+<p>Lưu ý trong 3 đoạn code minh hoạt trên, để sử dụng được repository, có thể thấy, các anh/chị cần làm 3 việc:</p>
 <ul>
 <li>Khai báo repository là dạng được Injectable</li>
 <li>Khai báo repository cho danh sách Providers của module</li>
@@ -351,7 +352,10 @@ Trong bài trước, Model được chúng trực tiếp trong Controller như s
       <span style=color:#a6e22e>petCategories</span>,
     };
   }
-</code></pre></div>
+</code></pre></div><p>Tuy nhiên, cách số 2 này không giải quyết được trọn vẹn vấn đề như cách số 1, mặc dù có vẻ như xuất hiện thêm 1 class repository khi sử dụng trong controller. Nhưng việc viết query vẫn sẽ nằm trọn vẹn trong controller.
+Tuy rằng trông có vẻ controller và model sẽ độc lập hơn, nhưng bản chất vấn đề vẫn không được giải quyết.
+Do đó khi áp dụng trong dự án thực tế, các anh/chị nên chọn cách số 1, vì sẽ có nhiều trường hợp cần việc các query phức tạp, thay vì chỉ CRUD.</p>
+<h3 id=refactor-code-cho-ứng-dụng-pet-website>Refactor code cho ứng dụng Pet Website</h3>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/nestjs-tutorial>nestjs-tutorial</a>
 </div>
