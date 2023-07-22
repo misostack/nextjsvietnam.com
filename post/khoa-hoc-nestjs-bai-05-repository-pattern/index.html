@@ -126,9 +126,232 @@
 <h2 id=bài-05>Bài 05</h2>
 <ol>
 <li>Giới thiệu sơ qua về repository pattern</li>
-<li>Giới thiệu về service trong NestJS</li>
+<li>Giới thiệu về dependency injection trong NestJS</li>
 <li>Refactor code PetCategory áp dụng repository pattern</li>
 </ol>
+<h3 id=giới-thiệu-sơ-qua-về-repository-pattern>Giới thiệu sơ qua về repository pattern</h3>
+<p>Trong bài trước, các anh chị có thể thấy sơ đồ sau trong mô hình MVC</p>
+<p><img src=https://user-images.githubusercontent.com/31009750/255315727-b8a19417-ca4f-4791-9158-e62a1bbe41ee.png alt=image></p>
+<p>Controller sử dụng trực tiếp Model của ORM để thực hiện truy vấn vào cơ sở dữ liệu.
+Thiết kế này sẽ bộc lộ các điểm yếu sau:</p>
+<ol>
+<li>Khả năng tái sử dụng của các câu truy vấn : do nó nằm trực tiếp trong controller, do đó việc tái sử dụng và chia sẻ giữa các controller khác nhau gần như là không thể.</li>
+<li>Tăng độ phức tạp của controller, càng nhiều câu query phức tạp, controller càng phình lên.</li>
+<li>Việc thực hiện Unit Test trở lên khó khăn, do phần truy vấn cơ cở dữ liệu trộn lận vào code của controller</li>
+</ol>
+<p>Để giải quyết vấn đề này, các anh/chị nên phân chia code thành các layer khác nhau. Mục đích là giúp tăng khả năng mở rộng và bảo trì của dự án.</p>
+<p>Chính vì lẽ đó Repository Pattern được áp dụng. Theo định nghĩa</p>
+<blockquote>
+<p>Repository là một lớp được sinh ra để làm nhiệm vụ thực hiện truy vấn vào cơ sở dữ liệu.</p>
+</blockquote>
+<p>Chính vì đặc điểm trên, nó chỉ thực hiện 1 nhiệm vụ duy nhất là truy vấn vào cở sở dữ liệu. Các câu query phức tạp sẽ được đóng gói trong lớp này. Kết quả là 3 vấn đề được đề cập ở trên sẽ được giải quyết triệt để.</p>
+<p>Các anh/chị có thể đọc thêm về Repository trong bài viết về <a href=https://nextjsvietnam.com/post/domain-driven-design-trong-30-giay/>Domain Driven Design</a> này.</p>
+<p>Tới đây, cùng áp dụng định nghĩa trên để thực hành với NestJS.
+Trong bài trước, Model được chúng trực tiếp trong Controller như sau</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>petCategories</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>PetCategory</span>.<span style=color:#a6e22e>findAll</span>();
+<span style=color:#66d9ef>await</span> <span style=color:#a6e22e>PetCategory</span>.<span style=color:#a6e22e>destroy</span>({ <span style=color:#a6e22e>where</span><span style=color:#f92672>:</span> { <span style=color:#a6e22e>id</span> } });
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>newPetCategory</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>PetCategory</span>.<span style=color:#a6e22e>create</span>({ ...<span style=color:#66d9ef>object</span> });
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>petCategory</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>PetCategory</span>.<span style=color:#a6e22e>findByPk</span>(<span style=color:#a6e22e>id</span>);
+<span style=color:#66d9ef>await</span> <span style=color:#a6e22e>petCategory</span>.<span style=color:#a6e22e>update</span>(<span style=color:#66d9ef>object</span>);
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#75715e>// src\pet\repositories\pet-category.repository.ts
+</span><span style=color:#75715e></span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Injectable</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/common&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>PetCategory</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;../models/pet-category.model&#34;</span>;
+
+<span style=color:#66d9ef>@Injectable</span>()
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>PetCategoryRepository</span> {
+  <span style=color:#a6e22e>findAll() {</span>
+    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>PetCategory</span>.<span style=color:#a6e22e>findAll</span>();
+  }
+}
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#75715e>// src/pet/pet.module.ts
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Module</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/common&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>PetController</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./controllers/pet.controller&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>ManagePetController</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./controllers/admin/manage-pet.controller&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>ManagePetCategoryController</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./controllers/admin/manage-pet-category.controller&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>ManagePetAttributeController</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./controllers/admin/manage-pet-attribute.controller&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>NestjsFormDataModule</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;nestjs-form-data&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>PetCategoryRepository</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./repositories/pet-category.repository&#34;</span>;
+<span style=color:#66d9ef>@Module</span>({
+  <span style=color:#a6e22e>imports</span><span style=color:#f92672>:</span> [<span style=color:#a6e22e>NestjsFormDataModule</span>],
+  <span style=color:#a6e22e>controllers</span><span style=color:#f92672>:</span> [
+    <span style=color:#a6e22e>PetController</span>,
+    <span style=color:#a6e22e>ManagePetController</span>,
+    <span style=color:#a6e22e>ManagePetCategoryController</span>,
+    <span style=color:#a6e22e>ManagePetAttributeController</span>,
+  ],
+  <span style=color:#75715e>// registered providers
+</span><span style=color:#75715e></span>  <span style=color:#a6e22e>providers</span><span style=color:#f92672>:</span> [<span style=color:#a6e22e>PetCategoryRepository</span>],
+})
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>PetModule</span> {}
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>@Controller</span>(<span style=color:#e6db74>&#34;admin/pet-categories&#34;</span>)
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ManagePetCategoryController</span> {
+  <span style=color:#66d9ef>constructor</span>(<span style=color:#66d9ef>private</span> <span style=color:#a6e22e>petCategoryRepository</span>: <span style=color:#66d9ef>PetCategoryRepository</span>) {}
+  <span style=color:#66d9ef>@Get</span>(<span style=color:#e6db74>&#34;&#34;</span>)
+  <span style=color:#66d9ef>@Render</span>(<span style=color:#e6db74>&#34;pet/admin/manage-pet-category/list&#34;</span>)
+  <span style=color:#66d9ef>async</span> <span style=color:#a6e22e>getList() {</span>
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>petCategories</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>petCategoryRepository</span>.<span style=color:#a6e22e>findAll</span>();
+    <span style=color:#66d9ef>return</span> {
+      <span style=color:#a6e22e>petCategories</span>,
+    };
+  }
+  <span style=color:#75715e>// ...
+</span><span style=color:#75715e></span>}
+</code></pre></div><p>Lưu ý trong 3 đoạn code minh hoạt trên, để sử dụng được repository, có thể thấy, các anh/chị cần làm 3 việc:</p>
+<ul>
+<li>Khai báo repository là dạng được Injectable</li>
+<li>Khai báo repository cho danh sách Providers của module</li>
+<li>Inject repository vào constructor của controller muốn sử dụng</li>
+</ul>
+<p>Nếu các anh/chị còn lạ lẫm với các khái niệm trên, hãy tìm hiểu chi tiết hơn trong bài viết về <a href=https://nextjsvietnam.com/post/nestjs-provider/>NestJS Provider</a>.</p>
+<p>Hiểu đơn giản, là khi muốn sử dụng 1 class trong module, thay vì các anh/chị phải tự động khởi tạo mỗi lần sử dụng, điều này vô tình sẽ gây ra việc khởi tạo class này quá nhiều lần không cần thiết. Cũng như việc viết code sẽ trở nên khá rối rắm.</p>
+<p>Thay vào đó, nếu áp dụng <strong>Dependency Injection</strong> pattern, các anh/chị dễ dàng giải quyết được vấn đề này. Ví dụ về cách mà dependency injection giải quyết được vấn đề trên.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#34;reflect-metadata&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>injectable</span>, <span style=color:#a6e22e>inject</span>, <span style=color:#a6e22e>container</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;tsyringe&#34;</span>;
+
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>ID</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>string</span> <span style=color:#f92672>|</span> <span style=color:#66d9ef>number</span>;
+<span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>Repository</span>&lt;<span style=color:#f92672>T</span>&gt; {
+  <span style=color:#a6e22e>findOne</span>(<span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>ID</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>T</span>;
+}
+<span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>CrudService</span>&lt;<span style=color:#f92672>Model</span>&gt; {
+  <span style=color:#a6e22e>findOne</span>(<span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>ID</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>Model</span>;
+}
+
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>User</span> {
+  <span style=color:#a6e22e>id</span><span style=color:#f92672>!:</span> <span style=color:#a6e22e>ID</span>;
+  <span style=color:#a6e22e>firstName</span><span style=color:#f92672>!:</span> <span style=color:#66d9ef>string</span>;
+  <span style=color:#a6e22e>lastName</span><span style=color:#f92672>!:</span> <span style=color:#66d9ef>string</span>;
+  <span style=color:#66d9ef>constructor</span>(<span style=color:#a6e22e>payload</span>: <span style=color:#66d9ef>Partial</span>&lt;<span style=color:#f92672>User</span>&gt;) {
+    Object.<span style=color:#a6e22e>assign</span>(<span style=color:#66d9ef>this</span>, <span style=color:#a6e22e>payload</span>);
+  }
+}
+
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Role</span> {
+  <span style=color:#a6e22e>id</span><span style=color:#f92672>!:</span> <span style=color:#a6e22e>ID</span>;
+  <span style=color:#a6e22e>name</span><span style=color:#f92672>!:</span> <span style=color:#66d9ef>string</span>;
+  <span style=color:#a6e22e>permissions</span>: <span style=color:#66d9ef>string</span>[] <span style=color:#f92672>=</span> [];
+  <span style=color:#66d9ef>constructor</span>(<span style=color:#a6e22e>payload</span>: <span style=color:#66d9ef>Partial</span>&lt;<span style=color:#f92672>Role</span>&gt;) {
+    Object.<span style=color:#a6e22e>assign</span>(<span style=color:#66d9ef>this</span>, <span style=color:#a6e22e>payload</span>);
+  }
+}
+
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>UserRepository</span> <span style=color:#66d9ef>implements</span> <span style=color:#a6e22e>Repository</span>&lt;<span style=color:#f92672>User</span>&gt; {
+  <span style=color:#a6e22e>findOne</span>(<span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>ID</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>User</span> {
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>user</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>User</span>({
+      <span style=color:#a6e22e>id</span>,
+      <span style=color:#a6e22e>firstName</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Typescript&#34;</span>,
+      <span style=color:#a6e22e>lastName</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Master Class&#34;</span>,
+    });
+    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>user</span>;
+  }
+}
+
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>RoleRepository</span> <span style=color:#66d9ef>implements</span> <span style=color:#a6e22e>Repository</span>&lt;<span style=color:#f92672>Role</span>&gt; {
+  <span style=color:#a6e22e>findOne</span>(<span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>ID</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>Role</span> {
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>role</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Role</span>({
+      <span style=color:#a6e22e>id</span>,
+      <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Admin&#34;</span>,
+      <span style=color:#a6e22e>permissions</span><span style=color:#f92672>:</span> [<span style=color:#e6db74>&#34;CreateUser&#34;</span>, <span style=color:#e6db74>&#34;EditUser&#34;</span>, <span style=color:#e6db74>&#34;RetrieveUser&#34;</span>, <span style=color:#e6db74>&#34;DeleteUser&#34;</span>],
+    });
+    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>role</span>;
+  }
+}
+
+<span style=color:#66d9ef>abstract</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>BaseService</span>&lt;<span style=color:#f92672>M</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>R</span> <span style=color:#a6e22e>extends</span> <span style=color:#a6e22e>Repository</span><span style=color:#960050;background-color:#1e0010>&lt;</span><span style=color:#a6e22e>M</span>&gt;<span style=color:#f92672>&gt;</span>
+  <span style=color:#66d9ef>implements</span> <span style=color:#a6e22e>CrudService</span>&lt;<span style=color:#f92672>M</span>&gt;
+{
+  <span style=color:#66d9ef>constructor</span>(<span style=color:#66d9ef>private</span> <span style=color:#a6e22e>repository</span>: <span style=color:#66d9ef>R</span>) {}
+  <span style=color:#a6e22e>findOne</span>(<span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>ID</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>M</span> {
+    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>repository</span>.<span style=color:#a6e22e>findOne</span>(<span style=color:#a6e22e>id</span>);
+  }
+}
+
+<span style=color:#66d9ef>@injectable</span>()
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>UserService</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>BaseService</span>&lt;<span style=color:#f92672>User</span><span style=color:#960050;background-color:#1e0010>,</span> <span style=color:#a6e22e>UserRepository</span>&gt; {
+  <span style=color:#66d9ef>constructor</span>(
+    <span style=color:#66d9ef>@inject</span>(<span style=color:#a6e22e>UserRepository</span>.<span style=color:#a6e22e>name</span>) <span style=color:#a6e22e>userRepository</span>: <span style=color:#66d9ef>UserRepository</span>,
+    <span style=color:#66d9ef>@inject</span>(<span style=color:#a6e22e>RoleRepository</span>.<span style=color:#a6e22e>name</span>) <span style=color:#66d9ef>private</span> <span style=color:#a6e22e>roleRepository</span>: <span style=color:#66d9ef>RoleRepository</span>
+  ) {
+    <span style=color:#66d9ef>super</span>(<span style=color:#a6e22e>userRepository</span>);
+  }
+
+  <span style=color:#a6e22e>retrievePermission</span>(<span style=color:#a6e22e>user</span>: <span style=color:#66d9ef>User</span>) {
+    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>roleRepository</span>.<span style=color:#a6e22e>findOne</span>(<span style=color:#a6e22e>user</span>.<span style=color:#a6e22e>id</span>);
+  }
+}
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>main</span> <span style=color:#f92672>=</span> () <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#a6e22e>container</span>.<span style=color:#a6e22e>register</span>(<span style=color:#e6db74>&#34;UserRepository&#34;</span>, {
+    <span style=color:#a6e22e>useClass</span>: <span style=color:#66d9ef>UserRepository</span>,
+  });
+  <span style=color:#a6e22e>container</span>.<span style=color:#a6e22e>register</span>(<span style=color:#e6db74>&#34;RoleRepository&#34;</span>, {
+    <span style=color:#a6e22e>useClass</span>: <span style=color:#66d9ef>RoleRepository</span>,
+  });
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>userService</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>container</span>.<span style=color:#a6e22e>resolve</span>(<span style=color:#a6e22e>UserService</span>);
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>user</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>userService</span>.<span style=color:#a6e22e>findOne</span>(<span style=color:#ae81ff>1</span>);
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>permissions</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>userService</span>.<span style=color:#a6e22e>retrievePermission</span>(<span style=color:#a6e22e>user</span>);
+  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>user</span>, <span style=color:#a6e22e>permissions</span>);
+};
+
+<span style=color:#a6e22e>main</span>();
+</code></pre></div><p>Trong đoạn code minh họa trên, các anh/chị có thể thấy rõ, service sẽ phụ thuộc vào repository. Tuy nhiên việc khởi tạo repository sẽ được delegate. Để hiểu rõ hơn về pattern này các anh/chị có thể tìm hiểu chi tiết qua bài viết <a href=https://nextjsvietnam.com/post/learn-enough-oop-to-be-dangerous/>Learn Enough Oop to Be Dangerous</a></p>
+<p>Như vậy, có thể thấy khi làm việc với NestJS, việc tạo ra 1 class và nhúng vào 1 class khác để sử dụng khá là đơn giản đúng không nào.</p>
+<p>Ngoài cách tạo repository một cách chủ động như trên, trong hệ sinh thái nestjs, các anh/chị có thể sử dụng cách sau. Sử dụng chính model làm repository</p>
+<blockquote>
+<p>Tạo provider sử dụng custom token và useValue</p>
+</blockquote>
+<p>Nguyên nhân là repository này sẽ sử dụng các static method của model. Nên việc khởi tạo dependency này sẽ sử dụng chính Model làm giá trị.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>PetCategory</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;../models/pet-category.model&#34;</span>;
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>PetCategoryInjectionKey</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;Pet_Category&#34;</span>;
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>PetCategoryProvider</span> <span style=color:#f92672>=</span> {
+  <span style=color:#a6e22e>provide</span>: <span style=color:#66d9ef>PetCategoryInjectionKey</span>,
+  <span style=color:#a6e22e>useValue</span>: <span style=color:#66d9ef>PetCategory</span>,
+};
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#75715e>// src/pet/pet.module.ts
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Module</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@nestjs/common&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>PetController</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./controllers/pet.controller&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>ManagePetController</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./controllers/admin/manage-pet.controller&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>ManagePetCategoryController</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./controllers/admin/manage-pet-category.controller&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>ManagePetAttributeController</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./controllers/admin/manage-pet-attribute.controller&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>NestjsFormDataModule</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;nestjs-form-data&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>PetCategoryRepository</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./repositories/pet-category.repository&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>PetCategoryProvider</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./providers/pet-category.provider&#34;</span>;
+<span style=color:#66d9ef>@Module</span>({
+  <span style=color:#a6e22e>imports</span><span style=color:#f92672>:</span> [<span style=color:#a6e22e>NestjsFormDataModule</span>],
+  <span style=color:#a6e22e>controllers</span><span style=color:#f92672>:</span> [
+    <span style=color:#a6e22e>PetController</span>,
+    <span style=color:#a6e22e>ManagePetController</span>,
+    <span style=color:#a6e22e>ManagePetCategoryController</span>,
+    <span style=color:#a6e22e>ManagePetAttributeController</span>,
+  ],
+  <span style=color:#a6e22e>providers</span><span style=color:#f92672>:</span> [<span style=color:#a6e22e>PetCategoryRepository</span>, <span style=color:#a6e22e>PetCategoryProvider</span>],
+})
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>PetModule</span> {}
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>PetCategoryInjectionKey</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#39;./../../providers/pet-category.provider&#39;</span>;
+<span style=color:#66d9ef>import</span> {
+  <span style=color:#a6e22e>Body</span>,
+  <span style=color:#a6e22e>Controller</span>,
+  <span style=color:#a6e22e>Get</span>,
+  <span style=color:#a6e22e>Render</span>,
+  <span style=color:#a6e22e>Inject</span>,
+} <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#39;@nestjs/common&#39;</span>;
+<span style=color:#66d9ef>@Controller</span>(<span style=color:#e6db74>&#39;admin/pet-categories&#39;</span>)
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ManagePetCategoryController</span> {
+  <span style=color:#66d9ef>constructor</span>(
+    <span style=color:#66d9ef>@Inject</span>(<span style=color:#a6e22e>PetCategoryInjectionKey</span>)
+    <span style=color:#66d9ef>private</span> <span style=color:#a6e22e>defaultPetCategoryRepository</span>: <span style=color:#66d9ef>typeof</span> <span style=color:#a6e22e>PetCategory</span>,
+  ) {}
+  <span style=color:#66d9ef>@Get</span>(<span style=color:#e6db74>&#39;&#39;</span>)
+  <span style=color:#66d9ef>@Render</span>(<span style=color:#e6db74>&#39;pet/admin/manage-pet-category/list&#39;</span>)
+  <span style=color:#66d9ef>async</span> <span style=color:#a6e22e>getList() {</span>
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>petCategories</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>defaultPetCategoryRepository</span>.<span style=color:#a6e22e>findAll</span>();
+    <span style=color:#66d9ef>return</span> {
+      <span style=color:#a6e22e>petCategories</span>,
+    };
+  }
+</code></pre></div>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/nestjs-tutorial>nestjs-tutorial</a>
 </div>
