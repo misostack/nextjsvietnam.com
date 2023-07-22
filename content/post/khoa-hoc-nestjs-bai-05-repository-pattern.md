@@ -283,3 +283,47 @@ Tuy rằng trông có vẻ controller và model sẽ độc lập hơn, nhưng b
 Do đó khi áp dụng trong dự án thực tế, các anh/chị nên chọn cách số 1, vì sẽ có nhiều trường hợp cần việc các query phức tạp, thay vì chỉ CRUD.
 
 ### Refactor code cho ứng dụng Pet Website
+
+Trong phần này, các anh/chị sẽ thực hành phân tách code thành các lớp riêng biệt, nhằm mục đích đảm bảo code base của ứng dụng có cấu trúc nhất quán, chặt chẽ, và có sự phân tách hợp lí giúp code base trở nên:
+
+- Dễ bảo trì
+- Dễ test
+- Dễ thêm mới/thay đổi
+
+![image](https://user-images.githubusercontent.com/31009750/255326337-09fca3bc-930e-40ac-a83f-804f740e7691.png)
+
+Trong mô hình trên, các thành phần được định nghĩa như sau:
+
+> DTO : data transfer object
+
+1. Request DTO
+
+> Phần này chính là dữ liệu nhận được từ phía client
+
+2. Response DTO
+
+> Phần này chính là dữ liệu sau 1 quá trình xử lý qua các bước khác nhau sẽ được binding vào phần **View**
+
+3. Controller
+
+> Phần này chính là phần nhận dữ liệu từ phía client và thực hiện các bước tiếp theo trong quy trình. Đảm nhiệm kết nối với phần service để lấy được ResponseDTO và thực hiện đọc template từ View và render ra kết quả cuối cùng cho người dùng
+
+4. Service
+
+> Phần này đảm nhiệm nhận dữ liệu từ Controller và thực thi các logic nghiệp vụ. Bao gồm: kiểm tra dữ liệu đầu vào, biến đổi dữ liệu nếu cần, kết nối với các service khác để thực hiện nghiệp vụ xử lý, kết nối với các repository tương ứng để tương tác với tầng dữ liệu được lưu trữ. Mục tiêu cung cấp được dữ liệu tổng hợp sau quá trình thực thi nghiệp vụ cho Controller
+
+5. Entity
+
+> Đối tượng nghiệp vụ chính, bao gồm các thuộc tính thể hiện được đối tượng trong ứng dụng
+
+6. Model
+
+> Đối tượng ánh xạ của dữ liệu được lưu trữ trong database.
+
+Thông thường, có thể sử dụng chung 1 class cho cả Entity và Model vì 2 đối tượng này khá tương đồng.
+
+7. Repository
+
+> Lớp trung gian này làm nhiệm vụ thực hiện các truy vấn vào database
+
+Tuân theo cấu trúc trên, các anh/chị hãy thực hiện refactor lại code của Pet Website.
