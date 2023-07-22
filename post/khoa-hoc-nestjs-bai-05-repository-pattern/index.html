@@ -356,6 +356,61 @@ Trong bài trước, Model được chúng trực tiếp trong Controller như s
 Tuy rằng trông có vẻ controller và model sẽ độc lập hơn, nhưng bản chất vấn đề vẫn không được giải quyết.
 Do đó khi áp dụng trong dự án thực tế, các anh/chị nên chọn cách số 1, vì sẽ có nhiều trường hợp cần việc các query phức tạp, thay vì chỉ CRUD.</p>
 <h3 id=refactor-code-cho-ứng-dụng-pet-website>Refactor code cho ứng dụng Pet Website</h3>
+<p>Trong phần này, các anh/chị sẽ thực hành phân tách code thành các lớp riêng biệt, nhằm mục đích đảm bảo code base của ứng dụng có cấu trúc nhất quán, chặt chẽ, và có sự phân tách hợp lí giúp code base trở nên:</p>
+<ul>
+<li>Dễ bảo trì</li>
+<li>Dễ test</li>
+<li>Dễ thêm mới/thay đổi</li>
+</ul>
+<p><img src=https://user-images.githubusercontent.com/31009750/255326337-09fca3bc-930e-40ac-a83f-804f740e7691.png alt=image></p>
+<p>Trong mô hình trên, các thành phần được định nghĩa như sau:</p>
+<blockquote>
+<p>DTO : data transfer object</p>
+</blockquote>
+<ol>
+<li>Request DTO</li>
+</ol>
+<blockquote>
+<p>Phần này chính là dữ liệu nhận được từ phía client</p>
+</blockquote>
+<ol start=2>
+<li>Response DTO</li>
+</ol>
+<blockquote>
+<p>Phần này chính là dữ liệu sau 1 quá trình xử lý qua các bước khác nhau sẽ được binding vào phần <strong>View</strong></p>
+</blockquote>
+<ol start=3>
+<li>Controller</li>
+</ol>
+<blockquote>
+<p>Phần này chính là phần nhận dữ liệu từ phía client và thực hiện các bước tiếp theo trong quy trình. Đảm nhiệm kết nối với phần service để lấy được ResponseDTO và thực hiện đọc template từ View và render ra kết quả cuối cùng cho người dùng</p>
+</blockquote>
+<ol start=4>
+<li>Service</li>
+</ol>
+<blockquote>
+<p>Phần này đảm nhiệm nhận dữ liệu từ Controller và thực thi các logic nghiệp vụ. Bao gồm: kiểm tra dữ liệu đầu vào, biến đổi dữ liệu nếu cần, kết nối với các service khác để thực hiện nghiệp vụ xử lý, kết nối với các repository tương ứng để tương tác với tầng dữ liệu được lưu trữ. Mục tiêu cung cấp được dữ liệu tổng hợp sau quá trình thực thi nghiệp vụ cho Controller</p>
+</blockquote>
+<ol start=5>
+<li>Entity</li>
+</ol>
+<blockquote>
+<p>Đối tượng nghiệp vụ chính, bao gồm các thuộc tính thể hiện được đối tượng trong ứng dụng</p>
+</blockquote>
+<ol start=6>
+<li>Model</li>
+</ol>
+<blockquote>
+<p>Đối tượng ánh xạ của dữ liệu được lưu trữ trong database.</p>
+</blockquote>
+<p>Thông thường, có thể sử dụng chung 1 class cho cả Entity và Model vì 2 đối tượng này khá tương đồng.</p>
+<ol start=7>
+<li>Repository</li>
+</ol>
+<blockquote>
+<p>Lớp trung gian này làm nhiệm vụ thực hiện các truy vấn vào database</p>
+</blockquote>
+<p>Tuân theo cấu trúc trên, các anh/chị hãy thực hiện refactor lại code của Pet Website.</p>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/nestjs-tutorial>nestjs-tutorial</a>
 </div>
