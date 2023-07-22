@@ -104,6 +104,8 @@ export class ManagePetCategoryController {
 }
 ```
 
+### Giới thiệu sơ qua về dependency injection
+
 Lưu ý trong 3 đoạn code minh hoạt trên, để sử dụng được repository, có thể thấy, các anh/chị cần làm 3 việc:
 
 - Khai báo repository là dạng được Injectable
@@ -275,3 +277,9 @@ export class ManagePetCategoryController {
     };
   }
 ```
+
+Tuy nhiên, cách số 2 này không giải quyết được trọn vẹn vấn đề như cách số 1, mặc dù có vẻ như xuất hiện thêm 1 class repository khi sử dụng trong controller. Nhưng việc viết query vẫn sẽ nằm trọn vẹn trong controller.
+Tuy rằng trông có vẻ controller và model sẽ độc lập hơn, nhưng bản chất vấn đề vẫn không được giải quyết.
+Do đó khi áp dụng trong dự án thực tế, các anh/chị nên chọn cách số 1, vì sẽ có nhiều trường hợp cần việc các query phức tạp, thay vì chỉ CRUD.
+
+### Refactor code cho ứng dụng Pet Website
