@@ -8,9 +8,9 @@
   {{ end }}
   </h1>
   <div style="text-align: left;">
-    {{ $categoryContent := print "/content/category/" .Title ".md"}}
+    {{ $categoryContent := print "/layouts/category/" .Title ".md"}}
     {{ if fileExists $categoryContent }}
-      {{ "/content/category/nestjs-examples.md" | readFile | markdownify }}
+      {{ "/layouts/category/nestjs-examples.md" | readFile | markdownify }}
     {{ end }}
   </div>
 </section>
