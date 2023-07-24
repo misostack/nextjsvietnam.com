@@ -1,16 +1,4 @@
 {{ define "main" }}
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1642510310947288"
-     crossorigin="anonymous"></script>
-<!-- Header Ads -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-1642510310947288"
-     data-ad-slot="4755575293"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
 <section class="container section hero-section">
   <h1 class="hero-section-heading">
   {{ if isset .Site.Data.layouts.categories .Title}}
@@ -19,6 +7,12 @@
     {{  .Title }}
   {{ end }}
   </h1>
+  <div style="text-align: left;">
+    {{ $categoryContent := print "/content/category/" .Title ".md"}}
+    {{ if fileExists $categoryContent }}
+      {{ "/content/category/nestjs-examples.md" | readFile | markdownify }}
+    {{ end }}
+  </div>
 </section>
 <section class="container section grid md:grid-cols-4 gap-8">
   {{ $paginator := .Paginate .Data.Pages .Site.Params.blog_pager }} {{ range
@@ -51,4 +45,16 @@
 <section class="container">
   {{ template "_internal/pagination.html" . }}
 </section>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1642510310947288"
+     crossorigin="anonymous"></script>
+<!-- Header Ads -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1642510310947288"
+     data-ad-slot="4755575293"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 {{ end }}
