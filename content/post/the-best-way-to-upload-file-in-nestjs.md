@@ -4,7 +4,7 @@ type: "post"
 date: 2022-08-10T17:01:06+07:00
 description: "In this topic, we will learn how to use NestJS's built-in module (multer) to upload files"
 keywords: ["nestjs", "upload file", "nestjs multer"]
-categories: ["frameworks"]
+categories: ["frameworks", "nestjs"]
 tags: ["nestjs"]
 image: "/common/no-image.png"
 ---

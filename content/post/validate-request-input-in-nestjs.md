@@ -4,7 +4,7 @@ type: "post"
 date: 2022-07-29T15:17:27+07:00
 description: "It is best practice to validate the correctness of any data sent into a web application"
 keywords: ["nestjs", "dto", "validation"]
-categories: ["frameworks"]
+categories: ["frameworks", "nestjs"]
 tags: ["nestjs"]
 image: "https://user-images.githubusercontent.com/31009750/181449337-70081a76-5a01-4229-805e-39ed0ded6b5b.png"
 ---

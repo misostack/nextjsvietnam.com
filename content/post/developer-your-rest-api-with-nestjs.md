@@ -4,7 +4,7 @@ type: "post"
 date: 2022-07-12T11:39:11+07:00
 description: "How to setup a nestjs boillerplate to developer a Restful Api Project"
 keywords: ["nestjs", "rest-api", "nodejs"]
-categories: ["frameworks"]
+categories: ["frameworks", "nestjs"]
 tags: ["nestjs", "nodejs"]
 image: "https://user-images.githubusercontent.com/31009750/179174927-7a62ee24-15c1-4884-875a-57838f31fdcf.png"
 ---
