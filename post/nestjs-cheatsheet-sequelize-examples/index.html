@@ -133,12 +133,261 @@
 </ol>
 <p>The following database engines will be covered in this post.</p>
 <ol>
-<li><input disabled type=checkbox> MYSQL</li>
+<li><input checked disabled type=checkbox> MYSQL</li>
 <li><input disabled type=checkbox> PostgreSQL</li>
 </ol>
 <h2 id=mapping-data-types>Mapping data types</h2>
-<h3 id=mapping-data-types-from-mysql-to-sequelize-model>Mapping data types from MYSQL to Sequelize Model</h3>
-<h3 id=mapping-data-types-from-postgresql-to-sequelize-model>Mapping data types from PostgreSQL to Sequelize Model</h3>
+<h3 id=mapping-data-types-for-mysql-in-sequelize>Mapping data types for MYSQL in Sequelize</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>import</span> {
+  <span style=color:#a6e22e>AutoIncrement</span>,
+  <span style=color:#a6e22e>Column</span>,
+  <span style=color:#a6e22e>DataType</span>,
+  <span style=color:#a6e22e>Model</span>,
+  <span style=color:#a6e22e>Table</span>,
+} <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;sequelize-typescript&#34;</span>;
+
+<span style=color:#75715e>// Refs : https://sequelize.org/docs/v6/core-concepts/model-basics
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>ExampleTableName</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;examples&#34;</span>;
+
+<span style=color:#66d9ef>@Table</span>({
+  <span style=color:#a6e22e>tableName</span>: <span style=color:#66d9ef>ExampleTableName</span>,
+  <span style=color:#a6e22e>timestamps</span>: <span style=color:#66d9ef>true</span>,
+})
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Example</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>Model</span> {
+  <span style=color:#75715e>// primary key, auto increment
+</span><span style=color:#75715e></span>  <span style=color:#66d9ef>@Column</span>({
+    <span style=color:#a6e22e>primaryKey</span>: <span style=color:#66d9ef>true</span>,
+    <span style=color:#a6e22e>autoIncrement</span>: <span style=color:#66d9ef>true</span>,
+    <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>DataType</span>.<span style=color:#a6e22e>INTEGER</span>.<span style=color:#a6e22e>UNSIGNED</span>, <span style=color:#75715e>// INTEGER
+</span><span style=color:#75715e></span>  })
+  <span style=color:#a6e22e>id?</span>: <span style=color:#66d9ef>number</span>;
+
+  <span style=color:#75715e>// boolean
+</span><span style=color:#75715e></span>  <span style=color:#66d9ef>@Column</span>({
+    <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>DataType</span>.<span style=color:#a6e22e>BOOLEAN</span>, <span style=color:#75715e>// TINYINT(1)
+</span><span style=color:#75715e></span>    <span style=color:#a6e22e>allowNull</span>: <span style=color:#66d9ef>false</span>,
+    <span style=color:#a6e22e>defaultValue</span>: <span style=color:#66d9ef>true</span>,
+  })
+  <span style=color:#a6e22e>flag</span>: <span style=color:#66d9ef>boolean</span>;
+
+  <span style=color:#75715e>// strings
+</span><span style=color:#75715e></span>  <span style=color:#66d9ef>@Column</span>({
+    <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>DataType</span>.<span style=color:#a6e22e>STRING</span>(<span style=color:#ae81ff>75</span>), <span style=color:#75715e>// varchar(75)
+</span><span style=color:#75715e></span>    <span style=color:#a6e22e>allowNull</span>: <span style=color:#66d9ef>false</span>,
+  })
+  <span style=color:#a6e22e>title</span>: <span style=color:#66d9ef>string</span>;
+
+  <span style=color:#66d9ef>@Column</span>({
+    <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>DataType</span>.<span style=color:#a6e22e>STRING</span>, <span style=color:#75715e>// varchar(255)
+</span><span style=color:#75715e></span>    <span style=color:#a6e22e>allowNull</span>: <span style=color:#66d9ef>false</span>,
+  })
+  <span style=color:#a6e22e>description</span>: <span style=color:#66d9ef>string</span>;
+
+  <span style=color:#66d9ef>@Column</span>({
+    <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>DataType</span>.<span style=color:#a6e22e>TEXT</span>, <span style=color:#75715e>//  TEXT
+</span><span style=color:#75715e></span>    <span style=color:#a6e22e>allowNull</span>: <span style=color:#66d9ef>true</span>,
+    <span style=color:#a6e22e>defaultValue</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;&#34;</span>,
+  })
+  <span style=color:#a6e22e>content</span>: <span style=color:#66d9ef>string</span>;
+
+  <span style=color:#66d9ef>@Column</span>({
+    <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>DataType</span>.<span style=color:#a6e22e>BLOB</span>,
+    <span style=color:#a6e22e>allowNull</span>: <span style=color:#66d9ef>true</span>,
+    <span style=color:#a6e22e>defaultValue</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;&#34;</span>,
+  })
+  <span style=color:#a6e22e>image</span>: <span style=color:#66d9ef>string</span>;
+
+  <span style=color:#75715e>// numbers
+</span><span style=color:#75715e></span>  <span style=color:#66d9ef>@Column</span>({
+    <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>DataType</span>.<span style=color:#a6e22e>INTEGER</span>({ <span style=color:#a6e22e>length</span>: <span style=color:#66d9ef>2</span> }),
+  })
+  <span style=color:#a6e22e>rate</span>: <span style=color:#66d9ef>number</span>;
+
+  <span style=color:#75715e>// If your number is greater than &gt; 9,007,199,254,740,992
+</span><span style=color:#75715e></span>  <span style=color:#66d9ef>@Column</span>({
+    <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>DataType</span>.<span style=color:#a6e22e>BIGINT</span>,
+    <span style=color:#a6e22e>allowNull</span>: <span style=color:#66d9ef>false</span>,
+  })
+  <span style=color:#a6e22e>aBigIntNumber</span>: <span style=color:#66d9ef>BigInt</span>;
+
+  <span style=color:#66d9ef>@Column</span>({
+    <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>DataType</span>.<span style=color:#a6e22e>FLOAT</span>(<span style=color:#ae81ff>12</span>, <span style=color:#ae81ff>3</span>),
+  })
+  <span style=color:#a6e22e>aFloat</span>: <span style=color:#66d9ef>number</span>;
+
+  <span style=color:#75715e>// http://software-product-development.blogspot.com/2008/07/net-double-vs-decimal.html
+</span><span style=color:#75715e></span>  <span style=color:#75715e>// Double: not suitable for exactly number
+</span><span style=color:#75715e></span>  <span style=color:#66d9ef>@Column</span>({
+    <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>DataType</span>.<span style=color:#a6e22e>DOUBLE</span>(<span style=color:#ae81ff>24</span>, <span style=color:#ae81ff>3</span>),
+  })
+  <span style=color:#a6e22e>aDouble</span>: <span style=color:#66d9ef>number</span>;
+
+  <span style=color:#75715e>// Decimal: suitable for exactly number: financial data
+</span><span style=color:#75715e></span>  <span style=color:#66d9ef>@Column</span>({
+    <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>DataType</span>.<span style=color:#a6e22e>DECIMAL</span>(<span style=color:#ae81ff>24</span>, <span style=color:#ae81ff>3</span>),
+  })
+  <span style=color:#a6e22e>aDecimal</span>: <span style=color:#66d9ef>number</span>;
+
+  <span style=color:#75715e>// unsigned number
+</span><span style=color:#75715e></span>  <span style=color:#66d9ef>@Column</span>({
+    <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>DataType</span>.<span style=color:#a6e22e>INTEGER</span>.<span style=color:#a6e22e>UNSIGNED</span>,
+  })
+  <span style=color:#a6e22e>population</span>: <span style=color:#66d9ef>number</span>;
+
+  <span style=color:#66d9ef>@Column</span>({
+    <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>DataType</span>.<span style=color:#a6e22e>INTEGER</span>.<span style=color:#a6e22e>UNSIGNED</span>.<span style=color:#a6e22e>ZEROFILL</span>,
+  })
+  <span style=color:#a6e22e>orderId</span>: <span style=color:#66d9ef>string</span>;
+
+  <span style=color:#75715e>// date time
+</span><span style=color:#75715e></span>  <span style=color:#66d9ef>@Column</span>({
+    <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>DataType</span>.<span style=color:#a6e22e>DATEONLY</span>,
+  })
+  <span style=color:#a6e22e>birthDay</span>: <span style=color:#66d9ef>Date</span>;
+
+  <span style=color:#66d9ef>@Column</span>({
+    <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>DataType</span>.<span style=color:#a6e22e>DATE</span>,
+    <span style=color:#a6e22e>allowNull</span>: <span style=color:#66d9ef>true</span>,
+    <span style=color:#a6e22e>defaultValue</span>: <span style=color:#66d9ef>DataType.NOW</span>,
+  })
+  <span style=color:#a6e22e>myDate</span>: <span style=color:#66d9ef>Date</span>;
+
+  <span style=color:#75715e>// TIME(fsp)	A time. Format: hh:mm:ss. The supported range is from &#39;-838:59:59&#39; to &#39;838:59:59&#39;
+</span><span style=color:#75715e></span>  <span style=color:#66d9ef>@Column</span>({
+    <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>DataType</span>.<span style=color:#a6e22e>TIME</span>,
+    <span style=color:#a6e22e>allowNull</span>: <span style=color:#66d9ef>false</span>,
+  })
+  <span style=color:#a6e22e>zodiacHour</span>: <span style=color:#66d9ef>string</span>;
+
+  <span style=color:#75715e>// YEAR    &#34;A year in four-digit format. Values allowed in four-digit format: 1901 to 2155, and 0000.
+</span><span style=color:#75715e></span>  <span style=color:#75715e>// Not Support
+</span><span style=color:#75715e></span>
+  <span style=color:#75715e>// Enum: but should not use, everytime you need to add/remove enum value, must run migration
+</span><span style=color:#75715e></span>  <span style=color:#66d9ef>@Column</span>({
+    <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>DataType</span>.<span style=color:#a6e22e>ENUM</span>,
+    <span style=color:#a6e22e>values</span><span style=color:#f92672>:</span> [<span style=color:#e6db74>&#34;active&#34;</span>, <span style=color:#e6db74>&#34;inactive&#34;</span>, <span style=color:#e6db74>&#34;pending&#34;</span>],
+  })
+  <span style=color:#a6e22e>status</span>: <span style=color:#66d9ef>string</span>;
+
+  <span style=color:#66d9ef>@Column</span>({
+    <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>DataType</span>.<span style=color:#a6e22e>JSON</span>,
+    <span style=color:#a6e22e>allowNull</span>: <span style=color:#66d9ef>true</span>,
+    <span style=color:#a6e22e>defaultValue</span><span style=color:#f92672>:</span> {},
+  })
+  <span style=color:#a6e22e>settings</span>: <span style=color:#66d9ef>Object</span>;
+}
+</code></pre></div><h3 id=example-data-types-for-mysql-in-sequelize-migration>Example data types for MYSQL in Sequelize Migration</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#e6db74>&#34;use strict&#34;</span>;
+
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>ExampleTableName</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;src/pet/models/example.model&#34;</span>;
+
+<span style=color:#75715e>/** @type {import(&#39;sequelize-cli&#39;).Migration} */</span>
+<span style=color:#66d9ef>module</span><span style=color:#a6e22e>.exports</span> <span style=color:#f92672>=</span> {
+  <span style=color:#66d9ef>async</span> <span style=color:#a6e22e>up</span>(<span style=color:#a6e22e>queryInterface</span>, <span style=color:#a6e22e>Sequelize</span>) {
+    <span style=color:#75715e>/**
+</span><span style=color:#75715e>     * Add altering commands here.
+</span><span style=color:#75715e>     *
+</span><span style=color:#75715e>     * Example:
+</span><span style=color:#75715e>     * await queryInterface.createTable(&#39;users&#39;, { id: Sequelize.INTEGER });
+</span><span style=color:#75715e>     */</span>
+    <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>queryInterface</span>.<span style=color:#a6e22e>createTable</span>(<span style=color:#a6e22e>ExampleTableName</span>, {
+      <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> {
+        <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>Sequelize</span>.<span style=color:#a6e22e>INTEGER</span>.<span style=color:#a6e22e>UNSIGNED</span>,
+        <span style=color:#a6e22e>primaryKey</span>: <span style=color:#66d9ef>true</span>,
+        <span style=color:#a6e22e>autoIncrement</span>: <span style=color:#66d9ef>true</span>,
+      },
+      <span style=color:#a6e22e>createdAt</span><span style=color:#f92672>:</span> {
+        <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>Sequelize</span>.<span style=color:#a6e22e>DATE</span>,
+        <span style=color:#a6e22e>defaultValue</span>: <span style=color:#66d9ef>Sequelize.fn</span>(<span style=color:#e6db74>&#34;NOW&#34;</span>),
+      },
+      <span style=color:#a6e22e>updatedAt</span><span style=color:#f92672>:</span> {
+        <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>Sequelize</span>.<span style=color:#a6e22e>DATE</span>,
+        <span style=color:#a6e22e>defaultValue</span>: <span style=color:#66d9ef>Sequelize.fn</span>(<span style=color:#e6db74>&#34;NOW&#34;</span>),
+      },
+      <span style=color:#a6e22e>flag</span><span style=color:#f92672>:</span> {
+        <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>Sequelize</span>.<span style=color:#a6e22e>BOOLEAN</span>,
+        <span style=color:#a6e22e>allowNull</span>: <span style=color:#66d9ef>false</span>,
+        <span style=color:#a6e22e>defaultValue</span>: <span style=color:#66d9ef>true</span>,
+      },
+      <span style=color:#a6e22e>title</span><span style=color:#f92672>:</span> {
+        <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>Sequelize</span>.<span style=color:#a6e22e>STRING</span>(<span style=color:#ae81ff>75</span>),
+        <span style=color:#a6e22e>allowNull</span>: <span style=color:#66d9ef>false</span>,
+      },
+      <span style=color:#a6e22e>description</span><span style=color:#f92672>:</span> {
+        <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>Sequelize</span>.<span style=color:#a6e22e>STRING</span>, <span style=color:#75715e>// 255
+</span><span style=color:#75715e></span>        <span style=color:#a6e22e>allowNull</span>: <span style=color:#66d9ef>false</span>,
+      },
+      <span style=color:#a6e22e>content</span><span style=color:#f92672>:</span> {
+        <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>Sequelize</span>.<span style=color:#a6e22e>TEXT</span>,
+        <span style=color:#a6e22e>allowNull</span>: <span style=color:#66d9ef>true</span>,
+        <span style=color:#a6e22e>defaultValue</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;&#34;</span>,
+      },
+      <span style=color:#a6e22e>image</span><span style=color:#f92672>:</span> {
+        <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>Sequelize</span>.<span style=color:#a6e22e>BLOB</span>,
+        <span style=color:#a6e22e>allowNull</span>: <span style=color:#66d9ef>true</span>,
+        <span style=color:#66d9ef>default</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;&#34;</span>,
+      },
+      <span style=color:#a6e22e>rate</span><span style=color:#f92672>:</span> {
+        <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>Sequelize</span>.<span style=color:#a6e22e>INTEGER</span>({ <span style=color:#a6e22e>length</span>: <span style=color:#66d9ef>2</span> }),
+      },
+      <span style=color:#a6e22e>aBigIntNumber</span><span style=color:#f92672>:</span> {
+        <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>Sequelize</span>.<span style=color:#a6e22e>BIGINT</span>,
+      },
+      <span style=color:#a6e22e>aFloat</span><span style=color:#f92672>:</span> {
+        <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>Sequelize</span>.<span style=color:#a6e22e>FLOAT</span>(<span style=color:#ae81ff>12</span>, <span style=color:#ae81ff>3</span>),
+      },
+      <span style=color:#a6e22e>aDouble</span><span style=color:#f92672>:</span> {
+        <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>Sequelize</span>.<span style=color:#a6e22e>DOUBLE</span>(<span style=color:#ae81ff>24</span>, <span style=color:#ae81ff>3</span>),
+      },
+      <span style=color:#a6e22e>aDecimal</span><span style=color:#f92672>:</span> {
+        <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>Sequelize</span>.<span style=color:#a6e22e>DECIMAL</span>(<span style=color:#ae81ff>24</span>, <span style=color:#ae81ff>3</span>),
+      },
+      <span style=color:#a6e22e>population</span><span style=color:#f92672>:</span> {
+        <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>Sequelize</span>.<span style=color:#a6e22e>INTEGER</span>.<span style=color:#a6e22e>UNSIGNED</span>,
+      },
+      <span style=color:#a6e22e>orderId</span><span style=color:#f92672>:</span> {
+        <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>Sequelize</span>.<span style=color:#a6e22e>INTEGER</span>.<span style=color:#a6e22e>UNSIGNED</span>.<span style=color:#a6e22e>ZEROFILL</span>,
+      },
+      <span style=color:#a6e22e>birthDay</span><span style=color:#f92672>:</span> {
+        <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>Sequelize</span>.<span style=color:#a6e22e>DATEONLY</span>,
+      },
+      <span style=color:#a6e22e>myDate</span><span style=color:#f92672>:</span> {
+        <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>Sequelize</span>.<span style=color:#a6e22e>DATE</span>,
+        <span style=color:#a6e22e>allowNull</span>: <span style=color:#66d9ef>true</span>,
+        <span style=color:#a6e22e>defaultValue</span>: <span style=color:#66d9ef>Sequelize.NOW</span>,
+      },
+      <span style=color:#a6e22e>zodiacHour</span><span style=color:#f92672>:</span> {
+        <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>Sequelize</span>.<span style=color:#a6e22e>TIME</span>,
+        <span style=color:#a6e22e>allowNull</span>: <span style=color:#66d9ef>false</span>,
+      },
+      <span style=color:#a6e22e>status</span><span style=color:#f92672>:</span> {
+        <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>Sequelize</span>.<span style=color:#a6e22e>ENUM</span>,
+        <span style=color:#a6e22e>values</span><span style=color:#f92672>:</span> [<span style=color:#e6db74>&#34;active&#34;</span>, <span style=color:#e6db74>&#34;inactive&#34;</span>, <span style=color:#e6db74>&#34;pending&#34;</span>],
+      },
+      <span style=color:#a6e22e>settings</span><span style=color:#f92672>:</span> {
+        <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>Sequelize</span>.<span style=color:#a6e22e>JSON</span>,
+        <span style=color:#a6e22e>allowNull</span>: <span style=color:#66d9ef>true</span>,
+        <span style=color:#a6e22e>defaultValue</span><span style=color:#f92672>:</span> {},
+      },
+    });
+  },
+
+  <span style=color:#66d9ef>async</span> <span style=color:#a6e22e>down</span>(<span style=color:#a6e22e>queryInterface</span>, <span style=color:#a6e22e>Sequelize</span>) {
+    <span style=color:#75715e>/**
+</span><span style=color:#75715e>     * Add reverting commands here.
+</span><span style=color:#75715e>     *
+</span><span style=color:#75715e>     * Example:
+</span><span style=color:#75715e>     * await queryInterface.dropTable(&#39;users&#39;);
+</span><span style=color:#75715e>     */</span>
+    <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>queryInterface</span>.<span style=color:#a6e22e>dropTable</span>(<span style=color:#a6e22e>ExampleTableName</span>);
+  },
+};
+</code></pre></div><blockquote>
+<p>Output</p>
+</blockquote>
+<p><img src=https://user-images.githubusercontent.com/31009750/257042168-1da81aed-c15b-41fc-9339-8d68b722d2a7.png alt=image>
+<img src=https://user-images.githubusercontent.com/31009750/257042193-7bb53236-e5d3-40b1-84f5-49e4822a26f7.png alt=image></p>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/nestjs-examples>nestjs-examples</a>
 </div>
