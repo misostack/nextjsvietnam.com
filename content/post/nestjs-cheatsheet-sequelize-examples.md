@@ -9,6 +9,8 @@ tags: ["sequelize"]
 image: "https://user-images.githubusercontent.com/31009750/255499723-15c52207-17a0-4666-b3cd-40630af681f0.png"
 ---
 
+The example code will be placed [here](https://github.com/misostack/nestjs-tutorial-2023/tree/example-sequellize)
+
 The following topics will be covered in this post.
 
 1. [ ] Mapping data types
