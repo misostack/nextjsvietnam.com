@@ -13,8 +13,8 @@ The example code will be placed [here](https://github.com/misostack/nestjs-tutor
 
 The following topics will be covered in this post.
 
-1. [ ] Mapping data types
-2. [ ] Database constraints
+1. [x] Mapping data types
+2. [x] Database constraints
 3. [ ] Relationship or Associations
 4. [ ] Indexing
 5. [ ] Data migrations
@@ -287,3 +287,30 @@ module.exports = {
 
 ![image](https://user-images.githubusercontent.com/31009750/257042168-1da81aed-c15b-41fc-9339-8d68b722d2a7.png)
 ![image](https://user-images.githubusercontent.com/31009750/257042193-7bb53236-e5d3-40b1-84f5-49e4822a26f7.png)
+
+### Relationship or Association for MYSQL in Sequelize
+
+![image](https://user-images.githubusercontent.com/31009750/257051023-088fc7d3-92c1-443b-8003-add2d6ac9ea8.png)
+![image](https://user-images.githubusercontent.com/31009750/257051069-7a6384cd-2978-433f-8514-4f73264a09dd.png)
+
+#### One to One Example for MYSQL in Sequelize
+
+- User - UserSetting
+
+#### One to Many Example for MYSQL in Sequelize
+
+- User - LoginHistory
+
+#### Many to Many Example for MYSQL in Sequelize
+
+- Pet - PetCategory
+- Pet - PetAttribute
+
+Many-to-Many relationship can't be model directly, in this case, we will use concept "Associative entity"(Junction)
+
+Then it becomes
+
+- Pet - Pet_PetCategory - PetCategory
+- Pet - Pet_PetAttribute - PetAttribute
+
+In sequelize, by default Pet_PetCategory will become "PetPetCategory"
