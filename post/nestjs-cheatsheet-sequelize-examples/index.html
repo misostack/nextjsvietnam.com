@@ -123,8 +123,8 @@
 <p>The example code will be placed <a href=https://github.com/misostack/nestjs-tutorial-2023/tree/example-sequellize>here</a></p>
 <p>The following topics will be covered in this post.</p>
 <ol>
-<li><input disabled type=checkbox> Mapping data types</li>
-<li><input disabled type=checkbox> Database constraints</li>
+<li><input checked disabled type=checkbox> Mapping data types</li>
+<li><input checked disabled type=checkbox> Database constraints</li>
 <li><input disabled type=checkbox> Relationship or Associations</li>
 <li><input disabled type=checkbox> Indexing</li>
 <li><input disabled type=checkbox> Data migrations</li>
@@ -389,6 +389,29 @@
 </blockquote>
 <p><img src=https://user-images.githubusercontent.com/31009750/257042168-1da81aed-c15b-41fc-9339-8d68b722d2a7.png alt=image>
 <img src=https://user-images.githubusercontent.com/31009750/257042193-7bb53236-e5d3-40b1-84f5-49e4822a26f7.png alt=image></p>
+<h3 id=relationship-or-association-for-mysql-in-sequelize>Relationship or Association for MYSQL in Sequelize</h3>
+<p><img src=https://user-images.githubusercontent.com/31009750/257051023-088fc7d3-92c1-443b-8003-add2d6ac9ea8.png alt=image>
+<img src=https://user-images.githubusercontent.com/31009750/257051069-7a6384cd-2978-433f-8514-4f73264a09dd.png alt=image></p>
+<h4 id=one-to-one-example-for-mysql-in-sequelize>One to One Example for MYSQL in Sequelize</h4>
+<ul>
+<li>User - UserSetting</li>
+</ul>
+<h4 id=one-to-many-example-for-mysql-in-sequelize>One to Many Example for MYSQL in Sequelize</h4>
+<ul>
+<li>User - LoginHistory</li>
+</ul>
+<h4 id=many-to-many-example-for-mysql-in-sequelize>Many to Many Example for MYSQL in Sequelize</h4>
+<ul>
+<li>Pet - PetCategory</li>
+<li>Pet - PetAttribute</li>
+</ul>
+<p>Many-to-Many relationship can&rsquo;t be model directly, in this case, we will use concept &ldquo;Associative entity&rdquo;(Junction)</p>
+<p>Then it becomes</p>
+<ul>
+<li>Pet - Pet_PetCategory - PetCategory</li>
+<li>Pet - Pet_PetAttribute - PetAttribute</li>
+</ul>
+<p>In sequelize, by default Pet_PetCategory will become &ldquo;PetPetCategory&rdquo;</p>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/nestjs-examples>nestjs-examples</a>
 </div>
