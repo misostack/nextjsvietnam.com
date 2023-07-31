@@ -75,8 +75,8 @@
         {{ $frameworkCategory := .Site.Taxonomies.categories.systemdesign }}
         {{ range first 12 (sort $frameworkCategory.Pages "Date" "desc") }}
           <article class="card card-post md:flex mb-4">
-            <a href="{{ .Permalink }}">
-              <img  class="w-96" src="{{.Params.Image | absURL}}" alt="{{.Title}}" />
+            <a class="card-post-thumbnail-image" href="{{ .Permalink }}">
+              <img src="{{.Params.Image | absURL}}" alt="{{.Title}}" />
             </a>
             <div class="card-post-meta px-0 mt-2 md:px-4 md:mt-0">
               <h3 class="card-post-title">

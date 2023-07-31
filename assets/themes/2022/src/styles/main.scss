@@ -138,6 +138,7 @@ input {
 
 .card-post {
   @apply p-2;
+
   &-default {
     @apply overflow-hidden rounded-lg shadow-lg;
   }
