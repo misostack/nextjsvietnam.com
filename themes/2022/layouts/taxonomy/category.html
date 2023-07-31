@@ -7,10 +7,10 @@
     {{  .Title }}
   {{ end }}
   </h1>
-  <div style="text-align: left;">
+  <div style="text-align: left;" class="page-content">
     {{ $categoryContent := print "/layouts/category/" .Title ".md"}}
     {{ if fileExists $categoryContent }}
-      {{ "/layouts/category/nestjs-examples.md" | readFile | markdownify }}
+      {{ $categoryContent | readFile | markdownify }}
     {{ end }}
   </div>
 </section>
