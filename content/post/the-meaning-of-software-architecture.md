@@ -148,3 +148,9 @@ Software architect is ultimately responsible for :
 - A liaison between technical and non-technical resources.
 
 ## Software architects perform a number of duties
+
+![image](https://user-images.githubusercontent.com/31009750/257451328-0f27b90a-4042-4a71-8b2b-69e2d82b592a.png)
+
+There are numerous skills right, but you don't have to fulfill all of them for being a good Software Architect.
+
+You can mainly focus on the important skills of this role. So what's the most important sills of this role. We should rely on the purpose and the consumers of software architecture.

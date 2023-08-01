@@ -13,3 +13,5 @@ Fundamental concepts or properties of a system in its environment embodied in it
 - A **software system** is **situated** in an **environment**, and its software .architecture takes into consideration the environment in which it must **operate**.
 - An architecture description **documents** the architecture and **communicates** to **stakeholders** how the architecture meets the **system's needs**.
 - Architecture **views** are created from the architecture description, and each view **covers** one or more architecture **concerns of the stakeholders**.
+
+
