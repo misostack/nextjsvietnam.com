@@ -58,3 +58,31 @@
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 {{ end }}
+
+{{ define "seo" }}
+  {{ if isset .Site.Data.layouts.categories .Title}}
+  <script type="application/ld+json">{
+    "@context": "https://schema.org/",
+    "@type": "CreativeWorkSeries",
+    "name": "{{ index .Site.Data.layouts.categories .Title }}",
+    "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "bestRating": "5",
+        "ratingCount": "100"
+    }
+  }</script>  
+  {{ else }}
+  <script type="application/ld+json">{
+    "@context": "https://schema.org/",
+    "@type": "CreativeWorkSeries",
+    "name": "{  .Title }}",
+    "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "bestRating": "5",
+        "ratingCount": "100"
+    }
+  }</script>
+  {{ end }}
+{{ end }}
