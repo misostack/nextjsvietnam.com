@@ -17,3 +17,44 @@ image: "https://user-images.githubusercontent.com/31009750/181449337-70081a76-5a
 2. Cách test một service trong NestJS
 3. Hướng dẫn debug unit test trong NestJS
 4. Ứng dụng viết Unit Test cho PetCategory
+
+Đầu tiên, các anh/chị có thể thấy rằng sẽ có một mối quan hệ mật thiết giữa 3 thứ trong ngành này: errors/bugs(lỗi), stress(căng thẳng), tests(kiểm tra)
+
+![image](https://user-images.githubusercontent.com/31009750/261230050-80f15af7-6ed7-49fd-9907-6bb248aa7137.png)
+
+1. Càng nhiều lỗi (errors/bugs) thì càng căng thẳng(stress)
+2. Càng căng thẳng(stress) thì càng tạo ra nhiều lỗi(errors/bugs)
+3. Càng kiểm tra nhiều(test) thì càng ít lỗi(errors/bugs) do đã phát hiện và được sửa
+4. Càng ít lỗi(errors/bugs) thì càng ít cằng thẳng(stress)
+
+Do đó, việc test nhiều/kĩ sẽ đảm bảo được các anh/chị sẽ ít căng thẳng(stress) hơn.
+
+Tiếp theo tôi xin giới thiệu với các anh/chị nghệ thuật viết test như thế nào cho đúng. Trước tiên, tôi xin phép đi qua một khái niệm tổng quát về testing trong ngành phần mềm.
+
+> Kim tự tháp kiểm thử phần mềm
+
+![image](https://user-images.githubusercontent.com/31009750/261233946-8a85e14e-e153-4dd0-a22c-ced35255d20c.png)
+
+Bao gồm tất cả các giai đoạn của vòng đời phát triển phần mềm (SDLC). Nó bắt đầu từ unit testing, đến kiểm thử tích hợp (integration testing) và kết thúc với kiểm thử chức năng ở đỉnh(e2e)
+
+Không có sự phân bổ cố định giữa các loại kiểm thử này. Thay vào đó, bạn nên xác định những bài kiểm thử nào phù hợp nhất với nhu cầu của bạn dựa vào việc cân đối chi phí, thời gian thực hiện và tài nguyên cho từng loại kiểm thử.
+
+Các nhà phát triển phần mềm Agile cũng sử dụng phương pháp góc phần tư kiểm thử phần mềm ( Software Testing Quadrants) để phân loại các kiểm thử theo **nghiệp vụ**(business-facing) hay **technology facing**(công nghệ) nhằm tìm ra những bất cập của sản phẩm(critique product) và hỗ trợ đội ngũ phát triển xây dựng và thay đổi ứng dụng 1 cách tự tin.
+
+![image](https://user-images.githubusercontent.com/31009750/261236689-fd1a32e5-bd46-439f-a455-997507a259e6.png)
+
+Vậy là chúng ta đã đi qua tổng quan về một số khái niệm cũng như phương pháp kiểm thử phần mềm. Trong phạm vi bài viết này, tôi sẽ tập trung trình bày vào 2 phần chính:
+
+- Unit Tests
+
+## Vậy viết Unit Test cụ thể là làm gì
+
+Các anh/chị cố gắng ghi nhớ định nghĩa đơn giản sau đây, để phân tích và áp dụng được unit test vào trong dự án mà không tốn quá nhiều thời gian/tài nguyên.
+
+> Unit test được áp dụng để kiểm tra logic của một đoạn code thuộc 1 phần mềm. Đôi khi trong một hệ thống, cũng có thể tình một module là 1 unit
+
+### Tham khảo
+
+- https://www.guru99.com/component-testing.html - Component Testing
+- https://www.onpathtesting.com/blog/what-are-agile-testing-quadrants - Agile testing quadrants
+- https://circleci.com/blog/component-vs-unit-testing/ - Component vs Unit Testing

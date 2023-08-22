@@ -229,3 +229,10 @@ input {
     color: white;
   }
 }
+
+.card-post-thumbnail-image {
+  @apply flex-1;
+}
+.card-post-meta {
+  @apply flex-1;
+}
