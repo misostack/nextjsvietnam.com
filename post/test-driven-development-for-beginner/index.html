@@ -1,0 +1,584 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=home href=https://nextjsvietnam.com>
+<meta name=generator content="jsguru cms">
+<link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap">
+<link rel=stylesheet href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel=stylesheet href=https://nextjsvietnam.com/themes/2022/public/main.css>
+<link rel=stylesheet href=https://nextjsvietnam.com/themes/2022/public/home.css>
+<link rel=stylesheet href=https://nextjsvietnam.com/themes/2022/public/page.css>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RWE4MLJYE6"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-RWE4MLJYE6')</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1642510310947288" crossorigin=anonymous></script>
+<title>Test Driven Development for Beginner | Don’t write a line of new code unless you first have a failing automated test. | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+<meta name=robots content="all">
+<meta name=keywords content="tdd,test driven development">
+<meta name=description content="Don’t write a line of new code unless you first have a failing automated test.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://user-images.githubusercontent.com/31009750/263275191-c8fe7127-7634-4555-b154-06524838b133.png">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="750">
+<meta property="og:image:height" content="300">
+<meta property="article:publisher" content="https://www.facebook.com/nextjsvietnam">
+<meta property="article:published_time" content="2023-08-25T19:53:36+07:00">
+<meta property="article:modified_time" content="2023-08-25T19:53:36+07:00">
+<link rel=apple-touch-icon sizes=57x57 href=/apple-icon-57x57.png>
+<link rel=apple-touch-icon sizes=60x60 href=/apple-icon-60x60.png>
+<link rel=apple-touch-icon sizes=72x72 href=/apple-icon-72x72.png>
+<link rel=apple-touch-icon sizes=76x76 href=/apple-icon-76x76.png>
+<link rel=apple-touch-icon sizes=114x114 href=/apple-icon-114x114.png>
+<link rel=apple-touch-icon sizes=120x120 href=/apple-icon-120x120.png>
+<link rel=apple-touch-icon sizes=144x144 href=/apple-icon-144x144.png>
+<link rel=apple-touch-icon sizes=152x152 href=/apple-icon-152x152.png>
+<link rel=apple-touch-icon sizes=180x180 href=/apple-icon-180x180.png>
+<link rel=icon type=image/png sizes=192x192 href=/android-icon-192x192.png>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=96x96 href=/favicon-96x96.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
+<link rel=manifest href=/manifest.json>
+<meta name=msapplication-TileColor content="#ffffff">
+<meta name=msapplication-TileImage content="/ms-icon-144x144.png">
+<meta name=theme-color content="#ffffff">
+</head>
+<body class=body-nav-fixed>
+<nav class="nav-fixed nav-default z-50">
+<div class=container>
+<div class="nav-container flex flex-wrap justify-between items-center">
+<a href=https://nextjsvietnam.com class="nav-brand inline-block">
+<img class=h-12 src=https://nextjsvietnam.com/themes/2022/src/assets/images/logo.png alt=Stunning>
+</a>
+<a href=javascript:void(0); data-menu=#menu-main_menu class=nav-menu-toggle><span class=material-icons>menu</span></a>
+<ul id=menu-main_menu class="nav-menu h-0 md:h-auto">
+<form class="nav-menu-search-bar md:hidden relative">
+<button class="nav-menu-search-bar-search-btn absolute h-full"><svg class="w-3 h-3 text-gray-600" fill="currentcolor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.32 14.9l5.39 5.4a1 1 0 01-1.42 1.4l-5.38-5.38a8 8 0 111.41-1.41zM10 16a6 6 0 100-12 6 6 0 000 12z"/></svg>
+</button>
+<input name=s type=text class=w-full>
+</form>
+<li class=nav-menu-item>
+<a class=nav-menu-link href=https://nextjsvietnam.com/categories/systemdesign>System Design
+<span class=material-icons>keyboard_arrow_down</span>
+</a>
+<ul class=sub-menu>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/software-architecture>Software Architecture</a></li>
+</ul>
+</li>
+<li class=nav-menu-item>
+<a class=nav-menu-link href=https://nextjsvietnam.com/categories/cheatsheet>Cheatsheet
+<span class=material-icons>keyboard_arrow_down</span>
+</a>
+<ul class=sub-menu>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/nestjs-examples>NestJS Examples</a></li>
+</ul>
+</li>
+<li class=nav-menu-item>
+<a class=nav-menu-link href=https://nextjsvietnam.com/categories/frameworks>Frameworks
+<span class=material-icons>keyboard_arrow_down</span>
+</a>
+<ul class=sub-menu>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/nestjs>NestJS</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/reactjs>ReactJS</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/nextjs>NextJS</a></li>
+</ul>
+</li>
+<li class=nav-menu-item>
+<a class=nav-menu-link href=https://nextjsvietnam.com>Tutorials
+<span class=material-icons>keyboard_arrow_down</span>
+</a>
+<ul class=sub-menu>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/nestjs-tutorial>NestJS Tutorial</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/reactjs-tutorial>ReactJS Tutorial</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/nextjs-tutorial>NextJS Tutorial</a></li>
+</ul>
+</li>
+<li class=nav-menu-item>
+<a class=nav-menu-link href=https://nextjsvietnam.com>Tools
+<span class=material-icons>keyboard_arrow_down</span>
+</a>
+<ul class=sub-menu>
+<li class=nav-menu-item><a class=nav-menu-link href=https://regex101.com/>Online Regex</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=http://www.bashoneliners.com/>Bash Online</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://www.epochconverter.com/>Unix Timestamp Conversion</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://ryanstutorials.net/bash-scripting-tutorial/>Bash Scripting</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://explainshell.com/>Explain Shell</a></li>
+</ul>
+</li>
+<form class="nav-menu-search-bar hidden md:flex relative">
+<button class="nav-menu-search-bar-search-btn absolute h-full"><svg class="w-3 h-3 text-gray-600" fill="currentcolor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.32 14.9l5.39 5.4a1 1 0 01-1.42 1.4l-5.38-5.38a8 8 0 111.41-1.41zM10 16a6 6 0 100-12 6 6 0 000 12z"/></svg>
+</button>
+<input name=s type=text class=w-full>
+</form>
+</ul>
+</div>
+</div>
+</nav>
+<main>
+<section class="container section">
+<div class="page-content max-w-2xl mx-auto">
+<img src=https://user-images.githubusercontent.com/31009750/263275191-c8fe7127-7634-4555-b154-06524838b133.png class=img-responsive alt="Test Driven Development for Beginner">
+<h1>Test Driven Development for Beginner</h1>
+<p><strong>Post Date</strong> : 2023-08-25T19:53:36+07:00</p>
+<p><strong>Modified Date</strong> : 2023-08-25T19:53:36+07:00</p>
+<p>
+<strong>Category:</strong>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/cheatsheet>cheatsheet</a>
+</p>
+<p>
+<strong>Tags:</strong>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=/tags/tdd>tdd</a>
+</p>
+<h2 id=rules-for-test-driven-development--tdd->Rules for Test Driven Development ( TDD )</h2>
+<ul>
+<li>Don’t write a line of new code unless you first have a failing automated test.</li>
+<li>Eliminate duplication</li>
+</ul>
+<p>Technical implications:</p>
+<ul>
+<li>You must design organically, with running code providing feedback between decisions</li>
+<li>You must write your own tests</li>
+<li>Your development environment must provide rapid response to small changes</li>
+<li>Your designs must consist of many highly cohesive, loosely coupled components</li>
+</ul>
+<h2 id=cohesion>Cohesion</h2>
+<ul>
+<li>Relationship inside module</li>
+<li>Connection betweeen functions</li>
+<li>Evaluate the quality that component/module focus on single responsibility</li>
+</ul>
+<p>Cohesion types:</p>
+<ul>
+<li>Coincidential ( bad ) : eg Utility</li>
+<li>Logical ( good )</li>
+<li>Temporal (time) : a function invoked and has been catch an exception -> create error log and notify to user</li>
+<li>Procedural cohesion: a sequence operations. Eg: check permission -> open file</li>
+<li>COMMUNICATIONAL/INFORMATIONAL: work with the same record.</li>
+<li>SEQUENTIAL COHESION: output of A is input of B. A,B can be grouped in a module.</li>
+<li>FUNCTIONAL COHESION (GOOD)</li>
+</ul>
+<h2 id=coupling>Coupling</h2>
+<ul>
+<li>Relation between modules</li>
+<li>Dependencies between modules</li>
+<li>Evaluate the connection level between modules</li>
+</ul>
+<h2 id=target-is-creating-and-expandable-and-easy-maintenance-system>Target is creating and expandable and easy maintenance system</h2>
+<blockquote>
+<p>low coupling, high cohesion và encapsulation</p>
+</blockquote>
+<p>Finally, the TDD&rsquo;s mantra</p>
+<blockquote>
+<p>Red/Green/Refactor</p>
+</blockquote>
+<ul>
+<li>Red: write a little test that doesn&rsquo;t work, perhaps doesn&rsquo;t even compile at first</li>
+<li>Green: make the test work quickly, committing whatever sins necessary in the process</li>
+<li>Refactor: eliminate all the duplication created in just getting the test to work</li>
+</ul>
+<p>An important criteria in software development</p>
+<blockquote>
+<p>Defect Density is the number of defects found within a software&rsquo;s lines of code</p>
+</blockquote>
+<p>Defect Density = Defect count/size of the release</p>
+<p>Eg:
+Module A - 1000 LOC - 20bugs
+Module B - 5000 LOC - 30bugs
+Module C - 10,000 LOC - 50 bugs</p>
+<p>Defect Density = 16,000 / 100 = 160</p>
+<h2 id=get-back-to-tdd>Get back to TDD</h2>
+<p>· Start simply
+· Write automated tests
+· Refactor to add design decisions one at a time</p>
+<h2 id=the-rhythm-of-test-driven-development>The rhythm of test-driven development</h2>
+<ol>
+<li>Quickly add a test</li>
+<li>Run all tests and see the new one fail</li>
+<li>Make a little change</li>
+<li>Run all tests and see them all succeed</li>
+<li>Refactor to remove duplication</li>
+</ol>
+<p>Let&rsquo;s start with an example.</p>
+<blockquote>
+<p>Response the total days at a specific time when user provide month and year</p>
+</blockquote>
+<p>What behavior will we need to produce the properly result?
+What is the set of tests which, when passed, will demonstrate the presence of code we are confident will compute the result correctly?</p>
+<p>Brainstorm:</p>
+<ul>
+<li>How do we react to invalid input? Throw an error</li>
+<li>Okie so, we have to validate input: month & year must be a number and month is in range [1,12], year is in range [0,9999]</li>
+<li>We need to be able to check is the input year is leap year</li>
+<li>We need to be able to response the approriate days of a month in a normal year.</li>
+<li>We need to be able to response the approriate days of February in a leap year ( 29 days )</li>
+</ul>
+<p>Todo:</p>
+<ul>
+<li>if (!isInteger(year) || !isInteger(month) || month&lt;1 || month > 12 || year &lt; 0 || year >9999 then throw Error(&ldquo;Invalid month or year&rdquo;)</li>
+<li>eg: 2000 => leapyear</li>
+<li>eg: January - month==1 => days = 31</li>
+<li>eg Feb/2000 - month==2 && year==2000 => days = 29</li>
+</ul>
+<p>We’ll make a to-do list to remind us what all we need to do, keep us focused, and tell
+us when we are finished.</p>
+<h3 id=when-you-begin-writing-tests-you-will-discover-a-common-pattern>When you begin writing tests, you will discover a common pattern</h3>
+<ol>
+<li>Create some objects ( fixture ) : expensive</li>
+<li>Stimulate them</li>
+<li>Check the results</li>
+</ol>
+<p>Two constraints come into conflict:</p>
+<ul>
+<li>Performance—we would like our tests to run as quickly as possible</li>
+<li>Isolation—we would the success or failure of one test to be irrelevant to other tests</li>
+</ul>
+<p>The &ldquo;fixture&rdquo; is expensive, we would like to create them once and then run lots of tests. But sharing objects between tests creates the possibility of test coupling.</p>
+<h3 id=our-concerns>Our concerns</h3>
+<ol>
+<li>Setup</li>
+<li>Counting: numbers of tests, errors</li>
+<li>Teardown: cleanup</li>
+<li>TestSuite: compose tests and run together - able to treat single tests and groups of tests exactly the same from a programmatic perspective</li>
+<li></li>
+</ol>
+<h2 id=patterns>Patterns</h2>
+<h3 id=test-n>Test n.</h3>
+<ol>
+<li>How do you test your software?</li>
+</ol>
+<ul>
+<li>Write an automated test.</li>
+</ul>
+<ol start=2>
+<li>What happens when the stress level rises?</li>
+</ol>
+<blockquote>
+<p>Figure 1 has Stress negatively connected to Testing negatively connected to Errors positively connected to Stress</p>
+</blockquote>
+<blockquote>
+<p>Figure 2 has Stress positively connected to Automated Testing negatively connected to
+Errors and Stress, and Errors positively connected to Stress</p>
+</blockquote>
+<p>However, with the automated tests you have a chance to choose your level of fear.</p>
+<h3 id=isolated-test>Isolated Test</h3>
+<ul>
+<li>First, make the tests so fast to run that I can run them myself, and run them often.</li>
+<li>Tests should be able to ignore each other completely: If I had one test broken, I wanted one problem. If I had two tests broken, I wanted two problems.</li>
+<li>Isolating tests encourages you to compose solutions out of many highly cohesive, loosely coupled objects.</li>
+</ul>
+<h3 id=test-list>Test List</h3>
+<ul>
+<li>First, put on the list examples of every operation that you know you need to implement.</li>
+<li>Next, for those operations that don’t already exist, put the null version of that operation.</li>
+<li>Finally, list all the refactorings that you think you will have to do to have clean code at the end of this session.</li>
+</ul>
+<h3 id=test-first>Test-First</h3>
+<ol>
+<li>When should you write your tests?</li>
+</ol>
+<ul>
+<li>Before you write the code that is to be tested.</li>
+</ul>
+<ol start=2>
+<li>You won’t test after</li>
+</ol>
+<ul>
+<li>Your goal as a programmer is running functionality.</li>
+</ul>
+<h3 id=assert-first>Assert First</h3>
+<ul>
+<li>When you are writing a test, you are solving several problems at once, even if you no longer have to think about the implementation</li>
+</ul>
+<blockquote>
+<p>The Bottom Up Approach:</p>
+</blockquote>
+<p>· Where should you start building a system? With the stories that you will be
+able to tell about the system when it is done.
+· Where should you start writing a bit of functionality? With the tests that will
+run when it is done.
+· Where should you start writing a test? With the asserts that will pass when it is
+done.</p>
+<h3 id=test-data>Test Data</h3>
+<ol>
+<li>What data do you use for test-first tests?</li>
+</ol>
+<ul>
+<li>Use data that makes the tests easy to read and follow.</li>
+</ul>
+<blockquote>
+<p>You are writing tests for a reader, not just the computer</p>
+</blockquote>
+<ol start=2>
+<li>Data should be</li>
+</ol>
+<ul>
+<li>Meaningful data</li>
+<li>Don’t have a list of 10 items as the input data is a list of 3 items will lead you to the same design and implementation decisions.</li>
+</ul>
+<p>The alternative to Test Data is Realistic Data, where you use data from the real world.
+Realistic Data is useful when:</p>
+<ul>
+<li>You are testing real-time systems using traces of external events gathered from
+the actual execution</li>
+<li>You are matching the output of the current system with the output of a
+previous system (Parallel Testing)</li>
+<li>You are refactoring a simulation and expect precisely the same answers when
+you are finished, particularly if floating point accuracy may be a problem</li>
+</ul>
+<h3 id=evident-data>Evident Data</h3>
+<ol>
+<li>How do you represent the intent of the data?</li>
+</ol>
+<ul>
+<li>Include expected and actual results in the test itself, and try to make their relationship apparent</li>
+</ul>
+<h2 id=implementation-strategies>Implementation Strategies</h2>
+<h3 id=fake-it-til-you-make-it>Fake It (‘Til You Make It)</h3>
+<ol>
+<li>What is your first implementation once you have a broken test?</li>
+</ol>
+<ul>
+<li>Return a constant.</li>
+</ul>
+<p>Once you have the test running, gradually transform the constant into an expression using variables</p>
+<h3 id=triangulation>Triangulation</h3>
+<p>This is a technique to analyze results of the same study using different methods of data collection. It is used for three main purposes: to enhance validity, to create a more in-depth picture of a research problem, and to interrogate different ways of understanding a research problem.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>testSum</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+    assertEquals<span style=color:#f92672>(</span>4<span style=color:#f92672>,</span> plus<span style=color:#f92672>(</span>2<span style=color:#f92672>,</span> 2<span style=color:#f92672>));</span>
+    assertEquals<span style=color:#f92672>(</span>7<span style=color:#f92672>,</span> plus<span style=color:#f92672>(</span>3<span style=color:#f92672>,</span>4<span style=color:#f92672>));</span>
+<span style=color:#f92672>}</span>
+</code></pre></div><h2 id=testing-concepts>Testing Concepts</h2>
+<h3 id=unit-testing>Unit Testing</h3>
+<ul>
+<li>Unit testing is a testable piece of software.</li>
+<li>In other words, it is a function or method, which invokes a unit of module in software and check assumptions about the system that the developer has in mind.</li>
+<li>It can have more than one input and normally a single output. Sometimes, we treat a module of a system as a unit.</li>
+<li>A unit test is applicable to test a logical piece of code. Eg: getting and setting values in text field will not be considered in logical code.</li>
+</ul>
+<p>Your concerns before writing the initial unit test:</p>
+<ol>
+<li>Use a test framework or write your own</li>
+<li>Automated build process</li>
+<li>Collecting, displaying and tracking unit test coverage</li>
+</ol>
+<p>Testing frameworks provide a lot of the ready-made piece of code, includes:</p>
+<ol>
+<li>Test suite/case aggregation</li>
+<li>Assertions</li>
+<li>Mock/Stub helpers</li>
+<li>Asynchronous testing implementation</li>
+<li>And more &mldr;</li>
+</ol>
+<h3 id=assertions>Assertions</h3>
+<ol>
+<li>Equity assertions</li>
+<li>Sameness assertions</li>
+<li>Datatype assertions</li>
+<li>Special value assertions</li>
+<li>Forced failures</li>
+</ol>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Example</span> {
+  <span style=color:#a6e22e>constructor</span>(<span style=color:#66d9ef>private</span> <span style=color:#a6e22e>title</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>string</span>) {
+    <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>title</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>title</span>;
+  }
+}
+<span style=color:#75715e>// Ref : https://stackoverflow.com/questions/62564800/how-to-assert-data-type-with-jest
+</span><span style=color:#75715e></span><span style=color:#a6e22e>describe</span>(<span style=color:#e6db74>&#39;Assertions&#39;</span>, () =&gt; {
+  <span style=color:#a6e22e>beforeAll</span>(() =&gt; {});
+  <span style=color:#75715e>// Equity assertions: 1 == &#39;1&#39;
+</span><span style=color:#75715e></span>  <span style=color:#a6e22e>describe</span>(<span style=color:#e6db74>&#39;Sameness assertions&#39;</span>, () =&gt; {
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>objectA</span> <span style=color:#f92672>=</span> { <span style=color:#a6e22e>a</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>1</span>, <span style=color:#a6e22e>b</span><span style=color:#f92672>:</span> { <span style=color:#a6e22e>c</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>2</span> } };
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>objectB</span> <span style=color:#f92672>=</span> { <span style=color:#a6e22e>a</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>1</span>, <span style=color:#a6e22e>b</span><span style=color:#f92672>:</span> { <span style=color:#a6e22e>c</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>2.0</span> } };
+
+    <span style=color:#a6e22e>beforeAll</span>(() =&gt; {});
+    <span style=color:#a6e22e>it</span>(<span style=color:#e6db74>&#39;a should equal b&#39;</span>, () =&gt; {
+      <span style=color:#a6e22e>expect</span>(<span style=color:#a6e22e>objectA</span>).<span style=color:#a6e22e>toEqual</span>(<span style=color:#a6e22e>objectB</span>);
+    });
+    <span style=color:#a6e22e>it</span>(<span style=color:#e6db74>&#39;a should equal b&#39;</span>, () =&gt; {
+      <span style=color:#a6e22e>expect</span>(<span style=color:#a6e22e>objectA</span>).<span style=color:#a6e22e>toStrictEqual</span>(<span style=color:#a6e22e>objectB</span>);
+    });
+  });
+  <span style=color:#a6e22e>describe</span>(<span style=color:#e6db74>&#39;Datatype assertions&#39;</span>, () =&gt; {
+    <span style=color:#a6e22e>it</span>(<span style=color:#e6db74>&#39;should be a number&#39;</span>, () =&gt; {
+      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>a</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
+      <span style=color:#a6e22e>expect</span>(<span style=color:#66d9ef>typeof</span> <span style=color:#a6e22e>a</span>).<span style=color:#a6e22e>toBe</span>(<span style=color:#e6db74>&#39;number&#39;</span>);
+    });
+    <span style=color:#a6e22e>it</span>(<span style=color:#e6db74>&#39;should be an instance of Example&#39;</span>, () =&gt; {
+      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>example</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Example</span>(<span style=color:#e6db74>&#39;Example&#39;</span>);
+      <span style=color:#a6e22e>expect</span>(<span style=color:#a6e22e>example</span>).<span style=color:#a6e22e>toBeInstanceOf</span>(<span style=color:#a6e22e>Example</span>);
+    });
+  });
+  <span style=color:#a6e22e>describe</span>(<span style=color:#e6db74>&#39;Special value assertions&#39;</span>, () =&gt; {
+    <span style=color:#a6e22e>it</span>(<span style=color:#e6db74>&#39;false should be false&#39;</span>, () =&gt; {
+      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>a</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>false</span>;
+      <span style=color:#a6e22e>expect</span>(<span style=color:#a6e22e>a</span>).<span style=color:#a6e22e>toBeFalsy</span>();
+    });
+    <span style=color:#a6e22e>it</span>(<span style=color:#e6db74>&#39;null should be false&#39;</span>, () =&gt; {
+      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>b</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>null</span>;
+      <span style=color:#a6e22e>expect</span>(<span style=color:#a6e22e>b</span>).<span style=color:#a6e22e>toBeFalsy</span>();
+    });
+    <span style=color:#a6e22e>it</span>(<span style=color:#e6db74>&#39;undefined should be false&#39;</span>, () =&gt; {
+      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>c</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>undefined</span>;
+      <span style=color:#a6e22e>expect</span>(<span style=color:#a6e22e>c</span>).<span style=color:#a6e22e>toBeFalsy</span>();
+    });
+  });
+});
+
+</code></pre></div><h3 id=benefit-of-unit-testing>Benefit of Unit Testing</h3>
+<ol>
+<li>Quickly making big changes</li>
+<li>Boost your confident</li>
+<li>Helps to understand system design</li>
+<li>Green lightning development</li>
+<li>Faster development</li>
+<li>Easy debugging</li>
+<li>Reusable code</li>
+<li>Saving cost</li>
+</ol>
+<h3 id=pitfalls-of-unit-testing>Pitfalls of unit testing</h3>
+<ol>
+<li>Wrong assumptions for unit testing: it is not a tool, it is a methodology/technique.</li>
+<li>Not suitable for a tight deadlines</li>
+</ol>
+<h3 id=unit-testing-frameworks>Unit Testing Frameworks</h3>
+<ol>
+<li>JestJS : support jsdom, BDD style</li>
+<li>Jasmine: BDD style</li>
+<li>Mocha(Testing Framework) & Chai(Assertion Libs):</li>
+</ol>
+<p><img src="https://github.com/misostack/typescript-examples/blob/master/images/tdd-vs-bdd.png?raw=true" alt="BDD vs TDD"></p>
+<h2 id=glossary>Glossary</h2>
+<ol>
+<li>Red</li>
+<li>Green</li>
+<li>Refactor</li>
+<li>Fixture</li>
+<li>Test suite</li>
+<li>Test case</li>
+<li>Assertion</li>
+<li>Mock</li>
+<li>Stub</li>
+<li>Asynchronous</li>
+<li>setUp</li>
+<li>tearDown</li>
+<li>Test double</li>
+<li>Fake</li>
+<li>Dummy</li>
+<li>Spy</li>
+<li>Regular Tests</li>
+</ol>
+<h3 id=mock>Mock</h3>
+<p>Mocks are lines of code with some hardcoded behavior and some expectations that
+we have achieved from the requirement understanding phase. A mock will fail test,
+if it is not defined as per expectation.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#a6e22e>describe</span>(<span style=color:#e6db74>&#34;Mock example&#34;</span>, () <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#a6e22e>describe</span>(<span style=color:#e6db74>&#34;Mock a method of class&#34;</span>, () <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>exampleGoMock</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>jest</span>
+      .<span style=color:#a6e22e>spyOn</span>(<span style=color:#a6e22e>Example</span>.<span style=color:#a6e22e>prototype</span>, <span style=color:#e6db74>&#34;go&#34;</span>)
+      .<span style=color:#a6e22e>mockImplementation</span>(() <span style=color:#f92672>=&gt;</span> {
+        <span style=color:#75715e>// become stub
+</span><span style=color:#75715e></span>        <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>1</span>;
+      });
+    <span style=color:#a6e22e>it</span>(<span style=color:#e6db74>&#34;test go function&#34;</span>, () <span style=color:#f92672>=&gt;</span> {
+      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>example</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Example</span>(<span style=color:#e6db74>&#34;test&#34;</span>);
+      <span style=color:#a6e22e>example</span>.<span style=color:#a6e22e>go</span>();
+
+      <span style=color:#a6e22e>expect</span>(<span style=color:#a6e22e>exampleGoMock</span>).<span style=color:#a6e22e>toBeCalledTimes</span>(<span style=color:#ae81ff>1</span>);
+      <span style=color:#a6e22e>expect</span>(<span style=color:#a6e22e>exampleGoMock</span>.<span style=color:#a6e22e>mock</span>.<span style=color:#a6e22e>results</span>[<span style=color:#ae81ff>0</span>].<span style=color:#a6e22e>value</span>).<span style=color:#a6e22e>toEqual</span>(<span style=color:#ae81ff>1</span>);
+    });
+  });
+});
+</code></pre></div><h3 id=stubs>Stubs</h3>
+<p>Similar to mocks, stubs are normally used to replace actual implementation of
+any code. Stubs can be used to execute our implementation in one particular way.
+We can see how custom code responds for different inputs.</p>
+<blockquote>
+<p>Mocks are used to verify the behavior of our code. Stubs are used to provide data that our code needs to run</p>
+</blockquote>
+<div class="m-1 p-1">
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/cheatsheet>cheatsheet</a>
+</div>
+</div>
+</section>
+<section class="container section">
+<div class="max-w-2xl mx-auto">
+<div class="font-heading text-2xl font-semibold">You Might Also Like</div>
+<div class="mt-8 grid gap-8">
+<ul class=sidebar-links>
+<li><a href=/post/100-frontend-interview-questions/>100 Frontend Interview Questions</a></li>
+<li><a href=/post/chatgpt-what-can-chat-gpt-do/>Chatgpt What Can Chat Gpt Do</a></li>
+<li><a href=/post/learn-enough-oop-to-be-dangerous/>Learn Enough Oop to Be Dangerous</a></li>
+<li><a href=/post/the-future-of-hr/>The Future of Hr</a></li>
+<li><a href=/post/how-to-test-the-database/>How to Test the Database</a></li>
+<li><a href=/post/the-art-of-programming/>The Art of Programming</a></li>
+<li><a href=/post/100-nodejs-interview-questions/>100 Nodejs Interview Questions</a></li>
+</ul>
+</div>
+</div>
+</section>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1642510310947288" crossorigin=anonymous></script>
+<ins class=adsbygoogle style=display:block;text-align:center data-ad-layout=in-article data-ad-format=fluid data-ad-client=ca-pub-1642510310947288 data-ad-slot=9309117729></ins>
+<script>(adsbygoogle=window.adsbygoogle||[]).push({})</script>
+</main>
+<footer class=footer>
+<div class="container md:flex">
+<section class="footer-section-info md:basis-1/4">
+<div class=address>
+<a class=logo href=https://nextjsvietnam.com title=NextJSVietNam>
+NextJSVietNam
+</a>
+<h4 class=footer-heading>
+PRODUCTION MODE
+<h4>
+</div>
+</section>
+<div class="footer-section-navigation-menu md:basis-1/4">
+<h4 class=footer-heading>NestJS</h4>
+<ul class=footer-section-navigation-menu-links>
+<li><a href=https://nextjsvietnam.com/post/khoa-hoc-nestjs-bai-06-viet-unit-test/>Khóa học NestJS - Bài 06 Hướng dẫn viết Unit Test</a></li>
+<li><a href=https://nextjsvietnam.com/post/khoa-hoc-nestjs-bai-05-repository-pattern/>Khóa học NestJS Bài 05 - Repository Pattern</a></li>
+<li><a href=https://nextjsvietnam.com/post/khoa-hoc-nestjs-bai-04-model-and-repository-pattern/>Khóa học NestJS Bài 04 - Model and Repository Pattern</a></li>
+<li><a href=https://nextjsvietnam.com/post/khoa-hoc-nestjs-bai03/>Khóa học NestJS Bài 03 - Controllers & Views</a></li>
+<li><a href=https://nextjsvietnam.com/post/khoa-hoc-nestjs-bai-02/>Khóa học Nestjs - Bài 02 - Giới thiệu mô hình MVC</a></li>
+</ul>
+</div>
+<div class="footer-section-navigation-menu md:basis-1/4">
+<h4 class=footer-heading>NextJS</h4>
+<ul class=footer-section-navigation-menu-links>
+<li><a href=https://nextjsvietnam.com/post/khoa-hoc-nextjs/>Khóa học NextJS - Bài 01 - Lộ trình các bài học về NextJS</a></li>
+<li><a href=https://nextjsvietnam.com/post/create-new-website-with-nextjs/>Create New Website With Nextjs</a></li>
+</ul>
+</div>
+<div class="footer-section-navigation-menu md:basis-1/4">
+<h4 class=footer-heading>Cheatsheet</h4>
+<ul class=footer-section-navigation-menu-links>
+<li><a href=https://nextjsvietnam.com/post/test-driven-development-for-beginner/>Test Driven Development for Beginner</a></li>
+<li><a href=https://nextjsvietnam.com/post/100-frontend-interview-questions/>100 Frontend Interview Questions</a></li>
+<li><a href=https://nextjsvietnam.com/post/chatgpt-what-can-chat-gpt-do/>Chatgpt What Can Chat Gpt Do</a></li>
+<li><a href=https://nextjsvietnam.com/post/learn-enough-oop-to-be-dangerous/>Learn Enough Oop to Be Dangerous</a></li>
+<li><a href=https://nextjsvietnam.com/post/the-future-of-hr/>The Future of Hr</a></li>
+</ul>
+</div>
+</div>
+<div class=container>
+<div class=text-center>
+<a href><span class="material-icons text-4xl m-4">facebook</span></a>
+<a href><span class="material-icons text-4xl m-4">smart_display</span></a>
+</div>
+<div class="text-center text-lg py-4">
+Copyright @ NextJSVietNam 2022
+</div>
+<div class="text-center text-sm">
+Powered by <a class="font-bold text-primary" href=https://gohugo.io/>Go Hugo</a> - Made
+with love from <a class="font-bold text-primary" href=https://nextjsvietnam.com>NextJSVietNam</a> -
+Build
+Version 2023-08-25 19:53:36 +0700 +0700
+</div>
+</div>
+</footer>
+<script type=text/javascript src=https://nextjsvietnam.com/core/jquery-3.6.0.min.js></script>
+<script type=text/javascript src=https://nextjsvietnam.com/themes/2022/public/main.js></script>
+<script type=text/javascript src=https://nextjsvietnam.com/themes/2022/public/home.js></script>
+<script async>!function(b,e,f,g,a,c,d){if(b.fbq)return;a=b.fbq=function(){a.callMethod?a.callMethod.apply(a,arguments):a.queue.push(arguments)},b._fbq||(b._fbq=a),a.push=a,a.loaded=!0,a.version='2.0',a.queue=[],c=e.createElement(f),c.async=!0,c.src=g,d=e.getElementsByTagName(f)[0],d.parentNode.insertBefore(c,d)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js'),fbq('init','1760611910980690'),fbq('track','PageView')</script>
+<noscript><img height=1 width=1 style=display:none src="https://www.facebook.com/tr?id=1760611910980690&ev=PageView&noscript=1"></noscript>
+</body>
+</html>
