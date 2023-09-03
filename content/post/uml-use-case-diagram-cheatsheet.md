@@ -41,3 +41,13 @@ image: "https://user-images.githubusercontent.com/31009750/257110112-6c5ddbfc-a5
 ![image](https://user-images.githubusercontent.com/31009750/265250522-f4c26995-0da8-44f4-a0d3-81c5cfd5789a.png)
 
 ![image](https://user-images.githubusercontent.com/31009750/265250911-a1c1e4bf-8351-4a5e-93e1-29ef102da53c.png)
+
+Example Login Use Cases
+
+Start with
+
+![image](https://user-images.githubusercontent.com/31009750/265267699-d38b6e56-cb71-4aaf-8ae1-01df3745aa0c.png)
+
+Then
+
+![image](https://user-images.githubusercontent.com/31009750/265270456-60760354-0530-4d54-8de3-1af9add5ae06.png)
