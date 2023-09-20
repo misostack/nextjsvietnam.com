@@ -164,8 +164,40 @@
 <h2 id=vậy-viết-unit-test-cụ-thể-là-làm-gì>Vậy viết Unit Test cụ thể là làm gì</h2>
 <p>Các anh/chị cố gắng ghi nhớ định nghĩa đơn giản sau đây, để phân tích và áp dụng được unit test vào trong dự án mà không tốn quá nhiều thời gian/tài nguyên.</p>
 <blockquote>
-<p>Unit test được áp dụng để kiểm tra logic của một đoạn code thuộc 1 phần mềm. Đôi khi trong một hệ thống, cũng có thể tình một module là 1 unit</p>
+<p>Unit test được áp dụng để kiểm tra logic của một đoạn code thuộc 1 phần mềm. Đôi khi trong một hệ thống, cũng có thể tình một module là 1 unit.</p>
 </blockquote>
+<h2 id=công-cụ-hỗ-trợ-viết-unit-test>Công cụ hỗ trợ viết Unit Test</h2>
+<p>Các anh/chị có 2 lựa chọn khi viết Unit Test:</p>
+<ul>
+<li><input checked disabled type=checkbox> Tự xây dựng 1 framework hỗ trợ viết Unit Test</li>
+<li><input checked disabled type=checkbox> Sử dụng 1 framework Unit Test có sẵn trong hệ sinh thái</li>
+</ul>
+<p>Framework được xây dựng/lựa chọn cần phải đáp ứng các tiêu chí sau:</p>
+<ul>
+<li>Dễ setup và well document</li>
+<li>Hỗ trợ tạo test suite, gom nhóm các test case</li>
+<li>Hỗ trợ các util cho việc kiểm tra kết quả</li>
+<li>Hỗ trợ Mock/Stub</li>
+<li>Hỗ trợ Async</li>
+<li>Hỗ trợ report</li>
+</ul>
+<p>Các framework Unit Test hiện tại trong hệ sinh thái NodeJS được gom thành 2 trường phái:</p>
+<p><img src="https://github.com/misostack/typescript-examples/blob/master/images/tdd-vs-bdd.png?raw=true" alt="NodeJS Testing Frameworks"></p>
+<ol>
+<li>JestJS : support jsdom, BDD style ( support typescript )</li>
+<li>Jasmine: BDD style</li>
+<li>Mocha(Testing Framework) & Chai(Assertion Libs): TDD style</li>
+</ol>
+<p>Trong phạm vi của bài viết này, tôi sẽ chia sẻ với các anh/chị về một số cú pháp/khái niệm khi sử dụng JestJS ( testing framework được giới thiệu chung với NestJS). Do đó mục này sẽ gồm 2 phần:</p>
+<ol>
+<li>Tìm hiểu và thực hành 1 số khái niệm cùng với JestJS</li>
+<li>Tìm hiểu và thực hành Unit Test cùng với JestJS trên nên tảng web/api được viết bằng NestJS</li>
+</ol>
+<h3 id=tìm-hiểu-và-thực-hành-một-số-khái-niệm-cùng-với-jestjs>Tìm hiểu và thực hành một số khái niệm cùng với JestJS</h3>
+<blockquote>
+<p>Cùng thực hành viết unit test cho usecase &ldquo;Login with email and password&rdquo;</p>
+</blockquote>
+<p><img src=https://user-images.githubusercontent.com/31009750/268600867-345ea5c2-7ad1-44ba-aef6-da6866c23a2d.png alt=image></p>
 <h3 id=tham-khảo>Tham khảo</h3>
 <ul>
 <li><a href=https://www.guru99.com/component-testing.html>https://www.guru99.com/component-testing.html</a> - Component Testing</li>
