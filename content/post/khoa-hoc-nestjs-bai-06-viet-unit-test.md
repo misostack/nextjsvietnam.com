@@ -51,7 +51,42 @@ Vậy là chúng ta đã đi qua tổng quan về một số khái niệm cũng 
 
 Các anh/chị cố gắng ghi nhớ định nghĩa đơn giản sau đây, để phân tích và áp dụng được unit test vào trong dự án mà không tốn quá nhiều thời gian/tài nguyên.
 
-> Unit test được áp dụng để kiểm tra logic của một đoạn code thuộc 1 phần mềm. Đôi khi trong một hệ thống, cũng có thể tình một module là 1 unit
+> Unit test được áp dụng để kiểm tra logic của một đoạn code thuộc 1 phần mềm. Đôi khi trong một hệ thống, cũng có thể tình một module là 1 unit.
+
+## Công cụ hỗ trợ viết Unit Test
+
+Các anh/chị có 2 lựa chọn khi viết Unit Test:
+
+- [x] Tự xây dựng 1 framework hỗ trợ viết Unit Test
+- [x] Sử dụng 1 framework Unit Test có sẵn trong hệ sinh thái
+
+Framework được xây dựng/lựa chọn cần phải đáp ứng các tiêu chí sau:
+
+- Dễ setup và well document
+- Hỗ trợ tạo test suite, gom nhóm các test case
+- Hỗ trợ các util cho việc kiểm tra kết quả
+- Hỗ trợ Mock/Stub
+- Hỗ trợ Async
+- Hỗ trợ report
+
+Các framework Unit Test hiện tại trong hệ sinh thái NodeJS được gom thành 2 trường phái:
+
+![NodeJS Testing Frameworks](https://github.com/misostack/typescript-examples/blob/master/images/tdd-vs-bdd.png?raw=true)
+
+1. JestJS : support jsdom, BDD style ( support typescript )
+2. Jasmine: BDD style
+3. Mocha(Testing Framework) & Chai(Assertion Libs): TDD style
+
+Trong phạm vi của bài viết này, tôi sẽ chia sẻ với các anh/chị về một số cú pháp/khái niệm khi sử dụng JestJS ( testing framework được giới thiệu chung với NestJS). Do đó mục này sẽ gồm 2 phần:
+
+1. Tìm hiểu và thực hành 1 số khái niệm cùng với JestJS
+2. Tìm hiểu và thực hành Unit Test cùng với JestJS trên nên tảng web/api được viết bằng NestJS
+
+### Tìm hiểu và thực hành một số khái niệm cùng với JestJS
+
+> Cùng thực hành viết unit test cho usecase "Login with email and password"
+
+![image](https://user-images.githubusercontent.com/31009750/268600867-345ea5c2-7ad1-44ba-aef6-da6866c23a2d.png)
 
 ### Tham khảo
 

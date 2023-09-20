@@ -51,3 +51,7 @@ Start with
 Then
 
 ![image](https://user-images.githubusercontent.com/31009750/265270456-60760354-0530-4d54-8de3-1af9add5ae06.png)
+
+Details of Login with Email and Password Usecase
+
+![image](https://user-images.githubusercontent.com/31009750/268600867-345ea5c2-7ad1-44ba-aef6-da6866c23a2d.png)
