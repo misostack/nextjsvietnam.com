@@ -4,7 +4,7 @@ type: "post"
 date: 2023-09-22T15:52:14+07:00
 description: "Microservice architecture (MSA) is an approach to building software systems that decomposes business domain models into smaller, consistent, bounded-contexts implemented by services"
 keywords: ["microservice-architecture"]
-categories: ["microservice-architecture"]
+categories: ["systemdesign", "microservice-architecture"]
 tags: []
 image: "https://user-images.githubusercontent.com/31009750/269891173-f10b1b6b-ea34-4e23-91b6-db9e995d6bff.png"
 ---
