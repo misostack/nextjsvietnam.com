@@ -6,5 +6,6 @@
   "nestjs": "NestJS Tips and Tricks",
   "nextjs": "NextJS Tips and Tricks",
   "nestjs-examples": "NestJS Examples",
-  "software-architecture": "Software Architecture Tutorial"
+  "software-architecture": "Software Architecture Tutorial",
+  "microservice-architecture": "Microservice Architecture Tutorial"
 }
