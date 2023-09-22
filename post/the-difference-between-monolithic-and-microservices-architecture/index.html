@@ -12,18 +12,18 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWE4MLJYE6"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-RWE4MLJYE6')</script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1642510310947288" crossorigin=anonymous></script>
-<title>Java for Professional | Java Spring Boot Essentials, Java Spring Data, Kotlin Essentials | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+<title>The Difference Between Monolithic and Microservices Architecture | Microservice architecture (MSA) is an approach to building software systems that decomposes business domain models into smaller, consistent, bounded-contexts implemented by services | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
 <meta name=robots content="all">
-<meta name=keywords content="java,spring,kotlin">
-<meta name=description content="Java Spring Boot Essentials, Java Spring Data, Kotlin Essentials">
+<meta name=keywords content="microservice-architecture">
+<meta name=description content="Microservice architecture (MSA) is an approach to building software systems that decomposes business domain models into smaller, consistent, bounded-contexts implemented by services">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://user-images.githubusercontent.com/31009750/179880182-c9ef3fc3-6a72-42e4-9d06-69ee336e085f.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/31009750/269891173-f10b1b6b-ea34-4e23-91b6-db9e995d6bff.png">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="750">
 <meta property="og:image:height" content="300">
 <meta property="article:publisher" content="https://www.facebook.com/nextjsvietnam">
-<meta property="article:published_time" content="2022-07-20T09:04:17+07:00">
-<meta property="article:modified_time" content="2022-07-20T09:04:17+07:00">
+<meta property="article:published_time" content="2023-09-22T15:52:14+07:00">
+<meta property="article:modified_time" content="2023-09-22T15:52:14+07:00">
 <link rel=apple-touch-icon sizes=57x57 href=/apple-icon-57x57.png>
 <link rel=apple-touch-icon sizes=60x60 href=/apple-icon-60x60.png>
 <link rel=apple-touch-icon sizes=72x72 href=/apple-icon-72x72.png>
@@ -117,21 +117,92 @@
 <main>
 <section class="container section">
 <div class="page-content max-w-2xl mx-auto">
-<img src=https://user-images.githubusercontent.com/31009750/179880182-c9ef3fc3-6a72-42e4-9d06-69ee336e085f.png class=img-responsive alt="Java for Professional">
-<h1>Java for Professional</h1>
-<p><strong>Post Date</strong> : 2022-07-20T09:04:17+07:00</p>
-<p><strong>Modified Date</strong> : 2022-07-20T09:04:17+07:00</p>
+<img src=https://user-images.githubusercontent.com/31009750/269891173-f10b1b6b-ea34-4e23-91b6-db9e995d6bff.png class=img-responsive alt="The Difference Between Monolithic and Microservices Architecture">
+<h1>The Difference Between Monolithic and Microservices Architecture</h1>
+<p><strong>Post Date</strong> : 2023-09-22T15:52:14+07:00</p>
+<p><strong>Modified Date</strong> : 2023-09-22T15:52:14+07:00</p>
 <p>
 <strong>Category:</strong>
-<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/java>java</a>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/microservice-architecture>microservice-architecture</a>
 </p>
 <p>
 <strong>Tags:</strong>
-<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=/tags/java>java</a>
-<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=/tags/spring>, spring</a>
 </p>
+<h2 id=monolith-advantages-and-drawbacks>Monolith advantages and drawbacks</h2>
+<p>A monolithic architecture is a traditional software development model that uses one code base to perform multiple business functions.</p>
+<p><img src=https://user-images.githubusercontent.com/31009750/269900308-36dcbcff-58fa-42a8-92c2-a7f12a40b012.png alt=image></p>
+<p><img src=https://user-images.githubusercontent.com/31009750/269910251-e138f576-ca5d-4773-9209-a6ca914ab4ea.png alt=image></p>
+<h3 id=advantages-of-monolithic-architecture>Advantages of Monolithic Architecture</h3>
+<ol>
+<li>
+<p>Simplicity of development : all source code is located in one place which can be quickly understood.</p>
+</li>
+<li>
+<p>Simplicity of debugging : The debugging process is simple because all code is located in one place. You can easily follow the flow of a request and find an issue.</p>
+</li>
+<li>
+<p>Simplicity of testing : You test only one service without any dependencies. Everything is usually clear.</p>
+</li>
+<li>
+<p>Simplicity of deployment : Only one deployment unit (e.g. jar file) should be deployed. There are no dependencies. In cases when UI is packaged with backend code you do not have any breaking changes. Everything exists and changes in one place.</p>
+</li>
+<li>
+<p>Simplicity of application evolution: Basically, the application does not have any limitation from a business logic perspective. If you need some data for new feature, it is already there.</p>
+</li>
+<li>
+<p>Cross-cutting concerns and customizations are used only once: You should take care of cross-cutting concerns only once. For instance, security, logging, exception handling, monitoring, choosing and setting up tomcat parameters, setup of data source connection pool, etc.</p>
+</li>
+<li>
+<p>Simplicity in onboarding new team members: The source code is located in one place. New team members can easily debug some functional flow and to get familiar with the application.</p>
+</li>
+<li>
+<p>Low cost in the early stages of the application: All source code is located in one place, packaged in a single deployment unit, and deployed. What can be easier? There is no overhead neither in infrastructure cost nor development cost.</p>
+</li>
+<li>
+<p>The main function of the application is to be profitable: As a result, it is important to quickly implement some POC (Proof of Concept) solutions to verify the application in the real world. Also, it is important to bring customers to the system. Improvements can be implemented in the future.</p>
+</li>
+<li>
+<p>The requirements are usually unclear at the early stages of development: It is hard to create meaningful architecture when the requirements are unclear. Real customers can define the business needs after some of the functionality already works.</p>
+</li>
+</ol>
+<h3 id=drawbacks-of-monolithic-architecture>Drawbacks of Monolithic Architecture</h3>
+<ol>
+<li>
+<p>Slow speed of development: The simplest disadvantage relates to CI/CD pipeline. Even a small change in source code, you may wait for a lot of time (e.g. 1 hour) for your pipeline to succeed.</p>
+</li>
+<li>
+<p>High code coupling: Of course, you can keep a clear service structure inside your repository. However, as practice shows, eventually, you will end up with a spaghetti code in at least a few places.</p>
+</li>
+<li>
+<p>Code ownership cannot be used: The system is growing. The logical step is to split responsibilities between several teams.</p>
+</li>
+<li>
+<p>Testing becomes harder: Even a small change can negatively affect the system. As a result, the regression for full monolithic service is required.</p>
+</li>
+<li>
+<p>Performance issues: Potentially, you can scale the whole monolithic service in cases of performance issues. But what to do with the database? The single database is used for all services. You can start to optimize your database queries or use read replicas. However, there is a limit to this type of optimization.</p>
+</li>
+<li>
+<p>The cost of infrastructure: In cases of performance issues, you should scale the whole monolithic service.</p>
+</li>
+<li>
+<p>Legacy technologies: Imagine that you have the application written on Java 8. How much time is it required to migrate the whole monolith with multiple services.</p>
+</li>
+<li>
+<p>Lack of flexibility: Using Monolithic Architecture you are tight to the technologies that are used inside your monolith.</p>
+</li>
+<li>
+<p>Problems with deployment: Even a small change requires the redeployment of the whole monolith.</p>
+</li>
+</ol>
+<h2 id=references>References</h2>
+<ul>
+<li><a href=https://www.oreilly.com/content/microservices-for-java-developers/>https://www.oreilly.com/content/microservices-for-java-developers/</a></li>
+<li><a href=https://aws.amazon.com/compare/the-difference-between-monolithic-and-microservices-architecture/>https://aws.amazon.com/compare/the-difference-between-monolithic-and-microservices-architecture/</a></li>
+<li><a href=https://www.atlassian.com/microservices/microservices-architecture/microservices-vs-monolith>https://www.atlassian.com/microservices/microservices-architecture/microservices-vs-monolith</a></li>
+</ul>
 <div class="m-1 p-1">
-<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/java>java</a>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/microservice-architecture>microservice-architecture</a>
 </div>
 </div>
 </section>
@@ -139,10 +210,6 @@
 <div class="max-w-2xl mx-auto">
 <div class="font-heading text-2xl font-semibold">You Might Also Like</div>
 <div class="mt-8 grid gap-8">
-<ul class=sidebar-links>
-<li><a href=/post/java-for-beginner/>Java for Beginner</a></li>
-<li><a href=/post/java-for-pre-intermediate/>Java for Pre Intermediate</a></li>
-</ul>
 </div>
 </div>
 </section>
