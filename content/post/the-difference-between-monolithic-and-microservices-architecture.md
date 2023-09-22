@@ -59,6 +59,52 @@ A monolithic architecture is a traditional software development model that uses 
 
 9. Problems with deployment: Even a small change requires the redeployment of the whole monolith.
 
+## Microservices advantages and drawbacks
+
+![image](https://user-images.githubusercontent.com/31009750/269925780-4fdd34ba-4d75-4156-9377-ccf18c01f5e5.png)
+
+![image](https://user-images.githubusercontent.com/31009750/269927486-8467b46d-b334-4f70-8028-843e8dcf82ee.png)
+
+### Microservice Advantages
+
+1. Self-Contained, lower costs and increase efficient: Each service has its own instances. So when you need to scale up for specific service, the cost compare to monolithic architecture is actually lower.
+
+2. Greater Agility and Flexibility in Development process: each team develop their service autonomous and dependence, so they can select the appropriate tech stack and deployment flow.
+
+3. Enhance new technology stacks
+
+4. High costs at early stage, but easy for upgrading and maintenance.
+
+5. Development, Debugging, Testing each service become more easier
+
+### Microservice Drawbacks
+
+1. Increase Development Time
+
+2. Difficult in Global Testing and Debugging
+
+3. Dependency on Devops
+
+4. High Complexity
+
+5. Increase Network Traffic
+
+6. Limited Reuse of Code
+
+7. Problems with deployment
+
+8. Have all properties of a distributed system.
+
+### Challenges
+
+1. Design for Faults
+2. Design with Dependencies in Mind
+3. Design with the Domain in Mind
+4. Design with Promises in Mind
+5. Distributed Systems Management
+
+## Technology Solution for microservices
+
 ## References
 
 - https://www.oreilly.com/content/microservices-for-java-developers/
