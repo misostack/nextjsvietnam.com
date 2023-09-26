@@ -1,9 +1,9 @@
 ---
 title: "Create New Website With Nextjs"
 type: "post"
-date: 2023-09-26T18:00:00+07:00
+date: 2023-09-26T12:00:00+07:00
 description: "In this tutorial you will learn about all basic concepts of nextjs to create your new website"
-keywords: ["nextjs"]
+keywords: ["Create New Website With Nextjs"]
 categories: ["nextjs"]
 tags: ["nextjs"]
 image: "https://user-images.githubusercontent.com/31009750/246866968-e42afc31-8eea-44e8-ba86-629918f50401.png"
