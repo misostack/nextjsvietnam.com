@@ -42,3 +42,7 @@ image: "https://user-images.githubusercontent.com/31009750/270369155-120dd94a-02
 ### Dependency Inversion
 
 > The principle of dependency inversion refers to the decoupling of software modules. This way, instead of high-level modules depending on low-level modules, both will depend on abstractions.
+
+## ReactJS Testing Philosophy
+
+> Many integration tests. No snapshot tests. Few unit tests. Few e to e tests.
