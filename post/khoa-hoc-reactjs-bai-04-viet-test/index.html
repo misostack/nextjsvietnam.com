@@ -129,6 +129,7 @@
 <strong>Tags:</strong>
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=/tags/reactjs>reactjs</a>
 </p>
+<p><strong>Note</strong>: Toàn bộ mã nguồn của khóa học này đều được công khai trên github tại <a href=https://github.com/misostack/reactjs-tutorial-2023/tree/lession04>ReactJS Tutorial 2023</a></p>
 <p>Đầu tiên, trước khi bắt đầu viết test, các anh/chị cần suy nghĩ xem dự án của mình sẽ test những gì. Cùng nhìn vào hình minh họa bên dưới sau:</p>
 <blockquote>
 <p>Kim tự tháp kiểm thử phần mềm</p>
@@ -181,7 +182,6 @@ Có một số công cụ thường được sử dụng ở bước này như:<
 <p>Một số kĩ thuật cần áp dụng trong phần này:</p>
 <ul>
 <li>Snapshot</li>
-<li></li>
 </ul>
 <h2 id=thiết-lập-môi-trường-để-viết-test-cho-dự-án-reactjs>Thiết lập môi trường để viết test cho dự án ReactJS</h2>
 <ul>
@@ -200,8 +200,8 @@ Có một số công cụ thường được sử dụng ở bước này như:<
 Do Cypress được cài đặt trên môi trường local của các anh/chị, nên có thể thực hiện các tác vụ khác của automation test như: <strong>chụp screenshots</strong>, <strong>record videos</strong>, <strong>chạy các file hệ thống</strong>, <strong>gọi network call</strong>.</p>
 <p>Các chủ đề tôi sẽ đi qua bao gồm:</p>
 <ol>
-<li>[] Setup vitest</li>
-<li>[] Viết Unit Test cho Function</li>
+<li><input checked disabled type=checkbox> Setup vitest</li>
+<li><input checked disabled type=checkbox> Viết Unit Test cho Function</li>
 <li>[] Viết Unit Test cho Stateless React Component</li>
 <li>[] Viết Integration Test cho React Component</li>
 <li>[] Giới thiệu về: Mock, Stub</li>
@@ -210,14 +210,87 @@ Do Cypress được cài đặt trên môi trường local của các anh/chị,
 </ol>
 <h3 id=setup-vitest>Setup Vitest</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>npm install -D vitest
+npm install -D @vitest/ui
 </code></pre></div><p><strong>package.json</strong></p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>{
   <span style=color:#f92672>&#34;scripts&#34;</span>: {
-    <span style=color:#f92672>&#34;test&#34;</span>: <span style=color:#e6db74>&#34;vitest&#34;</span>
+    <span style=color:#f92672>&#34;test&#34;</span>: <span style=color:#e6db74>&#34;vitest&#34;</span>,
+    <span style=color:#f92672>&#34;test:ui&#34;</span>: <span style=color:#e6db74>&#34;vitest --ui&#34;</span>,
+    <span style=color:#f92672>&#34;test:run&#34;</span>: <span style=color:#e6db74>&#34;vitest run&#34;</span>
   }
 }
+</code></pre></div><p><strong>vite.config.js</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>defineConfig</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;vite&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#a6e22e>react</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;@vitejs/plugin-react&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>fileURLToPath</span>, <span style=color:#a6e22e>URL</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;url&#34;</span>;
+
+<span style=color:#75715e>// https://vitejs.dev/config/
+</span><span style=color:#75715e></span><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#a6e22e>defineConfig</span>({
+  <span style=color:#a6e22e>plugins</span><span style=color:#f92672>:</span> [<span style=color:#a6e22e>react</span>()],
+  <span style=color:#a6e22e>test</span><span style=color:#f92672>:</span> {},
+  <span style=color:#a6e22e>server</span><span style=color:#f92672>:</span> {
+    <span style=color:#a6e22e>port</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>3015</span>,
+  },
+  <span style=color:#a6e22e>resolve</span><span style=color:#f92672>:</span> {
+    <span style=color:#a6e22e>alias</span><span style=color:#f92672>:</span> [
+      {
+        <span style=color:#a6e22e>find</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;@&#34;</span>,
+        <span style=color:#a6e22e>replacement</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>fileURLToPath</span>(<span style=color:#66d9ef>new</span> <span style=color:#a6e22e>URL</span>(<span style=color:#e6db74>&#34;./src&#34;</span>, <span style=color:#66d9ef>import</span>.<span style=color:#a6e22e>meta</span>.<span style=color:#a6e22e>url</span>)),
+      },
+    ],
+  },
+});
 </code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>npm run test
-</code></pre></div><p><strong>Default vitest config</strong></p>
+npm run test:ui
+npm run test:run
+</code></pre></div><p><strong>jsconfig.json</strong> for your code editor</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>{
+  <span style=color:#f92672>&#34;compilerOptions&#34;</span>: {
+    <span style=color:#f92672>&#34;target&#34;</span>: <span style=color:#e6db74>&#34;ES2020&#34;</span>,
+    <span style=color:#75715e>// … all other compiler options
+</span><span style=color:#75715e></span>
+    <span style=color:#75715e>// all paths defined here must match the configured path in `vite.config.ts`
+</span><span style=color:#75715e></span>    <span style=color:#f92672>&#34;paths&#34;</span>: {
+      <span style=color:#f92672>&#34;@/*&#34;</span>: [<span style=color:#e6db74>&#34;./src/*&#34;</span>]
+    }
+  },
+  <span style=color:#f92672>&#34;include&#34;</span>: [<span style=color:#e6db74>&#34;node_modules&#34;</span>, <span style=color:#e6db74>&#34;tests&#34;</span>]
+}
+</code></pre></div><p><strong>tests/units/shared/utils.spec.js</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>assert</span>, <span style=color:#a6e22e>expect</span>, <span style=color:#a6e22e>test</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;vitest&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>generatePagers</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;@/shared/utils&#34;</span>;
+
+<span style=color:#a6e22e>test</span>(<span style=color:#e6db74>&#34;generatePagers&#34;</span>, () =&gt; {
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>testCases</span> <span style=color:#f92672>=</span> [
+    {
+      <span style=color:#a6e22e>input</span><span style=color:#f92672>:</span> { <span style=color:#a6e22e>numberOfPages</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>10</span>, <span style=color:#a6e22e>currentPage</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>1</span>, <span style=color:#a6e22e>spaces</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>5</span> },
+      <span style=color:#a6e22e>output</span><span style=color:#f92672>:</span> [<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>5</span>],
+    },
+  ];
+  <span style=color:#a6e22e>expect</span>(<span style=color:#a6e22e>generatePagers</span>(<span style=color:#a6e22e>testCases</span>[<span style=color:#ae81ff>0</span>].<span style=color:#a6e22e>input</span>)).<span style=color:#a6e22e>toEqual</span>(<span style=color:#a6e22e>testCases</span>[<span style=color:#ae81ff>0</span>].<span style=color:#a6e22e>output</span>);
+});
+</code></pre></div><p><strong>Vitest UI</strong></p>
+<p><img src=https://user-images.githubusercontent.com/31009750/271358107-67d10d0a-de04-49db-a076-e35f5f05634e.png alt=image></p>
+<p><strong>Debug</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>{
+  <span style=color:#75715e>// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+</span><span style=color:#75715e></span>  <span style=color:#f92672>&#34;version&#34;</span>: <span style=color:#e6db74>&#34;0.2.0&#34;</span>,
+  <span style=color:#f92672>&#34;configurations&#34;</span>: [
+    {
+      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;node&#34;</span>,
+      <span style=color:#f92672>&#34;request&#34;</span>: <span style=color:#e6db74>&#34;launch&#34;</span>,
+      <span style=color:#f92672>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;Debug Current Test File&#34;</span>,
+      <span style=color:#f92672>&#34;autoAttachChildProcesses&#34;</span>: <span style=color:#66d9ef>true</span>,
+      <span style=color:#f92672>&#34;skipFiles&#34;</span>: [<span style=color:#e6db74>&#34;&lt;node_internals&gt;/**&#34;</span>, <span style=color:#e6db74>&#34;**/node_modules/**&#34;</span>],
+      <span style=color:#f92672>&#34;program&#34;</span>: <span style=color:#e6db74>&#34;${workspaceRoot}/node_modules/vitest/vitest.mjs&#34;</span>,
+      <span style=color:#f92672>&#34;args&#34;</span>: [<span style=color:#e6db74>&#34;run&#34;</span>, <span style=color:#e6db74>&#34;${relativeFile}&#34;</span>],
+      <span style=color:#f92672>&#34;smartStep&#34;</span>: <span style=color:#66d9ef>true</span>,
+      <span style=color:#f92672>&#34;console&#34;</span>: <span style=color:#e6db74>&#34;integratedTerminal&#34;</span>
+    }
+  ]
+}
+</code></pre></div><p><img src=https://user-images.githubusercontent.com/31009750/271357687-aff9d45e-b134-40f3-8ced-ef6d75173cd2.png alt=image></p>
+<p><strong>Default vitest config</strong></p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>include: **/*.<span style=color:#f92672>{</span>test,spec<span style=color:#f92672>}</span>.?<span style=color:#f92672>(</span>c|m<span style=color:#f92672>)[</span>jt<span style=color:#f92672>]</span>s?<span style=color:#f92672>(</span>x<span style=color:#f92672>)</span>
 exclude:  **/node_modules/**, **/dist/**, **/cypress/**, **/.<span style=color:#f92672>{</span>idea,git,cache,output,temp<span style=color:#f92672>}</span>/**, **/<span style=color:#f92672>{</span>karma,rollup,webpack,vite,vitest,jest,ava,babel,nyc,cypress,tsup,build<span style=color:#f92672>}</span>.config.*
 watch exclude:  **/node_modules/**, **/dist/**
