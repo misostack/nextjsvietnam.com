@@ -102,6 +102,34 @@ Các chủ đề tôi sẽ đi qua bao gồm:
 6. [] Setup Cypress cho E2E Test
 7. [] Cấu hình gitlab CI chạy test
 
+### Setup Vitest
+
+```sh
+npm install -D vitest
+```
+
+**package.json**
+
+```json
+{
+  "scripts": {
+    "test": "vitest"
+  }
+}
+```
+
+```sh
+npm run test
+```
+
+**Default vitest config**
+
+```sh
+include: **/*.{test,spec}.?(c|m)[jt]s?(x)
+exclude:  **/node_modules/**, **/dist/**, **/cypress/**, **/.{idea,git,cache,output,temp}/**, **/{karma,rollup,webpack,vite,vitest,jest,ava,babel,nyc,cypress,tsup,build}.config.*
+watch exclude:  **/node_modules/**, **/dist/**
+```
+
 ## Tổng kết
 
 1. Có 3 loại test: Unit Test, Integration Test, E2E Test
