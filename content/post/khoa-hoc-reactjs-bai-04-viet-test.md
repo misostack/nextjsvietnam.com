@@ -106,6 +106,7 @@ Các chủ đề tôi sẽ đi qua bao gồm:
 
 ```sh
 npm install -D vitest
+npm install -D @vitest/ui
 ```
 
 **package.json**
@@ -113,14 +114,105 @@ npm install -D vitest
 ```json
 {
   "scripts": {
-    "test": "vitest"
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:run": "vitest run"
   }
 }
 ```
 
+**vite.config.js**
+
+```js
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import { fileURLToPath, URL } from "url";
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react()],
+  test: {},
+  server: {
+    port: 3015,
+  },
+  resolve: {
+    alias: [
+      {
+        find: "@",
+        replacement: fileURLToPath(new URL("./src", import.meta.url)),
+      },
+    ],
+  },
+});
+```
+
 ```sh
 npm run test
+npm run test:ui
+npm run test:run
 ```
+
+**jsconfig.json** for your code editor
+
+```json
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    // … all other compiler options
+
+    // all paths defined here must match the configured path in `vite.config.ts`
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["node_modules", "tests"]
+}
+```
+
+**tests/units/shared/utils.spec.js**
+
+```js
+import { assert, expect, test } from "vitest";
+import { generatePagers } from "@/shared/utils";
+
+test("generatePagers", () => {
+  const testCases = [
+    {
+      input: { numberOfPages: 10, currentPage: 1, spaces: 5 },
+      output: [1, 2, 3, 4, 5],
+    },
+  ];
+  expect(generatePagers(testCases[0].input)).toEqual(testCases[0].output);
+});
+```
+
+**Vitest UI**
+
+![image](https://user-images.githubusercontent.com/31009750/271358107-67d10d0a-de04-49db-a076-e35f5f05634e.png)
+
+**Debug**
+
+```json
+{
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Current Test File",
+      "autoAttachChildProcesses": true,
+      "skipFiles": ["<node_internals>/**", "**/node_modules/**"],
+      "program": "${workspaceRoot}/node_modules/vitest/vitest.mjs",
+      "args": ["run", "${relativeFile}"],
+      "smartStep": true,
+      "console": "integratedTerminal"
+    }
+  ]
+}
+```
+
+![image](https://user-images.githubusercontent.com/31009750/271357687-aff9d45e-b134-40f3-8ced-ef6d75173cd2.png)
 
 **Default vitest config**
 
