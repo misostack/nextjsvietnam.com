@@ -208,7 +208,20 @@ Do Cypress được cài đặt trên môi trường local của các anh/chị,
 <li>[] Setup Cypress cho E2E Test</li>
 <li>[] Cấu hình gitlab CI chạy test</li>
 </ol>
-<h2 id=tổng-kết>Tổng kết</h2>
+<h3 id=setup-vitest>Setup Vitest</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>npm install -D vitest
+</code></pre></div><p><strong>package.json</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>{
+  <span style=color:#f92672>&#34;scripts&#34;</span>: {
+    <span style=color:#f92672>&#34;test&#34;</span>: <span style=color:#e6db74>&#34;vitest&#34;</span>
+  }
+}
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>npm run test
+</code></pre></div><p><strong>Default vitest config</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>include: **/*.<span style=color:#f92672>{</span>test,spec<span style=color:#f92672>}</span>.?<span style=color:#f92672>(</span>c|m<span style=color:#f92672>)[</span>jt<span style=color:#f92672>]</span>s?<span style=color:#f92672>(</span>x<span style=color:#f92672>)</span>
+exclude:  **/node_modules/**, **/dist/**, **/cypress/**, **/.<span style=color:#f92672>{</span>idea,git,cache,output,temp<span style=color:#f92672>}</span>/**, **/<span style=color:#f92672>{</span>karma,rollup,webpack,vite,vitest,jest,ava,babel,nyc,cypress,tsup,build<span style=color:#f92672>}</span>.config.*
+watch exclude:  **/node_modules/**, **/dist/**
+</code></pre></div><h2 id=tổng-kết>Tổng kết</h2>
 <ol>
 <li>Có 3 loại test: Unit Test, Integration Test, E2E Test</li>
 <li>Hãy viết Unit Test cho các Util Function</li>
@@ -292,7 +305,7 @@ Copyright @ NextJSVietNam 2022
 Powered by <a class="font-bold text-primary" href=https://gohugo.io/>Go Hugo</a> - Made
 with love from <a class="font-bold text-primary" href=https://nextjsvietnam.com>NextJSVietNam</a> -
 Build
-Version 2023-09-28 08:07:25 +0700 +0700
+Version 2023-09-28 22:53:54 +0700 +0700
 </div>
 </div>
 </footer>
