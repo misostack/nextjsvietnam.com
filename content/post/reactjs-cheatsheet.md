@@ -40,3 +40,19 @@ import "@/App.css";
 import enviroment from "@/shared/environment";
 import LinkManagementContainer from "@/containers/LinkManagementContainer";
 ```
+
+But it is not enough, you also your editor understand it. Please create a file named "jsconfig.json" and copy the following content.
+
+```json
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    // … all other compiler options
+
+    // all paths defined here must match the configured path in `vite.config.ts`
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}
+```
