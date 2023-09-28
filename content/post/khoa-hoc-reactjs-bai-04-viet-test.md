@@ -1,5 +1,5 @@
 ---
-title: "Khóa học ReactJS Bài 04 - Sử dụng vitest trong dự án React"
+title: "Khóa học ReactJS Bài 04 - viết test cho dự án React"
 type: "post"
 date: 2023-09-28T08:07:25+07:00
 description: "Tổng hợp các công cụ và phương pháp để test tự động 1 dự án ReactJS. Minh họa với vitest và cypress"
@@ -63,3 +63,51 @@ Như vậy có thể tổng hợp lại tại bước này các anh/chị nên t
 ## E2E Test trong dự án ReactJS
 
 Kiểm thử E2E nhằm mục đích sẽ giả lập việc user sử dụng ứng dụng, và kiểm tra xem ứng dụng có hoạt động chính xác không, và việc kiểm này sẽ kiểm tra toàn bộ ứng dụng hoạt động có đúng không.
+
+Ở bước này, khi test các anh/chị cần xây dựng kịch bản test như 1 user để tiến hành viết code.
+Có một số công cụ thường được sử dụng ở bước này như:
+
+- [Cypress](https://docs.cypress.io/guides/getting-started/installing-cypress)
+- [Puppeteer](https://pptr.dev/)
+- [Playwright](https://playwright.dev/docs/intro)
+
+Một số kĩ thuật cần áp dụng trong phần này:
+
+- Snapshot
+-
+
+## Thiết lập môi trường để viết test cho dự án ReactJS
+
+- [x] Testing Runners: [Jest](https://jestjs.io/docs/cli), [Vitest](https://vitest.dev/guide/features.html), ...
+- [x] Test Render: [Testing Library](https://testing-library.com/), [Enzyme](https://enzymejs.github.io/enzyme/)
+- [x] E2E: Cypress, Selenium, ...
+
+Trong phạm vi bài viết tôi sẽ demo với các công cụ sau:
+
+1. Test Runners: vitest
+2. Test Render: Testing Library
+3. E2E Test Framework: Cypress
+
+Ưu điểm vượt trội của Cypress so với các công cụ khác như Selenium,... chính là thay vì chạy bên ngoài browser và sử dụng các remote command thông qua network. Cypress làm điều ngược lại, cypress sẽ chạy trong cùng 1 vòng lặp với ứng dụng của các anh/chị.
+Đặc biệt do chạy trên nền nodejs, nên cypress và nodejs tương tác với nhau một cách đồng bộ, giúp các tác vụ trở nên mượt mà hơn, và thời gian phản hồi rút ngắn tối đa.
+Do Cypress được cài đặt trên môi trường local của các anh/chị, nên có thể thực hiện các tác vụ khác của automation test như: **chụp screenshots**, **record videos**, **chạy các file hệ thống**, **gọi network call**.
+
+Các chủ đề tôi sẽ đi qua bao gồm:
+
+1. [] Setup vitest
+2. [] Viết Unit Test cho Function
+3. [] Viết Unit Test cho Stateless React Component
+4. [] Viết Integration Test cho React Component
+5. [] Giới thiệu về: Mock, Stub
+6. [] Setup Cypress cho E2E Test
+7. [] Cấu hình gitlab CI chạy test
+
+## Tổng kết
+
+1. Có 3 loại test: Unit Test, Integration Test, E2E Test
+2. Hãy viết Unit Test cho các Util Function
+3. Hãy viết Integration Test cho các Component
+4. Hãy viết E2E cho các tính năng quan trọng cần kiểm tra toàn bộ flow như: đăng ký, thanh toán, mua hàng, ...
+5. Khẩu quyết: "Viết nhiều Integration Test, không cần snapshot test. Viết một ít unit test, một ít E2E Test"
+
+> Viết test nhằm 1 mục đích duy nhất - tăng sự đảm bảo của codebase. Hỗ trợ regression test, giúp các anh/chị mạnh dạn thay đổi/refactor code.
