@@ -12,7 +12,7 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWE4MLJYE6"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-RWE4MLJYE6')</script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1642510310947288" crossorigin=anonymous></script>
-<title>Khóa học ReactJS Bài 04 - Sử dụng vitest trong dự án React | Tổng hợp các công cụ và phương pháp để test tự động 1 dự án ReactJS. Minh họa với vitest và cypress | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+<title>Khóa học ReactJS Bài 04 - viết test cho dự án React | Tổng hợp các công cụ và phương pháp để test tự động 1 dự án ReactJS. Minh họa với vitest và cypress | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
 <meta name=robots content="all">
 <meta name=keywords content="reactjs,reactjs-beginner">
 <meta name=description content="Tổng hợp các công cụ và phương pháp để test tự động 1 dự án ReactJS. Minh họa với vitest và cypress">
@@ -117,8 +117,8 @@
 <main>
 <section class="container section">
 <div class="page-content max-w-2xl mx-auto">
-<img src=https://user-images.githubusercontent.com/31009750/246856332-ece36caa-82ef-4a4f-86d9-9dad4a108929.png class=img-responsive alt="Khóa học ReactJS Bài 04 - Sử dụng vitest trong dự án React">
-<h1>Khóa học ReactJS Bài 04 - Sử dụng vitest trong dự án React</h1>
+<img src=https://user-images.githubusercontent.com/31009750/246856332-ece36caa-82ef-4a4f-86d9-9dad4a108929.png class=img-responsive alt="Khóa học ReactJS Bài 04 - viết test cho dự án React">
+<h1>Khóa học ReactJS Bài 04 - viết test cho dự án React</h1>
 <p><strong>Post Date</strong> : 2023-09-28T08:07:25+07:00</p>
 <p><strong>Modified Date</strong> : 2023-09-28T08:07:25+07:00</p>
 <p>
@@ -171,6 +171,54 @@
 </ol>
 <h2 id=e2e-test-trong-dự-án-reactjs>E2E Test trong dự án ReactJS</h2>
 <p>Kiểm thử E2E nhằm mục đích sẽ giả lập việc user sử dụng ứng dụng, và kiểm tra xem ứng dụng có hoạt động chính xác không, và việc kiểm này sẽ kiểm tra toàn bộ ứng dụng hoạt động có đúng không.</p>
+<p>Ở bước này, khi test các anh/chị cần xây dựng kịch bản test như 1 user để tiến hành viết code.
+Có một số công cụ thường được sử dụng ở bước này như:</p>
+<ul>
+<li><a href=https://docs.cypress.io/guides/getting-started/installing-cypress>Cypress</a></li>
+<li><a href=https://pptr.dev/>Puppeteer</a></li>
+<li><a href=https://playwright.dev/docs/intro>Playwright</a></li>
+</ul>
+<p>Một số kĩ thuật cần áp dụng trong phần này:</p>
+<ul>
+<li>Snapshot</li>
+<li></li>
+</ul>
+<h2 id=thiết-lập-môi-trường-để-viết-test-cho-dự-án-reactjs>Thiết lập môi trường để viết test cho dự án ReactJS</h2>
+<ul>
+<li><input checked disabled type=checkbox> Testing Runners: <a href=https://jestjs.io/docs/cli>Jest</a>, <a href=https://vitest.dev/guide/features.html>Vitest</a>, &mldr;</li>
+<li><input checked disabled type=checkbox> Test Render: <a href=https://testing-library.com/>Testing Library</a>, <a href=https://enzymejs.github.io/enzyme/>Enzyme</a></li>
+<li><input checked disabled type=checkbox> E2E: Cypress, Selenium, &mldr;</li>
+</ul>
+<p>Trong phạm vi bài viết tôi sẽ demo với các công cụ sau:</p>
+<ol>
+<li>Test Runners: vitest</li>
+<li>Test Render: Testing Library</li>
+<li>E2E Test Framework: Cypress</li>
+</ol>
+<p>Ưu điểm vượt trội của Cypress so với các công cụ khác như Selenium,&mldr; chính là thay vì chạy bên ngoài browser và sử dụng các remote command thông qua network. Cypress làm điều ngược lại, cypress sẽ chạy trong cùng 1 vòng lặp với ứng dụng của các anh/chị.
+Đặc biệt do chạy trên nền nodejs, nên cypress và nodejs tương tác với nhau một cách đồng bộ, giúp các tác vụ trở nên mượt mà hơn, và thời gian phản hồi rút ngắn tối đa.
+Do Cypress được cài đặt trên môi trường local của các anh/chị, nên có thể thực hiện các tác vụ khác của automation test như: <strong>chụp screenshots</strong>, <strong>record videos</strong>, <strong>chạy các file hệ thống</strong>, <strong>gọi network call</strong>.</p>
+<p>Các chủ đề tôi sẽ đi qua bao gồm:</p>
+<ol>
+<li>[] Setup vitest</li>
+<li>[] Viết Unit Test cho Function</li>
+<li>[] Viết Unit Test cho Stateless React Component</li>
+<li>[] Viết Integration Test cho React Component</li>
+<li>[] Giới thiệu về: Mock, Stub</li>
+<li>[] Setup Cypress cho E2E Test</li>
+<li>[] Cấu hình gitlab CI chạy test</li>
+</ol>
+<h2 id=tổng-kết>Tổng kết</h2>
+<ol>
+<li>Có 3 loại test: Unit Test, Integration Test, E2E Test</li>
+<li>Hãy viết Unit Test cho các Util Function</li>
+<li>Hãy viết Integration Test cho các Component</li>
+<li>Hãy viết E2E cho các tính năng quan trọng cần kiểm tra toàn bộ flow như: đăng ký, thanh toán, mua hàng, &mldr;</li>
+<li>Khẩu quyết: &ldquo;Viết nhiều Integration Test, không cần snapshot test. Viết một ít unit test, một ít E2E Test&rdquo;</li>
+</ol>
+<blockquote>
+<p>Viết test nhằm 1 mục đích duy nhất - tăng sự đảm bảo của codebase. Hỗ trợ regression test, giúp các anh/chị mạnh dạn thay đổi/refactor code.</p>
+</blockquote>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/reactjs-tutorial>reactjs-tutorial</a>
 </div>
