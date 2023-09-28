@@ -12,18 +12,18 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWE4MLJYE6"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-RWE4MLJYE6')</script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1642510310947288" crossorigin=anonymous></script>
-<title>Khóa học NestJS - Bài 01 - Lộ trình các bài học về NestJS Framework | Giáo án tự học NestJS cho người mới bắt đầu | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+<title>Khóa học ReactJS Bài 04 - Sử dụng vitest trong dự án React | Tổng hợp các công cụ và phương pháp để test tự động 1 dự án ReactJS. Minh họa với vitest và cypress | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
 <meta name=robots content="all">
-<meta name=keywords content="nestjs,dto,validation">
-<meta name=description content="Giáo án tự học NestJS cho người mới bắt đầu">
+<meta name=keywords content="Khoa Hoc Reactjs Bai 04">
+<meta name=description content="Tổng hợp các công cụ và phương pháp để test tự động 1 dự án ReactJS. Minh họa với vitest và cypress">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://user-images.githubusercontent.com/31009750/181449337-70081a76-5a01-4229-805e-39ed0ded6b5b.png">
+<meta property="og:image" content="https://nextjsvietnam.com/common/no-image.png">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="750">
 <meta property="og:image:height" content="300">
 <meta property="article:publisher" content="https://www.facebook.com/nextjsvietnam">
-<meta property="article:published_time" content="2023-05-19T22:00:00+07:00">
-<meta property="article:modified_time" content="2023-05-19T22:00:00+07:00">
+<meta property="article:published_time" content="2023-09-28T08:07:25+07:00">
+<meta property="article:modified_time" content="2023-09-28T08:07:25+07:00">
 <link rel=apple-touch-icon sizes=57x57 href=/apple-icon-57x57.png>
 <link rel=apple-touch-icon sizes=60x60 href=/apple-icon-60x60.png>
 <link rel=apple-touch-icon sizes=72x72 href=/apple-icon-72x72.png>
@@ -117,109 +117,61 @@
 <main>
 <section class="container section">
 <div class="page-content max-w-2xl mx-auto">
-<img src=https://user-images.githubusercontent.com/31009750/181449337-70081a76-5a01-4229-805e-39ed0ded6b5b.png class=img-responsive alt="Khóa học NestJS - Bài 01 - Lộ trình các bài học về NestJS Framework">
-<h1>Khóa học NestJS - Bài 01 - Lộ trình các bài học về NestJS Framework</h1>
-<p><strong>Post Date</strong> : 2023-05-19T22:00:00+07:00</p>
-<p><strong>Modified Date</strong> : 2023-05-19T22:00:00+07:00</p>
+<img src=https://nextjsvietnam.com/common/no-image.png class=img-responsive alt="Khóa học ReactJS Bài 04 - Sử dụng vitest trong dự án React">
+<h1>Khóa học ReactJS Bài 04 - Sử dụng vitest trong dự án React</h1>
+<p><strong>Post Date</strong> : 2023-09-28T08:07:25+07:00</p>
+<p><strong>Modified Date</strong> : 2023-09-28T08:07:25+07:00</p>
 <p>
 <strong>Category:</strong>
-<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/nestjs-tutorial>nestjs-tutorial</a>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/cheatsheet>cheatsheet</a>
 </p>
 <p>
 <strong>Tags:</strong>
-<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=/tags/nestjs>nestjs</a>
 </p>
-<p><strong>Note</strong>: Toàn bộ mã nguồn của khóa học này đều được công khai trên github tại <a href=//github.com/misostack/nestjs-tutorial-2023>NestJS Tutorial 2023</a></p>
-<p>Trước khi bắt đầu nội dung chi tiết của khóa học này, tôi sẽ liệt kê một số câu hỏi thường gặp, cũng như câu trả lời của nó.</p>
-<h2 id=lời-nói-đầu>Lời nói đầu</h2>
-<h3 id=câu-hỏi-số-1--tại-sao-khóa-học-này-xuất-hiện>Câu hỏi số 1 : Tại sao khóa học này xuất hiện?</h3>
+<p>Đầu tiên, trước khi bắt đầu viết test, các anh/chị cần suy nghĩ xem dự án của mình sẽ test những gì. Cùng nhìn vào hình minh họa bên dưới sau:</p>
 <blockquote>
-<h3 id=câu-trả-lời-là-niềm-tự-hào-dân-tộc>Câu trả lời là &ldquo;Niềm tự hào dân tộc&rdquo;.</h3>
+<p>Kim tự tháp kiểm thử phần mềm</p>
 </blockquote>
-<p>Phần lớn tài liệu dành cho lập trình viên được viết bằng &ldquo;Tiếng Anh&rdquo;, tuy nhiên một số quốc gia như &ldquo;Trung Quốc&rdquo;, &ldquo;Nhật Bản&rdquo;, &ldquo;Hàn Quốc&rdquo;, hay các nước lớn như &ldquo;Pháp&rdquo;, &ldquo;Đức&rdquo; đều có những tài liệu lập trình được địa phương hóa, với rất nhiều kiến thức chuyên sâu, cũng như các chú giải/kinh nghiệm của người đi trước được truyền tải lại.</p>
-<p>Nhận thấy được điều này, thay vì tiếp tục viết nhật kí trực tuyến (blog) bằng tiếng Anh, tôi quyết định vẫn tiếp tục chia sẻ kiến thức bằng các nội dung tiếng Việt - đồng thời sẽ dùng google translate dịch toàn bộ nội dung tiếng Việt sang tiếng Anh để chia sẻ trên medium/devto và dẫn liên kết ngược trở lại trang nhật kí này.</p>
-<h3 id=câu-hỏi-số-2--khóa-học-này-có-tốn-phí>Câu hỏi số 2 : Khóa học này có tốn phí?</h3>
-<blockquote>
-<h3 id=khóa-học-hoàn-toàn-miễn-phí>Khóa học hoàn toàn miễn phí</h3>
-</blockquote>
-<ul>
-<li>Tuy nhiên bạn vẫn tốn thời gian để đọc và thực hành. Điều quan trọng nhất vẫn là tự bản thân bạn phải thực hành được những kiến thức được chia sẻ trong các bài học và biến nó thành của riêng bạn.</li>
-</ul>
-<h3 id=câu-hỏi-số-3--khóa-học-này-dành-cho-ai>Câu hỏi số 3 : Khóa học này dành cho ai?</h3>
-<blockquote>
-<h3 id=khóa-học-dành-cho-các-lập-trình-viên-đã-có-hiểu-biết-về-nodejs-và-typescript-và-expressjs>Khóa học dành cho các lập trình viên đã có hiểu biết về nodejs và typescript và expressjs.</h3>
-</blockquote>
-<ul>
-<li>Nếu bạn chưa có kiến thức về nodejs và typescript, hãy tạm dừng và quay trở lại khi đã có kiến thức căn bản về 3 món vũ khí trên.</li>
-</ul>
-<h3 id=câu-hỏi-số-4--khóa-học-này-gồm-những-gì>Câu hỏi số 4 : Khóa học này gồm những gì?</h3>
-<blockquote>
-<h3 id=khóa-học-bao-gồm-4-phần>Khóa học bao gồm 4 phần</h3>
-</blockquote>
-<ul>
-<li>Kiến thức nền tảng của framework NestJS</li>
-<li>Cách sử dụng các module sẵn có trong hệ sinh thái của NestJS</li>
-<li>Cách cấu trúc 1 dự án NestJS trong thực tế</li>
-<li>Chia sẻ kinh nghiệm và hỏi đáp</li>
-</ul>
-<h3 id=câu-hỏi-số-5--khóa-học-này-sẽ-diễn-ra-trong-bao-lâu>Câu hỏi số 5 : Khóa học này sẽ diễn ra trong bao lâu?</h3>
-<blockquote>
-<h3 id=thời-gian-khóa-học-kéo-dài-sẽ-phụ-thuộc-vào-việc-tôi-sẽ-sắp-xếp-được-thời-gian-để-lên-bài-cũng-như-số-lượng-người-theo-dõi>Thời gian khóa học kéo dài sẽ phụ thuộc vào việc tôi sẽ sắp xếp được thời gian để lên bài, cũng như số lượng người theo dõi</h3>
-</blockquote>
-<ul>
-<li>Khóa học này sẽ diễn ra trong 1 thời gian dài nhất có thể.</li>
-<li>Mục tiêu để có được bài học chất lượng, nên mục tiêu xuất bản sẽ rơi vào khoảng 1 bài học/tuần.</li>
-</ul>
-<h3 id=câu-hỏi-số-6--nếu-bạn-muốn-gửi-câu-hỏi-thì-sẽ-gửi-vào-đâu>Câu hỏi số 6 : Nếu bạn muốn gửi câu hỏi, thì sẽ gửi vào đâu</h3>
-<ul>
-<li>Nếu bạn có câu hỏi vui lòng cung cấp một số thông tin <a href=https://forms.gle/dn1BNHmwGJWeCw7f8>theo mẫu sau</a></li>
-</ul>
-<p><a href=https://forms.gle/dn1BNHmwGJWeCw7f8><img src=https://user-images.githubusercontent.com/31009750/246770149-f019c2c1-c641-4598-b5ae-e7ccb90edd3a.png alt=image></a></p>
-<h2 id=lộ-trình-chi-tiết>Lộ trình chi tiết</h2>
-<h3 id=bài-2---pet-website>Bài 2 - Pet Website</h3>
-<ul>
-<li><a href="https://docs.google.com/document/d/1_WRHoaIVnI2-8RLRah2P6pP-ZbaBfRHStVvCBF3v5xw/edit?usp=sharing">Chi tiết yêu cầu</a></li>
-</ul>
-<blockquote>
-<p>Yêu cầu:</p>
-</blockquote>
-<ul>
-<li>Xây dựng website tìm kiếm thông tin về thú cưng ( chó/mèo ), phân loại thông tin theo chủng loại, đặc điểm sinh học của các giống chó/mèo.</li>
-<li>Thông tin chính : có kèm hình ảnh về thú cưng, mô tả cơ bản, link video nếu có</li>
-<li>Thống kê lượt xem</li>
-<li>Có tính năng vote cho từng thú cưng: like ( tự do vote - mỗi lượt truy cập vote 1 lần )</li>
-<li>Được phép chia sẻ thông tin thú cưng lên mạng xã hội ( facebook )</li>
-</ul>
+<p><img src=https://user-images.githubusercontent.com/31009750/261233946-8a85e14e-e153-4dd0-a22c-ced35255d20c.png alt=image></p>
+<p>Do đó, việc viết test được phân vào 3 nhóm chính:</p>
 <ol>
-<li>Day 1 : Setup Project - MVC Architecture</li>
-<li>Day 2 : Controller & Data Validation</li>
-<li>Day 3 : Model & Migrations & Seeds</li>
-<li>Day 4 : Service & Dependency Injection</li>
-<li>Day 5 : Upload File</li>
-<li>Day 6 : Secure your Application</li>
-<li>Day 7 : Logging</li>
-<li>Day 8 : Queue, Scheduling</li>
-<li>Day 9 : Caching</li>
-<li>Day 10 : Deployment</li>
+<li>Unit Test</li>
+<li>Integration Test</li>
+<li>E2E Test ( end to end Test)</li>
 </ol>
-<h3 id=bài-3---pet-api>Bài 3 - Pet API</h3>
+<p>Vậy trong mỗi nhóm như vậy các anh/chị sẽ test những gì, công cụ nào có thể hỗ trợ chúng ta làm công việc này.</p>
+<h2 id=unit-test-trong-dự-án-reactjs>Unit Test trong dự án ReactJS</h2>
 <blockquote>
-<p>Về mặt tính năng là tương tự - tuy nhiên thay vì xây dựng 1 trang web, hãy xây dựng API và áp dụng 1 số kĩ thuật có sẵn trong NestJS</p>
+<p>Unit Test còn được gọi là kiểm thử đơn vị, đơn vị đôi khi là 1 function hoặc cũng có thể làm 1 component, hay thậm chí là 1 module nếu xem xét ở 1 góc độ rộng hơn.</p>
 </blockquote>
+<p>Vậy trong dự án ReactJS, các đơn vị này là gì, và các anh/chị cần test ra sao?</p>
+<ul>
+<li><input checked disabled type=checkbox> Test Render Component with props</li>
+<li><input checked disabled type=checkbox> Test Util Function</li>
+</ul>
+<h3 id=1-test-component>1. Test Component</h3>
+<p>Chính xác đây là cốt lõi và bản chất của các dự án ReactJS (component based system), toàn bộ ứng dụng sẽ được cấu thành từ các component nhỏ(chúng tự quản lí state, và kết hợp chúng để render thành các giao diện hiển thị cho người dùng, react lại hành vi của user khi tương tác).</p>
+<p>Như vậy thì test component là test những gì?</p>
+<ul>
+<li>Test render - test kết quả của component(nhận props) sau đó render ra UI tương ứng.</li>
+</ul>
+<p>Tại bước này ReactJS cung cấp 1 kĩ thuật gọi là &ldquo;shallow rendering&rdquo; giúp các anh/chị có thể test được kết quả của component mà không cần thiết phải mount(headless), giảm được rất nhiều thời gian khi chạy test.</p>
+<p>Có nên test state change hay không? Có nhưng nó không thuộc phạm vi cần test trong khi thực hiện Unit Test</p>
+<h3 id=2-test-util-function>2. Test Util Function</h3>
+<p>Trong dự án ReactJS, chắc hẳn sẽ có những function được viết nhằm mục đích biến đổi dữ liệu trước khi được sử dụng, đây cũng được xem là 1 phần trong kiểm thử đơn vị</p>
+<h2 id=integration-test-trong-dự-án-reactjs>Integration Test trong dự án ReactJS</h2>
+<p>Tại bước này các anh/chị sẽ kiểm tra khi các component ở bước trên có tương tác với các component khác/Api call/Hành vi của user thì nó có hoạt động đúng hay không. Và tại bước này các anh/chị cần sử dụng tới việc mounting của component để kiểm tra xem các component con có hoạt động đúng như mong đợi không.</p>
+<p>Ở bước này, khi test các anh/chị sẽ phải áp dụng các kĩ thuật như : mock/stub để giả lập 1 số component/api call/user behavior liên quan nhằm giảm bớt thời gian chạy kiểm thử.</p>
+<p>Như vậy có thể tổng hợp lại tại bước này các anh/chị nên test:</p>
 <ol>
-<li>Day 1 : REST API - Layer Architecture</li>
-<li>Day 2 : Authentication & Authorization</li>
-<li>Day 3 : Store your file with AWS S3</li>
-<li>Day 4 : Data Validation</li>
-<li>Day 5 : API Doc</li>
-<li>Day 6 : Testing</li>
-<li>Day 7 : Mongodb</li>
-<li>Day 8 : GraphQL</li>
-<li>Day 9 : Microservices</li>
-<li>Day 10 : Deployment</li>
+<li><input checked disabled type=checkbox> Test Component with state change</li>
+<li><input checked disabled type=checkbox> Test Component with API call</li>
+<li><input checked disabled type=checkbox> Test Component with User Action</li>
 </ol>
+<h2 id=e2e-test-trong-dự-án-reactjs>E2E Test trong dự án ReactJS</h2>
+<p>Kiểm thử E2E nhằm mục đích sẽ giả lập việc user sử dụng ứng dụng, và kiểm tra xem ứng dụng có hoạt động chính xác không, và việc kiểm này sẽ kiểm tra toàn bộ ứng dụng hoạt động có đúng không.</p>
 <div class="m-1 p-1">
-<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/nestjs-tutorial>nestjs-tutorial</a>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/cheatsheet>cheatsheet</a>
 </div>
 </div>
 </section>
@@ -228,11 +180,13 @@
 <div class="font-heading text-2xl font-semibold">You Might Also Like</div>
 <div class="mt-8 grid gap-8">
 <ul class=sidebar-links>
-<li><a href=/post/khoa-hoc-nestjs-bai-06-viet-unit-test/>Khóa học NestJS - Bài 06 Hướng dẫn viết Unit Test</a></li>
-<li><a href=/post/khoa-hoc-nestjs-bai-05-repository-pattern/>Khóa học NestJS Bài 05 - Repository Pattern</a></li>
-<li><a href=/post/khoa-hoc-nestjs-bai-04-model-and-repository-pattern/>Khóa học NestJS Bài 04 - Model and Repository Pattern</a></li>
-<li><a href=/post/khoa-hoc-nestjs-bai03/>Khóa học NestJS Bài 03 - Controllers & Views</a></li>
-<li><a href=/post/khoa-hoc-nestjs-bai-02/>Khóa học Nestjs - Bài 02 - Giới thiệu mô hình MVC</a></li>
+<li><a href=/post/developer-philosophy/>Developer Philosophy</a></li>
+<li><a href=/post/test-driven-development-for-beginner/>Test Driven Development for Beginner</a></li>
+<li><a href=/post/100-frontend-interview-questions/>100 Frontend Interview Questions</a></li>
+<li><a href=/post/chatgpt-what-can-chat-gpt-do/>Chatgpt What Can Chat Gpt Do</a></li>
+<li><a href=/post/learn-enough-oop-to-be-dangerous/>Learn Enough Oop to Be Dangerous</a></li>
+<li><a href=/post/the-future-of-hr/>The Future of Hr</a></li>
+<li><a href=/post/how-to-test-the-database/>How to Test the Database</a></li>
 </ul>
 </div>
 </div>
