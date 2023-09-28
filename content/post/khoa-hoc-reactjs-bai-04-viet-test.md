@@ -3,10 +3,10 @@ title: "Khóa học ReactJS Bài 04 - Sử dụng vitest trong dự án React"
 type: "post"
 date: 2023-09-28T08:07:25+07:00
 description: "Tổng hợp các công cụ và phương pháp để test tự động 1 dự án ReactJS. Minh họa với vitest và cypress"
-keywords: ["Khoa Hoc Reactjs Bai 04"]
-categories: ["cheatsheet"]
-tags: []
-image: "/common/no-image.png"
+keywords: ["reactjs", "reactjs-beginner"]
+categories: ["reactjs-tutorial"]
+tags: ["reactjs"]
+image: "https://user-images.githubusercontent.com/31009750/246856332-ece36caa-82ef-4a4f-86d9-9dad4a108929.png"
 ---
 
 Đầu tiên, trước khi bắt đầu viết test, các anh/chị cần suy nghĩ xem dự án của mình sẽ test những gì. Cùng nhìn vào hình minh họa bên dưới sau:
