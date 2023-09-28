@@ -9,6 +9,8 @@ tags: ["reactjs"]
 image: "https://user-images.githubusercontent.com/31009750/246856332-ece36caa-82ef-4a4f-86d9-9dad4a108929.png"
 ---
 
+**Note**: Toàn bộ mã nguồn của khóa học này đều được công khai trên github tại [ReactJS Tutorial 2023](https://github.com/misostack/reactjs-tutorial-2023/tree/lession04)
+
 Đầu tiên, trước khi bắt đầu viết test, các anh/chị cần suy nghĩ xem dự án của mình sẽ test những gì. Cùng nhìn vào hình minh họa bên dưới sau:
 
 > Kim tự tháp kiểm thử phần mềm
@@ -74,7 +76,6 @@ Có một số công cụ thường được sử dụng ở bước này như:
 Một số kĩ thuật cần áp dụng trong phần này:
 
 - Snapshot
--
 
 ## Thiết lập môi trường để viết test cho dự án ReactJS
 
@@ -94,8 +95,8 @@ Do Cypress được cài đặt trên môi trường local của các anh/chị,
 
 Các chủ đề tôi sẽ đi qua bao gồm:
 
-1. [] Setup vitest
-2. [] Viết Unit Test cho Function
+1. [x] Setup vitest
+2. [x] Viết Unit Test cho Function
 3. [] Viết Unit Test cho Stateless React Component
 4. [] Viết Integration Test cho React Component
 5. [] Giới thiệu về: Mock, Stub
