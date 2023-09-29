@@ -46,6 +46,7 @@ But it is not enough, you also your editor understand it. Please create a file n
 ```json
 {
   "compilerOptions": {
+    "jsx": "react-jsx", // suport jsx file
     "target": "ES2020",
     // … all other compiler options
 

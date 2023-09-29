@@ -158,6 +158,7 @@ npm run test:run
 ```json
 {
   "compilerOptions": {
+    "jsx": "react-jsx", // support jsx file
     "target": "ES2020",
     // … all other compiler options
 
