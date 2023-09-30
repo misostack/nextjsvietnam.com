@@ -252,7 +252,6 @@ npm run test:run
     <span style=color:#f92672>&#34;typeRoots&#34;</span>: [<span style=color:#e6db74>&#34;tests/types&#34;</span>],
     <span style=color:#f92672>&#34;baseUrl&#34;</span>: <span style=color:#e6db74>&#34;.&#34;</span>,
     <span style=color:#f92672>&#34;target&#34;</span>: <span style=color:#e6db74>&#34;ES2020&#34;</span>,
-    <span style=color:#f92672>&#34;jsx&#34;</span>: <span style=color:#e6db74>&#34;react-jsx&#34;</span>,
     <span style=color:#75715e>// … all other compiler options
 </span><span style=color:#75715e></span>
     <span style=color:#75715e>// all paths defined here must match the configured path in `vite.config.ts`
@@ -282,8 +281,33 @@ npm run test:run
       <span style=color:#a6e22e>input</span><span style=color:#f92672>:</span> { <span style=color:#a6e22e>numberOfPages</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>10</span>, <span style=color:#a6e22e>currentPage</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>1</span>, <span style=color:#a6e22e>spaces</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>5</span> },
       <span style=color:#a6e22e>output</span><span style=color:#f92672>:</span> [<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>5</span>],
     },
-  ];
-  <span style=color:#a6e22e>expect</span>(<span style=color:#a6e22e>generatePagers</span>(<span style=color:#a6e22e>testCases</span>[<span style=color:#ae81ff>0</span>].<span style=color:#a6e22e>input</span>)).<span style=color:#a6e22e>toEqual</span>(<span style=color:#a6e22e>testCases</span>[<span style=color:#ae81ff>0</span>].<span style=color:#a6e22e>output</span>);
+    {
+      <span style=color:#a6e22e>input</span><span style=color:#f92672>:</span> { <span style=color:#a6e22e>numberOfPages</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>10</span>, <span style=color:#a6e22e>currentPage</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>4</span>, <span style=color:#a6e22e>spaces</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>5</span> },
+      <span style=color:#a6e22e>output</span><span style=color:#f92672>:</span> [<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>5</span>],
+    },
+    {
+      <span style=color:#a6e22e>input</span><span style=color:#f92672>:</span> { <span style=color:#a6e22e>numberOfPages</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>10</span>, <span style=color:#a6e22e>currentPage</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>5</span>, <span style=color:#a6e22e>spaces</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>5</span> },
+      <span style=color:#a6e22e>output</span><span style=color:#f92672>:</span> [<span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>5</span>, <span style=color:#ae81ff>6</span>, <span style=color:#ae81ff>7</span>],
+    },
+    {
+      <span style=color:#a6e22e>input</span><span style=color:#f92672>:</span> { <span style=color:#a6e22e>numberOfPages</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>10</span>, <span style=color:#a6e22e>currentPage</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>8</span>, <span style=color:#a6e22e>spaces</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>5</span> },
+      <span style=color:#a6e22e>output</span><span style=color:#f92672>:</span> [<span style=color:#ae81ff>6</span>, <span style=color:#ae81ff>7</span>, <span style=color:#ae81ff>8</span>, <span style=color:#ae81ff>9</span>, <span style=color:#ae81ff>10</span>],
+    },
+    {
+      <span style=color:#a6e22e>input</span><span style=color:#f92672>:</span> { <span style=color:#a6e22e>numberOfPages</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>10</span>, <span style=color:#a6e22e>currentPage</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>10</span>, <span style=color:#a6e22e>spaces</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>5</span> },
+      <span style=color:#a6e22e>output</span><span style=color:#f92672>:</span> [<span style=color:#ae81ff>6</span>, <span style=color:#ae81ff>7</span>, <span style=color:#ae81ff>8</span>, <span style=color:#ae81ff>9</span>, <span style=color:#ae81ff>10</span>],
+    },
+  ].<span style=color:#a6e22e>map</span>((<span style=color:#a6e22e>tc</span>) =&gt; {
+    <span style=color:#66d9ef>return</span> {
+      <span style=color:#a6e22e>output</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>tc</span>.<span style=color:#a6e22e>output</span>,
+      <span style=color:#a6e22e>result</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>generatePagers</span>(<span style=color:#a6e22e>tc</span>.<span style=color:#a6e22e>input</span>),
+    };
+  });
+  <span style=color:#a6e22e>expect</span>(<span style=color:#a6e22e>testCases</span>[<span style=color:#ae81ff>0</span>].<span style=color:#a6e22e>result</span>).<span style=color:#a6e22e>toEqual</span>(<span style=color:#a6e22e>testCases</span>[<span style=color:#ae81ff>0</span>].<span style=color:#a6e22e>output</span>);
+  <span style=color:#a6e22e>expect</span>(<span style=color:#a6e22e>testCases</span>[<span style=color:#ae81ff>1</span>].<span style=color:#a6e22e>result</span>).<span style=color:#a6e22e>toEqual</span>(<span style=color:#a6e22e>testCases</span>[<span style=color:#ae81ff>1</span>].<span style=color:#a6e22e>output</span>);
+  <span style=color:#a6e22e>expect</span>(<span style=color:#a6e22e>testCases</span>[<span style=color:#ae81ff>2</span>].<span style=color:#a6e22e>result</span>).<span style=color:#a6e22e>toEqual</span>(<span style=color:#a6e22e>testCases</span>[<span style=color:#ae81ff>2</span>].<span style=color:#a6e22e>output</span>);
+  <span style=color:#a6e22e>expect</span>(<span style=color:#a6e22e>testCases</span>[<span style=color:#ae81ff>3</span>].<span style=color:#a6e22e>result</span>).<span style=color:#a6e22e>toEqual</span>(<span style=color:#a6e22e>testCases</span>[<span style=color:#ae81ff>3</span>].<span style=color:#a6e22e>output</span>);
+  <span style=color:#a6e22e>expect</span>(<span style=color:#a6e22e>testCases</span>[<span style=color:#ae81ff>4</span>].<span style=color:#a6e22e>result</span>).<span style=color:#a6e22e>toEqual</span>(<span style=color:#a6e22e>testCases</span>[<span style=color:#ae81ff>4</span>].<span style=color:#a6e22e>output</span>);
 });
 </code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>render</span>, <span style=color:#a6e22e>screen</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;@testing-library/react&#34;</span>;
 <span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#34;@testing-library/jest-dom&#34;</span>;
