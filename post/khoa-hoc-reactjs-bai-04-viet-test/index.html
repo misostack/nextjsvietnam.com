@@ -227,14 +227,17 @@ npm install -D @vitest/ui
 <span style=color:#75715e>// https://vitejs.dev/config/
 </span><span style=color:#75715e></span><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#a6e22e>defineConfig</span>({
   <span style=color:#a6e22e>plugins</span><span style=color:#f92672>:</span> [<span style=color:#a6e22e>react</span>()],
-  <span style=color:#a6e22e>test</span><span style=color:#f92672>:</span> {},
+  <span style=color:#a6e22e>test</span><span style=color:#f92672>:</span> {
+    <span style=color:#a6e22e>environment</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;happy-dom&#34;</span>,
+    <span style=color:#a6e22e>globals</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>true</span>,
+  },
   <span style=color:#a6e22e>server</span><span style=color:#f92672>:</span> {
     <span style=color:#a6e22e>port</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>3015</span>,
   },
   <span style=color:#a6e22e>resolve</span><span style=color:#f92672>:</span> {
     <span style=color:#a6e22e>alias</span><span style=color:#f92672>:</span> [
       {
-        <span style=color:#a6e22e>find</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;@&#34;</span>,
+        <span style=color:#a6e22e>find</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;@app&#34;</span>,
         <span style=color:#a6e22e>replacement</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>fileURLToPath</span>(<span style=color:#66d9ef>new</span> <span style=color:#a6e22e>URL</span>(<span style=color:#e6db74>&#34;./src&#34;</span>, <span style=color:#66d9ef>import</span>.<span style=color:#a6e22e>meta</span>.<span style=color:#a6e22e>url</span>)),
       },
     ],
@@ -246,20 +249,32 @@ npm run test:run
 </code></pre></div><p><strong>jsconfig.json</strong> for your code editor</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>{
   <span style=color:#f92672>&#34;compilerOptions&#34;</span>: {
-    <span style=color:#f92672>&#34;jsx&#34;</span>: <span style=color:#e6db74>&#34;react-jsx&#34;</span>, <span style=color:#75715e>// support jsx file
-</span><span style=color:#75715e></span>    <span style=color:#f92672>&#34;target&#34;</span>: <span style=color:#e6db74>&#34;ES2020&#34;</span>,
+    <span style=color:#f92672>&#34;typeRoots&#34;</span>: [<span style=color:#e6db74>&#34;tests/types&#34;</span>],
+    <span style=color:#f92672>&#34;baseUrl&#34;</span>: <span style=color:#e6db74>&#34;.&#34;</span>,
+    <span style=color:#f92672>&#34;target&#34;</span>: <span style=color:#e6db74>&#34;ES2020&#34;</span>,
+    <span style=color:#f92672>&#34;jsx&#34;</span>: <span style=color:#e6db74>&#34;react-jsx&#34;</span>,
     <span style=color:#75715e>// … all other compiler options
 </span><span style=color:#75715e></span>
     <span style=color:#75715e>// all paths defined here must match the configured path in `vite.config.ts`
 </span><span style=color:#75715e></span>    <span style=color:#f92672>&#34;paths&#34;</span>: {
-      <span style=color:#f92672>&#34;@/*&#34;</span>: [<span style=color:#e6db74>&#34;./src/*&#34;</span>]
+      <span style=color:#f92672>&#34;@app/*&#34;</span>: [<span style=color:#e6db74>&#34;./src/*&#34;</span>]
     }
   },
-  <span style=color:#f92672>&#34;include&#34;</span>: [<span style=color:#e6db74>&#34;node_modules&#34;</span>, <span style=color:#e6db74>&#34;tests&#34;</span>]
+
+  <span style=color:#f92672>&#34;exclude&#34;</span>: [<span style=color:#e6db74>&#34;node_modules&#34;</span>, <span style=color:#e6db74>&#34;tests&#34;</span>],
+  <span style=color:#f92672>&#34;include&#34;</span>: [<span style=color:#e6db74>&#34;.&#34;</span>]
 }
+</code></pre></div><p><strong>tests/global.d.ts</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>import</span> <span style=color:#f92672>*</span> <span style=color:#66d9ef>as</span> <span style=color:#a6e22e>vitest</span> <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;vitest&#34;</span>;
+<span style=color:#66d9ef>declare</span> <span style=color:#66d9ef>global</span> {
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>expect</span>: <span style=color:#66d9ef>typeof</span> <span style=color:#a6e22e>vitest</span>.<span style=color:#a6e22e>expect</span>;
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>describe</span>: <span style=color:#66d9ef>typeof</span> <span style=color:#a6e22e>vitest</span>.<span style=color:#a6e22e>describe</span>;
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>it</span>: <span style=color:#66d9ef>typeof</span> <span style=color:#a6e22e>vitest</span>.<span style=color:#a6e22e>it</span>;
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>test</span>: <span style=color:#66d9ef>typeof</span> <span style=color:#a6e22e>vitest</span>.<span style=color:#a6e22e>test</span>;
+}
+<span style=color:#66d9ef>export</span> {};
 </code></pre></div><p><strong>tests/units/shared/utils.spec.js</strong></p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>assert</span>, <span style=color:#a6e22e>expect</span>, <span style=color:#a6e22e>test</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;vitest&#34;</span>;
-<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>generatePagers</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;@/shared/utils&#34;</span>;
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>generatePagers</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;@app/shared/utils&#34;</span>;
 
 <span style=color:#a6e22e>test</span>(<span style=color:#e6db74>&#34;generatePagers&#34;</span>, () =&gt; {
   <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>testCases</span> <span style=color:#f92672>=</span> [
@@ -269,6 +284,41 @@ npm run test:run
     },
   ];
   <span style=color:#a6e22e>expect</span>(<span style=color:#a6e22e>generatePagers</span>(<span style=color:#a6e22e>testCases</span>[<span style=color:#ae81ff>0</span>].<span style=color:#a6e22e>input</span>)).<span style=color:#a6e22e>toEqual</span>(<span style=color:#a6e22e>testCases</span>[<span style=color:#ae81ff>0</span>].<span style=color:#a6e22e>output</span>);
+});
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>render</span>, <span style=color:#a6e22e>screen</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;@testing-library/react&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#34;@testing-library/jest-dom&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#a6e22e>PaginationComponent</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;../../../src/components/PaginationComponent&#34;</span>;
+
+<span style=color:#75715e>/**
+</span><span style=color:#75715e> * Test cases
+</span><span style=color:#75715e> * 1. Number of pages &lt;= 1 : must not render anything
+</span><span style=color:#75715e> * 2. Number of pages &lt;= 5 : always render n pages and 4 buttons:first,previous,next,last with n &lt;=5
+</span><span style=color:#75715e> * 3. Number of pages &gt; 1 and current page = 1 : disabled first,previous, enable next,last
+</span><span style=color:#75715e> * 4. Number of pages &gt; 1 and current page &gt; 1 &amp;&amp; current page is not last page : enable, first, previous, next, last
+</span><span style=color:#75715e> * 5. Number of pages &gt; 1 and current page &gt; 1 &amp;&amp; current page is last page : enable, first, previous and disable next, last
+</span><span style=color:#75715e> */</span>
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>onChangeCurrentPage</span> <span style=color:#f92672>=</span> () =&gt; {};
+
+<span style=color:#a6e22e>describe</span>(<span style=color:#e6db74>&#34;Test PaginationComponent&#34;</span>, () =&gt; {
+  <span style=color:#a6e22e>test</span>(<span style=color:#e6db74>&#34;TC1: Number of pages &lt;= 1 : must not render anything&#34;</span>, () =&gt; {
+    <span style=color:#75715e>// ARRANGE
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>props</span> <span style=color:#f92672>=</span> {
+      <span style=color:#a6e22e>numberOfPages</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>1</span>,
+      <span style=color:#a6e22e>currentPage</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>1</span>,
+      <span style=color:#a6e22e>onChangeCurrentPage</span>,
+    };
+    <span style=color:#a6e22e>render</span>(
+      &lt;<span style=color:#f92672>PaginationComponent</span>
+        <span style=color:#a6e22e>numberOfPages</span><span style=color:#f92672>=</span>{<span style=color:#ae81ff>1</span>}
+        <span style=color:#a6e22e>currentPage</span><span style=color:#f92672>=</span>{<span style=color:#ae81ff>1</span>}
+        <span style=color:#a6e22e>onChangeCurrentPage</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>onChangeCurrentPage</span>}
+      /&gt;
+    );
+
+    <span style=color:#75715e>// ASSERT
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>pagination</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>screen</span>.<span style=color:#a6e22e>queryByLabelText</span>(<span style=color:#e6db74>&#34;pagination&#34;</span>);
+    <span style=color:#a6e22e>expect</span>(<span style=color:#a6e22e>pagination</span>).<span style=color:#a6e22e>toBeNull</span>();
+  });
 });
 </code></pre></div><p><strong>Vitest UI</strong></p>
 <p><img src=https://user-images.githubusercontent.com/31009750/271358107-67d10d0a-de04-49db-a076-e35f5f05634e.png alt=image></p>
