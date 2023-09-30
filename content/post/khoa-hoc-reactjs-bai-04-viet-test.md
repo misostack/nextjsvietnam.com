@@ -132,14 +132,17 @@ import { fileURLToPath, URL } from "url";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  test: {},
+  test: {
+    environment: "happy-dom",
+    globals: true,
+  },
   server: {
     port: 3015,
   },
   resolve: {
     alias: [
       {
-        find: "@",
+        find: "@app",
         replacement: fileURLToPath(new URL("./src", import.meta.url)),
       },
     ],
@@ -158,24 +161,39 @@ npm run test:run
 ```json
 {
   "compilerOptions": {
-    "jsx": "react-jsx", // support jsx file
+    "typeRoots": ["tests/types"],
+    "baseUrl": ".",
     "target": "ES2020",
     // … all other compiler options
 
     // all paths defined here must match the configured path in `vite.config.ts`
     "paths": {
-      "@/*": ["./src/*"]
+      "@app/*": ["./src/*"]
     }
   },
-  "include": ["node_modules", "tests"]
+
+  "exclude": ["node_modules", "tests"],
+  "include": ["."]
 }
+```
+
+**tests/global.d.ts**
+
+```ts
+import * as vitest from "vitest";
+declare global {
+  const expect: typeof vitest.expect;
+  const describe: typeof vitest.describe;
+  const it: typeof vitest.it;
+  const test: typeof vitest.test;
+}
+export {};
 ```
 
 **tests/units/shared/utils.spec.js**
 
 ```js
-import { assert, expect, test } from "vitest";
-import { generatePagers } from "@/shared/utils";
+import { generatePagers } from "@app/shared/utils";
 
 test("generatePagers", () => {
   const testCases = [
@@ -183,8 +201,71 @@ test("generatePagers", () => {
       input: { numberOfPages: 10, currentPage: 1, spaces: 5 },
       output: [1, 2, 3, 4, 5],
     },
-  ];
-  expect(generatePagers(testCases[0].input)).toEqual(testCases[0].output);
+    {
+      input: { numberOfPages: 10, currentPage: 4, spaces: 5 },
+      output: [1, 2, 3, 4, 5],
+    },
+    {
+      input: { numberOfPages: 10, currentPage: 5, spaces: 5 },
+      output: [3, 4, 5, 6, 7],
+    },
+    {
+      input: { numberOfPages: 10, currentPage: 8, spaces: 5 },
+      output: [6, 7, 8, 9, 10],
+    },
+    {
+      input: { numberOfPages: 10, currentPage: 10, spaces: 5 },
+      output: [6, 7, 8, 9, 10],
+    },
+  ].map((tc) => {
+    return {
+      output: tc.output,
+      result: generatePagers(tc.input),
+    };
+  });
+  expect(testCases[0].result).toEqual(testCases[0].output);
+  expect(testCases[1].result).toEqual(testCases[1].output);
+  expect(testCases[2].result).toEqual(testCases[2].output);
+  expect(testCases[3].result).toEqual(testCases[3].output);
+  expect(testCases[4].result).toEqual(testCases[4].output);
+});
+```
+
+```jsx
+import { render, screen } from "@testing-library/react";
+import "@testing-library/jest-dom";
+import PaginationComponent from "../../../src/components/PaginationComponent";
+
+/**
+ * Test cases
+ * 1. Number of pages <= 1 : must not render anything
+ * 2. Number of pages <= 5 : always render n pages and 4 buttons:first,previous,next,last with n <=5
+ * 3. Number of pages > 1 and current page = 1 : disabled first,previous, enable next,last
+ * 4. Number of pages > 1 and current page > 1 && current page is not last page : enable, first, previous, next, last
+ * 5. Number of pages > 1 and current page > 1 && current page is last page : enable, first, previous and disable next, last
+ */
+const onChangeCurrentPage = () => {};
+
+describe("Test PaginationComponent", () => {
+  test("TC1: Number of pages <= 1 : must not render anything", () => {
+    // ARRANGE
+    const props = {
+      numberOfPages: 1,
+      currentPage: 1,
+      onChangeCurrentPage,
+    };
+    render(
+      <PaginationComponent
+        numberOfPages={1}
+        currentPage={1}
+        onChangeCurrentPage={onChangeCurrentPage}
+      />
+    );
+
+    // ASSERT
+    const pagination = screen.queryByLabelText("pagination");
+    expect(pagination).toBeNull();
+  });
 });
 ```
 
