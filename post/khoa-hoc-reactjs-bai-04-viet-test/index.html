@@ -320,6 +320,7 @@ npm run test:run
 </span><span style=color:#75715e> * 3. Number of pages &gt; 1 and current page = 1 : disabled first,previous, enable next,last
 </span><span style=color:#75715e> * 4. Number of pages &gt; 1 and current page &gt; 1 &amp;&amp; current page is not last page : enable, first, previous, next, last
 </span><span style=color:#75715e> * 5. Number of pages &gt; 1 and current page &gt; 1 &amp;&amp; current page is last page : enable, first, previous and disable next, last
+</span><span style=color:#75715e> * 6. Number of pages &gt; 5 and current page = 5 &amp;&amp; pages includes: 3,4,5,6,7
 </span><span style=color:#75715e> */</span>
 <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>onChangeCurrentPage</span> <span style=color:#f92672>=</span> () =&gt; {};
 
@@ -331,18 +332,44 @@ npm run test:run
       <span style=color:#a6e22e>currentPage</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>1</span>,
       <span style=color:#a6e22e>onChangeCurrentPage</span>,
     };
-    <span style=color:#a6e22e>render</span>(
-      &lt;<span style=color:#f92672>PaginationComponent</span>
-        <span style=color:#a6e22e>numberOfPages</span><span style=color:#f92672>=</span>{<span style=color:#ae81ff>1</span>}
-        <span style=color:#a6e22e>currentPage</span><span style=color:#f92672>=</span>{<span style=color:#ae81ff>1</span>}
-        <span style=color:#a6e22e>onChangeCurrentPage</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>onChangeCurrentPage</span>}
-      /&gt;
-    );
+    <span style=color:#a6e22e>render</span>(&lt;<span style=color:#f92672>PaginationComponent</span> {<span style=color:#a6e22e>...props</span>} /&gt;);
 
     <span style=color:#75715e>// ASSERT
 </span><span style=color:#75715e></span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>pagination</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>screen</span>.<span style=color:#a6e22e>queryByLabelText</span>(<span style=color:#e6db74>&#34;pagination&#34;</span>);
     <span style=color:#a6e22e>expect</span>(<span style=color:#a6e22e>pagination</span>).<span style=color:#a6e22e>toBeNull</span>();
   });
+  <span style=color:#a6e22e>test</span>(
+    <span style=color:#e6db74>&#34;TC2: Number of pages &lt;= 5 : always render n pages and 4 buttons:first,previous,next,last with n &lt;=5&#34;</span> <span style=color:#f92672>+</span>
+      <span style=color:#e6db74>&#34; \nTC3: Number of pages &gt; 1 and current page = 1 : disabled first,previous, enable next,last&#34;</span>,
+    () =&gt; {
+      <span style=color:#75715e>// ARRANGE
+</span><span style=color:#75715e></span>      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>props</span> <span style=color:#f92672>=</span> {
+        <span style=color:#a6e22e>numberOfPages</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>5</span>,
+        <span style=color:#a6e22e>currentPage</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>1</span>,
+        <span style=color:#a6e22e>onChangeCurrentPage</span>,
+      };
+      <span style=color:#a6e22e>render</span>(&lt;<span style=color:#f92672>PaginationComponent</span> {<span style=color:#a6e22e>...props</span>} /&gt;);
+
+      <span style=color:#75715e>// ASSERT
+</span><span style=color:#75715e></span>      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>pagination</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>screen</span>.<span style=color:#a6e22e>queryByLabelText</span>(<span style=color:#e6db74>&#34;pagination&#34;</span>);
+      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>pageItems</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>pagination</span>.<span style=color:#a6e22e>querySelectorAll</span>(<span style=color:#e6db74>&#34;[data-page-item=true]&#34;</span>);
+      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>firstPageItem</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>pagination</span>.<span style=color:#a6e22e>querySelector</span>(<span style=color:#e6db74>&#34;[data-page-type=first]&#34;</span>);
+      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>previousPageItem</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>pagination</span>.<span style=color:#a6e22e>querySelector</span>(
+        <span style=color:#e6db74>&#34;[data-page-type=previous]&#34;</span>
+      );
+      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>nextPageItem</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>pagination</span>.<span style=color:#a6e22e>querySelector</span>(<span style=color:#e6db74>&#34;[data-page-type=next]&#34;</span>);
+      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>lastPageItem</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>pagination</span>.<span style=color:#a6e22e>querySelector</span>(<span style=color:#e6db74>&#34;[data-page-type=last]&#34;</span>);
+      <span style=color:#a6e22e>expect</span>(<span style=color:#a6e22e>pageItems</span>.<span style=color:#a6e22e>length</span>).<span style=color:#a6e22e>toEqual</span>(<span style=color:#ae81ff>5</span>);
+      <span style=color:#a6e22e>expect</span>(<span style=color:#a6e22e>firstPageItem</span>).<span style=color:#a6e22e>toBeTruthy</span>();
+      <span style=color:#a6e22e>expect</span>(<span style=color:#a6e22e>firstPageItem</span>).<span style=color:#a6e22e>toHaveClass</span>(<span style=color:#e6db74>&#34;disabled&#34;</span>);
+      <span style=color:#a6e22e>expect</span>(<span style=color:#a6e22e>previousPageItem</span>).<span style=color:#a6e22e>toBeTruthy</span>();
+      <span style=color:#a6e22e>expect</span>(<span style=color:#a6e22e>previousPageItem</span>).<span style=color:#a6e22e>toHaveClass</span>(<span style=color:#e6db74>&#34;disabled&#34;</span>);
+      <span style=color:#a6e22e>expect</span>(<span style=color:#a6e22e>nextPageItem</span>).<span style=color:#a6e22e>toBeTruthy</span>();
+      <span style=color:#a6e22e>expect</span>(<span style=color:#a6e22e>nextPageItem</span>).<span style=color:#a6e22e>to</span>.<span style=color:#a6e22e>not</span>.<span style=color:#a6e22e>toHaveClass</span>(<span style=color:#e6db74>&#34;disabled&#34;</span>);
+      <span style=color:#a6e22e>expect</span>(<span style=color:#a6e22e>lastPageItem</span>).<span style=color:#a6e22e>toBeTruthy</span>();
+      <span style=color:#a6e22e>expect</span>(<span style=color:#a6e22e>lastPageItem</span>).<span style=color:#a6e22e>to</span>.<span style=color:#a6e22e>not</span>.<span style=color:#a6e22e>toHaveClass</span>(<span style=color:#e6db74>&#34;disabled&#34;</span>);
+    }
+  );
 });
 </code></pre></div><p><strong>Vitest UI</strong></p>
 <p><img src=https://user-images.githubusercontent.com/31009750/271358107-67d10d0a-de04-49db-a076-e35f5f05634e.png alt=image></p>
