@@ -13,7 +13,7 @@ image: "https://user-images.githubusercontent.com/31009750/280898567-03389303-d2
 
 1. [x] Introduction to AWS Services
 
-### Overview
+### 1. Introduction to AWS Services
 
 - What is cloud computing?
 - Pay as you go model?
@@ -21,7 +21,7 @@ image: "https://user-images.githubusercontent.com/31009750/280898567-03389303-d2
 - Introduction of AWS Services
 - Practice Exams
 
-#### What is cloud computing?
+#### 1.1. What is cloud computing?
 
 > A solution to provide IT resources through internet
 
@@ -31,7 +31,7 @@ image: "https://user-images.githubusercontent.com/31009750/280898567-03389303-d2
 ![image](https://user-images.githubusercontent.com/31009750/280900251-6ce0502c-af5d-4481-a26d-d2ba4718df31.png)
 ![image](https://user-images.githubusercontent.com/31009750/280900299-b6be6ac4-61b7-40c4-807d-01932c001aae.png)
 
-**Summary**
+#### 1.2. Summary
 
 AWS Services:
 
