@@ -88,6 +88,20 @@ Trong phạm vi của bài viết này, tôi sẽ chia sẻ với các anh/chị
 
 ![image](https://user-images.githubusercontent.com/31009750/268600867-345ea5c2-7ad1-44ba-aef6-da6866c23a2d.png)
 
+1. Create and test auth controller và auth service
+
+- Validate login dto
+- Login with login dto
+- Find Account by email
+- validate account password
+- generate user access token
+
+> Validate login dto
+
+```sh
+npm i --save class-validator class-transformer
+```
+
 ### Tham khảo
 
 - https://www.guru99.com/component-testing.html - Component Testing
