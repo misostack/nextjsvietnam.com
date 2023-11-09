@@ -12,6 +12,7 @@ image: "https://user-images.githubusercontent.com/31009750/280898567-03389303-d2
 ## Roadmap
 
 1. [x] Introduction to AWS Services
+2. [x] Cloud concepts
 
 ### 1. Introduction to AWS Services
 
@@ -39,6 +40,42 @@ AWS Services:
 - [x] Provide solutions for your business through internet: other aws services
 - [x] The benefits of Cloud Computing(costs, time, speed and agility)
 - [x] Deployment model: cloud-based, on-premises(private cloud), hybrid(cloud-based + on-premises)
+
+Practition Level
+
+![image](https://user-images.githubusercontent.com/31009750/281600158-1c70949b-e2cc-4cd5-ab00-e61fc90e337d.png)
+
+## 2. Cloud concepts
+
+### 2.1. Cloud Characteristics
+
+![image](https://user-images.githubusercontent.com/31009750/281600500-9326f098-976d-49ed-828f-df8427d723d9.png)
+
+### 2.2. Regions, Availability Zones, Edge Locations
+
+#### Region and Availability Zone
+
+![image](https://user-images.githubusercontent.com/31009750/281599345-df86c7fc-22f1-4db4-b188-468047671355.png)
+
+**Region**
+
+- Fully independent and isolated
+- Resource and service specific
+
+**Availability Zones(AZs)**
+
+- Consist one or more physically seperated data centers
+- Connected through low-latency links
+- Fault tolerant
+- Allows for high availability
+
+#### Edge location
+
+![image](https://user-images.githubusercontent.com/31009750/281599527-4d1ad9f7-5559-4880-a1f1-1baeae79c840.png)
+
+## 2.3 Summary
+
+![image](https://user-images.githubusercontent.com/31009750/281599258-c810912c-5a0c-444a-8713-8631f67b0408.png)
 
 ## References
 
