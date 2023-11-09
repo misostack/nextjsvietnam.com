@@ -13,6 +13,7 @@ image: "https://user-images.githubusercontent.com/31009750/280898567-03389303-d2
 
 1. [x] Introduction to AWS Services
 2. [x] Cloud concepts
+3. [x] Technology
 
 ### 1. Introduction to AWS Services
 
@@ -73,9 +74,33 @@ Practition Level
 
 ![image](https://user-images.githubusercontent.com/31009750/281599527-4d1ad9f7-5559-4880-a1f1-1baeae79c840.png)
 
-## 2.3 Summary
+### 2.3 Summary
 
 ![image](https://user-images.githubusercontent.com/31009750/281599258-c810912c-5a0c-444a-8713-8631f67b0408.png)
+
+### 2.4. AWS Management
+
+You can manage your AWS Service by:
+
+- AWS Management Console ( Web Interface )
+- AWS Command Line Interface (CLI)
+- AWS SDKs : to access AWS services from popular programming languages
+
+**Note:**
+
+- The **root** user should only be used once and be protected with MFA
+
+### 2.5. Questions and Answers
+
+![image](https://user-images.githubusercontent.com/31009750/281605031-d92aa634-41a8-4921-834e-8515e44c2dc5.png)
+![image](https://user-images.githubusercontent.com/31009750/281605132-df69090e-cf05-4d91-9a60-5c94d5dac0ba.png)
+![image](https://user-images.githubusercontent.com/31009750/281605240-09b2b3be-0413-4158-9628-ffb5a6e86965.png)
+![image](https://user-images.githubusercontent.com/31009750/281605295-254884b1-0668-4381-8e16-6dc50b879e4a.png)
+![image](https://user-images.githubusercontent.com/31009750/281605334-62a8e7d8-d1f6-4e02-8ba7-9bf7b4e2bcf6.png)
+![image](https://user-images.githubusercontent.com/31009750/281605393-4f4ce547-fba2-428e-b51a-451316eb6469.png)
+![image](https://user-images.githubusercontent.com/31009750/281605493-5153e937-eb03-40f0-807b-47274d4dd5c7.png)
+![image](https://user-images.githubusercontent.com/31009750/281605606-f78213a0-fd4e-4a62-bd11-43d7f29b5661.png)
+![image](https://user-images.githubusercontent.com/31009750/281605802-66f06d3f-5cc4-4d37-adad-300234365a27.png)
 
 ## References
 
