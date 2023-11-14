@@ -13,7 +13,8 @@ image: "https://user-images.githubusercontent.com/31009750/280898567-03389303-d2
 
 1. [x] Introduction to AWS Services
 2. [x] Cloud concepts
-3. [x] Technology
+3. [x] Amazon EC2
+4. [x] AWS Compute Services
 
 ### 1. Introduction to AWS Services
 
@@ -101,6 +102,38 @@ You can manage your AWS Service by:
 ![image](https://user-images.githubusercontent.com/31009750/281605493-5153e937-eb03-40f0-807b-47274d4dd5c7.png)
 ![image](https://user-images.githubusercontent.com/31009750/281605606-f78213a0-fd4e-4a62-bd11-43d7f29b5661.png)
 ![image](https://user-images.githubusercontent.com/31009750/281605802-66f06d3f-5cc4-4d37-adad-300234365a27.png)
+
+## 3. Amazon EC2
+
+### 3.1. Amazon EC2 Instances
+
+There are 5 types of EC2 Instances
+
+- General purpose: balanced resources(CPU, Memory, Networking, Storage)
+- Compute Optimized: optimized for CPU - WebServer/Game Server
+- Memory Optimized: optimized for memory - Database
+- Accelerated Computing: use accelerate hardwares, eg: GPU - graphic applications/ streaming
+- Storage optimized: optimize for high frequency online transaction processing(FOTP) and high input output operations per seconds(IOPS) - Data warehouse/Distributed File System
+
+![image](https://user-images.githubusercontent.com/31009750/282697434-f1bd2693-3d5b-4c1a-b775-38ebd24e9801.png)
+
+![image](https://user-images.githubusercontent.com/31009750/282697486-d1dd9655-ef15-4ce5-8339-1181eee96003.png)
+
+### 3.2. Amazon EC2 Pricing
+
+![image](https://user-images.githubusercontent.com/31009750/282703121-95ab1a3b-ab4d-48f6-aa2e-71292f698624.png)
+
+## 4. AWS Compute Services
+
+### 4.1 AWS Compute Options
+
+There are 3 type of compute options
+
+- **Compute**: Amazon EC2
+- **Container**: EKS(Amazon Elastic Kubernetes Service), ECS(Amazon Elastic Container Service)
+- **Serverless**: AWS Lambda
+
+![image](https://user-images.githubusercontent.com/31009750/282706426-a907f6af-de7a-44b4-a78e-67b33fb9ded8.png)
 
 ## References
 
