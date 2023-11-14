@@ -133,6 +133,32 @@ There are 3 type of compute options
 - **Container**: EKS(Amazon Elastic Kubernetes Service), ECS(Amazon Elastic Container Service)
 - **Serverless**: AWS Lambda
 
+### 4.1.1. Amazon EC2
+
+You should use when you have:
+
+- compute-intensive or memory-intensive applications
+- application that run more than 15 mins
+
+#### 4.1.2. Container
+
+You should use when you have:
+
+- compute-intensive workloads
+- a small application that runs under in 15 minutes but is compute intensive
+
+#### 4.1.3. Serverless
+
+You should use when:
+
+- want to focus only on your code and not on infrastructure
+- applications less compute intensive
+- applications that you are running or building small, simple, or modular
+- using multiple AWS services where one service might need to call another service
+- applications that don't run longer than 15 minutes.
+
+![image](https://user-images.githubusercontent.com/31009750/282710135-113ac6f2-986d-4b8f-b9ea-b8c8b8e52cec.png)
+
 ![image](https://user-images.githubusercontent.com/31009750/282706426-a907f6af-de7a-44b4-a78e-67b33fb9ded8.png)
 
 ## References
