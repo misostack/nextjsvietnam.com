@@ -63,6 +63,7 @@
 <ul class=sub-menu>
 <li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/software-architecture>Software Architecture</a></li>
 <li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/microservice-architecture>Microservice Architecture</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/aws>Learn AWS The Right Way</a></li>
 </ul>
 </li>
 <li class=nav-menu-item>
@@ -124,6 +125,7 @@
 <p>
 <strong>Category:</strong>
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/systemdesign>systemdesign</a>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/aws>aws</a>
 </p>
 <p>
 <strong>Tags:</strong>
@@ -134,7 +136,7 @@
 <li><input checked disabled type=checkbox> Hands-on practice tutorials</li>
 <li><input checked disabled type=checkbox> The architecture patterns : real cases example</li>
 </ul>
-<h2 id=overview>Overview</h2>
+<h2 id=ioverview>I.Overview</h2>
 <p>AWS provide us &ldquo;The SAA-C03 Exam&rdquo;, if you can pass the exam, you will get this certificate</p>
 <blockquote>
 <p>AWS Solution Architect - Associate</p>
@@ -149,19 +151,21 @@
 <li><strong>Scoring</strong>: scaled score between 100 - 1000. <strong>Minimum passing score</strong> of <strong>720</strong></li>
 <li><strong>Question format</strong>: multiple choice, multiple response</li>
 </ul>
+<h3 id=six-pillars-of-a-well-architecture-framework>Six Pillars of a well-architecture framework</h3>
+<p><img src=https://user-images.githubusercontent.com/31009750/285127662-2507af4a-33ea-4e94-9d1b-488679a22a6f.png alt=image></p>
 <p>The common pillars when we design a system:</p>
-<h3 id=domain-1-secure-applications--architectures>Domain 1. Secure Applications & Architectures</h3>
+<h3 id=11domain-1-secure-applications--architectures>1.1.Domain 1. Secure Applications & Architectures</h3>
 <ul>
 <li>Design secure access to AWS resources</li>
 <li>Design secure workloads and application</li>
 <li>Determine approriate data security controls</li>
 </ul>
-<h3 id=domain-2-resillient-architectures>Domain 2. Resillient Architectures</h3>
+<h3 id=12domain-2-resillient-architectures>1.2.Domain 2. Resillient Architectures</h3>
 <ul>
 <li>Design scalable and loosely coupled architectures</li>
 <li>Design highly available and/or fault-tolerant architectures</li>
 </ul>
-<h3 id=domain-3-high-performance-architectures>Domain 3. High Performance Architectures</h3>
+<h3 id=13domain-3-high-performance-architectures>1.3.Domain 3. High Performance Architectures</h3>
 <ul>
 <li>Determine high-performing and/or scalable <strong>storage</strong> solutions</li>
 <li>Design high-performing and elastic <strong>compute</strong> solutions</li>
@@ -169,7 +173,7 @@
 <li>Determine high-performing and/or scalable <strong>network</strong> architectures</li>
 <li>Determine high-performing <strong>data</strong> <em>ingestion</em> and <em>transformation</em> solutions</li>
 </ul>
-<h3 id=domain-4-cost-optimized-architectures>Domain 4. Cost Optimized Architectures</h3>
+<h3 id=14domain-4-cost-optimized-architectures>1.4.Domain 4. Cost Optimized Architectures</h3>
 <ul>
 <li>Design cost-optimized storage solutions</li>
 <li>Design cost-optimized compute solutions</li>
@@ -200,8 +204,57 @@
 <blockquote>
 <p>Cloud Guru is a holding company of LinuxAcademy, and is a subsidiary of Pluralsight</p>
 </blockquote>
+<h2 id=iithe-building-blocks-of-aws-service-types>II.The building blocks of AWS Service Types</h2>
+<ul>
+<li>AWS Global Infrastructure</li>
+<li>Compute</li>
+<li>Storage</li>
+<li>Databases</li>
+<li>Network & Content Delivery</li>
+<li>Containers</li>
+<li>Migration & Transfer</li>
+<li>Management and Governance</li>
+<li>Analytics</li>
+<li>Security, Identity & Compliance</li>
+<li>Application Integration</li>
+<li>AWS Cost Management</li>
+</ul>
+<h3 id=21-aws-global-infrastructure>2.1. AWS Global Infrastructure</h3>
+<blockquote>
+<p>Region: a geographical area.</p>
+</blockquote>
+<blockquote>
+<p>Availability Zone: Data centers</p>
+</blockquote>
+<blockquote>
+<p>Edge Network: endpoints that AWS use for caching content. eg: CloudFront</p>
+</blockquote>
+<p><img src=https://user-images.githubusercontent.com/31009750/285122379-e8579772-f75d-48ce-9b16-62cc40dde750.png alt=image></p>
+<h3 id=22-aws-shared-responsibility-model>2.2. AWS Shared Responsibility Model</h3>
+<p><img src=https://user-images.githubusercontent.com/31009750/285122766-3b23ee84-e93a-4634-a3f1-707513e221a4.png alt=image></p>
+<p><img src=https://user-images.githubusercontent.com/31009750/285123352-c17e16d7-ec1f-4391-9e38-eb3f67066583.png alt=image></p>
+<h2 id=iii-compute>III. Compute</h2>
+<h3 id=31-ec2>3.1. EC2</h3>
+<h3 id=32-eks-or-ecs-container>3.2. EKS or ECS (Container)</h3>
+<h3 id=33-lambda>3.3. Lambda</h3>
+<h3 id=34-elastic-beanstalk>3.4. Elastic Beanstalk</h3>
+<h2 id=4-storage>4. Storage</h2>
+<h3 id=41-ebs>4.1. EBS</h3>
+<h3 id=42-s3>4.2. S3</h3>
+<h3 id=43-others>4.3. Others</h3>
+<h2 id=5-databases>5. Databases</h2>
+<h3 id=51-rds>5.1. RDS</h3>
+<h3 id=52-dynamodb>5.2. DynamoDB</h3>
+<h3 id=53-redshift>5.3. Redshift</h3>
+<h2 id=6-networking>6. Networking</h2>
+<h3 id=61-vpc>6.1. VPC</h3>
+<h3 id=62-direct-connect>6.2. Direct Connect</h3>
+<h3 id=63-route-53>6.3. Route 53</h3>
+<h3 id=64-api-gateway>6.4. API Gateway</h3>
+<h3 id=65-aws-global-accelerator>6.5. AWS GLobal Accelerator</h3>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/systemdesign>systemdesign</a>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/aws>aws</a>
 </div>
 </div>
 </section>
