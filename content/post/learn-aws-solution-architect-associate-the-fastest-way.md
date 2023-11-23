@@ -118,6 +118,53 @@ Some of creditable cloud training labs:
 
 ![image](https://user-images.githubusercontent.com/31009750/285123352-c17e16d7-ec1f-4391-9e38-eb3f67066583.png)
 
+### 2.3. IAM
+
+> What is IAM?
+
+- Create users and grant permissions to those users
+- Create groups and roles
+- Control access to AWS resources
+
+> What is root account?
+
+- The email you used to sign up for AWS.
+- The root account has full administrative access to AWS
+- It's important to secure this account.s
+
+> How to secure your AWS root account?
+
+- Enable multi-factor authentication on the root account
+- Create an admin group for your administrators, and assign the approripriate permissions to this group.
+- Create user accounts for your administrators
+- Add your users to the admin group.
+- IAM policies are global
+
+> Permissions
+
+- Are made by assigning policy documents
+- Policy document is an json object
+
+![image](https://user-images.githubusercontent.com/31009750/285130554-b932c2d9-2332-4919-baba-02979c9aa2af.png)
+
+Typically, we can assign IAM policy documents to a group, a user, a role. But the best practice is user can assign policies to a group, then add user to that group.
+
+> The best practice
+
+- **Users**: A physical person
+- **Groups**: Functions, such as administrators, developers, etc, contains users
+- **Roles**: Internal usage within AWS (allow one service in AWS can use another service in AWS)
+
+![image](https://user-images.githubusercontent.com/31009750/285132709-ce1cdd5a-5e09-40b2-8ff9-a5adf5ad3587.png)
+
+> The principle of least privilege
+
+- Only assign a user the minimum amount of privileges they need to do their job
+
+> Identity Provider
+
+- Allow use to connect Active Directory(SAML) or OpenID Connect(Google)
+
 ## III. Compute
 
 ### 3.1. EC2
