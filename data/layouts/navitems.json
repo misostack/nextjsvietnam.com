@@ -12,6 +12,11 @@
         "name": "Microservice Architecture",
         "url": "categories/microservice-architecture",
         "childrens": []
+      },
+      {
+        "name": "Learn AWS The Right Way",
+        "url": "categories/aws",
+        "childrens":[]
       }      
     ]
   },

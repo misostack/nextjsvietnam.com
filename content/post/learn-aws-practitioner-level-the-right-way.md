@@ -4,7 +4,7 @@ type: "post"
 date: 2023-11-07T08:46:51+07:00
 description: "The tutorial for self-learning AWS Practitioner Certificate. Includes latest practice exams for 2023 and 2024"
 keywords: ["aws", "solution architecture", "aws solution architect associate"]
-categories: ["systemdesign"]
+categories: ["systemdesign", "aws"]
 tags: ["aws"]
 image: "https://user-images.githubusercontent.com/31009750/280898567-03389303-d2a4-4ba2-9eed-6c5ad73e9ebd.png"
 ---
