@@ -233,6 +233,63 @@
 <h3 id=22-aws-shared-responsibility-model>2.2. AWS Shared Responsibility Model</h3>
 <p><img src=https://user-images.githubusercontent.com/31009750/285122766-3b23ee84-e93a-4634-a3f1-707513e221a4.png alt=image></p>
 <p><img src=https://user-images.githubusercontent.com/31009750/285123352-c17e16d7-ec1f-4391-9e38-eb3f67066583.png alt=image></p>
+<h3 id=23-iam>2.3. IAM</h3>
+<blockquote>
+<p>What is IAM?</p>
+</blockquote>
+<ul>
+<li>Create users and grant permissions to those users</li>
+<li>Create groups and roles</li>
+<li>Control access to AWS resources</li>
+</ul>
+<blockquote>
+<p>What is root account?</p>
+</blockquote>
+<ul>
+<li>The email you used to sign up for AWS.</li>
+<li>The root account has full administrative access to AWS</li>
+<li>It&rsquo;s important to secure this account.s</li>
+</ul>
+<blockquote>
+<p>How to secure your AWS root account?</p>
+</blockquote>
+<ul>
+<li>Enable multi-factor authentication on the root account</li>
+<li>Create an admin group for your administrators, and assign the approripriate permissions to this group.</li>
+<li>Create user accounts for your administrators</li>
+<li>Add your users to the admin group.</li>
+<li>IAM policies are global</li>
+</ul>
+<blockquote>
+<p>Permissions</p>
+</blockquote>
+<ul>
+<li>Are made by assigning policy documents</li>
+<li>Policy document is an json object</li>
+</ul>
+<p><img src=https://user-images.githubusercontent.com/31009750/285130554-b932c2d9-2332-4919-baba-02979c9aa2af.png alt=image></p>
+<p>Typically, we can assign IAM policy documents to a group, a user, a role. But the best practice is user can assign policies to a group, then add user to that group.</p>
+<blockquote>
+<p>The best practice</p>
+</blockquote>
+<ul>
+<li><strong>Users</strong>: A physical person</li>
+<li><strong>Groups</strong>: Functions, such as administrators, developers, etc, contains users</li>
+<li><strong>Roles</strong>: Internal usage within AWS (allow one service in AWS can use another service in AWS)</li>
+</ul>
+<p><img src=https://user-images.githubusercontent.com/31009750/285132709-ce1cdd5a-5e09-40b2-8ff9-a5adf5ad3587.png alt=image></p>
+<blockquote>
+<p>The principle of least privilege</p>
+</blockquote>
+<ul>
+<li>Only assign a user the minimum amount of privileges they need to do their job</li>
+</ul>
+<blockquote>
+<p>Identity Provider</p>
+</blockquote>
+<ul>
+<li>Allow use to connect Active Directory(SAML) or OpenID Connect(Google)</li>
+</ul>
 <h2 id=iii-compute>III. Compute</h2>
 <h3 id=31-ec2>3.1. EC2</h3>
 <h3 id=32-eks-or-ecs-container>3.2. EKS or ECS (Container)</h3>
