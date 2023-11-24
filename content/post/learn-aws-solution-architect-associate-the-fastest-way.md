@@ -297,6 +297,14 @@ Amazon S3 provide various storage classes
 
 ![image](https://user-images.githubusercontent.com/31009750/285402129-6728567d-8b9c-4e16-85ca-6b0e49580062.png)
 
+#### 4.2.6. S3 Lifecycle Management
+
+![image](https://user-images.githubusercontent.com/31009750/285415429-3fe9ca42-6cd8-4404-bf5e-08b52cae88b6.png)
+
+![image](https://user-images.githubusercontent.com/31009750/285416574-4a0d2594-f0e4-4015-a2a7-cffc7a2514b7.png)
+
+![image](https://user-images.githubusercontent.com/31009750/285416827-2df61a19-f00f-40e7-9a1a-af1bd34334ad.png)
+
 ### 4.3. Others
 
 ## V. Databases
