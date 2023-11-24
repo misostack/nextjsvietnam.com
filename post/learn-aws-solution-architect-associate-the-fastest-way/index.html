@@ -370,6 +370,26 @@ Bucket Policies: work on an entire bucket level</p>
 <li>Buckets are private by default: you have to allow public access on both the bucket and its objects in order to make the bucket public</li>
 <li>Object ACLs: You can make individual objects public using object ACLs</li>
 </ul>
+<h4 id=423-hosting-a-static-website-on-s3>4.2.3. Hosting a static website on S3</h4>
+<ul>
+<li>Create your bucket</li>
+<li>Upload 2 files : index.html, error.html</li>
+<li>Adjust the bucket policies</li>
+<li>Enable static website for your bucket</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>{
+  <span style=color:#f92672>&#34;Version&#34;</span>: <span style=color:#e6db74>&#34;2012-10-17&#34;</span>,
+  <span style=color:#f92672>&#34;Statement&#34;</span>: [
+    {
+      <span style=color:#f92672>&#34;Sid&#34;</span>: <span style=color:#e6db74>&#34;PublicReadGetObject&#34;</span>,
+      <span style=color:#f92672>&#34;Effect&#34;</span>: <span style=color:#e6db74>&#34;Allow&#34;</span>,
+      <span style=color:#f92672>&#34;Principal&#34;</span>: <span style=color:#e6db74>&#34;*&#34;</span>,
+      <span style=color:#f92672>&#34;Action&#34;</span>: [<span style=color:#e6db74>&#34;s3:GetObject&#34;</span>],
+      <span style=color:#f92672>&#34;Resource&#34;</span>: [<span style=color:#e6db74>&#34;arn:aws:s3:::BUCKET_NAME/*&#34;</span>]
+    }
+  ]
+}
+</code></pre></div><p><img src=https://user-images.githubusercontent.com/31009750/285398092-56d0d079-da8f-485b-b4ec-4a2c19844a98.png alt=image></p>
 <h3 id=43-others>4.3. Others</h3>
 <h2 id=v-databases>V. Databases</h2>
 <h3 id=51-rds>5.1. RDS</h3>
