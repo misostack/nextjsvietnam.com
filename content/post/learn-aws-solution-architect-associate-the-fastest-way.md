@@ -252,6 +252,9 @@ Typically, we can assign IAM policy documents to a group, a user, a role. But th
 Object ACLs: work on an individual object
 Bucket Policies: work on an entire bucket level
 
+- Buckets are private by default: you have to allow public access on both the bucket and its objects in order to make the bucket public
+- Object ACLs: You can make individual objects public using object ACLs
+
 ### 4.3. Others
 
 ## V. Databases
