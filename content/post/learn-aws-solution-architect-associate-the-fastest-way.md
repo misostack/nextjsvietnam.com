@@ -14,6 +14,10 @@ The main topics will be discussed in this article:
 - [x] Hands-on practice tutorials
 - [x] The architecture patterns : real cases example
 
+## Tools
+
+- [AWS Policy Generator](https://awspolicygen.s3.amazonaws.com/policygen.html)
+
 ## I.Overview
 
 AWS provide us "The SAA-C03 Exam", if you can pass the exam, you will get this certificate
@@ -304,6 +308,117 @@ Amazon S3 provide various storage classes
 ![image](https://user-images.githubusercontent.com/31009750/285416574-4a0d2594-f0e4-4015-a2a7-cffc7a2514b7.png)
 
 ![image](https://user-images.githubusercontent.com/31009750/285416827-2df61a19-f00f-40e7-9a1a-af1bd34334ad.png)
+
+#### 4.2.7. S3 Object Lock
+
+- S3 Object Lock use WORM(write once, read many) model. Prevent objects from being deleted or modified for a fixed amount of time or indefinitely.
+- It is an extra layer of protection against deletion.
+
+**S3 Object Lock Modes**
+
+- **Governance mode**: users can't overwrite or delete an object version or alter its lock settings unless they have special permissions
+- **Compliance mode**: a protected object version can't be overwritten or deleted by any user, including the root user in your AWS Account. Its retention period can't be changed or can't be shortened. And nobody can overwrite or delete during the retention period.
+
+**Legal Holds**
+
+- A legal hold prevents an object version being overwritten or deleted.(no retention period, can only be removed by someone who has s3:PutObjectLegalHold permission)
+
+**Glacier Vault Lock**
+
+- Allows you to easily deploy and enforce compliance controls for individual s3 glacier vaults with a vault lock policy.
+
+> A vault is a container for storing archives
+
+#### 4.2.8. Encrypting S3 Objects
+
+**Type of encryption**
+
+1. Encryption in Transit:
+
+- SSL/TLS
+- HTTPS
+
+2. Encryption at Rest: Server-Side Encryption
+
+- SSE-S3: S3 manage keys, using AES-256-bit encryption
+- SSE-KMS: AWS Key Management Service-managed keys
+- SSE-C: Customer-provided keys
+- Enabled by default (SSE-S3)
+
+3. Encryption at Rest: Client-Side Encryption
+
+- You encrypt the files yourself before you upload to S3
+
+![image](https://user-images.githubusercontent.com/31009750/285423993-31ab82ea-b6cf-4595-a754-994b450f924e.png)
+
+Sample
+
+```json
+{
+  "Id": "Policy1700821014223",
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Stmt1700821009746",
+      "Action": ["s3:PutObject"],
+      "Effect": "Deny",
+      "Resource": "arn:aws:s3:::nextjsvietnam.com",
+      "Condition": {
+        "ArnNotEqualsIfExists": {
+          "s3:x-amz-server-side-encryption": "AES256"
+        }
+      },
+      "Principal": "*"
+    }
+  ]
+}
+```
+
+#### 4.2.9. Optimize S3 Performance
+
+> S3 Prefixes : folders inside bucket
+
+nextjsvietnam.com/make/it/simple.jpg
+
+> S3 Performance
+
+- Low latency: You can get first byte out S3 within 100-200 ms
+- You can also achieve a high number requests: 3,500 PUT/COPY/POST/DELETE and 5500 HEAD requests/second, per prefix.
+
+For example, if you create 10 prefixes in an Amazon S3 bucket to parallelize reads, you could scale your read performance to 55,000 read requests per second. Similarly, you can scale write operations by writing to multiple prefixes.
+
+> Limitation with KMS
+
+- It is applied [KMS Limit](https://docs.aws.amazon.com/kms/latest/developerguide/requests-per-second.html)
+- When you upload a file, you will call GenerateDataKey in KMS API
+- When you download a file, you will call Decrypt in the KMS API
+
+#### 4.2.10. S3 Performance Upload - Multipart Uploads
+
+- Recommended for files over 100MB
+- Required for files over 5GB
+- Parallelize uploads (increase efficiency)
+
+Seperate by chunks
+
+![image](https://user-images.githubusercontent.com/31009750/285430539-f07003b6-9414-4b11-9e90-28145abcf64f.png)
+
+#### 4.2.11. S3 Performance Download - S3 Byte Range Fetches
+
+- Parallelize downloads by specifying byte ranges
+- If there's failure in the download, it's only for a specific byte range.
+
+![image](https://user-images.githubusercontent.com/31009750/285431521-2828ba8f-806c-4e02-ac8b-255f3f18bc34.png)
+
+#### 4.2.12. Backup Data with S3
+
+> S3 Replication
+
+- You can replicate objects from one bucket to another bucket (versioning must be enabled on both the source and destination buckets)
+- Objects in an existing buckets are not replicated automatically( once replication is turned on, all subsequent updated objects will be replicated automatically)
+- Delete markers are not replicated by default (delete individual versions or delete markers will not be replicated)
+
+![image](https://user-images.githubusercontent.com/31009750/285437334-d28c1145-466e-4f69-b942-2e2614477038.png)
 
 ### 4.3. Others
 
