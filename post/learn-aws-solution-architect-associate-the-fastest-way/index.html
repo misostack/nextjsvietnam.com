@@ -295,11 +295,79 @@
 <h3 id=32-eks-or-ecs-container>3.2. EKS or ECS (Container)</h3>
 <h3 id=33-lambda>3.3. Lambda</h3>
 <h3 id=34-elastic-beanstalk>3.4. Elastic Beanstalk</h3>
-<h2 id=4-storage>4. Storage</h2>
+<h2 id=iv-storage>IV. Storage</h2>
 <h3 id=41-ebs>4.1. EBS</h3>
 <h3 id=42-s3>4.2. S3</h3>
+<h4 id=421-s3-overview>4.2.1 S3 Overview</h4>
+<h5 id=what-is-s3>What is S3?</h5>
+<ul>
+<li>Object Storage: S3 provides secure, durable, highly scalable object storage</li>
+<li>Scalable: S3 allows you to store and retrieve any amount of data from anywhere on the web at a very low cost</li>
+<li>Simple: Amazon S3 is easy to use, with a simple web service interface</li>
+</ul>
+<blockquote>
+<p>S3 is object based storage, manage data as objects rather than in file systems or data blocks</p>
+</blockquote>
+<ul>
+<li>Upload any file type you think of to S3</li>
+<li>Examples include photos, videos, code, documents, and text files.</li>
+<li>Cannot be used to run an operating system or database</li>
+</ul>
+<h5 id=s3-limitation>S3 Limitation</h5>
+<ul>
+<li>Unlimited storage : total volume of data and number of objects you can store is unlimited.</li>
+<li>S3 objects can range in size from a minimum of 0 bytes to a maximum of 5 terabytes</li>
+<li>S3 buckets: store files in buckets(similar to folders)</li>
+</ul>
+<h5 id=working-with-s3-buckets>Working with S3 Buckets</h5>
+<ul>
+<li>Universal Namespace: globally unique ( all AWS accounts )</li>
+<li>Example S3 URLs: https://<strong>bucket-name</strong>.s3.<strong>Region</strong>.amazonaws.com/<strong>key-name</strong></li>
+<li>Uploading files: when you upload a file to an S3 bucket, you will receive an HTTP 200 code if the upload was successful.</li>
+</ul>
+<h5 id=s3-is-key-store-value>S3 is Key-Store Value</h5>
+<ul>
+<li>Key: the name of the object</li>
+<li>Version ID: multiple version of the same object</li>
+<li>Value: the data itself, which is made up of a sequence of bytes</li>
+<li>Metadata: Data about the data you&rsquo;re storing(content-type, last-modified, etc)</li>
+<li>The data is spread across multiple devices and facilities to ensure availability and durability.</li>
+</ul>
+<h5 id=s3-is-highly-available-and-highly-durability>S3 is highly available and highly durability</h5>
+<ul>
+<li>99.95% - 99.99% service availability, depending on S3 tier</li>
+<li>99.99% durability for data stored in S3</li>
+</ul>
+<h5 id=s3-standard>S3 Standard</h5>
+<ul>
+<li>High Availability and Durability: Data is stored redundantly across multiple devices and facilities( >=3 AZs)</li>
+<li>Design for Frequent Access</li>
+<li>Suitable for Most Workloads: default storage class, websites, content distribution, mobile and gaming applications, and big data analytics</li>
+</ul>
+<h5 id=s3-characteristics>S3 characteristics</h5>
+<ul>
+<li><strong>Tiered storage</strong>: S3 offers range of storage classes designed for different usecases</li>
+<li><strong>Life cycle management</strong>: Define rules to automatically transition objects to a cheaper storage tier or delete objects that are no longer required after a set of period time.</li>
+<li><strong>Versioning</strong>: with versioning, all versions of an object are stored can be retrieved, <strong>including deleted objects</strong></li>
+</ul>
+<h5 id=securing-your-data>Securing Your Data</h5>
+<ul>
+<li><strong>Server Side Encryption</strong>: You can set default encryption on a bucket to encrypt all new objects when they are stored in the bucket</li>
+<li><strong>Access Control List(ACL)</strong>: Define which AWS Accounts or Groups are granted access and the type of access. You can attach ACLs to individual objects within a bucket</li>
+<li><strong>Bucket Policies</strong>: S3 Bucket Policies specify what actions are allowed or denied( eg: allow user JSBase to PUT but not DELETE objects in the bucket)</li>
+</ul>
+<h5 id=s3---strong-read-after-write-consistency>S3 - Strong Read-After-Write Consistency</h5>
+<ul>
+<li>After a successful write of a new object(PUT) or an overwrite of an existing object,any subsequent read request immediately receives the lastest version of the object</li>
+<li>Strong Consistency for list operations, so after a write, you can immediately perform a listing of the objects in a bucket with all changes reflected</li>
+</ul>
+<h4 id=422-securing-s3-buckets-with-acl-and-bucket-policies>4.2.2. Securing S3 Buckets with ACL and Bucket Policies</h4>
+<h5 id=object-acls-vs-bucket-policies>Object ACLs vs Bucket Policies</h5>
+<p><img src=https://user-images.githubusercontent.com/31009750/285349940-1ebc0763-768a-467e-a58c-9a8844616e22.png alt=image></p>
+<p>Object ACLs: work on an individual object
+Bucket Policies: work on an entire bucket level</p>
 <h3 id=43-others>4.3. Others</h3>
-<h2 id=5-databases>5. Databases</h2>
+<h2 id=v-databases>V. Databases</h2>
 <h3 id=51-rds>5.1. RDS</h3>
 <h3 id=52-dynamodb>5.2. DynamoDB</h3>
 <h3 id=53-redshift>5.3. Redshift</h3>
