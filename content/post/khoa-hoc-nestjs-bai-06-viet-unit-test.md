@@ -88,6 +88,10 @@ Trong phạm vi của bài viết này, tôi sẽ chia sẻ với các anh/chị
 
 ![image](https://user-images.githubusercontent.com/31009750/268600867-345ea5c2-7ad1-44ba-aef6-da6866c23a2d.png)
 
+**Database**
+
+![image](https://user-images.githubusercontent.com/31009750/285190335-c95e53a7-114f-4e11-be25-56cdebb3f7a1.png)
+
 1. Create and test auth controller và auth service
 
 - Validate login dto

@@ -175,15 +175,86 @@ Typically, we can assign IAM policy documents to a group, a user, a role. But th
 
 ### 3.4. Elastic Beanstalk
 
-## 4. Storage
+## IV. Storage
 
 ### 4.1. EBS
 
 ### 4.2. S3
 
+#### 4.2.1 S3 Overview
+
+##### What is S3?
+
+- Object Storage: S3 provides secure, durable, highly scalable object storage
+- Scalable: S3 allows you to store and retrieve any amount of data from anywhere on the web at a very low cost
+- Simple: Amazon S3 is easy to use, with a simple web service interface
+
+> S3 is object based storage, manage data as objects rather than in file systems or data blocks
+
+- Upload any file type you think of to S3
+- Examples include photos, videos, code, documents, and text files.
+- Cannot be used to run an operating system or database
+
+##### S3 Limitation
+
+- Unlimited storage : total volume of data and number of objects you can store is unlimited.
+- S3 objects can range in size from a minimum of 0 bytes to a maximum of 5 terabytes
+- S3 buckets: store files in buckets(similar to folders)
+
+##### Working with S3 Buckets
+
+- Universal Namespace: globally unique ( all AWS accounts )
+- Example S3 URLs: https://**bucket-name**.s3.**Region**.amazonaws.com/**key-name**
+- Uploading files: when you upload a file to an S3 bucket, you will receive an HTTP 200 code if the upload was successful.
+
+##### S3 is Key-Store Value
+
+- Key: the name of the object
+- Version ID: multiple version of the same object
+- Value: the data itself, which is made up of a sequence of bytes
+- Metadata: Data about the data you're storing(content-type, last-modified, etc)
+- The data is spread across multiple devices and facilities to ensure availability and durability.
+
+##### S3 is highly available and highly durability
+
+- 99.95% - 99.99% service availability, depending on S3 tier
+- 99.99% durability for data stored in S3
+
+##### S3 Standard
+
+- High Availability and Durability: Data is stored redundantly across multiple devices and facilities( >=3 AZs)
+- Design for Frequent Access
+- Suitable for Most Workloads: default storage class, websites, content distribution, mobile and gaming applications, and big data analytics
+
+##### S3 characteristics
+
+- **Tiered storage**: S3 offers range of storage classes designed for different usecases
+- **Life cycle management**: Define rules to automatically transition objects to a cheaper storage tier or delete objects that are no longer required after a set of period time.
+- **Versioning**: with versioning, all versions of an object are stored can be retrieved, **including deleted objects**
+
+##### Securing Your Data
+
+- **Server Side Encryption**: You can set default encryption on a bucket to encrypt all new objects when they are stored in the bucket
+- **Access Control List(ACL)**: Define which AWS Accounts or Groups are granted access and the type of access. You can attach ACLs to individual objects within a bucket
+- **Bucket Policies**: S3 Bucket Policies specify what actions are allowed or denied( eg: allow user JSBase to PUT but not DELETE objects in the bucket)
+
+##### S3 - Strong Read-After-Write Consistency
+
+- After a successful write of a new object(PUT) or an overwrite of an existing object,any subsequent read request immediately receives the lastest version of the object
+- Strong Consistency for list operations, so after a write, you can immediately perform a listing of the objects in a bucket with all changes reflected
+
+#### 4.2.2. Securing S3 Buckets with ACL and Bucket Policies
+
+##### Object ACLs vs Bucket Policies
+
+![image](https://user-images.githubusercontent.com/31009750/285349940-1ebc0763-768a-467e-a58c-9a8844616e22.png)
+
+Object ACLs: work on an individual object
+Bucket Policies: work on an entire bucket level
+
 ### 4.3. Others
 
-## 5. Databases
+## V. Databases
 
 ### 5.1. RDS
 
