@@ -255,6 +255,30 @@ Bucket Policies: work on an entire bucket level
 - Buckets are private by default: you have to allow public access on both the bucket and its objects in order to make the bucket public
 - Object ACLs: You can make individual objects public using object ACLs
 
+#### 4.2.3. Hosting a static website on S3
+
+- Create your bucket
+- Upload 2 files : index.html, error.html
+- Adjust the bucket policies
+- Enable static website for your bucket
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "PublicReadGetObject",
+      "Effect": "Allow",
+      "Principal": "*",
+      "Action": ["s3:GetObject"],
+      "Resource": ["arn:aws:s3:::BUCKET_NAME/*"]
+    }
+  ]
+}
+```
+
+![image](https://user-images.githubusercontent.com/31009750/285398092-56d0d079-da8f-485b-b4ec-4a2c19844a98.png)
+
 ### 4.3. Others
 
 ## V. Databases
