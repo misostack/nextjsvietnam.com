@@ -136,6 +136,10 @@
 <li><input checked disabled type=checkbox> Hands-on practice tutorials</li>
 <li><input checked disabled type=checkbox> The architecture patterns : real cases example</li>
 </ul>
+<h2 id=tools>Tools</h2>
+<ul>
+<li><a href=https://awspolicygen.s3.amazonaws.com/policygen.html>AWS Policy Generator</a></li>
+</ul>
 <h2 id=ioverview>I.Overview</h2>
 <p>AWS provide us &ldquo;The SAA-C03 Exam&rdquo;, if you can pass the exam, you will get this certificate</p>
 <blockquote>
@@ -409,6 +413,116 @@ Bucket Policies: work on an entire bucket level</p>
 <p><img src=https://user-images.githubusercontent.com/31009750/285415429-3fe9ca42-6cd8-4404-bf5e-08b52cae88b6.png alt=image></p>
 <p><img src=https://user-images.githubusercontent.com/31009750/285416574-4a0d2594-f0e4-4015-a2a7-cffc7a2514b7.png alt=image></p>
 <p><img src=https://user-images.githubusercontent.com/31009750/285416827-2df61a19-f00f-40e7-9a1a-af1bd34334ad.png alt=image></p>
+<h4 id=427-s3-object-lock>4.2.7. S3 Object Lock</h4>
+<ul>
+<li>S3 Object Lock use WORM(write once, read many) model. Prevent objects from being deleted or modified for a fixed amount of time or indefinitely.</li>
+<li>It is an extra layer of protection against deletion.</li>
+</ul>
+<p><strong>S3 Object Lock Modes</strong></p>
+<ul>
+<li><strong>Governance mode</strong>: users can&rsquo;t overwrite or delete an object version or alter its lock settings unless they have special permissions</li>
+<li><strong>Compliance mode</strong>: a protected object version can&rsquo;t be overwritten or deleted by any user, including the root user in your AWS Account. Its retention period can&rsquo;t be changed or can&rsquo;t be shortened. And nobody can overwrite or delete during the retention period.</li>
+</ul>
+<p><strong>Legal Holds</strong></p>
+<ul>
+<li>A legal hold prevents an object version being overwritten or deleted.(no retention period, can only be removed by someone who has s3:PutObjectLegalHold permission)</li>
+</ul>
+<p><strong>Glacier Vault Lock</strong></p>
+<ul>
+<li>Allows you to easily deploy and enforce compliance controls for individual s3 glacier vaults with a vault lock policy.</li>
+</ul>
+<blockquote>
+<p>A vault is a container for storing archives</p>
+</blockquote>
+<h4 id=428-encrypting-s3-objects>4.2.8. Encrypting S3 Objects</h4>
+<p><strong>Type of encryption</strong></p>
+<ol>
+<li>Encryption in Transit:</li>
+</ol>
+<ul>
+<li>SSL/TLS</li>
+<li>HTTPS</li>
+</ul>
+<ol start=2>
+<li>Encryption at Rest: Server-Side Encryption</li>
+</ol>
+<ul>
+<li>SSE-S3: S3 manage keys, using AES-256-bit encryption</li>
+<li>SSE-KMS: AWS Key Management Service-managed keys</li>
+<li>SSE-C: Customer-provided keys</li>
+<li>Enabled by default (SSE-S3)</li>
+</ul>
+<ol start=3>
+<li>Encryption at Rest: Client-Side Encryption</li>
+</ol>
+<ul>
+<li>You encrypt the files yourself before you upload to S3</li>
+</ul>
+<p><img src=https://user-images.githubusercontent.com/31009750/285423993-31ab82ea-b6cf-4595-a754-994b450f924e.png alt=image></p>
+<p>Sample</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>{
+  <span style=color:#f92672>&#34;Id&#34;</span>: <span style=color:#e6db74>&#34;Policy1700821014223&#34;</span>,
+  <span style=color:#f92672>&#34;Version&#34;</span>: <span style=color:#e6db74>&#34;2012-10-17&#34;</span>,
+  <span style=color:#f92672>&#34;Statement&#34;</span>: [
+    {
+      <span style=color:#f92672>&#34;Sid&#34;</span>: <span style=color:#e6db74>&#34;Stmt1700821009746&#34;</span>,
+      <span style=color:#f92672>&#34;Action&#34;</span>: [<span style=color:#e6db74>&#34;s3:PutObject&#34;</span>],
+      <span style=color:#f92672>&#34;Effect&#34;</span>: <span style=color:#e6db74>&#34;Deny&#34;</span>,
+      <span style=color:#f92672>&#34;Resource&#34;</span>: <span style=color:#e6db74>&#34;arn:aws:s3:::nextjsvietnam.com&#34;</span>,
+      <span style=color:#f92672>&#34;Condition&#34;</span>: {
+        <span style=color:#f92672>&#34;ArnNotEqualsIfExists&#34;</span>: {
+          <span style=color:#f92672>&#34;s3:x-amz-server-side-encryption&#34;</span>: <span style=color:#e6db74>&#34;AES256&#34;</span>
+        }
+      },
+      <span style=color:#f92672>&#34;Principal&#34;</span>: <span style=color:#e6db74>&#34;*&#34;</span>
+    }
+  ]
+}
+</code></pre></div><h4 id=429-optimize-s3-performance>4.2.9. Optimize S3 Performance</h4>
+<blockquote>
+<p>S3 Prefixes : folders inside bucket</p>
+</blockquote>
+<p>nextjsvietnam.com/make/it/simple.jpg</p>
+<blockquote>
+<p>S3 Performance</p>
+</blockquote>
+<ul>
+<li>Low latency: You can get first byte out S3 within 100-200 ms</li>
+<li>You can also achieve a high number requests: 3,500 PUT/COPY/POST/DELETE and 5500 HEAD requests/second, per prefix.</li>
+</ul>
+<p>For example, if you create 10 prefixes in an Amazon S3 bucket to parallelize reads, you could scale your read performance to 55,000 read requests per second. Similarly, you can scale write operations by writing to multiple prefixes.</p>
+<blockquote>
+<p>Limitation with KMS</p>
+</blockquote>
+<ul>
+<li>It is applied <a href=https://docs.aws.amazon.com/kms/latest/developerguide/requests-per-second.html>KMS Limit</a></li>
+<li>When you upload a file, you will call GenerateDataKey in KMS API</li>
+<li>When you download a file, you will call Decrypt in the KMS API</li>
+</ul>
+<h4 id=4210-s3-performance-upload---multipart-uploads>4.2.10. S3 Performance Upload - Multipart Uploads</h4>
+<ul>
+<li>Recommended for files over 100MB</li>
+<li>Required for files over 5GB</li>
+<li>Parallelize uploads (increase efficiency)</li>
+</ul>
+<p>Seperate by chunks</p>
+<p><img src=https://user-images.githubusercontent.com/31009750/285430539-f07003b6-9414-4b11-9e90-28145abcf64f.png alt=image></p>
+<h4 id=4211-s3-performance-download---s3-byte-range-fetches>4.2.11. S3 Performance Download - S3 Byte Range Fetches</h4>
+<ul>
+<li>Parallelize downloads by specifying byte ranges</li>
+<li>If there&rsquo;s failure in the download, it&rsquo;s only for a specific byte range.</li>
+</ul>
+<p><img src=https://user-images.githubusercontent.com/31009750/285431521-2828ba8f-806c-4e02-ac8b-255f3f18bc34.png alt=image></p>
+<h4 id=4212-backup-data-with-s3>4.2.12. Backup Data with S3</h4>
+<blockquote>
+<p>S3 Replication</p>
+</blockquote>
+<ul>
+<li>You can replicate objects from one bucket to another bucket (versioning must be enabled on both the source and destination buckets)</li>
+<li>Objects in an existing buckets are not replicated automatically( once replication is turned on, all subsequent updated objects will be replicated automatically)</li>
+<li>Delete markers are not replicated by default (delete individual versions or delete markers will not be replicated)</li>
+</ul>
+<p><img src=https://user-images.githubusercontent.com/31009750/285437334-d28c1145-466e-4f69-b942-2e2614477038.png alt=image></p>
 <h3 id=43-others>4.3. Others</h3>
 <h2 id=v-databases>V. Databases</h2>
 <h3 id=51-rds>5.1. RDS</h3>
