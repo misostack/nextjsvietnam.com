@@ -281,6 +281,22 @@ Bucket Policies: work on an entire bucket level
 
 - [Reference S3 Web Hosting](https://docs.aws.amazon.com/AmazonS3/latest/userguide/WebsiteHosting.html)
 
+#### 4.2.4. Versioning
+
+- All versions of an object are stored in S3. This includes writes and even if you delete an object.
+- Lifecycle Rules: Can be integrated with lifecycle rules
+- Backup: Can be a great backup tool
+- Supports MFA
+- Can not be disabled - only suspend
+
+![image](https://user-images.githubusercontent.com/31009750/285400913-3152d06e-383b-4d84-8ff7-1923ed06c59b.png)
+
+#### 4.2.5. S3 Storage Classses
+
+Amazon S3 provide various storage classes
+
+![image](https://user-images.githubusercontent.com/31009750/285402129-6728567d-8b9c-4e16-85ca-6b0e49580062.png)
+
 ### 4.3. Others
 
 ## V. Databases
