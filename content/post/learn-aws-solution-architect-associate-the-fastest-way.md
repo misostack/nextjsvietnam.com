@@ -279,6 +279,8 @@ Bucket Policies: work on an entire bucket level
 
 ![image](https://user-images.githubusercontent.com/31009750/285398092-56d0d079-da8f-485b-b4ec-4a2c19844a98.png)
 
+- [Reference S3 Web Hosting](https://docs.aws.amazon.com/AmazonS3/latest/userguide/WebsiteHosting.html)
+
 ### 4.3. Others
 
 ## V. Databases
