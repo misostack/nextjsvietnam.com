@@ -270,6 +270,46 @@ You can enable enhanced networking by:
 - Provide lower and more consistent latency and higher throughput than TCP transport traditionally.
 - Can use **OS-BYPASS** (only support Linux), os-bypass enables HPC and machine learning applications to bypass operating system kernel and communicate directly with EFA device.
 
+#### 3.1.5. EC2 Placement Groups
+
+When you launch a new EC2 instance, the EC2 service attempts to place the instance in such a way that all of your instances are spread out across underlying hardware to minimize correlated failures
+
+Depending on the type of workload, you can create a placement group using one of the following placement strategies
+
+- **Cluster** – packs instances close together inside an Availability Zone. This strategy enables workloads to achieve the low-latency network. - typical of high-performance computing (HPC) applications.
+- **Partition** - spreads your instances across logical partitions such that groups of instances in one partition do not share the underlying hardware with groups of instances in different partitions. - typically used by large distributed and replicated workloads, such as Hadoop, Cassandra, and Kafka (dedicated racks)
+- **Spread** - strictly places a small group of instances across distinct underlying hardware to reduce correlated failures - individual critical EC2 instances
+
+- Only certain types of instances can be launched in a placement group.
+- You can move an existing instance into a placement group
+
+**There is no charge for creating a placement group.**
+
+**Spot instances are useful for**:
+
+- big data and analytics
+- containerized workloads
+- CI/CD and testing
+- image and media rendering
+- High-performance computing
+- save up to 90% on-demand price
+- you don't need persistent storage
+- you can block Spot instances from terminating by using **Spot block**
+
+**Spot Fleets**:
+
+- Collection of spot instances and (optionally) on-demand instances
+- Attempts to launch the number of spot instances and on-demand instances to meet your target capacity you specified in the Spot Fleet request.
+- The request is fulfilled if there is capacity and maximum price you specified in the request exceed the current Spot price. It also attempts to maintain its target capacity fleet.
+- You can define several launch pools(EC2 instance type, OS, AZ), fleet will choose the best way to implement depending on your defined strategy.
+
+Some strategy:
+
+- capacityOptimized
+- lowestPrice
+- diversified(spot instances are distributed accross pools)
+- InstancePoolsToUseCount(spot instances are distributed across the number of spot instance pools you specify - only valid with lowestPrice)
+
 ### 3.2. EKS or ECS (Container)
 
 ### 3.3. Lambda
