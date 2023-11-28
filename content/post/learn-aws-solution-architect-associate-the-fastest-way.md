@@ -173,6 +173,103 @@ Typically, we can assign IAM policy documents to a group, a user, a role. But th
 
 ### 3.1. EC2
 
+> VM but hosted on Amazon Infrastructure
+
+#### 3.1..1 Amazon EC2 Pricing Options:
+
+**On Demand**
+
+- Pay by the hour or the second, depend on instance type
+- Short term
+- Flexible
+- Testing the water
+
+**Reversed capacity**:
+
+- Predictable usage
+- Specific capacity requirement
+- Pay upfront for 1 or 3 years
+- Standard RIs - up to 72% off the on-demand price.
+- Convertible RIs - 54% off the on-demand price. Has option to change to a different RI type of equal or greater value
+- Scheduled RIs: launch within the time window you defined.
+
+**Spot:**
+
+- Purchase unused capacity
+- Image rendering
+- Genomic sequencing
+- Algorithmic trading engines
+
+![image](https://gist.github.com/assets/31009750/4ca33b79-1e7b-45f0-9d55-ccba882d6ea5)
+
+**Dedicated**
+
+- Expensive
+- A physical EC2 server dedicated
+
+#### 3.1.2. Using Roles
+
+- Using role
+
+#### 3.1.3. Security Groups and Bootstrap Scripts
+
+> Security Groups
+
+- Act as a **virtual firewall** for your EC2 instances to control incoming and outgoing traffic.
+- **Inbound rules** control the **incoming traffic to** your instance
+- **Outbound rules** control the **outgoing traffic from** your instance
+- If you don't specify a security group, Amazon EC2 uses the default security group for the VPC
+
+> Bootstrap Scripts
+
+- Because your instance metadata is available from your running instance, you do not need to use the Amazon EC2 console or the AWS CLI. This can be helpful when you're writing scripts to run from your instance.
+- https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-retrieval.html
+
+#### 3.1.4. Networking with EC2
+
+There are 3 different types of virtual networking cards to your EC2 instances
+
+![image](https://gist.github.com/assets/31009750/8feace9d-1995-419d-b0a5-f177ba309447)
+
+- ENI: Elastic Network Interface - basis, day to day networking
+- EN: Enhanced Networking - Uses single root I/O virtualization(SR-IOV) to provide high performance
+- EFA: Elastic Fabric Adapter - Accelerate High Performance Computing(HPC) and machine learning applications
+
+**ENI**
+
+- Elastic Networking Interface
+- Private IPv4 addresses
+- Public IPv4 addresses
+- Many IPv6 Addresses
+- MAC Address
+- 1 or more security groups
+- Low budget, high availability solution
+
+**EI**
+
+- Enhance Networking
+- High Performance Networking from 10 Gbps - 100 Gbps
+- Higher bandwidth, higher packet per second(PPS) performance
+- Consistently lower inter-instance latencies
+- Single Root I/O Virtualization(SR-IOV)
+
+You can enable enhanced networking by:
+
+**ENA**
+
+- Supports network speed up to 100 Gbps
+
+**INTEL 82599 VIRTUAL FUNCTION(VF) Interface**
+
+- Supports network speed up to 10 Gbps
+
+**EFA**
+
+- Elastic Fabric Adapter
+- A network device you can attach to your Amazon EC2 instance to accelerate High Performance Computing(HPC) and machine learning applications.
+- Provide lower and more consistent latency and higher throughput than TCP transport traditionally.
+- Can use **OS-BYPASS** (only support Linux), os-bypass enables HPC and machine learning applications to bypass operating system kernel and communicate directly with EFA device.
+
 ### 3.2. EKS or ECS (Container)
 
 ### 3.3. Lambda
