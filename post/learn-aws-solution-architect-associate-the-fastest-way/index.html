@@ -392,6 +392,52 @@
 <li>Provide lower and more consistent latency and higher throughput than TCP transport traditionally.</li>
 <li>Can use <strong>OS-BYPASS</strong> (only support Linux), os-bypass enables HPC and machine learning applications to bypass operating system kernel and communicate directly with EFA device.</li>
 </ul>
+<h4 id=315-ec2-placement-groups>3.1.5. EC2 Placement Groups</h4>
+<p>When you launch a new EC2 instance, the EC2 service attempts to place the instance in such a way that all of your instances are spread out across underlying hardware to minimize correlated failures</p>
+<p>Depending on the type of workload, you can create a placement group using one of the following placement strategies</p>
+<ul>
+<li>
+<p><strong>Cluster</strong> – packs instances close together inside an Availability Zone. This strategy enables workloads to achieve the low-latency network. - typical of high-performance computing (HPC) applications.</p>
+</li>
+<li>
+<p><strong>Partition</strong> - spreads your instances across logical partitions such that groups of instances in one partition do not share the underlying hardware with groups of instances in different partitions. - typically used by large distributed and replicated workloads, such as Hadoop, Cassandra, and Kafka (dedicated racks)</p>
+</li>
+<li>
+<p><strong>Spread</strong> - strictly places a small group of instances across distinct underlying hardware to reduce correlated failures - individual critical EC2 instances</p>
+</li>
+<li>
+<p>Only certain types of instances can be launched in a placement group.</p>
+</li>
+<li>
+<p>You can move an existing instance into a placement group</p>
+</li>
+</ul>
+<p><strong>There is no charge for creating a placement group.</strong></p>
+<p><strong>Spot instances are useful for</strong>:</p>
+<ul>
+<li>big data and analytics</li>
+<li>containerized workloads</li>
+<li>CI/CD and testing</li>
+<li>image and media rendering</li>
+<li>High-performance computing</li>
+<li>save up to 90% on-demand price</li>
+<li>you don&rsquo;t need persistent storage</li>
+<li>you can block Spot instances from terminating by using <strong>Spot block</strong></li>
+</ul>
+<p><strong>Spot Fleets</strong>:</p>
+<ul>
+<li>Collection of spot instances and (optionally) on-demand instances</li>
+<li>Attempts to launch the number of spot instances and on-demand instances to meet your target capacity you specified in the Spot Fleet request.</li>
+<li>The request is fulfilled if there is capacity and maximum price you specified in the request exceed the current Spot price. It also attempts to maintain its target capacity fleet.</li>
+<li>You can define several launch pools(EC2 instance type, OS, AZ), fleet will choose the best way to implement depending on your defined strategy.</li>
+</ul>
+<p>Some strategy:</p>
+<ul>
+<li>capacityOptimized</li>
+<li>lowestPrice</li>
+<li>diversified(spot instances are distributed accross pools)</li>
+<li>InstancePoolsToUseCount(spot instances are distributed across the number of spot instance pools you specify - only valid with lowestPrice)</li>
+</ul>
 <h3 id=32-eks-or-ecs-container>3.2. EKS or ECS (Container)</h3>
 <h3 id=33-lambda>3.3. Lambda</h3>
 <h3 id=34-elastic-beanstalk>3.4. Elastic Beanstalk</h3>
