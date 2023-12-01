@@ -252,6 +252,24 @@
 </ul>
 <p><img src=https://user-images.githubusercontent.com/31009750/282710135-113ac6f2-986d-4b8f-b9ea-b8c8b8e52cec.png alt=image></p>
 <p><img src=https://user-images.githubusercontent.com/31009750/282706426-a907f6af-de7a-44b4-a78e-67b33fb9ded8.png alt=image></p>
+<h3 id=42-additional-compute-options>4.2. Additional Compute Options</h3>
+<h4 id=421-aws-lambda>4.2.1. AWS Lambda</h4>
+<blockquote>
+<p>Example usecase</p>
+</blockquote>
+<p>A user takes a photograph and uploads that photo to an Amazon S3 bucket.When the image is placed into the bucket, this invokes an event (upload to bucket), which calls the Lambda function. The function runs its code to resize the image and make the image available in different sizes for web, mobile, and tablet interfaces. The lambda function have to : adding the image name into a database, copying the images to another location, or initiating an update to an image on a website.</p>
+<blockquote>
+<p>Practice: build a resize image application</p>
+</blockquote>
+<h4 id=422-aws-step-functions>4.2.2. AWS Step Functions</h4>
+<ul>
+<li>AWS Step Functions is a fully managed service that you can use to coordinate the components of distributed applications and microservices using visual workflows.</li>
+</ul>
+<p><img src=https://user-images.githubusercontent.com/31009750/282723819-61e60293-763a-4f56-b99a-a2f677bf59c0.png alt=image></p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=GVpmVu8vcNQ">Sample</a></li>
+</ul>
+<h4 id=423-aws-batch>4.2.3. AWS Batch</h4>
 <h2 id=references>References</h2>
 <ul>
 <li><a href=https://explore.skillbuilder.aws/learn/course/134/play/93606/aws-cloud-practitioner-essentials>AWS Practitioner Course</a></li>
@@ -267,6 +285,7 @@
 <div class="font-heading text-2xl font-semibold">You Might Also Like</div>
 <div class="mt-8 grid gap-8">
 <ul class=sidebar-links>
+<li><a href=/post/aws-hand-on-labs/>Aws Hand on Labs</a></li>
 <li><a href=/post/the-difference-between-monolithic-and-microservices-architecture/>The Difference Between Monolithic and Microservices Architecture</a></li>
 <li><a href=/post/uml-use-case-diagram-cheatsheet/>UML Use Case Diagram Cheatsheet</a></li>
 <li><a href=/post/the-meaning-of-software-architecture/>The Meaning of Software Architecture</a></li>
@@ -333,7 +352,7 @@ Copyright @ NextJSVietNam 2022
 Powered by <a class="font-bold text-primary" href=https://gohugo.io/>Go Hugo</a> - Made
 with love from <a class="font-bold text-primary" href=https://nextjsvietnam.com>NextJSVietNam</a> -
 Build
-Version 2023-11-07 08:46:51 +0700 +0700
+Version 2023-12-01 22:15:06 +0700 +0700
 </div>
 </div>
 </footer>
