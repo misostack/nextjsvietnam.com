@@ -161,6 +161,26 @@ You should use when:
 
 ![image](https://user-images.githubusercontent.com/31009750/282706426-a907f6af-de7a-44b4-a78e-67b33fb9ded8.png)
 
+### 4.2. Additional Compute Options
+
+#### 4.2.1. AWS Lambda
+
+> Example usecase
+
+A user takes a photograph and uploads that photo to an Amazon S3 bucket.When the image is placed into the bucket, this invokes an event (upload to bucket), which calls the Lambda function. The function runs its code to resize the image and make the image available in different sizes for web, mobile, and tablet interfaces. The lambda function have to : adding the image name into a database, copying the images to another location, or initiating an update to an image on a website.
+
+> Practice: build a resize image application
+
+#### 4.2.2. AWS Step Functions
+
+- AWS Step Functions is a fully managed service that you can use to coordinate the components of distributed applications and microservices using visual workflows.
+
+![image](https://user-images.githubusercontent.com/31009750/282723819-61e60293-763a-4f56-b99a-a2f677bf59c0.png)
+
+- [Sample](https://www.youtube.com/watch?v=GVpmVu8vcNQ)
+
+#### 4.2.3. AWS Batch
+
 ## References
 
 - [AWS Practitioner Course](https://explore.skillbuilder.aws/learn/course/134/play/93606/aws-cloud-practitioner-essentials)
