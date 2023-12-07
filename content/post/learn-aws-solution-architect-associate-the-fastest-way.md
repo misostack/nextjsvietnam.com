@@ -320,6 +320,43 @@ Some strategy:
 
 ### 4.1. EBS
 
+#### 4.1.1. What are EBS Volumes?
+
+- **Elastic Block Store** : Storage volumes that you can attach to an EC2 Instances
+- Production Workloads: Designed for mission-critical workloads
+- High Available: Automatically replicated within a single Availability Zone to protect against hardward failures
+- Scalable: Dynamically increase capacity and change the volume type with no downtime or performance impact to your live systems
+
+#### 4.1.2. ESB Volume Types
+
+**General Purpose SSD(gp2)**
+
+- A balance price and performance
+- 3 IOPS per Gib, up to maximum of 16,000 IOPS per volume
+- gp2 volumes smaller than 1TB can burst up to 3,000 IOPs
+- Good for boot volumes or development and test applications that are not latency sensitive
+
+**General Purpose SSD(gp3)**
+
+- A balance price and performance
+- Predictable 3,000 IOPS base line performance and 125 Mib/s regardless of volume size.
+- Ideal for applications that require **high performance at low cost**, such as MYSQL, Cassandra, virtual desktops, and Hadoop analytics
+- Customers looking for higher performance can scale up to 16,000 IOPS and 1,000 MiB/s for an additional fee
+- The top performance of gp3 is 4 times faster than max throughput of gp2
+
+**Provisioned IOPS SSD(io1)**
+
+- The high performance and most expensive
+- Up to 64,000 IOPS per volume. 50 IOPS per GIB.
+- Use if you need more than 16,000 IOPS.
+- Designed for I/O Intensive applications, large databases, and latency-sensitive workloads.
+
+**Provisioned IOPS SSD(io2)**
+
+- Latest generation
+- Up to 64,000 IOPS per volume. 500 IOPS per GIB.
+- Higher durability and more IOPS
+
 ### 4.2. S3
 
 #### 4.2.1 S3 Overview
