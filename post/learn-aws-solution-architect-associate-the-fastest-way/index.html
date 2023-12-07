@@ -566,6 +566,136 @@ sudo systemctl enable mysql
 <li>Resizing: Resize on the fly, no need to stop/restart the EC2 instance. But need to extend the filesystem in the OS, so the OS can see the resized volume.</li>
 <li>Volume type: you can switch the volume type on the fly(switch from gp2 to io2) without stop/restart the instance.</li>
 </ul>
+<h4 id=414-ebs-encryption>4.1.4. EBS Encryption</h4>
+<ul>
+<li>You can encrypt your volume with AES-256 algorithm</li>
+<li>Amazon EBS encryption uses AWS Key Management Service(KMS) when creating encrypted volumes and snapshots</li>
+<li>E2E encryption</li>
+<li>Encryption and decryption are handled transparently(you don&rsquo;t need to do anything)</li>
+<li>Has a minimal impact on latency</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/0cd46371-87ab-41ad-bb6a-cba220120842 alt=image></p>
+<p><img src=https://gist.github.com/assets/31009750/ff24a666-9da1-4102-9db8-5e08637eaaf0 alt=image></p>
+<h4 id=415-ec2-hibernation>4.1.5. EC2 Hibernation</h4>
+<ul>
+<li>Hibernation saves the contents from the instance memory(RAM) to your Amazon EBS root volume. Then it persists the instance&rsquo;s EBS root volume.</li>
+</ul>
+<p>So that when you start your instance out of hibernation:</p>
+<ul>
+<li>Amazon EBS root volume is restored to its previous state</li>
+<li>The RAM contents are loaded</li>
+<li>The processes that were previously running on the instance are resumed</li>
+<li>Previously attached data volumes are reattached and the instance retains its instance ID</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/357ba1ee-0aa7-45e7-af3b-d122f1bb70ae alt=image></p>
+<p>Benefits:</p>
+<ul>
+<li>Instance boots much faster</li>
+<li>Useful for long running processes</li>
+<li>Useful for services that take time to initialize</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/d77915e3-47b2-4f8b-96ba-25fff4000e82 alt=image></p>
+<h4 id=416-efs>4.1.6. EFS</h4>
+<blockquote>
+<p>Amazon Elastic File System</p>
+</blockquote>
+<p><img src=https://gist.github.com/assets/31009750/a7a2fa45-72be-476b-9764-08aa69c0d2ca alt=image></p>
+<ul>
+<li>Manage NFS(Network File System) that can be mounted on many EC2 instances</li>
+<li>EFS works with EC2 instances in multiple Availability Zones</li>
+<li>Highly Available and scalable</li>
+<li>Expensive</li>
+</ul>
+<blockquote>
+<p>Usecases</p>
+</blockquote>
+<ul>
+<li>Content Management: Wordpress, Drupal.</li>
+<li>Web Servers: single folder structure for your website</li>
+</ul>
+<blockquote>
+<p>Overview</p>
+</blockquote>
+<ul>
+<li>Uses NFSv4 protocol</li>
+<li>Compatible with Linux-based AMI(not support Windows at this time)</li>
+<li>Encryption at rest using KMS</li>
+<li>File system scales automatically; no capacity planning required</li>
+<li>Pay per use</li>
+</ul>
+<blockquote>
+<p>Performance</p>
+</blockquote>
+<ul>
+<li>1000 concurrent connections</li>
+<li>10Gps Throughput</li>
+<li>Scale your storage to Petabytes</li>
+<li>Controlling Performance: General Purpose(CMS, Web Servers), Max I/O(big data, media processing)</li>
+</ul>
+<blockquote>
+<p>Storage Tiers + Lifecycle Management</p>
+</blockquote>
+<ul>
+<li>Standard</li>
+<li>Infrequently Accessed</li>
+</ul>
+<blockquote>
+<p>Use it when you need highly shared available file system</p>
+</blockquote>
+<p><img src=https://gist.github.com/assets/31009750/14236f97-722b-4733-9143-d0431e0409a6 alt=image></p>
+<h4 id=417-fsx-for-windows>4.1.7. Fsx for Windows</h4>
+<ul>
+<li>Fully Managed native Microsoft file sytem</li>
+<li>Designed for Windows</li>
+<li>Supports AD users, ACL, groups, DFs</li>
+</ul>
+<h4 id=418-amazon-fsx-for-lustre>4.1.8. Amazon FSx for Lustre</h4>
+<p><img src=https://gist.github.com/assets/31009750/06717ac6-2885-4fa6-b8c7-51d9cfb2637f alt=image></p>
+<h4 id=419-amazone-machine-imageami>4.1.9. Amazone Machine Image(AMI)</h4>
+<ul>
+<li>Region</li>
+<li>Operating System</li>
+<li>Architecture(32bit for 64bit)</li>
+<li>Launch permissions</li>
+<li>Storage for the root device(root device volume)</li>
+</ul>
+<p>All AMI are backed by</p>
+<ul>
+<li>Amazon EBS: AMI is an Amazon EBS volume created from an Amazon EBS Snapshot</li>
+<li>The root device for an instance launch is an instance store volume created from a template stored in Amazon S3 - can not be stopped</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/3d9c23ab-2243-4b7c-97c0-265e9845e1fa alt=image></p>
+<h4 id=4110-aws-backup>4.1.10. AWS Backup</h4>
+<ul>
+<li>Consolidate your backups across multiple AWS services: EC2, EBS, EFS, Amazon Fsx for Lustre/Window File Server, and AWS Storage Gateway(includes S3,&mldr;)</li>
+<li>And also include other services. Eg: RDS or DynamoDB</li>
+<li>AWS Backup with Organizations: be able to back up multiple accounts in your organization</li>
+</ul>
+<blockquote>
+<p>Benefits</p>
+</blockquote>
+<ul>
+<li>Central Management</li>
+<li>Automation: schedule, retention policies, lifecycle policies</li>
+<li>Improve Compliance: encrypted, auditing more easy</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/7af3b950-577a-43d5-98d8-95973bdb0688 alt=image></p>
+<h4 id=4111-tips>4.1.11. Tips</h4>
+<p><img src=https://gist.github.com/assets/31009750/3dca9a74-7fb1-4154-a1e8-301e41fa6c6d alt=image></p>
+<ol>
+<li><a href=https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volumes.html>EC2 instances and EBS volumes must live in the same AZ. Reference Documentation: Amazon EBS Volumes</a></li>
+<li><a href=https://repost.aws/knowledge-center/create-unencrypted-volume-kms-key>You can only create an un-encrypted volume from an encrypt volume by using rescue instance and connect to both of volumes and transfer data between them </a></li>
+<li><a href=https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSSnapshots.html>EBS Snapshots are stored in S3</a></li>
+<li>You&rsquo;ve been tasked with creating a file system for a Linux workload that should support concurrent access to the same file or directory from thousands of compute instances and handle massive datasets, up to hundreds of gigabytes per second. What AWS service would you use? <a href=https://aws.amazon.com/vi/fsx/lustre/>Amazon FSx for Lustre</a></li>
+<li>You&rsquo;ve been tasked with creating a highly performant database on your EC2 instance. Which type of EBS volume will support the high level of IOPS that you require? <a href=https://aws.amazon.com/ebs/provisioned-iops/>Amazon EBS Provisioned IOPS Volume</a></li>
+<li><a href=https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html>Amazon Machine Images are Region specific. To use one in another Region, it needs to be explicitly copied there</a></li>
+<li><a href=https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html>EBS volumes are not encrypted by default</a></li>
+<li><a href=https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html>What is the best way to ensure the security of both data-at-rest and data-in-transit between an instance and its attached EBS storage? Use Amazon EBS encryption</a></li>
+<li><a href=https://aws.amazon.com/efs/>How do you add more storage to EFS? EFS automatically scales the volume size based on usage</a></li>
+<li><a href=https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/hibernating-prerequisites.html#hibernation-prereqs-supported-instance-families>There are a number of prerequisites that must be met to allow for hibernation, including a specific set of supported EC2 instance types.</a></li>
+<li><a href=https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html>What is the purpose of an Amazon Machine Image (AMI)? AMIs are templates for EC2 instances</a></li>
+<li><a href=https://aws.amazon.com/efs/when-to-choose-efs/>What type of storage does EFS offer? EFS is a file-level storage solution</a></li>
+</ol>
 <h3 id=42-s3>4.2. S3</h3>
 <h4 id=421-s3-overview>4.2.1 S3 Overview</h4>
 <h5 id=what-is-s3>What is S3?</h5>
