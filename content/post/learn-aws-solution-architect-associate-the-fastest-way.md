@@ -418,6 +418,31 @@ Some strategy:
 
 ![image](https://gist.github.com/assets/31009750/21a096d2-f4e5-43a0-b357-ed60d24bf355)
 
+#### 4.1.3. Volumes and Snapshot
+
+> Volume:
+
+- Think of it as a virtual hard disk.
+- Need a minimum of 1 volume per EC2 instance => root device volume => where OS installed
+
+> Snapshot
+
+- Exist on S3: think of snapshots as a photograph of hark disk/volume
+- Are point in time copy of a volume
+- Are incremental: only data that has been changed since your last snapshot are moved to S3 (saved a lot of money and time, 1st snapshot may take longer than the subsequence snapshot)
+
+> Tips for snapshots
+
+- Consistent Snapshots: stop the instance and take a snap (won't include temp files during operation)
+- Encrypted Snapshots: if you take a snapshot of an encrypted EBS volume, it will be encrypted automatically.
+- Sharing Snapshots: you can share, only in region which they were created. To share cross regions, you need to copy them to the destination region first.
+
+> What to know about volumes
+
+- Location: EBS volumes will always be in the same AZ as EC2.
+- Resizing: Resize on the fly, no need to stop/restart the EC2 instance. But need to extend the filesystem in the OS, so the OS can see the resized volume.
+- Volume type: you can switch the volume type on the fly(switch from gp2 to io2) without stop/restart the instance.
+
 ### 4.2. S3
 
 #### 4.2.1 S3 Overview
