@@ -139,6 +139,7 @@
 <h2 id=tools>Tools</h2>
 <ul>
 <li><a href=https://awspolicygen.s3.amazonaws.com/policygen.html>AWS Policy Generator</a></li>
+<li><a href=https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html>AWS CLI</a></li>
 </ul>
 <h2 id=ioverview>I.Overview</h2>
 <p>AWS provide us &ldquo;The SAA-C03 Exam&rdquo;, if you can pass the exam, you will get this certificate</p>
@@ -350,7 +351,28 @@
 <li>Because your instance metadata is available from your running instance, you do not need to use the Amazon EC2 console or the AWS CLI. This can be helpful when you&rsquo;re writing scripts to run from your instance.</li>
 <li><a href=https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-retrieval.html>https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-retrieval.html</a></li>
 </ul>
-<h4 id=314-networking-with-ec2>3.1.4. Networking with EC2</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>curl http://169.254.169.254/latest/meta-data/
+curl http://169.254.169.254/latest/meta-data/placement
+curl http://169.254.169.254/latest/meta-data/placement/availability-zone
+
+<span style=color:#75715e>#!/bin/bash</span>
+sudo apt-get update -y
+sudo apt-get install apache2 unzip -y
+curl <span style=color:#e6db74>&#34;https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip&#34;</span> -o <span style=color:#e6db74>&#34;awscliv2.zip&#34;</span>
+unzip awscliv2.zip
+sudo ./aws/install
+echo <span style=color:#e6db74>&#39;&lt;html&gt;&lt;h1&gt;Bootstrap Demo&lt;/h1&gt;&lt;h3&gt;Availability Zone: &#39;</span> &gt; /var/www/html/index.html
+curl http://169.254.169.254/latest/meta-data/placement/availability-zone &gt;&gt; /var/www/html/index.html
+echo <span style=color:#e6db74>&#39;&lt;/h3&gt; &lt;h3&gt;Instance Id: &#39;</span> &gt;&gt; /var/www/html/index.html
+curl http://169.254.169.254/latest/meta-data/instance-id &gt;&gt; /var/www/html/index.html
+echo <span style=color:#e6db74>&#39;&lt;/h3&gt; &lt;h3&gt;Public IP: &#39;</span> &gt;&gt; /var/www/html/index.html
+curl http://169.254.169.254/latest/meta-data/public-ipv4 &gt;&gt; /var/www/html/index.html
+echo <span style=color:#e6db74>&#39;&lt;/h3&gt; &lt;h3&gt;Local IP: &#39;</span> &gt;&gt; /var/www/html/index.html
+curl http://169.254.169.254/latest/meta-data/local-ipv4 &gt;&gt; /var/www/html/index.html
+echo <span style=color:#e6db74>&#39;&lt;/h3&gt;&lt;/html&gt; &#39;</span> &gt;&gt; /var/www/html/index.html
+apt-get install mysql-server
+sudo systemctl enable mysql
+</code></pre></div><h4 id=314-networking-with-ec2>3.1.4. Networking with EC2</h4>
 <p>There are 3 different types of virtual networking cards to your EC2 instances</p>
 <p><img src=https://gist.github.com/assets/31009750/8feace9d-1995-419d-b0a5-f177ba309447 alt=image></p>
 <ul>
