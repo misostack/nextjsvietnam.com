@@ -17,6 +17,7 @@ The main topics will be discussed in this article:
 ## Tools
 
 - [AWS Policy Generator](https://awspolicygen.s3.amazonaws.com/policygen.html)
+- [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
 
 ## I.Overview
 
@@ -224,6 +225,30 @@ Typically, we can assign IAM policy documents to a group, a user, a role. But th
 
 - Because your instance metadata is available from your running instance, you do not need to use the Amazon EC2 console or the AWS CLI. This can be helpful when you're writing scripts to run from your instance.
 - https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-retrieval.html
+
+```sh
+curl http://169.254.169.254/latest/meta-data/
+curl http://169.254.169.254/latest/meta-data/placement
+curl http://169.254.169.254/latest/meta-data/placement/availability-zone
+
+#!/bin/bash
+sudo apt-get update -y
+sudo apt-get install apache2 unzip -y
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+echo '<html><h1>Bootstrap Demo</h1><h3>Availability Zone: ' > /var/www/html/index.html
+curl http://169.254.169.254/latest/meta-data/placement/availability-zone >> /var/www/html/index.html
+echo '</h3> <h3>Instance Id: ' >> /var/www/html/index.html
+curl http://169.254.169.254/latest/meta-data/instance-id >> /var/www/html/index.html
+echo '</h3> <h3>Public IP: ' >> /var/www/html/index.html
+curl http://169.254.169.254/latest/meta-data/public-ipv4 >> /var/www/html/index.html
+echo '</h3> <h3>Local IP: ' >> /var/www/html/index.html
+curl http://169.254.169.254/latest/meta-data/local-ipv4 >> /var/www/html/index.html
+echo '</h3></html> ' >> /var/www/html/index.html
+apt-get install mysql-server
+sudo systemctl enable mysql
+```
 
 #### 3.1.4. Networking with EC2
 
