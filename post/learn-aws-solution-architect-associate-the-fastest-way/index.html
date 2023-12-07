@@ -140,6 +140,7 @@
 <ul>
 <li><a href=https://awspolicygen.s3.amazonaws.com/policygen.html>AWS Policy Generator</a></li>
 <li><a href=https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html>AWS CLI</a></li>
+<li><a href=https://aws.amazon.com/ebs/volume-types/>AWS EBS Volume Types</a></li>
 </ul>
 <h2 id=ioverview>I.Overview</h2>
 <p>AWS provide us &ldquo;The SAA-C03 Exam&rdquo;, if you can pass the exam, you will get this certificate</p>
@@ -465,6 +466,19 @@ sudo systemctl enable mysql
 <h3 id=34-elastic-beanstalk>3.4. Elastic Beanstalk</h3>
 <h2 id=iv-storage>IV. Storage</h2>
 <h3 id=41-ebs>4.1. EBS</h3>
+<p><strong>Overview of SSD</strong></p>
+<ul>
+<li>High Performance</li>
+<li>High available and scalable storage volumes</li>
+<li>Expensive</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/3528c3e8-c743-4e35-bd89-059f8201e352 alt=image></p>
+<p><strong>Overview of HDD</strong></p>
+<ul>
+<li>High available and scalable storage volumes</li>
+<li>Low Price</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/2a4678d5-6923-4f19-ad42-fb024ee4ce36 alt=image></p>
 <h4 id=411-what-are-ebs-volumes>4.1.1. What are EBS Volumes?</h4>
 <ul>
 <li><strong>Elastic Block Store</strong> : Storage volumes that you can attach to an EC2 Instances</li>
@@ -501,6 +515,25 @@ sudo systemctl enable mysql
 <li>Up to 64,000 IOPS per volume. 500 IOPS per GIB.</li>
 <li>Higher durability and more IOPS</li>
 </ul>
+<p><strong>HDD Through put Optimized(st1)</strong></p>
+<ul>
+<li>Low cost HDD Volume</li>
+<li>Baseline throughput of 40MB/s per TB</li>
+<li>Ability to burst up 250 MB/s per TB</li>
+<li>Frequently data accessed, throughput-intensive workload</li>
+<li>Big data, data warehouses, ETL(Export, Tranformation, Load), and log processing</li>
+<li>A cost effetive way to store mountains of data</li>
+<li>Cannot be a boot volume</li>
+</ul>
+<p><strong>Cold HDD(sc1)</strong></p>
+<ul>
+<li>Lowest cost option</li>
+<li>Base throughput 12MB/s per TB</li>
+<li>Good choice for colder data requiring fewer scans per day</li>
+<li>Good for applications that need the lowest cost and performance is not a factor</li>
+<li>Can not be a boot volume</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/21a096d2-f4e5-43a0-b357-ed60d24bf355 alt=image></p>
 <h3 id=42-s3>4.2. S3</h3>
 <h4 id=421-s3-overview>4.2.1 S3 Overview</h4>
 <h5 id=what-is-s3>What is S3?</h5>
