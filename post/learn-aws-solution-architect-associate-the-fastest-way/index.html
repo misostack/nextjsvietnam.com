@@ -443,6 +443,42 @@
 <h3 id=34-elastic-beanstalk>3.4. Elastic Beanstalk</h3>
 <h2 id=iv-storage>IV. Storage</h2>
 <h3 id=41-ebs>4.1. EBS</h3>
+<h4 id=411-what-are-ebs-volumes>4.1.1. What are EBS Volumes?</h4>
+<ul>
+<li><strong>Elastic Block Store</strong> : Storage volumes that you can attach to an EC2 Instances</li>
+<li>Production Workloads: Designed for mission-critical workloads</li>
+<li>High Available: Automatically replicated within a single Availability Zone to protect against hardward failures</li>
+<li>Scalable: Dynamically increase capacity and change the volume type with no downtime or performance impact to your live systems</li>
+</ul>
+<h4 id=412-esb-volume-types>4.1.2. ESB Volume Types</h4>
+<p><strong>General Purpose SSD(gp2)</strong></p>
+<ul>
+<li>A balance price and performance</li>
+<li>3 IOPS per Gib, up to maximum of 16,000 IOPS per volume</li>
+<li>gp2 volumes smaller than 1TB can burst up to 3,000 IOPs</li>
+<li>Good for boot volumes or development and test applications that are not latency sensitive</li>
+</ul>
+<p><strong>General Purpose SSD(gp3)</strong></p>
+<ul>
+<li>A balance price and performance</li>
+<li>Predictable 3,000 IOPS base line performance and 125 Mib/s regardless of volume size.</li>
+<li>Ideal for applications that require <strong>high performance at low cost</strong>, such as MYSQL, Cassandra, virtual desktops, and Hadoop analytics</li>
+<li>Customers looking for higher performance can scale up to 16,000 IOPS and 1,000 MiB/s for an additional fee</li>
+<li>The top performance of gp3 is 4 times faster than max throughput of gp2</li>
+</ul>
+<p><strong>Provisioned IOPS SSD(io1)</strong></p>
+<ul>
+<li>The high performance and most expensive</li>
+<li>Up to 64,000 IOPS per volume. 50 IOPS per GIB.</li>
+<li>Use if you need more than 16,000 IOPS.</li>
+<li>Designed for I/O Intensive applications, large databases, and latency-sensitive workloads.</li>
+</ul>
+<p><strong>Provisioned IOPS SSD(io2)</strong></p>
+<ul>
+<li>Latest generation</li>
+<li>Up to 64,000 IOPS per volume. 500 IOPS per GIB.</li>
+<li>Higher durability and more IOPS</li>
+</ul>
 <h3 id=42-s3>4.2. S3</h3>
 <h4 id=421-s3-overview>4.2.1 S3 Overview</h4>
 <h5 id=what-is-s3>What is S3?</h5>
