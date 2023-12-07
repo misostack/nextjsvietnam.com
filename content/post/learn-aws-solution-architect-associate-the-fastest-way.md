@@ -18,6 +18,7 @@ The main topics will be discussed in this article:
 
 - [AWS Policy Generator](https://awspolicygen.s3.amazonaws.com/policygen.html)
 - [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+- [AWS EBS Volume Types](https://aws.amazon.com/ebs/volume-types/)
 
 ## I.Overview
 
@@ -345,6 +346,21 @@ Some strategy:
 
 ### 4.1. EBS
 
+**Overview of SSD**
+
+- High Performance
+- High available and scalable storage volumes
+- Expensive
+
+![image](https://gist.github.com/assets/31009750/3528c3e8-c743-4e35-bd89-059f8201e352)
+
+**Overview of HDD**
+
+- High available and scalable storage volumes
+- Low Price
+
+![image](https://gist.github.com/assets/31009750/2a4678d5-6923-4f19-ad42-fb024ee4ce36)
+
 #### 4.1.1. What are EBS Volumes?
 
 - **Elastic Block Store** : Storage volumes that you can attach to an EC2 Instances
@@ -381,6 +397,26 @@ Some strategy:
 - Latest generation
 - Up to 64,000 IOPS per volume. 500 IOPS per GIB.
 - Higher durability and more IOPS
+
+**HDD Through put Optimized(st1)**
+
+- Low cost HDD Volume
+- Baseline throughput of 40MB/s per TB
+- Ability to burst up 250 MB/s per TB
+- Frequently data accessed, throughput-intensive workload
+- Big data, data warehouses, ETL(Export, Tranformation, Load), and log processing
+- A cost effetive way to store mountains of data
+- Cannot be a boot volume
+
+**Cold HDD(sc1)**
+
+- Lowest cost option
+- Base throughput 12MB/s per TB
+- Good choice for colder data requiring fewer scans per day
+- Good for applications that need the lowest cost and performance is not a factor
+- Can not be a boot volume
+
+![image](https://gist.github.com/assets/31009750/21a096d2-f4e5-43a0-b357-ed60d24bf355)
 
 ### 4.2. S3
 
