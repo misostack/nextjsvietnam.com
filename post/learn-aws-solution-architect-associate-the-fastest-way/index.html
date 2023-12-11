@@ -921,6 +921,58 @@ Bucket Policies: work on an entire bucket level</p>
 <h3 id=43-others>4.3. Others</h3>
 <h2 id=v-databases>V. Databases</h2>
 <h3 id=51-rds>5.1. RDS</h3>
+<ul>
+<li><input checked disabled type=checkbox> Relational databases</li>
+<li><input checked disabled type=checkbox> RDS Advantages</li>
+<li><input checked disabled type=checkbox> OLTP and OLAP</li>
+<li><input checked disabled type=checkbox> Multi-AZ</li>
+<li><input checked disabled type=checkbox> Unplanned Failures and Maintenance</li>
+</ul>
+<h4 id=511-relational-databases>5.1.1. Relational Databases</h4>
+<p><img src=https://gist.github.com/assets/31009750/74be99ea-6376-4c4a-8017-3796563c0ce6 alt=image></p>
+<p><img src=https://gist.github.com/assets/31009750/625572c4-f594-4e7a-a049-49fc44263947 alt=image></p>
+<p><strong>RDS Database Engines</strong></p>
+<ul>
+<li>MYSQL</li>
+<li>MariaDB</li>
+<li>PostgreSQL</li>
+<li>Amazon Aurora</li>
+<li>SQL Server</li>
+<li>Oracle</li>
+</ul>
+<p><strong>Advantages</strong>:</p>
+<ul>
+<li>Up and Running in Minutes</li>
+<li>Multi-AZ</li>
+<li>Failover capability</li>
+<li>Automated backups</li>
+</ul>
+<p><strong>When would we use RDS?</strong></p>
+<ul>
+<li>RDS is generally used for OLTP(online transaction processing) workloads</li>
+<li>OLTP</li>
+</ul>
+<p><strong>When not?</strong></p>
+<ul>
+<li>OLAP -> need to use a data warehouse - something like Redshift</li>
+</ul>
+<p><strong>AWS Multi-AZ</strong></p>
+<p><img src=https://gist.github.com/assets/31009750/19b0b194-4c33-4968-bd8a-f3a882f3b8c8 alt=image></p>
+<ul>
+<li>Exact copy of your production database in another AZ</li>
+<li>Handles replication for you : auto synchronize to standby database</li>
+<li>Support which RDS types: MYSQL, MariaDB, PostgreSQL, SQL Server, Oracle</li>
+<li>Aurora is support by default.</li>
+</ul>
+<p><strong>Unplanned failure Event</strong></p>
+<p><img src=https://gist.github.com/assets/31009750/7f451a8a-7ffa-4f1c-9c2f-5fba725c52a9 alt=image></p>
+<p><img src=https://gist.github.com/assets/31009750/fe7673c4-4f32-4d53-9f50-30f56dc26a44 alt=image></p>
+<p><img src=https://gist.github.com/assets/31009750/1d9fb209-d88d-4308-a9fc-0d7fb8d37a7a alt=image></p>
+<ul>
+<li>Automatically Recover</li>
+<li>Is for disater recover not for performance</li>
+<li>Also AWS offers Multi-AZ deployment clusters - create 2 readable standby instances</li>
+</ul>
 <h3 id=52-dynamodb>5.2. DynamoDB</h3>
 <h3 id=53-redshift>5.3. Redshift</h3>
 <h2 id=6-networking>6. Networking</h2>
