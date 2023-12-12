@@ -91,4 +91,12 @@ Có nhiều bài viết mô tả sự liên quan của 3 khái niệm này trong
 
 ### What is OLTP?
 
-- The online transaction per seconds
+- The online transaction processing
+- Processing data from transactions in real time(eg: customer orders, banking transactions, payments, and booking systems)
+- OLTP is all about data processing and completing large numbers of small transactions in real time
+
+### What is OLAP
+
+- The online analytical processing
+- Processes complex queries to analyze historical data( e.g: analyzing net profit figures from the past 3 years and sales forecasting)
+- OLAP is all about data analysis using large amounts of data, as well as complex queries that take a long time to complete.

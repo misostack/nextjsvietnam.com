@@ -815,6 +815,64 @@ Seperate by chunks
 
 ### 5.1. RDS
 
+- [x] Relational databases
+- [x] RDS Advantages
+- [x] OLTP and OLAP
+- [x] Multi-AZ
+- [x] Unplanned Failures and Maintenance
+
+#### 5.1.1. Relational Databases
+
+![image](https://gist.github.com/assets/31009750/74be99ea-6376-4c4a-8017-3796563c0ce6)
+
+![image](https://gist.github.com/assets/31009750/625572c4-f594-4e7a-a049-49fc44263947)
+
+**RDS Database Engines**
+
+- MYSQL
+- MariaDB
+- PostgreSQL
+- Amazon Aurora
+- SQL Server
+- Oracle
+
+**Advantages**:
+
+- Up and Running in Minutes
+- Multi-AZ
+- Failover capability
+- Automated backups
+
+**When would we use RDS?**
+
+- RDS is generally used for OLTP(online transaction processing) workloads
+- OLTP
+
+**When not?**
+
+- OLAP -> need to use a data warehouse - something like Redshift
+
+**AWS Multi-AZ**
+
+![image](https://gist.github.com/assets/31009750/19b0b194-4c33-4968-bd8a-f3a882f3b8c8)
+
+- Exact copy of your production database in another AZ
+- Handles replication for you : auto synchronize to standby database
+- Support which RDS types: MYSQL, MariaDB, PostgreSQL, SQL Server, Oracle
+- Aurora is support by default.
+
+**Unplanned failure Event**
+
+![image](https://gist.github.com/assets/31009750/7f451a8a-7ffa-4f1c-9c2f-5fba725c52a9)
+
+![image](https://gist.github.com/assets/31009750/fe7673c4-4f32-4d53-9f50-30f56dc26a44)
+
+![image](https://gist.github.com/assets/31009750/1d9fb209-d88d-4308-a9fc-0d7fb8d37a7a)
+
+- Automatically Recover
+- Is for disater recover not for performance
+- Also AWS offers Multi-AZ deployment clusters - create 2 readable standby instances
+
 ### 5.2. DynamoDB
 
 ### 5.3. Redshift
