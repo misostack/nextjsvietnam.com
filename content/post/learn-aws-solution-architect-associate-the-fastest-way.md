@@ -875,6 +875,65 @@ Seperate by chunks
 
 ### 5.2. DynamoDB
 
+1. What is DynamoDB
+
+- Fast and Flexible NoSQL Database
+- Read consistency (Eventually consistent read by default)
+- Spread across 3 geographically distinct data centers
+- Eventually consistent reads(default)
+- Can be strongly consistent reads
+
+#### DAX(Amazon DynamoDB Accelerator)
+
+- Fully-managed, HA, in-memory cache
+- 10x performance
+- Reduces request from ms to microseconds - even underload
+- No need for developers to manage caching logic
+
+![image](https://gist.github.com/assets/31009750/ac6a15b9-3332-43bc-aed2-aad8b017c796)
+
+#### Security
+
+- Encryption at rest using KMS
+- Site-to-site VPN
+- Direct Connect(DX)
+- IAM policies and roles
+- Fine-grained access
+- CloudWatch and CloudTrail
+- VPC Endpoints
+
+#### Use cases of DynamoDB transactions
+
+- ACID with DynamoDB basically means all or nothing
+- Processing financial transactions
+- Fullfilling and managing orders
+- Building multiplayer game engines
+- Coordinating actions across distrubited components and services
+
+2. Taking your Data Global with DynamoDB Streams
+
+- Time-ordered sequence of item-level changes in a table
+- Stored in 24hs
+- Inserts, Updates, Deletes
+- Combine with lambda as store procedure
+- Multi Master, Multi-Region Replication
+- Globally distributed application
+- No Application rewrites
+- Replication latency under **1 second**
+
+3. Amazon DocumentDB
+
+- MongoDB on premises
+- AWS Database Migration Service
+
+4. Amazon KeySpaces is Amazon Apacche Cassandra database service
+
+- Distributed database(it runs on many machines) that use NoSQL
+- Primarily used for big data solutions
+- It is serverless
+
+5.
+
 ### 5.3. Redshift
 
 ## 6. Networking

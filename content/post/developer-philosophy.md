@@ -100,3 +100,21 @@ Có nhiều bài viết mô tả sự liên quan của 3 khái niệm này trong
 - The online analytical processing
 - Processes complex queries to analyze historical data( e.g: analyzing net profit figures from the past 3 years and sales forecasting)
 - OLAP is all about data analysis using large amounts of data, as well as complex queries that take a long time to complete.
+
+### Eventually consistent reads
+
+- Consistency across all **copies of data is usually reached within a second**.
+- Best read performance
+
+### Strongly consistent reads
+
+- A strongly consistent read **returns a result that reflects all writes** that receives a successful response prior to the read.
+
+### ACID Methodology for Database
+
+- Atomicity : all changes to data must be performed successfully or not at all (use **transaction**)
+- Consistency: data must be consistent state and before after **transaction**
+- Isolatation: no others process can change the data while the **transaction** is running
+- Durability: the changes made by a transaction must persist
+
+![image](https://gist.github.com/assets/31009750/0bf27de7-6767-44ab-8505-7de26729eeba)
