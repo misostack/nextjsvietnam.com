@@ -214,6 +214,23 @@
 <li>Processes complex queries to analyze historical data( e.g: analyzing net profit figures from the past 3 years and sales forecasting)</li>
 <li>OLAP is all about data analysis using large amounts of data, as well as complex queries that take a long time to complete.</li>
 </ul>
+<h3 id=eventually-consistent-reads>Eventually consistent reads</h3>
+<ul>
+<li>Consistency across all <strong>copies of data is usually reached within a second</strong>.</li>
+<li>Best read performance</li>
+</ul>
+<h3 id=strongly-consistent-reads>Strongly consistent reads</h3>
+<ul>
+<li>A strongly consistent read <strong>returns a result that reflects all writes</strong> that receives a successful response prior to the read.</li>
+</ul>
+<h3 id=acid-methodology-for-database>ACID Methodology for Database</h3>
+<ul>
+<li>Atomicity : all changes to data must be performed successfully or not at all (use <strong>transaction</strong>)</li>
+<li>Consistency: data must be consistent state and before after <strong>transaction</strong></li>
+<li>Isolatation: no others process can change the data while the <strong>transaction</strong> is running</li>
+<li>Durability: the changes made by a transaction must persist</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/0bf27de7-6767-44ab-8505-7de26729eeba alt=image></p>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/cheatsheet>cheatsheet</a>
 </div>

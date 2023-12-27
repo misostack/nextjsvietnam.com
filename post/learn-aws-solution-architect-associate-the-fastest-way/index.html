@@ -974,6 +974,73 @@ Bucket Policies: work on an entire bucket level</p>
 <li>Also AWS offers Multi-AZ deployment clusters - create 2 readable standby instances</li>
 </ul>
 <h3 id=52-dynamodb>5.2. DynamoDB</h3>
+<ol>
+<li>What is DynamoDB</li>
+</ol>
+<ul>
+<li>Fast and Flexible NoSQL Database</li>
+<li>Read consistency (Eventually consistent read by default)</li>
+<li>Spread across 3 geographically distinct data centers</li>
+<li>Eventually consistent reads(default)</li>
+<li>Can be strongly consistent reads</li>
+</ul>
+<h4 id=daxamazon-dynamodb-accelerator>DAX(Amazon DynamoDB Accelerator)</h4>
+<ul>
+<li>Fully-managed, HA, in-memory cache</li>
+<li>10x performance</li>
+<li>Reduces request from ms to microseconds - even underload</li>
+<li>No need for developers to manage caching logic</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/ac6a15b9-3332-43bc-aed2-aad8b017c796 alt=image></p>
+<h4 id=security>Security</h4>
+<ul>
+<li>Encryption at rest using KMS</li>
+<li>Site-to-site VPN</li>
+<li>Direct Connect(DX)</li>
+<li>IAM policies and roles</li>
+<li>Fine-grained access</li>
+<li>CloudWatch and CloudTrail</li>
+<li>VPC Endpoints</li>
+</ul>
+<h4 id=use-cases-of-dynamodb-transactions>Use cases of DynamoDB transactions</h4>
+<ul>
+<li>ACID with DynamoDB basically means all or nothing</li>
+<li>Processing financial transactions</li>
+<li>Fullfilling and managing orders</li>
+<li>Building multiplayer game engines</li>
+<li>Coordinating actions across distrubited components and services</li>
+</ul>
+<ol start=2>
+<li>Taking your Data Global with DynamoDB Streams</li>
+</ol>
+<ul>
+<li>Time-ordered sequence of item-level changes in a table</li>
+<li>Stored in 24hs</li>
+<li>Inserts, Updates, Deletes</li>
+<li>Combine with lambda as store procedure</li>
+<li>Multi Master, Multi-Region Replication</li>
+<li>Globally distributed application</li>
+<li>No Application rewrites</li>
+<li>Replication latency under <strong>1 second</strong></li>
+</ul>
+<ol start=3>
+<li>Amazon DocumentDB</li>
+</ol>
+<ul>
+<li>MongoDB on premises</li>
+<li>AWS Database Migration Service</li>
+</ul>
+<ol start=4>
+<li>Amazon KeySpaces is Amazon Apacche Cassandra database service</li>
+</ol>
+<ul>
+<li>Distributed database(it runs on many machines) that use NoSQL</li>
+<li>Primarily used for big data solutions</li>
+<li>It is serverless</li>
+</ul>
+<ol start=5>
+<li></li>
+</ol>
 <h3 id=53-redshift>5.3. Redshift</h3>
 <h2 id=6-networking>6. Networking</h2>
 <h3 id=61-vpc>6.1. VPC</h3>
