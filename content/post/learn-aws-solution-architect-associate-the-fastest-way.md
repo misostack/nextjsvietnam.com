@@ -921,18 +921,46 @@ Seperate by chunks
 - No Application rewrites
 - Replication latency under **1 second**
 
-3. Amazon DocumentDB
+### 5.3. Amazon DocumentDB
 
 - MongoDB on premises
 - AWS Database Migration Service
 
-4. Amazon KeySpaces is Amazon Apacche Cassandra database service
+### 5.4. Amazon KeySpaces is Amazon Apacche Cassandra database service
 
 - Distributed database(it runs on many machines) that use NoSQL
 - Primarily used for big data solutions
 - It is serverless
 
-5.
+### 5.5. Graph Dabase
+
+- Graph Database store nodes and relationships instead of tables or documents
+- Eg: Neo4j
+- Neptune is Amazon Graph Database services
+- Usecases: connections between entities(social graphs), knowledge graph, visualize things with graph
+
+### 5.6. Ledger Database
+
+- NoSQL Database, **immutable**, transparent, has a cryptographically verifiable transaction log that is owned by one authority
+- You can not update a record(i.e replace old content) in a ledger database. Instead, an update adds a new record to the database
+- Usecases: cryptocurrencies, shipping companies use to track items, boxes, shipping containers, deliveries or pharmaceutical companies use it to track creation and distribution of drugs and ensure no counterfeits are produced.
+- Amazon Quantum Ledger Database(QLDB) is a fully managed ledger database
+
+Other usecases:
+
+- Store financial transactions
+- Maintain claims history
+- Reconcile Supply Chain System
+- Centralize Digital Records
+
+### 5.7. Time series
+
+- Data points that are logged over a series of time, allow you to track data.
+- Iot data : agriculture data
+- Analytic data
+- Devops Applications
+- Amazon TimeStream is a full managed database service for time-series data.
+- Trillion events/day. 1,000 times faster with 1/10 costs
 
 ### 5.3. Redshift
 
