@@ -118,3 +118,9 @@ Có nhiều bài viết mô tả sự liên quan của 3 khái niệm này trong
 - Durability: the changes made by a transaction must persist
 
 ![image](https://gist.github.com/assets/31009750/0bf27de7-6767-44ab-8505-7de26729eeba)
+
+### IP Address Range
+
+![image](https://gist.github.com/assets/31009750/b74f92be-2153-46d8-b691-68e8496c3920)
+
+- https://cidr.xyz/

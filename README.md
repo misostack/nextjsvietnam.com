@@ -25,3 +25,9 @@ hugo new post/hello.md "hello"
 ### Get Remote Data
 
 - https://gohugo.io/templates/data-templates/
+
+### AWS Series post
+
+```
+hugo new post/aws-series-vpc.md "AWS Series VPC"
+```
