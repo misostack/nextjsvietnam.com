@@ -96,10 +96,59 @@ For instance:
 - Enable you privately connect your **VPC** to **supported AWS Services** powered by private link without requiring an Internet Gateway/NAT/VPC Connection/AWS Direct Connect
 - Traffic between your VPC and other service does not leave the Amazon Network
 
-### 6.2. Direct Connect
+> There are 2 types of endpoints
 
-### 6.3. Route 53
+- Interface Endpoint: elastic network interface with a private IP Address
+- Gateway Endpoint: similar to NAT, is virtual device you provision. It supports connection to S3 and DynamoDB
 
-### 6.4. API Gateway
+![image](https://gist.github.com/assets/31009750/925b01ba-ca5a-4ffb-a269-513a4161f2e6)
 
-### 6.5. AWS GLobal Accelerator
+**Multiple VPCs**
+
+- Use VPC Peering
+- Connect 1 VPC to another via direct network route using private IP addresses
+- Not support transitive peering. Eg: A<-->B, A<-->C, and it does not allow you to B<-->C via A. You must create peering connection between B<-->C
+- You can peer between regions
+- No overlapping CIDR address range
+
+**Network privacy with AWS PrivateLink**
+
+- If you have to make peering VPCs to tens,hundreds,or thoudsands of customer VPCs, think of AWS PrivateLink.
+
+![image](https://gist.github.com/assets/31009750/d340fe94-f6c3-4340-abba-8fc3f0ad3ba2)
+
+**AWS VPN CloudHub**
+
+- If you have multiple sites, each with its own VPN connection, you can use AWS VPN CloudHub to connect those sites together.
+
+![image](https://gist.github.com/assets/31009750/e43a0b77-eb2a-4008-abd2-d30a45effb8d)
+
+- Establish private connectivity between AWS and your data center or office(on-premises)
+
+**There are 2 types of Direct Connection**
+
+- Dedicated Connection: physical ethernet connection associated with a customer
+- Hosted Connection: physical ethernet connection that AWS Direct Connect Partner provision on behalf of customer
+
+![image](https://gist.github.com/assets/31009750/f3cc5dff-2cec-4314-882d-c07c22e80ac2)
+
+**AWS Transit Gateway**
+
+If you're facing with this problems:
+
+![image](https://gist.github.com/assets/31009750/c94297ac-7f4b-423d-b23e-04152a7e6cfa)
+
+You can just simplify your network topology with AWS Transit Gateway(act as a router)
+
+![image](https://gist.github.com/assets/31009750/bdd6cde6-2416-4dcf-b7c3-b007863b02a7)
+
+- Allow transitive peering between thousands of VPCs and on-premises data centers
+- Works on a hub-and-spoke model
+- Works on a regional basis
+- Can use it across multiple AWS accounts using RAM(Resource Access Management)
+
+Summary:
+
+- You can use route tables to limit how VPCs talk to each other
+- Works with Direct Connect as well as VPN connections.
+- Supports IP Multicast

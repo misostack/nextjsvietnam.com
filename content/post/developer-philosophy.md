@@ -124,3 +124,13 @@ Có nhiều bài viết mô tả sự liên quan của 3 khái niệm này trong
 ![image](https://gist.github.com/assets/31009750/b74f92be-2153-46d8-b691-68e8496c3920)
 
 - https://cidr.xyz/
+
+### Huh and Spoke Model
+
+- https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/hybrid-networking/hub-spoke?tabs=cli
+
+### IP Multicast
+
+![image](https://gist.github.com/assets/31009750/16c437ff-783f-4abd-be34-0d9aca36237f)
+
+A type of data transit over the internet which supports a device or a server send a message to multiple devices/servers simultanenously
