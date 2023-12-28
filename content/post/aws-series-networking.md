@@ -152,3 +152,9 @@ Summary:
 - You can use route tables to limit how VPCs talk to each other
 - Works with Direct Connect as well as VPN connections.
 - Supports IP Multicast
+
+**5GB Networks**
+
+- 5GB provides mobile devices wither higher speed, lower latency, and greater capacity than 4GB LTE networks. It is one the fastest, most robust technologies the world has ever seen.
+
+- AWS Wavelength embeds AWS Compute and Storage within 5GB networks : smart car <--> 5GB <--> AWS Compute/Services -> Mobile Edge Computing
