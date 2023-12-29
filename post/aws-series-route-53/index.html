@@ -12,8 +12,18 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWE4MLJYE6"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-RWE4MLJYE6')</script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1642510310947288" crossorigin=anonymous></script>
-<title>STRATEGIC DESIGN | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
-<meta name=robots content="noindex">
+<title>Aws Series Route 53 | This topic will give you a broad overview about Amazon Route 53 and routing algorithm | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+<meta name=robots content="all">
+<meta name=keywords content="aws,solution architecture,aws solution architect associate">
+<meta name=description content="This topic will give you a broad overview about Amazon Route 53 and routing algorithm">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://gist.github.com/assets/31009750/76a01b41-89b2-4703-a0be-84a020d1e070">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="750">
+<meta property="og:image:height" content="300">
+<meta property="article:publisher" content="https://www.facebook.com/nextjsvietnam">
+<meta property="article:published_time" content="2023-12-29T10:30:59+07:00">
+<meta property="article:modified_time" content="2023-12-29T10:30:59+07:00">
 <link rel=apple-touch-icon sizes=57x57 href=/apple-icon-57x57.png>
 <link rel=apple-touch-icon sizes=60x60 href=/apple-icon-60x60.png>
 <link rel=apple-touch-icon sizes=72x72 href=/apple-icon-72x72.png>
@@ -106,26 +116,118 @@
 </div>
 </nav>
 <main>
-<section class="container section hero-section">
-<h1 class=hero-section-heading>STRATEGIC DESIGN</h1>
+<section class="container section">
+<div class="page-content max-w-2xl mx-auto">
+<img src=https://gist.github.com/assets/31009750/76a01b41-89b2-4703-a0be-84a020d1e070 class=img-responsive alt="Aws Series Route 53">
+<h1>Aws Series Route 53</h1>
+<p><strong>Post Date</strong> : 2023-12-29T10:30:59+07:00</p>
+<p><strong>Modified Date</strong> : 2023-12-29T10:30:59+07:00</p>
+<p>
+<strong>Category:</strong>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/systemdesign>systemdesign</a>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/aws>aws</a>
+</p>
+<p>
+<strong>Tags:</strong>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=/tags/aws>aws</a>
+</p>
+<blockquote>
+<p>Route 53 is Amazon&rsquo;s DNS service. It allows you to register domain names, create hosted zones, and manage and create DNS records</p>
+</blockquote>
+<p>DNS operates on port 53 -> so that&rsquo;s why it is called Route 53</p>
+<blockquote>
+<p>SOA(Start of Authority) Record:</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>nslookup -q<span style=color:#f92672>=</span>soa jsbase.dev
+
+<span style=color:#75715e># Then</span>
+Non-authoritative answer:
+jsbase.dev
+        origin <span style=color:#f92672>=</span> izabella.ns.cloudflare.com
+        mail addr <span style=color:#f92672>=</span> dns.cloudflare.com
+        serial <span style=color:#f92672>=</span> <span style=color:#ae81ff>2324118412</span>
+        refresh <span style=color:#f92672>=</span> <span style=color:#ae81ff>10000</span>
+        retry <span style=color:#f92672>=</span> <span style=color:#ae81ff>2400</span>
+        expire <span style=color:#f92672>=</span> <span style=color:#ae81ff>604800</span>
+        minimum <span style=color:#f92672>=</span> <span style=color:#ae81ff>1800</span>
+</code></pre></div><blockquote>
+<p>NS(Name Server) Record: include IP of DNS Server and information about that domain</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>nslookup -q<span style=color:#f92672>=</span>ns jsbase.dev
+<span style=color:#75715e># then</span>
+Server:         fe80::1%15
+Address:        fe80::1%15#53
+
+Non-authoritative answer:
+jsbase.dev      nameserver <span style=color:#f92672>=</span> izabella.ns.cloudflare.com.
+jsbase.dev      nameserver <span style=color:#f92672>=</span> yisroel.ns.cloudflare.com.
+</code></pre></div><blockquote>
+<p>A Record: a record is used by a computer to translate the name of domain to an IP Address</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>nslookup -q<span style=color:#f92672>=</span>a jsbase.dev
+Server:         fe80::1%15
+Address:        fe80::1%15#53
+
+Non-authoritative answer:
+Name:   jsbase.dev
+Address: 172.67.152.64
+Name:   jsbase.dev
+Address: 104.21.1.132
+</code></pre></div><blockquote>
+<p>CNAME : canonical name can be used to resolve one domain name to another.</p>
+</blockquote>
+<p>Eg: mobile.jsbase.dev -> m.jsbase.dev</p>
+<blockquote>
+<p>Alias Record : used to map resource record sets in your hosted zone to load balancers, CloudFront Distribution, or S3 buckets that are configured as a website</p>
+</blockquote>
+<p>Eg: you can map one DNS name <a href=http://www.jsbase.dev>www.jsbase.dev</a> -> to the target DNS name elb1234.elb.amazonaws.com</p>
+<h2 id=routing-policies-available-with-route-53>Routing Policies Available with Route 53</h2>
+<h3 id=1-simple-routing>1. Simple Routing</h3>
+<p><img src=https://gist.github.com/assets/31009750/27b1e958-02c0-408b-bea9-502c40ec7451 alt=image></p>
+<ul>
+<li>One record with multiple IP addresses.</li>
+<li>If you specify multiple values in a record, Route 53 returns all values to the user in a random order.</li>
+</ul>
+<h3 id=2-weighted-routing>2. Weighted Routing</h3>
+<ul>
+<li>Allow you to split your traffic based on diffirent weights assigned.</li>
+</ul>
+<p>Eg: you can set 10% of your traffic to go to us-east-1 and 90% to go to eu-west-1</p>
+<p><strong>Health Checks</strong></p>
+<ul>
+<li>You can set health check on individual record sets.</li>
+<li>If a record set fails a health check, it will be removed from Route 53 until it passes the health check.</li>
+<li>You can set SNS Notification to alert you about failed health checks.</li>
+</ul>
+<h3 id=3-latency-based-routing>3. Latency Based Routing</h3>
+<h3 id=4-failover-routing>4. Failover Routing</h3>
+<h3 id=5-geolocation-routing>5. Geolocation Routing</h3>
+<h3 id=6-geoproximity-routingtraffic-flow-only>6. Geoproximity Routing(Traffic Flow Only)</h3>
+<h3 id=7-multivalue-answer-routing>7. Multivalue Answer Routing</h3>
+<div class="m-1 p-1">
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/systemdesign>systemdesign</a>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/aws>aws</a>
+</div>
+</div>
 </section>
-<section class="container section gap-8">
-<div class="card card-post-default">
-<div class="px-6 py-4">
-<h2 class=card-post-title>
-<a href=https://nextjsvietnam.com/post/domain-driven-design-trong-30-giay/>Domain Driven Design trong 30 giây</a>
-</h2>
-<div>
-<span class=card-post-date>12 Jun, 2023</span>
+<section class="container section">
+<div class="max-w-2xl mx-auto">
+<div class="font-heading text-2xl font-semibold">You Might Also Like</div>
+<div class="mt-8 grid gap-8">
+<ul class=sidebar-links>
+<li><a href=/post/aws-series-compute/>Aws Series Compute</a></li>
+<li><a href=/post/aws-series-networking/>Aws Series Networking</a></li>
+<li><a href=/post/aws-hand-on-labs/>Aws Hand on Labs</a></li>
+<li><a href=/post/learn-aws-practitioner-level-the-right-way/>Learn Aws Practitioner Level the Right Way</a></li>
+<li><a href=/post/the-difference-between-monolithic-and-microservices-architecture/>The Difference Between Monolithic and Microservices Architecture</a></li>
+<li><a href=/post/uml-use-case-diagram-cheatsheet/>UML Use Case Diagram Cheatsheet</a></li>
+<li><a href=/post/the-meaning-of-software-architecture/>The Meaning of Software Architecture</a></li>
+</ul>
 </div>
-<div class=card-post-description>Cùng tìm hiểu Domain Driven Design trong 30 giây</div>
 </div>
-</div>
-</section>
-<section class=container>
 </section>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1642510310947288" crossorigin=anonymous></script>
-<ins class=adsbygoogle style=display:block data-ad-client=ca-pub-1642510310947288 data-ad-slot=4755575293 data-ad-format=auto data-full-width-responsive=true></ins>
+<ins class=adsbygoogle style=display:block;text-align:center data-ad-layout=in-article data-ad-format=fluid data-ad-client=ca-pub-1642510310947288 data-ad-slot=9309117729></ins>
 <script>(adsbygoogle=window.adsbygoogle||[]).push({})</script>
 </main>
 <footer class=footer>
