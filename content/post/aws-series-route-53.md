@@ -86,12 +86,47 @@ Eg: you can set 10% of your traffic to go to us-east-1 and 90% to go to eu-west-
 - If a record set fails a health check, it will be removed from Route 53 until it passes the health check.
 - You can set SNS Notification to alert you about failed health checks.
 
-### 3. Latency Based Routing
+### 3. Failover Routing
 
-### 4. Failover Routing
+- Are used when you wanna create a active/passive setup
+- Route 53 will monitor the health of your primary site using a health check
 
-### 5. Geolocation Routing
+![image](https://gist.github.com/assets/31009750/741f82d7-ae1b-4fa7-a67e-d8bf196d3bc2)
 
-### 6. Geoproximity Routing(Traffic Flow Only)
+### 4. Geolocation Routing
+
+- Lets you choose where your traffic will be sent based on the geographic location of your users(the location from which DNS queries originate)
+
+**Usecases:**
+
+- You want all queries from Europe will be routed to a fleet of EC2 instances that are specifically configured for your European customers.
+- Localization: these servers may have local language of European customers and display all prices in euro.
+
+### 5. Geoproximity Routing(Traffic Flow Only)
+
+You can use Route 53 traffic flow to build a routing system that uses a combination of:
+
+- geographic location
+- latency
+- and availability to route traffic
+
+from your users to your cloud or on-premises endpoint.
+
+You can build your traffic routing policies from scratch or pick a template from a library and then customize it.
+
+Geoproximy Routing(Traffic Flow Only)
+
+- Lets Amazon Route 53 route traffic to your resources based on the geographic location of your users and your resources.
+- You can also optionally choose to route more traffic/less to a given resource( know as bias )
+- A bias expands or shrinks the size of geographic region from which traffic is routed to a resource
+
+### 6. Latency Based Routing
+
+- Allows you to route your traffic based on the lowest network latency for your end user(which region give them the fastest response time)
 
 ### 7. Multivalue Answer Routing
+
+![image](https://gist.github.com/assets/31009750/26ad17d8-1214-44af-8f97-d07e71ea1a63)
+
+- Let you configure Amazon Route 53 to return multiple values, such as IP addresses for your web servers, in response to DNS queries, similar to simple routing
+- But multivalue answer routing also lets you check the health of each resource, so Route 53 returns only values for healthy resources
