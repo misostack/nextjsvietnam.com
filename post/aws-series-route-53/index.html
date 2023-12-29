@@ -199,11 +199,46 @@ Address: 104.21.1.132
 <li>If a record set fails a health check, it will be removed from Route 53 until it passes the health check.</li>
 <li>You can set SNS Notification to alert you about failed health checks.</li>
 </ul>
-<h3 id=3-latency-based-routing>3. Latency Based Routing</h3>
-<h3 id=4-failover-routing>4. Failover Routing</h3>
-<h3 id=5-geolocation-routing>5. Geolocation Routing</h3>
-<h3 id=6-geoproximity-routingtraffic-flow-only>6. Geoproximity Routing(Traffic Flow Only)</h3>
+<h3 id=3-failover-routing>3. Failover Routing</h3>
+<ul>
+<li>Are used when you wanna create a active/passive setup</li>
+<li>Route 53 will monitor the health of your primary site using a health check</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/741f82d7-ae1b-4fa7-a67e-d8bf196d3bc2 alt=image></p>
+<h3 id=4-geolocation-routing>4. Geolocation Routing</h3>
+<ul>
+<li>Lets you choose where your traffic will be sent based on the geographic location of your users(the location from which DNS queries originate)</li>
+</ul>
+<p><strong>Usecases:</strong></p>
+<ul>
+<li>You want all queries from Europe will be routed to a fleet of EC2 instances that are specifically configured for your European customers.</li>
+<li>Localization: these servers may have local language of European customers and display all prices in euro.</li>
+</ul>
+<h3 id=5-geoproximity-routingtraffic-flow-only>5. Geoproximity Routing(Traffic Flow Only)</h3>
+<p>You can use Route 53 traffic flow to build a routing system that uses a combination of:</p>
+<ul>
+<li>geographic location</li>
+<li>latency</li>
+<li>and availability to route traffic</li>
+</ul>
+<p>from your users to your cloud or on-premises endpoint.</p>
+<p>You can build your traffic routing policies from scratch or pick a template from a library and then customize it.</p>
+<p>Geoproximy Routing(Traffic Flow Only)</p>
+<ul>
+<li>Lets Amazon Route 53 route traffic to your resources based on the geographic location of your users and your resources.</li>
+<li>You can also optionally choose to route more traffic/less to a given resource( know as bias )</li>
+<li>A bias expands or shrinks the size of geographic region from which traffic is routed to a resource</li>
+</ul>
+<h3 id=6-latency-based-routing>6. Latency Based Routing</h3>
+<ul>
+<li>Allows you to route your traffic based on the lowest network latency for your end user(which region give them the fastest response time)</li>
+</ul>
 <h3 id=7-multivalue-answer-routing>7. Multivalue Answer Routing</h3>
+<p><img src=https://gist.github.com/assets/31009750/26ad17d8-1214-44af-8f97-d07e71ea1a63 alt=image></p>
+<ul>
+<li>Let you configure Amazon Route 53 to return multiple values, such as IP addresses for your web servers, in response to DNS queries, similar to simple routing</li>
+<li>But multivalue answer routing also lets you check the health of each resource, so Route 53 returns only values for healthy resources</li>
+</ul>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/systemdesign>systemdesign</a>
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/aws>aws</a>
