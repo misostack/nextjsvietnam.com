@@ -798,6 +798,7 @@ Other usecases:
 ## 6. Networking
 
 - [AWS Series Networking](./aws-series-networking.md)
+- [AWS Series Route 53](./aws-series-route-53.md)
 
 ## 7. To read
 
