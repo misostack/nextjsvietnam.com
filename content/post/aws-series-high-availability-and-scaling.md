@@ -138,3 +138,83 @@ Eg: Maintain ASGAverageCPUUtilization = 50%
 - Desired: initial value
 - Min: minimum value
 - Max: maximum value
+
+## Scaling Relational Databases
+
+### 4 Types of Scaling
+
+![image](https://gist.github.com/assets/31009750/19124be9-a916-4c0c-976a-518f2e95a8ee)
+
+- Vertical Scaling : resize
+- Scaling Storage: storage can be resized, but it's only able to go up, not down
+- Read replicas: creating read-only copies of your data can help spread out the workload
+- Aurora serverless: We can offload autoscale to AWS. Excels with unpredictable workloads
+
+## Scaling Non-Relational Databases
+
+### DynamoDB
+
+- AWS does all the heavy lifting for you
+- Just 2 options: provisioned(predictable workload) and on-demand(sporadic workload)
+- You can switch between 2 options, but only twice per 24hours per table
+
+![image](https://gist.github.com/assets/31009750/a66efd82-ce2b-4808-80f5-7a0e9840f05d)
+
+#### Some figures
+
+**RCU(read capacity unit)**
+
+- DynamoDB Unit of measurement for reads per second for an item up to 4KB in size.
+- One strongly consistent read per second
+- Two eventually consistent read per second
+
+So how many RCUs for **1 strongly consistent read** per second for object that are **7KB** in size?
+
+1 RCU = 4 KB/ 1 strongly consistent read
+Round up to the next nearest amount for the item size = 8KB/4KB = **2 RCU**
+
+**WCU(write capacity unit)**
+
+- DynanoDB Unit of measurement for writes per second for an item up to 1KB in size
+
+So how many WCUs for **1 write per second** for an object that is 3KB in size?
+
+```m
+1 WCU = 1KB * 1 write per second
+3KB * 1 WCU = 3 WCU
+```
+
+## Disaster Recovery Strategies
+
+### RPO (Recovery Point Objective)
+
+- How much data you can afford to lose?
+- Typically speaking, the lower time, the greater the cost
+
+### RTO (Recovery Time Objective)
+
+- How fast do you want to fail over? How much time can the business afford?
+- Typically speaking, the lower the time, the more expensive the cost
+
+## Backup and Restore
+
+### Simplest Disaster Recovery Strategy
+
+- Restore the system from your backup
+
+#### Pilot Light
+
+![image](https://gist.github.com/assets/31009750/d978930b-edb6-4e41-bacb-04a8ae09df00)
+![image](https://gist.github.com/assets/31009750/e4691ac5-6b64-4bcb-b311-a7cc24ce0aee)
+![image](https://gist.github.com/assets/31009750/d2cc7692-78ab-41ec-8871-9ee0cc09a4ea)
+
+#### Warm StandBy
+
+![image](https://gist.github.com/assets/31009750/dc5ba925-1068-49f5-a493-0ce6104ea5ec)
+![image](https://gist.github.com/assets/31009750/58232696-cefb-4152-ba77-f37f88fe94f4)
+![image](https://gist.github.com/assets/31009750/d2cc7692-78ab-41ec-8871-9ee0cc09a4ea)
+
+#### Active/Active Failover
+
+![image](https://gist.github.com/assets/31009750/1f65e92d-1aca-40ac-b00f-4a7b09b1c361)
+![image](https://gist.github.com/assets/31009750/4b6a633d-184d-4ff2-8484-a3bd026f4412)
