@@ -32,6 +32,8 @@ image: "https://gist.github.com/assets/31009750/3d19a308-0376-448c-9bb0-84fd12a8
 - Standard RIs - up to 72% off the on-demand price.
 - Convertible RIs - 54% off the on-demand price. Has option to change to a different RI type of equal or greater value
 - Scheduled RIs: launch within the time window you defined.
+- Reserved Instances can be sold after they have been active for at least 30 days and once AWS has received the upfront payment (if applicable)
+- https://aws.amazon.com/ec2/pricing/reserved-instances/marketplace/
 
 **Spot:**
 
