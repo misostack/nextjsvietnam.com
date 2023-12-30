@@ -12,18 +12,18 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWE4MLJYE6"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-RWE4MLJYE6')</script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1642510310947288" crossorigin=anonymous></script>
-<title>Software Architecture Design Guidelines | Software Architecture Design Guidelines | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+<title>Aws Series Decoupling Workflows | In this topic you will learn how to decouple your workflows on AWS architecture | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
 <meta name=robots content="all">
-<meta name=keywords content="software architecture,frontend architecture">
-<meta name=description content="Software Architecture Design Guidelines">
+<meta name=keywords content="aws,solution architecture,aws solution architect associate">
+<meta name=description content="In this topic you will learn how to decouple your workflows on AWS architecture">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://nextjsvietnam.com/common/no-image.png">
+<meta property="og:image" content="https://gist.github.com/assets/31009750/2509a342-da20-4d40-ad32-921a5e8263f3">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="750">
 <meta property="og:image:height" content="300">
 <meta property="article:publisher" content="https://www.facebook.com/nextjsvietnam">
-<meta property="article:published_time" content="2022-10-05T09:59:19+07:00">
-<meta property="article:modified_time" content="2022-10-05T09:59:19+07:00">
+<meta property="article:published_time" content="2023-12-30T23:48:50+07:00">
+<meta property="article:modified_time" content="2023-12-30T23:48:50+07:00">
 <link rel=apple-touch-icon sizes=57x57 href=/apple-icon-57x57.png>
 <link rel=apple-touch-icon sizes=60x60 href=/apple-icon-60x60.png>
 <link rel=apple-touch-icon sizes=72x72 href=/apple-icon-72x72.png>
@@ -118,58 +118,53 @@
 <main>
 <section class="container section">
 <div class="page-content max-w-2xl mx-auto">
-<img src=https://nextjsvietnam.com/common/no-image.png class=img-responsive alt="Software Architecture Design Guidelines">
-<h1>Software Architecture Design Guidelines</h1>
-<p><strong>Post Date</strong> : 2022-10-05T09:59:19+07:00</p>
-<p><strong>Modified Date</strong> : 2022-10-05T09:59:19+07:00</p>
+<img src=https://gist.github.com/assets/31009750/2509a342-da20-4d40-ad32-921a5e8263f3 class=img-responsive alt="Aws Series Decoupling Workflows">
+<h1>Aws Series Decoupling Workflows</h1>
+<p><strong>Post Date</strong> : 2023-12-30T23:48:50+07:00</p>
+<p><strong>Modified Date</strong> : 2023-12-30T23:48:50+07:00</p>
 <p>
 <strong>Category:</strong>
-<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/cheatsheet>cheatsheet</a>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/systemdesign>systemdesign</a>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/aws>aws</a>
 </p>
 <p>
 <strong>Tags:</strong>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=/tags/aws>aws</a>
 </p>
-<p>Lời nói đầu, trong bất kì một hoạt động sản xuất kinh doanh nào, không chỉ ngành IT nói riêng, mà trong thực tế hoạt động của nhiều ngành nghề khác. Việc xây dựng hệ thống là cực kì quan trọng.</p>
-<p>Trong phạm vi của bài viết này, tôi xin chia sẻ những gì đúc kết được trong quá trình xây dựng hệ thống cho các dự án với các quy mô khác nhau. Tuy rằng về mặt quy mô có khác biệt nhưng về mặt bản chất, thì các bước cần thiết để xây dựng 1 hệ thống là một.</p>
-<h2 id=trình-tự-thiết-kế-kiến-trúc-và-phát-triển-1-dự-án-single-page-app--spa--trong-thực-tế>Trình tự thiết kế kiến trúc và phát triển 1 dự án Single Page App ( SPA ) trong thực tế</h2>
-<ol>
-<li><input checked disabled type=checkbox> Create a Sitemap</li>
-<li><input disabled type=checkbox> Check the design and choose a proper UI Framework. Such as: TailwindCSS(Atomic CSS Framework), Ant Design(Atomic CSS Framework included built-in ReactJS Components), Material, Bootstrap, Bulma, &mldr;</li>
-<li><input disabled type=checkbox> Create the relevant page routes</li>
-<li><input disabled type=checkbox> Apply code clean standard</li>
-<li><input disabled type=checkbox> Breakdown design into smaller components: global styles, components</li>
-<li><input disabled type=checkbox> Create page details : collect bricks and build a fully page with fake data</li>
-<li><input disabled type=checkbox> Create page interaction : handle user&rsquo;s interaction</li>
-<li><input disabled type=checkbox> Integrate with API : they can be http request, websocket and they can be restful api or graphql. Should write test for your api integration ( use mocks & stubs if needed)</li>
-<li><input disabled type=checkbox> Think about the infrastructure and setup your continuous deployment process</li>
-<li><input disabled type=checkbox> Test your application</li>
-<li><input disabled type=checkbox> Write tests for your application and setup your continous integration process</li>
-<li><input disabled type=checkbox> Create blueprint for developers: overview source code architecture, component usage guidlines, developer&rsquo;s guidelines</li>
-</ol>
-<h2 id=trình-tự-thiết-kế-kiến-trúc-và-phát-triển-1-dự-án-api--resftful-api--trong-thực-tế>Trình tự thiết kế kiến trúc và phát triển 1 dự án API ( Resftful API ) trong thực tế</h2>
-<ol>
-<li><input disabled type=checkbox> Brainstorm : analyze requirements and list all relevant entities</li>
-<li><input disabled type=checkbox> High level design: components and interation between them</li>
-<li><input disabled type=checkbox> Group into modules: design and breakdown the system in individual module for development</li>
-<li><input disabled type=checkbox> Details for funtionality in each module</li>
-<li><input disabled type=checkbox> Create database schema: dataset, field definitions, constraints, database schema</li>
-<li><input disabled type=checkbox> Create API contract-first approach</li>
-<li><input disabled type=checkbox> Design the global architecture: choosing between monolith and microservices</li>
-<li><input disabled type=checkbox> Design codebase architecture: for development, testing, deployment. Eg: DDD(domain driven design), Clean Architecture, Rapid (everything stay inside controller )</li>
-<li><input disabled type=checkbox> Apply clean code standard</li>
-<li><input disabled type=checkbox> Codefirst with API: create API contracts: request, response, dtos - accuracy, consistency, latency</li>
-<li><input disabled type=checkbox> Business Layer: service and external resources - write unit test (use mocks vs stubs if needed)</li>
-<li><input disabled type=checkbox> Persistence Layer: repository, database entities, data migration, adjust db depends on usecases for optimizing performance</li>
-<li><input disabled type=checkbox> Connect all layer into fully feature</li>
-<li><input disabled type=checkbox> Test your final API</li>
-<li><input disabled type=checkbox> Document your API</li>
-<li><input disabled type=checkbox> Setup your continous deployment process on your infrastructure: dev, test, uat, production</li>
-<li><input disabled type=checkbox> Setup your continous integration process on your CI infrastructure: test, coverage report, automatically report,&mldr;</li>
-<li><input disabled type=checkbox> Create blueprint for developers: overview source code architecture, code re-use guidelines, developer&rsquo;s guidelines</li>
-</ol>
-<h2 id=các-kiến-thức-và-công-cụ-thường-sử-dụng-trong-từng-bước-theo-trình-tự-trên>Các kiến thức và công cụ thường sử dụng trong từng bước theo trình tự trên</h2>
+<h2 id=the-issue-with-tight-coupling>The issue with tight coupling</h2>
+<p><img src=https://gist.github.com/assets/31009750/aecd21b5-5ee2-473c-aa12-34db20ce1d25 alt=image></p>
+<h2 id=the-solution--loose-coupling>The solution : loose coupling</h2>
+<p><img src=https://gist.github.com/assets/31009750/796c33fb-ee23-4be2-876c-10e90e611534 alt=image></p>
+<p><img src=https://gist.github.com/assets/31009750/d503a69a-787f-49ed-a778-b73c32cb72a9 alt=image></p>
+<h3 id=simple-queue-servicesqs>Simple Queue Service(SQS)</h3>
+<ul>
+<li>SQS is fully managed message queuing service that enables you to decouple and scale microservices, distributed systems, and serverless applications.</li>
+<li>A message queue that allows asynchronous processing of work. One resource write a message to an SQS queue, and then another resource retrieve that messages from SQS</li>
+</ul>
+<h4 id=some-important-settings>Some important settings</h4>
+<ul>
+<li>Delivery delay: default is 0, max value is 15 minutes</li>
+<li>Message size: up to 256KB of text in any format</li>
+<li>Encryption: messages are encrypted in transit by default, but you can add at-rest</li>
+<li>Message retention: default is 4 days, can be set between 1 minutes and 14 days.</li>
+<li>Long vs Short: Long polling isn&rsquo;t the default, but it should be.</li>
+<li>Queue Depth: this can be a trigger for autoscaling -> if two many messages in queue, add more instances to solve it.</li>
+</ul>
+<p>SSE-SQS</p>
+<p><img src=https://gist.github.com/assets/31009750/5ac88950-bc5b-4f08-9b84-d917ad9fd88e alt=image></p>
+<p><strong>Visibility Timeout</strong></p>
+<p><img src=https://gist.github.com/assets/31009750/97d476b7-b69c-4ef5-bf9f-ae18cbe00b8d alt=image></p>
+<h3 id=simple-notification-servicesns>Simple Notification Service(SNS)</h3>
+<ul>
+<li>SNS is a fully managed messaging service for both application-to-application (A2A) and application-to-person(A2P) communication</li>
+</ul>
+<h3 id=api-gateway>API Gateway</h3>
+<ul>
+<li>API Gateway is a fully managed service that makes easy for developers to create,publish,maintain, monitor, and secure APIs at any scale.</li>
+</ul>
 <div class="m-1 p-1">
-<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/cheatsheet>cheatsheet</a>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/systemdesign>systemdesign</a>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/aws>aws</a>
 </div>
 </div>
 </section>
@@ -178,13 +173,13 @@
 <div class="font-heading text-2xl font-semibold">You Might Also Like</div>
 <div class="mt-8 grid gap-8">
 <ul class=sidebar-links>
-<li><a href=/post/developer-philosophy/>Developer Philosophy</a></li>
-<li><a href=/post/test-driven-development-for-beginner/>Test Driven Development for Beginner</a></li>
-<li><a href=/post/100-frontend-interview-questions/>100 Frontend Interview Questions</a></li>
-<li><a href=/post/chatgpt-what-can-chat-gpt-do/>Chatgpt What Can Chat Gpt Do</a></li>
-<li><a href=/post/learn-enough-oop-to-be-dangerous/>Learn Enough Oop to Be Dangerous</a></li>
-<li><a href=/post/the-future-of-hr/>The Future of Hr</a></li>
-<li><a href=/post/how-to-test-the-database/>How to Test the Database</a></li>
+<li><a href=/post/aws-series-high-availability-and-scaling/>Aws Series High Availability and Scaling</a></li>
+<li><a href=/post/aws-series-cloud-watch/>Aws Series Cloud Watch</a></li>
+<li><a href=/post/aws-series-elb/>Aws Series Elb</a></li>
+<li><a href=/post/aws-series-route-53/>Aws Series Route 53</a></li>
+<li><a href=/post/aws-series-compute/>Aws Series Compute</a></li>
+<li><a href=/post/aws-series-networking/>Aws Series Networking</a></li>
+<li><a href=/post/aws-hand-on-labs/>Aws Hand on Labs</a></li>
 </ul>
 </div>
 </div>
