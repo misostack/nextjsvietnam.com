@@ -247,6 +247,154 @@
 <li>Filter policies use JSON to define which messages get sent to specific subscribers</li>
 </ul>
 <p><img src=https://gist.github.com/assets/31009750/64be337a-6d55-4970-bcdd-29ef7d4b6aef alt=image></p>
+<h2 id=api-gateway-1>API Gateway</h2>
+<ul>
+<li>Fully managed service that allow you to easy publish, create, maintain, monitor and secure your API.</li>
+<li>It allow you to put a safe &ldquo;frontdoor&rdquo; on your application</li>
+</ul>
+<p><strong>Notable Features</strong></p>
+<ul>
+<li>Protect endpoints by attaching WAF</li>
+<li>Easily implement DDos protection and rare limiting</li>
+<li>Easy to use</li>
+</ul>
+<p><strong>API Options</strong></p>
+<ul>
+<li>REST API: API Keys, per-client throttles, validation of requests, WAF integration -> Restful API</li>
+<li>HTTP API: Simpler option than REST API, cheaper, minimum features -> Restful API</li>
+<li>Websocket API: Collection of WebSocket routes integrated with Lambda functions, HTTP Endpoints and other AWS services</li>
+</ul>
+<p><strong>Endpoint Types</strong></p>
+<ul>
+<li>Edge-Optimized: Default option. API requests get sent through a CloudFront edge. Best for global users</li>
+<li>Regional: Perfect for clients that reside in the same, specific region. Ability to leverage with CloudFront if required.</li>
+<li>Private: only accessible via VPCs using interface VPC Endpoints.</li>
+</ul>
+<p><strong>Securing your APIs</strong></p>
+<ul>
+<li>User authentication can be accomplished to control access to your APIs</li>
+<li>Authentication methods include IAM roles, Amazon Coginito, or even your own custom authorizer(Lambda functions)</li>
+<li>DNS: Edge optimized endpoints require ACM(AWS Certificate Manager) certs in the us-east-1</li>
+<li>SSL: Regional endpoints require ACM certs in the same region.</li>
+<li>WAF: you can place WAF in front of your API to prevent DDos</li>
+</ul>
+<p><strong>Example usecase</strong></p>
+<p><img src=https://gist.github.com/assets/31009750/4c9cb901-feaf-4e6e-8e42-ba6b1af7be30 alt=image></p>
+<h2 id=aws-batch>AWS Batch</h2>
+<h3 id=batch-workloads>Batch Workloads</h3>
+<ul>
+<li>You can use AWS Batch to run batch computing workloads withi AWS(run on EC2 or EC2/Fargate)</li>
+<li>Scale based on your configuration</li>
+<li>Automatically Provision and Scale</li>
+<li>No install required</li>
+</ul>
+<h3 id=important-components>Important Components</h3>
+<h4 id=jobs>Jobs</h4>
+<ul>
+<li>Units of work that are submitted to AWS Batch(shell scripts, executeables, and Docker Images)</li>
+</ul>
+<h4 id=job-definitions>Job Definitions</h4>
+<ul>
+<li>Specify how your jobs are to be run(blueprint for resources in job)</li>
+</ul>
+<h4 id=jobqueues>JobQueues</h4>
+<ul>
+<li>Jobs get submitted to specific queues and reside until scheduled to run in a compute environment.</li>
+</ul>
+<h4 id=compute-environment>Compute Environment</h4>
+<ul>
+<li>Set of managed or unmanaged compute resources used to run your jobs</li>
+</ul>
+<h3 id=how-do-you-choose-between-fargate-and-ec2-compute-environment>How do you choose between Fargate and EC2 compute environment</h3>
+<p><img src=https://gist.github.com/assets/31009750/1e9807b3-17cf-4082-be13-0cb4cc709cb3 alt=image></p>
+<h4 id=fargate>Fargate</h4>
+<ul>
+<li>Recommend approach for MOST workloads</li>
+<li>Require fast start times(&lt; 30 seconds)</li>
+<li>Require 16 vCPU or less</li>
+<li>Require no GPUs</li>
+<li>Require 120 Gib of memory or less</li>
+</ul>
+<h4 id=ec2>EC2</h4>
+<ul>
+<li>Need more control over instance selection</li>
+<li>Require GPUs</li>
+<li>Require Elastic Fabric Adapter</li>
+<li>Require custom AMIs</li>
+<li>High levels of concurrency</li>
+<li>Require access to Linux parameters</li>
+</ul>
+<h3 id=aws-batch-or-lambda>AWS Batch or Lambda</h3>
+<h4 id=time-limits>Time limits</h4>
+<ul>
+<li>Lambda : 15 mins execution time limit</li>
+<li>Batch: does not have this</li>
+</ul>
+<h4 id=disk-space>Disk Space</h4>
+<ul>
+<li>Lambda: has limited disk space, and if you wanna leverage it with EFS requires functions live within a VPC</li>
+</ul>
+<h4 id=runtime-limitations>Runtime limitations</h4>
+<ul>
+<li>Lambda is serverless but it has limited runtimes</li>
+</ul>
+<h4 id=batch-runtimes>Batch Runtimes</h4>
+<ul>
+<li>Batch uses Docker, so any runtime can be used</li>
+</ul>
+<h3 id=how-to-leverage-aws-batch-in-your-application>How to leverage AWS Batch in your application</h3>
+<p><img src=https://gist.github.com/assets/31009750/f677c26e-df43-44a3-a105-14f2ba7dfd93 alt=image></p>
+<p><img src=https://gist.github.com/assets/31009750/d11ef996-91f5-46d8-8f03-43f388c0901e alt=image></p>
+<h3 id=summary-for-aws-batch>Summary for AWS Batch</h3>
+<p><img src=https://gist.github.com/assets/31009750/b350d236-074a-4c17-b0d0-0ad2ba0b247c alt=image></p>
+<h2 id=amazon-mq>Amazon MQ</h2>
+<p><img src=https://gist.github.com/assets/31009750/75584195-9f83-4c85-8917-37cd3d763652 alt=image>
+<img src=https://gist.github.com/assets/31009750/93e6d6a0-4132-43d0-91d5-43d5945a3f02 alt=image></p>
+<ul>
+<li>Message broker service allowing easier migrating message broker system to AWS Clouds</li>
+<li>Allows you to leverage both Apache ActiveMQ and RabbitMQ engine types</li>
+<li>New applications should try and leverage SNS with SQS</li>
+<li>Amazon MQ restricts access to private networks. So require VPC connectivity</li>
+<li>Amazon MQ offer HA architectures: cluster deployments for Amazon RabbitMQ across multi AZ behind NLB</li>
+</ul>
+<h2 id=cordinating-distributed-apps-with-aws-step-functions>Cordinating Distributed Apps with AWS Step Functions</h2>
+<ul>
+<li>A serverless orchetration service to manage and run event-driven task executions</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/4a3bb45f-7c20-43bd-a013-8bd479fc4741 alt=image></p>
+<p><img src=https://gist.github.com/assets/31009750/2170b556-b89c-40a5-aa15-64accd1f115d alt=image></p>
+<h2 id=ingesting-data-from-sass-applications-to-aws-with-amazon-appflow>Ingesting Data from SASS Applications to AWS with Amazon AppFlow</h2>
+<ul>
+<li>
+<p>Integration: Fully managed integration service for exchanging data between SaaS apps and AWS Services</p>
+</li>
+<li>
+<p>Ingest Data: Pull data records from third-party SaaS vendors and store them in S3</p>
+</li>
+<li>
+<p>Bi-directional data transfer with limited combinations</p>
+</li>
+<li>
+<p>Flow : flows transfer data between sources and destinations</p>
+</li>
+<li>
+<p>Map: determines how your source data is stored within your destination</p>
+</li>
+<li>
+<p>Filters: criteria to control which data is transfered</p>
+</li>
+<li>
+<p>Trigger: how flow start(run on demand, run on event, run on schedule)</p>
+</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/c93ed9e3-0648-424e-8a49-802175b9d446 alt=image></p>
+<h3 id=usecases>Usecases</h3>
+<ul>
+<li>Transfering Salesforce records to Amazon Redshift (datawarehouse but cheaper)</li>
+<li>Ingesting and analyzing Slack conversations in S3</li>
+<li>Migrate Zenddesk and other help desk support tickets to Snowflake(datawarehouse but more expesive)</li>
+<li>Transfering aggregate data on a schedule basis to S3*</li>
+</ul>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/systemdesign>systemdesign</a>
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/aws>aws</a>
