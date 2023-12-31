@@ -1,12 +1,12 @@
 ---
 title: "Happy New Year 2024"
 type: "post"
-date: 2023-01-31T18:25:50+07:00
+date: 2023-12-31T18:25:50+07:00
 description: "I don't know who you are, but if you know javascript, I wish you all the best in 2024"
 keywords: ["Happy New Year 2024"]
 categories: ["cheatsheet"]
 tags: ["well-being"]
-image: "https://gist.github.com/assets/31009750/afc1d00c-ba25-4505-88cc-ee6d81128ada"
+image: "https://user-images.githubusercontent.com/31009750/210140054-d94534f3-f665-46c6-94d1-ac492aae4517.png"
 ---
 
 ```js
