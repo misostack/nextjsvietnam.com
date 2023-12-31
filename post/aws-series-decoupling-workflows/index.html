@@ -162,6 +162,37 @@
 <ul>
 <li>API Gateway is a fully managed service that makes easy for developers to create,publish,maintain, monitor, and secure APIs at any scale.</li>
 </ul>
+<h3 id=sidelining-message-queue-with-dead-letter-queues>Sidelining Message Queue with Dead-Letter Queues</h3>
+<ul>
+<li><strong>DLQ</strong> are the targets for messages that can not be processed successfully</li>
+<li>Works with SQS and SNS!</li>
+<li>Useful for debugging applications and messaging systems</li>
+<li>Ability to isolate unconsumed messages to troubleshoot</li>
+<li>Redrive capacity allows you to move the message back into the source queue</li>
+<li>These are technically just other SQS queues</li>
+<li>DLQs used FIFO SQS queues must ALSO be FIFO queues</li>
+</ul>
+<p><strong>Benefits</strong>:</p>
+<ul>
+<li>Configure alarms based on message availability counts</li>
+<li>Quickly identify which logs to investigate for exceptions</li>
+<li>Analyze the SQS message contents for any errors</li>
+<li>Troubleshoot consumer permissions</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/f4d67d8d-c2dd-4a86-9d1e-651767e14a8a alt=image></p>
+<h3 id=order-messages-using-sqs-fifo>Order Messages using SQS FIFO</h3>
+<ul>
+<li>Guaranteed ordering</li>
+<li>No message duplication</li>
+<li>300 transactions per second &lt;&ndash;> Batching can achieve up to 3,000 messages per second, per API call</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/420941b0-6cc1-4486-b6c8-1963d17d0102 alt=image></p>
+<p><strong>FIFO High throughput</strong></p>
+<ul>
+<li>Process up to 9,000 transactions per second, per API without batching</li>
+<li>Up to 90,000 transactions per second by using batching APIs</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/b87f2da1-375e-41be-942c-2a4f0de8a938 alt=image></p>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/systemdesign>systemdesign</a>
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/aws>aws</a>
