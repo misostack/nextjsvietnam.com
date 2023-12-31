@@ -137,6 +137,7 @@
 <p><img src=https://gist.github.com/assets/31009750/796c33fb-ee23-4be2-876c-10e90e611534 alt=image></p>
 <p><img src=https://gist.github.com/assets/31009750/d503a69a-787f-49ed-a778-b73c32cb72a9 alt=image></p>
 <h3 id=simple-queue-servicesqs>Simple Queue Service(SQS)</h3>
+<p><img src=https://gist.github.com/assets/31009750/2610a121-0c58-4e60-99e4-de83cff617ee alt=image></p>
 <ul>
 <li>SQS is fully managed message queuing service that enables you to decouple and scale microservices, distributed systems, and serverless applications.</li>
 <li>A message queue that allows asynchronous processing of work. One resource write a message to an SQS queue, and then another resource retrieve that messages from SQS</li>
@@ -193,6 +194,59 @@
 <li>Up to 90,000 transactions per second by using batching APIs</li>
 </ul>
 <p><img src=https://gist.github.com/assets/31009750/b87f2da1-375e-41be-942c-2a4f0de8a938 alt=image></p>
+<h2 id=delivering-messages-with-sns>Delivering Messages with SNS</h2>
+<p><img src=https://gist.github.com/assets/31009750/169b8c77-acec-4044-a3cf-f0590548f2ff alt=image></p>
+<p>SNS: Simple Notification Service</p>
+<ul>
+<li>Push-based messaging service, proactively delivers messages to the endpoints that are subscribed to it.</li>
+<li>This can be used to alert a system or a person</li>
+<li>One message can be sent to many</li>
+</ul>
+<h3 id=sns-settings-and-quotas>SNS Settings and Quotas</h3>
+<p><strong>Subcribers</strong></p>
+<ul>
+<li>Kinesis Data Firehose, SQS, Lambda, email, HTTP(s), SMS and platform application endpoint.</li>
+</ul>
+<p><strong>Message Size</strong></p>
+<ul>
+<li>Up to 256KB of text in any format</li>
+</ul>
+<p><strong>DLQ support</strong></p>
+<ul>
+<li>Messages that failed to delivered can be stored in SQS DLQ</li>
+</ul>
+<p><strong>FIFO or Standard</strong></p>
+<ul>
+<li>FIFO only supports SQS FIFO queues as subcribers</li>
+</ul>
+<p><strong>Encryption</strong></p>
+<ul>
+<li>Messages are encrypted in transit by default, and you can add at-rest via AWS KMS</li>
+</ul>
+<p><strong>Access Policies</strong></p>
+<ul>
+<li>A resource policy can be added to a topic, similar to S3. Useful for cross-account access.</li>
+</ul>
+<p><strong>Large Message Payloads</strong></p>
+<ul>
+<li>The SNS Extended Library allows sending messages up to 2GB in size</li>
+<li>The payload is stored in Amazon S3, then SNS published a reference to the object</li>
+</ul>
+<p><strong>SNS Fanout</strong></p>
+<ul>
+<li>Messages published in SNS topics are replicated in multiple endpoint subcriptions</li>
+<li>Allow for fully decoupled parallel asynchronous processing</li>
+</ul>
+<p><strong>SNS Architecture</strong></p>
+<p><img src=https://gist.github.com/assets/31009750/dde420a1-ec4e-4c9a-839d-91df589f850e alt=image>
+<img src=https://gist.github.com/assets/31009750/73b5274f-fbe6-4a35-950a-677e0dfe1762 alt=image>
+<img src=https://gist.github.com/assets/31009750/301bf0bb-0b0b-4902-860d-e387692df0e0 alt=image></p>
+<p><strong>Message Filtering</strong></p>
+<ul>
+<li>By default, every message published to a topic is sent to all subcribers</li>
+<li>Filter policies use JSON to define which messages get sent to specific subscribers</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/64be337a-6d55-4970-bcdd-29ef7d4b6aef alt=image></p>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/systemdesign>systemdesign</a>
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/aws>aws</a>
