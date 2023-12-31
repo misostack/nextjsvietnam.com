@@ -6,7 +6,7 @@ description: "I don't know who you are, but if you know javascript, I wish you a
 keywords: ["Happy New Year 2024"]
 categories: ["cheatsheet"]
 tags: ["well-being"]
-image: "https://user-images.githubusercontent.com/31009750/210140054-d94534f3-f665-46c6-94d1-ac492aae4517.png"
+image: "https://gist.github.com/assets/31009750/2f669cda-1449-4242-b9b2-9719d8d00221"
 ---
 
 ```js
