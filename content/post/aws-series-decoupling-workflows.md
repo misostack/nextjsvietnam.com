@@ -48,3 +48,37 @@ SSE-SQS
 ### API Gateway
 
 - API Gateway is a fully managed service that makes easy for developers to create,publish,maintain, monitor, and secure APIs at any scale.
+
+### Sidelining Message Queue with Dead-Letter Queues
+
+- **DLQ** are the targets for messages that can not be processed successfully
+- Works with SQS and SNS!
+- Useful for debugging applications and messaging systems
+- Ability to isolate unconsumed messages to troubleshoot
+- Redrive capacity allows you to move the message back into the source queue
+- These are technically just other SQS queues
+- DLQs used FIFO SQS queues must ALSO be FIFO queues
+
+**Benefits**:
+
+- Configure alarms based on message availability counts
+- Quickly identify which logs to investigate for exceptions
+- Analyze the SQS message contents for any errors
+- Troubleshoot consumer permissions
+
+![image](https://gist.github.com/assets/31009750/f4d67d8d-c2dd-4a86-9d1e-651767e14a8a)
+
+### Order Messages using SQS FIFO
+
+- Guaranteed ordering
+- No message duplication
+- 300 transactions per second <--> Batching can achieve up to 3,000 messages per second, per API call
+
+![image](https://gist.github.com/assets/31009750/420941b0-6cc1-4486-b6c8-1963d17d0102)
+
+**FIFO High throughput**
+
+- Process up to 9,000 transactions per second, per API without batching
+- Up to 90,000 transactions per second by using batching APIs
+
+![image](https://gist.github.com/assets/31009750/b87f2da1-375e-41be-942c-2a4f0de8a938)
