@@ -12,18 +12,18 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWE4MLJYE6"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-RWE4MLJYE6')</script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1642510310947288" crossorigin=anonymous></script>
-<title>Con đường trở thành lập trình viên fullstack JS | Chia sẻ kinh nghiệm, lộ trình cụ thể cho những lập trình viên muốn theo đuổi con đường fullstack | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+<title>Happy New Year 2024 | I don't know who you are, but if you know javascript, I wish you all the best in 2024 | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
 <meta name=robots content="all">
-<meta name=keywords content="fullstack,javascript,js,nodejs">
-<meta name=description content="Chia sẻ kinh nghiệm, lộ trình cụ thể cho những lập trình viên muốn theo đuổi con đường fullstack">
+<meta name=keywords content="Happy New Year 2024">
+<meta name=description content="I don't know who you are, but if you know javascript, I wish you all the best in 2024">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://nextjsvietnam.com/common/no-image.png">
+<meta property="og:image" content="https://gist.github.com/assets/31009750/afc1d00c-ba25-4505-88cc-ee6d81128ada">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="750">
 <meta property="og:image:height" content="300">
 <meta property="article:publisher" content="https://www.facebook.com/nextjsvietnam">
-<meta property="article:published_time" content="2022-07-12T14:24:28+07:00">
-<meta property="article:modified_time" content="2022-07-12T14:24:28+07:00">
+<meta property="article:published_time" content="2023-01-31T18:25:50+07:00">
+<meta property="article:modified_time" content="2023-01-31T18:25:50+07:00">
 <link rel=apple-touch-icon sizes=57x57 href=/apple-icon-57x57.png>
 <link rel=apple-touch-icon sizes=60x60 href=/apple-icon-60x60.png>
 <link rel=apple-touch-icon sizes=72x72 href=/apple-icon-72x72.png>
@@ -118,17 +118,38 @@
 <main>
 <section class="container section">
 <div class="page-content max-w-2xl mx-auto">
-<img src=https://nextjsvietnam.com/common/no-image.png class=img-responsive alt="Con đường trở thành lập trình viên fullstack JS">
-<h1>Con đường trở thành lập trình viên fullstack JS</h1>
-<p><strong>Post Date</strong> : 2022-07-12T14:24:28+07:00</p>
-<p><strong>Modified Date</strong> : 2022-07-12T14:24:28+07:00</p>
+<img src=https://gist.github.com/assets/31009750/afc1d00c-ba25-4505-88cc-ee6d81128ada class=img-responsive alt="Happy New Year 2024">
+<h1>Happy New Year 2024</h1>
+<p><strong>Post Date</strong> : 2023-01-31T18:25:50+07:00</p>
+<p><strong>Modified Date</strong> : 2023-01-31T18:25:50+07:00</p>
 <p>
 <strong>Category:</strong>
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/cheatsheet>cheatsheet</a>
 </p>
 <p>
 <strong>Tags:</strong>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=/tags/well-being>well-being</a>
 </p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#75715e>#!/usr/bin/env node
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>words</span> <span style=color:#f92672>=</span> [<span style=color:#e6db74>&#34;Happy&#34;</span>, <span style=color:#e6db74>&#34;New&#34;</span>, <span style=color:#e6db74>&#34;Year&#34;</span>, <span style=color:#e6db74>&#34;2024&#34;</span>];
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>message</span> <span style=color:#f92672>=</span> {};
+<span style=color:#a6e22e>words</span>.<span style=color:#a6e22e>map</span>((<span style=color:#a6e22e>w</span>, <span style=color:#a6e22e>index</span>) =&gt; {
+  <span style=color:#a6e22e>Reflect</span>.<span style=color:#a6e22e>set</span>(<span style=color:#a6e22e>message</span>, <span style=color:#a6e22e>index</span>, <span style=color:#a6e22e>w</span>);
+});
+
+<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>happyNewYearMessage2024</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;&#34;</span>;
+<span style=color:#a6e22e>Reflect</span>.<span style=color:#a6e22e>ownKeys</span>(<span style=color:#a6e22e>message</span>)
+  .<span style=color:#a6e22e>sort</span>()
+  .<span style=color:#a6e22e>forEach</span>((<span style=color:#a6e22e>index</span>) =&gt; {
+    <span style=color:#a6e22e>happyNewYearMessage2024</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>happyNewYearMessage2024</span><span style=color:#e6db74>}</span><span style=color:#e6db74> </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>Reflect</span>.<span style=color:#a6e22e>get</span>(
+      <span style=color:#a6e22e>message</span>,
+      <span style=color:#a6e22e>index</span>
+    )<span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>;
+  });
+
+<span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>happyNewYearMessage2024</span>);
+</code></pre></div>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/cheatsheet>cheatsheet</a>
 </div>
@@ -144,8 +165,8 @@
 <li><a href=/post/100-frontend-interview-questions/>100 Frontend Interview Questions</a></li>
 <li><a href=/post/chatgpt-what-can-chat-gpt-do/>Chatgpt What Can Chat Gpt Do</a></li>
 <li><a href=/post/learn-enough-oop-to-be-dangerous/>Learn Enough Oop to Be Dangerous</a></li>
-<li><a href=/post/happy-new-year-2024/>Happy New Year 2024</a></li>
 <li><a href=/post/the-future-of-hr/>The Future of Hr</a></li>
+<li><a href=/post/how-to-test-the-database/>How to Test the Database</a></li>
 </ul>
 </div>
 </div>
