@@ -21,6 +21,8 @@ image: "https://gist.github.com/assets/31009750/2509a342-da20-4d40-ad32-921a5e82
 
 ### Simple Queue Service(SQS)
 
+![image](https://gist.github.com/assets/31009750/2610a121-0c58-4e60-99e4-de83cff617ee)
+
 - SQS is fully managed message queuing service that enables you to decouple and scale microservices, distributed systems, and serverless applications.
 - A message queue that allows asynchronous processing of work. One resource write a message to an SQS queue, and then another resource retrieve that messages from SQS
 
@@ -82,3 +84,62 @@ SSE-SQS
 - Up to 90,000 transactions per second by using batching APIs
 
 ![image](https://gist.github.com/assets/31009750/b87f2da1-375e-41be-942c-2a4f0de8a938)
+
+## Delivering Messages with SNS
+
+![image](https://gist.github.com/assets/31009750/169b8c77-acec-4044-a3cf-f0590548f2ff)
+
+SNS: Simple Notification Service
+
+- Push-based messaging service, proactively delivers messages to the endpoints that are subscribed to it.
+- This can be used to alert a system or a person
+- One message can be sent to many
+
+### SNS Settings and Quotas
+
+**Subcribers**
+
+- Kinesis Data Firehose, SQS, Lambda, email, HTTP(s), SMS and platform application endpoint.
+
+**Message Size**
+
+- Up to 256KB of text in any format
+
+**DLQ support**
+
+- Messages that failed to delivered can be stored in SQS DLQ
+
+**FIFO or Standard**
+
+- FIFO only supports SQS FIFO queues as subcribers
+
+**Encryption**
+
+- Messages are encrypted in transit by default, and you can add at-rest via AWS KMS
+
+**Access Policies**
+
+- A resource policy can be added to a topic, similar to S3. Useful for cross-account access.
+
+**Large Message Payloads**
+
+- The SNS Extended Library allows sending messages up to 2GB in size
+- The payload is stored in Amazon S3, then SNS published a reference to the object
+
+**SNS Fanout**
+
+- Messages published in SNS topics are replicated in multiple endpoint subcriptions
+- Allow for fully decoupled parallel asynchronous processing
+
+**SNS Architecture**
+
+![image](https://gist.github.com/assets/31009750/dde420a1-ec4e-4c9a-839d-91df589f850e)
+![image](https://gist.github.com/assets/31009750/73b5274f-fbe6-4a35-950a-677e0dfe1762)
+![image](https://gist.github.com/assets/31009750/301bf0bb-0b0b-4902-860d-e387692df0e0)
+
+**Message Filtering**
+
+- By default, every message published to a topic is sent to all subcribers
+- Filter policies use JSON to define which messages get sent to specific subscribers
+
+![image](https://gist.github.com/assets/31009750/64be337a-6d55-4970-bcdd-29ef7d4b6aef)
