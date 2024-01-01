@@ -132,6 +132,31 @@
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=/tags/aws>aws</a>
 </p>
 <h2 id=aws-lambda>AWS Lambda</h2>
+<blockquote>
+<p>Serverless compute service that lets you run code without provisioning or managing the underlying servers. So you can focus on code, not the servers! Automated scaling</p>
+</blockquote>
+<h3 id=lambda-main-features>Lambda Main features</h3>
+<ul>
+<li>Free tier 1M requests and 400K GBs of compute per month</li>
+<li>Integrates with numerous AWS services: S3, DynamoDB, EventBridge, SQS/SNS, and Kinenis</li>
+<li>CloudWatch for Logging</li>
+<li>Set memories requirement as needed, up to 10,240 MB! CPU scales with memory</li>
+<li>Execution Length: short-term executions, limit time is 900s(15mins). For anything longer: AWS Batch, EC2</li>
+<li>Runtime support: Python,Golang,Java,Node.js and others</li>
+</ul>
+<h3 id=configuration>Configuration:</h3>
+<ul>
+<li><input checked disabled type=checkbox> Runtime</li>
+<li><input checked disabled type=checkbox> Permissions: you need to attach a role</li>
+<li><input checked disabled type=checkbox> Networking: optionally define VPC, subnet, and security groups your functions are a part of.</li>
+<li><input checked disabled type=checkbox> Resources: define the amount of available memory allocated to your function</li>
+<li><input checked disabled type=checkbox> Trigger: What&rsquo;s going to alert your Lambda function to start? Defining a trigger will kick Lambda off if that event occurs</li>
+</ul>
+<h3 id=lambda-function-quotas>Lambda Function Quotas</h3>
+<p><img src=https://gist.github.com/assets/31009750/ad46b36b-543a-42ae-89df-a9fcf21b2312 alt=image></p>
+<h3 id=popular-architecture-example>Popular Architecture Example</h3>
+<p><img src=https://gist.github.com/assets/31009750/49b202ec-4f9a-48a9-87fd-739efe2feb1d alt=image></p>
+<p><img src=https://gist.github.com/assets/31009750/e754c0d1-09f6-46ab-b5d3-74b6e49b29d4 alt=image></p>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/systemdesign>systemdesign</a>
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/aws>aws</a>
