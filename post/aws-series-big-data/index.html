@@ -182,6 +182,97 @@
 <li>All COPY and UNLOAD traffic between your cluster and your data repositories is forced to go through your VPC</li>
 <li>Enables you to use VPC features: VPC Endpoints, VPC Flow Logs, &mldr;</li>
 </ul>
+<h2 id=processing-data-with-emrelastic-mapreduce>Processing Data with EMR(Elastic MapReduce)</h2>
+<h3 id=what-is-etl>What is ETL?</h3>
+<ul>
+<li>Extract , Transform, Load</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/4bd355a4-ae11-4272-95df-487e4ae9a97f alt=image></p>
+<h3 id=emr>EMR</h3>
+<ul>
+<li>AWS Service to help with ETL processing</li>
+<li>A managed big data platform that allows you to process vast amounts of data using open-source tools, such as Spark, Hive, HBase, Flink, Hudi, and Presto</li>
+</ul>
+<h4 id=emr-storage>EMR Storage</h4>
+<p>There are 3 different types of storage options within EMR</p>
+<ul>
+<li>Hadoop Distributed File System(HDSF): distributed, scalable file systems for Hadoop that distributes stored data across instances.</li>
+</ul>
+<h2 id=streaming-data-with-kinesis>Streaming Data with Kinesis</h2>
+<ul>
+<li>Allow you ingest, process, and analyze real-time streaming data. You can think of its as a huge data highway connected to your AWS account.</li>
+</ul>
+<p>There 2 major versions Kinenis:</p>
+<h3 id=data-streams>Data Streams</h3>
+<ul>
+<li>Purpose: Real-time streaming for ingesting data</li>
+<li>Speed: Real time</li>
+<li>Difficult: You&rsquo;re responsible for creating consumer and scaling the stream.</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/00dece40-b4ec-4b84-9f0e-34630641df0b alt=image></p>
+<h3 id=data-firehose>Data Firehose</h3>
+<ul>
+<li>Purpose: Data transfer tool to get information to S3, Redshift, Elasticsearch, or Splunk</li>
+<li>Speed: Near real time (within 60s)</li>
+<li>Difficult: Plug and Play with AWS architecture</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/6d076a0c-04c1-46b2-ac5c-58083b283037 alt=image></p>
+<h3 id=kinesis-data-analytics>Kinesis Data Analytics</h3>
+<ul>
+<li>Analyze data using standard SQL</li>
+<li>Easy: simple to tie Data Analytics into your Kinesis Pipeline. It&rsquo;s directly supported by Data Streams and Data Firehose</li>
+<li>This is full managed, real time serverless service, automatically handle scaling and provisioning of needed resources.</li>
+<li>You only pay for the amount of resources you consume or your data passes through.</li>
+</ul>
+<h3 id=kinesis-and-sqs>Kinesis and SQS</h3>
+<ul>
+<li>SQS is a message broker that is simple to use and doesn&rsquo;t require much configurion. It doesn&rsquo;t offer real-time message delivery</li>
+<li>Kinesis is a bit more complicated to configure and its mostly used in big data applications. If does provide real-time communication.</li>
+</ul>
+<h2 id=amazon-athena>Amazon Athena</h2>
+<ul>
+<li>Athena is an interactive query service that makes it easy to analyze data in S3 using SQL. This is allow you to directly query data in your S3 bucket without loading it into a database.</li>
+</ul>
+<h2 id=amazon-glue>Amazon Glue</h2>
+<ul>
+<li>Amazon Glue is a serverless data integration service that makes it easy to discover, prepare, and combine data. It allows you to perform ETL(extract,transform,load) workloads without managing underlying servers.</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/da7fd631-84d3-4489-99d3-78cef76314b5 alt=image></p>
+<h2 id=visualizing-data-with-amazon-quicksight>Visualizing Data with Amazon QuickSight</h2>
+<ul>
+<li>Fully managed serverless business intelligence (BI) data visualization service.</li>
+<li>It allows you to dashboard to shared with users</li>
+<li>SPICE: Robust in-memory engine to perform advanced calculations</li>
+<li>Offer Column-Level Security(CLS)</li>
+<li>Price per session and per user basis</li>
+</ul>
+<h2 id=moving-transformed-data-using-amazon-data-pipeline>Moving Transformed Data Using Amazon Data Pipeline</h2>
+<ul>
+<li>Managed AWS Service for ETL Workflows that automates movements and transformations of your data</li>
+<li>Data Driven Workflow, can create dependencies between tasks and activities.</li>
+<li>Storage Integrations: DynamoDB, RDS, Redshift, and S3</li>
+<li>Compute Integrations: EC2, EMR</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/615d9bdf-c667-4325-8d3f-05786bc5023c alt=image></p>
+<h2 id=amazon-managed-streaming-for-apache-kafkaamazon-msk>Amazon Managed Streaming for Apache Kafka(Amazon MSK)</h2>
+<ul>
+<li>Fully managed service for running data stream applications that leverage Apache Kafka</li>
+<li>Automatic Recovery</li>
+<li>Detection and replacement unhealthy node</li>
+<li>Integration with KMS for SSE requirements</li>
+<li>Encryption at rest by default</li>
+<li>TLS 1.2 for encryption in transit between brokers in clusters</li>
+<li>Deliver broker logs to Amazon CloudWatch, Amazon S3, Amazon Kinesis. API calls are logged to CloudTrail.</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/73a20fdc-482d-4862-9d36-50ad0ec072f8 alt=image></p>
+<h2 id=analyzing-data-with-amazon-opensearch>Analyzing Data with Amazon OpenSearch</h2>
+<ul>
+<li>OpenSearch is a managed service allowing you to run search and analytics engines for various use cases</li>
+<li>It is the successor to Amazon Elasticsearch Service</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/4a62c53c-09a2-4823-9906-8796a6c0280f alt=image></p>
+<p><img src=https://gist.github.com/assets/31009750/cd2643b2-9ab3-419f-9a4b-349fd4495a9f alt=image>
+<img src=https://gist.github.com/assets/31009750/56fdddb4-970a-4bc9-8b3d-753fe0cb1cb0 alt=image></p>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/systemdesign>systemdesign</a>
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/aws>aws</a>
@@ -193,13 +284,13 @@
 <div class="font-heading text-2xl font-semibold">You Might Also Like</div>
 <div class="mt-8 grid gap-8">
 <ul class=sidebar-links>
+<li><a href=/post/aws-series-serverless-computing/>Aws Series Serverless Computing</a></li>
 <li><a href=/post/aws-series-decoupling-workflows/>Aws Series Decoupling Workflows</a></li>
 <li><a href=/post/aws-series-high-availability-and-scaling/>Aws Series High Availability and Scaling</a></li>
 <li><a href=/post/aws-series-cloud-watch/>Aws Series Cloud Watch</a></li>
 <li><a href=/post/aws-series-elb/>Aws Series Elb</a></li>
 <li><a href=/post/aws-series-route-53/>Aws Series Route 53</a></li>
 <li><a href=/post/aws-series-compute/>Aws Series Compute</a></li>
-<li><a href=/post/aws-series-networking/>Aws Series Networking</a></li>
 </ul>
 </div>
 </div>
@@ -260,7 +351,7 @@ Copyright @ NextJSVietNam 2022
 Powered by <a class="font-bold text-primary" href=https://gohugo.io/>Go Hugo</a> - Made
 with love from <a class="font-bold text-primary" href=https://nextjsvietnam.com>NextJSVietNam</a> -
 Build
-Version 2023-12-31 19:06:05 +0700 +0700
+Version 2024-01-01 15:49:26 +0700 +0700
 </div>
 </div>
 </footer>
