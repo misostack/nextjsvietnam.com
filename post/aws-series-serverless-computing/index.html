@@ -320,6 +320,35 @@
 <li>Deploy containers using the EXTERNAL lauch type</li>
 </ul>
 <p><img src=https://gist.github.com/assets/31009750/4460ef27-ace9-40ba-8f06-115fcf499318 alt=image></p>
+<h2 id=amazon-aurora-serverless>Amazon Aurora Serverless</h2>
+<ul>
+<li>On-Demand and Auto-scaling</li>
+<li>Aurora Capacity Unit(ACUs): measurement on how your clusters scale</li>
+<li>Set a minimum and maximum ACUs for scaling requirements. v1 can be set 0, but from v2 only to minimum</li>
+<li>Allocated(quickly) by AWS-managed warm pools</li>
+<li>Each ACU: 2 Gib memory + matching CPU, networking capability</li>
+<li>Same data resiliency as Aurora provisioned: six copies of data across 3 AZs</li>
+<li>Multi-AZ deployments for establing highly available clusters</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/38efc98c-f1e1-49cd-8d61-40d09c83ad75 alt=image></p>
+<h2 id=x-ray-for-amazon-app-insight>X-Ray for Amazon App-Insight</h2>
+<ul>
+<li>App-Insight: insights about request/response</li>
+<li>Downstream: view calls to downstream AWS resources and other microservices/apis/databases</li>
+<li>Traces</li>
+<li>Multiple options:tracing headers, send tracedata, run X-Ray deamon</li>
+<li>header contain: X-Amzn-Trace-Id</li>
+<li>AWS X-Ray deamon, software listen UDP at port 2000. Collects raw segment data and sends it to AWS X-Ray API</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/56ff3d88-58ee-4999-aa65-a37ddc532e5c alt=image></p>
+<h2 id=aws-appsync-for-graphql-interfaces>AWS Appsync for GraphQL Interfaces</h2>
+<ul>
+<li>Robust, scalable GraphQL interfaces for application developers</li>
+<li>Combine data from multiple resoures: DynamoDB, Lambda</li>
+<li>Easy interact via GraphQL</li>
+<li>GraphQL: data language that enables app to fetch data from servers</li>
+<li>Seamless integration with: React, ReactNative, IOS and Android</li>
+</ul>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/systemdesign>systemdesign</a>
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/aws>aws</a>
