@@ -223,6 +223,41 @@
 <li>Significantly more work to configure and integrate with AWS</li>
 </ul>
 <p>Both of them are greate for long running applications.</p>
+<h3 id=aws-fargate>AWS Fargate</h3>
+<ul>
+<li>AWF Fargate is a serverless compute engine for docker containers</li>
+<li>AWS owns and manages the infrastructure</li>
+<li>Require use of ECS or EKS</li>
+<li>Support both Linux and Windows Container</li>
+</ul>
+<h4 id=ec2-vs-fargate>EC2 vs Fargate</h4>
+<p><strong>EC2</strong></p>
+<ul>
+<li>You are responsible for underlying operating system</li>
+<li>EC2 pricing model</li>
+<li>Long-running containers</li>
+<li>Multiple containers can share same host</li>
+<li>Capable of mouting EFS file systems for persistent, shared storage</li>
+</ul>
+<p><strong>Fargate</strong></p>
+<ul>
+<li>No operating system access</li>
+<li>Pay based on resources allocated and time ran</li>
+<li>Short-running tasks</li>
+<li>Isolated environment per container</li>
+<li>Capable of mounting EFS file systems for persistent, shared storage</li>
+</ul>
+<h4 id=fargate-vs-lambda>Fargate vs Lambda</h4>
+<p><strong>Fargate</strong></p>
+<ul>
+<li>Select Fargate when you have more consistent workloads.</li>
+<li>Allow Docker use across the organization and a great level of control by developers</li>
+</ul>
+<p><strong>Lambda</strong></p>
+<ul>
+<li>Great for unpredictable or inconsistent workloads</li>
+<li>Perfect for applications that can be expressed as a single function</li>
+</ul>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/systemdesign>systemdesign</a>
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/aws>aws</a>
