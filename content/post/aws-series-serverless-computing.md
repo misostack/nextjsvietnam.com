@@ -39,3 +39,56 @@ image: "https://gist.github.com/assets/31009750/6ec743dc-da52-49ca-b3fa-b7d06ece
 ![image](https://gist.github.com/assets/31009750/49b202ec-4f9a-48a9-87fd-739efe2feb1d)
 
 ![image](https://gist.github.com/assets/31009750/e754c0d1-09f6-46ab-b5d3-74b6e49b29d4)
+
+## Serverless Application Repository
+
+- Serverless Apps: allow user to easily find, deploy, or even publish their own serverless applications.
+- Ability to privately share applications within orgs or publicity for the world
+- AWS SAM template: upload load your application code and a manifest file.
+- Deeply integrated with AWS Lambda service. Appears with console.
+
+### SAM
+
+> Serverless Application Model
+
+```yml
+AWSTemplateFormatVersion: 2010-09-09
+Transform: AWS::Serverless-2016-10-31
+Resources:
+  getAllItemsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/get-all-items.getAllItemsHandler
+      Runtime: nodejs12.x
+      Events:
+        Api:
+          Type: HttpApi
+          Properties:
+            Path: /
+            Method: GET
+    Connectors:
+      MyConn:
+        Properties:
+        Destination:
+          Id: SampleTable
+          Permissions:
+            - Read
+  SampleTable:
+    Type: AWS::Serverless::SimpleTable
+```
+
+### Publish and Deploy
+
+#### Publish
+
+- Makes them available for others to find and deploy
+- Define apps with AWS SAM template
+- Set to private by default
+- Must explicit share if desired
+
+#### Deploy
+
+- Find and deploy published applications
+- Browse public apps without needing an AWS account
+- Browse within AWS Lambda console
+- Be careful of trusting all applications
