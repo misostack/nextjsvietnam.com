@@ -92,3 +92,25 @@ Resources:
 - Browse public apps without needing an AWS account
 - Browse within AWS Lambda console
 - Be careful of trusting all applications
+
+## Running container in Amazon ECS or Amazon EKS
+
+### Problems with Containers
+
+![image](https://gist.github.com/assets/31009750/de720c02-35c3-49ce-9ec3-847e89ff12ca)
+
+### ECS or EKS
+
+#### ECS
+
+- Proprietary AWS Specific container management solution
+- Best use when you're all in on AWS
+- You're looking for something simple to orchestrate containers
+
+#### EKS
+
+- AWS managed version of opensource Kubernetes container management solution
+- Best used when you're all in on AWS
+- Significantly more work to configure and integrate with AWS
+
+Both of them are greate for long running applications.
