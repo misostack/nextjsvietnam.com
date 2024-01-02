@@ -258,6 +258,68 @@
 <li>Great for unpredictable or inconsistent workloads</li>
 <li>Perfect for applications that can be expressed as a single function</li>
 </ul>
+<h2 id=amazon-eventbridge>Amazon EventBridge</h2>
+<ul>
+<li>Amazon EventBridge(formerly CloudWatch Events) is a serverless event bus</li>
+<li>It allows you to pass events from a source to an endpoint. It&rsquo;s the glue that holds your serverless application together</li>
+</ul>
+<h3 id=main-concepts>Main concepts</h3>
+<ul>
+<li>Events: a recorded changed in an AWS environment, SaaS partner, or one of your own configured applications/services. This also included scheduled events</li>
+<li>Rules: criteria used to match incoming events and send them to the appropriate targets. Based on either event patterns or schedules</li>
+<li>Event bus: A router that receives events and delivers them to targets(destinations). Every account has a default bus, and you can create other custom buses.</li>
+</ul>
+<h4 id=rule-triggers>Rule Triggers</h4>
+<ul>
+<li>Event Pattern: Define an event source and event pattern that trigger your rule. Eg: EC terminated.</li>
+<li>Scheduled: Set up a recurring schedule for trigger your rule. Eg: Rate-based(1hour), Cron-based(0 12 * _ ? _)</li>
+</ul>
+<h3 id=event-bridge-architecture>Event Bridge Architecture</h3>
+<p><img src=https://gist.github.com/assets/31009750/04f5d25a-2057-4acf-857c-8ad6dd780eda alt=image></p>
+<h2 id=amazon-ecr>Amazon ECR</h2>
+<blockquote>
+<p>Amazon Elastic Container Registry</p>
+</blockquote>
+<ul>
+<li>AWS-managed container image registry</li>
+<li>Private container image repositories with permissions via IAM</li>
+<li>Supported formats: OCI images, Docker images, OCI artifact</li>
+<li>Lifecycle policies: rules for expering and removing unused/older images</li>
+<li>Scan on push repository settings</li>
+<li>Sharing: Cross region, cross account, configured per repository and per region</li>
+<li>Cache rules: pull through cache rules allow for caching public repos privately</li>
+<li>Tags: prevent image tags from being overwritten, configured per repository this setting</li>
+<li>Integrations: your own container infrastructure, Amazon EC2, Amazon EKS clusters, Amazon Linux can be used locally</li>
+</ul>
+<h2 id=amazon-eks-distro>Amazon EKS Distro</h2>
+<ul>
+<li>Amazon EKS Distro(Amazon EKS-D) is Kubernetes distribution based on and used by Amazon EKS</li>
+<li>Amazon EKS is fully managed by you</li>
+<li>Where: anywhere</li>
+<li>Self-managed Kubernetes deployments</li>
+</ul>
+<h2 id=amazon-eks-ecs-anywhere-outside-aws>Amazon EKS, ECS anywhere outside AWS</h2>
+<h3 id=eks-anywhere>EKS Anywhere</h3>
+<ul>
+<li>On-premises EKS : on-premises way to manage K8s clusters with same practice use EKS, based on EKS distro, full lifecycle management of multiple K8s clusters, required enterprise subscriptions</li>
+</ul>
+<h3 id=ecs-anywhere>ECS anywhere</h3>
+<ul>
+<li>Management of container-based apps on-premises</li>
+<li>No need to install and operate local container orchestration software</li>
+<li>No ELB support for inbound traffic</li>
+</ul>
+<p>Requirements:</p>
+<ul>
+<li>SSM Agent</li>
+<li>ECS Agent</li>
+<li>Docker</li>
+<li>Must register external instances as SSM Managed Instances</li>
+<li>Can install scripts using ECS console</li>
+<li>Execute scripts on-premises VMs or bare-metal servers</li>
+<li>Deploy containers using the EXTERNAL lauch type</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/4460ef27-ace9-40ba-8f06-115fcf499318 alt=image></p>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/systemdesign>systemdesign</a>
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/aws>aws</a>
