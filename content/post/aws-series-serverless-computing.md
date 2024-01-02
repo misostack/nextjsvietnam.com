@@ -151,3 +151,68 @@ Both of them are greate for long running applications.
 
 - Great for unpredictable or inconsistent workloads
 - Perfect for applications that can be expressed as a single function
+
+## Amazon EventBridge
+
+- Amazon EventBridge(formerly CloudWatch Events) is a serverless event bus
+- It allows you to pass events from a source to an endpoint. It's the glue that holds your serverless application together
+
+### Main concepts
+
+- Events: a recorded changed in an AWS environment, SaaS partner, or one of your own configured applications/services. This also included scheduled events
+- Rules: criteria used to match incoming events and send them to the appropriate targets. Based on either event patterns or schedules
+- Event bus: A router that receives events and delivers them to targets(destinations). Every account has a default bus, and you can create other custom buses.
+
+#### Rule Triggers
+
+- Event Pattern: Define an event source and event pattern that trigger your rule. Eg: EC terminated.
+- Scheduled: Set up a recurring schedule for trigger your rule. Eg: Rate-based(1hour), Cron-based(0 12 \* _ ? _)
+
+### Event Bridge Architecture
+
+![image](https://gist.github.com/assets/31009750/04f5d25a-2057-4acf-857c-8ad6dd780eda)
+
+## Amazon ECR
+
+> Amazon Elastic Container Registry
+
+- AWS-managed container image registry
+- Private container image repositories with permissions via IAM
+- Supported formats: OCI images, Docker images, OCI artifact
+- Lifecycle policies: rules for expering and removing unused/older images
+- Scan on push repository settings
+- Sharing: Cross region, cross account, configured per repository and per region
+- Cache rules: pull through cache rules allow for caching public repos privately
+- Tags: prevent image tags from being overwritten, configured per repository this setting
+- Integrations: your own container infrastructure, Amazon EC2, Amazon EKS clusters, Amazon Linux can be used locally
+
+## Amazon EKS Distro
+
+- Amazon EKS Distro(Amazon EKS-D) is Kubernetes distribution based on and used by Amazon EKS
+- Amazon EKS is fully managed by you
+- Where: anywhere
+- Self-managed Kubernetes deployments
+
+## Amazon EKS, ECS anywhere outside AWS
+
+### EKS Anywhere
+
+- On-premises EKS : on-premises way to manage K8s clusters with same practice use EKS, based on EKS distro, full lifecycle management of multiple K8s clusters, required enterprise subscriptions
+
+### ECS anywhere
+
+- Management of container-based apps on-premises
+- No need to install and operate local container orchestration software
+- No ELB support for inbound traffic
+
+Requirements:
+
+- SSM Agent
+- ECS Agent
+- Docker
+- Must register external instances as SSM Managed Instances
+- Can install scripts using ECS console
+- Execute scripts on-premises VMs or bare-metal servers
+- Deploy containers using the EXTERNAL lauch type
+
+![image](https://gist.github.com/assets/31009750/4460ef27-ace9-40ba-8f06-115fcf499318)
