@@ -114,3 +114,40 @@ Resources:
 - Significantly more work to configure and integrate with AWS
 
 Both of them are greate for long running applications.
+
+### AWS Fargate
+
+- AWF Fargate is a serverless compute engine for docker containers
+- AWS owns and manages the infrastructure
+- Require use of ECS or EKS
+- Support both Linux and Windows Container
+
+#### EC2 vs Fargate
+
+**EC2**
+
+- You are responsible for underlying operating system
+- EC2 pricing model
+- Long-running containers
+- Multiple containers can share same host
+- Capable of mouting EFS file systems for persistent, shared storage
+
+**Fargate**
+
+- No operating system access
+- Pay based on resources allocated and time ran
+- Short-running tasks
+- Isolated environment per container
+- Capable of mounting EFS file systems for persistent, shared storage
+
+#### Fargate vs Lambda
+
+**Fargate**
+
+- Select Fargate when you have more consistent workloads.
+- Allow Docker use across the organization and a great level of control by developers
+
+**Lambda**
+
+- Great for unpredictable or inconsistent workloads
+- Perfect for applications that can be expressed as a single function
