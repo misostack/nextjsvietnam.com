@@ -216,3 +216,34 @@ Requirements:
 - Deploy containers using the EXTERNAL lauch type
 
 ![image](https://gist.github.com/assets/31009750/4460ef27-ace9-40ba-8f06-115fcf499318)
+
+## Amazon Aurora Serverless
+
+- On-Demand and Auto-scaling
+- Aurora Capacity Unit(ACUs): measurement on how your clusters scale
+- Set a minimum and maximum ACUs for scaling requirements. v1 can be set 0, but from v2 only to minimum
+- Allocated(quickly) by AWS-managed warm pools
+- Each ACU: 2 Gib memory + matching CPU, networking capability
+- Same data resiliency as Aurora provisioned: six copies of data across 3 AZs
+- Multi-AZ deployments for establing highly available clusters
+
+![image](https://gist.github.com/assets/31009750/38efc98c-f1e1-49cd-8d61-40d09c83ad75)
+
+## X-Ray for Amazon App-Insight
+
+- App-Insight: insights about request/response
+- Downstream: view calls to downstream AWS resources and other microservices/apis/databases
+- Traces
+- Multiple options:tracing headers, send tracedata, run X-Ray deamon
+- header contain: X-Amzn-Trace-Id
+- AWS X-Ray deamon, software listen UDP at port 2000. Collects raw segment data and sends it to AWS X-Ray API
+
+![image](https://gist.github.com/assets/31009750/56ff3d88-58ee-4999-aa65-a37ddc532e5c)
+
+## AWS Appsync for GraphQL Interfaces
+
+- Robust, scalable GraphQL interfaces for application developers
+- Combine data from multiple resoures: DynamoDB, Lambda
+- Easy interact via GraphQL
+- GraphQL: data language that enables app to fetch data from servers
+- Seamless integration with: React, ReactNative, IOS and Android
