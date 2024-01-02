@@ -157,6 +157,55 @@
 <h3 id=popular-architecture-example>Popular Architecture Example</h3>
 <p><img src=https://gist.github.com/assets/31009750/49b202ec-4f9a-48a9-87fd-739efe2feb1d alt=image></p>
 <p><img src=https://gist.github.com/assets/31009750/e754c0d1-09f6-46ab-b5d3-74b6e49b29d4 alt=image></p>
+<h2 id=serverless-application-repository>Serverless Application Repository</h2>
+<ul>
+<li>Serverless Apps: allow user to easily find, deploy, or even publish their own serverless applications.</li>
+<li>Ability to privately share applications within orgs or publicity for the world</li>
+<li>AWS SAM template: upload load your application code and a manifest file.</li>
+<li>Deeply integrated with AWS Lambda service. Appears with console.</li>
+</ul>
+<h3 id=sam>SAM</h3>
+<blockquote>
+<p>Serverless Application Model</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=color:#f92672>AWSTemplateFormatVersion</span>: <span style=color:#e6db74>2010-09-09</span>
+<span style=color:#f92672>Transform</span>: <span style=color:#ae81ff>AWS::Serverless-2016-10-31</span>
+<span style=color:#f92672>Resources</span>:
+  <span style=color:#f92672>getAllItemsFunction</span>:
+    <span style=color:#f92672>Type</span>: <span style=color:#ae81ff>AWS::Serverless::Function</span>
+    <span style=color:#f92672>Properties</span>:
+      <span style=color:#f92672>Handler</span>: <span style=color:#ae81ff>src/get-all-items.getAllItemsHandler</span>
+      <span style=color:#f92672>Runtime</span>: <span style=color:#ae81ff>nodejs12.x</span>
+      <span style=color:#f92672>Events</span>:
+        <span style=color:#f92672>Api</span>:
+          <span style=color:#f92672>Type</span>: <span style=color:#ae81ff>HttpApi</span>
+          <span style=color:#f92672>Properties</span>:
+            <span style=color:#f92672>Path</span>: <span style=color:#ae81ff>/</span>
+            <span style=color:#f92672>Method</span>: <span style=color:#ae81ff>GET</span>
+    <span style=color:#f92672>Connectors</span>:
+      <span style=color:#f92672>MyConn</span>:
+        <span style=color:#f92672>Properties</span>:
+        <span style=color:#f92672>Destination</span>:
+          <span style=color:#f92672>Id</span>: <span style=color:#ae81ff>SampleTable</span>
+          <span style=color:#f92672>Permissions</span>:
+            - <span style=color:#ae81ff>Read</span>
+  <span style=color:#f92672>SampleTable</span>:
+    <span style=color:#f92672>Type</span>: <span style=color:#ae81ff>AWS::Serverless::SimpleTable</span>
+</code></pre></div><h3 id=publish-and-deploy>Publish and Deploy</h3>
+<h4 id=publish>Publish</h4>
+<ul>
+<li>Makes them available for others to find and deploy</li>
+<li>Define apps with AWS SAM template</li>
+<li>Set to private by default</li>
+<li>Must explicit share if desired</li>
+</ul>
+<h4 id=deploy>Deploy</h4>
+<ul>
+<li>Find and deploy published applications</li>
+<li>Browse public apps without needing an AWS account</li>
+<li>Browse within AWS Lambda console</li>
+<li>Be careful of trusting all applications</li>
+</ul>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/systemdesign>systemdesign</a>
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/aws>aws</a>
