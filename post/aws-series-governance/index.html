@@ -12,7 +12,18 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWE4MLJYE6"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-RWE4MLJYE6')</script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1642510310947288" crossorigin=anonymous></script>
-<script type=application/ld+json>{"@context":"https://schema.org/","@type":"CreativeWorkSeries","name":"NestJS Tips and Tricks","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","bestRating":"5","ratingCount":"100"}}</script>
+<title>Aws Series Governance | In this topic you will learn how to use AWS Organization | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+<meta name=robots content="all">
+<meta name=keywords content="aws,solution architecture,aws solution architect associate">
+<meta name=description content="In this topic you will learn how to use AWS Organization">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://nextjsvietnam.com/common/no-image.png">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="750">
+<meta property="og:image:height" content="300">
+<meta property="article:publisher" content="https://www.facebook.com/nextjsvietnam">
+<meta property="article:published_time" content="2024-01-03T23:05:24+07:00">
+<meta property="article:modified_time" content="2024-01-03T23:05:24+07:00">
 <link rel=apple-touch-icon sizes=57x57 href=/apple-icon-57x57.png>
 <link rel=apple-touch-icon sizes=60x60 href=/apple-icon-60x60.png>
 <link rel=apple-touch-icon sizes=72x72 href=/apple-icon-72x72.png>
@@ -105,117 +116,156 @@
 </div>
 </nav>
 <main>
-<section class="container section hero-section">
-<h1 class=hero-section-heading>
-NestJS Tips and Tricks
-</h1>
-<div style=text-align:left class=page-content>
+<section class="container section">
+<div class="page-content max-w-2xl mx-auto">
+<img src=https://nextjsvietnam.com/common/no-image.png class=img-responsive alt="Aws Series Governance">
+<h1>Aws Series Governance</h1>
+<p><strong>Post Date</strong> : 2024-01-03T23:05:24+07:00</p>
+<p><strong>Modified Date</strong> : 2024-01-03T23:05:24+07:00</p>
+<p>
+<strong>Category:</strong>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/systemdesign>systemdesign</a>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/aws>aws</a>
+</p>
+<p>
+<strong>Tags:</strong>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=/tags/aws>aws</a>
+</p>
+<h2 id=account-types>Account Types</h2>
+<ul>
+<li>Management Account is the primary account that hosts and manage organization (payer account)</li>
+<li>Member Account is all AWS accounts that belong to the organization</li>
+</ul>
+<h2 id=features>Features</h2>
+<ul>
+<li>Consolidated Billing</li>
+<li>Usage Discounts</li>
+<li>Shared Savings</li>
+</ul>
+<h2 id=main-concepts>Main concepts</h2>
+<ul>
+<li>Multi Account</li>
+<li>Tag Enforcement</li>
+<li>Organization Unit(ou): group of accounts</li>
+<li>Service Controler Policies(SCP): JSON policies that get applied to OUs or accounts to restrict actions that are or are not allowed</li>
+<li>Management Account: SCP do affect the management account like they do all member accounts.</li>
+<li>Account Best Practices: create a centralized logging account for organization CloudTrail logs. Also, levelrage cross-account roles for accessing member accounts.</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/c53f9497-0b96-4d81-bc3c-ff7b0e21ce37 alt=image></p>
+<p><strong>Example of SCP</strong></p>
+<p><img src=https://gist.github.com/assets/31009750/a0ccc820-1cd7-4040-83b0-c33d3ae34d01 alt=image></p>
+<h2 id=sharing-resources-using-aws-ram>Sharing resources using AWS RAM</h2>
+<blockquote>
+<p>AWS RAM(Resource Access Manager)</p>
+</blockquote>
+<ul>
+<li>A Free service that allows you to share resources with other accounts inside or outside your organization. It is actually shared not duplicating</li>
+</ul>
+<blockquote>
+<p>What could be shared?</p>
+</blockquote>
+<ul>
+<li>Transit gateways</li>
+<li>VPC subnets</li>
+<li>License Manager</li>
+<li>Route 53 Resolver(Rules and Endpoints)</li>
+<li>Dedicated Hosts</li>
+<li>&mldr;</li>
+</ul>
+<blockquote>
+<p>Ownership and Participants</p>
+</blockquote>
+<ul>
+<li>Ownership: create and manage VPC resources that get shared. Can not delete or modify resourced deployed by participant accounts.</li>
+<li>Participants: able to provision services in the shared VPC subnets. Can not modify or delete the shared resources.</li>
+</ul>
+<h2 id=setting-up-cross-account-role-access>Setting up cross account role access</h2>
+<blockquote>
+<p>Cross-account role access gives you the ability to setup temporately credentials that can be revoked as needed</p>
+</blockquote>
+<p><img src=https://gist.github.com/assets/31009750/dee02994-6901-4759-8efa-13383a4b9ba5 alt=image>
+<img src=https://gist.github.com/assets/31009750/28c9eb37-f43c-4444-aecf-8c34a32b32cf alt=image>
+<img src=https://gist.github.com/assets/31009750/4508d18a-f7d0-47c4-a101-3bb28a1d9190 alt=image>
+<img src=https://gist.github.com/assets/31009750/50f8b8c7-6296-4be7-8290-e4bcbc33aeac alt=image>
+<img src=https://gist.github.com/assets/31009750/406c79bd-c32d-4e6a-a9db-8882b0e4366f alt=image></p>
+<h2 id=aws-config>AWS config</h2>
+<ul>
+<li>An inventory management and control tool</li>
+<li>Allow to show configuration history</li>
+<li>Ability to create rules to make sure resources conform to your requirements</li>
+<li>Capable of receiving alerts via SNS</li>
+<li>Configured per Region</li>
+<li>Results can be aggregated across regions and AWS accounts</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/1e9f9e04-f320-4bf9-bfec-e44046b1a06a alt=image></p>
+<p><img src=https://gist.github.com/assets/31009750/9ec989ee-47d8-4fb1-859d-4f39844f56c3 alt=image></p>
+<p><img src=https://gist.github.com/assets/31009750/73345dad-9d46-44d6-8a61-8824512aa81a alt=image></p>
+<p>Examples</p>
+<p><img src=https://gist.github.com/assets/31009750/97ce2750-3366-4418-88d6-8612f79fd084 alt=image></p>
+<h2 id=aws-directory-service>AWS Directory Service</h2>
+<ul>
+<li>A fully managed version of Active Directory</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/8454b091-4766-496e-8de1-373a3929ba43 alt=image></p>
+<p>There 2 types:</p>
+<ul>
+<li>Managed Microsoft AD</li>
+<li>AD Connector</li>
+</ul>
+<h2 id=aws-cost-explorer>AWS Cost Explorer</h2>
+<p><img src=https://gist.github.com/assets/31009750/e0f99f2f-a60b-4944-90b0-d0335a9dc11f alt=image></p>
+<h2 id=aws-budgets>AWS Budgets</h2>
+<ul>
+<li>The best way to let users know they are getting close to overspending</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/ce32dcc2-8048-4681-b809-5feafdd74d64 alt=image></p>
+<h2 id=optimize-aws-cur>Optimize AWS CUR</h2>
+<blockquote>
+<p>Cost and Usage Report</p>
+</blockquote>
+<p><img src=https://gist.github.com/assets/31009750/bcf51104-1b18-4253-a17f-fe2b6615af29 alt=image></p>
+<h2 id=aws-trusted-advisor>AWS Trusted Advisor</h2>
+<p><img src=https://gist.github.com/assets/31009750/4789f89f-a6f2-493c-a648-0da9fc238bdb alt=image></p>
+<h2 id=aws-control-tower-and-guardrails>AWS Control Tower and GuardRails</h2>
+<ul>
+<li>Automated multi-account governance, guardrails, account orchestration</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/7f169cda-e705-4585-971a-94b961db3387 alt=image></p>
+<h2 id=manage-software-license-in-aws-using-aws-license-manager>Manage software license in AWS using AWS License Manager</h2>
+<p><img src=https://gist.github.com/assets/31009750/f7e76ff0-2ac1-4e9e-8764-ec626c48273d alt=image></p>
+<h2 id=aws-health-and-personal-health-dashboard>AWS Health and Personal Health Dashboard</h2>
+<p><img src=https://gist.github.com/assets/31009750/ac5d293a-ab83-48d0-9a7a-75d195bd5420 alt=image></p>
+<h2 id=aws-service-catalog-and-aws-proton>AWS Service Catalog and AWS Proton</h2>
+<h3 id=catalog>Catalog</h3>
+<p><img src=https://gist.github.com/assets/31009750/ddf05823-f889-4614-bb20-6079b4ad4a64 alt=image></p>
+<h3 id=aws-proton>AWS Proton</h3>
+<p><img src=https://gist.github.com/assets/31009750/5fb94f79-f00a-4d6d-97d1-f679f94ebb8e alt=image></p>
+<h2 id=aws-well-architected-framework>AWS Well Architected Framework</h2>
+<p><img src=https://gist.github.com/assets/31009750/de394b33-e5c1-425f-bcdb-54b42edb04a2 alt=image></p>
+<div class="m-1 p-1">
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/systemdesign>systemdesign</a>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/aws>aws</a>
+</div>
 </div>
 </section>
-<section class="container section grid md:grid-cols-4 gap-8">
-<div class="card card-post-default">
-<a href=https://nextjsvietnam.com/post/build-restful-api-with-nestjs-the-right-way/><img class=card-post-image src=https://user-images.githubusercontent.com/31009750/181449337-70081a76-5a01-4229-805e-39ed0ded6b5b.png alt="Build Restful Api With Nestjs the Right Way"></a>
-<div class="px-6 py-4">
-<h2 class=card-post-title><a href=https://nextjsvietnam.com/post/build-restful-api-with-nestjs-the-right-way/>Build Restful Api With Nestjs the Right Way</a></h2>
-<div>
-<a class="category-tag category-frameworks" href=https://nextjsvietnam.com/categories/frameworks>frameworks</a>
-<a class="category-tag category-nestjs" href=https://nextjsvietnam.com/categories/nestjs>nestjs</a>
-</div>
-<div>
-<span class=card-post-date>30 Oct, 2022</span>
-</div>
-<div class=card-post-description>The hands-on NestJS tutorial to build a standard Restful API</div>
-</div>
-</div>
-<div class="card card-post-default">
-<a href=https://nextjsvietnam.com/post/the-best-way-to-upload-file-in-nestjs/><img class=card-post-image src=https://nextjsvietnam.com/common/no-image.png alt="The Best Way to Upload File in Nestjs"></a>
-<div class="px-6 py-4">
-<h2 class=card-post-title><a href=https://nextjsvietnam.com/post/the-best-way-to-upload-file-in-nestjs/>The Best Way to Upload File in Nestjs</a></h2>
-<div>
-<a class="category-tag category-frameworks" href=https://nextjsvietnam.com/categories/frameworks>frameworks</a>
-<a class="category-tag category-nestjs" href=https://nextjsvietnam.com/categories/nestjs>nestjs</a>
-</div>
-<div>
-<span class=card-post-date>10 Aug, 2022</span>
-</div>
-<div class=card-post-description>In this topic, we will learn how to use NestJS's built-in module (multer) to upload files</div>
+<section class="container section">
+<div class="max-w-2xl mx-auto">
+<div class="font-heading text-2xl font-semibold">You Might Also Like</div>
+<div class="mt-8 grid gap-8">
+<ul class=sidebar-links>
+<li><a href=/post/aws-series-caching/>Aws Series Caching</a></li>
+<li><a href=/post/aws-series-automation/>Aws Series Automation</a></li>
+<li><a href=/post/aws-series-security/>Aws Series Security</a></li>
+<li><a href=/post/aws-series-serverless-computing/>Aws Series Serverless Computing</a></li>
+<li><a href=/post/aws-series-big-data/>Aws Series Big Data</a></li>
+<li><a href=/post/aws-series-decoupling-workflows/>Aws Series Decoupling Workflows</a></li>
+<li><a href=/post/aws-series-high-availability-and-scaling/>Aws Series High Availability and Scaling</a></li>
+</ul>
 </div>
 </div>
-<div class="card card-post-default">
-<a href=https://nextjsvietnam.com/post/nestjs-request-and-response-object/><img class=card-post-image src=https://user-images.githubusercontent.com/31009750/181449337-70081a76-5a01-4229-805e-39ed0ded6b5b.png alt="Nestjs Request and Response Object"></a>
-<div class="px-6 py-4">
-<h2 class=card-post-title><a href=https://nextjsvietnam.com/post/nestjs-request-and-response-object/>Nestjs Request and Response Object</a></h2>
-<div>
-<a class="category-tag category-nestjs" href=https://nextjsvietnam.com/categories/nestjs>nestjs</a>
-<a class="category-tag category-frameworks" href=https://nextjsvietnam.com/categories/frameworks>frameworks</a>
-</div>
-<div>
-<span class=card-post-date>05 Aug, 2022</span>
-</div>
-<div class=card-post-description>As you've known, in a request we will have Route Params, Query Params, Body, Headers ...</div>
-</div>
-</div>
-<div class="card card-post-default">
-<a href=https://nextjsvietnam.com/post/nestjs-pipes/><img class=card-post-image src=https://user-images.githubusercontent.com/31009750/181449337-70081a76-5a01-4229-805e-39ed0ded6b5b.png alt="Nestjs Pipes"></a>
-<div class="px-6 py-4">
-<h2 class=card-post-title><a href=https://nextjsvietnam.com/post/nestjs-pipes/>Nestjs Pipes</a></h2>
-<div>
-<a class="category-tag category-nestjs" href=https://nextjsvietnam.com/categories/nestjs>nestjs</a>
-<a class="category-tag category-frameworks" href=https://nextjsvietnam.com/categories/frameworks>frameworks</a>
-</div>
-<div>
-<span class=card-post-date>04 Aug, 2022</span>
-</div>
-<div class=card-post-description>Nest interposes a pipe just before a method is invoked, and the pipe receives the arguments destined for the method and operates on them</div>
-</div>
-</div>
-<div class="card card-post-default">
-<a href=https://nextjsvietnam.com/post/validate-request-input-in-nestjs/><img class=card-post-image src=https://user-images.githubusercontent.com/31009750/181449337-70081a76-5a01-4229-805e-39ed0ded6b5b.png alt="Validate Request Input in Nestjs"></a>
-<div class="px-6 py-4">
-<h2 class=card-post-title><a href=https://nextjsvietnam.com/post/validate-request-input-in-nestjs/>Validate Request Input in Nestjs</a></h2>
-<div>
-<a class="category-tag category-frameworks" href=https://nextjsvietnam.com/categories/frameworks>frameworks</a>
-<a class="category-tag category-nestjs" href=https://nextjsvietnam.com/categories/nestjs>nestjs</a>
-</div>
-<div>
-<span class=card-post-date>29 Jul, 2022</span>
-</div>
-<div class=card-post-description>It is best practice to validate the correctness of any data sent into a web application</div>
-</div>
-</div>
-<div class="card card-post-default">
-<a href=https://nextjsvietnam.com/post/nestjs-provider/><img class=card-post-image src=https://user-images.githubusercontent.com/31009750/181449337-70081a76-5a01-4229-805e-39ed0ded6b5b.png alt="Nestjs Provider"></a>
-<div class="px-6 py-4">
-<h2 class=card-post-title><a href=https://nextjsvietnam.com/post/nestjs-provider/>Nestjs Provider</a></h2>
-<div>
-<a class="category-tag category-nestjs" href=https://nextjsvietnam.com/categories/nestjs>nestjs</a>
-<a class="category-tag category-frameworks" href=https://nextjsvietnam.com/categories/frameworks>frameworks</a>
-</div>
-<div>
-<span class=card-post-date>28 Jul, 2022</span>
-</div>
-<div class=card-post-description>Providers are plain JavaScript classes that are declared as providers in a module</div>
-</div>
-</div>
-<div class="card card-post-default">
-<a href=https://nextjsvietnam.com/post/developer-your-rest-api-with-nestjs/><img class=card-post-image src=https://user-images.githubusercontent.com/31009750/179174927-7a62ee24-15c1-4884-875a-57838f31fdcf.png alt="Developer Your Rest Api With Nestjs"></a>
-<div class="px-6 py-4">
-<h2 class=card-post-title><a href=https://nextjsvietnam.com/post/developer-your-rest-api-with-nestjs/>Developer Your Rest Api With Nestjs</a></h2>
-<div>
-<a class="category-tag category-frameworks" href=https://nextjsvietnam.com/categories/frameworks>frameworks</a>
-<a class="category-tag category-nestjs" href=https://nextjsvietnam.com/categories/nestjs>nestjs</a>
-</div>
-<div>
-<span class=card-post-date>12 Jul, 2022</span>
-</div>
-<div class=card-post-description>How to setup a nestjs boillerplate to developer a Restful Api Project</div>
-</div>
-</div>
-</section>
-<section class=container>
 </section>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1642510310947288" crossorigin=anonymous></script>
-<ins class=adsbygoogle style=display:block data-ad-client=ca-pub-1642510310947288 data-ad-slot=4755575293 data-ad-format=auto data-full-width-responsive=true></ins>
+<ins class=adsbygoogle style=display:block;text-align:center data-ad-layout=in-article data-ad-format=fluid data-ad-client=ca-pub-1642510310947288 data-ad-slot=9309117729></ins>
 <script>(adsbygoogle=window.adsbygoogle||[]).push({})</script>
 </main>
 <footer class=footer>
