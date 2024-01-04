@@ -12,7 +12,18 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWE4MLJYE6"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-RWE4MLJYE6')</script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1642510310947288" crossorigin=anonymous></script>
-<script type=application/ld+json>{"@context":"https://schema.org/","@type":"CreativeWorkSeries","name":"{  .Title }}","aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","bestRating":"5","ratingCount":"100"}}</script>
+<title>Aws Series Migration | In this topic you will learn about migrating data in/out of AWS | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+<meta name=robots content="all">
+<meta name=keywords content="aws,solution architecture,aws solution architect associate">
+<meta name=description content="In this topic you will learn about migrating data in/out of AWS">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://gist.github.com/assets/31009750/e9537e53-3a84-470b-ac43-5b0bdc6a7e0f">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="750">
+<meta property="og:image:height" content="300">
+<meta property="article:publisher" content="https://www.facebook.com/nextjsvietnam">
+<meta property="article:published_time" content="2024-01-04T10:16:42+07:00">
+<meta property="article:modified_time" content="2024-01-04T10:16:42+07:00">
 <link rel=apple-touch-icon sizes=57x57 href=/apple-icon-57x57.png>
 <link rel=apple-touch-icon sizes=60x60 href=/apple-icon-60x60.png>
 <link rel=apple-touch-icon sizes=72x72 href=/apple-icon-72x72.png>
@@ -105,58 +116,142 @@
 </div>
 </nav>
 <main>
-<section class="container section hero-section">
-<h1 class=hero-section-heading>
-java
-</h1>
-<div style=text-align:left class=page-content>
+<section class="container section">
+<div class="page-content max-w-2xl mx-auto">
+<img src=https://gist.github.com/assets/31009750/e9537e53-3a84-470b-ac43-5b0bdc6a7e0f class=img-responsive alt="Aws Series Migration">
+<h1>Aws Series Migration</h1>
+<p><strong>Post Date</strong> : 2024-01-04T10:16:42+07:00</p>
+<p><strong>Modified Date</strong> : 2024-01-04T10:16:42+07:00</p>
+<p>
+<strong>Category:</strong>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/systemdesign>systemdesign</a>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/aws>aws</a>
+</p>
+<p>
+<strong>Tags:</strong>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=/tags/aws>aws</a>
+</p>
+<h2 id=moving-data-to-aws-cloud>Moving Data to AWS Cloud</h2>
+<p><img src=https://gist.github.com/assets/31009750/6019d854-da7e-4a53-a9e3-5f668095df55 alt=image></p>
+<h2 id=snow-family>Snow Family</h2>
+<h3 id=snowcone>Snowcone</h3>
+<p><img src=https://gist.github.com/assets/31009750/a6b36347-236b-4407-8648-a37feb9913db alt=image></p>
+<ul>
+<li>8TB of storage</li>
+</ul>
+<h3 id=snowball-edge>Snowball Edge</h3>
+<ul>
+<li>48TB to 81 TB in storage</li>
+<li>One time migration is the best suite</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/760751c0-44d4-440c-ac18-36b6b1997895 alt=image></p>
+<h3 id=snowmobile>Snowmobile</h3>
+<ul>
+<li>100TB in storage</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/873184d6-49f1-4a95-8bc3-0c37068cedae alt=image></p>
+<h2 id=storage-gateway>Storage Gateway</h2>
+<ul>
+<li>Hybrid Cloud Storage Service help you merge on-premises resources with the cloud</li>
+<li>It can help with a one-time migration and long-term pairing of your architecture with AWS</li>
+</ul>
+<h3 id=file-gateway>File Gateway</h3>
+<ul>
+<li>Caching local files</li>
+<li>NFS or SMB mount</li>
+<li>Keep a local copy of recently used files</li>
+<li>Extend on-premises storage</li>
+<li>Helps with migrations to AWS</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/796cbe99-f8fb-4d7b-afbe-54bd4968d07d alt=image></p>
+<h3 id=volume-gateway>Volume Gateway</h3>
+<ul>
+<li>Backup Drives</li>
+<li>iSCSI mount</li>
+<li>Cached or stored mode</li>
+<li>Create EBS snapshots</li>
+<li>Perfect for backup or migration</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/301b2ab5-a341-4610-b85f-53bd6401f797 alt=image></p>
+<h3 id=tape-gateway>Tape Gateway</h3>
+<ul>
+<li>Ditch with tapes</li>
+<li>Replace physical tapes</li>
+<li>Doesn&rsquo;t change current workflow</li>
+<li>Encrypted communication</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/f6600b24-af07-4d6b-95b4-a5c31c579ef5 alt=image></p>
+<h2 id=aws-datasync>AWS DataSync</h2>
+<ul>
+<li>Agent-based solution for migrating on-premises storage to AWS. It allows you to move data between NFS and SMB shares and AWS storage solutions</li>
+<li>A migration service, is great for one-time migrationss</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/8a47c4e9-ca9d-4b9b-82c2-430c433d1c30 alt=image></p>
+<h2 id=aws-transfer-family>AWS Transfer Family</h2>
+<ul>
+<li>Allow you to move file in and out of S3 or EFS using SFTP, FPTS, FTP</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/81fc1547-23cc-4961-ad67-e6dc104ef41c alt=image></p>
+<h2 id=aws-migration-hub>AWS Migration Hub</h2>
+<ul>
+<li>Single place to track the progress on your migration to AWS: Server Migration Service(SMS), Database Migration Service(DMS)</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/f9fd7e2f-06f5-4379-9313-1de7683d84ae alt=image></p>
+<h2 id=aws-application-discovery-service-and-aws-application-migration-service>AWS Application Discovery Service and AWS Application Migration Service</h2>
+<ul>
+<li>Help plan migrations to AWS via collection of usage and configuration data from on-premises servers</li>
+<li>Integrate with AWS Migration Hub</li>
+<li>You can track many things</li>
+</ul>
+<h3 id=discovery-types>Discovery Types</h3>
+<blockquote>
+<p>Agentless vs Agent Based</p>
+</blockquote>
+<p><img src=https://gist.github.com/assets/31009750/ffe06d24-207b-49c4-a9ed-2dab2e23d56e alt=image></p>
+<h3 id=aws-mgn>AWS MGN</h3>
+<p><img src=https://gist.github.com/assets/31009750/a25b54e8-ef33-4e41-b715-cc1343961350 alt=image></p>
+<h3 id=mgn-rto-and-rpo>MGN RTO and RPO</h3>
+<p><img src=https://gist.github.com/assets/31009750/3a49236b-a842-4705-86ce-1cd3fffc6d54 alt=image></p>
+<h2 id=aws-dms>AWS DMS</h2>
+<ul>
+<li>Migrate data between on-premises database and AWS</li>
+<li>OneTime or on-going</li>
+<li>SCT: schema conversation tool</li>
+<li>Same Engines/Different Engines with SCT</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/1fd93f3a-9c9f-45ea-b8f1-5a1158eb33e6 alt=image></p>
+<h3 id=migration-types>Migration Types</h3>
+<ul>
+<li>Full Load</li>
+<li>Full Load and Change Data Capture(CDC)</li>
+<li>CDC Only</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/f9341c61-b27f-4f6c-a46e-c197cbd76bf7 alt=image></p>
+<p>For large data use AWS Snowball</p>
+<div class="m-1 p-1">
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/systemdesign>systemdesign</a>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/aws>aws</a>
+</div>
 </div>
 </section>
-<section class="container section grid md:grid-cols-4 gap-8">
-<div class="card card-post-default">
-<a href=https://nextjsvietnam.com/post/java-for-beginner/><img class=card-post-image src=https://user-images.githubusercontent.com/31009750/179880182-c9ef3fc3-6a72-42e4-9d06-69ee336e085f.png alt="Java for Beginner"></a>
-<div class="px-6 py-4">
-<h2 class=card-post-title><a href=https://nextjsvietnam.com/post/java-for-beginner/>Java for Beginner</a></h2>
-<div>
-<a class="category-tag category-java" href=https://nextjsvietnam.com/categories/java>java</a>
-</div>
-<div>
-<span class=card-post-date>12 Oct, 2022</span>
-</div>
-<div class=card-post-description>Java languages, essential Java classes, GUI</div>
-</div>
-</div>
-<div class="card card-post-default">
-<a href=https://nextjsvietnam.com/post/java-for-professional/><img class=card-post-image src=https://user-images.githubusercontent.com/31009750/179880182-c9ef3fc3-6a72-42e4-9d06-69ee336e085f.png alt="Java for Professional"></a>
-<div class="px-6 py-4">
-<h2 class=card-post-title><a href=https://nextjsvietnam.com/post/java-for-professional/>Java for Professional</a></h2>
-<div>
-<a class="category-tag category-java" href=https://nextjsvietnam.com/categories/java>java</a>
-</div>
-<div>
-<span class=card-post-date>20 Jul, 2022</span>
-</div>
-<div class=card-post-description>Java Spring Boot Essentials, Java Spring Data, Kotlin Essentials</div>
+<section class="container section">
+<div class="max-w-2xl mx-auto">
+<div class="font-heading text-2xl font-semibold">You Might Also Like</div>
+<div class="mt-8 grid gap-8">
+<ul class=sidebar-links>
+<li><a href=/post/aws-series-governance/>Aws Series Governance</a></li>
+<li><a href=/post/aws-series-caching/>Aws Series Caching</a></li>
+<li><a href=/post/aws-series-automation/>Aws Series Automation</a></li>
+<li><a href=/post/aws-series-security/>Aws Series Security</a></li>
+<li><a href=/post/aws-series-serverless-computing/>Aws Series Serverless Computing</a></li>
+<li><a href=/post/aws-series-big-data/>Aws Series Big Data</a></li>
+<li><a href=/post/aws-series-decoupling-workflows/>Aws Series Decoupling Workflows</a></li>
+</ul>
 </div>
 </div>
-<div class="card card-post-default">
-<a href=https://nextjsvietnam.com/post/java-for-pre-intermediate/><img class=card-post-image src=https://user-images.githubusercontent.com/31009750/179880182-c9ef3fc3-6a72-42e4-9d06-69ee336e085f.png alt="Java for Pre Intermediate"></a>
-<div class="px-6 py-4">
-<h2 class=card-post-title><a href=https://nextjsvietnam.com/post/java-for-pre-intermediate/>Java for Pre Intermediate</a></h2>
-<div>
-<a class="category-tag category-java" href=https://nextjsvietnam.com/categories/java>java</a>
-</div>
-<div>
-<span class=card-post-date>20 Jul, 2022</span>
-</div>
-<div class=card-post-description>Java advanced APIs, Java EE Essentials, OOP Patterns</div>
-</div>
-</div>
-</section>
-<section class=container>
 </section>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1642510310947288" crossorigin=anonymous></script>
-<ins class=adsbygoogle style=display:block data-ad-client=ca-pub-1642510310947288 data-ad-slot=4755575293 data-ad-format=auto data-full-width-responsive=true></ins>
+<ins class=adsbygoogle style=display:block;text-align:center data-ad-layout=in-article data-ad-format=fluid data-ad-client=ca-pub-1642510310947288 data-ad-slot=9309117729></ins>
 <script>(adsbygoogle=window.adsbygoogle||[]).push({})</script>
 </main>
 <footer class=footer>
