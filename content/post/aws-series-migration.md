@@ -71,7 +71,7 @@ image: "https://gist.github.com/assets/31009750/e9537e53-3a84-470b-ac43-5b0bdc6a
 ## AWS DataSync
 
 - Agent-based solution for migrating on-premises storage to AWS. It allows you to move data between NFS and SMB shares and AWS storage solutions
-- A migration service, is great for one-time migrationss
+- A migration service, is great for one-time migrations
 
 ![image](https://gist.github.com/assets/31009750/8a47c4e9-ca9d-4b9b-82c2-430c433d1c30)
 
