@@ -31,3 +31,9 @@ hugo new post/hello.md "hello"
 ```
 hugo new post/aws-series-vpc.md "AWS Series VPC"
 ```
+
+### AWS Labs Posts
+
+```
+hugo new post/aws-lab-series.md "AWS Lab Series - Build And Deploy RestApi in AWS"
+```

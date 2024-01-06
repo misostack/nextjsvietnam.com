@@ -16,8 +16,12 @@
       {
         "name": "Learn AWS The Right Way",
         "url": "categories/aws",
-        "childrens":[]
-      }      
+        "childrens": []
+      },
+      {
+        "name": "AWS Hands-On Labs",
+        "url": "categories/aws-labs"
+      }
     ]
   },
   {

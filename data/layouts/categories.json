@@ -8,5 +8,6 @@
   "nestjs-examples": "NestJS Examples",
   "software-architecture": "Software Architecture Tutorial",
   "microservice-architecture": "Microservice Architecture Tutorial",
-  "aws": "Learn AWS The Right Way"
+  "aws": "Learn AWS The Right Way",
+  "aws-labs": "AWS Hands-On Labs for real world projects"
 }
