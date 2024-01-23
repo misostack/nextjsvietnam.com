@@ -9,7 +9,7 @@ tags: ["nestjs", "nestjs-pet-website"]
 image: "https://user-images.githubusercontent.com/31009750/181449337-70081a76-5a01-4229-805e-39ed0ded6b5b.png"
 ---
 
-- [Lession 06 Source Code](https://github.com/misostack/nestjs-tutorial-2023/tree/lession06)
+- [Lession 06 Source Code](https://github.com/misostack/nestjs2024/tree/course-basic/lession-06)
 
 ## Bài 06
 
@@ -84,27 +84,218 @@ Trong phạm vi của bài viết này, tôi sẽ chia sẻ với các anh/chị
 
 ### Tìm hiểu và thực hành một số khái niệm cùng với JestJS
 
-> Cùng thực hành viết unit test cho usecase "Login with email and password"
+1. [x] Cấu hình hỗ trợ module alias cho file test
+2. [x] Cấu hình debug file test trong vscode
+3. [x] Giới thiệu một số function test cơ bản của jest
 
-![image](https://user-images.githubusercontent.com/31009750/268600867-345ea5c2-7ad1-44ba-aef6-da6866c23a2d.png)
 
-**Database**
+#### 1.Cấu hình hỗ trợ module alias cho file test
+> Mặc định NestJS đã tích hợp và cấu hình JestJS vào trong framework
 
-![image](https://user-images.githubusercontent.com/31009750/285190335-c95e53a7-114f-4e11-be25-56cdebb3f7a1.png)
+Có 1 số điểm cần lưu ý như sau:
 
-1. Create and test auth controller và auth service
+- Module Alias in Test File
 
-- Validate login dto
-- Login with login dto
-- Find Account by email
-- validate account password
-- generate user access token
+```ts
+import { validate } from 'class-validator';
+import { CreateExampleDto } from './example-dtos';
+import { plainToInstance } from 'class-transformer';
+import { CLASS_VALIDATOR_VALIDATION_OPTIONS } from '@modules/constants';
+import { describe } from 'node:test';
+import { isEqual } from 'lodash';
+import { transformClassValidatorErrors } from '@modules/helpers/class-validator.helpers';
+import { inspect } from 'node:util';
+```
 
-> Validate login dto
+Để sử dụng alias trong file test (*.test.ts | *.spec.ts) các anh/chị cần thêm dòng config sau.
+
+Đối với path alias như dưới **tsconfig.json**
+
+```json
+    "paths": {
+      "@modules/*": ["src/*"],
+      "@database/*": ["src/database/*"]
+    },
+```
+
+Thì tương ứng trong file **package.json**
+
+```ts
+  "jest": {
+    ...
+    "moduleNameMapper": {
+      "@modules/(.*)": [
+        "<rootDir>/$1"
+      ],
+      "@database/(.*)": [
+        "<rootDir>/database/$1"
+      ]
+    },
+    "testTimeout": 30000
+  }
+```
+
+#### 2.Cấu hình debug file test trong vscode
+
+> .vscode/launch.json
+
+```json
+{
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug:JestFile",
+      "cwd": "${workspaceRoot}",
+      "program": "${workspaceFolder}/node_modules/jest/bin/jest.js",
+      "args": ["${fileBasenameNoExtension}"],
+      "console": "integratedTerminal",
+      "envFile": "${workspaceFolder}/.env.test"
+    }
+  ]
+}
+```
+
+#### 3.Giới thiệu một số function test cơ bản của jest
+
+```js
+{
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": "src",
+    "testRegex": ".*\\.spec\\.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "collectCoverageFrom": [
+      "**/*.(t|j)s"
+    ],
+}
+```
+**package.json**
+
+```js
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage",
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+  },
+```
+
+Cấu hình mặc định khi chạy lệnh test thì jest sẽ duyệt qua toàn bộ các file *.spec.ts trong thư mục source.
 
 ```sh
-npm i --save class-validator class-transformer
+# execute jest command
+npm run test
 ```
+
+![image](https://gist.github.com/assets/31009750/648e0d33-64ff-4c1f-9b13-bbd4e998fb0b)
+
+Các anh/chị có thể thấy, trong source code đã có 1 số file test có sẵn, kết quả cho thấy có 1 số chạy đúng, 1 số chạy sai.
+
+Việc viết test này như đã nói có thể chạy tự động, do đó việc kiểm tra code có thể tự động hóa, giúp giảm thiểu thời gian, cũng như phát hiện lỗi ngay lập tức.
+
+Cùng viết thử Unit Test nào.
+
+Hãy tạo 2 file trong thư mục src/example như sau:
+
+```ts
+calculation.ts
+calculation.spec.ts
+```
+Ở bước này, nếu sử dụng vscode, các anh chị có thể cài thêm extension này **vscode-jest-snippets**, mục đích nhắc các lệnh cơ bản của jest
+
+```ts
+// calculation.ts
+interface ICalculation{
+    add(...numbers: number[]):number;
+    substract(a: number, b: number): number;
+    asyncCalculation(a: number, b: number): Promise<number>
+}
+
+class Calculation implements ICalculation {
+    add(...numbers: number[]): number {
+        return numbers.reduce((prev, current) => prev + current, 0);
+    }
+    substract(a:number, b:number): number {
+        return a - b;
+    }
+    async asyncCalculation(a: number, b: number): Promise<number> {
+        return new Promise(resolve => {
+            setTimeout(()=>{
+                resolve(a*b)
+            },500)
+        })
+    }    
+}
+
+export default Calculation;
+```
+
+```ts
+// calculation.spec.ts
+import Calculation from "./calculation";
+
+describe('Calculation', () => {
+    let calculation: Calculation = null;
+    beforeAll(()=>{
+        calculation = new Calculation();
+    })
+    describe('add', () => {
+        test('TC1: two integer numbers', () => {
+            const a = 1;
+            const b = 2;            
+            const expectedValue = 3;
+            const calculatedValue = calculation.add(a, b);
+            expect(calculatedValue).toEqual(expectedValue);
+        });
+        it('TC2: 3 integer numbers', () => {
+            const a = 1;
+            const b = 2;            
+            const c = 3;
+            const expectedValue = 6;
+            const calculatedValue = calculation.add(a, b, c);
+            expect(calculatedValue).toEqual(expectedValue);            
+        })
+    });
+    describe('substract', () => {
+        test('TC1: two integer numbers', () => {
+            const a = 1;
+            const b = 2;            
+            const expectedValue = -1;
+            const calculatedValue = calculation.substract(a, b)
+            expect(calculatedValue).toEqual(expectedValue);
+        })
+    });    
+    describe('asyncCalculation', () => {
+        test('TC1: two integer numbers', async () => {
+            const a = 3;
+            const b = 2;            
+            const expectedValue = 6; // 3 * 2
+            const calculatedValue = await calculation.asyncCalculation(a, b)
+            expect(calculatedValue).toEqual(expectedValue);
+        })        
+    })
+});
+```
+
+Các điểm đặt breakpoint, khi bấm F5 để chạy debug, các anh chị sẽ thấy chúng lần lượt đi qua các điểm.
+
+Về cơ bản:
+
+- beforeAll: function callback khai báo trong đây sẽ chạy 1 lần trước tất cả các testcases
+- describe: để group các test case lại theo nhóm
+- it, test: để khai báo 1 test case và viết hàm kiểm tra
+- expect(valueA).toEqual(valueB) : phương thức sẵn có của jest giúp compare giá trị tính toán với giá trị mong đợi
+
+![image](https://gist.github.com/assets/31009750/020627c0-7aef-4abf-9a17-fd1e07d326e1)
+
 
 ### Tham khảo
 
