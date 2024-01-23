@@ -133,7 +133,7 @@
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=/tags/nestjs-pet-website>, nestjs-pet-website</a>
 </p>
 <ul>
-<li><a href=https://github.com/misostack/nestjs-tutorial-2023/tree/lession06>Lession 06 Source Code</a></li>
+<li><a href=https://github.com/misostack/nestjs2024/tree/course-basic/lession-06>Lession 06 Source Code</a></li>
 </ul>
 <h2 id=bài-06>Bài 06</h2>
 <ol>
@@ -197,27 +197,178 @@
 <li>Tìm hiểu và thực hành Unit Test cùng với JestJS trên nên tảng web/api được viết bằng NestJS</li>
 </ol>
 <h3 id=tìm-hiểu-và-thực-hành-một-số-khái-niệm-cùng-với-jestjs>Tìm hiểu và thực hành một số khái niệm cùng với JestJS</h3>
-<blockquote>
-<p>Cùng thực hành viết unit test cho usecase &ldquo;Login with email and password&rdquo;</p>
-</blockquote>
-<p><img src=https://user-images.githubusercontent.com/31009750/268600867-345ea5c2-7ad1-44ba-aef6-da6866c23a2d.png alt=image></p>
-<p><strong>Database</strong></p>
-<p><img src=https://user-images.githubusercontent.com/31009750/285190335-c95e53a7-114f-4e11-be25-56cdebb3f7a1.png alt=image></p>
 <ol>
-<li>Create and test auth controller và auth service</li>
+<li><input checked disabled type=checkbox> Cấu hình hỗ trợ module alias cho file test</li>
+<li><input checked disabled type=checkbox> Cấu hình debug file test trong vscode</li>
+<li><input checked disabled type=checkbox> Giới thiệu một số function test cơ bản của jest</li>
 </ol>
-<ul>
-<li>Validate login dto</li>
-<li>Login with login dto</li>
-<li>Find Account by email</li>
-<li>validate account password</li>
-<li>generate user access token</li>
-</ul>
+<h4 id=1cấu-hình-hỗ-trợ-module-alias-cho-file-test>1.Cấu hình hỗ trợ module alias cho file test</h4>
 <blockquote>
-<p>Validate login dto</p>
+<p>Mặc định NestJS đã tích hợp và cấu hình JestJS vào trong framework</p>
 </blockquote>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>npm i --save class-validator class-transformer
-</code></pre></div><h3 id=tham-khảo>Tham khảo</h3>
+<p>Có 1 số điểm cần lưu ý như sau:</p>
+<ul>
+<li>Module Alias in Test File</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>validate</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#39;class-validator&#39;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>CreateExampleDto</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#39;./example-dtos&#39;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>plainToInstance</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#39;class-transformer&#39;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>CLASS_VALIDATOR_VALIDATION_OPTIONS</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#39;@modules/constants&#39;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>describe</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#39;node:test&#39;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>isEqual</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#39;lodash&#39;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>transformClassValidatorErrors</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#39;@modules/helpers/class-validator.helpers&#39;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>inspect</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#39;node:util&#39;</span>;
+</code></pre></div><p>Để sử dụng alias trong file test (*.test.ts | *.spec.ts) các anh/chị cần thêm dòng config sau.</p>
+<p>Đối với path alias như dưới <strong>tsconfig.json</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>    <span style=color:#e6db74>&#34;paths&#34;</span><span style=color:#960050;background-color:#1e0010>:</span> {
+      <span style=color:#f92672>&#34;@modules/*&#34;</span>: [<span style=color:#e6db74>&#34;src/*&#34;</span>],
+      <span style=color:#f92672>&#34;@database/*&#34;</span>: [<span style=color:#e6db74>&#34;src/database/*&#34;</span>]
+    }<span style=color:#960050;background-color:#1e0010>,</span>
+</code></pre></div><p>Thì tương ứng trong file <strong>package.json</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts>  <span style=color:#e6db74>&#34;jest&#34;</span><span style=color:#f92672>:</span> {
+    ...
+    <span style=color:#e6db74>&#34;moduleNameMapper&#34;</span><span style=color:#f92672>:</span> {
+      <span style=color:#e6db74>&#34;@modules/(.*)&#34;</span><span style=color:#f92672>:</span> [
+        <span style=color:#e6db74>&#34;&lt;rootDir&gt;/$1&#34;</span>
+      ],
+      <span style=color:#e6db74>&#34;@database/(.*)&#34;</span><span style=color:#f92672>:</span> [
+        <span style=color:#e6db74>&#34;&lt;rootDir&gt;/database/$1&#34;</span>
+      ]
+    },
+    <span style=color:#e6db74>&#34;testTimeout&#34;</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>30000</span>
+  }
+</code></pre></div><h4 id=2cấu-hình-debug-file-test-trong-vscode>2.Cấu hình debug file test trong vscode</h4>
+<blockquote>
+<p>.vscode/launch.json</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>{
+  <span style=color:#f92672>&#34;configurations&#34;</span>: [
+    {
+      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;node&#34;</span>,
+      <span style=color:#f92672>&#34;request&#34;</span>: <span style=color:#e6db74>&#34;launch&#34;</span>,
+      <span style=color:#f92672>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;Debug:JestFile&#34;</span>,
+      <span style=color:#f92672>&#34;cwd&#34;</span>: <span style=color:#e6db74>&#34;${workspaceRoot}&#34;</span>,
+      <span style=color:#f92672>&#34;program&#34;</span>: <span style=color:#e6db74>&#34;${workspaceFolder}/node_modules/jest/bin/jest.js&#34;</span>,
+      <span style=color:#f92672>&#34;args&#34;</span>: [<span style=color:#e6db74>&#34;${fileBasenameNoExtension}&#34;</span>],
+      <span style=color:#f92672>&#34;console&#34;</span>: <span style=color:#e6db74>&#34;integratedTerminal&#34;</span>,
+      <span style=color:#f92672>&#34;envFile&#34;</span>: <span style=color:#e6db74>&#34;${workspaceFolder}/.env.test&#34;</span>
+    }
+  ]
+}
+</code></pre></div><h4 id=3giới-thiệu-một-số-function-test-cơ-bản-của-jest>3.Giới thiệu một số function test cơ bản của jest</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js>{
+  <span style=color:#e6db74>&#34;jest&#34;</span><span style=color:#f92672>:</span> {
+    <span style=color:#e6db74>&#34;moduleFileExtensions&#34;</span><span style=color:#f92672>:</span> [
+      <span style=color:#e6db74>&#34;js&#34;</span>,
+      <span style=color:#e6db74>&#34;json&#34;</span>,
+      <span style=color:#e6db74>&#34;ts&#34;</span>
+    ],
+    <span style=color:#e6db74>&#34;rootDir&#34;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;src&#34;</span>,
+    <span style=color:#e6db74>&#34;testRegex&#34;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;.*\\.spec\\.ts$&#34;</span>,
+    <span style=color:#e6db74>&#34;transform&#34;</span><span style=color:#f92672>:</span> {
+      <span style=color:#e6db74>&#34;^.+\\.(t|j)s$&#34;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;ts-jest&#34;</span>
+    },
+    <span style=color:#e6db74>&#34;collectCoverageFrom&#34;</span><span style=color:#f92672>:</span> [
+      <span style=color:#e6db74>&#34;**/*.(t|j)s&#34;</span>
+    ],
+}
+</code></pre></div><p><strong>package.json</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js>  <span style=color:#e6db74>&#34;scripts&#34;</span><span style=color:#f92672>:</span> {
+    <span style=color:#e6db74>&#34;test&#34;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;jest&#34;</span>,
+    <span style=color:#e6db74>&#34;test:watch&#34;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;jest --watch&#34;</span>,
+    <span style=color:#e6db74>&#34;test:cov&#34;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;jest --coverage&#34;</span>,
+    <span style=color:#e6db74>&#34;test:debug&#34;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand&#34;</span>,
+    <span style=color:#e6db74>&#34;test:e2e&#34;</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;jest --config ./test/jest-e2e.json&#34;</span>,
+  },
+</code></pre></div><p>Cấu hình mặc định khi chạy lệnh test thì jest sẽ duyệt qua toàn bộ các file *.spec.ts trong thư mục source.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=color:#75715e># execute jest command</span>
+npm run test
+</code></pre></div><p><img src=https://gist.github.com/assets/31009750/648e0d33-64ff-4c1f-9b13-bbd4e998fb0b alt=image></p>
+<p>Các anh/chị có thể thấy, trong source code đã có 1 số file test có sẵn, kết quả cho thấy có 1 số chạy đúng, 1 số chạy sai.</p>
+<p>Việc viết test này như đã nói có thể chạy tự động, do đó việc kiểm tra code có thể tự động hóa, giúp giảm thiểu thời gian, cũng như phát hiện lỗi ngay lập tức.</p>
+<p>Cùng viết thử Unit Test nào.</p>
+<p>Hãy tạo 2 file trong thư mục src/example như sau:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#a6e22e>calculation</span>.<span style=color:#a6e22e>ts</span>
+<span style=color:#a6e22e>calculation</span>.<span style=color:#a6e22e>spec</span>.<span style=color:#a6e22e>ts</span>
+</code></pre></div><p>Ở bước này, nếu sử dụng vscode, các anh chị có thể cài thêm extension này <strong>vscode-jest-snippets</strong>, mục đích nhắc các lệnh cơ bản của jest</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#75715e>// calculation.ts
+</span><span style=color:#75715e></span><span style=color:#66d9ef>interface</span> <span style=color:#a6e22e>ICalculation</span>{
+    <span style=color:#a6e22e>add</span>(...<span style=color:#a6e22e>numbers</span>: <span style=color:#66d9ef>number</span>[])<span style=color:#f92672>:</span><span style=color:#66d9ef>number</span>;
+    <span style=color:#a6e22e>substract</span>(<span style=color:#a6e22e>a</span>: <span style=color:#66d9ef>number</span>, <span style=color:#a6e22e>b</span>: <span style=color:#66d9ef>number</span>)<span style=color:#f92672>:</span> <span style=color:#66d9ef>number</span>;
+    <span style=color:#a6e22e>asyncCalculation</span>(<span style=color:#a6e22e>a</span>: <span style=color:#66d9ef>number</span>, <span style=color:#a6e22e>b</span>: <span style=color:#66d9ef>number</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>Promise</span>&lt;<span style=color:#f92672>number</span>&gt;
+}
+
+<span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Calculation</span> <span style=color:#66d9ef>implements</span> <span style=color:#a6e22e>ICalculation</span> {
+    <span style=color:#a6e22e>add</span>(...<span style=color:#a6e22e>numbers</span>: <span style=color:#66d9ef>number</span>[])<span style=color:#f92672>:</span> <span style=color:#66d9ef>number</span> {
+        <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>numbers</span>.<span style=color:#a6e22e>reduce</span>((<span style=color:#a6e22e>prev</span>, <span style=color:#a6e22e>current</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>prev</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>current</span>, <span style=color:#ae81ff>0</span>);
+    }
+    <span style=color:#a6e22e>substract</span>(<span style=color:#a6e22e>a</span>:<span style=color:#66d9ef>number</span>, <span style=color:#a6e22e>b</span>:<span style=color:#66d9ef>number</span>)<span style=color:#f92672>:</span> <span style=color:#66d9ef>number</span> {
+        <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>a</span> <span style=color:#f92672>-</span> <span style=color:#a6e22e>b</span>;
+    }
+    <span style=color:#66d9ef>async</span> <span style=color:#a6e22e>asyncCalculation</span>(<span style=color:#a6e22e>a</span>: <span style=color:#66d9ef>number</span>, <span style=color:#a6e22e>b</span>: <span style=color:#66d9ef>number</span>)<span style=color:#f92672>:</span> <span style=color:#a6e22e>Promise</span>&lt;<span style=color:#f92672>number</span>&gt; {
+        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Promise</span>(<span style=color:#a6e22e>resolve</span> <span style=color:#f92672>=&gt;</span> {
+            <span style=color:#a6e22e>setTimeout</span>(()<span style=color:#f92672>=&gt;</span>{
+                <span style=color:#a6e22e>resolve</span>(<span style=color:#a6e22e>a</span><span style=color:#f92672>*</span><span style=color:#a6e22e>b</span>)
+            },<span style=color:#ae81ff>500</span>)
+        })
+    }    
+}
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#a6e22e>Calculation</span>;
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#75715e>// calculation.spec.ts
+</span><span style=color:#75715e></span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>Calculation</span> <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./calculation&#34;</span>;
+
+<span style=color:#a6e22e>describe</span>(<span style=color:#e6db74>&#39;Calculation&#39;</span>, () <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>calculation</span>: <span style=color:#66d9ef>Calculation</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>null</span>;
+    <span style=color:#a6e22e>beforeAll</span>(()<span style=color:#f92672>=&gt;</span>{
+        <span style=color:#a6e22e>calculation</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Calculation</span>();
+    })
+    <span style=color:#a6e22e>describe</span>(<span style=color:#e6db74>&#39;add&#39;</span>, () <span style=color:#f92672>=&gt;</span> {
+        <span style=color:#a6e22e>test</span>(<span style=color:#e6db74>&#39;TC1: two integer numbers&#39;</span>, () <span style=color:#f92672>=&gt;</span> {
+            <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>a</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
+            <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>b</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>2</span>;            
+            <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>expectedValue</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>3</span>;
+            <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>calculatedValue</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>calculation</span>.<span style=color:#a6e22e>add</span>(<span style=color:#a6e22e>a</span>, <span style=color:#a6e22e>b</span>);
+            <span style=color:#a6e22e>expect</span>(<span style=color:#a6e22e>calculatedValue</span>).<span style=color:#a6e22e>toEqual</span>(<span style=color:#a6e22e>expectedValue</span>);
+        });
+        <span style=color:#a6e22e>it</span>(<span style=color:#e6db74>&#39;TC2: 3 integer numbers&#39;</span>, () <span style=color:#f92672>=&gt;</span> {
+            <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>a</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
+            <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>b</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>2</span>;            
+            <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>c</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>3</span>;
+            <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>expectedValue</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>6</span>;
+            <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>calculatedValue</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>calculation</span>.<span style=color:#a6e22e>add</span>(<span style=color:#a6e22e>a</span>, <span style=color:#a6e22e>b</span>, <span style=color:#a6e22e>c</span>);
+            <span style=color:#a6e22e>expect</span>(<span style=color:#a6e22e>calculatedValue</span>).<span style=color:#a6e22e>toEqual</span>(<span style=color:#a6e22e>expectedValue</span>);            
+        })
+    });
+    <span style=color:#a6e22e>describe</span>(<span style=color:#e6db74>&#39;substract&#39;</span>, () <span style=color:#f92672>=&gt;</span> {
+        <span style=color:#a6e22e>test</span>(<span style=color:#e6db74>&#39;TC1: two integer numbers&#39;</span>, () <span style=color:#f92672>=&gt;</span> {
+            <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>a</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
+            <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>b</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>2</span>;            
+            <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>expectedValue</span> <span style=color:#f92672>=</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>;
+            <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>calculatedValue</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>calculation</span>.<span style=color:#a6e22e>substract</span>(<span style=color:#a6e22e>a</span>, <span style=color:#a6e22e>b</span>)
+            <span style=color:#a6e22e>expect</span>(<span style=color:#a6e22e>calculatedValue</span>).<span style=color:#a6e22e>toEqual</span>(<span style=color:#a6e22e>expectedValue</span>);
+        })
+    });    
+    <span style=color:#a6e22e>describe</span>(<span style=color:#e6db74>&#39;asyncCalculation&#39;</span>, () <span style=color:#f92672>=&gt;</span> {
+        <span style=color:#a6e22e>test</span>(<span style=color:#e6db74>&#39;TC1: two integer numbers&#39;</span>, <span style=color:#66d9ef>async</span> () <span style=color:#f92672>=&gt;</span> {
+            <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>a</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>3</span>;
+            <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>b</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>2</span>;            
+            <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>expectedValue</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>6</span>; <span style=color:#75715e>// 3 * 2
+</span><span style=color:#75715e></span>            <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>calculatedValue</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>calculation</span>.<span style=color:#a6e22e>asyncCalculation</span>(<span style=color:#a6e22e>a</span>, <span style=color:#a6e22e>b</span>)
+            <span style=color:#a6e22e>expect</span>(<span style=color:#a6e22e>calculatedValue</span>).<span style=color:#a6e22e>toEqual</span>(<span style=color:#a6e22e>expectedValue</span>);
+        })        
+    })
+});
+</code></pre></div><p>Các điểm đặt breakpoint, khi bấm F5 để chạy debug, các anh chị sẽ thấy chúng lần lượt đi qua các điểm.</p>
+<p>Về cơ bản:</p>
+<ul>
+<li>beforeAll: function callback khai báo trong đây sẽ chạy 1 lần trước tất cả các testcases</li>
+<li>describe: để group các test case lại theo nhóm</li>
+<li>it, test: để khai báo 1 test case và viết hàm kiểm tra</li>
+<li>expect(valueA).toEqual(valueB) : phương thức sẵn có của jest giúp compare giá trị tính toán với giá trị mong đợi</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/020627c0-7aef-4abf-9a17-fd1e07d326e1 alt=image></p>
+<h3 id=tham-khảo>Tham khảo</h3>
 <ul>
 <li><a href=https://www.guru99.com/component-testing.html>https://www.guru99.com/component-testing.html</a> - Component Testing</li>
 <li><a href=https://www.onpathtesting.com/blog/what-are-agile-testing-quadrants>https://www.onpathtesting.com/blog/what-are-agile-testing-quadrants</a> - Agile testing quadrants</li>
