@@ -296,8 +296,13 @@ Về cơ bản:
 
 ![image](https://gist.github.com/assets/31009750/020627c0-7aef-4abf-9a17-fd1e07d326e1)
 
+## Thực hành viết Unit Test cho TodoList API
 
-### Tham khảo
+Chúng ta có sơ đồ thiết kế tổng quan như sau
+
+![image](https://github.com/misostack/nestjs2024/assets/31009750/c028d2be-2440-44f6-8044-5f3561cd9182)
+
+## Tham khảo
 
 - https://www.guru99.com/component-testing.html - Component Testing
 - https://www.onpathtesting.com/blog/what-are-agile-testing-quadrants - Agile testing quadrants
