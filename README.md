@@ -37,3 +37,9 @@ hugo new post/aws-series-vpc.md "AWS Series VPC"
 ```
 hugo new post/aws-lab-series.md "AWS Lab Series - Build And Deploy RestApi in AWS"
 ```
+
+### ReactJS Examples
+
+```
+hugo new post/reactjs-examples-vs-code-extensions.md "ReactJS Examples - VSCode Extensions 2024"
+```
