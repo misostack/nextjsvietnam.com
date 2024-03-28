@@ -43,3 +43,9 @@ hugo new post/aws-lab-series.md "AWS Lab Series - Build And Deploy RestApi in AW
 ```
 hugo new post/reactjs-examples-vs-code-extensions.md "ReactJS Examples - VSCode Extensions 2024"
 ```
+
+### React Native Tutorial
+
+```
+hugo new post/react-native-examples-setup-working-place-for-react-native-developer.md "[React Native Examples] Setup working place for React Native Developer"
+```
