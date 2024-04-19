@@ -12,18 +12,18 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWE4MLJYE6"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-RWE4MLJYE6')</script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1642510310947288" crossorigin=anonymous></script>
-<title>The Future of Hr | The Future of Hr | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+<title>Microservice Headfirst | In this post, you will learn how to design a simple microservices system | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
 <meta name=robots content="all">
-<meta name=keywords content="The Future of Hr">
-<meta name=description content="The Future of Hr">
+<meta name=keywords content="microservice-architecture">
+<meta name=description content="In this post, you will learn how to design a simple microservices system">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://nextjsvietnam.com/common/no-image.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/31009750/269891173-f10b1b6b-ea34-4e23-91b6-db9e995d6bff.png">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="750">
 <meta property="og:image:height" content="300">
 <meta property="article:publisher" content="https://www.facebook.com/nextjsvietnam">
-<meta property="article:published_time" content="2022-12-17T00:00:01+07:00">
-<meta property="article:modified_time" content="2022-12-17T00:00:01+07:00">
+<meta property="article:published_time" content="2024-04-19T08:27:33+07:00">
+<meta property="article:modified_time" content="2024-04-19T08:27:33+07:00">
 <link rel=apple-touch-icon sizes=57x57 href=/apple-icon-57x57.png>
 <link rel=apple-touch-icon sizes=60x60 href=/apple-icon-60x60.png>
 <link rel=apple-touch-icon sizes=72x72 href=/apple-icon-72x72.png>
@@ -121,24 +121,36 @@
 <main>
 <section class="container section">
 <div class="page-content max-w-2xl mx-auto">
-<img src=https://nextjsvietnam.com/common/no-image.png class=img-responsive alt="The Future of Hr">
-<h1>The Future of Hr</h1>
-<p><strong>Post Date</strong> : 2022-12-17T00:00:01+07:00</p>
-<p><strong>Modified Date</strong> : 2022-12-17T00:00:01+07:00</p>
+<img src=https://user-images.githubusercontent.com/31009750/269891173-f10b1b6b-ea34-4e23-91b6-db9e995d6bff.png class=img-responsive alt="Microservice Headfirst">
+<h1>Microservice Headfirst</h1>
+<p><strong>Post Date</strong> : 2024-04-19T08:27:33+07:00</p>
+<p><strong>Modified Date</strong> : 2024-04-19T08:27:33+07:00</p>
 <p>
 <strong>Category:</strong>
-<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/cheatsheet>cheatsheet</a>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/systemdesign>systemdesign</a>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/microservice-architecture>microservice-architecture</a>
 </p>
 <p>
 <strong>Tags:</strong>
 </p>
-<p><img src=https://user-images.githubusercontent.com/31009750/208150766-b056c930-2da6-44ed-8a24-f91318c235a5.png alt=image></p>
-<h2 id=10-hr-criteria-to-building-hr>10 HR Criteria to building HR</h2>
-<p><img src=https://user-images.githubusercontent.com/31009750/208149136-8e1423e1-4316-4e5c-bd9b-b9b4642513b4.png alt=image></p>
-<p><img src=https://user-images.githubusercontent.com/31009750/208149310-be0e734f-94d1-4ffb-9370-a09dd348d4f0.png alt=image></p>
-<p><img src=https://user-images.githubusercontent.com/31009750/208149382-7b91524f-cde3-419b-aa6e-57297d139a5f.png alt=image></p>
+<p>In theory, you will split your monolith application in to microservices like this</p>
+<p><img src=https://gist.github.com/assets/31009750/a9f0ee0a-c2e7-4896-9dda-d2da9cf2a43d alt=image></p>
+<p>And the biggest issue we have to face is</p>
+<h2 id=microservice-pattern>Microservice Pattern</h2>
+<h3 id=database-per-service>Database Per Service</h3>
+<ul>
+<li>We want each service to run independently of other services</li>
+<li>Database schema/structure might change unexpectedly</li>
+<li>Some services might function more efficiently with different types of DB&rsquo;s (sql, non-sql)</li>
+</ul>
+<p>Some issues we may got if we don&rsquo;t apply this pattern</p>
+<p><strong>DB for All</strong></p>
+<p><img src=https://gist.github.com/assets/31009750/0bd8745d-f0a6-4d10-a1d4-63b47706e808 alt=image></p>
+<p><strong>Access to another service&rsquo;s DB</strong></p>
+<p><img src=https://gist.github.com/assets/31009750/a980bf70-73e5-40d2-b102-2d5e2a5348c1 alt=image></p>
 <div class="m-1 p-1">
-<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/cheatsheet>cheatsheet</a>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/systemdesign>systemdesign</a>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/microservice-architecture>microservice-architecture</a>
 </div>
 </div>
 </section>
@@ -147,13 +159,13 @@
 <div class="font-heading text-2xl font-semibold">You Might Also Like</div>
 <div class="mt-8 grid gap-8">
 <ul class=sidebar-links>
-<li><a href=/post/react-native-examples-setup-working-place-for-react-native-developer/>[React Native Examples] Setup Working Place for React Native Developer</a></li>
-<li><a href=/post/happy-new-year-2024/>Happy New Year 2024</a></li>
-<li><a href=/post/developer-philosophy/>Developer Philosophy</a></li>
-<li><a href=/post/test-driven-development-for-beginner/>Test Driven Development for Beginner</a></li>
-<li><a href=/post/100-frontend-interview-questions/>100 Frontend Interview Questions</a></li>
-<li><a href=/post/chatgpt-what-can-chat-gpt-do/>Chatgpt What Can Chat Gpt Do</a></li>
-<li><a href=/post/learn-enough-oop-to-be-dangerous/>Learn Enough Oop to Be Dangerous</a></li>
+<li><a href=/post/aws-lab-series-build-and-deploy-rest-api/>Aws Lab Series Build and Deploy Rest Api</a></li>
+<li><a href=/post/aws-lab-series-foreword/>Aws Lab Series Foreword</a></li>
+<li><a href=/post/aws-series-migration/>Aws Series Migration</a></li>
+<li><a href=/post/aws-series-governance/>Aws Series Governance</a></li>
+<li><a href=/post/aws-series-caching/>Aws Series Caching</a></li>
+<li><a href=/post/aws-series-automation/>Aws Series Automation</a></li>
+<li><a href=/post/aws-series-security/>Aws Series Security</a></li>
 </ul>
 </div>
 </div>
