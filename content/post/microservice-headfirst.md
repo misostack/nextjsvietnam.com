@@ -119,6 +119,8 @@ There are 3 options to solve this problem.
 
 ![image](https://gist.github.com/assets/31009750/97eb7414-9461-4fe1-a056-7565108734c9)
 
+![image](https://gist.github.com/assets/31009750/2e4e2c80-5137-44b4-afea-f02768c58d62)
+
 ## Practice
 
 Let assume that we have a monolith application looks like this
