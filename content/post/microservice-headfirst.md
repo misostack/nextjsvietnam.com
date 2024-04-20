@@ -121,6 +121,23 @@ There are 3 options to solve this problem.
 
 ![image](https://gist.github.com/assets/31009750/2e4e2c80-5137-44b4-afea-f02768c58d62)
 
+### Deployment
+
+![image](https://gist.github.com/assets/31009750/cec73733-c810-475d-83b7-3b6a8fbbf901)
+
+Docker?
+
+![image](https://gist.github.com/assets/31009750/33f19ff9-c1a2-496d-92a2-d5410dd5ed35)
+
+Yes, but not enough.
+With k8s, things will be more easier.
+
+![image](https://gist.github.com/assets/31009750/e0cefe66-c4af-4aaa-9e1e-9efd4977d7f4)
+
+Quick note for k8s components
+
+![image](https://gist.github.com/assets/31009750/36921dfe-54d8-42f6-a7d7-d0c5bbc38928)
+
 ## Practice
 
 Let assume that we have a monolith application looks like this
