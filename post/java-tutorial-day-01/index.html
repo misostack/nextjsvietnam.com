@@ -153,6 +153,97 @@ sdk install java 17.0.2-open
 sdk install java 22-oracle
 sdk use java 22-oracle
 sdk default java 22-oracle
+</code></pre></div><h2 id=install-java-ide>Install Java IDE</h2>
+<ul>
+<li><a href=https://www.jetbrains.com/idea/>IntelliJ IDE</a></li>
+</ul>
+<h2 id=run-hello-world>Run Hello World</h2>
+<p>Let&rsquo;s create a new project with IntelliJ (Java IDE).</p>
+<p><img src=https://gist.github.com/assets/31009750/091c0816-4259-4bff-8260-182ae5a829b7 alt=image></p>
+<p>Some informations, we should take note:</p>
+<ul>
+<li>Build System: IntelliJ | Maven | Graddle</li>
+<li>JDK: Oracle OpenJDK 22</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/0dc95cd9-5061-47e0-ac02-d3b696ec545e alt=image></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>cd src
+javac Main.java
+java Main
+</code></pre></div><h3 id=data-types>Data Types</h3>
+<ol>
+<li>Numbers</li>
+</ol>
+<ul>
+<li>Integers: byte, short, int , long</li>
+<li>Floating Point: float, double(8 bytes)</li>
+<li>BigDecimal: for accounting</li>
+</ul>
+<ol start=2>
+<li>Strings</li>
+</ol>
+<ul>
+<li>String</li>
+</ul>
+<ol start=3>
+<li>Characters</li>
+</ol>
+<ul>
+<li>char ( 2bytes )</li>
+</ul>
+<ol start=4>
+<li>Boolean</li>
+</ol>
+<ul>
+<li>boolean</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#f92672>import</span> java.math.BigDecimal<span style=color:#f92672>;</span>
+<span style=color:#f92672>import</span> java.math.RoundingMode<span style=color:#f92672>;</span>
+
+<span style=color:#75715e>//TIP To &lt;b&gt;Run&lt;/b&gt; code, press &lt;shortcut actionId=&#34;Run&#34;/&gt; or
+</span><span style=color:#75715e>// click the &lt;icon src=&#34;AllIcons.Actions.Execute&#34;/&gt; icon in the gutter.
+</span><span style=color:#75715e></span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Main</span> <span style=color:#f92672>{</span>
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>dataTypes</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+        String firstName <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;Java&#34;</span><span style=color:#f92672>;</span>
+        String lastName <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;Essentials&#34;</span><span style=color:#f92672>;</span>
+        <span style=color:#66d9ef>int</span> age <span style=color:#f92672>=</span> 25<span style=color:#f92672>;</span>
+        <span style=color:#66d9ef>float</span> salary <span style=color:#f92672>=</span> 10000<span style=color:#f92672>.</span><span style=color:#a6e22e>00f</span><span style=color:#f92672>;</span>
+        <span style=color:#66d9ef>boolean</span> married <span style=color:#f92672>=</span> <span style=color:#66d9ef>true</span><span style=color:#f92672>;</span>
+        <span style=color:#66d9ef>char</span> aChar <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;a&#39;</span><span style=color:#f92672>;</span>
+
+        System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span>firstName <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34; &#34;</span> <span style=color:#f92672>+</span> lastName <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34; &#34;</span> <span style=color:#f92672>+</span> age <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34; &#34;</span> <span style=color:#f92672>+</span> salary <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34; &#34;</span> <span style=color:#f92672>+</span> married <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34; &#34;</span> <span style=color:#f92672>+</span> aChar<span style=color:#f92672>);</span>
+
+        System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>printf</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;%s\n %s\n&#34;</span><span style=color:#f92672>,</span> firstName<span style=color:#f92672>,</span> salary<span style=color:#f92672>);</span>
+
+        <span style=color:#66d9ef>double</span> a <span style=color:#f92672>=</span> 3<span style=color:#f92672>,</span> b <span style=color:#f92672>=</span> 4<span style=color:#f92672>,</span> c<span style=color:#f92672>;</span>
+        c <span style=color:#f92672>=</span> Math<span style=color:#f92672>.</span><span style=color:#a6e22e>sqrt</span><span style=color:#f92672>(</span>Math<span style=color:#f92672>.</span><span style=color:#a6e22e>pow</span><span style=color:#f92672>(</span>a<span style=color:#f92672>,</span> 2<span style=color:#f92672>)</span> <span style=color:#f92672>+</span> Math<span style=color:#f92672>.</span><span style=color:#a6e22e>pow</span><span style=color:#f92672>(</span>b<span style=color:#f92672>,</span> 2<span style=color:#f92672>));</span>
+        System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span>c<span style=color:#f92672>);</span>
+        <span style=color:#66d9ef>float</span> d1 <span style=color:#f92672>=</span> <span style=color:#f92672>(</span><span style=color:#66d9ef>float</span><span style=color:#f92672>)</span> 2<span style=color:#f92672>/</span>3<span style=color:#f92672>;</span>
+        <span style=color:#66d9ef>float</span> d2 <span style=color:#f92672>=</span> <span style=color:#f92672>(</span><span style=color:#66d9ef>float</span><span style=color:#f92672>)</span> 1<span style=color:#f92672>/</span>3<span style=color:#f92672>;</span>
+        System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span>d1 <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34; + &#34;</span> <span style=color:#f92672>+</span>  d2 <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34; = &#34;</span> <span style=color:#f92672>+</span> d1 <span style=color:#f92672>+</span> d2<span style=color:#f92672>);</span> <span style=color:#75715e>// 0.6666667 + 0.33333334 = 0.66666670.33333334
+</span><span style=color:#75715e></span>        <span style=color:#66d9ef>double</span> e <span style=color:#f92672>=</span> <span style=color:#f92672>(</span><span style=color:#66d9ef>double</span><span style=color:#f92672>)</span> 2<span style=color:#f92672>/</span>3<span style=color:#f92672>;</span>
+        <span style=color:#66d9ef>double</span> z <span style=color:#f92672>=</span> <span style=color:#f92672>(</span><span style=color:#66d9ef>double</span><span style=color:#f92672>)</span> 2<span style=color:#f92672>/</span>3<span style=color:#f92672>;</span> <span style=color:#75715e>// 0.6666666666666666
+</span><span style=color:#75715e></span>        System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span>e<span style=color:#f92672>);</span>
+        System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span>e <span style=color:#f92672>==</span> z<span style=color:#f92672>);</span>
+        System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span>e <span style=color:#f92672>==</span> d1<span style=color:#f92672>);</span>
+        <span style=color:#75715e>// BigDecimal for accounting
+</span><span style=color:#75715e></span>
+        BigDecimal number <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> BigDecimal<span style=color:#f92672>(</span>2<span style=color:#f92672>);</span>
+        System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span>number<span style=color:#f92672>.</span><span style=color:#a6e22e>divide</span><span style=color:#f92672>(</span><span style=color:#66d9ef>new</span> BigDecimal<span style=color:#f92672>(</span>3<span style=color:#f92672>),</span>100<span style=color:#f92672>,</span> RoundingMode<span style=color:#f92672>.</span><span style=color:#a6e22e>HALF_UP</span><span style=color:#f92672>));</span>
+    <span style=color:#f92672>}</span>
+
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>main</span><span style=color:#f92672>(</span>String<span style=color:#f92672>[]</span> args<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        <span style=color:#75715e>//TIP Press &lt;shortcut actionId=&#34;ShowIntentionActions&#34;/&gt; with your caret at the highlighted text
+</span><span style=color:#75715e></span>        <span style=color:#75715e>// to see how IntelliJ IDEA suggests fixing it.
+</span><span style=color:#75715e></span>        System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>printf</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Hello and welcome!&#34;</span><span style=color:#f92672>);</span>
+        Main<span style=color:#f92672>.</span><span style=color:#a6e22e>dataTypes</span><span style=color:#f92672>();</span>
+
+        <span style=color:#66d9ef>for</span> <span style=color:#f92672>(</span><span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> 1<span style=color:#f92672>;</span> i <span style=color:#f92672>&lt;=</span> 5<span style=color:#f92672>;</span> i<span style=color:#f92672>++)</span> <span style=color:#f92672>{</span>
+            <span style=color:#75715e>//TIP Press &lt;shortcut actionId=&#34;Debug&#34;/&gt; to start debugging your code. We have set one &lt;icon src=&#34;AllIcons.Debugger.Db_set_breakpoint&#34;/&gt; breakpoint
+</span><span style=color:#75715e></span>            <span style=color:#75715e>// for you, but you can always add more by pressing &lt;shortcut actionId=&#34;ToggleLineBreakpoint&#34;/&gt;.
+</span><span style=color:#75715e></span>            System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;i = &#34;</span> <span style=color:#f92672>+</span> i<span style=color:#f92672>);</span>
+        <span style=color:#f92672>}</span>
+    <span style=color:#f92672>}</span>
+<span style=color:#f92672>}</span>
 </code></pre></div><h2 id=reference>Reference</h2>
 <ul>
 <li><a href=https://www.jenv.be/>jEnv</a></li>
