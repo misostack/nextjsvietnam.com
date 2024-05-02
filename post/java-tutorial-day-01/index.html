@@ -138,6 +138,7 @@
 <li><input checked disabled type=checkbox> Install multiple version java in your local</li>
 <li><input checked disabled type=checkbox> Introduction of Java IDE</li>
 <li><input checked disabled type=checkbox> Run Hello World Example</li>
+<li><input checked disabled type=checkbox> OOP and Packages</li>
 </ol>
 <h2 id=install-multiple-version-java-in-your-local>Install multiple version java in your local</h2>
 <p>To manage multiple Java versions on macOS, you can use a version manager like jEnv or SDKMAN!. Here&rsquo;s how to set up each:</p>
@@ -244,10 +245,54 @@ java Main
         <span style=color:#f92672>}</span>
     <span style=color:#f92672>}</span>
 <span style=color:#f92672>}</span>
+</code></pre></div><h2 id=oop-and-packages>OOP and Packages</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#f92672>import</span> package.name.Class<span style=color:#f92672>;</span>   <span style=color:#75715e>// Import a single class
+</span><span style=color:#75715e></span><span style=color:#f92672>import</span> package.name.*<span style=color:#f92672>;</span>   <span style=color:#75715e>// Import the whole package
+</span></code></pre></div><p>Create your own package</p>
+<p><img src=https://gist.github.com/assets/31009750/5e678e69-b362-490e-a559-21d8895ab060 alt=image></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#f92672>package</span> example<span style=color:#f92672>;</span>
+
+<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Example</span> <span style=color:#f92672>{</span>
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>main</span><span style=color:#f92672>(</span>String<span style=color:#f92672>[]</span> args<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;This is Example package!&#34;</span><span style=color:#f92672>);</span>
+    <span style=color:#f92672>}</span>
+
+    <span style=color:#66d9ef>private</span> String title<span style=color:#f92672>;</span>
+
+    <span style=color:#66d9ef>public</span> <span style=color:#a6e22e>Example</span><span style=color:#f92672>(</span>String title<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>title</span> <span style=color:#f92672>=</span> title<span style=color:#f92672>;</span>
+    <span style=color:#f92672>}</span>
+
+    <span style=color:#66d9ef>public</span> String <span style=color:#a6e22e>getTitle</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+        <span style=color:#66d9ef>return</span> title<span style=color:#f92672>;</span>
+    <span style=color:#f92672>}</span>
+
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>setTitle</span><span style=color:#f92672>(</span>String title<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>title</span> <span style=color:#f92672>=</span> title<span style=color:#f92672>;</span>
+    <span style=color:#f92672>}</span>
+
+    <span style=color:#a6e22e>@Override</span>
+    <span style=color:#66d9ef>public</span> String <span style=color:#a6e22e>toString</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>this</span><span style=color:#f92672>.</span><span style=color:#a6e22e>title</span><span style=color:#f92672>;</span>
+    <span style=color:#f92672>}</span>
+<span style=color:#f92672>}</span>
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#75715e>// src/Main.java
+</span><span style=color:#75715e></span><span style=color:#f92672>import</span> example.Example<span style=color:#f92672>;</span>
+
+<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>main</span><span style=color:#f92672>(</span>String<span style=color:#f92672>[]</span> args<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+    <span style=color:#75715e>// OOP
+</span><span style=color:#75715e></span>    Example example <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Example<span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Java&#34;</span><span style=color:#f92672>);</span>
+    System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span>example <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34; &#34;</span> <span style=color:#f92672>+</span> example<span style=color:#f92672>.</span><span style=color:#a6e22e>getTitle</span><span style=color:#f92672>());</span>
+    System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span>example<span style=color:#f92672>.</span><span style=color:#a6e22e>getClass</span><span style=color:#f92672>().</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>());</span>
+<span style=color:#f92672>}</span>
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>minhson@mymac src % javac example/Example.java
+minhson@mymac src % java example.Example
+This is Example package!
 </code></pre></div><h2 id=reference>Reference</h2>
 <ul>
 <li><a href=https://www.jenv.be/>jEnv</a></li>
 <li><a href=https://sdkman.io/install>sdkman</a></li>
+<li><a href=https://docs.oracle.com/en/java/javase/22/docs/api/index.html>Packages and API</a></li>
 </ul>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/java>java</a>
