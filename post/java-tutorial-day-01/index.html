@@ -396,6 +396,39 @@ However, not every city has its own time zone. See the full list here.</p>
     Instant userInputDateTime <span style=color:#f92672>=</span> LocalDateTime<span style=color:#f92672>.</span><span style=color:#a6e22e>parse</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;2024-05-03T11:00:00&#34;</span><span style=color:#f92672>).</span><span style=color:#a6e22e>atZone</span><span style=color:#f92672>(</span>zoneId<span style=color:#f92672>).</span><span style=color:#a6e22e>toInstant</span><span style=color:#f92672>();</span>
     System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span>userInputDateTime<span style=color:#f92672>);</span> <span style=color:#75715e>// 2024-05-03T04:00:00Z
 </span><span style=color:#75715e></span><span style=color:#f92672>}</span>
+</code></pre></div><h3 id=java-array>Java Array</h3>
+<ul>
+<li>Static Size Array</li>
+<li>Dynamic Size Array</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>playingWithArray</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+        <span style=color:#75715e>// this is static size array
+</span><span style=color:#75715e></span>        String<span style=color:#f92672>[]</span> stringArray <span style=color:#f92672>=</span> <span style=color:#f92672>{</span><span style=color:#e6db74>&#34;A&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;B&#34;</span><span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;C&#34;</span><span style=color:#f92672>};</span>
+        stringArray<span style=color:#f92672>[</span>0<span style=color:#f92672>]</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;X&#34;</span><span style=color:#f92672>;</span>
+        System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span>stringArray<span style=color:#f92672>[</span>0<span style=color:#f92672>]);</span>
+        <span style=color:#75715e>// this is resizable array ( dynamic size )
+</span><span style=color:#75715e></span>        ArrayList<span style=color:#f92672>&lt;</span>String<span style=color:#f92672>&gt;</span> strings <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> ArrayList<span style=color:#f92672>&lt;&gt;();</span>
+        strings<span style=color:#f92672>.</span><span style=color:#a6e22e>add</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;A&#34;</span><span style=color:#f92672>);</span>
+        strings<span style=color:#f92672>.</span><span style=color:#a6e22e>add</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;B&#34;</span><span style=color:#f92672>);</span>
+        <span style=color:#66d9ef>for</span> <span style=color:#f92672>(</span>String string <span style=color:#f92672>:</span> strings<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+            System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span>string<span style=color:#f92672>);</span>
+        <span style=color:#f92672>}</span>
+        strings<span style=color:#f92672>.</span><span style=color:#a6e22e>remove</span><span style=color:#f92672>(</span>1<span style=color:#f92672>);</span>
+        System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span>strings<span style=color:#f92672>);</span>
+        strings<span style=color:#f92672>.</span><span style=color:#a6e22e>add</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;C&#34;</span><span style=color:#f92672>);</span>
+        System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span>strings<span style=color:#f92672>);</span>
+        strings<span style=color:#f92672>.</span><span style=color:#a6e22e>add</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;B&#34;</span><span style=color:#f92672>);</span>
+        System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span>strings<span style=color:#f92672>);</span>
+        strings<span style=color:#f92672>.</span><span style=color:#a6e22e>add</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;E&#34;</span><span style=color:#f92672>);</span>
+        strings<span style=color:#f92672>.</span><span style=color:#a6e22e>set</span><span style=color:#f92672>(</span>strings<span style=color:#f92672>.</span><span style=color:#a6e22e>size</span><span style=color:#f92672>()</span> <span style=color:#f92672>-</span> 1<span style=color:#f92672>,</span> <span style=color:#e6db74>&#34;F&#34;</span><span style=color:#f92672>);</span>
+        System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span>strings<span style=color:#f92672>);</span>
+        strings<span style=color:#f92672>.</span><span style=color:#a6e22e>remove</span><span style=color:#f92672>(</span>1<span style=color:#f92672>);</span>
+        System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span>strings<span style=color:#f92672>);</span>
+        System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span>strings<span style=color:#f92672>.</span><span style=color:#a6e22e>size</span><span style=color:#f92672>());</span>
+        System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span>strings<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>(</span>2<span style=color:#f92672>));</span>
+        Collections<span style=color:#f92672>.</span><span style=color:#a6e22e>sort</span><span style=color:#f92672>(</span>strings<span style=color:#f92672>);</span>
+        System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span>strings<span style=color:#f92672>);</span>
+    <span style=color:#f92672>}</span>
 </code></pre></div><h2 id=reference>Reference</h2>
 <ul>
 <li><a href=https://www.jenv.be/>jEnv</a></li>
