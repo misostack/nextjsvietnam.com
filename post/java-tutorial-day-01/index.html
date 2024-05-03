@@ -374,6 +374,21 @@ This is Example package!
 <blockquote>
 <p>moment = rtime + (zone or offset)</p>
 </blockquote>
+<blockquote>
+<p>IANA Time Zone Database</p>
+</blockquote>
+<ul>
+<li><a href=https://www.iana.org/time-zones>IANA</a></li>
+</ul>
+<p>In the tz database, a time zone will have a name based on its geographical location, in the form of Area/Location, where area is the name of the continent or ocean, location is the name of the city or island.</p>
+<p>The time zone in Ho Chi Minh City is called Asia/Ho_Chi_Minh
+The time zone in Auckland (New Zealand) is called Pacific/Auckland
+However, not every city has its own time zone. See the full list here.</p>
+<p>Why we need this?</p>
+<p>Daylight Saving Time (DST)</p>
+<p>If you don&rsquo;t know, a city can use 2 time zones alternately during the year.</p>
+<p><img src=https://gist.github.com/assets/31009750/9f9ad4b6-de8c-435f-bf4a-9f0f510ebce4 alt=image></p>
+<p><img src=https://gist.github.com/assets/31009750/91114c8d-cf99-49f8-8284-3552914ff663 alt=image></p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>playingWithTimezone</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
     <span style=color:#75715e>// Convert relative time to moment
 </span><span style=color:#75715e></span>    String timeZone <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;Asia/Ho_Chi_Minh&#34;</span><span style=color:#f92672>;</span>
