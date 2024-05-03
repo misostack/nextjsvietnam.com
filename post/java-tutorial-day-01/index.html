@@ -288,6 +288,99 @@ java Main
 </code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>minhson@mymac src % javac example/Example.java
 minhson@mymac src % java example.Example
 This is Example package!
+</code></pre></div><p><strong>OOP</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#75715e>// Base class for all heroes
+</span><span style=color:#75715e></span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Hero</span> <span style=color:#f92672>{</span>
+    <span style=color:#75715e>// You might want to include common attributes or methods here
+</span><span style=color:#75715e></span><span style=color:#f92672>}</span>
+
+<span style=color:#75715e>// Archer class that extends Hero
+</span><span style=color:#75715e></span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Archer</span> <span style=color:#66d9ef>extends</span> Hero <span style=color:#f92672>{</span>
+    <span style=color:#75715e>// Method to simulate firing an arrow
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>fire</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+        System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Firing arrow&#34;</span><span style=color:#f92672>);</span>
+    <span style=color:#f92672>}</span>
+<span style=color:#f92672>}</span>
+
+<span style=color:#75715e>// Knight class that extends Hero
+</span><span style=color:#75715e></span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Knight</span> <span style=color:#66d9ef>extends</span> Hero <span style=color:#f92672>{</span>
+    <span style=color:#75715e>// Method to simulate a charge
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>charge</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+        System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Charged&#34;</span><span style=color:#f92672>);</span>
+    <span style=color:#f92672>}</span>
+<span style=color:#f92672>}</span>
+
+<span style=color:#75715e>// Demo class to use these classes
+</span><span style=color:#75715e></span><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Demo</span> <span style=color:#f92672>{</span>
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>main</span><span style=color:#f92672>(</span>String<span style=color:#f92672>[]</span> args<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        <span style=color:#75715e>// Create an array of Hero objects
+</span><span style=color:#75715e></span>        Hero<span style=color:#f92672>[]</span> heroes <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Hero<span style=color:#f92672>[</span>2<span style=color:#f92672>];</span>
+        heroes<span style=color:#f92672>[</span>0<span style=color:#f92672>]</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Archer<span style=color:#f92672>();</span>
+        heroes<span style=color:#f92672>[</span>1<span style=color:#f92672>]</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Knight<span style=color:#f92672>();</span>
+
+        <span style=color:#75715e>// Iterate through the array and perform actions based on the type of Hero
+</span><span style=color:#75715e></span>        <span style=color:#66d9ef>for</span> <span style=color:#f92672>(</span>Hero hero <span style=color:#f92672>:</span> heroes<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+            <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>hero <span style=color:#66d9ef>instanceof</span> Archer<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+                <span style=color:#f92672>((</span>Archer<span style=color:#f92672>)</span> hero<span style=color:#f92672>).</span><span style=color:#a6e22e>fire</span><span style=color:#f92672>();</span>
+            <span style=color:#f92672>}</span>
+            <span style=color:#66d9ef>if</span> <span style=color:#f92672>(</span>hero <span style=color:#66d9ef>instanceof</span> Knight<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+                <span style=color:#f92672>((</span>Knight<span style=color:#f92672>)</span> hero<span style=color:#f92672>).</span><span style=color:#a6e22e>charge</span><span style=color:#f92672>();</span>
+            <span style=color:#f92672>}</span>
+        <span style=color:#f92672>}</span>
+    <span style=color:#f92672>}</span>
+<span style=color:#f92672>}</span>
+
+</code></pre></div><p><strong>Datetime</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#f92672>import</span> java.time.LocalDate<span style=color:#f92672>;</span>
+<span style=color:#f92672>import</span> java.time.LocalDateTime<span style=color:#f92672>;</span>
+<span style=color:#f92672>import</span> java.time.format.DateTimeFormatter<span style=color:#f92672>;</span>
+
+<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>playingWithDateTime</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+    LocalDate today <span style=color:#f92672>=</span> LocalDate<span style=color:#f92672>.</span><span style=color:#a6e22e>now</span><span style=color:#f92672>();</span>
+    LocalDateTime currentTime <span style=color:#f92672>=</span> LocalDateTime<span style=color:#f92672>.</span><span style=color:#a6e22e>now</span><span style=color:#f92672>();</span>
+    System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Now: &#34;</span> <span style=color:#f92672>+</span> today<span style=color:#f92672>);</span>
+    System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;Now: &#34;</span> <span style=color:#f92672>+</span> currentTime<span style=color:#f92672>);</span>
+    DateTimeFormatter formatter <span style=color:#f92672>=</span> DateTimeFormatter<span style=color:#f92672>.</span><span style=color:#a6e22e>ofPattern</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;yyyy-MM-dd HH:mm:ss&#34;</span><span style=color:#f92672>);</span>
+    System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span>currentTime<span style=color:#f92672>.</span><span style=color:#a6e22e>format</span><span style=color:#f92672>(</span>formatter<span style=color:#f92672>));</span>
+<span style=color:#f92672>}</span>
+</code></pre></div><p>There are 2 types of time</p>
+<ol>
+<li>Moment</li>
+</ol>
+<ul>
+<li>The moment Vietnam won the AFF Cup at 7:30 p.m. on December 15, 2018</li>
+</ul>
+<blockquote>
+<p>moment = datetime + context</p>
+</blockquote>
+<p>The context here is the time zone. Time zones are characterized by a time offset (offset) from the coordinated universal time UTC. Deviation is expressed as ±hh:mm</p>
+<p>Vietnam belongs to the Indochina Time zone (Indochina Time - ICT) with an offset of UTC+07:00, meaning that the clock in Vietnam runs 7 hours faster than the UTC clock.</p>
+<p>So that</p>
+<blockquote>
+<p>VNTime = UTC+07:00</p>
+</blockquote>
+<blockquote>
+<p>moment = UTC + offset</p>
+</blockquote>
+<ol start=2>
+<li>Relative/represent time</li>
+</ol>
+<p>Is the time used only for display (relative/represent time - briefly called rtime), excluding time zone context.</p>
+<ul>
+<li>People from all over the world celebrate New Year&rsquo;s Eve at 00:00 on January 1 every year.</li>
+<li>International Women&rsquo;s Day is March 8</li>
+</ul>
+<p>In daily life, when we want to compare times, we cannot use rtime, but must add a time zone or an offset to make rtime absolute (moment) before comparing.</p>
+<blockquote>
+<p>moment = rtime + (zone or offset)</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>playingWithTimezone</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+    <span style=color:#75715e>// Convert relative time to moment
+</span><span style=color:#75715e></span>    String timeZone <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;Asia/Ho_Chi_Minh&#34;</span><span style=color:#f92672>;</span>
+    ZoneId zoneId <span style=color:#f92672>=</span> ZoneId<span style=color:#f92672>.</span><span style=color:#a6e22e>of</span><span style=color:#f92672>(</span>timeZone<span style=color:#f92672>);</span>
+    Instant userInputDateTime <span style=color:#f92672>=</span> LocalDateTime<span style=color:#f92672>.</span><span style=color:#a6e22e>parse</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;2024-05-03T11:00:00&#34;</span><span style=color:#f92672>).</span><span style=color:#a6e22e>atZone</span><span style=color:#f92672>(</span>zoneId<span style=color:#f92672>).</span><span style=color:#a6e22e>toInstant</span><span style=color:#f92672>();</span>
+    System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span>userInputDateTime<span style=color:#f92672>);</span> <span style=color:#75715e>// 2024-05-03T04:00:00Z
+</span><span style=color:#75715e></span><span style=color:#f92672>}</span>
 </code></pre></div><h2 id=reference>Reference</h2>
 <ul>
 <li><a href=https://www.jenv.be/>jEnv</a></li>
