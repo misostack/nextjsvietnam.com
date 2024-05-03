@@ -429,11 +429,57 @@ However, not every city has its own time zone. See the full list here.</p>
         Collections<span style=color:#f92672>.</span><span style=color:#a6e22e>sort</span><span style=color:#f92672>(</span>strings<span style=color:#f92672>);</span>
         System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span>strings<span style=color:#f92672>);</span>
     <span style=color:#f92672>}</span>
+</code></pre></div><blockquote>
+<p>Array List</p>
+</blockquote>
+<ul>
+<li>The ArrayList class has a regular array inside it. When an element is added, it is placed into the array. If the array is not big enough, a new, larger array is created to replace the old one and the old one is removed.</li>
+</ul>
+<blockquote>
+<p>LinkedList</p>
+</blockquote>
+<ul>
+<li>
+<p>The LinkedList stores its items in &ldquo;containers.&rdquo; The list has a link to the first container and each container has a link to the next container in the list. To add an element to the list, the element is placed into a new container and that container is linked to one of the other containers in the list.</p>
+</li>
+<li>
+<p>For many cases, the ArrayList is more efficient as it is common to need access to random items in the list, but the LinkedList provides several methods to do certain operations more efficiently: addFirst, addLast, removeFirst, removeLast, getFirst, getLast</p>
+</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>LinkedList<span style=color:#f92672>&lt;</span>String<span style=color:#f92672>&gt;</span> linkedList <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> LinkedList<span style=color:#f92672>&lt;&gt;();</span>
+linkedList<span style=color:#f92672>.</span><span style=color:#a6e22e>add</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;a&#34;</span><span style=color:#f92672>);</span>
+linkedList<span style=color:#f92672>.</span><span style=color:#a6e22e>add</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;b&#34;</span><span style=color:#f92672>);</span>
+linkedList<span style=color:#f92672>.</span><span style=color:#a6e22e>add</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;c&#34;</span><span style=color:#f92672>);</span>
+linkedList<span style=color:#f92672>.</span><span style=color:#a6e22e>addFirst</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;x&#34;</span><span style=color:#f92672>);</span>
+linkedList<span style=color:#f92672>.</span><span style=color:#a6e22e>addLast</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;y&#34;</span><span style=color:#f92672>);</span>
+linkedList<span style=color:#f92672>.</span><span style=color:#a6e22e>addLast</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;z&#34;</span><span style=color:#f92672>);</span>
+System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span>linkedList<span style=color:#f92672>);</span>
+linkedList<span style=color:#f92672>.</span><span style=color:#a6e22e>removeFirst</span><span style=color:#f92672>();</span>
+linkedList<span style=color:#f92672>.</span><span style=color:#a6e22e>removeLast</span><span style=color:#f92672>();</span>
+</code></pre></div><blockquote>
+<p>HashMap</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>static</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>playWithHashMap</span><span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
+        HashMap<span style=color:#f92672>&lt;</span>String<span style=color:#f92672>,</span> User<span style=color:#f92672>&gt;</span> users <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> HashMap<span style=color:#f92672>&lt;&gt;();</span>
+        users<span style=color:#f92672>.</span><span style=color:#a6e22e>put</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;001&#34;</span><span style=color:#f92672>,</span> User<span style=color:#f92672>.</span><span style=color:#a6e22e>createUser</span><span style=color:#f92672>(</span>UserType<span style=color:#f92672>.</span><span style=color:#a6e22e>Admin</span><span style=color:#f92672>));</span>
+        users<span style=color:#f92672>.</span><span style=color:#a6e22e>put</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;002&#34;</span><span style=color:#f92672>,</span> User<span style=color:#f92672>.</span><span style=color:#a6e22e>createUser</span><span style=color:#f92672>(</span>UserType<span style=color:#f92672>.</span><span style=color:#a6e22e>Member</span><span style=color:#f92672>));</span>
+        <span style=color:#66d9ef>for</span> <span style=color:#f92672>(</span>Map<span style=color:#f92672>.</span><span style=color:#a6e22e>Entry</span><span style=color:#f92672>&lt;</span>String<span style=color:#f92672>,</span> User<span style=color:#f92672>&gt;</span> entry <span style=color:#f92672>:</span> users<span style=color:#f92672>.</span><span style=color:#a6e22e>entrySet</span><span style=color:#f92672>())</span> <span style=color:#f92672>{</span>
+            System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span>entry<span style=color:#f92672>.</span><span style=color:#a6e22e>getKey</span><span style=color:#f92672>()</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34; &#34;</span> <span style=color:#f92672>+</span> entry<span style=color:#f92672>.</span><span style=color:#a6e22e>getValue</span><span style=color:#f92672>());</span>
+        <span style=color:#f92672>}</span>
+        <span style=color:#66d9ef>for</span> <span style=color:#f92672>(</span>String userId <span style=color:#f92672>:</span> users<span style=color:#f92672>.</span><span style=color:#a6e22e>keySet</span><span style=color:#f92672>())</span> <span style=color:#f92672>{</span>
+            System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span>userId <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34; &#34;</span> <span style=color:#f92672>+</span> users<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>(</span>userId<span style=color:#f92672>));</span>
+        <span style=color:#f92672>}</span>
+        <span style=color:#66d9ef>for</span> <span style=color:#f92672>(</span>User user <span style=color:#f92672>:</span> users<span style=color:#f92672>.</span><span style=color:#a6e22e>values</span><span style=color:#f92672>())</span> <span style=color:#f92672>{</span>
+            System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span>user<span style=color:#f92672>);</span>
+        <span style=color:#f92672>}</span>
+        System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span>users<span style=color:#f92672>.</span><span style=color:#a6e22e>get</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;001&#34;</span><span style=color:#f92672>));</span>
+    <span style=color:#f92672>}</span>
 </code></pre></div><h2 id=reference>Reference</h2>
 <ul>
 <li><a href=https://www.jenv.be/>jEnv</a></li>
 <li><a href=https://sdkman.io/install>sdkman</a></li>
 <li><a href=https://docs.oracle.com/en/java/javase/22/docs/api/index.html>Packages and API</a></li>
+<li>[]</li>
 </ul>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/java>java</a>
