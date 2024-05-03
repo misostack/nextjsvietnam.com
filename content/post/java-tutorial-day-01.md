@@ -193,8 +193,210 @@ minhson@mymac src % java example.Example
 This is Example package!
 ```
 
+**OOP**
+
+```java
+// Base class for all heroes
+class Hero {
+    // You might want to include common attributes or methods here
+}
+
+// Archer class that extends Hero
+class Archer extends Hero {
+    // Method to simulate firing an arrow
+    public void fire() {
+        System.out.println("Firing arrow");
+    }
+}
+
+// Knight class that extends Hero
+class Knight extends Hero {
+    // Method to simulate a charge
+    public void charge() {
+        System.out.println("Charged");
+    }
+}
+
+// Demo class to use these classes
+public class Demo {
+    public static void main(String[] args) {
+        // Create an array of Hero objects
+        Hero[] heroes = new Hero[2];
+        heroes[0] = new Archer();
+        heroes[1] = new Knight();
+
+        // Iterate through the array and perform actions based on the type of Hero
+        for (Hero hero : heroes) {
+            if (hero instanceof Archer) {
+                ((Archer) hero).fire();
+            }
+            if (hero instanceof Knight) {
+                ((Knight) hero).charge();
+            }
+        }
+    }
+}
+
+```
+
+**Datetime**
+
+```java
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+public static void playingWithDateTime() {
+    LocalDate today = LocalDate.now();
+    LocalDateTime currentTime = LocalDateTime.now();
+    System.out.println("Now: " + today);
+    System.out.println("Now: " + currentTime);
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    System.out.println(currentTime.format(formatter));
+}
+```
+
+There are 2 types of time
+
+1. Moment
+
+- The moment Vietnam won the AFF Cup at 7:30 p.m. on December 15, 2018
+
+> moment = datetime + context
+
+The context here is the time zone. Time zones are characterized by a time offset (offset) from the coordinated universal time UTC. Deviation is expressed as ±hh:mm
+
+Vietnam belongs to the Indochina Time zone (Indochina Time - ICT) with an offset of UTC+07:00, meaning that the clock in Vietnam runs 7 hours faster than the UTC clock.
+
+So that
+
+> VNTime = UTC+07:00
+
+> moment = UTC + offset
+
+2. Relative/represent time
+
+Is the time used only for display (relative/represent time - briefly called rtime), excluding time zone context.
+
+- People from all over the world celebrate New Year's Eve at 00:00 on January 1 every year.
+- International Women's Day is March 8
+
+In daily life, when we want to compare times, we cannot use rtime, but must add a time zone or an offset to make rtime absolute (moment) before comparing.
+
+> moment = rtime + (zone or offset)
+
+> IANA Time Zone Database
+
+- [IANA](https://www.iana.org/time-zones)
+
+In the tz database, a time zone will have a name based on its geographical location, in the form of Area/Location, where area is the name of the continent or ocean, location is the name of the city or island.
+
+The time zone in Ho Chi Minh City is called Asia/Ho_Chi_Minh
+The time zone in Auckland (New Zealand) is called Pacific/Auckland
+However, not every city has its own time zone. See the full list here.
+
+Why we need this?
+
+Daylight Saving Time (DST)
+
+If you don't know, a city can use 2 time zones alternately during the year.
+
+![image](https://gist.github.com/assets/31009750/9f9ad4b6-de8c-435f-bf4a-9f0f510ebce4)
+
+![image](https://gist.github.com/assets/31009750/91114c8d-cf99-49f8-8284-3552914ff663)
+
+```java
+public static void playingWithTimezone() {
+    // Convert relative time to moment
+    String timeZone = "Asia/Ho_Chi_Minh";
+    ZoneId zoneId = ZoneId.of(timeZone);
+    Instant userInputDateTime = LocalDateTime.parse("2024-05-03T11:00:00").atZone(zoneId).toInstant();
+    System.out.println(userInputDateTime); // 2024-05-03T04:00:00Z
+}
+```
+
+### Java Array
+
+- Static Size Array
+- Dynamic Size Array
+
+```java
+    public static void playingWithArray() {
+        // this is static size array
+        String[] stringArray = {"A", "B", "C"};
+        stringArray[0] = "X";
+        System.out.println(stringArray[0]);
+        // this is resizable array ( dynamic size )
+        ArrayList<String> strings = new ArrayList<>();
+        strings.add("A");
+        strings.add("B");
+        for (String string : strings) {
+            System.out.println(string);
+        }
+        strings.remove(1);
+        System.out.println(strings);
+        strings.add("C");
+        System.out.println(strings);
+        strings.add("B");
+        System.out.println(strings);
+        strings.add("E");
+        strings.set(strings.size() - 1, "F");
+        System.out.println(strings);
+        strings.remove(1);
+        System.out.println(strings);
+        System.out.println(strings.size());
+        System.out.println(strings.get(2));
+        Collections.sort(strings);
+        System.out.println(strings);
+    }
+```
+
+> Array List
+
+- The ArrayList class has a regular array inside it. When an element is added, it is placed into the array. If the array is not big enough, a new, larger array is created to replace the old one and the old one is removed.
+
+> LinkedList
+
+- The LinkedList stores its items in "containers." The list has a link to the first container and each container has a link to the next container in the list. To add an element to the list, the element is placed into a new container and that container is linked to one of the other containers in the list.
+
+- For many cases, the ArrayList is more efficient as it is common to need access to random items in the list, but the LinkedList provides several methods to do certain operations more efficiently: addFirst, addLast, removeFirst, removeLast, getFirst, getLast
+
+```java
+LinkedList<String> linkedList = new LinkedList<>();
+linkedList.add("a");
+linkedList.add("b");
+linkedList.add("c");
+linkedList.addFirst("x");
+linkedList.addLast("y");
+linkedList.addLast("z");
+System.out.println(linkedList);
+linkedList.removeFirst();
+linkedList.removeLast();
+```
+
+> HashMap
+
+```java
+    public static void playWithHashMap() {
+        HashMap<String, User> users = new HashMap<>();
+        users.put("001", User.createUser(UserType.Admin));
+        users.put("002", User.createUser(UserType.Member));
+        for (Map.Entry<String, User> entry : users.entrySet()) {
+            System.out.println(entry.getKey() + " " + entry.getValue());
+        }
+        for (String userId : users.keySet()) {
+            System.out.println(userId + " " + users.get(userId));
+        }
+        for (User user : users.values()) {
+            System.out.println(user);
+        }
+        System.out.println(users.get("001"));
+    }
+```
+
 ## Reference
 
 - [jEnv](https://www.jenv.be/)
 - [sdkman](https://sdkman.io/install)
 - [Packages and API](https://docs.oracle.com/en/java/javase/22/docs/api/index.html)
+- []
