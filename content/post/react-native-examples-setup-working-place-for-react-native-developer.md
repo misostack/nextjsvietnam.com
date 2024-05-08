@@ -90,3 +90,65 @@ adb list
 And this is how your app display in virtual device
 
 ![image](https://gist.github.com/assets/31009750/f4a7087d-75a7-4ee0-9d76-13b049d5db7b)
+
+### Start your android emulator via command line
+
+To start an Android emulator on Windows using the command line, you first need to make sure that the Android SDK and the emulator are correctly installed and that the emulator command is properly set up in your system's PATH
+
+> C:\Users\[Your-Username]\AppData\Local\Android\Sdk\emulator
+
+```sh
+# list device
+emulator -list-avds
+# start device
+emulator -avd Pixel_3a_API_34_extension_level_7_x86_64
+# start with non-interactive mode/deamon mode
+start /min emulator -avd Pixel_3a_API_34_extension_level_7_x86_64 > output.txt
+```
+
+Feel free to find details at [https://developer.android.com/studio/run/emulator-commandline](https://developer.android.com/studio/run/emulator-commandline)
+
+### Connect localhost API with android emulator
+
+#### 1st Option
+
+Android emulators use the special IP address **10.0.2.2** to refer to the localhost of the host machine.
+
+So instead of using http://localhost:8000, you shoud change it to http://10.0.2.2:8000 when accessing from emulator.
+
+If you are developing with Android 9 (API level 28) or higher, you must also configure the network security settings to allow clear text (non-HTTPS) communication, as 10.0.2.2 might not have an SSL certificate.
+
+**Create or edit the network_security_config.xml in the res/xml folder of your project:**
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">10.0.2.2</domain>
+    </domain-config>
+</network-security-config>
+```
+
+**Reference this file in your manifest inside the <application> tag:**
+
+```xml
+<application
+    ...
+    android:networkSecurityConfig="@xml/network_security_config"
+    ...
+>
+    ...
+</application>
+```
+
+#### 2nd Option
+
+```sh
+adb forward tcp:EMULATOR_PORT tcp:PC_PORT
+```
+
+Eg: your api is at http://127.0.0.1:8000
+
+```sh
+adb forward tcp:8000 tcp:8000
+```
