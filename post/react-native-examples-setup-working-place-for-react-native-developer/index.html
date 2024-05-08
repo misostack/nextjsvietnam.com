@@ -190,6 +190,43 @@ npm run start
 </code></pre></div><p><img src=https://gist.github.com/assets/31009750/6e460a7c-0300-42ec-aeca-455702c3f4b2 alt=image></p>
 <p>And this is how your app display in virtual device</p>
 <p><img src=https://gist.github.com/assets/31009750/f4a7087d-75a7-4ee0-9d76-13b049d5db7b alt=image></p>
+<h3 id=start-your-android-emulator-via-command-line>Start your android emulator via command line</h3>
+<p>To start an Android emulator on Windows using the command line, you first need to make sure that the Android SDK and the emulator are correctly installed and that the emulator command is properly set up in your system&rsquo;s PATH</p>
+<blockquote>
+<p>C:\Users[Your-Username]\AppData\Local\Android\Sdk\emulator</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=color:#75715e># list device</span>
+emulator -list-avds
+<span style=color:#75715e># start device</span>
+emulator -avd Pixel_3a_API_34_extension_level_7_x86_64
+<span style=color:#75715e># start with non-interactive mode/deamon mode</span>
+start /min emulator -avd Pixel_3a_API_34_extension_level_7_x86_64 &gt; output.txt
+</code></pre></div><p>Feel free to find details at <a href=https://developer.android.com/studio/run/emulator-commandline>https://developer.android.com/studio/run/emulator-commandline</a></p>
+<h3 id=connect-localhost-api-with-android-emulator>Connect localhost API with android emulator</h3>
+<h4 id=1st-option>1st Option</h4>
+<p>Android emulators use the special IP address <strong>10.0.2.2</strong> to refer to the localhost of the host machine.</p>
+<p>So instead of using http://localhost:8000, you shoud change it to http://10.0.2.2:8000 when accessing from emulator.</p>
+<p>If you are developing with Android 9 (API level 28) or higher, you must also configure the network security settings to allow clear text (non-HTTPS) communication, as 10.0.2.2 might not have an SSL certificate.</p>
+<p><strong>Create or edit the network_security_config.xml in the res/xml folder of your project:</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml><span style=color:#75715e>&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;</span>
+<span style=color:#f92672>&lt;network-security-config&gt;</span>
+    <span style=color:#f92672>&lt;domain-config</span> <span style=color:#a6e22e>cleartextTrafficPermitted=</span><span style=color:#e6db74>&#34;true&#34;</span><span style=color:#f92672>&gt;</span>
+        <span style=color:#f92672>&lt;domain</span> <span style=color:#a6e22e>includeSubdomains=</span><span style=color:#e6db74>&#34;true&#34;</span><span style=color:#f92672>&gt;</span>10.0.2.2<span style=color:#f92672>&lt;/domain&gt;</span>
+    <span style=color:#f92672>&lt;/domain-config&gt;</span>
+<span style=color:#f92672>&lt;/network-security-config&gt;</span>
+</code></pre></div><p><strong>Reference this file in your manifest inside the tag:</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml><span style=color:#f92672>&lt;application</span>
+    <span style=color:#960050;background-color:#1e0010>...</span>
+    <span style=color:#a6e22e>android:networkSecurityConfig=</span><span style=color:#e6db74>&#34;@xml/network_security_config&#34;</span>
+    <span style=color:#960050;background-color:#1e0010>...</span>
+<span style=color:#f92672>&gt;</span>
+    ...
+<span style=color:#f92672>&lt;/application&gt;</span>
+</code></pre></div><h4 id=2nd-option>2nd Option</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>adb forward tcp:EMULATOR_PORT tcp:PC_PORT
+</code></pre></div><p>Eg: your api is at http://127.0.0.1:8000</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>adb forward tcp:8000 tcp:8000
+</code></pre></div>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/cheatsheet>cheatsheet</a>
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/react-native-examples>react-native-examples</a>
