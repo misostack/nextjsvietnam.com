@@ -9,7 +9,57 @@ tags: ["java"]
 image: "https://gist.github.com/assets/31009750/eb25bb12-ca2c-4f67-88eb-4f472e74711c"
 ---
 
-###
+### Install Tomcat Server
+
+- https://tomcat.apache.org/download-90.cgi#9.0.89
+
+For windows, you can download zip and extract in your appropriate folder.
+
+> C:/java/tomcat/
+
+For linux/mac
+
+```sh
+mkdir tomcat
+cd tomcat
+curl -O https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.89/bin/apache-tomcat-9.0.89.tar.gz
+tar xvf apache-tomcat-9.0.89.tar.gz
+# if wanna start tomcat local
+sudo mv apache-tomcat-9.0.89 /usr/local/tomcat
+echo 'export CATALINA_HOME="/usr/local/tomcat"' >> ~/.zshrc
+
+# Source the profile to update your current session
+source ~/.zshrc
+cd /usr/local/tomcat/bin
+chmod +x *.sh
+./startup.sh
+```
+
+You can access Tomcat server at http://localhost:8080/
+
+```
+Using CATALINA_BASE:   /usr/local/tomcat
+Using CATALINA_HOME:   /usr/local/tomcat
+Using CATALINA_TMPDIR: /usr/local/tomcat/temp
+Using JRE_HOME:        /usr
+Using CLASSPATH:       /usr/local/tomcat/bin/bootstrap.jar:/usr/local/tomcat/bin/tomcat-juli.jar
+Tomcat started.
+```
+
+### To Integrate with Jetbrains
+
+Edit -> Configuration -> Add New Configuration -> Tomcat Server Local
+
+![image](https://gist.github.com/assets/31009750/1cd4b93a-121f-4adc-9ec4-5442a3d38be9)
+
+Select Deployment
+
+![image](https://gist.github.com/assets/31009750/f5ee231f-ed09-410c-b314-494ab1ec8929)
+
+There are 2 types
+
+- war only
+- war exploded -> select this when development, your assets will be synced automatically
 
 ### Init project with maven
 
