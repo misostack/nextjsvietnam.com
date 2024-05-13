@@ -311,7 +311,59 @@ docker exec -it javacore-app-1 sh
 </span><span style=color:#960050;background-color:#1e0010>
 </span><span style=color:#960050;background-color:#1e0010></span><span style=color:#75715e># Command to run Tomcat</span><span style=color:#960050;background-color:#1e0010>
 </span><span style=color:#960050;background-color:#1e0010></span><span style=color:#66d9ef>CMD</span> [<span style=color:#e6db74>&#34;catalina.sh&#34;</span>, <span style=color:#e6db74>&#34;run&#34;</span>]<span style=color:#960050;background-color:#1e0010>
-</span></code></pre></div>
+</span></code></pre></div><h3 id=jsp>JSP</h3>
+<ul>
+<li>Directive Tag</li>
+</ul>
+<pre tabindex=0><code class=language-jsp data-lang=jsp>&lt;%-- Directive Tag --%&gt;
+&lt;%@ page    import=&quot;java.util.Random&quot; %&gt;
+</code></pre><ul>
+<li>Declaration Tag</li>
+</ul>
+<pre tabindex=0><code class=language-jsp data-lang=jsp>&lt;%!
+int counter = 0;
+// Declaration tag
+String convertNumberToTag(int number) {
+    if(number &lt; 0) {
+        return &quot;&quot;;
+    }
+    if(number &lt;=6) {
+        String headingTag = &quot;h&quot; + Integer.toString(number);
+        return &quot;&lt;&quot; + headingTag + &quot;&gt;Heading &quot; + number + &quot;&lt;/&quot; + headingTag + &quot;&gt;&quot;;
+    }
+    return &quot;&lt;h6&gt;Heading &quot; + Integer.toString(number) + &quot;&lt;/h6&gt;&quot;;
+}
+
+int randomANumberGTETargetNumber(int targetNumber){
+    // reset counter;
+    counter = 0;
+    int returnedValue = 0;
+    if(targetNumber &lt;= returnedValue){
+        return targetNumber;
+    }
+    while(returnedValue &lt; targetNumber) {
+        returnedValue = new Random().nextInt(targetNumber) + 1;
+        counter += 1;
+    }
+    return returnedValue;
+}
+%&gt;
+</code></pre><ul>
+<li>Expression Tag</li>
+</ul>
+<pre tabindex=0><code class=language-jsp data-lang=jsp>&lt;%-- Expression Tag --%&gt;
+&lt;p&gt;Number of times need to random the target number:&lt;%= counter %&gt;&lt;/p&gt;
+</code></pre><ul>
+<li>Scriptlet Tag</li>
+</ul>
+<pre tabindex=0><code class=language-jsp data-lang=jsp>&lt;%
+    // Scriptlet tag
+    int n = randomANumberGTETargetNumber(10);
+    for (int i = 0; i &lt; n; i++) {
+        out.println(convertNumberToTag(i+1));
+    }
+%&gt;
+</code></pre>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/java>java</a>
 </div>
