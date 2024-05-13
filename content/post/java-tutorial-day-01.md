@@ -41,6 +41,22 @@ sdk use java 22-oracle
 sdk default java 22-oracle
 ```
 
+**Install maven**
+
+```sh
+sdk list maven
+sdk install maven
+```
+
+Why we need maven?
+
+- **Dependency Management**
+- **Standardized Build Process**
+- **Project Lifecycle Management**
+- **Plugins and Repositories**
+- **Project Object Model (POM):**: project configuration
+- **Build Profiles**
+
 ## Install Java IDE
 
 - [IntelliJ IDE](https://www.jetbrains.com/idea/)
@@ -399,4 +415,3 @@ linkedList.removeLast();
 - [jEnv](https://www.jenv.be/)
 - [sdkman](https://sdkman.io/install)
 - [Packages and API](https://docs.oracle.com/en/java/javase/22/docs/api/index.html)
-- []
