@@ -133,7 +133,45 @@
 <strong>Tags:</strong>
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=/tags/java>java</a>
 </p>
-<h3 id=heading></h3>
+<h3 id=install-tomcat-server>Install Tomcat Server</h3>
+<ul>
+<li><a href=https://tomcat.apache.org/download-90.cgi#9.0.89>https://tomcat.apache.org/download-90.cgi#9.0.89</a></li>
+</ul>
+<p>For windows, you can download zip and extract in your appropriate folder.</p>
+<blockquote>
+<p>C:/java/tomcat/</p>
+</blockquote>
+<p>For linux/mac</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>mkdir tomcat
+cd tomcat
+curl -O https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.89/bin/apache-tomcat-9.0.89.tar.gz
+tar xvf apache-tomcat-9.0.89.tar.gz
+<span style=color:#75715e># if wanna start tomcat local</span>
+sudo mv apache-tomcat-9.0.89 /usr/local/tomcat
+echo <span style=color:#e6db74>&#39;export CATALINA_HOME=&#34;/usr/local/tomcat&#34;&#39;</span> &gt;&gt; ~/.zshrc
+
+<span style=color:#75715e># Source the profile to update your current session</span>
+source ~/.zshrc
+cd /usr/local/tomcat/bin
+chmod +x *.sh
+./startup.sh
+</code></pre></div><p>You can access Tomcat server at http://localhost:8080/</p>
+<pre tabindex=0><code>Using CATALINA_BASE:   /usr/local/tomcat
+Using CATALINA_HOME:   /usr/local/tomcat
+Using CATALINA_TMPDIR: /usr/local/tomcat/temp
+Using JRE_HOME:        /usr
+Using CLASSPATH:       /usr/local/tomcat/bin/bootstrap.jar:/usr/local/tomcat/bin/tomcat-juli.jar
+Tomcat started.
+</code></pre><h3 id=to-integrate-with-jetbrains>To Integrate with Jetbrains</h3>
+<p>Edit -> Configuration -> Add New Configuration -> Tomcat Server Local</p>
+<p><img src=https://gist.github.com/assets/31009750/1cd4b93a-121f-4adc-9ec4-5442a3d38be9 alt=image></p>
+<p>Select Deployment</p>
+<p><img src=https://gist.github.com/assets/31009750/f5ee231f-ed09-410c-b314-494ab1ec8929 alt=image></p>
+<p>There are 2 types</p>
+<ul>
+<li>war only</li>
+<li>war exploded -> select this when development, your assets will be synced automatically</li>
+</ul>
 <h3 id=init-project-with-maven>Init project with maven</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>mvn org.apache.maven.plugins:maven-archetype-plugin:3.1.2:generate -DarchetypeArtifactId<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;maven-archetype-webapp&#34;</span> -DarchetypeGroupId<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;org.apache.maven.archetypes&#34;</span> -DarchetypeVersion<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;1.4&#34;</span> -DgroupId<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;net.refactoreverything&#34;</span> -DartifactId<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;reweb&#34;</span>
 </code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml><span style=color:#75715e>&lt;!-- pom.xml --&gt;</span>
