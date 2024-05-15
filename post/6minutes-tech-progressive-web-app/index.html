@@ -243,9 +243,868 @@ So when a team designs <strong>Mobile first</strong>, the result is an experienc
 <li>User-agent strings have never been truly reliable</li>
 <li>For example, desktop site redirects on mobile browsers are often as simple as spoofing a desktop user-agent string</li>
 </ul>
-<h2 id=references>References</h2>
+<h3 id=content-first>Content first</h3>
+<ul>
+<li>Another principle of designing for the web is: start with your content first. For example, a real-time stock ticker with a graph of a stock&rsquo;s prices is, at its core, a table of stocks with their price over some time, maybe with a link to refresh the site.</li>
+</ul>
+<p><strong>Intrinsic design</strong>:</p>
+<ul>
+<li>Mobile as a focusing constraint for user experience.</li>
+<li>Emphasizing content and core functionality in the design process.</li>
+<li>Progressively enhancing with advanced functionality where available.</li>
+</ul>
+<h3 id=web-performance>Web performance</h3>
+<p>Having a great experience for users is mandatory; it will lead to more conversions in every possible way:</p>
+<ul>
+<li>Understand the key user-centric metrics available.</li>
+<li>Set goals for every metric.</li>
+<li>Measure our PWA.</li>
+<li>Improve our metrics by applying techniques and best practices statically in our code or server.</li>
+<li>Measure again.</li>
+<li>Improve the experience to each user, live, based on the user&rsquo;s context.</li>
+</ul>
+<blockquote>
+<p>Core Web Vitals</p>
+</blockquote>
+<ul>
+<li>Loading—represented by Largest Contentful Paint (LCP).</li>
+<li>Interactivity—represented by Interaction to Next Paint (INP).</li>
+<li>Visual Stability—represented by Cumulative Layout Shift (CLS).</li>
+</ul>
+<h2 id=app-design>App Design</h2>
+<p>Materials</p>
+<ol>
+<li>Icons</li>
+</ol>
+<ul>
+<li>Home screen (iOS, iPadOS, Android).</li>
+<li>App Launcher (macOS, Android).</li>
+<li>Start Menu or App Menu (Windows, ChromeOS, Linux).</li>
+<li>Dock, TaskBar, or Multi-task panels (all operating systems).</li>
+</ul>
+<ol start=2>
+<li>Theming your app</li>
+</ol>
+<ul>
+<li>Theme color: defines the color of the window&rsquo;s title bar on the desktop and the color of the status bar on mobile devices. Using a meta tag, you can have options for different schemes, such as dark or light mode and they will be used based on the user&rsquo;s preference.</li>
+<li>Background color: defines the color of the window before the app and its CSS are loaded.</li>
+<li>Accent color: defines the color of built-in browser components, such as form controls.</li>
+</ul>
+<ol start=3>
+<li>Display modes</li>
+</ol>
+<ul>
+<li>Fullscreen: suitable for immersive experiences, such as games, VR, or AR experiences. It&rsquo;s currently only available on Android devices, and it hides the status bar and the navigation bar, giving your PWA 100% of the screen for your content. On desktop and iPadOS, fullscreen PWAs are not supported; however, you can use the Fullscreen API from within your PWA to display your app fullscreen at a user&rsquo;s request.</li>
+<li>Standalone: The most common option for a Progressive Web App, standalone mode displays your PWA in an OS-standard window without any browser navigation UI. On mobile devices, a standalone PWA experience will create a standard screen that keeps the status bar visible, so the user can still see notifications, time, and battery level. It often does not have any browser-controlled menu like desktop standalone experiences may include.</li>
+<li>Minimal User Interface: This mode is available for Progressive Web Apps on Android and desktop operating systems.</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-css data-lang=css><span style=color:#75715e>/* It targets only the app used within the browser */</span>
+@<span style=color:#66d9ef>media</span> <span style=color:#f92672>(</span><span style=color:#f92672>display-mode</span><span style=color:#f92672>:</span> <span style=color:#f92672>browser</span><span style=color:#f92672>)</span> {
+}
+<span style=color:#75715e>/* It targets only the app used with a system icon in standalone mode */</span>
+@<span style=color:#66d9ef>media</span> <span style=color:#f92672>(</span><span style=color:#f92672>display-mode</span><span style=color:#f92672>:</span> <span style=color:#f92672>standalone</span><span style=color:#f92672>)</span> {
+}
+<span style=color:#75715e>/* It targets only the app used with a system icon in all mode */</span>
+@<span style=color:#66d9ef>media</span> <span style=color:#f92672>(</span><span style=color:#f92672>display-mode</span><span style=color:#f92672>:</span> <span style=color:#f92672>standalone</span><span style=color:#f92672>),</span>
+  <span style=color:#f92672>(</span><span style=color:#f92672>display-mode</span><span style=color:#f92672>:</span> <span style=color:#f92672>fullscreen</span><span style=color:#f92672>),</span>
+  <span style=color:#f92672>(</span><span style=color:#f92672>display-mode</span><span style=color:#f92672>:</span> <span style=color:#f92672>minimal-ui</span><span style=color:#f92672>)</span> {
+}
+</code></pre></div><h3 id=the-app-experience>The app experience</h3>
+<h4 id=user-selection>User selection</h4>
+<ul>
+<li>Content is generally selectable with a mouse or pointer, or a press and hold touch gesture. While helpful for content, it doesn&rsquo;t provide the best experience for navigation items, menus, and buttons within your PWA</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-css data-lang=css>.<span style=color:#a6e22e>unselectable</span> {
+  <span style=color:#66d9ef>user-select</span>: <span style=color:#66d9ef>none</span>;
+}
+</code></pre></div><h4 id=accent-color>Accent color</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-css data-lang=css><span style=color:#f92672>selector</span> {
+  <span style=color:#66d9ef>font-family</span>: <span style=color:#f92672>-</span>apple-system, BlinkMacSystemFont, <span style=color:#e6db74>&#34;Segoe UI&#34;</span>, system-ui, Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, <span style=color:#e6db74>&#34;Helvetica Neue&#34;</span>, <span style=color:#66d9ef>sans-serif</span>;
+}
+</code></pre></div><h4 id=disable-pull-to-refresh>Disable Pull to refresh</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-css data-lang=css><span style=color:#f92672>body</span> {
+  overscroll-behavior-y: <span style=color:#66d9ef>contain</span>;
+}
+</code></pre></div><h4 id=safe-area>Safe Area</h4>
+<ul>
+<li><a href=https://developer.mozilla.org/en-US/docs/Web/CSS/env>https://developer.mozilla.org/en-US/docs/Web/CSS/env</a></li>
+</ul>
+<p>Some devices do not have unobstructed rectangular screens; instead, their screen may be a different shape, like a circle, or have portions of the screen that can&rsquo;t be used, like the iPhone 13&rsquo;s notch</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-css data-lang=css><span style=color:#f92672>header</span> {
+  <span style=color:#66d9ef>position</span>: <span style=color:#66d9ef>fixed</span>;
+  <span style=color:#66d9ef>left</span>: <span style=color:#a6e22e>env</span>(titlebar<span style=color:#f92672>-</span>area<span style=color:#f92672>-</span>x);
+  <span style=color:#66d9ef>top</span>: <span style=color:#a6e22e>env</span>(titlebar<span style=color:#f92672>-</span>area<span style=color:#f92672>-</span>y);
+  <span style=color:#66d9ef>width</span>: <span style=color:#a6e22e>env</span>(titlebar<span style=color:#f92672>-</span>area<span style=color:#f92672>-</span>width);
+  <span style=color:#66d9ef>height</span>: <span style=color:#a6e22e>env</span>(titlebar<span style=color:#f92672>-</span>area<span style=color:#f92672>-</span>height);
+}
+
+<span style=color:#f92672>main</span> {
+  <span style=color:#66d9ef>margin-top</span>: <span style=color:#a6e22e>env</span>(titlebar<span style=color:#f92672>-</span>area<span style=color:#f92672>-</span>height);
+}
+</code></pre></div><h2 id=assets-and-data>Assets and Data</h2>
+<h3 id=app-components>App components</h3>
+<ul>
+<li>HTML for content and initial page rendering.</li>
+<li>JavaScript for logic, including the ability to run WebAssembly modules (compiled code) and render 2D and 3D hardware-optimized graphics.</li>
+<li>CSS for layout, styling, and animations.</li>
+<li>Images in web formats, such as PNG, JPEG, WebP, and SVG.</li>
+<li>Videos in web formats, such as MPEG-4 and WebM.</li>
+<li>Web fonts.</li>
+<li>Data in JSON or other formats.</li>
+</ul>
+<h3 id=platform-specific-apps-vs-pwa>Platform-specific apps vs. PWA</h3>
+<ul>
+<li>
+<p>When you install a platform-specific app you are typically downloading a package that includes all the app&rsquo;s assets: code, images, fonts, videos, and so on. Therefore, all these resources are available, from your device storage, even when the app is offline.</p>
+</li>
+<li>
+<p>The PWA approach enhances the traditional web experience by making some or all the assets available client-side as with platform-specific apps. Therefore, when you open a PWA, the initial rendering can be as instantaneous as a platform app because the assets are available without going to the network</p>
+</li>
+</ul>
+<h1 id=practice>Practice</h1>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>npm create @vite-pwa/pwa@latest
+</code></pre></div><p>Structure</p>
+<ul>
+<li>index.html</li>
+<li>app.js</li>
+<li>style.css</li>
+<li>sw.js</li>
+<li>manifest.json</li>
+<li>favicon.png</li>
+<li>icon.png</li>
+</ul>
+<p>Install</p>
+<p><img src=https://gist.github.com/assets/31009750/fad1ac16-e485-4faa-9747-56044d9efa3d alt=image></p>
+<p>Then your app</p>
+<p><img src=https://gist.github.com/assets/31009750/6b087abf-76f1-44af-8926-3a7dc7a4f297 alt=image></p>
+<p>Code sample at [https://github.com/nextjsvietnam/6minutes-tech-pwa/tree/main]</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-html data-lang=html><span style=color:#75715e>&lt;!DOCTYPE html&gt;</span>
+&lt;<span style=color:#f92672>html</span> <span style=color:#a6e22e>lang</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;vi-VN&#34;</span>&gt;
+  &lt;<span style=color:#f92672>head</span>&gt;
+    &lt;<span style=color:#f92672>meta</span> <span style=color:#a6e22e>charset</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;UTF-8&#34;</span> /&gt;
+    &lt;<span style=color:#f92672>meta</span> <span style=color:#a6e22e>name</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;viewport&#34;</span> <span style=color:#a6e22e>content</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;width=device-width, initial-scale=1.0&#34;</span> /&gt;
+    &lt;<span style=color:#f92672>title</span>&gt;Favorite Links&lt;/<span style=color:#f92672>title</span>&gt;
+    &lt;<span style=color:#f92672>link</span> <span style=color:#a6e22e>rel</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;stylesheet&#34;</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;style.css&#34;</span> /&gt;
+    &lt;<span style=color:#f92672>link</span> <span style=color:#a6e22e>rel</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;manifest&#34;</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;6minutes-tech-pwa.json&#34;</span> /&gt;
+    &lt;<span style=color:#f92672>link</span> <span style=color:#a6e22e>rel</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;icon&#34;</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;favicon-32x32.png&#34;</span> /&gt;
+  &lt;/<span style=color:#f92672>head</span>&gt;
+  &lt;<span style=color:#f92672>body</span>&gt;
+    &lt;<span style=color:#f92672>h1</span>&gt;Favorite Links&lt;/<span style=color:#f92672>h1</span>&gt;
+    &lt;<span style=color:#f92672>form</span>&gt;
+      &lt;<span style=color:#f92672>fieldset</span>&gt;
+        &lt;<span style=color:#f92672>legend</span>&gt;Enter your favorite link&lt;/<span style=color:#f92672>legend</span>&gt;
+        &lt;<span style=color:#f92672>p</span>&gt;
+          &lt;<span style=color:#f92672>label</span> <span style=color:#a6e22e>for</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;link&#34;</span>&gt;Link&lt;/<span style=color:#f92672>label</span>&gt;
+          &lt;<span style=color:#f92672>input</span> <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;text&#34;</span> <span style=color:#a6e22e>id</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;link&#34;</span> <span style=color:#a6e22e>required</span> /&gt;
+        &lt;/<span style=color:#f92672>p</span>&gt;
+      &lt;/<span style=color:#f92672>fieldset</span>&gt;
+      &lt;<span style=color:#f92672>p</span>&gt;
+        &lt;<span style=color:#f92672>button</span> <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;submit&#34;</span>&gt;Save&lt;/<span style=color:#f92672>button</span>&gt;
+      &lt;/<span style=color:#f92672>p</span>&gt;
+    &lt;/<span style=color:#f92672>form</span>&gt;
+    &lt;<span style=color:#f92672>section</span> <span style=color:#a6e22e>id</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;favorite-links&#34;</span>&gt;
+      &lt;<span style=color:#f92672>h2</span>&gt;Links&lt;/<span style=color:#f92672>h2</span>&gt;
+      &lt;<span style=color:#f92672>ul</span>&gt;
+        &lt;<span style=color:#f92672>li</span>&gt;&lt;<span style=color:#f92672>a</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;#&#34;</span>&gt;Link1&lt;/<span style=color:#f92672>a</span>&gt;&lt;/<span style=color:#f92672>li</span>&gt;
+        &lt;<span style=color:#f92672>li</span>&gt;&lt;<span style=color:#f92672>a</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;#&#34;</span>&gt;Link2&lt;/<span style=color:#f92672>a</span>&gt;&lt;/<span style=color:#f92672>li</span>&gt;
+        &lt;<span style=color:#f92672>li</span>&gt;&lt;<span style=color:#f92672>a</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;#&#34;</span>&gt;Link3&lt;/<span style=color:#f92672>a</span>&gt;&lt;/<span style=color:#f92672>li</span>&gt;
+        &lt;<span style=color:#f92672>li</span>&gt;&lt;<span style=color:#f92672>a</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;#&#34;</span>&gt;Link4&lt;/<span style=color:#f92672>a</span>&gt;&lt;/<span style=color:#f92672>li</span>&gt;
+        &lt;<span style=color:#f92672>li</span>&gt;&lt;<span style=color:#f92672>a</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;#&#34;</span>&gt;Link5&lt;/<span style=color:#f92672>a</span>&gt;&lt;/<span style=color:#f92672>li</span>&gt;
+      &lt;/<span style=color:#f92672>ul</span>&gt;
+    &lt;/<span style=color:#f92672>section</span>&gt;
+  &lt;/<span style=color:#f92672>body</span>&gt;
+  &lt;<span style=color:#f92672>script</span> <span style=color:#a6e22e>src</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;app.js&#34;</span> <span style=color:#a6e22e>defer</span>&gt;&lt;/<span style=color:#f92672>script</span>&gt;
+  &lt;<span style=color:#f92672>script</span>&gt;
+    <span style=color:#66d9ef>if</span> (<span style=color:#e6db74>&#34;serviceWorker&#34;</span> <span style=color:#66d9ef>in</span> <span style=color:#a6e22e>navigator</span>) {
+      <span style=color:#a6e22e>navigator</span>.<span style=color:#a6e22e>serviceWorker</span>.<span style=color:#a6e22e>register</span>(<span style=color:#e6db74>&#34;sw.js&#34;</span>).<span style=color:#a6e22e>then</span>(
+        (<span style=color:#a6e22e>registration</span>) =&gt; {
+          <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;Service worker registration successful:&#34;</span>, <span style=color:#a6e22e>registration</span>);
+        },
+        (<span style=color:#a6e22e>error</span>) =&gt; {
+          <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>error</span>(<span style=color:#e6db74>`Service worker registration failed: </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>error</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>);
+        }
+      );
+    } <span style=color:#66d9ef>else</span> {
+      <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>error</span>(<span style=color:#e6db74>&#34;Service workers are not supported.&#34;</span>);
+    }
+  &lt;/<span style=color:#f92672>script</span>&gt;
+  &lt;<span style=color:#f92672>button</span> <span style=color:#a6e22e>id</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;install&#34;</span> <span style=color:#a6e22e>hidden</span>&gt;Install&lt;/<span style=color:#f92672>button</span>&gt;
+&lt;/<span style=color:#f92672>html</span>&gt;
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>{
+  <span style=color:#f92672>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;6 minutes tech PWA&#34;</span>,
+  <span style=color:#f92672>&#34;description&#34;</span>: <span style=color:#e6db74>&#34;First Progressive Web Application: Favorite Links&#34;</span>,
+  <span style=color:#f92672>&#34;short_name&#34;</span>: <span style=color:#e6db74>&#34;6MT-PWA&#34;</span>,
+  <span style=color:#f92672>&#34;start_url&#34;</span>: <span style=color:#e6db74>&#34;&#34;</span>,
+  <span style=color:#f92672>&#34;display&#34;</span>: <span style=color:#e6db74>&#34;standalone&#34;</span>,
+  <span style=color:#f92672>&#34;orientation&#34;</span>: <span style=color:#e6db74>&#34;portrait&#34;</span>,
+  <span style=color:#f92672>&#34;theme_color&#34;</span>: <span style=color:#e6db74>&#34;rgb(140 196 61)&#34;</span>,
+  <span style=color:#f92672>&#34;background_color&#34;</span>: <span style=color:#e6db74>&#34;green&#34;</span>,
+  <span style=color:#f92672>&#34;icons&#34;</span>: [
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/SmallTile.scale-100.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;71x71&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/SmallTile.scale-125.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;89x89&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/SmallTile.scale-150.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;107x107&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/SmallTile.scale-200.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;142x142&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/SmallTile.scale-400.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;284x284&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square150x150Logo.scale-100.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;150x150&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square150x150Logo.scale-125.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;188x188&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square150x150Logo.scale-150.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;225x225&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square150x150Logo.scale-200.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;300x300&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square150x150Logo.scale-400.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;600x600&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Wide310x150Logo.scale-100.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;310x150&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Wide310x150Logo.scale-125.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;388x188&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Wide310x150Logo.scale-150.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;465x225&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Wide310x150Logo.scale-200.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;620x300&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Wide310x150Logo.scale-400.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;1240x600&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/LargeTile.scale-100.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;310x310&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/LargeTile.scale-125.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;388x388&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/LargeTile.scale-150.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;465x465&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/LargeTile.scale-200.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;620x620&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/LargeTile.scale-400.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;1240x1240&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square44x44Logo.scale-100.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;44x44&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square44x44Logo.scale-125.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;55x55&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square44x44Logo.scale-150.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;66x66&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square44x44Logo.scale-200.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;88x88&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square44x44Logo.scale-400.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;176x176&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/StoreLogo.scale-100.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;50x50&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/StoreLogo.scale-125.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;63x63&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/StoreLogo.scale-150.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;75x75&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/StoreLogo.scale-200.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;100x100&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/StoreLogo.scale-400.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;200x200&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/SplashScreen.scale-100.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;620x300&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/SplashScreen.scale-125.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;775x375&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/SplashScreen.scale-150.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;930x450&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/SplashScreen.scale-200.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;1240x600&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/SplashScreen.scale-400.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;2480x1200&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square44x44Logo.targetsize-16.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;16x16&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square44x44Logo.targetsize-20.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;20x20&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square44x44Logo.targetsize-24.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;24x24&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square44x44Logo.targetsize-30.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;30x30&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square44x44Logo.targetsize-32.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;32x32&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square44x44Logo.targetsize-36.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;36x36&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square44x44Logo.targetsize-40.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;40x40&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square44x44Logo.targetsize-44.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;44x44&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square44x44Logo.targetsize-48.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;48x48&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square44x44Logo.targetsize-60.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;60x60&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square44x44Logo.targetsize-64.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;64x64&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square44x44Logo.targetsize-72.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;72x72&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square44x44Logo.targetsize-80.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;80x80&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square44x44Logo.targetsize-96.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;96x96&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square44x44Logo.targetsize-256.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;256x256&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square44x44Logo.altform-unplated_targetsize-16.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;16x16&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square44x44Logo.altform-unplated_targetsize-20.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;20x20&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square44x44Logo.altform-unplated_targetsize-24.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;24x24&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square44x44Logo.altform-unplated_targetsize-30.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;30x30&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square44x44Logo.altform-unplated_targetsize-32.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;32x32&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square44x44Logo.altform-unplated_targetsize-36.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;36x36&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square44x44Logo.altform-unplated_targetsize-40.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;40x40&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square44x44Logo.altform-unplated_targetsize-44.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;44x44&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square44x44Logo.altform-unplated_targetsize-48.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;48x48&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square44x44Logo.altform-unplated_targetsize-60.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;60x60&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square44x44Logo.altform-unplated_targetsize-64.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;64x64&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square44x44Logo.altform-unplated_targetsize-72.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;72x72&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square44x44Logo.altform-unplated_targetsize-80.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;80x80&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square44x44Logo.altform-unplated_targetsize-96.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;96x96&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square44x44Logo.altform-unplated_targetsize-256.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;256x256&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square44x44Logo.altform-lightunplated_targetsize-16.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;16x16&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square44x44Logo.altform-lightunplated_targetsize-20.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;20x20&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square44x44Logo.altform-lightunplated_targetsize-24.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;24x24&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square44x44Logo.altform-lightunplated_targetsize-30.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;30x30&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square44x44Logo.altform-lightunplated_targetsize-32.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;32x32&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square44x44Logo.altform-lightunplated_targetsize-36.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;36x36&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square44x44Logo.altform-lightunplated_targetsize-40.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;40x40&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square44x44Logo.altform-lightunplated_targetsize-44.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;44x44&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square44x44Logo.altform-lightunplated_targetsize-48.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;48x48&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square44x44Logo.altform-lightunplated_targetsize-60.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;60x60&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square44x44Logo.altform-lightunplated_targetsize-64.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;64x64&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square44x44Logo.altform-lightunplated_targetsize-72.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;72x72&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square44x44Logo.altform-lightunplated_targetsize-80.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;80x80&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square44x44Logo.altform-lightunplated_targetsize-96.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;96x96&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;windows11/Square44x44Logo.altform-lightunplated_targetsize-256.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;256x256&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;android/android-launchericon-512-512.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;512x512&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;android/android-launchericon-192-192.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;192x192&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;android/android-launchericon-144-144.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;144x144&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;android/android-launchericon-96-96.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;96x96&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;android/android-launchericon-72-72.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;72x72&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;android/android-launchericon-48-48.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;48x48&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;ios/16.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;16x16&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;ios/20.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;20x20&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;ios/29.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;29x29&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;ios/32.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;32x32&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;ios/40.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;40x40&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;ios/50.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;50x50&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;ios/57.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;57x57&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;ios/58.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;58x58&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;ios/60.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;60x60&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;ios/64.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;64x64&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;ios/72.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;72x72&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;ios/76.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;76x76&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;ios/80.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;80x80&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;ios/87.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;87x87&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;ios/100.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;100x100&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;ios/114.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;114x114&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;ios/120.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;120x120&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;ios/128.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;128x128&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;ios/144.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;144x144&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;ios/152.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;152x152&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;ios/167.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;167x167&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;ios/180.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;180x180&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;ios/192.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;192x192&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;ios/256.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;256x256&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;ios/512.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;512x512&#34;</span>
+    },
+    {
+      <span style=color:#f92672>&#34;src&#34;</span>: <span style=color:#e6db74>&#34;ios/1024.png&#34;</span>,
+      <span style=color:#f92672>&#34;sizes&#34;</span>: <span style=color:#e6db74>&#34;1024x1024&#34;</span>
+    }
+  ]
+}
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#75715e>// sw.js
+</span><span style=color:#75715e>// The version of the cache.
+</span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>VERSION</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;v1.240515001&#34;</span>;
+
+<span style=color:#75715e>// The name of the cache
+</span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>CACHE_NAME</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>`6minutes-tech-pwa-</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>VERSION</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>;
+
+<span style=color:#75715e>// The static resources that the app needs to function.
+</span><span style=color:#75715e>// Dynamically determine the base path depending on where the app is hosted.
+</span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>getBasePath</span> <span style=color:#f92672>=</span> () =&gt; {
+  <span style=color:#66d9ef>if</span> (
+    <span style=color:#a6e22e>location</span>.<span style=color:#a6e22e>hostname</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#34;localhost&#34;</span> <span style=color:#f92672>||</span>
+    <span style=color:#a6e22e>location</span>.<span style=color:#a6e22e>hostname</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#34;127.0.0.1&#34;</span> <span style=color:#f92672>||</span>
+    <span style=color:#a6e22e>location</span>.<span style=color:#a6e22e>hostname</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#34;&#34;</span>
+  ) {
+    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;/&#34;</span>; <span style=color:#75715e>// No base path for localhost
+</span><span style=color:#75715e></span>  }
+  <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;/6minutes-tech-pwa/&#34;</span>; <span style=color:#75715e>// Adjust the base path for GitHub Pages or other environments
+</span><span style=color:#75715e></span>};
+
+<span style=color:#75715e>// Base path for the hosted app
+</span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>BASE_PATH</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>getBasePath</span>();
+<span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>location</span>.<span style=color:#a6e22e>hostname</span>, <span style=color:#a6e22e>BASE_PATH</span>);
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>APP_STATIC_RESOURCES</span> <span style=color:#f92672>=</span> [
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>index.html`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>app.js`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>style.css`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>6minutes-tech-pwa.json`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>favicon-32x32.png`</span>,
+
+  <span style=color:#75715e>// Windows 11 Icons
+</span><span style=color:#75715e></span>  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/SmallTile.scale-100.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/SmallTile.scale-125.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/SmallTile.scale-150.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/SmallTile.scale-200.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/SmallTile.scale-400.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square150x150Logo.scale-100.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square150x150Logo.scale-125.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square150x150Logo.scale-150.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square150x150Logo.scale-200.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square150x150Logo.scale-400.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Wide310x150Logo.scale-100.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Wide310x150Logo.scale-125.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Wide310x150Logo.scale-150.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Wide310x150Logo.scale-200.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Wide310x150Logo.scale-400.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/LargeTile.scale-100.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/LargeTile.scale-125.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/LargeTile.scale-150.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/LargeTile.scale-200.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/LargeTile.scale-400.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square44x44Logo.scale-100.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square44x44Logo.scale-125.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square44x44Logo.scale-150.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square44x44Logo.scale-200.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square44x44Logo.scale-400.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/StoreLogo.scale-100.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/StoreLogo.scale-125.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/StoreLogo.scale-150.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/StoreLogo.scale-200.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/StoreLogo.scale-400.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/SplashScreen.scale-100.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/SplashScreen.scale-125.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/SplashScreen.scale-150.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/SplashScreen.scale-200.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/SplashScreen.scale-400.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square44x44Logo.targetsize-16.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square44x44Logo.targetsize-20.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square44x44Logo.targetsize-24.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square44x44Logo.targetsize-30.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square44x44Logo.targetsize-32.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square44x44Logo.targetsize-36.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square44x44Logo.targetsize-40.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square44x44Logo.targetsize-44.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square44x44Logo.targetsize-48.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square44x44Logo.targetsize-60.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square44x44Logo.targetsize-64.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square44x44Logo.targetsize-72.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square44x44Logo.targetsize-80.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square44x44Logo.targetsize-96.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square44x44Logo.targetsize-256.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square44x44Logo.altform-unplated_targetsize-16.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square44x44Logo.altform-unplated_targetsize-20.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square44x44Logo.altform-unplated_targetsize-24.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square44x44Logo.altform-unplated_targetsize-30.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square44x44Logo.altform-unplated_targetsize-32.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square44x44Logo.altform-unplated_targetsize-36.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square44x44Logo.altform-unplated_targetsize-40.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square44x44Logo.altform-unplated_targetsize-44.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square44x44Logo.altform-unplated_targetsize-48.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square44x44Logo.altform-unplated_targetsize-60.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square44x44Logo.altform-unplated_targetsize-64.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square44x44Logo.altform-unplated_targetsize-72.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square44x44Logo.altform-unplated_targetsize-80.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square44x44Logo.altform-unplated_targetsize-96.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square44x44Logo.altform-unplated_targetsize-256.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square44x44Logo.altform-lightunplated_targetsize-16.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square44x44Logo.altform-lightunplated_targetsize-20.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square44x44Logo.altform-lightunplated_targetsize-24.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square44x44Logo.altform-lightunplated_targetsize-30.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square44x44Logo.altform-lightunplated_targetsize-32.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square44x44Logo.altform-lightunplated_targetsize-36.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square44x44Logo.altform-lightunplated_targetsize-40.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square44x44Logo.altform-lightunplated_targetsize-44.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square44x44Logo.altform-lightunplated_targetsize-48.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square44x44Logo.altform-lightunplated_targetsize-60.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square44x44Logo.altform-lightunplated_targetsize-64.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square44x44Logo.altform-lightunplated_targetsize-72.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square44x44Logo.altform-lightunplated_targetsize-80.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square44x44Logo.altform-lightunplated_targetsize-96.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>windows11/Square44x44Logo.altform-lightunplated_targetsize-256.png`</span>,
+
+  <span style=color:#75715e>// Android Icons
+</span><span style=color:#75715e></span>  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>android/android-launchericon-512-512.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>android/android-launchericon-192-192.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>android/android-launchericon-144-144.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>android/android-launchericon-96-96.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>android/android-launchericon-72-72.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>android/android-launchericon-48-48.png`</span>,
+
+  <span style=color:#75715e>// iOS Icons
+</span><span style=color:#75715e></span>  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>ios/16.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>ios/20.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>ios/29.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>ios/32.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>ios/40.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>ios/50.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>ios/57.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>ios/58.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>ios/60.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>ios/64.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>ios/72.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>ios/76.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>ios/80.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>ios/87.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>ios/100.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>ios/114.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>ios/120.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>ios/128.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>ios/144.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>ios/152.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>ios/167.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>ios/180.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>ios/192.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>ios/256.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>ios/512.png`</span>,
+  <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>ios/1024.png`</span>,
+];
+
+<span style=color:#75715e>// On install, cache the static resources
+</span><span style=color:#75715e></span><span style=color:#a6e22e>self</span>.<span style=color:#a6e22e>addEventListener</span>(<span style=color:#e6db74>&#34;install&#34;</span>, (<span style=color:#a6e22e>event</span>) =&gt; {
+  <span style=color:#a6e22e>event</span>.<span style=color:#a6e22e>waitUntil</span>(
+    (<span style=color:#66d9ef>async</span> () =&gt; {
+      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>cache</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>caches</span>.<span style=color:#a6e22e>open</span>(<span style=color:#a6e22e>CACHE_NAME</span>);
+      <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>cache</span>.<span style=color:#a6e22e>addAll</span>(<span style=color:#a6e22e>APP_STATIC_RESOURCES</span>);
+    })()
+  );
+});
+
+<span style=color:#75715e>// delete old caches on activate
+</span><span style=color:#75715e></span><span style=color:#a6e22e>self</span>.<span style=color:#a6e22e>addEventListener</span>(<span style=color:#e6db74>&#34;activate&#34;</span>, (<span style=color:#a6e22e>event</span>) =&gt; {
+  <span style=color:#a6e22e>event</span>.<span style=color:#a6e22e>waitUntil</span>(
+    (<span style=color:#66d9ef>async</span> () =&gt; {
+      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>names</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>caches</span>.<span style=color:#a6e22e>keys</span>();
+      <span style=color:#66d9ef>await</span> Promise.<span style=color:#a6e22e>all</span>(
+        <span style=color:#a6e22e>names</span>.<span style=color:#a6e22e>map</span>((<span style=color:#a6e22e>name</span>) =&gt; {
+          <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>name</span> <span style=color:#f92672>!==</span> <span style=color:#a6e22e>CACHE_NAME</span>) {
+            <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>caches</span>.<span style=color:#66d9ef>delete</span>(<span style=color:#a6e22e>name</span>);
+          }
+        })
+      );
+      <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>clients</span>.<span style=color:#a6e22e>claim</span>();
+    })()
+  );
+});
+
+<span style=color:#75715e>// On fetch, use cache first, then network as a fallback
+</span><span style=color:#75715e></span><span style=color:#a6e22e>self</span>.<span style=color:#a6e22e>addEventListener</span>(<span style=color:#e6db74>&#34;fetch&#34;</span>, (<span style=color:#a6e22e>event</span>) =&gt; {
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>url</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>URL</span>(<span style=color:#a6e22e>event</span>.<span style=color:#a6e22e>request</span>.<span style=color:#a6e22e>url</span>);
+
+  <span style=color:#75715e>// As a single page app, direct app to always go to cached home page.
+</span><span style=color:#75715e></span>  <span style=color:#75715e>//   if (event.request.mode === &#34;navigate&#34;) {
+</span><span style=color:#75715e></span>  <span style=color:#75715e>//     event.respondWith(caches.match(&#34;/&#34;));
+</span><span style=color:#75715e></span>  <span style=color:#75715e>//     return;
+</span><span style=color:#75715e></span>  <span style=color:#75715e>//   }
+</span><span style=color:#75715e></span>
+  <span style=color:#75715e>// Ignore non-HTTP/HTTPS schemes like &#39;chrome-extension&#39;
+</span><span style=color:#75715e></span>  <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>url</span>.<span style=color:#a6e22e>protocol</span> <span style=color:#f92672>!==</span> <span style=color:#e6db74>&#34;http:&#34;</span> <span style=color:#f92672>&amp;&amp;</span> <span style=color:#a6e22e>url</span>.<span style=color:#a6e22e>protocol</span> <span style=color:#f92672>!==</span> <span style=color:#e6db74>&#34;https:&#34;</span>) {
+    <span style=color:#66d9ef>return</span>;
+  }
+
+  <span style=color:#a6e22e>event</span>.<span style=color:#a6e22e>respondWith</span>(
+    <span style=color:#a6e22e>caches</span>
+      .<span style=color:#a6e22e>match</span>(<span style=color:#a6e22e>event</span>.<span style=color:#a6e22e>request</span>)
+      .<span style=color:#a6e22e>then</span>((<span style=color:#a6e22e>response</span>) =&gt; {
+        <span style=color:#66d9ef>return</span> (
+          <span style=color:#a6e22e>response</span> <span style=color:#f92672>||</span>
+          <span style=color:#a6e22e>fetch</span>(<span style=color:#a6e22e>event</span>.<span style=color:#a6e22e>request</span>).<span style=color:#a6e22e>then</span>((<span style=color:#a6e22e>response</span>) =&gt; {
+            <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>caches</span>.<span style=color:#a6e22e>open</span>(<span style=color:#a6e22e>CACHE_NAME</span>).<span style=color:#a6e22e>then</span>((<span style=color:#a6e22e>cache</span>) =&gt; {
+              <span style=color:#a6e22e>cache</span>.<span style=color:#a6e22e>put</span>(<span style=color:#a6e22e>event</span>.<span style=color:#a6e22e>request</span>, <span style=color:#a6e22e>response</span>.<span style=color:#a6e22e>clone</span>());
+              <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>response</span>;
+            });
+          })
+        );
+      })
+      .<span style=color:#66d9ef>catch</span>(() =&gt; {
+        <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>caches</span>.<span style=color:#a6e22e>match</span>(<span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>BASE_PATH</span><span style=color:#e6db74>}</span><span style=color:#e6db74>index.html`</span>);
+      })
+  );
+});
+</code></pre></div><h2 id=references>References</h2>
 <ul>
 <li><a href=https://web.dev/learn/pwa>Learn PWA</a></li>
+<li><a href=https://www.pwabuilder.com/imageGenerator>PWA Icons Generate</a></li>
 </ul>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/cheatsheet>cheatsheet</a>
