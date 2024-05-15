@@ -92,6 +92,36 @@ So when a team designs **Mobile first**, the result is an experience focused on 
 
 - Responsive Web Design: the "gradient of different experiences."
 
+### Progressive enhancement
+
+- Progressive Enhancement is a pattern that lets us write code that runs everywhere, starting from standard HTML, CSS, and JavaScript, and adding layers of capabilities on top of that with proper fallbacks when an API is not available.
+
+- Using @supports, check for browser support of a CSS feature, and apply rules based on the result. This applies to both CSS properties and values; if a property is supported and a value is not, it will fail, as will an unsupported property. JavaScript code can access this through the CSSSupportsRule.
+
+```css
+@supports (display: grid) {
+  body {
+    color: blue;
+  }
+}
+```
+
+```js
+let myRules = document.styleSheets[0].cssRules;
+console.log(myRules[0]); // a CSSSupportsRule representing the feature query.
+```
+
+- To ship modern JavaScript, you can use the module/nomodule pattern to provide more robust features with a smaller payload to more modern browsers and a fallback experience to older browsers.
+
+**Avoid device detection**
+
+You should directly test for feature support instead of making support assumptions based on the User-Agent string.
+
+Why?:
+
+- User-agent strings have never been truly reliable
+- For example, desktop site redirects on mobile browsers are often as simple as spoofing a desktop user-agent string
+
 ## References
 
 - [Learn PWA](https://web.dev/learn/pwa)
