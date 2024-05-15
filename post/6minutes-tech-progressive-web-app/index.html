@@ -217,6 +217,32 @@ So when a team designs <strong>Mobile first</strong>, the result is an experienc
 <p>Responsive Web Design: the &ldquo;gradient of different experiences.&rdquo;</p>
 </li>
 </ul>
+<h3 id=progressive-enhancement>Progressive enhancement</h3>
+<ul>
+<li>
+<p>Progressive Enhancement is a pattern that lets us write code that runs everywhere, starting from standard HTML, CSS, and JavaScript, and adding layers of capabilities on top of that with proper fallbacks when an API is not available.</p>
+</li>
+<li>
+<p>Using @supports, check for browser support of a CSS feature, and apply rules based on the result. This applies to both CSS properties and values; if a property is supported and a value is not, it will fail, as will an unsupported property. JavaScript code can access this through the CSSSupportsRule.</p>
+</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-css data-lang=css>@<span style=color:#66d9ef>supports</span> <span style=color:#f92672>(</span><span style=color:#f92672>display</span><span style=color:#f92672>:</span> <span style=color:#f92672>grid</span><span style=color:#f92672>)</span> {
+  <span style=color:#f92672>body</span> {
+    <span style=color:#66d9ef>color</span>: <span style=color:#66d9ef>blue</span>;
+  }
+}
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>myRules</span> <span style=color:#f92672>=</span> document.<span style=color:#a6e22e>styleSheets</span>[<span style=color:#ae81ff>0</span>].<span style=color:#a6e22e>cssRules</span>;
+<span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>myRules</span>[<span style=color:#ae81ff>0</span>]); <span style=color:#75715e>// a CSSSupportsRule representing the feature query.
+</span></code></pre></div><ul>
+<li>To ship modern JavaScript, you can use the module/nomodule pattern to provide more robust features with a smaller payload to more modern browsers and a fallback experience to older browsers.</li>
+</ul>
+<p><strong>Avoid device detection</strong></p>
+<p>You should directly test for feature support instead of making support assumptions based on the User-Agent string.</p>
+<p>Why?:</p>
+<ul>
+<li>User-agent strings have never been truly reliable</li>
+<li>For example, desktop site redirects on mobile browsers are often as simple as spoofing a desktop user-agent string</li>
+</ul>
 <h2 id=references>References</h2>
 <ul>
 <li><a href=https://web.dev/learn/pwa>Learn PWA</a></li>
