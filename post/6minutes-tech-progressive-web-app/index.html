@@ -12,18 +12,18 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWE4MLJYE6"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-RWE4MLJYE6')</script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1642510310947288" crossorigin=anonymous></script>
-<title>The Difference Between Monolithic and Microservices Architecture | Microservice architecture (MSA) is an approach to building software systems that decomposes business domain models into smaller, consistent, bounded-contexts implemented by services | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+<title>6minutes Tech Progressive Web App | | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
 <meta name=robots content="all">
-<meta name=keywords content="microservice-architecture">
-<meta name=description content="Microservice architecture (MSA) is an approach to building software systems that decomposes business domain models into smaller, consistent, bounded-contexts implemented by services">
+<meta name=keywords content="6minutes Tech Progressive Web App">
+<meta name=description content>
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://user-images.githubusercontent.com/31009750/269891173-f10b1b6b-ea34-4e23-91b6-db9e995d6bff.png">
+<meta property="og:image" content="https://nextjsvietnam.com/common/no-image.png">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="750">
 <meta property="og:image:height" content="300">
 <meta property="article:publisher" content="https://www.facebook.com/nextjsvietnam">
-<meta property="article:published_time" content="2023-09-22T15:52:14+07:00">
-<meta property="article:modified_time" content="2023-09-22T15:52:14+07:00">
+<meta property="article:published_time" content="2024-05-15T10:02:21+07:00">
+<meta property="article:modified_time" content="2024-05-15T10:02:21+07:00">
 <link rel=apple-touch-icon sizes=57x57 href=/apple-icon-57x57.png>
 <link rel=apple-touch-icon sizes=60x60 href=/apple-icon-60x60.png>
 <link rel=apple-touch-icon sizes=72x72 href=/apple-icon-72x72.png>
@@ -121,151 +121,108 @@
 <main>
 <section class="container section">
 <div class="page-content max-w-2xl mx-auto">
-<img src=https://user-images.githubusercontent.com/31009750/269891173-f10b1b6b-ea34-4e23-91b6-db9e995d6bff.png class=img-responsive alt="The Difference Between Monolithic and Microservices Architecture">
-<h1>The Difference Between Monolithic and Microservices Architecture</h1>
-<p><strong>Post Date</strong> : 2023-09-22T15:52:14+07:00</p>
-<p><strong>Modified Date</strong> : 2023-09-22T15:52:14+07:00</p>
+<img src=https://nextjsvietnam.com/common/no-image.png class=img-responsive alt="6minutes Tech Progressive Web App">
+<h1>6minutes Tech Progressive Web App</h1>
+<p><strong>Post Date</strong> : 2024-05-15T10:02:21+07:00</p>
+<p><strong>Modified Date</strong> : 2024-05-15T10:02:21+07:00</p>
 <p>
 <strong>Category:</strong>
-<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/systemdesign>systemdesign</a>
-<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/microservice-architecture>microservice-architecture</a>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/cheatsheet>cheatsheet</a>
 </p>
 <p>
 <strong>Tags:</strong>
 </p>
-<h2 id=monolith-advantages-and-drawbacks>Monolith advantages and drawbacks</h2>
-<p>A monolithic architecture is a traditional software development model that uses one code base to perform multiple business functions.</p>
-<p><img src=https://user-images.githubusercontent.com/31009750/269900308-36dcbcff-58fa-42a8-92c2-a7f12a40b012.png alt=image></p>
-<p><img src=https://user-images.githubusercontent.com/31009750/269910251-e138f576-ca5d-4773-9209-a6ca914ab4ea.png alt=image></p>
-<h3 id=advantages-of-monolithic-architecture>Advantages of Monolithic Architecture</h3>
+<p>First of all my approach is, we will list all the keywords that we heard or see when someone talk about Progressive Web App (PWA) : offline, installable app, manifest, service workers, mobile first, responsive design, web performance</p>
+<p><strong>All the PWAs are at their core</strong>:</p>
+<ul>
+<li>Modern websites</li>
+<li>Installability</li>
+<li>All its assets are same as on the web, but it load fast when online and available when offline</li>
+<li>Service workers are a fundamental part of a PWA. They enable fast loading(regardless of network), offline access, push notifications, and other capacities</li>
+<li>Caching: Cache Storage API to download, store, delete and update assets on device. Then these assets can be served on the device without needing a network request</li>
+<li>Serving: with service worker&rsquo;s fetch event, you can intercept network requests and serve a response using different techniques</li>
+<li>Workbox: a set of modules that simplify common service worker interactions such as routing/caching.</li>
+<li>Offline Data: Storage management such as: IndexedDB, Cache, Storage Manager, Persistent Storage, and Content Indexing.</li>
+<li>Web App Manifest: a JSON defines how PWA should be treated as a installed app, included look and feel, basic behavior within the operating system</li>
+<li>Installation Prompt: For sites that pass the PWA install criteria, the browser triggers an event to prompt the user to install it, you can use this event to customize your prompt and invite users to install your app.</li>
+</ul>
+<p>So enough keywords, right. Let&rsquo;s dive in details.</p>
+<p>The PWA is an app so it should have those basic elements:</p>
+<ul>
+<li>Icon on the home screen, app launcher, launchpad, or start menu</li>
+<li>It appears when you search for apps on the device</li>
+<li>It opens a standalone window, wholly separated from a browser&rsquo;s user interface.</li>
+<li>It has access to higher levels of integration with the OS, for example, URL handling or title bar customization.</li>
+<li>It works offline</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/04199bb4-bc87-46f5-a642-248b8c8dc8a6 alt=image></p>
+<h2 id=case-studies>Case studies</h2>
+<ul>
+<li>Hulu, a video streaming service in the USA, created a Progressive Web App version of their experience to replace their desktop apps which had poor user reviews and poor usage.</li>
+<li>JD.ID, an e-commerce platform in Indonesia providing delivery services for many products, wanted to expand its online presence by focusing on performance and a network-independent solid experience for their PWA.</li>
+<li>Clipchamp is an in-browser, desktop-class online video editor that empowers anyone to tell stories worth sharing through video.</li>
+<li>Corel Corporation&rsquo;s Gravit Designer is a powerful, desktop-class vector design tool that serves tens of thousands of daily active users demanding rich, affordable, accessible vector illustration software.</li>
+</ul>
+<h2 id=core-progressive-web-app-checklist>Core Progressive Web App checklist</h2>
+<ul>
+<li>Start fast, stay fast</li>
+<li>Works in any browser</li>
+<li>Responsive to any screen size</li>
+<li>Provides a custom offline page</li>
+</ul>
+<p>Challenges:</p>
+<ul>
+<li>Cross-browser compatibility</li>
+<li>Awareness of PWAs</li>
+<li>Compatibility: Desktop and laptops, Mobile devices, Other devices(smart tvs, smartwatches, cars)</li>
+</ul>
+<h3 id=design-principle>Design Principle</h3>
 <ol>
-<li>
-<p>Simplicity of development : all source code is located in one place which can be quickly understood.</p>
-</li>
-<li>
-<p>Simplicity of debugging : The debugging process is simple because all code is located in one place. You can easily follow the flow of a request and find an issue.</p>
-</li>
-<li>
-<p>Simplicity of testing : You test only one service without any dependencies. Everything is usually clear.</p>
-</li>
-<li>
-<p>Simplicity of deployment : Only one deployment unit (e.g. jar file) should be deployed. There are no dependencies. In cases when UI is packaged with backend code you do not have any breaking changes. Everything exists and changes in one place.</p>
-</li>
-<li>
-<p>Simplicity of application evolution: Basically, the application does not have any limitation from a business logic perspective. If you need some data for new feature, it is already there.</p>
-</li>
-<li>
-<p>Cross-cutting concerns and customizations are used only once: You should take care of cross-cutting concerns only once. For instance, security, logging, exception handling, monitoring, choosing and setting up tomcat parameters, setup of data source connection pool, etc.</p>
-</li>
-<li>
-<p>Simplicity in onboarding new team members: The source code is located in one place. New team members can easily debug some functional flow and to get familiar with the application.</p>
-</li>
-<li>
-<p>Low cost in the early stages of the application: All source code is located in one place, packaged in a single deployment unit, and deployed. What can be easier? There is no overhead neither in infrastructure cost nor development cost.</p>
-</li>
-<li>
-<p>The main function of the application is to be profitable: As a result, it is important to quickly implement some POC (Proof of Concept) solutions to verify the application in the real world. Also, it is important to bring customers to the system. Improvements can be implemented in the future.</p>
-</li>
-<li>
-<p>The requirements are usually unclear at the early stages of development: It is hard to create meaningful architecture when the requirements are unclear. Real customers can define the business needs after some of the functionality already works.</p>
-</li>
+<li>Responsive Design</li>
 </ol>
-<h3 id=drawbacks-of-monolithic-architecture>Drawbacks of Monolithic Architecture</h3>
-<ol>
-<li>
-<p>Slow speed of development: The simplest disadvantage relates to CI/CD pipeline. Even a small change in source code, you may wait for a lot of time (e.g. 1 hour) for your pipeline to succeed.</p>
-</li>
-<li>
-<p>High code coupling: Of course, you can keep a clear service structure inside your repository. However, as practice shows, eventually, you will end up with a spaghetti code in at least a few places.</p>
-</li>
-<li>
-<p>Code ownership cannot be used: The system is growing. The logical step is to split responsibilities between several teams.</p>
-</li>
-<li>
-<p>Testing becomes harder: Even a small change can negatively affect the system. As a result, the regression for full monolithic service is required.</p>
-</li>
-<li>
-<p>Performance issues: Potentially, you can scale the whole monolithic service in cases of performance issues. But what to do with the database? The single database is used for all services. You can start to optimize your database queries or use read replicas. However, there is a limit to this type of optimization.</p>
-</li>
-<li>
-<p>The cost of infrastructure: In cases of performance issues, you should scale the whole monolithic service.</p>
-</li>
-<li>
-<p>Legacy technologies: Imagine that you have the application written on Java 8. How much time is it required to migrate the whole monolith with multiple services.</p>
-</li>
-<li>
-<p>Lack of flexibility: Using Monolithic Architecture you are tight to the technologies that are used inside your monolith.</p>
-</li>
-<li>
-<p>Problems with deployment: Even a small change requires the redeployment of the whole monolith.</p>
-</li>
+<ul>
+<li>Responsive web design introduces three technical ingredients: Fluid grids, Flexible media, Media queries</li>
+</ul>
+<ol start=2>
+<li>The mobile user myth</li>
 </ol>
-<h2 id=microservices-advantages-and-drawbacks>Microservices advantages and drawbacks</h2>
-<p><img src=https://user-images.githubusercontent.com/31009750/269925780-4fdd34ba-4d75-4156-9377-ccf18c01f5e5.png alt=image></p>
-<p><img src=https://user-images.githubusercontent.com/31009750/269927486-8467b46d-b334-4f70-8028-843e8dcf82ee.png alt=image></p>
-<h3 id=microservice-advantages>Microservice Advantages</h3>
-<ol>
-<li>
-<p>Self-Contained, lower costs and increase efficient: Each service has its own instances. So when you need to scale up for specific service, the cost compare to monolithic architecture is actually lower.</p>
-</li>
-<li>
-<p>Greater Agility and Flexibility in Development process: each team develop their service autonomous and dependence, so they can select the appropriate tech stack and deployment flow.</p>
-</li>
-<li>
-<p>Enhance new technology stacks</p>
-</li>
-<li>
-<p>High costs at early stage, but easy for upgrading and maintenance.</p>
-</li>
-<li>
-<p>Development, Debugging, Testing each service become more easier</p>
-</li>
+<ul>
+<li>We all assume that the responsive design will be for different experience: small, medium, large based on devices: mobile, tablet, desktop. Small screens had touch abilities, large screens didn&rsquo;t.</li>
+</ul>
+<p>None of this is true.</p>
+<ul>
+<li>For instance, on desktop many users can keep a narrow window with the feed at one side of the screen while working, and assuming they are on a mobile because the available width would be wrong.</li>
+</ul>
+<ol start=3>
+<li>Mini mode</li>
 </ol>
-<h3 id=microservice-drawbacks>Microservice Drawbacks</h3>
-<ol>
+<ul>
+<li>200px x 100px</li>
+</ul>
+<p>Where should you get started?</p>
+<h4 id=everything-first>Everything first</h4>
+<p>Mobile first, content first, offline first?
+The answer is yes, everything first.</p>
+<blockquote>
+<p>Mobile first force you to focus</p>
+</blockquote>
+<p>Mobile devices require software development teams to focus on the most <strong>important data</strong> and <strong>actions</strong> in an application. There simply isn&rsquo;t room in a 320 by 480-pixel screen for extraneous, unnecessary elements.
+So when a team designs <strong>Mobile first</strong>, the result is an experience focused on the key tasks users want to accomplish without detours and interface debris that litter today&rsquo;s desktop-accessed websites.</p>
+<p><strong>Design principles:</strong></p>
+<ul>
 <li>
-<p>Increase Development Time</p>
+<p>Focus each view of your website on only the essential tasks a user wants to accomplish there, and don&rsquo;t add more stuff to the idea just because they have more screen real estate.</p>
 </li>
 <li>
-<p>Difficult in Global Testing and Debugging</p>
+<p>Responsive Web Design: the &ldquo;gradient of different experiences.&rdquo;</p>
 </li>
-<li>
-<p>Dependency on Devops</p>
-</li>
-<li>
-<p>High Complexity</p>
-</li>
-<li>
-<p>Increase Network Traffic</p>
-</li>
-<li>
-<p>Limited Reuse of Code</p>
-</li>
-<li>
-<p>Problems with deployment</p>
-</li>
-<li>
-<p>Have all properties of a distributed system.</p>
-</li>
-</ol>
-<h3 id=challenges>Challenges</h3>
-<ol>
-<li>Design for Faults</li>
-<li>Design with Dependencies in Mind</li>
-<li>Design with the Domain in Mind</li>
-<li>Design with Promises in Mind</li>
-<li>Distributed Systems Management</li>
-</ol>
-<h2 id=technology-solution-for-microservices>Technology Solution for microservices</h2>
+</ul>
 <h2 id=references>References</h2>
 <ul>
-<li><a href=https://www.oreilly.com/content/microservices-for-java-developers/>https://www.oreilly.com/content/microservices-for-java-developers/</a></li>
-<li><a href=https://aws.amazon.com/compare/the-difference-between-monolithic-and-microservices-architecture/>https://aws.amazon.com/compare/the-difference-between-monolithic-and-microservices-architecture/</a></li>
-<li><a href=https://www.atlassian.com/microservices/microservices-architecture/microservices-vs-monolith>https://www.atlassian.com/microservices/microservices-architecture/microservices-vs-monolith</a></li>
+<li><a href=https://web.dev/learn/pwa>Learn PWA</a></li>
 </ul>
 <div class="m-1 p-1">
-<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/systemdesign>systemdesign</a>
-<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/microservice-architecture>microservice-architecture</a>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/cheatsheet>cheatsheet</a>
 </div>
 </div>
 </section>
@@ -274,13 +231,13 @@
 <div class="font-heading text-2xl font-semibold">You Might Also Like</div>
 <div class="mt-8 grid gap-8">
 <ul class=sidebar-links>
-<li><a href=/post/microservice-headfirst/>Microservice Headfirst</a></li>
-<li><a href=/post/aws-lab-series-build-and-deploy-rest-api/>Aws Lab Series Build and Deploy Rest Api</a></li>
-<li><a href=/post/aws-lab-series-foreword/>Aws Lab Series Foreword</a></li>
-<li><a href=/post/aws-series-migration/>Aws Series Migration</a></li>
-<li><a href=/post/aws-series-governance/>Aws Series Governance</a></li>
-<li><a href=/post/aws-series-caching/>Aws Series Caching</a></li>
-<li><a href=/post/aws-series-automation/>Aws Series Automation</a></li>
+<li><a href=/post/flexbox-and-real-world-examples/>Flexbox and Real World Examples</a></li>
+<li><a href=/post/react-native-examples-setup-working-place-for-react-native-developer/>[React Native Examples] Setup Working Place for React Native Developer</a></li>
+<li><a href=/post/happy-new-year-2024/>Happy New Year 2024</a></li>
+<li><a href=/post/developer-philosophy/>Developer Philosophy</a></li>
+<li><a href=/post/test-driven-development-for-beginner/>Test Driven Development for Beginner</a></li>
+<li><a href=/post/100-frontend-interview-questions/>100 Frontend Interview Questions</a></li>
+<li><a href=/post/chatgpt-what-can-chat-gpt-do/>Chatgpt What Can Chat Gpt Do</a></li>
 </ul>
 </div>
 </div>
