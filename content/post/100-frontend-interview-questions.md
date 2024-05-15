@@ -307,3 +307,9 @@ Answer: https://jsfiddle.net/misostack/qa5d4rkh/26/
 
 - https://gist.github.com/misostack/0683e129a2cae6d05ca125b84b1e0002
 - https://gist.github.com/misostack/697ae8274dc201d80ac0416210694492
+
+## Performance questions
+
+1. How are many ways to add script tag into a html page?
+
+![image](https://gist.github.com/assets/31009750/2c09bb84-2109-4254-9d4a-b5ec5d95a8e0)
