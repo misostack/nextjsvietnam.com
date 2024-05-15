@@ -279,4 +279,11 @@ int randomANumberGTETargetNumber(int targetNumber){
 %>
 ```
 
+Tags
+
+```jsp
+<%@include file="layout/header.jsp"%>
+<%@ page import="java.time.LocalDateTime" %>
+```
+
 ### JSP - Standard Tag Library (JSTL) Tutorial
