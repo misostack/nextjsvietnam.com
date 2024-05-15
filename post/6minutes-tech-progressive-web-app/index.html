@@ -1101,6 +1101,50 @@ So when a team designs <strong>Mobile first</strong>, the result is an experienc
       })
   );
 });
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#75715e>// app.js
+</span><span style=color:#75715e></span><span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;6 minutes tech pwa&#34;</span>);
+
+<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>installPrompt</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>null</span>;
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>installButton</span> <span style=color:#f92672>=</span> document.<span style=color:#a6e22e>querySelector</span>(<span style=color:#e6db74>&#34;#install&#34;</span>);
+
+window.<span style=color:#a6e22e>addEventListener</span>(<span style=color:#e6db74>&#34;beforeinstallprompt&#34;</span>, <span style=color:#66d9ef>async</span> (<span style=color:#a6e22e>event</span>) =&gt; {
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>relatedApps</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>navigator</span>.<span style=color:#a6e22e>getInstalledRelatedApps</span>();
+
+  <span style=color:#75715e>// Search for a specific installed platform-specific app
+</span><span style=color:#75715e></span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>psApp</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>relatedApps</span>.<span style=color:#a6e22e>find</span>((<span style=color:#a6e22e>app</span>) =&gt; <span style=color:#a6e22e>app</span>.<span style=color:#a6e22e>id</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#34;com.example.myapp&#34;</span>);
+
+  <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>psApp</span>) {
+    <span style=color:#a6e22e>event</span>.<span style=color:#a6e22e>preventDefault</span>();
+    <span style=color:#75715e>// Update UI as appropriate
+</span><span style=color:#75715e></span>  }
+
+  <span style=color:#a6e22e>event</span>.<span style=color:#a6e22e>preventDefault</span>();
+  <span style=color:#a6e22e>installPrompt</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>event</span>;
+  <span style=color:#a6e22e>installButton</span>.<span style=color:#a6e22e>removeAttribute</span>(<span style=color:#e6db74>&#34;hidden&#34;</span>);
+});
+
+<span style=color:#a6e22e>installButton</span>.<span style=color:#a6e22e>addEventListener</span>(<span style=color:#e6db74>&#34;click&#34;</span>, <span style=color:#66d9ef>async</span> () =&gt; {
+  <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span><span style=color:#a6e22e>installPrompt</span>) {
+    <span style=color:#66d9ef>return</span>;
+  }
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>result</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>installPrompt</span>.<span style=color:#a6e22e>prompt</span>();
+  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>`Install prompt was: </span><span style=color:#e6db74>${</span><span style=color:#a6e22e>result</span>.<span style=color:#a6e22e>outcome</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>);
+  <span style=color:#a6e22e>disableInAppInstallPrompt</span>();
+});
+
+<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>disableInAppInstallPrompt</span>() {
+  <span style=color:#a6e22e>installPrompt</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>null</span>;
+  <span style=color:#a6e22e>installButton</span>.<span style=color:#a6e22e>setAttribute</span>(<span style=color:#e6db74>&#34;hidden&#34;</span>, <span style=color:#e6db74>&#34;&#34;</span>);
+}
+
+window.<span style=color:#a6e22e>addEventListener</span>(<span style=color:#e6db74>&#34;appinstalled&#34;</span>, () =&gt; {
+  <span style=color:#a6e22e>disableInAppInstallPrompt</span>();
+});
+
+<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>disableInAppInstallPrompt</span>() {
+  <span style=color:#a6e22e>installPrompt</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>null</span>;
+  <span style=color:#a6e22e>installButton</span>.<span style=color:#a6e22e>setAttribute</span>(<span style=color:#e6db74>&#34;hidden&#34;</span>, <span style=color:#e6db74>&#34;&#34;</span>);
+}
 </code></pre></div><h2 id=references>References</h2>
 <ul>
 <li><a href=https://nextjsvietnam.github.io/6minutes-tech-pwa/>Demo</a></li>
