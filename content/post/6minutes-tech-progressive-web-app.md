@@ -1012,5 +1012,11 @@ self.addEventListener("fetch", (event) => {
 
 ## References
 
+- [Demo](https://nextjsvietnam.github.io/6minutes-tech-pwa/)
 - [Learn PWA](https://web.dev/learn/pwa)
 - [PWA Icons Generate](https://www.pwabuilder.com/imageGenerator)
+- [How to install PWA](https://www.leadmonk.io/blog/how-to-install-pwa-version-of-leadmonk)
+
+## Bad and good news for this technology
+
+- [apple-ends-support-for-pwas-in-eu-and-reversed-its-decision/](https://www.solita.fi/blogs/apple-ends-support-for-pwas-in-eu-and-reversed-its-decision/)
