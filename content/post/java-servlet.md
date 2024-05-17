@@ -502,6 +502,120 @@ VALUES ('Dart',  'mrdart@nextjsvietnam.com', 'Mr');
 <%@ include file="layout/footer.jsp" %>
 ```
 
+```jsp
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<c:set var="str" value="Hello JSP" />
+<c:if test="${fn:length(str) % 2 == 0}">
+    Even
+</c:if>
+<c:if test="${fn:length(str) % 2 != 0}">
+    Odd
+</c:if>
+```
+
+### Servlet Filters and MVC
+
+```java
+// filter
+package filter;
+
+import model.User;
+
+import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+@WebFilter("/books")
+public class LogFilter implements Filter {
+    private User getLogggedInUser(HttpServletRequest req, HttpServletResponse resp){
+        var cookies = req.getCookies();
+        if(cookies != null){
+            for(var cookie : cookies){
+                if(cookie.getName().equals("user")){
+                    return new User(Integer.parseInt(cookie.getValue()), "contact@javacore.net");
+                }
+            }
+        }
+        return null;
+    }
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        System.out.println("doFilter:books");
+        HttpServletRequest req = (HttpServletRequest) request;
+        HttpServletResponse resp = (HttpServletResponse) response;
+        User user = getLogggedInUser(req, resp);
+        String servletPath = req.getServletPath();
+        if(user == null)
+           resp.sendRedirect("/login?redirectUrl=" + servletPath);
+        else
+            chain.doFilter(request, response);
+    }
+}
+
+```
+
+**Connect db with DAO**
+
+```java
+package dao;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+public class LoginDao {
+    String databaseUrl = "jdbc:mysql://localhost:3306/jsp";
+    String databaseUser = "root";
+    String databasePassword = "123456";
+    String query = "Select id from jsp_users where email=? and password=?";
+    public boolean check(String username, String password){
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection connection = DriverManager.getConnection(databaseUrl, databaseUser, databasePassword);
+            PreparedStatement st = connection.prepareStatement(query);
+            st.setString(1, username);
+            st.setString(2, password);
+            ResultSet rs = st.executeQuery();
+            return rs.next();
+
+        } catch (Exception e) {
+            return false;
+        }
+    }
+}
+
+```
+
+```java
+    private User doLogin(String email, String password) {
+        LoginDao dao = new LoginDao();
+        if(dao.check(email, password)){
+            return new User(1, email);
+        }
+        return null;
+    }
+```
+
+**Tips to prevent back to page via browser back button even user logout**
+
+```jsp
+<%@include file="/layout/header.jsp" %>
+<%
+    // HTTP 1.1
+    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+    // HTTP 1.0
+    response.setHeader("Pragma", "no-cache");
+    // Proxies
+    response.setHeader("Expires", "0");
+%>
+<h1><c:out value="${pageTitle}" /></h1>
+<p>Hello world 123!</p>
+<%@include file="/layout/footer.jsp" %>
+```
+
 ## Reference
 
 ### Hot reload Mode with IntelliJ
