@@ -366,13 +366,14 @@ INSERT INTO jsp_employees (first_name, email, last_name)
 VALUES ('Swift',  'mrswift@nextjsvietnam.com', 'Mr');
 INSERT INTO jsp_employees (first_name, email, last_name)
 VALUES ('Dart',  'mrdart@nextjsvietnam.com', 'Mr');
-
 ```
 
 ```jsp
 <%@ page import="java.sql.*" %>
-<%@ page import="net.refactoreverything.model.Employee" %>
+<%@ page import="model.Employee" %>
 <%@ page import="java.util.ArrayList" %>
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+<sql:setDataSource var="db" driver="com.mysql.cj.jdbc.Driver" />
 
 <%
     String DB_URL = "jdbc:mysql://localhost:3306/jsp";
@@ -389,18 +390,18 @@ VALUES ('Dart',  'mrdart@nextjsvietnam.com', 'Mr');
         Statement statement = connection.createStatement();
 
         // Execute a SQL query
-        String sql = "SELECT * FROM Employees";
+        String sql = "SELECT * FROM jsp_employees";
         ResultSet resultSet = statement.executeQuery(sql);
 
         // Process the ResultSet
         while (resultSet.next()) {
             int id = resultSet.getInt("id");
-            String first = resultSet.getString("first");
-            String last = resultSet.getString("last");
-            int age = resultSet.getInt("age");
+            String firstName = resultSet.getString("first_name");
+            String lastName = resultSet.getString("last_name");
+            String email = resultSet.getString("email");
 
             // Create an Employee object and add it to the list
-            Employee employee = new Employee(id, age, first, last);
+            Employee employee = new Employee(id, email, firstName, lastName);
             employees.add(employee);
         }
     } catch (ClassNotFoundException e) {
@@ -416,16 +417,19 @@ VALUES ('Dart',  'mrdart@nextjsvietnam.com', 'Mr');
             }
         }
     }
+    request.setAttribute("pageTitle", "Employees");
 %>
 
 <%@ include file="layout/header.jsp" %>
-<table>
-    <tr>
-        <th>ID</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Age</th>
-    </tr>
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+        </tr>
+    </thead>
     <% for (Employee employee : employees) { %>
     <tr>
         <td><%= employee.getId() %></td>
@@ -437,6 +441,65 @@ VALUES ('Dart',  'mrdart@nextjsvietnam.com', 'Mr');
 </table>
 <%@ include file="layout/footer.jsp" %>
 
+```
+
+**JSTL(Java Server Pages Standard Tag Library) version**
+
+```jsp
+<%@page language="java" contentType="text/html;" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<jsp:useBean id="pageTitle" scope="request" type="String"/>
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title><c:out value="${pageTitle}" /></title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container">
+```
+
+```jsp
+<%@ page import="java.sql.*" %>
+<%@ page import="model.Employee" %>
+<%@ page import="java.util.ArrayList" %>
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+<sql:setDataSource var="db"
+                   driver="com.mysql.cj.jdbc.Driver"
+                   url="jdbc:mysql://localhost:3306/jsp"
+                   user="root"
+                   password="123456"
+/>
+<sql:query var="resultSet" dataSource="${db}">SELECT * FROM jsp_employees</sql:query>
+<%
+    request.setAttribute("pageTitle", "Employees");
+%>
+<%@ include file="layout/header.jsp" %>
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        <c:forEach items="${resultSet.rows}" var="employee">
+                <tr>
+                    <td><c:out value="${employee.id}" /></td>
+                    <td><c:out value="${employee.first_name}" /></td>
+                    <td><c:out value="${employee.last_name}" /></td>
+                    <td><c:out value="${employee.email}" /></td>
+                </tr>
+        </c:forEach>
+    </tbody>
+</table>
+<%@ include file="layout/footer.jsp" %>
 ```
 
 ## Reference
