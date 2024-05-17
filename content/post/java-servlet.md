@@ -287,3 +287,169 @@ Tags
 ```
 
 ### JSP - Standard Tag Library (JSTL) Tutorial
+
+Install dependencies package
+
+> pom.xml
+
+```xml
+    <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>8.0.33</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/jakarta.servlet.jsp.jstl/jakarta.servlet.jsp.jstl-api -->
+    <dependency>
+      <groupId>jstl</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.2</version>
+    </dependency>
+```
+
+Please take a look at this diagram.
+
+In JSTL, if you wanna you custom tag on JSP page, you need to add it through @taglib
+
+```jsp
+<%@include file="/layout/header.jsp" %>
+<h1><c:out value="${pageTitle}" /></h1>
+<p>Hello world 123!</p>
+<%@include file="/layout/footer.jsp" %>
+```
+
+### Connect to mysql
+
+Add dependencies https://mvnrepository.com/artifact/mysql/mysql-connector-java
+
+```xml
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>8.0.33</version>
+    </dependency>
+```
+
+### Connect DB and run query
+
+```sql
+CREATE SCHEMA `jsp` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ;
+
+USE jsp;
+
+DROP TABLE IF EXISTS jsp_employees;
+
+CREATE TABLE IF NOT EXISTS jsp_employees (
+                                             id INT NOT NULL AUTO_INCREMENT,
+                                             first_name VARCHAR(250) NOT NULL,
+                                             email VARCHAR(250) NOT NULL,
+                                             last_name VARCHAR(250) NOT NULL,
+                                             PRIMARY KEY (id),
+                                             CONSTRAINT UC_EMAIL UNIQUE (email)
+);
+
+INSERT INTO jsp_employees (first_name, email, last_name)
+VALUES ('Java',  'mrjava@nextjsvietnam.com', 'Mr');
+INSERT INTO jsp_employees (first_name, email, last_name)
+VALUES ('C#',  'mrcsharp@nextjsvietnam.com', 'Mr');
+INSERT INTO jsp_employees (first_name, email, last_name)
+VALUES ('Golang',  'mrgolang@nextjsvietnam.com', 'Mr');
+INSERT INTO jsp_employees (first_name, email, last_name)
+VALUES ('Python',  'mrpython@nextjsvietnam.com', 'Mr');
+INSERT INTO jsp_employees (first_name, email, last_name)
+VALUES ('PHP',  'mrphp@nextjsvietnam.com', 'Mr');
+INSERT INTO jsp_employees (first_name, email, last_name)
+VALUES ('Ruby',  'mrruby@nextjsvietnam.com', 'Mr');
+INSERT INTO jsp_employees (first_name, email, last_name)
+VALUES ('Kotlin',  'mrkotlin@nextjsvietnam.com', 'Mr');
+INSERT INTO jsp_employees (first_name, email, last_name)
+VALUES ('Swift',  'mrswift@nextjsvietnam.com', 'Mr');
+INSERT INTO jsp_employees (first_name, email, last_name)
+VALUES ('Dart',  'mrdart@nextjsvietnam.com', 'Mr');
+
+```
+
+```jsp
+<%@ page import="java.sql.*" %>
+<%@ page import="net.refactoreverything.model.Employee" %>
+<%@ page import="java.util.ArrayList" %>
+
+<%
+    String DB_URL = "jdbc:mysql://localhost:3306/jsp";
+    String DB_USER = "root";
+    String DB_PASS = "123456";
+    Connection connection = null;
+    ArrayList<Employee> employees = new ArrayList<Employee>();
+    try {
+        // Load the MySQL JDBC driver
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        // Establish connection to the database
+        connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+        Statement statement = connection.createStatement();
+
+        // Execute a SQL query
+        String sql = "SELECT * FROM Employees";
+        ResultSet resultSet = statement.executeQuery(sql);
+
+        // Process the ResultSet
+        while (resultSet.next()) {
+            int id = resultSet.getInt("id");
+            String first = resultSet.getString("first");
+            String last = resultSet.getString("last");
+            int age = resultSet.getInt("age");
+
+            // Create an Employee object and add it to the list
+            Employee employee = new Employee(id, age, first, last);
+            employees.add(employee);
+        }
+    } catch (ClassNotFoundException e) {
+        out.println("MySQL JDBC Driver not found: " + e.getMessage());
+    } catch (SQLException e) {
+        out.println("Database error: " + e.getMessage());
+    } finally {
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                out.println("Error closing the connection: " + e.getMessage());
+            }
+        }
+    }
+%>
+
+<%@ include file="layout/header.jsp" %>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Age</th>
+    </tr>
+    <% for (Employee employee : employees) { %>
+    <tr>
+        <td><%= employee.getId() %></td>
+        <td><%= employee.getFirst()%></td>
+        <td><%= employee.getLast()%></td>
+        <td><%= employee.getAge()%></td>
+    </tr>
+    <% } %>
+</table>
+<%@ include file="layout/footer.jsp" %>
+
+```
+
+## Reference
+
+### Hot reload Mode with IntelliJ
+
+![image](https://gist.github.com/assets/31009750/d30516a2-8fb7-4394-903b-45d2a61d2baa)
+
+### Shorcuts
+
+1. You can use the shortcut Shift + F10 (Windows/Linux) or Control + R (macOS) when your Tomcat run configuration is selected.
+2. Update Resources: Ctrl + F10 (Windows/Linux) or Cmd + F10 (macOS) to update resources like HTML, CSS, and JavaScript.
+3. Update Classes and Resources: Ctrl + Shift + F10 (Windows/Linux) or Cmd + Shift + F10 (macOS) to update Java classes and resources without restarting the server.
+4. Open Run/Debug Configurations: Alt + Shift + F10 (Windows/Linux) or Control + Alt + R (macOS), then press 0 to edit configurations.
+5. View Running Servers: Use the Services tab (Alt + 8 on Windows/Linux, Cmd + 8 on macOS) to view and manage running servers.
+6. Remote Debugging: If you need to debug your application, set breakpoints as usual in your code, and instead of Run, use Debug (Shift + F9) to start the server in debug mode.
