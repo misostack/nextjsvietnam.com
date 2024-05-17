@@ -430,10 +430,11 @@ USE jsp;
 <span style=color:#66d9ef>VALUES</span> (<span style=color:#e6db74>&#39;Swift&#39;</span>,  <span style=color:#e6db74>&#39;mrswift@nextjsvietnam.com&#39;</span>, <span style=color:#e6db74>&#39;Mr&#39;</span>);
 <span style=color:#66d9ef>INSERT</span> <span style=color:#66d9ef>INTO</span> jsp_employees (first_name, email, last_name)
 <span style=color:#66d9ef>VALUES</span> (<span style=color:#e6db74>&#39;Dart&#39;</span>,  <span style=color:#e6db74>&#39;mrdart@nextjsvietnam.com&#39;</span>, <span style=color:#e6db74>&#39;Mr&#39;</span>);
-
 </code></pre></div><pre tabindex=0><code class=language-jsp data-lang=jsp>&lt;%@ page import=&quot;java.sql.*&quot; %&gt;
-&lt;%@ page import=&quot;net.refactoreverything.model.Employee&quot; %&gt;
+&lt;%@ page import=&quot;model.Employee&quot; %&gt;
 &lt;%@ page import=&quot;java.util.ArrayList&quot; %&gt;
+&lt;%@taglib prefix=&quot;sql&quot; uri=&quot;http://java.sun.com/jsp/jstl/sql&quot; %&gt;
+&lt;sql:setDataSource var=&quot;db&quot; driver=&quot;com.mysql.cj.jdbc.Driver&quot; /&gt;
 
 &lt;%
     String DB_URL = &quot;jdbc:mysql://localhost:3306/jsp&quot;;
@@ -450,18 +451,18 @@ USE jsp;
         Statement statement = connection.createStatement();
 
         // Execute a SQL query
-        String sql = &quot;SELECT * FROM Employees&quot;;
+        String sql = &quot;SELECT * FROM jsp_employees&quot;;
         ResultSet resultSet = statement.executeQuery(sql);
 
         // Process the ResultSet
         while (resultSet.next()) {
             int id = resultSet.getInt(&quot;id&quot;);
-            String first = resultSet.getString(&quot;first&quot;);
-            String last = resultSet.getString(&quot;last&quot;);
-            int age = resultSet.getInt(&quot;age&quot;);
+            String firstName = resultSet.getString(&quot;first_name&quot;);
+            String lastName = resultSet.getString(&quot;last_name&quot;);
+            String email = resultSet.getString(&quot;email&quot;);
 
             // Create an Employee object and add it to the list
-            Employee employee = new Employee(id, age, first, last);
+            Employee employee = new Employee(id, email, firstName, lastName);
             employees.add(employee);
         }
     } catch (ClassNotFoundException e) {
@@ -477,16 +478,19 @@ USE jsp;
             }
         }
     }
+    request.setAttribute(&quot;pageTitle&quot;, &quot;Employees&quot;);
 %&gt;
 
 &lt;%@ include file=&quot;layout/header.jsp&quot; %&gt;
-&lt;table&gt;
-    &lt;tr&gt;
-        &lt;th&gt;ID&lt;/th&gt;
-        &lt;th&gt;First Name&lt;/th&gt;
-        &lt;th&gt;Last Name&lt;/th&gt;
-        &lt;th&gt;Age&lt;/th&gt;
-    &lt;/tr&gt;
+&lt;table class=&quot;table table-striped table-bordered&quot;&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;ID&lt;/th&gt;
+            &lt;th&gt;First Name&lt;/th&gt;
+            &lt;th&gt;Last Name&lt;/th&gt;
+            &lt;th&gt;Email&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
     &lt;% for (Employee employee : employees) { %&gt;
     &lt;tr&gt;
         &lt;td&gt;&lt;%= employee.getId() %&gt;&lt;/td&gt;
@@ -498,6 +502,58 @@ USE jsp;
 &lt;/table&gt;
 &lt;%@ include file=&quot;layout/footer.jsp&quot; %&gt;
 
+</code></pre><p><strong>JSTL(Java Server Pages Standard Tag Library) version</strong></p>
+<pre tabindex=0><code class=language-jsp data-lang=jsp>&lt;%@page language=&quot;java&quot; contentType=&quot;text/html;&quot; %&gt;
+&lt;%@ taglib uri=&quot;http://java.sun.com/jsp/jstl/core&quot; prefix=&quot;c&quot; %&gt;
+&lt;%@ taglib uri=&quot;http://java.sun.com/jsp/jstl/fmt&quot; prefix=&quot;fmt&quot; %&gt;
+&lt;jsp:useBean id=&quot;pageTitle&quot; scope=&quot;request&quot; type=&quot;String&quot;/&gt;
+
+&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+        &lt;title&gt;&lt;c:out value=&quot;${pageTitle}&quot; /&gt;&lt;/title&gt;
+        &lt;link href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot; integrity=&quot;sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH&quot; crossorigin=&quot;anonymous&quot;&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div class=&quot;container&quot;&gt;
+</code></pre><pre tabindex=0><code class=language-jsp data-lang=jsp>&lt;%@ page import=&quot;java.sql.*&quot; %&gt;
+&lt;%@ page import=&quot;model.Employee&quot; %&gt;
+&lt;%@ page import=&quot;java.util.ArrayList&quot; %&gt;
+&lt;%@taglib prefix=&quot;sql&quot; uri=&quot;http://java.sun.com/jsp/jstl/sql&quot; %&gt;
+&lt;sql:setDataSource var=&quot;db&quot;
+                   driver=&quot;com.mysql.cj.jdbc.Driver&quot;
+                   url=&quot;jdbc:mysql://localhost:3306/jsp&quot;
+                   user=&quot;root&quot;
+                   password=&quot;123456&quot;
+/&gt;
+&lt;sql:query var=&quot;resultSet&quot; dataSource=&quot;${db}&quot;&gt;SELECT * FROM jsp_employees&lt;/sql:query&gt;
+&lt;%
+    request.setAttribute(&quot;pageTitle&quot;, &quot;Employees&quot;);
+%&gt;
+&lt;%@ include file=&quot;layout/header.jsp&quot; %&gt;
+&lt;table class=&quot;table table-striped table-bordered&quot;&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;ID&lt;/th&gt;
+            &lt;th&gt;First Name&lt;/th&gt;
+            &lt;th&gt;Last Name&lt;/th&gt;
+            &lt;th&gt;Email&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;c:forEach items=&quot;${resultSet.rows}&quot; var=&quot;employee&quot;&gt;
+                &lt;tr&gt;
+                    &lt;td&gt;&lt;c:out value=&quot;${employee.id}&quot; /&gt;&lt;/td&gt;
+                    &lt;td&gt;&lt;c:out value=&quot;${employee.first_name}&quot; /&gt;&lt;/td&gt;
+                    &lt;td&gt;&lt;c:out value=&quot;${employee.last_name}&quot; /&gt;&lt;/td&gt;
+                    &lt;td&gt;&lt;c:out value=&quot;${employee.email}&quot; /&gt;&lt;/td&gt;
+                &lt;/tr&gt;
+        &lt;/c:forEach&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;%@ include file=&quot;layout/footer.jsp&quot; %&gt;
 </code></pre><h2 id=reference>Reference</h2>
 <h3 id=hot-reload-mode-with-intellij>Hot reload Mode with IntelliJ</h3>
 <p><img src=https://gist.github.com/assets/31009750/d30516a2-8fb7-4394-903b-45d2a61d2baa alt=image></p>
