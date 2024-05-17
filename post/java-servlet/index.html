@@ -554,6 +554,102 @@ USE jsp;
     &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;%@ include file=&quot;layout/footer.jsp&quot; %&gt;
+</code></pre><pre tabindex=0><code class=language-jsp data-lang=jsp>&lt;%@taglib prefix=&quot;fn&quot; uri=&quot;http://java.sun.com/jsp/jstl/functions&quot; %&gt;
+&lt;c:set var=&quot;str&quot; value=&quot;Hello JSP&quot; /&gt;
+&lt;c:if test=&quot;${fn:length(str) % 2 == 0}&quot;&gt;
+    Even
+&lt;/c:if&gt;
+&lt;c:if test=&quot;${fn:length(str) % 2 != 0}&quot;&gt;
+    Odd
+&lt;/c:if&gt;
+</code></pre><h3 id=servlet-filters-and-mvc>Servlet Filters and MVC</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#75715e>// filter
+</span><span style=color:#75715e></span><span style=color:#f92672>package</span> filter<span style=color:#f92672>;</span>
+
+<span style=color:#f92672>import</span> model.User<span style=color:#f92672>;</span>
+
+<span style=color:#f92672>import</span> javax.servlet.*<span style=color:#f92672>;</span>
+<span style=color:#f92672>import</span> javax.servlet.annotation.WebFilter<span style=color:#f92672>;</span>
+<span style=color:#f92672>import</span> javax.servlet.http.HttpServletRequest<span style=color:#f92672>;</span>
+<span style=color:#f92672>import</span> javax.servlet.http.HttpServletResponse<span style=color:#f92672>;</span>
+<span style=color:#f92672>import</span> java.io.IOException<span style=color:#f92672>;</span>
+
+<span style=color:#a6e22e>@WebFilter</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;/books&#34;</span><span style=color:#f92672>)</span>
+<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>LogFilter</span> <span style=color:#66d9ef>implements</span> Filter <span style=color:#f92672>{</span>
+    <span style=color:#66d9ef>private</span> User <span style=color:#a6e22e>getLogggedInUser</span><span style=color:#f92672>(</span>HttpServletRequest req<span style=color:#f92672>,</span> HttpServletResponse resp<span style=color:#f92672>){</span>
+        var cookies <span style=color:#f92672>=</span> req<span style=color:#f92672>.</span><span style=color:#a6e22e>getCookies</span><span style=color:#f92672>();</span>
+        <span style=color:#66d9ef>if</span><span style=color:#f92672>(</span>cookies <span style=color:#f92672>!=</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>){</span>
+            <span style=color:#66d9ef>for</span><span style=color:#f92672>(</span>var cookie <span style=color:#f92672>:</span> cookies<span style=color:#f92672>){</span>
+                <span style=color:#66d9ef>if</span><span style=color:#f92672>(</span>cookie<span style=color:#f92672>.</span><span style=color:#a6e22e>getName</span><span style=color:#f92672>().</span><span style=color:#a6e22e>equals</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;user&#34;</span><span style=color:#f92672>)){</span>
+                    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> User<span style=color:#f92672>(</span>Integer<span style=color:#f92672>.</span><span style=color:#a6e22e>parseInt</span><span style=color:#f92672>(</span>cookie<span style=color:#f92672>.</span><span style=color:#a6e22e>getValue</span><span style=color:#f92672>()),</span> <span style=color:#e6db74>&#34;contact@javacore.net&#34;</span><span style=color:#f92672>);</span>
+                <span style=color:#f92672>}</span>
+            <span style=color:#f92672>}</span>
+        <span style=color:#f92672>}</span>
+        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>;</span>
+    <span style=color:#f92672>}</span>
+    <span style=color:#a6e22e>@Override</span>
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>doFilter</span><span style=color:#f92672>(</span>ServletRequest request<span style=color:#f92672>,</span> ServletResponse response<span style=color:#f92672>,</span> FilterChain chain<span style=color:#f92672>)</span> <span style=color:#66d9ef>throws</span> IOException<span style=color:#f92672>,</span> ServletException <span style=color:#f92672>{</span>
+        System<span style=color:#f92672>.</span><span style=color:#a6e22e>out</span><span style=color:#f92672>.</span><span style=color:#a6e22e>println</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;doFilter:books&#34;</span><span style=color:#f92672>);</span>
+        HttpServletRequest req <span style=color:#f92672>=</span> <span style=color:#f92672>(</span>HttpServletRequest<span style=color:#f92672>)</span> request<span style=color:#f92672>;</span>
+        HttpServletResponse resp <span style=color:#f92672>=</span> <span style=color:#f92672>(</span>HttpServletResponse<span style=color:#f92672>)</span> response<span style=color:#f92672>;</span>
+        User user <span style=color:#f92672>=</span> getLogggedInUser<span style=color:#f92672>(</span>req<span style=color:#f92672>,</span> resp<span style=color:#f92672>);</span>
+        String servletPath <span style=color:#f92672>=</span> req<span style=color:#f92672>.</span><span style=color:#a6e22e>getServletPath</span><span style=color:#f92672>();</span>
+        <span style=color:#66d9ef>if</span><span style=color:#f92672>(</span>user <span style=color:#f92672>==</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>)</span>
+           resp<span style=color:#f92672>.</span><span style=color:#a6e22e>sendRedirect</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;/login?redirectUrl=&#34;</span> <span style=color:#f92672>+</span> servletPath<span style=color:#f92672>);</span>
+        <span style=color:#66d9ef>else</span>
+            chain<span style=color:#f92672>.</span><span style=color:#a6e22e>doFilter</span><span style=color:#f92672>(</span>request<span style=color:#f92672>,</span> response<span style=color:#f92672>);</span>
+    <span style=color:#f92672>}</span>
+<span style=color:#f92672>}</span>
+
+</code></pre></div><p><strong>Connect db with DAO</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#f92672>package</span> dao<span style=color:#f92672>;</span>
+
+<span style=color:#f92672>import</span> java.sql.Connection<span style=color:#f92672>;</span>
+<span style=color:#f92672>import</span> java.sql.DriverManager<span style=color:#f92672>;</span>
+<span style=color:#f92672>import</span> java.sql.PreparedStatement<span style=color:#f92672>;</span>
+<span style=color:#f92672>import</span> java.sql.ResultSet<span style=color:#f92672>;</span>
+
+<span style=color:#66d9ef>public</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>LoginDao</span> <span style=color:#f92672>{</span>
+    String databaseUrl <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;jdbc:mysql://localhost:3306/jsp&#34;</span><span style=color:#f92672>;</span>
+    String databaseUser <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;root&#34;</span><span style=color:#f92672>;</span>
+    String databasePassword <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;123456&#34;</span><span style=color:#f92672>;</span>
+    String query <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;Select id from jsp_users where email=? and password=?&#34;</span><span style=color:#f92672>;</span>
+    <span style=color:#66d9ef>public</span> <span style=color:#66d9ef>boolean</span> <span style=color:#a6e22e>check</span><span style=color:#f92672>(</span>String username<span style=color:#f92672>,</span> String password<span style=color:#f92672>){</span>
+        <span style=color:#66d9ef>try</span> <span style=color:#f92672>{</span>
+            Class<span style=color:#f92672>.</span><span style=color:#a6e22e>forName</span><span style=color:#f92672>(</span><span style=color:#e6db74>&#34;com.mysql.jdbc.Driver&#34;</span><span style=color:#f92672>);</span>
+            Connection connection <span style=color:#f92672>=</span> DriverManager<span style=color:#f92672>.</span><span style=color:#a6e22e>getConnection</span><span style=color:#f92672>(</span>databaseUrl<span style=color:#f92672>,</span> databaseUser<span style=color:#f92672>,</span> databasePassword<span style=color:#f92672>);</span>
+            PreparedStatement st <span style=color:#f92672>=</span> connection<span style=color:#f92672>.</span><span style=color:#a6e22e>prepareStatement</span><span style=color:#f92672>(</span>query<span style=color:#f92672>);</span>
+            st<span style=color:#f92672>.</span><span style=color:#a6e22e>setString</span><span style=color:#f92672>(</span>1<span style=color:#f92672>,</span> username<span style=color:#f92672>);</span>
+            st<span style=color:#f92672>.</span><span style=color:#a6e22e>setString</span><span style=color:#f92672>(</span>2<span style=color:#f92672>,</span> password<span style=color:#f92672>);</span>
+            ResultSet rs <span style=color:#f92672>=</span> st<span style=color:#f92672>.</span><span style=color:#a6e22e>executeQuery</span><span style=color:#f92672>();</span>
+            <span style=color:#66d9ef>return</span> rs<span style=color:#f92672>.</span><span style=color:#a6e22e>next</span><span style=color:#f92672>();</span>
+
+        <span style=color:#f92672>}</span> <span style=color:#66d9ef>catch</span> <span style=color:#f92672>(</span>Exception e<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+            <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>false</span><span style=color:#f92672>;</span>
+        <span style=color:#f92672>}</span>
+    <span style=color:#f92672>}</span>
+<span style=color:#f92672>}</span>
+
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java>    <span style=color:#66d9ef>private</span> User <span style=color:#a6e22e>doLogin</span><span style=color:#f92672>(</span>String email<span style=color:#f92672>,</span> String password<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
+        LoginDao dao <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> LoginDao<span style=color:#f92672>();</span>
+        <span style=color:#66d9ef>if</span><span style=color:#f92672>(</span>dao<span style=color:#f92672>.</span><span style=color:#a6e22e>check</span><span style=color:#f92672>(</span>email<span style=color:#f92672>,</span> password<span style=color:#f92672>)){</span>
+            <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> User<span style=color:#f92672>(</span>1<span style=color:#f92672>,</span> email<span style=color:#f92672>);</span>
+        <span style=color:#f92672>}</span>
+        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>null</span><span style=color:#f92672>;</span>
+    <span style=color:#f92672>}</span>
+</code></pre></div><p><strong>Tips to prevent back to page via browser back button even user logout</strong></p>
+<pre tabindex=0><code class=language-jsp data-lang=jsp>&lt;%@include file=&quot;/layout/header.jsp&quot; %&gt;
+&lt;%
+    // HTTP 1.1
+    response.setHeader(&quot;Cache-Control&quot;, &quot;no-cache, no-store, must-revalidate&quot;);
+    // HTTP 1.0
+    response.setHeader(&quot;Pragma&quot;, &quot;no-cache&quot;);
+    // Proxies
+    response.setHeader(&quot;Expires&quot;, &quot;0&quot;);
+%&gt;
+&lt;h1&gt;&lt;c:out value=&quot;${pageTitle}&quot; /&gt;&lt;/h1&gt;
+&lt;p&gt;Hello world 123!&lt;/p&gt;
+&lt;%@include file=&quot;/layout/footer.jsp&quot; %&gt;
 </code></pre><h2 id=reference>Reference</h2>
 <h3 id=hot-reload-mode-with-intellij>Hot reload Mode with IntelliJ</h3>
 <p><img src=https://gist.github.com/assets/31009750/d30516a2-8fb7-4394-903b-45d2a61d2baa alt=image></p>
