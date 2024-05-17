@@ -367,6 +367,149 @@ int randomANumberGTETargetNumber(int targetNumber){
 <pre tabindex=0><code class=language-jsp data-lang=jsp>&lt;%@include file=&quot;layout/header.jsp&quot;%&gt;
 &lt;%@ page import=&quot;java.time.LocalDateTime&quot; %&gt;
 </code></pre><h3 id=jsp---standard-tag-library-jstl-tutorial>JSP - Standard Tag Library (JSTL) Tutorial</h3>
+<p>Install dependencies package</p>
+<blockquote>
+<p>pom.xml</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml>    <span style=color:#75715e>&lt;!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java --&gt;</span>
+    <span style=color:#f92672>&lt;dependency&gt;</span>
+      <span style=color:#f92672>&lt;groupId&gt;</span>mysql<span style=color:#f92672>&lt;/groupId&gt;</span>
+      <span style=color:#f92672>&lt;artifactId&gt;</span>mysql-connector-java<span style=color:#f92672>&lt;/artifactId&gt;</span>
+      <span style=color:#f92672>&lt;version&gt;</span>8.0.33<span style=color:#f92672>&lt;/version&gt;</span>
+    <span style=color:#f92672>&lt;/dependency&gt;</span>
+    <span style=color:#75715e>&lt;!-- https://mvnrepository.com/artifact/jakarta.servlet.jsp.jstl/jakarta.servlet.jsp.jstl-api --&gt;</span>
+    <span style=color:#f92672>&lt;dependency&gt;</span>
+      <span style=color:#f92672>&lt;groupId&gt;</span>jstl<span style=color:#f92672>&lt;/groupId&gt;</span>
+      <span style=color:#f92672>&lt;artifactId&gt;</span>jstl<span style=color:#f92672>&lt;/artifactId&gt;</span>
+      <span style=color:#f92672>&lt;version&gt;</span>1.2<span style=color:#f92672>&lt;/version&gt;</span>
+    <span style=color:#f92672>&lt;/dependency&gt;</span>
+</code></pre></div><p>Please take a look at this diagram.</p>
+<p>In JSTL, if you wanna you custom tag on JSP page, you need to add it through @taglib</p>
+<pre tabindex=0><code class=language-jsp data-lang=jsp>&lt;%@include file=&quot;/layout/header.jsp&quot; %&gt;
+&lt;h1&gt;&lt;c:out value=&quot;${pageTitle}&quot; /&gt;&lt;/h1&gt;
+&lt;p&gt;Hello world 123!&lt;/p&gt;
+&lt;%@include file=&quot;/layout/footer.jsp&quot; %&gt;
+</code></pre><h3 id=connect-to-mysql>Connect to mysql</h3>
+<p>Add dependencies <a href=https://mvnrepository.com/artifact/mysql/mysql-connector-java>https://mvnrepository.com/artifact/mysql/mysql-connector-java</a></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-xml data-lang=xml>    <span style=color:#f92672>&lt;dependency&gt;</span>
+      <span style=color:#f92672>&lt;groupId&gt;</span>mysql<span style=color:#f92672>&lt;/groupId&gt;</span>
+      <span style=color:#f92672>&lt;artifactId&gt;</span>mysql-connector-java<span style=color:#f92672>&lt;/artifactId&gt;</span>
+      <span style=color:#f92672>&lt;version&gt;</span>8.0.33<span style=color:#f92672>&lt;/version&gt;</span>
+    <span style=color:#f92672>&lt;/dependency&gt;</span>
+</code></pre></div><h3 id=connect-db-and-run-query>Connect DB and run query</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sql data-lang=sql><span style=color:#66d9ef>CREATE</span> <span style=color:#66d9ef>SCHEMA</span> <span style=color:#f92672>`</span>jsp<span style=color:#f92672>`</span> <span style=color:#66d9ef>DEFAULT</span> CHARACTER <span style=color:#66d9ef>SET</span> utf8mb4 <span style=color:#66d9ef>COLLATE</span> utf8mb4_unicode_ci ;
+
+USE jsp;
+
+<span style=color:#66d9ef>DROP</span> <span style=color:#66d9ef>TABLE</span> <span style=color:#66d9ef>IF</span> <span style=color:#66d9ef>EXISTS</span> jsp_employees;
+
+<span style=color:#66d9ef>CREATE</span> <span style=color:#66d9ef>TABLE</span> <span style=color:#66d9ef>IF</span> <span style=color:#66d9ef>NOT</span> <span style=color:#66d9ef>EXISTS</span> jsp_employees (
+                                             id INT <span style=color:#66d9ef>NOT</span> <span style=color:#66d9ef>NULL</span> AUTO_INCREMENT,
+                                             first_name VARCHAR(<span style=color:#ae81ff>250</span>) <span style=color:#66d9ef>NOT</span> <span style=color:#66d9ef>NULL</span>,
+                                             email VARCHAR(<span style=color:#ae81ff>250</span>) <span style=color:#66d9ef>NOT</span> <span style=color:#66d9ef>NULL</span>,
+                                             last_name VARCHAR(<span style=color:#ae81ff>250</span>) <span style=color:#66d9ef>NOT</span> <span style=color:#66d9ef>NULL</span>,
+                                             <span style=color:#66d9ef>PRIMARY</span> <span style=color:#66d9ef>KEY</span> (id),
+                                             <span style=color:#66d9ef>CONSTRAINT</span> UC_EMAIL <span style=color:#66d9ef>UNIQUE</span> (email)
+);
+
+<span style=color:#66d9ef>INSERT</span> <span style=color:#66d9ef>INTO</span> jsp_employees (first_name, email, last_name)
+<span style=color:#66d9ef>VALUES</span> (<span style=color:#e6db74>&#39;Java&#39;</span>,  <span style=color:#e6db74>&#39;mrjava@nextjsvietnam.com&#39;</span>, <span style=color:#e6db74>&#39;Mr&#39;</span>);
+<span style=color:#66d9ef>INSERT</span> <span style=color:#66d9ef>INTO</span> jsp_employees (first_name, email, last_name)
+<span style=color:#66d9ef>VALUES</span> (<span style=color:#e6db74>&#39;C#&#39;</span>,  <span style=color:#e6db74>&#39;mrcsharp@nextjsvietnam.com&#39;</span>, <span style=color:#e6db74>&#39;Mr&#39;</span>);
+<span style=color:#66d9ef>INSERT</span> <span style=color:#66d9ef>INTO</span> jsp_employees (first_name, email, last_name)
+<span style=color:#66d9ef>VALUES</span> (<span style=color:#e6db74>&#39;Golang&#39;</span>,  <span style=color:#e6db74>&#39;mrgolang@nextjsvietnam.com&#39;</span>, <span style=color:#e6db74>&#39;Mr&#39;</span>);
+<span style=color:#66d9ef>INSERT</span> <span style=color:#66d9ef>INTO</span> jsp_employees (first_name, email, last_name)
+<span style=color:#66d9ef>VALUES</span> (<span style=color:#e6db74>&#39;Python&#39;</span>,  <span style=color:#e6db74>&#39;mrpython@nextjsvietnam.com&#39;</span>, <span style=color:#e6db74>&#39;Mr&#39;</span>);
+<span style=color:#66d9ef>INSERT</span> <span style=color:#66d9ef>INTO</span> jsp_employees (first_name, email, last_name)
+<span style=color:#66d9ef>VALUES</span> (<span style=color:#e6db74>&#39;PHP&#39;</span>,  <span style=color:#e6db74>&#39;mrphp@nextjsvietnam.com&#39;</span>, <span style=color:#e6db74>&#39;Mr&#39;</span>);
+<span style=color:#66d9ef>INSERT</span> <span style=color:#66d9ef>INTO</span> jsp_employees (first_name, email, last_name)
+<span style=color:#66d9ef>VALUES</span> (<span style=color:#e6db74>&#39;Ruby&#39;</span>,  <span style=color:#e6db74>&#39;mrruby@nextjsvietnam.com&#39;</span>, <span style=color:#e6db74>&#39;Mr&#39;</span>);
+<span style=color:#66d9ef>INSERT</span> <span style=color:#66d9ef>INTO</span> jsp_employees (first_name, email, last_name)
+<span style=color:#66d9ef>VALUES</span> (<span style=color:#e6db74>&#39;Kotlin&#39;</span>,  <span style=color:#e6db74>&#39;mrkotlin@nextjsvietnam.com&#39;</span>, <span style=color:#e6db74>&#39;Mr&#39;</span>);
+<span style=color:#66d9ef>INSERT</span> <span style=color:#66d9ef>INTO</span> jsp_employees (first_name, email, last_name)
+<span style=color:#66d9ef>VALUES</span> (<span style=color:#e6db74>&#39;Swift&#39;</span>,  <span style=color:#e6db74>&#39;mrswift@nextjsvietnam.com&#39;</span>, <span style=color:#e6db74>&#39;Mr&#39;</span>);
+<span style=color:#66d9ef>INSERT</span> <span style=color:#66d9ef>INTO</span> jsp_employees (first_name, email, last_name)
+<span style=color:#66d9ef>VALUES</span> (<span style=color:#e6db74>&#39;Dart&#39;</span>,  <span style=color:#e6db74>&#39;mrdart@nextjsvietnam.com&#39;</span>, <span style=color:#e6db74>&#39;Mr&#39;</span>);
+
+</code></pre></div><pre tabindex=0><code class=language-jsp data-lang=jsp>&lt;%@ page import=&quot;java.sql.*&quot; %&gt;
+&lt;%@ page import=&quot;net.refactoreverything.model.Employee&quot; %&gt;
+&lt;%@ page import=&quot;java.util.ArrayList&quot; %&gt;
+
+&lt;%
+    String DB_URL = &quot;jdbc:mysql://localhost:3306/jsp&quot;;
+    String DB_USER = &quot;root&quot;;
+    String DB_PASS = &quot;123456&quot;;
+    Connection connection = null;
+    ArrayList&lt;Employee&gt; employees = new ArrayList&lt;Employee&gt;();
+    try {
+        // Load the MySQL JDBC driver
+        Class.forName(&quot;com.mysql.cj.jdbc.Driver&quot;);
+
+        // Establish connection to the database
+        connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+        Statement statement = connection.createStatement();
+
+        // Execute a SQL query
+        String sql = &quot;SELECT * FROM Employees&quot;;
+        ResultSet resultSet = statement.executeQuery(sql);
+
+        // Process the ResultSet
+        while (resultSet.next()) {
+            int id = resultSet.getInt(&quot;id&quot;);
+            String first = resultSet.getString(&quot;first&quot;);
+            String last = resultSet.getString(&quot;last&quot;);
+            int age = resultSet.getInt(&quot;age&quot;);
+
+            // Create an Employee object and add it to the list
+            Employee employee = new Employee(id, age, first, last);
+            employees.add(employee);
+        }
+    } catch (ClassNotFoundException e) {
+        out.println(&quot;MySQL JDBC Driver not found: &quot; + e.getMessage());
+    } catch (SQLException e) {
+        out.println(&quot;Database error: &quot; + e.getMessage());
+    } finally {
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                out.println(&quot;Error closing the connection: &quot; + e.getMessage());
+            }
+        }
+    }
+%&gt;
+
+&lt;%@ include file=&quot;layout/header.jsp&quot; %&gt;
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;th&gt;ID&lt;/th&gt;
+        &lt;th&gt;First Name&lt;/th&gt;
+        &lt;th&gt;Last Name&lt;/th&gt;
+        &lt;th&gt;Age&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;% for (Employee employee : employees) { %&gt;
+    &lt;tr&gt;
+        &lt;td&gt;&lt;%= employee.getId() %&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;%= employee.getFirst()%&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;%= employee.getLast()%&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;%= employee.getAge()%&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;% } %&gt;
+&lt;/table&gt;
+&lt;%@ include file=&quot;layout/footer.jsp&quot; %&gt;
+
+</code></pre><h2 id=reference>Reference</h2>
+<h3 id=hot-reload-mode-with-intellij>Hot reload Mode with IntelliJ</h3>
+<p><img src=https://gist.github.com/assets/31009750/d30516a2-8fb7-4394-903b-45d2a61d2baa alt=image></p>
+<h3 id=shorcuts>Shorcuts</h3>
+<ol>
+<li>You can use the shortcut Shift + F10 (Windows/Linux) or Control + R (macOS) when your Tomcat run configuration is selected.</li>
+<li>Update Resources: Ctrl + F10 (Windows/Linux) or Cmd + F10 (macOS) to update resources like HTML, CSS, and JavaScript.</li>
+<li>Update Classes and Resources: Ctrl + Shift + F10 (Windows/Linux) or Cmd + Shift + F10 (macOS) to update Java classes and resources without restarting the server.</li>
+<li>Open Run/Debug Configurations: Alt + Shift + F10 (Windows/Linux) or Control + Alt + R (macOS), then press 0 to edit configurations.</li>
+<li>View Running Servers: Use the Services tab (Alt + 8 on Windows/Linux, Cmd + 8 on macOS) to view and manage running servers.</li>
+<li>Remote Debugging: If you need to debug your application, set breakpoints as usual in your code, and instead of Run, use Debug (Shift + F9) to start the server in debug mode.</li>
+</ol>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/java>java</a>
 </div>
