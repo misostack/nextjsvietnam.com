@@ -287,3 +287,346 @@ Tags
 ```
 
 ### JSP - Standard Tag Library (JSTL) Tutorial
+
+Install dependencies package
+
+> pom.xml
+
+```xml
+    <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>8.0.33</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/jakarta.servlet.jsp.jstl/jakarta.servlet.jsp.jstl-api -->
+    <dependency>
+      <groupId>jstl</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.2</version>
+    </dependency>
+```
+
+Please take a look at this diagram.
+
+In JSTL, if you wanna you custom tag on JSP page, you need to add it through @taglib
+
+```jsp
+<%@include file="/layout/header.jsp" %>
+<h1><c:out value="${pageTitle}" /></h1>
+<p>Hello world 123!</p>
+<%@include file="/layout/footer.jsp" %>
+```
+
+### Connect to mysql
+
+Add dependencies https://mvnrepository.com/artifact/mysql/mysql-connector-java
+
+```xml
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>8.0.33</version>
+    </dependency>
+```
+
+### Connect DB and run query
+
+```sql
+CREATE SCHEMA `jsp` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ;
+
+USE jsp;
+
+DROP TABLE IF EXISTS jsp_employees;
+
+CREATE TABLE IF NOT EXISTS jsp_employees (
+                                             id INT NOT NULL AUTO_INCREMENT,
+                                             first_name VARCHAR(250) NOT NULL,
+                                             email VARCHAR(250) NOT NULL,
+                                             last_name VARCHAR(250) NOT NULL,
+                                             PRIMARY KEY (id),
+                                             CONSTRAINT UC_EMAIL UNIQUE (email)
+);
+
+INSERT INTO jsp_employees (first_name, email, last_name)
+VALUES ('Java',  'mrjava@nextjsvietnam.com', 'Mr');
+INSERT INTO jsp_employees (first_name, email, last_name)
+VALUES ('C#',  'mrcsharp@nextjsvietnam.com', 'Mr');
+INSERT INTO jsp_employees (first_name, email, last_name)
+VALUES ('Golang',  'mrgolang@nextjsvietnam.com', 'Mr');
+INSERT INTO jsp_employees (first_name, email, last_name)
+VALUES ('Python',  'mrpython@nextjsvietnam.com', 'Mr');
+INSERT INTO jsp_employees (first_name, email, last_name)
+VALUES ('PHP',  'mrphp@nextjsvietnam.com', 'Mr');
+INSERT INTO jsp_employees (first_name, email, last_name)
+VALUES ('Ruby',  'mrruby@nextjsvietnam.com', 'Mr');
+INSERT INTO jsp_employees (first_name, email, last_name)
+VALUES ('Kotlin',  'mrkotlin@nextjsvietnam.com', 'Mr');
+INSERT INTO jsp_employees (first_name, email, last_name)
+VALUES ('Swift',  'mrswift@nextjsvietnam.com', 'Mr');
+INSERT INTO jsp_employees (first_name, email, last_name)
+VALUES ('Dart',  'mrdart@nextjsvietnam.com', 'Mr');
+```
+
+```jsp
+<%@ page import="java.sql.*" %>
+<%@ page import="model.Employee" %>
+<%@ page import="java.util.ArrayList" %>
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+<sql:setDataSource var="db" driver="com.mysql.cj.jdbc.Driver" />
+
+<%
+    String DB_URL = "jdbc:mysql://localhost:3306/jsp";
+    String DB_USER = "root";
+    String DB_PASS = "123456";
+    Connection connection = null;
+    ArrayList<Employee> employees = new ArrayList<Employee>();
+    try {
+        // Load the MySQL JDBC driver
+        Class.forName("com.mysql.cj.jdbc.Driver");
+
+        // Establish connection to the database
+        connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+        Statement statement = connection.createStatement();
+
+        // Execute a SQL query
+        String sql = "SELECT * FROM jsp_employees";
+        ResultSet resultSet = statement.executeQuery(sql);
+
+        // Process the ResultSet
+        while (resultSet.next()) {
+            int id = resultSet.getInt("id");
+            String firstName = resultSet.getString("first_name");
+            String lastName = resultSet.getString("last_name");
+            String email = resultSet.getString("email");
+
+            // Create an Employee object and add it to the list
+            Employee employee = new Employee(id, email, firstName, lastName);
+            employees.add(employee);
+        }
+    } catch (ClassNotFoundException e) {
+        out.println("MySQL JDBC Driver not found: " + e.getMessage());
+    } catch (SQLException e) {
+        out.println("Database error: " + e.getMessage());
+    } finally {
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                out.println("Error closing the connection: " + e.getMessage());
+            }
+        }
+    }
+    request.setAttribute("pageTitle", "Employees");
+%>
+
+<%@ include file="layout/header.jsp" %>
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <% for (Employee employee : employees) { %>
+    <tr>
+        <td><%= employee.getId() %></td>
+        <td><%= employee.getFirst()%></td>
+        <td><%= employee.getLast()%></td>
+        <td><%= employee.getAge()%></td>
+    </tr>
+    <% } %>
+</table>
+<%@ include file="layout/footer.jsp" %>
+
+```
+
+**JSTL(Java Server Pages Standard Tag Library) version**
+
+```jsp
+<%@page language="java" contentType="text/html;" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<jsp:useBean id="pageTitle" scope="request" type="String"/>
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title><c:out value="${pageTitle}" /></title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container">
+```
+
+```jsp
+<%@ page import="java.sql.*" %>
+<%@ page import="model.Employee" %>
+<%@ page import="java.util.ArrayList" %>
+<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+<sql:setDataSource var="db"
+                   driver="com.mysql.cj.jdbc.Driver"
+                   url="jdbc:mysql://localhost:3306/jsp"
+                   user="root"
+                   password="123456"
+/>
+<sql:query var="resultSet" dataSource="${db}">SELECT * FROM jsp_employees</sql:query>
+<%
+    request.setAttribute("pageTitle", "Employees");
+%>
+<%@ include file="layout/header.jsp" %>
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        <c:forEach items="${resultSet.rows}" var="employee">
+                <tr>
+                    <td><c:out value="${employee.id}" /></td>
+                    <td><c:out value="${employee.first_name}" /></td>
+                    <td><c:out value="${employee.last_name}" /></td>
+                    <td><c:out value="${employee.email}" /></td>
+                </tr>
+        </c:forEach>
+    </tbody>
+</table>
+<%@ include file="layout/footer.jsp" %>
+```
+
+```jsp
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<c:set var="str" value="Hello JSP" />
+<c:if test="${fn:length(str) % 2 == 0}">
+    Even
+</c:if>
+<c:if test="${fn:length(str) % 2 != 0}">
+    Odd
+</c:if>
+```
+
+### Servlet Filters and MVC
+
+```java
+// filter
+package filter;
+
+import model.User;
+
+import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+@WebFilter("/books")
+public class LogFilter implements Filter {
+    private User getLogggedInUser(HttpServletRequest req, HttpServletResponse resp){
+        var cookies = req.getCookies();
+        if(cookies != null){
+            for(var cookie : cookies){
+                if(cookie.getName().equals("user")){
+                    return new User(Integer.parseInt(cookie.getValue()), "contact@javacore.net");
+                }
+            }
+        }
+        return null;
+    }
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        System.out.println("doFilter:books");
+        HttpServletRequest req = (HttpServletRequest) request;
+        HttpServletResponse resp = (HttpServletResponse) response;
+        User user = getLogggedInUser(req, resp);
+        String servletPath = req.getServletPath();
+        if(user == null)
+           resp.sendRedirect("/login?redirectUrl=" + servletPath);
+        else
+            chain.doFilter(request, response);
+    }
+}
+
+```
+
+**Connect db with DAO**
+
+```java
+package dao;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+public class LoginDao {
+    String databaseUrl = "jdbc:mysql://localhost:3306/jsp";
+    String databaseUser = "root";
+    String databasePassword = "123456";
+    String query = "Select id from jsp_users where email=? and password=?";
+    public boolean check(String username, String password){
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection connection = DriverManager.getConnection(databaseUrl, databaseUser, databasePassword);
+            PreparedStatement st = connection.prepareStatement(query);
+            st.setString(1, username);
+            st.setString(2, password);
+            ResultSet rs = st.executeQuery();
+            return rs.next();
+
+        } catch (Exception e) {
+            return false;
+        }
+    }
+}
+
+```
+
+```java
+    private User doLogin(String email, String password) {
+        LoginDao dao = new LoginDao();
+        if(dao.check(email, password)){
+            return new User(1, email);
+        }
+        return null;
+    }
+```
+
+**Tips to prevent back to page via browser back button even user logout**
+
+```jsp
+<%@include file="/layout/header.jsp" %>
+<%
+    // HTTP 1.1
+    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+    // HTTP 1.0
+    response.setHeader("Pragma", "no-cache");
+    // Proxies
+    response.setHeader("Expires", "0");
+%>
+<h1><c:out value="${pageTitle}" /></h1>
+<p>Hello world 123!</p>
+<%@include file="/layout/footer.jsp" %>
+```
+
+## Reference
+
+### Hot reload Mode with IntelliJ
+
+![image](https://gist.github.com/assets/31009750/d30516a2-8fb7-4394-903b-45d2a61d2baa)
+
+### Shorcuts
+
+1. You can use the shortcut Shift + F10 (Windows/Linux) or Control + R (macOS) when your Tomcat run configuration is selected.
+2. Update Resources: Ctrl + F10 (Windows/Linux) or Cmd + F10 (macOS) to update resources like HTML, CSS, and JavaScript.
+3. Update Classes and Resources: Ctrl + Shift + F10 (Windows/Linux) or Cmd + Shift + F10 (macOS) to update Java classes and resources without restarting the server.
+4. Open Run/Debug Configurations: Alt + Shift + F10 (Windows/Linux) or Control + Alt + R (macOS), then press 0 to edit configurations.
+5. View Running Servers: Use the Services tab (Alt + 8 on Windows/Linux, Cmd + 8 on macOS) to view and manage running servers.
+6. Remote Debugging: If you need to debug your application, set breakpoints as usual in your code, and instead of Run, use Debug (Shift + F9) to start the server in debug mode.
