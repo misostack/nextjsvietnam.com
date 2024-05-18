@@ -193,6 +193,114 @@ export default function Products() {
 
 Cùng tạo link tới các trang bạn đã tạo nào. Chúng ta có 2 cách sử dụng thẻ a hoặc Link Component của NextJS.
 
+```tsx
+import Link from "next/link";
+
+export default function Products() {
+  return (
+    <main className="container-xl mx-auto p-4">
+      <h1>Products</h1>
+      <ul>
+        {[1, 2, 3, 4, 5, 6].map((i) => (
+          <>
+            <li>
+              <Link href={`/products/${i}`}>Product {i}</Link>
+            </li>
+          </>
+        ))}
+      </ul>
+    </main>
+  );
+}
+```
+
 Cùng so sánh sự khác biệt của 2 cách
 
 {{< iframe "https://www.youtube.com/embed/wopG9mM0Qe8?si=pwu9xtq3SJc18BD0" >}}
+
+Có vẻ khá ổn rồi đấy, tuy nhiên [slug] và [id] thì xử lý thế nào.
+
+> Dynamic Segments are passed as the params prop to layout, page, route, and generateMetadata function
+
+Ồ thì ra các segment có dạng này sẽ được truyền vào params prop của component: layout, page, route, generateMetadata function.
+
+Cùng thử
+
+```tsx
+import Link from "next/link";
+
+type ProductDetailProps = {
+  params: {
+    slug: string;
+  };
+};
+
+// let's fake a function to find product detail by slug/id
+const PRODUCTS = [
+  {
+    id: 1,
+    slug: "mouse-pad-nextjsvietnam",
+    name: "Mouse Pad NextJSVietNam",
+    price: 15,
+    currency: "USD",
+    image:
+      "https://gist.github.com/assets/31009750/06f69548-c14b-47d0-b650-7af3a023b750",
+  },
+];
+
+const findProductBySlugOrId = (value: string) => {
+  // find by id first
+  let product = null;
+  try {
+    const id: number = parseInt(value);
+    product = PRODUCTS.find((p) => p.id == id);
+    if (product) {
+      return product;
+    }
+    // otherwise find by slug
+    product = PRODUCTS.find((p) => p.slug === value.toLowerCase());
+  } catch (error) {
+    console.log(error);
+  }
+
+  return product;
+};
+
+export default function ProductDetail({ params }: ProductDetailProps) {
+  const { slug } = params;
+  const product = findProductBySlugOrId(slug);
+  let content = <></>;
+  if (!product) {
+    content = (
+      <>
+        <h1>Product not found!</h1>
+        <p>
+          Please go back to <Link href="/products">product list</Link>
+        </p>
+      </>
+    );
+  } else {
+    content = (
+      <>
+        <h1>Product Detail</h1>
+        <p>Name: {product.name}</p>
+        <p>
+          Price: {product.price} {product.currency}
+        </p>
+        <p>
+          <img src={product.image} alt={product.name} />
+        </p>
+      </>
+    );
+  }
+  return <main className="container-xl mx-auto p-4">{content}</main>;
+}
+```
+
+Hãy thử truy cập 3 đường link sau:
+
+1. http://localhost:3000/products/mouse-pad-nextjsvietnam => có sản phẩm hiển thị
+2. http://localhost:3000/products/1 => có sản phẩm hiển thị ( giống sp của link 1)
+3. http://localhost:3000/products/5 => sản phẩm không tìm thấy
+
+Hãy áp dụng tiếp với [id] của my-order nhé
