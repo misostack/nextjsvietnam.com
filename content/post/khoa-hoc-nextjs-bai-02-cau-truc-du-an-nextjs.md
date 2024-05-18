@@ -9,7 +9,7 @@ tags: ["nextjs"]
 image: "https://user-images.githubusercontent.com/31009750/246866968-e42afc31-8eea-44e8-ba86-629918f50401.png"
 ---
 
-**Note**: Toàn bộ mã nguồn của khóa học này đều được công khai trên github tại [Nextjs Tutorial 2024](https://github.com/nextjsvietnam/nextjs-tutorial-2024)
+**Note**: Toàn bộ mã nguồn của khóa học này đều được công khai trên github tại [Nextjs Tutorial 2024](https://github.com/nextjsvietnam/nextjs-tutorial-2024/tree/tutorial/lession-02)
 
 Các nội dung chính trong bài học lần này:
 
@@ -64,7 +64,7 @@ Sẽ có rất nhiều câu hỏi như, thế với cấu trúc thư mục ban �
 
 Để dễ tiếp cận, chúng ta bắt đầu từ cấu trúc của 1 trang web truyền thống với cây thư mục như sau.
 
-![image](https://gist.github.com/assets/31009750/b4b5df9a-fa28-4d85-8884-c0d655534766)
+![image](https://gist.github.com/assets/31009750/b2c6f64e-4cec-4135-b2fc-f5626adf8557)
 
 Nào cùng phân tích cấu trúc website bán hàng đơn giản phía trên như sau.
 
@@ -88,3 +88,111 @@ Khá là nhiều phải không các bạn. Như vậy để xây dựng 1 trang 
 5. Fetching Data: lấy dữ liệu từ server
 6. Rendering: phần tạo nội dụng html của từng trang dưạ trên dữ liệu
 7. Authentication: phần đăng nhập, nhằm chặn các user không được phép truy cập vào nội dung không phải của mình, ví dụ như my account, my orders,...
+
+Trong nextjs, không có 1 cú pháp cụ thể giúp chúng ta khai báo route và trang tương ứng. Mà bản thân nextjs sẽ cung cấp route tự suy diễn theo cấu trúc cây như sau:
+
+Đây là hình gốc trên trang chủ:
+
+![image](https://gist.github.com/assets/31009750/6bfa4e96-ecf1-4f4c-a5ab-2b5f44fc37f5)
+
+Còn đây là cấu trúc website của chúng ta:
+
+![image](https://gist.github.com/assets/31009750/b2c6f64e-4cec-4135-b2fc-f5626adf8557)
+
+Cấu trúc đường dẫn (URL) của một trang web:
+
+![image](https://gist.github.com/assets/31009750/949f2331-f3f3-4fb7-9ff7-12e80887b0a4)
+
+Vậy thì nextjs tự suy diễn theo cấu trúc nào, về cơ bản nó sẽ dựa trên cấu trúc của URL của 1 trang web và cấu trúc thư mục tương ứng.
+
+![image](https://gist.github.com/assets/31009750/2dbf5f4c-ff77-46fe-a9fd-9ea25fe435b2)
+
+> \[slug\] chính xác là thư mục
+
+Kết hợp với quy ước đặt tên của nextjs bên dưới
+
+![image](https://gist.github.com/assets/31009750/d36882f0-253d-468e-ab39-7f90da4bf02a)
+
+Chúng ta cùng xây dựng cấu trúc thư mục của dự án như sau:
+
+> src/app/global.css : tập tin chứa global css của chúng ta, trong ví dụ này chúng ta sử dụng tailwind
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+> layout.tsx: thì đây là component được sử dụng làm layout chung cho các component con
+
+```tsx
+import type { Metadata } from "next";
+import "./globals.css";
+
+export const metadata: Metadata = {
+  title: "NextJS Tutorial 2024",
+  description: "NextJS courses",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body>{children}</body>
+    </html>
+  );
+}
+```
+
+> page.tsx: Đây là tập tin sẽ tương ứng với route segment
+
+```tsx
+export default function Home() {
+  return (
+    <main className="container-xl mx-auto p-4">
+      <h1>Home Page</h1>
+    </main>
+  );
+}
+```
+
+Theo quy tắc định sẵn, chúng ta lần lượt tạo route cho các page sau:
+
+Để đơn giản tất cả các đường dẫn bên dưới mặc định sẽ nằm trong thư mục src/app
+
+1. Home : page.tsx
+2. Products: `products/page.tsx`
+3. Product Details: products/[slug].tsx
+4. Cart: cart/page.tsx
+5. Order: order/page.tsx
+6. My Account: my-account/page.tsx
+7. My Orders: my-orders/page.tsx
+8. My Order Details: my-orders/[id]/page.tsx
+
+Các bạn hãy dừng lại và thực hành thử.
+
+```sh
+mkdir -p products products/[slug] cart order my-account my-orders my-orders/[id]
+```
+
+Vậy sau khi tạo xong cấu trúc thư mục và tập tin thì viết code như thế nào để hiện thị trang web.
+Đơn giản các chỉ export 1 component default trong tập tin tương ứng. Lưu ý nên đặt tên component theo trang để dễ quản lí.
+
+```tsx
+export default function Products() {
+  return (
+    <main className="container-xl mx-auto p-4">
+      <h1>Products</h1>
+    </main>
+  );
+}
+```
+
+Cùng tạo link tới các trang bạn đã tạo nào. Chúng ta có 2 cách sử dụng thẻ a hoặc Link Component của NextJS.
+
+Cùng so sánh sự khác biệt của 2 cách
+
+{{< iframe "https://www.youtube.com/embed/wopG9mM0Qe8?si=pwu9xtq3SJc18BD0" >}}
