@@ -133,7 +133,7 @@
 <strong>Tags:</strong>
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=/tags/nextjs>nextjs</a>
 </p>
-<p><strong>Note</strong>: Toàn bộ mã nguồn của khóa học này đều được công khai trên github tại <a href=https://github.com/nextjsvietnam/nextjs-tutorial-2024>Nextjs Tutorial 2024</a></p>
+<p><strong>Note</strong>: Toàn bộ mã nguồn của khóa học này đều được công khai trên github tại <a href=https://github.com/nextjsvietnam/nextjs-tutorial-2024/tree/tutorial/lession-02>Nextjs Tutorial 2024</a></p>
 <p>Các nội dung chính trong bài học lần này:</p>
 <ol>
 <li>Khởi tạo dự án NextJS</li>
@@ -167,7 +167,7 @@
 <p>Vậy là bạn đã đi được 1/4 quãng đường của bài học này.
 Sẽ có rất nhiều câu hỏi như, thế với cấu trúc thư mục ban đầu như vậy, thì chúng ta khai báo trang mới như thế nào, code reactjs hoạt động ra sao, các tài nguyên khác như hình ảnh, css sẽ để ở đâu, gọi api để lấy data và hiển thị ra trang web bằng cách nào,&mldr;</p>
 <p>Để dễ tiếp cận, chúng ta bắt đầu từ cấu trúc của 1 trang web truyền thống với cây thư mục như sau.</p>
-<p><img src=https://gist.github.com/assets/31009750/b4b5df9a-fa28-4d85-8884-c0d655534766 alt=image></p>
+<p><img src=https://gist.github.com/assets/31009750/b2c6f64e-4cec-4135-b2fc-f5626adf8557 alt=image></p>
 <p>Nào cùng phân tích cấu trúc website bán hàng đơn giản phía trên như sau.</p>
 <p>Chúng ta sẽ có lần lượt các trang như sau:</p>
 <ol>
@@ -190,6 +190,85 @@ Sẽ có rất nhiều câu hỏi như, thế với cấu trúc thư mục ban �
 <li>Rendering: phần tạo nội dụng html của từng trang dưạ trên dữ liệu</li>
 <li>Authentication: phần đăng nhập, nhằm chặn các user không được phép truy cập vào nội dung không phải của mình, ví dụ như my account, my orders,&mldr;</li>
 </ol>
+<p>Trong nextjs, không có 1 cú pháp cụ thể giúp chúng ta khai báo route và trang tương ứng. Mà bản thân nextjs sẽ cung cấp route tự suy diễn theo cấu trúc cây như sau:</p>
+<p>Đây là hình gốc trên trang chủ:</p>
+<p><img src=https://gist.github.com/assets/31009750/6bfa4e96-ecf1-4f4c-a5ab-2b5f44fc37f5 alt=image></p>
+<p>Còn đây là cấu trúc website của chúng ta:</p>
+<p><img src=https://gist.github.com/assets/31009750/b2c6f64e-4cec-4135-b2fc-f5626adf8557 alt=image></p>
+<p>Cấu trúc đường dẫn (URL) của một trang web:</p>
+<p><img src=https://gist.github.com/assets/31009750/949f2331-f3f3-4fb7-9ff7-12e80887b0a4 alt=image></p>
+<p>Vậy thì nextjs tự suy diễn theo cấu trúc nào, về cơ bản nó sẽ dựa trên cấu trúc của URL của 1 trang web và cấu trúc thư mục tương ứng.</p>
+<p><img src=https://gist.github.com/assets/31009750/2dbf5f4c-ff77-46fe-a9fd-9ea25fe435b2 alt=image></p>
+<blockquote>
+<p>[slug] chính xác là thư mục</p>
+</blockquote>
+<p>Kết hợp với quy ước đặt tên của nextjs bên dưới</p>
+<p><img src=https://gist.github.com/assets/31009750/d36882f0-253d-468e-ab39-7f90da4bf02a alt=image></p>
+<p>Chúng ta cùng xây dựng cấu trúc thư mục của dự án như sau:</p>
+<blockquote>
+<p>src/app/global.css : tập tin chứa global css của chúng ta, trong ví dụ này chúng ta sử dụng tailwind</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-css data-lang=css>@<span style=color:#66d9ef>tailwind</span> <span style=color:#f92672>base</span>;
+@<span style=color:#66d9ef>tailwind</span> <span style=color:#f92672>components</span>;
+@<span style=color:#66d9ef>tailwind</span> <span style=color:#f92672>utilities</span>;
+</code></pre></div><blockquote>
+<p>layout.tsx: thì đây là component được sử dụng làm layout chung cho các component con</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-tsx data-lang=tsx><span style=color:#66d9ef>import</span> <span style=color:#66d9ef>type</span> { <span style=color:#a6e22e>Metadata</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;next&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#34;./globals.css&#34;</span>;
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>metadata</span>: <span style=color:#66d9ef>Metadata</span> <span style=color:#f92672>=</span> {
+  <span style=color:#a6e22e>title</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;NextJS Tutorial 2024&#34;</span>,
+  <span style=color:#a6e22e>description</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;NextJS courses&#34;</span>,
+};
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>RootLayout</span>({
+  <span style=color:#a6e22e>children</span>,
+}<span style=color:#f92672>:</span> <span style=color:#a6e22e>Readonly</span><span style=color:#f92672>&lt;</span>{
+  <span style=color:#a6e22e>children</span>: <span style=color:#66d9ef>React.ReactNode</span>;
+}<span style=color:#f92672>&gt;</span>) {
+  <span style=color:#66d9ef>return</span> (
+    &lt;<span style=color:#f92672>html</span> <span style=color:#a6e22e>lang</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;en&#34;</span>&gt;
+      &lt;<span style=color:#f92672>body</span>&gt;{<span style=color:#a6e22e>children</span>}&lt;/<span style=color:#f92672>body</span>&gt;
+    &lt;/<span style=color:#f92672>html</span>&gt;
+  );
+}
+</code></pre></div><blockquote>
+<p>page.tsx: Đây là tập tin sẽ tương ứng với route segment</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-tsx data-lang=tsx><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>Home() {</span>
+  <span style=color:#66d9ef>return</span> (
+    &lt;<span style=color:#f92672>main</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;container-xl mx-auto p-4&#34;</span>&gt;
+      &lt;<span style=color:#f92672>h1</span>&gt;<span style=color:#a6e22e>Home</span> <span style=color:#a6e22e>Page</span>&lt;/<span style=color:#f92672>h1</span>&gt;
+    &lt;/<span style=color:#f92672>main</span>&gt;
+  );
+}
+</code></pre></div><p>Theo quy tắc định sẵn, chúng ta lần lượt tạo route cho các page sau:</p>
+<p>Để đơn giản tất cả các đường dẫn bên dưới mặc định sẽ nằm trong thư mục src/app</p>
+<ol>
+<li>Home : page.tsx</li>
+<li>Products: <code>products/page.tsx</code></li>
+<li>Product Details: products/[slug].tsx</li>
+<li>Cart: cart/page.tsx</li>
+<li>Order: order/page.tsx</li>
+<li>My Account: my-account/page.tsx</li>
+<li>My Orders: my-orders/page.tsx</li>
+<li>My Order Details: my-orders/[id]/page.tsx</li>
+</ol>
+<p>Các bạn hãy dừng lại và thực hành thử.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>mkdir -p products products/<span style=color:#f92672>[</span>slug<span style=color:#f92672>]</span> cart order my-account my-orders my-orders/<span style=color:#f92672>[</span>id<span style=color:#f92672>]</span>
+</code></pre></div><p>Vậy sau khi tạo xong cấu trúc thư mục và tập tin thì viết code như thế nào để hiện thị trang web.
+Đơn giản các chỉ export 1 component default trong tập tin tương ứng. Lưu ý nên đặt tên component theo trang để dễ quản lí.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-tsx data-lang=tsx><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>Products() {</span>
+  <span style=color:#66d9ef>return</span> (
+    &lt;<span style=color:#f92672>main</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;container-xl mx-auto p-4&#34;</span>&gt;
+      &lt;<span style=color:#f92672>h1</span>&gt;<span style=color:#a6e22e>Products</span>&lt;/<span style=color:#f92672>h1</span>&gt;
+    &lt;/<span style=color:#f92672>main</span>&gt;
+  );
+}
+</code></pre></div><p>Cùng tạo link tới các trang bạn đã tạo nào. Chúng ta có 2 cách sử dụng thẻ a hoặc Link Component của NextJS.</p>
+<p>Cùng so sánh sự khác biệt của 2 cách</p>
+<iframe width=768 height=415 src="https://www.youtube.com/embed/wopG9mM0Qe8?si=pwu9xtq3SJc18BD0" frameborder=0 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy=strict-origin-when-cross-origin allowfullscreen></iframe>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/nextjs-tutorial>nextjs-tutorial</a>
 </div>
