@@ -367,7 +367,69 @@ Sẽ có rất nhiều câu hỏi như, thế với cấu trúc thư mục ban �
 <li>http://localhost:3000/products/1 => có sản phẩm hiển thị ( giống sp của link 1)</li>
 <li>http://localhost:3000/products/5 => sản phẩm không tìm thấy</li>
 </ol>
-<p>Hãy áp dụng tiếp với [id] của my-order nhé</p>
+<p>Hãy áp dụng tiếp với [id] của my order details nhé</p>
+<blockquote>
+<p>URL : http://localhost:3000/my-orders/1</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-tsx data-lang=tsx><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>OrderProps</span> <span style=color:#f92672>=</span> {
+  <span style=color:#a6e22e>params</span><span style=color:#f92672>:</span> {
+    <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>string</span>;
+  };
+};
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>PRODUCTS</span> <span style=color:#f92672>=</span> [
+  {
+    <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>1</span>,
+    <span style=color:#a6e22e>slug</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;mouse-pad-nextjsvietnam&#34;</span>,
+    <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Mouse Pad NextJSVietNam&#34;</span>,
+    <span style=color:#a6e22e>price</span>: <span style=color:#66d9ef>15</span>,
+    <span style=color:#a6e22e>currency</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;USD&#34;</span>,
+    <span style=color:#a6e22e>image</span><span style=color:#f92672>:</span>
+      <span style=color:#e6db74>&#34;https://gist.github.com/assets/31009750/06f69548-c14b-47d0-b650-7af3a023b750&#34;</span>,
+  },
+];
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>ORDERS</span> <span style=color:#f92672>=</span> [
+  { <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>1</span>, <span style=color:#a6e22e>items</span><span style=color:#f92672>:</span> [{ <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>1</span>, <span style=color:#a6e22e>product</span>: <span style=color:#66d9ef>PRODUCTS</span>[<span style=color:#ae81ff>0</span>], <span style=color:#a6e22e>quality</span>: <span style=color:#66d9ef>5</span> }] },
+];
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>findOrderById</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>orderId</span>: <span style=color:#66d9ef>string</span>) <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>ORDERS</span>.<span style=color:#a6e22e>find</span>((<span style=color:#a6e22e>order</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>order</span>.<span style=color:#a6e22e>id</span> <span style=color:#f92672>===</span> parseInt(<span style=color:#a6e22e>orderId</span>));
+};
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>MyOrderDetail</span>({ <span style=color:#a6e22e>params</span> }<span style=color:#f92672>:</span> <span style=color:#a6e22e>OrderProps</span>) {
+  <span style=color:#66d9ef>const</span> { <span style=color:#a6e22e>id</span> } <span style=color:#f92672>=</span> <span style=color:#a6e22e>params</span>;
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>order</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>findOrderById</span>(<span style=color:#a6e22e>id</span>);
+  <span style=color:#66d9ef>return</span> (
+    &lt;<span style=color:#f92672>main</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;container-xl mx-auto p-4&#34;</span>&gt;
+      &lt;<span style=color:#f92672>h1</span>&gt;<span style=color:#a6e22e>Order</span>&lt;/<span style=color:#f92672>h1</span>&gt;
+      &lt;<span style=color:#f92672>table</span>&gt;
+        &lt;<span style=color:#f92672>thead</span>&gt;
+          &lt;<span style=color:#f92672>tr</span>&gt;
+            &lt;<span style=color:#f92672>th</span>&gt;<span style=color:#a6e22e>Product</span> <span style=color:#a6e22e>Name</span>&lt;/<span style=color:#f92672>th</span>&gt;
+            &lt;<span style=color:#f92672>th</span>&gt;<span style=color:#a6e22e>Product</span> <span style=color:#a6e22e>Image</span>&lt;/<span style=color:#f92672>th</span>&gt;
+            &lt;<span style=color:#f92672>th</span>&gt;<span style=color:#a6e22e>Quality</span>&lt;/<span style=color:#f92672>th</span>&gt;
+            &lt;<span style=color:#f92672>th</span>&gt;<span style=color:#a6e22e>Total</span>&lt;/<span style=color:#f92672>th</span>&gt;
+          &lt;/<span style=color:#f92672>tr</span>&gt;
+        &lt;/<span style=color:#f92672>thead</span>&gt;
+        &lt;<span style=color:#f92672>tbody</span>&gt;
+          {<span style=color:#a6e22e>order</span><span style=color:#f92672>?</span>.<span style=color:#a6e22e>items</span>.<span style=color:#a6e22e>map</span>((<span style=color:#a6e22e>item</span>) <span style=color:#f92672>=&gt;</span> (
+            &lt;<span style=color:#f92672>tr</span>&gt;
+              &lt;<span style=color:#f92672>td</span>&gt;{<span style=color:#a6e22e>item</span>.<span style=color:#a6e22e>product</span>.<span style=color:#a6e22e>name</span>}&lt;/<span style=color:#f92672>td</span>&gt;
+              &lt;<span style=color:#f92672>td</span>&gt;
+                &lt;<span style=color:#f92672>img</span> <span style=color:#a6e22e>src</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>item</span>.<span style=color:#a6e22e>product</span>.<span style=color:#a6e22e>image</span>} <span style=color:#a6e22e>width</span><span style=color:#f92672>=</span>{<span style=color:#ae81ff>150</span>} <span style=color:#a6e22e>height</span><span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;auto&#34;</span>} /&gt;
+              &lt;/<span style=color:#f92672>td</span>&gt;
+              &lt;<span style=color:#f92672>td</span>&gt;{<span style=color:#a6e22e>item</span>.<span style=color:#a6e22e>quality</span>}&lt;/<span style=color:#f92672>td</span>&gt;
+              &lt;<span style=color:#f92672>td</span>&gt;
+                {<span style=color:#a6e22e>item</span>.<span style=color:#a6e22e>quality</span> <span style=color:#f92672>*</span> <span style=color:#a6e22e>item</span>.<span style=color:#a6e22e>product</span>.<span style=color:#a6e22e>price</span>} {<span style=color:#a6e22e>item</span>.<span style=color:#a6e22e>product</span>.<span style=color:#a6e22e>currency</span>}
+              &lt;/<span style=color:#f92672>td</span>&gt;
+            &lt;/<span style=color:#f92672>tr</span>&gt;
+          ))}
+        &lt;/<span style=color:#f92672>tbody</span>&gt;
+      &lt;/<span style=color:#f92672>table</span>&gt;
+    &lt;/<span style=color:#f92672>main</span>&gt;
+  );
+}
+</code></pre></div>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/nextjs-tutorial>nextjs-tutorial</a>
 </div>
