@@ -12,18 +12,18 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWE4MLJYE6"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-RWE4MLJYE6')</script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1642510310947288" crossorigin=anonymous></script>
-<title>Aws Lab Series Foreword | Aws Lab Series Foreword | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+<title>Khoá học NextJS 2024 - Bài 02: Cấu trúc dự án NextJS | Trong bài này, chúng ta sẽ tìm hiểu cấu trúc của 1 dự án NextJS và học cách setup môi trường phát triển trên máy | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
 <meta name=robots content="all">
-<meta name=keywords content="aws">
-<meta name=description content="Aws Lab Series Foreword">
+<meta name=keywords content="nextjs,nextjs-beginner">
+<meta name=description content="Trong bài này, chúng ta sẽ tìm hiểu cấu trúc của 1 dự án NextJS và học cách setup môi trường phát triển trên máy">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://gist.github.com/assets/31009750/f0790373-09b7-4a65-8742-a5a08884fa80">
+<meta property="og:image" content="https://user-images.githubusercontent.com/31009750/246866968-e42afc31-8eea-44e8-ba86-629918f50401.png">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="750">
 <meta property="og:image:height" content="300">
 <meta property="article:publisher" content="https://www.facebook.com/nextjsvietnam">
-<meta property="article:published_time" content="2024-01-06T08:46:59+07:00">
-<meta property="article:modified_time" content="2024-01-06T08:46:59+07:00">
+<meta property="article:published_time" content="2024-05-18T09:05:19+07:00">
+<meta property="article:modified_time" content="2024-05-18T09:05:19+07:00">
 <link rel=apple-touch-icon sizes=57x57 href=/apple-icon-57x57.png>
 <link rel=apple-touch-icon sizes=60x60 href=/apple-icon-60x60.png>
 <link rel=apple-touch-icon sizes=72x72 href=/apple-icon-72x72.png>
@@ -121,24 +121,77 @@
 <main>
 <section class="container section">
 <div class="page-content max-w-2xl mx-auto">
-<img src=https://gist.github.com/assets/31009750/f0790373-09b7-4a65-8742-a5a08884fa80 class=img-responsive alt="Aws Lab Series Foreword">
-<h1>Aws Lab Series Foreword</h1>
-<p><strong>Post Date</strong> : 2024-01-06T08:46:59+07:00</p>
-<p><strong>Modified Date</strong> : 2024-01-06T08:46:59+07:00</p>
+<img src=https://user-images.githubusercontent.com/31009750/246866968-e42afc31-8eea-44e8-ba86-629918f50401.png class=img-responsive alt="Khoá học NextJS 2024 - Bài 02: Cấu trúc dự án NextJS">
+<h1>Khoá học NextJS 2024 - Bài 02: Cấu trúc dự án NextJS</h1>
+<p><strong>Post Date</strong> : 2024-05-18T09:05:19+07:00</p>
+<p><strong>Modified Date</strong> : 2024-05-18T09:05:19+07:00</p>
 <p>
 <strong>Category:</strong>
-<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/systemdesign>systemdesign</a>
-<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/aws-labs>aws-labs</a>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/nextjs-tutorial>nextjs-tutorial</a>
 </p>
 <p>
 <strong>Tags:</strong>
-<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=/tags/aws>aws</a>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=/tags/nextjs>nextjs</a>
 </p>
-<p>A good architecture include these pillars</p>
-<p><img src=https://gist.github.com/assets/31009750/5023db72-a857-4235-8a9f-02aa09698e5a alt=image></p>
+<p><strong>Note</strong>: Toàn bộ mã nguồn của khóa học này đều được công khai trên github tại <a href=https://github.com/nextjsvietnam/nextjs-tutorial-2024>Nextjs Tutorial 2024</a></p>
+<p>Các nội dung chính trong bài học lần này:</p>
+<ol>
+<li>Khởi tạo dự án NextJS</li>
+<li>So sánh cấu trúc của 1 trang web với cấu trúc của một dự án NextJS</li>
+<li>Tạo cấu trúc thư mục cơ bản nhất cho một dự án NextJS</li>
+<li>Cài đặt và cấu hình VSCode cho dự án NextJS</li>
+<li>Triển khai dự án đầu tiên của bạn lên server</li>
+</ol>
+<h2 id=khởi-tạo-dự-án-nextjs>Khởi tạo dự án NextJS</h2>
+<p>Có 2 cách để tạo 1 dự án NextJS</p>
+<ul>
+<li>Cách 1: Automatic Installation</li>
+<li>Cách 2: Manual Installation</li>
+</ul>
+<p>Thông thường chúng ta sẽ chọn cách 1 để tiết kiệm thời gian, cách 2 dành cho các bạn có kiến thức chuyên sâu hơn, và thường sử dụng khi cần chuyển đổi 1 dự án SPA đang viết bằng ReactJS sang Server Side Render sử dụng NextJS.</p>
+<h3 id=cách-1-automatic-installation>Cách 1: Automatic Installation</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>npx create-next-app@latest <span style=color:#f92672>[</span>your-project-name<span style=color:#f92672>]</span>
+</code></pre></div><p><img src=https://gist.github.com/assets/31009750/510de0e3-ae6e-4ea6-9279-316c88da6be6 alt=image></p>
+<p>Sau khi cài đặt xong, chúng ta sẽ đi qua cấu trúc cơ bản nhất của NextJS</p>
+<p><img src=https://gist.github.com/assets/31009750/5af5a77c-9f21-4109-9627-30fa3102db9e alt=image></p>
+<p>Cùng chạy dự án với câu lệnh có sẵn trong package.json</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>  <span style=color:#e6db74>&#34;scripts&#34;</span><span style=color:#960050;background-color:#1e0010>:</span> {
+    <span style=color:#f92672>&#34;dev&#34;</span>: <span style=color:#e6db74>&#34;next dev&#34;</span>,
+    <span style=color:#f92672>&#34;build&#34;</span>: <span style=color:#e6db74>&#34;next build&#34;</span>,
+    <span style=color:#f92672>&#34;start&#34;</span>: <span style=color:#e6db74>&#34;next start&#34;</span>,
+    <span style=color:#f92672>&#34;lint&#34;</span>: <span style=color:#e6db74>&#34;next lint&#34;</span>
+  }<span style=color:#960050;background-color:#1e0010>,</span>
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>npm run dev
+</code></pre></div><p>Giao diện lần đầu sau khi chạy lệnh trên</p>
+<p><img src=https://gist.github.com/assets/31009750/a0001f8a-c6c9-4437-afc9-e1dfb267e6fc alt=image></p>
+<p>Vậy là bạn đã đi được 1/4 quãng đường của bài học này.
+Sẽ có rất nhiều câu hỏi như, thế với cấu trúc thư mục ban đầu như vậy, thì chúng ta khai báo trang mới như thế nào, code reactjs hoạt động ra sao, các tài nguyên khác như hình ảnh, css sẽ để ở đâu, gọi api để lấy data và hiển thị ra trang web bằng cách nào,&mldr;</p>
+<p>Để dễ tiếp cận, chúng ta bắt đầu từ cấu trúc của 1 trang web truyền thống với cây thư mục như sau.</p>
+<p><img src=https://gist.github.com/assets/31009750/b4b5df9a-fa28-4d85-8884-c0d655534766 alt=image></p>
+<p>Nào cùng phân tích cấu trúc website bán hàng đơn giản phía trên như sau.</p>
+<p>Chúng ta sẽ có lần lượt các trang như sau:</p>
+<ol>
+<li>Home: Trang chủ hiển thị các sản phẩm mới nhất, hot, đang khuyến mãi</li>
+<li>Products: hiển thị toàn bộ sản phẩm của shop, có hỗ trợ tìm kiếm phân loại theo một số tiêu chí: giá, danh mục sản phẩm, mã sản phẩm. Hỗ trợ sắp xếp theo giá, lượt mua, &mldr;</li>
+<li>Product Detail: hiển thị chi tiết sản phẩm bao gồm: hình ảnh, giá, thông tin sản phẩm, nút mua hàng, &mldr;</li>
+<li>Cart: giỏ hàng, hiển thị các sản phẩm đang trong giỏ hàng của khách</li>
+<li>Order: trang xác nhận thông tin đặt hàng của khách</li>
+<li>My Account: trang thông tin cá nhân của khách, hỗ trợ cập nhật thông tin giao hàng, thông tin đặt hàng</li>
+<li>My Orders: hiển thị danh sách các đơn hàng đã đặt</li>
+<li>Order Details: hiển thị chi tiết thông tin của 1 đơn hàng.</li>
+</ol>
+<p>Khá là nhiều phải không các bạn. Như vậy để xây dựng 1 trang web như trên chúng ta sẽ có các yêu cầu như sau khi cấu trúc 1 dự án:</p>
+<ol>
+<li>Global styles: màu sắc, kích cỡ, font chữ chung của toàn bộ trang web,</li>
+<li>Assets: hình ảnh, css, javascript, &mldr;</li>
+<li>Shared Components: các thành phần dùng chung cho trang web từ nhỏ đến lớn. Ví dụ: header, footer, form elements, buttons, &mldr;</li>
+<li>Route: đường dẫn tương ứng tới các trang</li>
+<li>Fetching Data: lấy dữ liệu từ server</li>
+<li>Rendering: phần tạo nội dụng html của từng trang dưạ trên dữ liệu</li>
+<li>Authentication: phần đăng nhập, nhằm chặn các user không được phép truy cập vào nội dung không phải của mình, ví dụ như my account, my orders,&mldr;</li>
+</ol>
 <div class="m-1 p-1">
-<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/systemdesign>systemdesign</a>
-<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/aws-labs>aws-labs</a>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/nextjs-tutorial>nextjs-tutorial</a>
 </div>
 </div>
 </section>
@@ -147,13 +200,7 @@
 <div class="font-heading text-2xl font-semibold">You Might Also Like</div>
 <div class="mt-8 grid gap-8">
 <ul class=sidebar-links>
-<li><a href=/post/microservice-headfirst/>Microservice Headfirst</a></li>
-<li><a href=/post/aws-lab-series-build-and-deploy-rest-api/>Aws Lab Series Build and Deploy Rest Api</a></li>
-<li><a href=/post/aws-series-migration/>Aws Series Migration</a></li>
-<li><a href=/post/aws-series-governance/>Aws Series Governance</a></li>
-<li><a href=/post/aws-series-caching/>Aws Series Caching</a></li>
-<li><a href=/post/aws-series-automation/>Aws Series Automation</a></li>
-<li><a href=/post/aws-series-security/>Aws Series Security</a></li>
+<li><a href=/post/khoa-hoc-nextjs/>Khóa học NextJS - Bài 01 - Lộ trình các bài học về NextJS</a></li>
 </ul>
 </div>
 </div>
