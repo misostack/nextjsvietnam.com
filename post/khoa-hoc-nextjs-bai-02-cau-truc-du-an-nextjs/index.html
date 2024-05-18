@@ -267,8 +267,107 @@ Sẽ có rất nhiều câu hỏi như, thế với cấu trúc thư mục ban �
   );
 }
 </code></pre></div><p>Cùng tạo link tới các trang bạn đã tạo nào. Chúng ta có 2 cách sử dụng thẻ a hoặc Link Component của NextJS.</p>
-<p>Cùng so sánh sự khác biệt của 2 cách</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-tsx data-lang=tsx><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>Link</span> <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;next/link&#34;</span>;
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>Products() {</span>
+  <span style=color:#66d9ef>return</span> (
+    &lt;<span style=color:#f92672>main</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;container-xl mx-auto p-4&#34;</span>&gt;
+      &lt;<span style=color:#f92672>h1</span>&gt;<span style=color:#a6e22e>Products</span>&lt;/<span style=color:#f92672>h1</span>&gt;
+      &lt;<span style=color:#f92672>ul</span>&gt;
+        {[<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>5</span>, <span style=color:#ae81ff>6</span>].<span style=color:#a6e22e>map</span>((<span style=color:#a6e22e>i</span>) <span style=color:#f92672>=&gt;</span> (
+          &lt;&gt;
+            &lt;<span style=color:#f92672>li</span>&gt;
+              &lt;<span style=color:#f92672>Link</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span>{<span style=color:#e6db74>`/products/</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>i</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>}&gt;<span style=color:#a6e22e>Product</span> {<span style=color:#a6e22e>i</span>}&lt;/<span style=color:#f92672>Link</span>&gt;
+            &lt;/<span style=color:#f92672>li</span>&gt;
+          &lt;/&gt;
+        ))}
+      &lt;/<span style=color:#f92672>ul</span>&gt;
+    &lt;/<span style=color:#f92672>main</span>&gt;
+  );
+}
+</code></pre></div><p>Cùng so sánh sự khác biệt của 2 cách</p>
 <iframe width=768 height=415 src="https://www.youtube.com/embed/wopG9mM0Qe8?si=pwu9xtq3SJc18BD0" frameborder=0 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy=strict-origin-when-cross-origin allowfullscreen></iframe>
+<p>Có vẻ khá ổn rồi đấy, tuy nhiên [slug] và [id] thì xử lý thế nào.</p>
+<blockquote>
+<p>Dynamic Segments are passed as the params prop to layout, page, route, and generateMetadata function</p>
+</blockquote>
+<p>Ồ thì ra các segment có dạng này sẽ được truyền vào params prop của component: layout, page, route, generateMetadata function.</p>
+<p>Cùng thử</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-tsx data-lang=tsx><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>Link</span> <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;next/link&#34;</span>;
+
+<span style=color:#66d9ef>type</span> <span style=color:#a6e22e>ProductDetailProps</span> <span style=color:#f92672>=</span> {
+  <span style=color:#a6e22e>params</span><span style=color:#f92672>:</span> {
+    <span style=color:#a6e22e>slug</span>: <span style=color:#66d9ef>string</span>;
+  };
+};
+
+<span style=color:#75715e>// let&#39;s fake a function to find product detail by slug/id
+</span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>PRODUCTS</span> <span style=color:#f92672>=</span> [
+  {
+    <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>1</span>,
+    <span style=color:#a6e22e>slug</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;mouse-pad-nextjsvietnam&#34;</span>,
+    <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Mouse Pad NextJSVietNam&#34;</span>,
+    <span style=color:#a6e22e>price</span>: <span style=color:#66d9ef>15</span>,
+    <span style=color:#a6e22e>currency</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;USD&#34;</span>,
+    <span style=color:#a6e22e>image</span><span style=color:#f92672>:</span>
+      <span style=color:#e6db74>&#34;https://gist.github.com/assets/31009750/06f69548-c14b-47d0-b650-7af3a023b750&#34;</span>,
+  },
+];
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>findProductBySlugOrId</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>value</span>: <span style=color:#66d9ef>string</span>) <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#75715e>// find by id first
+</span><span style=color:#75715e></span>  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>product</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>null</span>;
+  <span style=color:#66d9ef>try</span> {
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>id</span>: <span style=color:#66d9ef>number</span> <span style=color:#f92672>=</span> parseInt(<span style=color:#a6e22e>value</span>);
+    <span style=color:#a6e22e>product</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>PRODUCTS</span>.<span style=color:#a6e22e>find</span>((<span style=color:#a6e22e>p</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>p</span>.<span style=color:#a6e22e>id</span> <span style=color:#f92672>==</span> <span style=color:#a6e22e>id</span>);
+    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>product</span>) {
+      <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>product</span>;
+    }
+    <span style=color:#75715e>// otherwise find by slug
+</span><span style=color:#75715e></span>    <span style=color:#a6e22e>product</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>PRODUCTS</span>.<span style=color:#a6e22e>find</span>((<span style=color:#a6e22e>p</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>p</span>.<span style=color:#a6e22e>slug</span> <span style=color:#f92672>===</span> <span style=color:#a6e22e>value</span>.<span style=color:#a6e22e>toLowerCase</span>());
+  } <span style=color:#66d9ef>catch</span> (<span style=color:#a6e22e>error</span>) {
+    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>error</span>);
+  }
+
+  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>product</span>;
+};
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>ProductDetail</span>({ <span style=color:#a6e22e>params</span> }<span style=color:#f92672>:</span> <span style=color:#a6e22e>ProductDetailProps</span>) {
+  <span style=color:#66d9ef>const</span> { <span style=color:#a6e22e>slug</span> } <span style=color:#f92672>=</span> <span style=color:#a6e22e>params</span>;
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>product</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>findProductBySlugOrId</span>(<span style=color:#a6e22e>slug</span>);
+  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>content</span> <span style=color:#f92672>=</span> &lt;&gt;&lt;/&gt;;
+  <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span><span style=color:#a6e22e>product</span>) {
+    <span style=color:#a6e22e>content</span> <span style=color:#f92672>=</span> (
+      &lt;&gt;
+        &lt;<span style=color:#f92672>h1</span>&gt;<span style=color:#a6e22e>Product</span> <span style=color:#a6e22e>not</span> <span style=color:#a6e22e>found</span><span style=color:#f92672>!</span>&lt;/<span style=color:#f92672>h1</span>&gt;
+        &lt;<span style=color:#f92672>p</span>&gt;
+          <span style=color:#a6e22e>Please</span> <span style=color:#a6e22e>go</span> <span style=color:#a6e22e>back</span> <span style=color:#a6e22e>to</span> &lt;<span style=color:#f92672>Link</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/products&#34;</span>&gt;<span style=color:#a6e22e>product</span> <span style=color:#a6e22e>list</span>&lt;/<span style=color:#f92672>Link</span>&gt;
+        &lt;/<span style=color:#f92672>p</span>&gt;
+      &lt;/&gt;
+    );
+  } <span style=color:#66d9ef>else</span> {
+    <span style=color:#a6e22e>content</span> <span style=color:#f92672>=</span> (
+      &lt;&gt;
+        &lt;<span style=color:#f92672>h1</span>&gt;<span style=color:#a6e22e>Product</span> <span style=color:#a6e22e>Detail</span>&lt;/<span style=color:#f92672>h1</span>&gt;
+        &lt;<span style=color:#f92672>p</span>&gt;<span style=color:#a6e22e>Name</span><span style=color:#f92672>:</span> {<span style=color:#a6e22e>product</span>.<span style=color:#a6e22e>name</span>}&lt;/<span style=color:#f92672>p</span>&gt;
+        &lt;<span style=color:#f92672>p</span>&gt;
+          <span style=color:#a6e22e>Price</span><span style=color:#f92672>:</span> {<span style=color:#a6e22e>product</span>.<span style=color:#a6e22e>price</span>} {<span style=color:#a6e22e>product</span>.<span style=color:#a6e22e>currency</span>}
+        &lt;/<span style=color:#f92672>p</span>&gt;
+        &lt;<span style=color:#f92672>p</span>&gt;
+          &lt;<span style=color:#f92672>img</span> <span style=color:#a6e22e>src</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>product</span>.<span style=color:#a6e22e>image</span>} <span style=color:#a6e22e>alt</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>product</span>.<span style=color:#a6e22e>name</span>} /&gt;
+        &lt;/<span style=color:#f92672>p</span>&gt;
+      &lt;/&gt;
+    );
+  }
+  <span style=color:#66d9ef>return</span> &lt;<span style=color:#f92672>main</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;container-xl mx-auto p-4&#34;</span>&gt;{<span style=color:#a6e22e>content</span>}&lt;/<span style=color:#f92672>main</span>&gt;;
+}
+</code></pre></div><p>Hãy thử truy cập 3 đường link sau:</p>
+<ol>
+<li>http://localhost:3000/products/mouse-pad-nextjsvietnam => có sản phẩm hiển thị</li>
+<li>http://localhost:3000/products/1 => có sản phẩm hiển thị ( giống sp của link 1)</li>
+<li>http://localhost:3000/products/5 => sản phẩm không tìm thấy</li>
+</ol>
+<p>Hãy áp dụng tiếp với [id] của my-order nhé</p>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/nextjs-tutorial>nextjs-tutorial</a>
 </div>
