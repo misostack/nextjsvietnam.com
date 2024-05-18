@@ -9,7 +9,7 @@ tags: ["nextjs"]
 image: "https://user-images.githubusercontent.com/31009750/246866968-e42afc31-8eea-44e8-ba86-629918f50401.png"
 ---
 
-**Note**: Toàn bộ mã nguồn của khóa học này đều được công khai trên github tại [Nextjs Tutorial 2023](//github.com/misostack/nextjs-tutorial-2023.git)
+**Note**: Toàn bộ mã nguồn của khóa học này đều được công khai trên github tại [Nextjs Tutorial 2024](https://github.com/nextjsvietnam/nextjs-tutorial-2024)
 
 Trước khi bắt đầu nội dung chi tiết của khóa học này, tôi sẽ liệt kê một số câu hỏi thường gặp, cũng như câu trả lời của nó.
 
@@ -54,3 +54,9 @@ Nhận thấy được điều này, thay vì tiếp tục viết nhật kí tr�
 - Nếu bạn có câu hỏi vui lòng cung cấp một số thông tin [theo mẫu sau](https://forms.gle/wT4sc5VTeRnYju96A)
 
 [![image](https://user-images.githubusercontent.com/31009750/246770149-f019c2c1-c641-4598-b5ae-e7ccb90edd3a.png)](https://forms.gle/wT4sc5VTeRnYju96A)
+
+## Lộ trình NextJS Tutorial 2024
+
+Trong phần đầu tiên, chúng ta sẽ lần lượt đi qua các khái niệm cần nắm trong NextJS:
+
+- [Bài 02: Cấu trúc một dự án NextJS](/post/khoa-hoc-nextjs-bai-02-cau-truc-du-an-nextjs)
