@@ -2,7 +2,7 @@
 title: "6minutes Tech Graphql"
 type: "post"
 date: 2024-05-19T08:35:31+07:00
-description: "6minutes Tech Graphql"
+description: "GraphQL is a query language for APIs and a runtime for fulfilling those queries with your existing data. GraphQL provides a complete and understandable description of the data in your API, gives clients the power to ask for exactly what they need and nothing more, makes it easier to evolve APIs over time, and enables powerful developer tools."
 keywords: ["6minutes Tech Graphql"]
 categories: ["cheatsheet", "6minutes-tech"]
 tags: []

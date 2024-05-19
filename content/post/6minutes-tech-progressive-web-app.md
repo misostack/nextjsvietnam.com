@@ -2,9 +2,9 @@
 title: "6minutes Tech Progressive Web App"
 type: "post"
 date: 2024-05-15T10:02:21+07:00
-description: ""
+description: "Progressive Web Apps (PWAs) are web apps built and enhanced with modern APIs to deliver enhanced capabilities, reliability, and installability while reaching anyone, anywhere, on any device, all with a single codebase."
 keywords: ["6minutes Tech Progressive Web App"]
-categories: ["cheatsheet"]
+categories: ["cheatsheet", "6minutes-tech"]
 tags: []
 image: "/common/no-image.png"
 ---
