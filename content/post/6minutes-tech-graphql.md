@@ -6,7 +6,7 @@ description: "GraphQL is a query language for APIs and a runtime for fulfilling 
 keywords: ["6minutes Tech Graphql"]
 categories: ["cheatsheet", "6minutes-tech"]
 tags: []
-image: "/common/no-image.png"
+image: "https://gist.github.com/assets/31009750/9944dab6-d954-469c-a694-2454c0596723"
 ---
 
 # The REST API issues

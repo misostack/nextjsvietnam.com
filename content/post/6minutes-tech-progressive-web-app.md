@@ -6,7 +6,7 @@ description: "Progressive Web Apps (PWAs) are web apps built and enhanced with m
 keywords: ["6minutes Tech Progressive Web App"]
 categories: ["cheatsheet", "6minutes-tech"]
 tags: []
-image: "/common/no-image.png"
+image: "https://gist.github.com/assets/31009750/14f103ba-8946-41a5-9320-06e190e6aa06"
 ---
 
 First of all my approach is, we will list all the keywords that we heard or see when someone talk about Progressive Web App (PWA) : offline, installable app, manifest, service workers, mobile first, responsive design, web performance
