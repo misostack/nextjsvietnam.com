@@ -1,0 +1,635 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=home href=https://nextjsvietnam.com>
+<meta name=generator content="jsguru cms">
+<link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap">
+<link rel=stylesheet href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel=stylesheet href=https://nextjsvietnam.com/themes/2022/public/main.css>
+<link rel=stylesheet href=https://nextjsvietnam.com/themes/2022/public/home.css>
+<link rel=stylesheet href=https://nextjsvietnam.com/themes/2022/public/page.css>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RWE4MLJYE6"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-RWE4MLJYE6')</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1642510310947288" crossorigin=anonymous></script>
+<title>6minutes Tech Graphql | 6minutes Tech Graphql | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+<meta name=robots content="all">
+<meta name=keywords content="6minutes Tech Graphql">
+<meta name=description content="6minutes Tech Graphql">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://nextjsvietnam.com/common/no-image.png">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="750">
+<meta property="og:image:height" content="300">
+<meta property="article:publisher" content="https://www.facebook.com/nextjsvietnam">
+<meta property="article:published_time" content="2024-05-19T08:35:31+07:00">
+<meta property="article:modified_time" content="2024-05-19T08:35:31+07:00">
+<link rel=apple-touch-icon sizes=57x57 href=/apple-icon-57x57.png>
+<link rel=apple-touch-icon sizes=60x60 href=/apple-icon-60x60.png>
+<link rel=apple-touch-icon sizes=72x72 href=/apple-icon-72x72.png>
+<link rel=apple-touch-icon sizes=76x76 href=/apple-icon-76x76.png>
+<link rel=apple-touch-icon sizes=114x114 href=/apple-icon-114x114.png>
+<link rel=apple-touch-icon sizes=120x120 href=/apple-icon-120x120.png>
+<link rel=apple-touch-icon sizes=144x144 href=/apple-icon-144x144.png>
+<link rel=apple-touch-icon sizes=152x152 href=/apple-icon-152x152.png>
+<link rel=apple-touch-icon sizes=180x180 href=/apple-icon-180x180.png>
+<link rel=icon type=image/png sizes=192x192 href=/android-icon-192x192.png>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=96x96 href=/favicon-96x96.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
+<link rel=manifest href=/manifest.json>
+<meta name=msapplication-TileColor content="#ffffff">
+<meta name=msapplication-TileImage content="/ms-icon-144x144.png">
+<meta name=theme-color content="#ffffff">
+</head>
+<body class=body-nav-fixed>
+<nav class="nav-fixed nav-default z-50">
+<div class=container>
+<div class="nav-container flex flex-wrap justify-between items-center">
+<a href=https://nextjsvietnam.com class="nav-brand inline-block">
+<img class=h-12 src=https://nextjsvietnam.com/themes/2022/src/assets/images/logo.png alt=Stunning>
+</a>
+<a href=javascript:void(0); data-menu=#menu-main_menu class=nav-menu-toggle><span class=material-icons>menu</span></a>
+<ul id=menu-main_menu class="nav-menu h-0 md:h-auto">
+<form class="nav-menu-search-bar md:hidden relative">
+<button class="nav-menu-search-bar-search-btn absolute h-full"><svg class="w-3 h-3 text-gray-600" fill="currentcolor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.32 14.9l5.39 5.4a1 1 0 01-1.42 1.4l-5.38-5.38a8 8 0 111.41-1.41zM10 16a6 6 0 100-12 6 6 0 000 12z"/></svg>
+</button>
+<input name=s type=text class=w-full>
+</form>
+<li class=nav-menu-item>
+<a class=nav-menu-link href=https://nextjsvietnam.com/categories/systemdesign>System Design
+<span class=material-icons>keyboard_arrow_down</span>
+</a>
+<ul class=sub-menu>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/software-architecture>Software Architecture</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/microservice-architecture>Microservice Architecture</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/aws>Learn AWS The Right Way</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/aws-labs>AWS Hands-On Labs</a></li>
+</ul>
+</li>
+<li class=nav-menu-item>
+<a class=nav-menu-link href=https://nextjsvietnam.com/categories/cheatsheet>Cheatsheet
+<span class=material-icons>keyboard_arrow_down</span>
+</a>
+<ul class=sub-menu>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/nestjs-examples>NestJS Examples</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/reactjs-examples>ReactJS Examples</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/react-native-examples>React Native Examples</a></li>
+</ul>
+</li>
+<li class=nav-menu-item>
+<a class=nav-menu-link href=https://nextjsvietnam.com/categories/frameworks>Frameworks
+<span class=material-icons>keyboard_arrow_down</span>
+</a>
+<ul class=sub-menu>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/nestjs>NestJS</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/reactjs>ReactJS</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/nextjs>NextJS</a></li>
+</ul>
+</li>
+<li class=nav-menu-item>
+<a class=nav-menu-link href=https://nextjsvietnam.com>Tutorials
+<span class=material-icons>keyboard_arrow_down</span>
+</a>
+<ul class=sub-menu>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/nestjs-tutorial>NestJS Tutorial</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/reactjs-tutorial>ReactJS Tutorial</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/nextjs-tutorial>NextJS Tutorial</a></li>
+</ul>
+</li>
+<li class=nav-menu-item>
+<a class=nav-menu-link href=https://nextjsvietnam.com>Tools
+<span class=material-icons>keyboard_arrow_down</span>
+</a>
+<ul class=sub-menu>
+<li class=nav-menu-item><a class=nav-menu-link href=https://regex101.com/>Online Regex</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=http://www.bashoneliners.com/>Bash Online</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://www.epochconverter.com/>Unix Timestamp Conversion</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://ryanstutorials.net/bash-scripting-tutorial/>Bash Scripting</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://explainshell.com/>Explain Shell</a></li>
+</ul>
+</li>
+<form class="nav-menu-search-bar hidden md:flex relative">
+<button class="nav-menu-search-bar-search-btn absolute h-full"><svg class="w-3 h-3 text-gray-600" fill="currentcolor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.32 14.9l5.39 5.4a1 1 0 01-1.42 1.4l-5.38-5.38a8 8 0 111.41-1.41zM10 16a6 6 0 100-12 6 6 0 000 12z"/></svg>
+</button>
+<input name=s type=text class=w-full>
+</form>
+</ul>
+</div>
+</div>
+</nav>
+<main>
+<section class="container section">
+<div class="page-content max-w-2xl mx-auto">
+<img src=https://nextjsvietnam.com/common/no-image.png class=img-responsive alt="6minutes Tech Graphql">
+<h1>6minutes Tech Graphql</h1>
+<p><strong>Post Date</strong> : 2024-05-19T08:35:31+07:00</p>
+<p><strong>Modified Date</strong> : 2024-05-19T08:35:31+07:00</p>
+<p>
+<strong>Category:</strong>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/cheatsheet>cheatsheet</a>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/6minutes-tech>6minutes-tech</a>
+</p>
+<p>
+<strong>Tags:</strong>
+</p>
+<h1 id=the-rest-api-issues>The REST API issues</h1>
+<ol>
+<li>Over fetching data</li>
+</ol>
+<ul>
+<li>Getting back more data than we need</li>
+</ul>
+<blockquote>
+<p>example.com/api/courses</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>[
+    {
+        <span style=color:#f92672>&#34;id&#34;</span>: <span style=color:#ae81ff>1</span>,
+        <span style=color:#f92672>&#34;title&#34;</span>: <span style=color:#e6db74>&#34;6 minutes tech graphql&#34;</span>,
+        <span style=color:#f92672>&#34;author&#34;</span>: <span style=color:#e6db74>&#34;nextjsvietnam&#34;</span>,
+        <span style=color:#f92672>&#34;thumbnail_url&#34;</span>: <span style=color:#e6db74>&#34;...&#34;</span>,
+        <span style=color:#f92672>&#34;video_url&#34;</span>: <span style=color:#e6db74>&#34;...&#34;</span>,
+        <span style=color:#960050;background-color:#1e0010>...</span>
+    }
+]
+</code></pre></div><ol start=2>
+<li>Under fetching data</li>
+</ol>
+<blockquote>
+<p>example.com/api/courses/1</p>
+</blockquote>
+<blockquote>
+<p>example.com/api/courses</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>{
+  <span style=color:#f92672>&#34;id&#34;</span>: <span style=color:#ae81ff>1</span>,
+  <span style=color:#f92672>&#34;title&#34;</span>: <span style=color:#e6db74>&#34;6 minutes tech graphql&#34;</span>,
+  <span style=color:#f92672>&#34;thumbnail_url&#34;</span>: <span style=color:#e6db74>&#34;...&#34;</span>
+}
+</code></pre></div><h1 id=what-is-graphql>What is GraphQL?</h1>
+<ul>
+<li>A query language for your api</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-gql data-lang=gql>Query{
+    books {
+        title,
+        author {
+            name,
+            id,
+            courses {
+                id,
+                title,
+                thumbnail
+            }
+        }
+        price
+    }
+}
+</code></pre></div><ul>
+<li>Single endpoint</li>
+</ul>
+<blockquote>
+<p>example.com/graphql</p>
+</blockquote>
+<h2 id=lets-getting-start-with-expressjs>Let&rsquo;s getting start with ExpressJS</h2>
+<p>In this tutorial, we&rsquo;ll install Apollo Server with ExpressJS. There is package on npm to allow us integrate apollo server with expressjs and middleware</p>
+<blockquote>
+<p>package.json</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>{
+  <span style=color:#f92672>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;6minutes-tech-graphql&#34;</span>,
+  <span style=color:#f92672>&#34;version&#34;</span>: <span style=color:#e6db74>&#34;1.0.0&#34;</span>,
+  <span style=color:#f92672>&#34;description&#34;</span>: <span style=color:#e6db74>&#34;the 6 minutes tech graphql tutorial&#34;</span>,
+  <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;module&#34;</span>,
+  <span style=color:#f92672>&#34;scripts&#34;</span>: {
+    <span style=color:#f92672>&#34;start&#34;</span>: <span style=color:#e6db74>&#34;node index.js&#34;</span>,
+    <span style=color:#f92672>&#34;dev&#34;</span>: <span style=color:#e6db74>&#34;node --watch index.js&#34;</span>,
+    <span style=color:#f92672>&#34;test&#34;</span>: <span style=color:#e6db74>&#34;echo \&#34;Error: no test specified\&#34; &amp;&amp; exit 1&#34;</span>
+  },
+  <span style=color:#f92672>&#34;author&#34;</span>: <span style=color:#e6db74>&#34;nextjsvietnam&#34;</span>,
+  <span style=color:#f92672>&#34;license&#34;</span>: <span style=color:#e6db74>&#34;ISC&#34;</span>,
+  <span style=color:#f92672>&#34;dependencies&#34;</span>: {
+    <span style=color:#f92672>&#34;@apollo/server&#34;</span>: <span style=color:#e6db74>&#34;^4.10.4&#34;</span>,
+    <span style=color:#f92672>&#34;body-parser&#34;</span>: <span style=color:#e6db74>&#34;^1.20.2&#34;</span>,
+    <span style=color:#f92672>&#34;cors&#34;</span>: <span style=color:#e6db74>&#34;^2.8.5&#34;</span>,
+    <span style=color:#f92672>&#34;express&#34;</span>: <span style=color:#e6db74>&#34;^4.19.2&#34;</span>,
+    <span style=color:#f92672>&#34;graphql&#34;</span>: <span style=color:#e6db74>&#34;^16.8.1&#34;</span>
+  }
+}
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>npm install @apollo/server graphql express cors body-parser --save
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#75715e>// index.js
+</span><span style=color:#75715e></span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>ApolloServer</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;@apollo/server&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>expressMiddleware</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;@apollo/server/express4&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>ApolloServerPluginDrainHttpServer</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;@apollo/server/plugin/drainHttpServer&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#a6e22e>express</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;express&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#a6e22e>http</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;http&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#a6e22e>cors</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;cors&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#a6e22e>bodyParser</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;body-parser&#34;</span>;
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>PORT</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>process</span>.<span style=color:#a6e22e>env</span>.<span style=color:#a6e22e>PORT</span> <span style=color:#f92672>||</span> <span style=color:#ae81ff>1337</span>;
+
+<span style=color:#75715e>// The GraphQL schema
+</span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>typeDefs</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>`#graphql
+</span><span style=color:#e6db74>  type Query {
+</span><span style=color:#e6db74>    hello: String
+</span><span style=color:#e6db74>  }
+</span><span style=color:#e6db74>`</span>;
+
+<span style=color:#75715e>// A map of functions which return data for the schema.
+</span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>resolvers</span> <span style=color:#f92672>=</span> {
+  <span style=color:#a6e22e>Query</span><span style=color:#f92672>:</span> {
+    <span style=color:#a6e22e>hello</span><span style=color:#f92672>:</span> () =&gt; <span style=color:#e6db74>&#34;world&#34;</span>,
+  },
+};
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>app</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>express</span>();
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>httpServer</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>http</span>.<span style=color:#a6e22e>createServer</span>(<span style=color:#a6e22e>app</span>);
+
+<span style=color:#75715e>// Set up Apollo Server
+</span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>server</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>ApolloServer</span>({
+  <span style=color:#a6e22e>typeDefs</span>,
+  <span style=color:#a6e22e>resolvers</span>,
+  <span style=color:#a6e22e>plugins</span><span style=color:#f92672>:</span> [<span style=color:#a6e22e>ApolloServerPluginDrainHttpServer</span>({ <span style=color:#a6e22e>httpServer</span> })],
+});
+<span style=color:#66d9ef>await</span> <span style=color:#a6e22e>server</span>.<span style=color:#a6e22e>start</span>();
+
+<span style=color:#a6e22e>app</span>.<span style=color:#a6e22e>use</span>(<span style=color:#a6e22e>cors</span>(), <span style=color:#a6e22e>bodyParser</span>.<span style=color:#a6e22e>json</span>(), <span style=color:#a6e22e>expressMiddleware</span>(<span style=color:#a6e22e>server</span>));
+
+<span style=color:#66d9ef>await</span> <span style=color:#66d9ef>new</span> Promise((<span style=color:#a6e22e>resolve</span>) =&gt; <span style=color:#a6e22e>httpServer</span>.<span style=color:#a6e22e>listen</span>({ <span style=color:#a6e22e>port</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>PORT</span> }, <span style=color:#a6e22e>resolve</span>));
+<span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>`🚀 Server ready at http://localhost:</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>PORT</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>);
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=color:#75715e># this command will run the main entry point define in your package.json and watch changes</span>
+npm run dev
+</code></pre></div><p>And you will see this</p>
+<p><img src=https://gist.github.com/assets/31009750/31adabb1-6062-4a6d-b2f4-3dbf9d065b05 alt=image></p>
+<p>Okie, so already know what it is, the create a hello world graphql. Let&rsquo;s dive in deeper.</p>
+<h2 id=the-game-review-graphql-api>The game review graphql api</h2>
+<p>The main components of GraphQL</p>
+<p><img src=https://gist.github.com/assets/31009750/15bd6f0e-4230-4dfa-922d-45e611c3d8a7 alt=image></p>
+<ol>
+<li>Schema</li>
+</ol>
+<ul>
+<li>Built-in types: Int, Float, String, Boolean, ID</li>
+</ul>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#75715e>// schema.js
+</span><span style=color:#75715e></span><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>typeDefs</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>`#graphql
+</span><span style=color:#e6db74>    type Game {
+</span><span style=color:#e6db74>        id: ID! # not allow to be null
+</span><span style=color:#e6db74>        title: String!
+</span><span style=color:#e6db74>        platform: [String!]!
+</span><span style=color:#e6db74>        reviews: [Review!]
+</span><span style=color:#e6db74>    }
+</span><span style=color:#e6db74>    type Review {
+</span><span style=color:#e6db74>        id: ID!
+</span><span style=color:#e6db74>        rating: Int!
+</span><span style=color:#e6db74>        content: String!
+</span><span style=color:#e6db74>        game: Game!
+</span><span style=color:#e6db74>        author: Author!
+</span><span style=color:#e6db74>    }
+</span><span style=color:#e6db74>    type Author {
+</span><span style=color:#e6db74>        id: ID!
+</span><span style=color:#e6db74>        name: String!
+</span><span style=color:#e6db74>        verified: Boolean!
+</span><span style=color:#e6db74>        reviews: [Review!]
+</span><span style=color:#e6db74>    }
+</span><span style=color:#e6db74>    # it is mandatory, work as entry point
+</span><span style=color:#e6db74>    # it works as a gateway keeper of your graph
+</span><span style=color:#e6db74>    type Query {
+</span><span style=color:#e6db74>        reviews: [Review]
+</span><span style=color:#e6db74>        review(id: ID!): Review
+</span><span style=color:#e6db74>        games: [Game]
+</span><span style=color:#e6db74>        game(id: ID!): Game
+</span><span style=color:#e6db74>        authors: [Author]
+</span><span style=color:#e6db74>        author(id: ID!): Author
+</span><span style=color:#e6db74>    }
+</span><span style=color:#e6db74>    # Mutation
+</span><span style=color:#e6db74>    type Mutation {
+</span><span style=color:#e6db74>        addGame(game: AddGameInput!): Game
+</span><span style=color:#e6db74>        deleteGame(id: ID!): [Game]
+</span><span style=color:#e6db74>        updateGame(id: ID!, updateGameDto: EditGameInput!): Game
+</span><span style=color:#e6db74>    }
+</span><span style=color:#e6db74>    input AddGameInput {
+</span><span style=color:#e6db74>        title: String!
+</span><span style=color:#e6db74>        platform: [String!]!
+</span><span style=color:#e6db74>    }
+</span><span style=color:#e6db74>    input EditGameInput {
+</span><span style=color:#e6db74>        title: String
+</span><span style=color:#e6db74>        platform: [String!]
+</span><span style=color:#e6db74>    }
+</span><span style=color:#e6db74>`</span>;
+<span style=color:#75715e>// Int, Float, String, Boolean, ID
+</span></code></pre></div><p><strong>Resolver</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>ApolloServer</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;@apollo/server&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>expressMiddleware</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;@apollo/server/express4&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>ApolloServerPluginDrainHttpServer</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;@apollo/server/plugin/drainHttpServer&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#a6e22e>express</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;express&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#a6e22e>http</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;http&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#a6e22e>cors</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;cors&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#a6e22e>bodyParser</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;body-parser&#34;</span>;
+
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>typeDefs</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;./schema.js&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#a6e22e>_db</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;./_db.js&#34;</span>;
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>PORT</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>process</span>.<span style=color:#a6e22e>env</span>.<span style=color:#a6e22e>PORT</span> <span style=color:#f92672>||</span> <span style=color:#ae81ff>1337</span>;
+
+<span style=color:#75715e>// A map of functions which return data for the schema.
+</span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>resolvers</span> <span style=color:#f92672>=</span> {
+  <span style=color:#a6e22e>Query</span><span style=color:#f92672>:</span> {
+    <span style=color:#a6e22e>games</span><span style=color:#f92672>:</span> () =&gt; {
+      <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>_db</span>.<span style=color:#a6e22e>games</span>;
+    },
+    <span style=color:#a6e22e>game</span><span style=color:#f92672>:</span> (<span style=color:#a6e22e>_</span>, <span style=color:#a6e22e>args</span>, <span style=color:#a6e22e>context</span>) =&gt; {
+      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>id</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>args</span>.<span style=color:#a6e22e>id</span>;
+      <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>_db</span>.<span style=color:#a6e22e>games</span>.<span style=color:#a6e22e>find</span>((<span style=color:#a6e22e>game</span>) =&gt; <span style=color:#a6e22e>game</span>.<span style=color:#a6e22e>id</span> <span style=color:#f92672>===</span> <span style=color:#a6e22e>id</span>);
+    },
+    <span style=color:#a6e22e>authors</span><span style=color:#f92672>:</span> () =&gt; {
+      <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>_db</span>.<span style=color:#a6e22e>authors</span>;
+    },
+    <span style=color:#a6e22e>author</span><span style=color:#f92672>:</span> (<span style=color:#a6e22e>_</span>, <span style=color:#a6e22e>args</span>, <span style=color:#a6e22e>context</span>) =&gt; {
+      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>id</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>args</span>.<span style=color:#a6e22e>id</span>;
+      <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>_db</span>.<span style=color:#a6e22e>authors</span>.<span style=color:#a6e22e>find</span>((<span style=color:#a6e22e>author</span>) =&gt; <span style=color:#a6e22e>author</span>.<span style=color:#a6e22e>id</span> <span style=color:#f92672>===</span> <span style=color:#a6e22e>id</span>);
+    },
+    <span style=color:#a6e22e>reviews</span><span style=color:#f92672>:</span> () =&gt; {
+      <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>_db</span>.<span style=color:#a6e22e>reviews</span>;
+    },
+    <span style=color:#a6e22e>review</span><span style=color:#f92672>:</span> (<span style=color:#a6e22e>_</span>, <span style=color:#a6e22e>args</span>, <span style=color:#a6e22e>context</span>) =&gt; {
+      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>id</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>args</span>.<span style=color:#a6e22e>id</span>;
+      <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>_db</span>.<span style=color:#a6e22e>reviews</span>.<span style=color:#a6e22e>find</span>((<span style=color:#a6e22e>review</span>) =&gt; <span style=color:#a6e22e>review</span>.<span style=color:#a6e22e>id</span> <span style=color:#f92672>===</span> <span style=color:#a6e22e>id</span>);
+    },
+  },
+  <span style=color:#a6e22e>Game</span><span style=color:#f92672>:</span> {
+    <span style=color:#a6e22e>reviews</span><span style=color:#f92672>:</span> (<span style=color:#a6e22e>parent</span>, <span style=color:#a6e22e>args</span>, <span style=color:#a6e22e>context</span>) =&gt; {
+      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>gameId</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>parent</span>.<span style=color:#a6e22e>id</span>;
+      <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>_db</span>.<span style=color:#a6e22e>reviews</span>.<span style=color:#a6e22e>filter</span>((<span style=color:#a6e22e>review</span>) =&gt; <span style=color:#a6e22e>review</span>.<span style=color:#a6e22e>game_id</span> <span style=color:#f92672>===</span> <span style=color:#a6e22e>gameId</span>);
+    },
+  },
+  <span style=color:#a6e22e>Author</span><span style=color:#f92672>:</span> {
+    <span style=color:#a6e22e>reviews</span><span style=color:#f92672>:</span> (<span style=color:#a6e22e>parent</span>, <span style=color:#a6e22e>args</span>, <span style=color:#a6e22e>context</span>) =&gt; {
+      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>authorId</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>parent</span>.<span style=color:#a6e22e>id</span>;
+      <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>_db</span>.<span style=color:#a6e22e>reviews</span>.<span style=color:#a6e22e>filter</span>((<span style=color:#a6e22e>review</span>) =&gt; <span style=color:#a6e22e>review</span>.<span style=color:#a6e22e>author_id</span> <span style=color:#f92672>===</span> <span style=color:#a6e22e>authorId</span>);
+    },
+  },
+  <span style=color:#a6e22e>Review</span><span style=color:#f92672>:</span> {
+    <span style=color:#a6e22e>author</span><span style=color:#f92672>:</span> (<span style=color:#a6e22e>parent</span>, <span style=color:#a6e22e>args</span>, <span style=color:#a6e22e>context</span>) =&gt; {
+      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>authorId</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>parent</span>.<span style=color:#a6e22e>author_id</span>;
+      <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>_db</span>.<span style=color:#a6e22e>authors</span>.<span style=color:#a6e22e>find</span>((<span style=color:#a6e22e>author</span>) =&gt; <span style=color:#a6e22e>author</span>.<span style=color:#a6e22e>id</span> <span style=color:#f92672>===</span> <span style=color:#a6e22e>authorId</span>);
+    },
+    <span style=color:#a6e22e>game</span><span style=color:#f92672>:</span> (<span style=color:#a6e22e>parent</span>, <span style=color:#a6e22e>args</span>, <span style=color:#a6e22e>context</span>) =&gt; {
+      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>gameId</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>parent</span>.<span style=color:#a6e22e>game_id</span>;
+      <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>_db</span>.<span style=color:#a6e22e>games</span>.<span style=color:#a6e22e>find</span>((<span style=color:#a6e22e>game</span>) =&gt; <span style=color:#a6e22e>game</span>.<span style=color:#a6e22e>id</span> <span style=color:#f92672>===</span> <span style=color:#a6e22e>gameId</span>);
+    },
+  },
+  <span style=color:#75715e>// Mutation
+</span><span style=color:#75715e></span>  <span style=color:#a6e22e>Mutation</span><span style=color:#f92672>:</span> {
+    <span style=color:#a6e22e>deleteGame</span><span style=color:#f92672>:</span> (<span style=color:#a6e22e>_</span>, <span style=color:#a6e22e>args</span>) =&gt; {
+      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>gameId</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>args</span>.<span style=color:#a6e22e>id</span>;
+      <span style=color:#a6e22e>_db</span>.<span style=color:#a6e22e>games</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>_db</span>.<span style=color:#a6e22e>games</span>.<span style=color:#a6e22e>filter</span>((<span style=color:#a6e22e>g</span>) =&gt; <span style=color:#a6e22e>g</span>.<span style=color:#a6e22e>id</span> <span style=color:#f92672>!==</span> <span style=color:#a6e22e>gameId</span>);
+
+      <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>_db</span>.<span style=color:#a6e22e>games</span>;
+    },
+    <span style=color:#a6e22e>addGame</span><span style=color:#f92672>:</span> (<span style=color:#a6e22e>_</span>, <span style=color:#a6e22e>args</span>) =&gt; {
+      <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>game</span> <span style=color:#f92672>=</span> {
+        ...<span style=color:#a6e22e>args</span>.<span style=color:#a6e22e>game</span>,
+        <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> Math.<span style=color:#a6e22e>floor</span>(Math.<span style=color:#a6e22e>random</span>() <span style=color:#f92672>*</span> <span style=color:#ae81ff>10000</span>).<span style=color:#a6e22e>toString</span>(),
+      };
+      <span style=color:#a6e22e>_db</span>.<span style=color:#a6e22e>games</span>.<span style=color:#a6e22e>push</span>(<span style=color:#a6e22e>game</span>);
+
+      <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>game</span>;
+    },
+    <span style=color:#a6e22e>updateGame</span><span style=color:#f92672>:</span> (<span style=color:#a6e22e>_</span>, <span style=color:#a6e22e>args</span>) =&gt; {
+      <span style=color:#a6e22e>_db</span>.<span style=color:#a6e22e>games</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>_db</span>.<span style=color:#a6e22e>games</span>.<span style=color:#a6e22e>map</span>((<span style=color:#a6e22e>game</span>) =&gt; {
+        <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>game</span>.<span style=color:#a6e22e>id</span> <span style=color:#f92672>===</span> <span style=color:#a6e22e>args</span>.<span style=color:#a6e22e>id</span>) {
+          <span style=color:#66d9ef>return</span> {
+            ...<span style=color:#a6e22e>game</span>,
+            ...<span style=color:#a6e22e>args</span>.<span style=color:#a6e22e>updateGameDto</span>,
+          };
+        }
+        <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>game</span>;
+      });
+
+      <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>_db</span>.<span style=color:#a6e22e>games</span>.<span style=color:#a6e22e>find</span>((<span style=color:#a6e22e>game</span>) =&gt; <span style=color:#a6e22e>game</span>.<span style=color:#a6e22e>id</span> <span style=color:#f92672>===</span> <span style=color:#a6e22e>args</span>.<span style=color:#a6e22e>id</span>);
+    },
+  },
+};
+
+<span style=color:#75715e>/*
+</span><span style=color:#75715e>* Apollo do the rest
+</span><span style=color:#75715e>games {
+</span><span style=color:#75715e>  title
+</span><span style=color:#75715e>}
+</span><span style=color:#75715e>*/</span>
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>app</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>express</span>();
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>httpServer</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>http</span>.<span style=color:#a6e22e>createServer</span>(<span style=color:#a6e22e>app</span>);
+
+<span style=color:#75715e>// Set up Apollo Server
+</span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>server</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>ApolloServer</span>({
+  <span style=color:#a6e22e>typeDefs</span>,
+  <span style=color:#a6e22e>resolvers</span>,
+  <span style=color:#a6e22e>plugins</span><span style=color:#f92672>:</span> [<span style=color:#a6e22e>ApolloServerPluginDrainHttpServer</span>({ <span style=color:#a6e22e>httpServer</span> })],
+});
+<span style=color:#66d9ef>await</span> <span style=color:#a6e22e>server</span>.<span style=color:#a6e22e>start</span>();
+
+<span style=color:#a6e22e>app</span>.<span style=color:#a6e22e>use</span>(<span style=color:#a6e22e>cors</span>(), <span style=color:#a6e22e>bodyParser</span>.<span style=color:#a6e22e>json</span>(), <span style=color:#a6e22e>expressMiddleware</span>(<span style=color:#a6e22e>server</span>));
+
+<span style=color:#66d9ef>await</span> <span style=color:#66d9ef>new</span> Promise((<span style=color:#a6e22e>resolve</span>) =&gt; <span style=color:#a6e22e>httpServer</span>.<span style=color:#a6e22e>listen</span>({ <span style=color:#a6e22e>port</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>PORT</span> }, <span style=color:#a6e22e>resolve</span>));
+<span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>`🚀 Server is ready at http://localhost:</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>PORT</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span>);
+</code></pre></div><blockquote>
+<p>_db.js</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>games</span> <span style=color:#f92672>=</span> [
+  { <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;1&#34;</span>, <span style=color:#a6e22e>title</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Zelda, Tears of the Kingdom&#34;</span>, <span style=color:#a6e22e>platform</span><span style=color:#f92672>:</span> [<span style=color:#e6db74>&#34;Switch&#34;</span>] },
+  { <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;2&#34;</span>, <span style=color:#a6e22e>title</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Final Fantasy 7 Remake&#34;</span>, <span style=color:#a6e22e>platform</span><span style=color:#f92672>:</span> [<span style=color:#e6db74>&#34;PS5&#34;</span>, <span style=color:#e6db74>&#34;Xbox&#34;</span>] },
+  { <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;3&#34;</span>, <span style=color:#a6e22e>title</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Elden Ring&#34;</span>, <span style=color:#a6e22e>platform</span><span style=color:#f92672>:</span> [<span style=color:#e6db74>&#34;PS5&#34;</span>, <span style=color:#e6db74>&#34;Xbox&#34;</span>, <span style=color:#e6db74>&#34;PC&#34;</span>] },
+  { <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;4&#34;</span>, <span style=color:#a6e22e>title</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Mario Kart&#34;</span>, <span style=color:#a6e22e>platform</span><span style=color:#f92672>:</span> [<span style=color:#e6db74>&#34;Switch&#34;</span>] },
+  { <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;5&#34;</span>, <span style=color:#a6e22e>title</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Pokemon Scarlet&#34;</span>, <span style=color:#a6e22e>platform</span><span style=color:#f92672>:</span> [<span style=color:#e6db74>&#34;PS5&#34;</span>, <span style=color:#e6db74>&#34;Xbox&#34;</span>, <span style=color:#e6db74>&#34;PC&#34;</span>] },
+];
+
+<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>authors</span> <span style=color:#f92672>=</span> [
+  { <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;1&#34;</span>, <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;mario&#34;</span>, <span style=color:#a6e22e>verified</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>true</span> },
+  { <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;2&#34;</span>, <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;yoshi&#34;</span>, <span style=color:#a6e22e>verified</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>false</span> },
+  { <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;3&#34;</span>, <span style=color:#a6e22e>name</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;peach&#34;</span>, <span style=color:#a6e22e>verified</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>true</span> },
+];
+
+<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>reviews</span> <span style=color:#f92672>=</span> [
+  { <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;1&#34;</span>, <span style=color:#a6e22e>rating</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>9</span>, <span style=color:#a6e22e>content</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;lorem ipsum&#34;</span>, <span style=color:#a6e22e>author_id</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;1&#34;</span>, <span style=color:#a6e22e>game_id</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;2&#34;</span> },
+  { <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;2&#34;</span>, <span style=color:#a6e22e>rating</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>10</span>, <span style=color:#a6e22e>content</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;lorem ipsum&#34;</span>, <span style=color:#a6e22e>author_id</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;2&#34;</span>, <span style=color:#a6e22e>game_id</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;1&#34;</span> },
+  { <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;3&#34;</span>, <span style=color:#a6e22e>rating</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>7</span>, <span style=color:#a6e22e>content</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;lorem ipsum&#34;</span>, <span style=color:#a6e22e>author_id</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;3&#34;</span>, <span style=color:#a6e22e>game_id</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;3&#34;</span> },
+  { <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;4&#34;</span>, <span style=color:#a6e22e>rating</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>5</span>, <span style=color:#a6e22e>content</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;lorem ipsum&#34;</span>, <span style=color:#a6e22e>author_id</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;2&#34;</span>, <span style=color:#a6e22e>game_id</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;4&#34;</span> },
+  { <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;5&#34;</span>, <span style=color:#a6e22e>rating</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>8</span>, <span style=color:#a6e22e>content</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;lorem ipsum&#34;</span>, <span style=color:#a6e22e>author_id</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;2&#34;</span>, <span style=color:#a6e22e>game_id</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;5&#34;</span> },
+  { <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;6&#34;</span>, <span style=color:#a6e22e>rating</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>7</span>, <span style=color:#a6e22e>content</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;lorem ipsum&#34;</span>, <span style=color:#a6e22e>author_id</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;1&#34;</span>, <span style=color:#a6e22e>game_id</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;2&#34;</span> },
+  { <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;7&#34;</span>, <span style=color:#a6e22e>rating</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>10</span>, <span style=color:#a6e22e>content</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;lorem ipsum&#34;</span>, <span style=color:#a6e22e>author_id</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;3&#34;</span>, <span style=color:#a6e22e>game_id</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;1&#34;</span> },
+];
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> { <span style=color:#a6e22e>games</span>, <span style=color:#a6e22e>authors</span>, <span style=color:#a6e22e>reviews</span> };
+</code></pre></div><h2 id=analyze-details>Analyze Details</h2>
+<ol>
+<li>Query</li>
+</ol>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-gql data-lang=gql><span style=color:#66d9ef>query</span> <span style=color:#a6e22e>Reviews</span> {
+  reviews {
+    id
+    rating
+    content
+  }
+}
+</code></pre></div><p><img src=https://gist.github.com/assets/31009750/ff226b47-4e2a-4f3c-9e4b-f69da87a2ec2 alt=image></p>
+<ol start=2>
+<li>Query with Variables</li>
+</ol>
+<blockquote>
+<p>Directly</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-gql data-lang=gql><span style=color:#66d9ef>query</span> <span style=color:#a6e22e>SingleReviewQuery</span> {
+  review(id: <span style=color:#e6db74>&#34;1&#34;</span>) {
+    <span style=color:#a6e22e>rating</span>
+    content
+    author {
+      name
+      verified
+    }
+    game {
+      title
+      platform
+      reviews {
+        rating
+      }
+    }
+  }
+}
+</code></pre></div><p><img src=https://gist.github.com/assets/31009750/78ef0feb-356e-4473-ae07-7d301d4017b1 alt=image></p>
+<blockquote>
+<p>With variables</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-gql data-lang=gql><span style=color:#66d9ef>query</span> <span style=color:#a6e22e>SingleReviewQuery</span>($reviewId: <span style=color:#a6e22e>ID</span>!) {
+  review(id: $reviewId) {
+    <span style=color:#a6e22e>rating</span>
+    content
+    author {
+      name
+      verified
+    }
+    game {
+      title
+      platform
+      reviews {
+        rating
+      }
+    }
+  }
+}
+</code></pre></div><p><img src=https://gist.github.com/assets/31009750/ba66b6b4-5e00-4d51-825e-e8340ee121e4 alt=image></p>
+<ol start=3>
+<li>Mutation</li>
+</ol>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-gql data-lang=gql><span style=color:#66d9ef>mutation</span> <span style=color:#a6e22e>CreateGameMutation</span>($game: <span style=color:#a6e22e>AddGameInput</span>!) {
+  addGame(game: $game) {
+    <span style=color:#a6e22e>id</span>
+    title
+  }
+}
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>{
+  <span style=color:#f92672>&#34;game&#34;</span>: {
+    <span style=color:#f92672>&#34;title&#34;</span>: <span style=color:#e6db74>&#34;Game 100&#34;</span>,
+    <span style=color:#f92672>&#34;platform&#34;</span>: [<span style=color:#e6db74>&#34;PC&#34;</span>]
+  }
+}
+</code></pre></div><p><img src=https://gist.github.com/assets/31009750/d60119c1-6bf6-4f8a-be77-791ac17c5634 alt=image></p>
+<h2 id=references>References</h2>
+<ul>
+<li><a href=https://github.com/nextjsvietnam/6minutes-tech-graphql>6 minutes tech graphql source code</a>
+Tools for developing GraphQL on vscode</li>
+</ul>
+<p><img src=https://gist.github.com/assets/31009750/e8bccae7-45e3-4ae4-a153-06a1857ca9ec alt=image></p>
+<p>GraphQL: Syntax Highlighting</p>
+<div class="m-1 p-1">
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/cheatsheet>cheatsheet</a>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/6minutes-tech>6minutes-tech</a>
+</div>
+</div>
+</section>
+<section class="container section">
+<div class="max-w-2xl mx-auto">
+<div class="font-heading text-2xl font-semibold">You Might Also Like</div>
+<div class="mt-8 grid gap-8">
+<ul class=sidebar-links>
+<li><a href=/post/6minutes-tech-progressive-web-app/>6minutes Tech Progressive Web App</a></li>
+<li><a href=/post/flexbox-and-real-world-examples/>Flexbox and Real World Examples</a></li>
+<li><a href=/post/react-native-examples-setup-working-place-for-react-native-developer/>[React Native Examples] Setup Working Place for React Native Developer</a></li>
+<li><a href=/post/happy-new-year-2024/>Happy New Year 2024</a></li>
+<li><a href=/post/developer-philosophy/>Developer Philosophy</a></li>
+<li><a href=/post/test-driven-development-for-beginner/>Test Driven Development for Beginner</a></li>
+<li><a href=/post/100-frontend-interview-questions/>100 Frontend Interview Questions</a></li>
+</ul>
+</div>
+</div>
+</section>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1642510310947288" crossorigin=anonymous></script>
+<ins class=adsbygoogle style=display:block;text-align:center data-ad-layout=in-article data-ad-format=fluid data-ad-client=ca-pub-1642510310947288 data-ad-slot=9309117729></ins>
+<script>(adsbygoogle=window.adsbygoogle||[]).push({})</script>
+</main>
+<footer class=footer>
+<div class="container md:flex">
+<section class="footer-section-info md:basis-1/4">
+<div class=address>
+<a class=logo href=https://nextjsvietnam.com title=NextJSVietNam>
+NextJSVietNam
+</a>
+<h4 class=footer-heading>
+PRODUCTION MODE
+<h4>
+</div>
+</section>
+<div class="footer-section-navigation-menu md:basis-1/4">
+<h4 class=footer-heading>NestJS</h4>
+<ul class=footer-section-navigation-menu-links>
+<li><a href=https://nextjsvietnam.com/post/nestjs-passing-data-between-layers-in-ddd/>Nestjs Passing Data Between Layers in Domain Driven Design</a></li>
+<li><a href=https://nextjsvietnam.com/post/khoa-hoc-nestjs-bai-06-viet-unit-test/>Khóa học NestJS - Bài 06 Hướng dẫn viết Unit Test</a></li>
+<li><a href=https://nextjsvietnam.com/post/khoa-hoc-nestjs-bai-05-repository-pattern/>Khóa học NestJS Bài 05 - Repository Pattern</a></li>
+<li><a href=https://nextjsvietnam.com/post/khoa-hoc-nestjs-bai-04-model-and-repository-pattern/>Khóa học NestJS Bài 04 - Model and Repository Pattern</a></li>
+<li><a href=https://nextjsvietnam.com/post/khoa-hoc-nestjs-bai03/>Khóa học NestJS Bài 03 - Controllers & Views</a></li>
+</ul>
+</div>
+<div class="footer-section-navigation-menu md:basis-1/4">
+<h4 class=footer-heading>NextJS</h4>
+<ul class=footer-section-navigation-menu-links>
+<li><a href=https://nextjsvietnam.com/post/khoa-hoc-nextjs-bai-02-cau-truc-du-an-nextjs/>Khoá học NextJS 2024 - Bài 02: Cấu trúc dự án NextJS</a></li>
+<li><a href=https://nextjsvietnam.com/post/create-new-website-with-nextjs/>Create New Website With Nextjs</a></li>
+<li><a href=https://nextjsvietnam.com/post/khoa-hoc-nextjs/>Khóa học NextJS - Bài 01 - Lộ trình các bài học về NextJS</a></li>
+</ul>
+</div>
+<div class="footer-section-navigation-menu md:basis-1/4">
+<h4 class=footer-heading>Cheatsheet</h4>
+<ul class=footer-section-navigation-menu-links>
+<li><a href=https://nextjsvietnam.com/post/6minutes-tech-graphql/>6minutes Tech Graphql</a></li>
+<li><a href=https://nextjsvietnam.com/post/6minutes-tech-progressive-web-app/>6minutes Tech Progressive Web App</a></li>
+<li><a href=https://nextjsvietnam.com/post/flexbox-and-real-world-examples/>Flexbox and Real World Examples</a></li>
+<li><a href=https://nextjsvietnam.com/post/react-native-examples-setup-working-place-for-react-native-developer/>[React Native Examples] Setup Working Place for React Native Developer</a></li>
+<li><a href=https://nextjsvietnam.com/post/happy-new-year-2024/>Happy New Year 2024</a></li>
+</ul>
+</div>
+</div>
+<div class=container>
+<div class=text-center>
+<a href><span class="material-icons text-4xl m-4">facebook</span></a>
+<a href><span class="material-icons text-4xl m-4">smart_display</span></a>
+</div>
+<div class="text-center text-lg py-4">
+Copyright @ NextJSVietNam 2022
+</div>
+<div class="text-center text-sm">
+Powered by <a class="font-bold text-primary" href=https://gohugo.io/>Go Hugo</a> - Made
+with love from <a class="font-bold text-primary" href=https://nextjsvietnam.com>NextJSVietNam</a> -
+Build
+Version 2024-05-19 08:35:31 +0700 +0700
+</div>
+</div>
+</footer>
+<script type=text/javascript src=https://nextjsvietnam.com/core/jquery-3.6.0.min.js></script>
+<script type=text/javascript src=https://nextjsvietnam.com/themes/2022/public/main.js></script>
+<script type=text/javascript src=https://nextjsvietnam.com/themes/2022/public/home.js></script>
+<script async>!function(b,e,f,g,a,c,d){if(b.fbq)return;a=b.fbq=function(){a.callMethod?a.callMethod.apply(a,arguments):a.queue.push(arguments)},b._fbq||(b._fbq=a),a.push=a,a.loaded=!0,a.version='2.0',a.queue=[],c=e.createElement(f),c.async=!0,c.src=g,d=e.getElementsByTagName(f)[0],d.parentNode.insertBefore(c,d)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js'),fbq('init','1760611910980690'),fbq('track','PageView')</script>
+<noscript><img height=1 width=1 style=display:none src="https://www.facebook.com/tr?id=1760611910980690&ev=PageView&noscript=1"></noscript>
+</body>
+</html>
