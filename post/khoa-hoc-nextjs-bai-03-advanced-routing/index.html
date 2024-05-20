@@ -1,0 +1,413 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=home href=https://nextjsvietnam.com>
+<meta name=generator content="jsguru cms">
+<link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap">
+<link rel=stylesheet href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel=stylesheet href=https://nextjsvietnam.com/themes/2022/public/main.css>
+<link rel=stylesheet href=https://nextjsvietnam.com/themes/2022/public/home.css>
+<link rel=stylesheet href=https://nextjsvietnam.com/themes/2022/public/page.css>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RWE4MLJYE6"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-RWE4MLJYE6')</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1642510310947288" crossorigin=anonymous></script>
+<title>Khoá học NextJS Bài 03 - Advanced Routing | Nội dung chính trong bài này sẽ về phân quyền, chuyển hướng, layout, loading screen | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+<meta name=robots content="all">
+<meta name=keywords content="nextjs tutorial,nextjs routing">
+<meta name=description content="Nội dung chính trong bài này sẽ về phân quyền, chuyển hướng, layout, loading screen">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://user-images.githubusercontent.com/31009750/246866968-e42afc31-8eea-44e8-ba86-629918f50401.png">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="750">
+<meta property="og:image:height" content="300">
+<meta property="article:publisher" content="https://www.facebook.com/nextjsvietnam">
+<meta property="article:published_time" content="2024-05-20T08:51:24+07:00">
+<meta property="article:modified_time" content="2024-05-20T08:51:24+07:00">
+<link rel=apple-touch-icon sizes=57x57 href=/apple-icon-57x57.png>
+<link rel=apple-touch-icon sizes=60x60 href=/apple-icon-60x60.png>
+<link rel=apple-touch-icon sizes=72x72 href=/apple-icon-72x72.png>
+<link rel=apple-touch-icon sizes=76x76 href=/apple-icon-76x76.png>
+<link rel=apple-touch-icon sizes=114x114 href=/apple-icon-114x114.png>
+<link rel=apple-touch-icon sizes=120x120 href=/apple-icon-120x120.png>
+<link rel=apple-touch-icon sizes=144x144 href=/apple-icon-144x144.png>
+<link rel=apple-touch-icon sizes=152x152 href=/apple-icon-152x152.png>
+<link rel=apple-touch-icon sizes=180x180 href=/apple-icon-180x180.png>
+<link rel=icon type=image/png sizes=192x192 href=/android-icon-192x192.png>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=96x96 href=/favicon-96x96.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
+<link rel=manifest href=/manifest.json>
+<meta name=msapplication-TileColor content="#ffffff">
+<meta name=msapplication-TileImage content="/ms-icon-144x144.png">
+<meta name=theme-color content="#ffffff">
+</head>
+<body class=body-nav-fixed>
+<nav class="nav-fixed nav-default z-50">
+<div class=container>
+<div class="nav-container flex flex-wrap justify-between items-center">
+<a href=https://nextjsvietnam.com class="nav-brand inline-block">
+<img class=h-12 src=https://nextjsvietnam.com/themes/2022/src/assets/images/logo.png alt=Stunning>
+</a>
+<a href=javascript:void(0); data-menu=#menu-main_menu class=nav-menu-toggle><span class=material-icons>menu</span></a>
+<ul id=menu-main_menu class="nav-menu h-0 md:h-auto">
+<form class="nav-menu-search-bar md:hidden relative">
+<button class="nav-menu-search-bar-search-btn absolute h-full"><svg class="w-3 h-3 text-gray-600" fill="currentcolor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.32 14.9l5.39 5.4a1 1 0 01-1.42 1.4l-5.38-5.38a8 8 0 111.41-1.41zM10 16a6 6 0 100-12 6 6 0 000 12z"/></svg>
+</button>
+<input name=s type=text class=w-full>
+</form>
+<li class=nav-menu-item>
+<a class=nav-menu-link href=https://nextjsvietnam.com/categories/systemdesign>System Design
+<span class=material-icons>keyboard_arrow_down</span>
+</a>
+<ul class=sub-menu>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/software-architecture>Software Architecture</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/microservice-architecture>Microservice Architecture</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/aws>Learn AWS The Right Way</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/aws-labs>AWS Hands-On Labs</a></li>
+</ul>
+</li>
+<li class=nav-menu-item>
+<a class=nav-menu-link href=https://nextjsvietnam.com/categories/cheatsheet>Cheatsheet
+<span class=material-icons>keyboard_arrow_down</span>
+</a>
+<ul class=sub-menu>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/nestjs-examples>NestJS Examples</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/reactjs-examples>ReactJS Examples</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/react-native-examples>React Native Examples</a></li>
+</ul>
+</li>
+<li class=nav-menu-item>
+<a class=nav-menu-link href=https://nextjsvietnam.com/categories/frameworks>Frameworks
+<span class=material-icons>keyboard_arrow_down</span>
+</a>
+<ul class=sub-menu>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/nestjs>NestJS</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/reactjs>ReactJS</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/nextjs>NextJS</a></li>
+</ul>
+</li>
+<li class=nav-menu-item>
+<a class=nav-menu-link href=https://nextjsvietnam.com>Tutorials
+<span class=material-icons>keyboard_arrow_down</span>
+</a>
+<ul class=sub-menu>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/nestjs-tutorial>NestJS Tutorial</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/reactjs-tutorial>ReactJS Tutorial</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://nextjsvietnam.com/categories/nextjs-tutorial>NextJS Tutorial</a></li>
+</ul>
+</li>
+<li class=nav-menu-item>
+<a class=nav-menu-link href=https://nextjsvietnam.com>Tools
+<span class=material-icons>keyboard_arrow_down</span>
+</a>
+<ul class=sub-menu>
+<li class=nav-menu-item><a class=nav-menu-link href=https://regex101.com/>Online Regex</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=http://www.bashoneliners.com/>Bash Online</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://www.epochconverter.com/>Unix Timestamp Conversion</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://ryanstutorials.net/bash-scripting-tutorial/>Bash Scripting</a></li>
+<li class=nav-menu-item><a class=nav-menu-link href=https://explainshell.com/>Explain Shell</a></li>
+</ul>
+</li>
+<form class="nav-menu-search-bar hidden md:flex relative">
+<button class="nav-menu-search-bar-search-btn absolute h-full"><svg class="w-3 h-3 text-gray-600" fill="currentcolor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16.32 14.9l5.39 5.4a1 1 0 01-1.42 1.4l-5.38-5.38a8 8 0 111.41-1.41zM10 16a6 6 0 100-12 6 6 0 000 12z"/></svg>
+</button>
+<input name=s type=text class=w-full>
+</form>
+</ul>
+</div>
+</div>
+</nav>
+<main>
+<section class="container section">
+<div class="page-content max-w-2xl mx-auto">
+<img src=https://user-images.githubusercontent.com/31009750/246866968-e42afc31-8eea-44e8-ba86-629918f50401.png class=img-responsive alt="Khoá học NextJS Bài 03 - Advanced Routing">
+<h1>Khoá học NextJS Bài 03 - Advanced Routing</h1>
+<p><strong>Post Date</strong> : 2024-05-20T08:51:24+07:00</p>
+<p><strong>Modified Date</strong> : 2024-05-20T08:51:24+07:00</p>
+<p>
+<strong>Category:</strong>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/nextjs-tutorial>nextjs-tutorial</a>
+</p>
+<p>
+<strong>Tags:</strong>
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=/tags/nextjs>nextjs</a>
+</p>
+<p><strong>Note</strong>: Toàn bộ mã nguồn của khóa học này đều được công khai trên github tại <a href=https://github.com/nextjsvietnam/nextjs-tutorial-2024/tree/tutorial/lession-03>Nextjs Tutorial 2024</a></p>
+<p>Các nội dung chính trong bài học lần này:</p>
+<ol>
+<li>Phân quyền và chuyển hướng</li>
+<li>Tạo layout dùng chung</li>
+<li>Loading Screen</li>
+</ol>
+<p>Với nội dung trên, chúng ta sẽ tiếp tục với việc phân quyền và chuyển hướng, cũng như thực hành chia layout dùng chung, hiển thị màn hình chờ ( loading screen )</p>
+<p><img src=https://gist.github.com/assets/31009750/5504676f-fb7b-46b1-aba6-3d3b8a9cd794 alt=image></p>
+<p>Yêu cầu:</p>
+<ol>
+<li>Đối với các trang thuộc nhóm Private chỉ có khách hàng đã đăng nhập mới có thể truy cập được.
+Trường hợp người dùng cố tình vào bằng các địa chỉ cố định, chuyển hướng người dùng sang trang đăng nhập.</li>
+<li>Đối với user đã đăng nhập, khi vào lại các trang liên quan tới đăng nhập như: login,register,forget password, reset password, hãy chuyển hướng họ tới trang my-account</li>
+<li>Các trang thuộc nhóm Private của khách hàng có giao diện chung, chỉ khác phần nội dung (content).</li>
+<li>Các trang thuộc nhóm đăng nhập, cũng có giao diện chung, chỉ khác phần nội dung (content).</li>
+<li>Toàn bộ các trang trong website đều sử dụng chung phần header, footer, khác phần nội dung chính (main content)</li>
+</ol>
+<p>Trong bài này, chúng ta sẽ giả lập rằng sau khi khách hàng đăng nhập xong, các thông tin sẽ được lưu lại trên cookie session.</p>
+<p>Do đó chúng ta sẽ cài đặt logic như sau:</p>
+<ul>
+<li>Nếu user truy cập vào các trang thuộc nhóm private => kiểm tra cookie này có tồn tại hay không, nếu có cho phép user truy cập, ngược lại thì chuyển hướng user sang trang login</li>
+</ul>
+<p>Trong NextJS chúng ta có thể làm như sau:</p>
+<ol>
+<li>Chuyển hướng người dùng trong trang sử dụng <strong>redirect</strong> function</li>
+</ol>
+<p>Đầu tiên tôi sẽ tạo lần lượt các trang bổ sung như sau: login, register, forgot-password, reset-password.</p>
+<p>Để nhóm các trang này trong một group trong folder, nextjs hỗ trợ chúng ta tạo folder với cú pháp (folderName) , khi dùng cú pháp này folder được tạo ra sẽ không được tính vào cây thư mục khi nextjs route thực hiện mapping giữa segment và cấu trúc thư mục.</p>
+<p><img src=https://gist.github.com/assets/31009750/a5eaef32-cef7-4c06-8701-517abc4921be alt=image></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#75715e>// shared/helpers.ts
+</span><span style=color:#75715e></span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>COOKIE_PREFIX</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./constant&#34;</span>;
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>setCookie</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>cname</span>: <span style=color:#66d9ef>string</span>, <span style=color:#a6e22e>cvalue</span>: <span style=color:#66d9ef>string</span>, <span style=color:#a6e22e>exdays</span>: <span style=color:#66d9ef>number</span>) <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>exdays</span>) {
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>d</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Date();
+    <span style=color:#a6e22e>d</span>.<span style=color:#a6e22e>setTime</span>(<span style=color:#a6e22e>d</span>.<span style=color:#a6e22e>getTime</span>() <span style=color:#f92672>+</span> <span style=color:#a6e22e>exdays</span> <span style=color:#f92672>*</span> <span style=color:#ae81ff>24</span> <span style=color:#f92672>*</span> <span style=color:#ae81ff>60</span> <span style=color:#f92672>*</span> <span style=color:#ae81ff>60</span> <span style=color:#f92672>*</span> <span style=color:#ae81ff>1000</span>);
+    <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>expires</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;expires=&#34;</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>d</span>.<span style=color:#a6e22e>toUTCString</span>();
+
+    document.<span style=color:#a6e22e>cookie</span> <span style=color:#f92672>=</span>
+      <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>COOKIE_PREFIX</span><span style=color:#e6db74>}</span><span style=color:#e6db74>_</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>cname</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34;=&#34;</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>cvalue</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34;;&#34;</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>expires</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34;;path=/&#34;</span>;
+  } <span style=color:#66d9ef>else</span> {
+    document.<span style=color:#a6e22e>cookie</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>COOKIE_PREFIX</span><span style=color:#e6db74>}</span><span style=color:#e6db74>_</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>cname</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34;=&#34;</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>cvalue</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34;;path=/&#34;</span>;
+  }
+};
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>getCookie</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>cname</span>: <span style=color:#66d9ef>string</span>) <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>name</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>COOKIE_PREFIX</span><span style=color:#e6db74>}</span><span style=color:#e6db74>_</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>cname</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34;=&#34;</span>;
+  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>ca</span> <span style=color:#f92672>=</span> document.<span style=color:#a6e22e>cookie</span>.<span style=color:#a6e22e>split</span>(<span style=color:#e6db74>&#34;;&#34;</span>);
+  <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>i</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; <span style=color:#a6e22e>i</span> <span style=color:#f92672>&lt;</span> <span style=color:#a6e22e>ca</span>.<span style=color:#a6e22e>length</span>; <span style=color:#a6e22e>i</span><span style=color:#f92672>++</span>) {
+    <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>c</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>ca</span>[<span style=color:#a6e22e>i</span>];
+    <span style=color:#66d9ef>while</span> (<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>charAt</span>(<span style=color:#ae81ff>0</span>) <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34; &#34;</span>) {
+      <span style=color:#a6e22e>c</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>substring</span>(<span style=color:#ae81ff>1</span>);
+    }
+    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>indexOf</span>(<span style=color:#a6e22e>name</span>) <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>) {
+      <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>substring</span>(<span style=color:#a6e22e>name</span>.<span style=color:#a6e22e>length</span>, <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>length</span>);
+    }
+  }
+  <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;&#34;</span>;
+};
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>deleteCookie</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>cname</span>: <span style=color:#66d9ef>string</span>) <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>name</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>COOKIE_PREFIX</span><span style=color:#e6db74>}</span><span style=color:#e6db74>_</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>cname</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34;=&#34;</span>;
+  document.<span style=color:#a6e22e>cookie</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>name</span><span style=color:#e6db74>}</span><span style=color:#e6db74>=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`</span>;
+};
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#75715e>// shared/auth.ts
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>redirect</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;next/navigation&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>getCookie</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./helper&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>AppRoute</span>, <span style=color:#a6e22e>CookieName</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./constant&#34;</span>;
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>runUserGuard</span> <span style=color:#f92672>=</span> () <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>null</span>;
+  <span style=color:#66d9ef>try</span> {
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>userCookie</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>getCookie</span>(<span style=color:#a6e22e>CookieName</span>.<span style=color:#a6e22e>UserCookie</span>);
+    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>userCookie</span>) {
+      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>user</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>JSON</span>.<span style=color:#a6e22e>parse</span>(<span style=color:#a6e22e>userCookie</span>);
+      <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>true</span>;
+    }
+  } <span style=color:#66d9ef>catch</span> (<span style=color:#a6e22e>err</span>) {
+    <span style=color:#a6e22e>err</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>err</span>;
+  }
+  <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>err</span>) {
+    <span style=color:#a6e22e>alert</span>(<span style=color:#a6e22e>err</span>);
+  }
+  <span style=color:#a6e22e>redirect</span>(<span style=color:#a6e22e>AppRoute</span>.<span style=color:#a6e22e>Login</span>);
+};
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-tsx data-lang=tsx><span style=color:#75715e>// my-account/page.tsx
+</span><span style=color:#75715e></span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>runUserGuard</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@/shared/auth&#34;</span>;
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>MyAccount() {</span>
+  <span style=color:#75715e>// run user Guard
+</span><span style=color:#75715e></span>  <span style=color:#a6e22e>runUserGuard</span>();
+
+  <span style=color:#66d9ef>return</span> (
+    &lt;<span style=color:#f92672>main</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;container-xl mx-auto p-4&#34;</span>&gt;
+      &lt;<span style=color:#f92672>h1</span>&gt;<span style=color:#a6e22e>My</span> <span style=color:#a6e22e>Account</span>&lt;/<span style=color:#f92672>h1</span>&gt;
+    &lt;/<span style=color:#f92672>main</span>&gt;
+  );
+}
+</code></pre></div><p>Các bạn hãy áp dụng cho các trang còn lại.
+&mldr;</p>
+<p>Nhưng nếu tôi có hơn 10 trang như vậy thì sao, còn cách nào khác không?</p>
+<ol>
+<li>Nhóm các trang thuộc my account chung 1 nhóm sử dụng chung layout</li>
+</ol>
+<pre tabindex=0><code>my-account
+    page.tsx
+    layout.tsx
+    orders
+        page.tsx
+        [id]
+            page.tsx
+</code></pre><p>Do đó, chúng ta cần điều chỉnh lại đường dẫn của mình.</p>
+<p><img src=https://gist.github.com/assets/31009750/bbc6c22e-68d4-4407-a4c9-587528ca0c2a alt=image></p>
+<p>Nhưng nếu có nhiều hơn 1 nhóm như vậy, liệu chúng ta có cách nào không?</p>
+<ol start=2>
+<li>Sử dụng middleware</li>
+</ol>
+<p><img src=https://gist.github.com/assets/31009750/b4dda3c1-5497-425f-9da4-b1b478597a6f alt=image></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>AuthService</span> <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@/service/auth.service&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>AppCookie</span>, <span style=color:#a6e22e>AppRoute</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@/shared/constant&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>NextRequest</span>, <span style=color:#a6e22e>NextResponse</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;next/server&#34;</span>;
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>authMiddleware</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>req</span>: <span style=color:#66d9ef>NextRequest</span>) <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#75715e>// middleware/auth.ts
+</span><span style=color:#75715e></span>
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>token</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>cookies</span>.<span style=color:#66d9ef>get</span>(<span style=color:#a6e22e>AppCookie</span>.<span style=color:#a6e22e>UserToken</span>);
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>authService</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>AuthService</span>();
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>userToken</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>token</span><span style=color:#f92672>?</span>.<span style=color:#a6e22e>name</span> <span style=color:#f92672>?</span> <span style=color:#a6e22e>authService</span>.<span style=color:#a6e22e>verifyToken</span>(<span style=color:#a6e22e>token</span><span style=color:#f92672>?</span>.<span style=color:#a6e22e>value</span>) <span style=color:#f92672>:</span> <span style=color:#66d9ef>null</span>;
+
+  <span style=color:#75715e>// Assuming you have some function to verify the token
+</span><span style=color:#75715e></span>  <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span><span style=color:#a6e22e>token</span> <span style=color:#f92672>||</span> <span style=color:#f92672>!</span><span style=color:#a6e22e>userToken</span>) {
+    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>NextResponse</span>.<span style=color:#a6e22e>redirect</span>(<span style=color:#66d9ef>new</span> <span style=color:#a6e22e>URL</span>(<span style=color:#a6e22e>AppRoute</span>.<span style=color:#a6e22e>Login</span>, <span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>url</span>));
+  }
+
+  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>NextResponse</span>.<span style=color:#a6e22e>next</span>();
+};
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>NextResponse</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;next/server&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#66d9ef>type</span> { <span style=color:#a6e22e>NextRequest</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;next/server&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>authMiddleware</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./app/middlewares/auth.middleware&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>ProtectedRoutes</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./shared/constant&#34;</span>;
+
+<span style=color:#75715e>// This function can be marked `async` if using `await` inside
+</span><span style=color:#75715e></span><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>middleware</span>(<span style=color:#a6e22e>req</span>: <span style=color:#66d9ef>NextRequest</span>) {
+  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;[Middleware Demo] : &#34;</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>url</span>);
+
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>path</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>nextUrl</span>.<span style=color:#a6e22e>pathname</span>;
+  <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>ProtectedRoutes</span>.<span style=color:#a6e22e>some</span>((<span style=color:#a6e22e>route</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>path</span>.<span style=color:#a6e22e>startsWith</span>(<span style=color:#a6e22e>route</span>))) {
+    <span style=color:#75715e>// apply auth middleware
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>redirectResponse</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>authMiddleware</span>(<span style=color:#a6e22e>req</span>);
+    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>redirectResponse</span>) {
+      <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>redirectResponse</span>;
+    }
+  }
+
+  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>NextResponse</span>.<span style=color:#a6e22e>next</span>();
+}
+
+<span style=color:#75715e>// See &#34;Matching Paths&#34; below to learn more
+</span><span style=color:#75715e></span><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>config</span> <span style=color:#f92672>=</span> {
+  <span style=color:#a6e22e>matcher</span><span style=color:#f92672>:</span> [
+    <span style=color:#75715e>/*
+</span><span style=color:#75715e>     * Match all request paths except for the ones starting with:
+</span><span style=color:#75715e>     * - _next/static (static files)
+</span><span style=color:#75715e>     * - _next/image (image optimization files)
+</span><span style=color:#75715e>     * - favicon.ico (favicon file)
+</span><span style=color:#75715e>     */</span>
+    {
+      <span style=color:#a6e22e>source</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;/((?!_next/static|_next/image|favicon.ico).*)&#34;</span>,
+      <span style=color:#a6e22e>missing</span><span style=color:#f92672>:</span> [
+        { <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;header&#34;</span>, <span style=color:#a6e22e>key</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;next-router-prefetch&#34;</span> },
+        { <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;header&#34;</span>, <span style=color:#a6e22e>key</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;purpose&#34;</span>, <span style=color:#a6e22e>value</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;prefetch&#34;</span> },
+      ],
+    },
+
+    {
+      <span style=color:#a6e22e>source</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;/((?!_next/static|_next/image|favicon.ico).*)&#34;</span>,
+      <span style=color:#a6e22e>has</span><span style=color:#f92672>:</span> [
+        { <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;header&#34;</span>, <span style=color:#a6e22e>key</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;next-router-prefetch&#34;</span> },
+        { <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;header&#34;</span>, <span style=color:#a6e22e>key</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;purpose&#34;</span>, <span style=color:#a6e22e>value</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;prefetch&#34;</span> },
+      ],
+    },
+
+    {
+      <span style=color:#a6e22e>source</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;/((?!_next/static|_next/image|favicon.ico).*)&#34;</span>,
+      <span style=color:#a6e22e>has</span><span style=color:#f92672>:</span> [{ <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;header&#34;</span>, <span style=color:#a6e22e>key</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;x-present&#34;</span> }],
+      <span style=color:#a6e22e>missing</span><span style=color:#f92672>:</span> [{ <span style=color:#66d9ef>type</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;header&#34;</span>, <span style=color:#a6e22e>key</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;x-missing&#34;</span>, <span style=color:#a6e22e>value</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;prefetch&#34;</span> }],
+    },
+  ],
+};
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>ProtectedRoutes</span> <span style=color:#f92672>=</span> [<span style=color:#e6db74>&#34;/my-account&#34;</span>];
+</code></pre></div><p>Giờ chúng ta thử thực hiện login</p>
+<div class="m-1 p-1">
+<a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/nextjs-tutorial>nextjs-tutorial</a>
+</div>
+</div>
+</section>
+<section class="container section">
+<div class="max-w-2xl mx-auto">
+<div class="font-heading text-2xl font-semibold">You Might Also Like</div>
+<div class="mt-8 grid gap-8">
+<ul class=sidebar-links>
+<li><a href=/post/khoa-hoc-nextjs-bai-02-cau-truc-du-an-nextjs/>Khoá học NextJS 2024 - Bài 02: Cấu trúc dự án NextJS</a></li>
+<li><a href=/post/khoa-hoc-nextjs/>Khóa học NextJS - Bài 01 - Lộ trình các bài học về NextJS</a></li>
+</ul>
+</div>
+</div>
+</section>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1642510310947288" crossorigin=anonymous></script>
+<ins class=adsbygoogle style=display:block;text-align:center data-ad-layout=in-article data-ad-format=fluid data-ad-client=ca-pub-1642510310947288 data-ad-slot=9309117729></ins>
+<script>(adsbygoogle=window.adsbygoogle||[]).push({})</script>
+</main>
+<footer class=footer>
+<div class="container md:flex">
+<section class="footer-section-info md:basis-1/4">
+<div class=address>
+<a class=logo href=https://nextjsvietnam.com title=NextJSVietNam>
+NextJSVietNam
+</a>
+<h4 class=footer-heading>
+PRODUCTION MODE
+<h4>
+</div>
+</section>
+<div class="footer-section-navigation-menu md:basis-1/4">
+<h4 class=footer-heading>NestJS</h4>
+<ul class=footer-section-navigation-menu-links>
+<li><a href=https://nextjsvietnam.com/post/nestjs-passing-data-between-layers-in-ddd/>Nestjs Passing Data Between Layers in Domain Driven Design</a></li>
+<li><a href=https://nextjsvietnam.com/post/khoa-hoc-nestjs-bai-06-viet-unit-test/>Khóa học NestJS - Bài 06 Hướng dẫn viết Unit Test</a></li>
+<li><a href=https://nextjsvietnam.com/post/khoa-hoc-nestjs-bai-05-repository-pattern/>Khóa học NestJS Bài 05 - Repository Pattern</a></li>
+<li><a href=https://nextjsvietnam.com/post/khoa-hoc-nestjs-bai-04-model-and-repository-pattern/>Khóa học NestJS Bài 04 - Model and Repository Pattern</a></li>
+<li><a href=https://nextjsvietnam.com/post/khoa-hoc-nestjs-bai03/>Khóa học NestJS Bài 03 - Controllers & Views</a></li>
+</ul>
+</div>
+<div class="footer-section-navigation-menu md:basis-1/4">
+<h4 class=footer-heading>NextJS</h4>
+<ul class=footer-section-navigation-menu-links>
+<li><a href=https://nextjsvietnam.com/post/khoa-hoc-nextjs-bai-03-advanced-routing/>Khoá học NextJS Bài 03 - Advanced Routing</a></li>
+<li><a href=https://nextjsvietnam.com/post/khoa-hoc-nextjs-bai-02-cau-truc-du-an-nextjs/>Khoá học NextJS 2024 - Bài 02: Cấu trúc dự án NextJS</a></li>
+<li><a href=https://nextjsvietnam.com/post/create-new-website-with-nextjs/>Create New Website With Nextjs</a></li>
+<li><a href=https://nextjsvietnam.com/post/khoa-hoc-nextjs/>Khóa học NextJS - Bài 01 - Lộ trình các bài học về NextJS</a></li>
+</ul>
+</div>
+<div class="footer-section-navigation-menu md:basis-1/4">
+<h4 class=footer-heading>Cheatsheet</h4>
+<ul class=footer-section-navigation-menu-links>
+<li><a href=https://nextjsvietnam.com/post/6minutes-tech-graphql/>6minutes Tech Graphql</a></li>
+<li><a href=https://nextjsvietnam.com/post/6minutes-tech-progressive-web-app/>6minutes Tech Progressive Web App</a></li>
+<li><a href=https://nextjsvietnam.com/post/flexbox-and-real-world-examples/>Flexbox and Real World Examples</a></li>
+<li><a href=https://nextjsvietnam.com/post/react-native-examples-setup-working-place-for-react-native-developer/>[React Native Examples] Setup Working Place for React Native Developer</a></li>
+<li><a href=https://nextjsvietnam.com/post/happy-new-year-2024/>Happy New Year 2024</a></li>
+</ul>
+</div>
+</div>
+<div class=container>
+<div class=text-center>
+<a href><span class="material-icons text-4xl m-4">facebook</span></a>
+<a href><span class="material-icons text-4xl m-4">smart_display</span></a>
+</div>
+<div class="text-center text-lg py-4">
+Copyright @ NextJSVietNam 2022
+</div>
+<div class="text-center text-sm">
+Powered by <a class="font-bold text-primary" href=https://gohugo.io/>Go Hugo</a> - Made
+with love from <a class="font-bold text-primary" href=https://nextjsvietnam.com>NextJSVietNam</a> -
+Build
+Version 2024-05-20 08:51:24 +0700 +0700
+</div>
+</div>
+</footer>
+<script type=text/javascript src=https://nextjsvietnam.com/core/jquery-3.6.0.min.js></script>
+<script type=text/javascript src=https://nextjsvietnam.com/themes/2022/public/main.js></script>
+<script type=text/javascript src=https://nextjsvietnam.com/themes/2022/public/home.js></script>
+<script async>!function(b,e,f,g,a,c,d){if(b.fbq)return;a=b.fbq=function(){a.callMethod?a.callMethod.apply(a,arguments):a.queue.push(arguments)},b._fbq||(b._fbq=a),a.push=a,a.loaded=!0,a.version='2.0',a.queue=[],c=e.createElement(f),c.async=!0,c.src=g,d=e.getElementsByTagName(f)[0],d.parentNode.insertBefore(c,d)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js'),fbq('init','1760611910980690'),fbq('track','PageView')</script>
+<noscript><img height=1 width=1 style=display:none src="https://www.facebook.com/tr?id=1760611910980690&ev=PageView&noscript=1"></noscript>
+</body>
+</html>
