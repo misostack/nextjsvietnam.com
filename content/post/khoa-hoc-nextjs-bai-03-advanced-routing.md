@@ -233,4 +233,35 @@ export const config = {
 export const ProtectedRoutes = ["/my-account"];
 ```
 
-Giờ chúng ta thử thực hiện login
+Giờ chúng ta sẽ giả sử nếu user truy cập trang chủ, xem như đã login thành công.
+Để kiểm thử auth middleware này.
+
+```ts
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
+import { authMiddleware } from "./app/middlewares/auth.middleware";
+import { AppCookie, ProtectedRoutes } from "./shared/constant";
+import _db from "../_db";
+
+// This function can be marked `async` if using `await` inside
+export function middleware(req: NextRequest) {
+  console.log("[Middleware Demo] : " + req.url);
+
+  const path = req.nextUrl.pathname;
+
+  // fake login
+  if (path == "/") {
+    const response = NextResponse.next();
+    response.cookies.set(AppCookie.UserToken, _db.tokens[0].token);
+    return response;
+  }
+
+  // ...
+
+  return NextResponse.next();
+}
+
+// ...
+```
+
+![image](https://gist.github.com/assets/31009750/6e56425c-4743-4c81-917a-212004e10a2a)
