@@ -151,7 +151,8 @@ Trường hợp người dùng cố tình vào bằng các địa chỉ cố đ�
 <li>Các trang thuộc nhóm đăng nhập, cũng có giao diện chung, chỉ khác phần nội dung (content).</li>
 <li>Toàn bộ các trang trong website đều sử dụng chung phần header, footer, khác phần nội dung chính (main content)</li>
 </ol>
-<p>Trong bài này, chúng ta sẽ giả lập rằng sau khi khách hàng đăng nhập xong, các thông tin sẽ được lưu lại trên cookie session.</p>
+<h2 id=phân-quyền-và-chuyển-hướng>Phân quyền và chuyển hướng</h2>
+<p>Trong bài này, chúng ta sẽ giả lập rằng sau khi khách hàng đăng nhập xong, các thông tin sẽ được lưu lại trên cookie.</p>
 <p>Do đó chúng ta sẽ cài đặt logic như sau:</p>
 <ul>
 <li>Nếu user truy cập vào các trang thuộc nhóm private => kiểm tra cookie này có tồn tại hay không, nếu có cho phép user truy cập, ngược lại thì chuyển hướng user sang trang login</li>
@@ -163,62 +164,25 @@ Trường hợp người dùng cố tình vào bằng các địa chỉ cố đ�
 <p>Đầu tiên tôi sẽ tạo lần lượt các trang bổ sung như sau: login, register, forgot-password, reset-password.</p>
 <p>Để nhóm các trang này trong một group trong folder, nextjs hỗ trợ chúng ta tạo folder với cú pháp (folderName) , khi dùng cú pháp này folder được tạo ra sẽ không được tính vào cây thư mục khi nextjs route thực hiện mapping giữa segment và cấu trúc thư mục.</p>
 <p><img src=https://gist.github.com/assets/31009750/a5eaef32-cef7-4c06-8701-517abc4921be alt=image></p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#75715e>// shared/helpers.ts
-</span><span style=color:#75715e></span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>COOKIE_PREFIX</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./constant&#34;</span>;
-
-<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>setCookie</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>cname</span>: <span style=color:#66d9ef>string</span>, <span style=color:#a6e22e>cvalue</span>: <span style=color:#66d9ef>string</span>, <span style=color:#a6e22e>exdays</span>: <span style=color:#66d9ef>number</span>) <span style=color:#f92672>=&gt;</span> {
-  <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>exdays</span>) {
-    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>d</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> Date();
-    <span style=color:#a6e22e>d</span>.<span style=color:#a6e22e>setTime</span>(<span style=color:#a6e22e>d</span>.<span style=color:#a6e22e>getTime</span>() <span style=color:#f92672>+</span> <span style=color:#a6e22e>exdays</span> <span style=color:#f92672>*</span> <span style=color:#ae81ff>24</span> <span style=color:#f92672>*</span> <span style=color:#ae81ff>60</span> <span style=color:#f92672>*</span> <span style=color:#ae81ff>60</span> <span style=color:#f92672>*</span> <span style=color:#ae81ff>1000</span>);
-    <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>expires</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;expires=&#34;</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>d</span>.<span style=color:#a6e22e>toUTCString</span>();
-
-    document.<span style=color:#a6e22e>cookie</span> <span style=color:#f92672>=</span>
-      <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>COOKIE_PREFIX</span><span style=color:#e6db74>}</span><span style=color:#e6db74>_</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>cname</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34;=&#34;</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>cvalue</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34;;&#34;</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>expires</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34;;path=/&#34;</span>;
-  } <span style=color:#66d9ef>else</span> {
-    document.<span style=color:#a6e22e>cookie</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>COOKIE_PREFIX</span><span style=color:#e6db74>}</span><span style=color:#e6db74>_</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>cname</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34;=&#34;</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>cvalue</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34;;path=/&#34;</span>;
-  }
-};
-
-<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>getCookie</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>cname</span>: <span style=color:#66d9ef>string</span>) <span style=color:#f92672>=&gt;</span> {
-  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>name</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>COOKIE_PREFIX</span><span style=color:#e6db74>}</span><span style=color:#e6db74>_</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>cname</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34;=&#34;</span>;
-  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>ca</span> <span style=color:#f92672>=</span> document.<span style=color:#a6e22e>cookie</span>.<span style=color:#a6e22e>split</span>(<span style=color:#e6db74>&#34;;&#34;</span>);
-  <span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>i</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; <span style=color:#a6e22e>i</span> <span style=color:#f92672>&lt;</span> <span style=color:#a6e22e>ca</span>.<span style=color:#a6e22e>length</span>; <span style=color:#a6e22e>i</span><span style=color:#f92672>++</span>) {
-    <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>c</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>ca</span>[<span style=color:#a6e22e>i</span>];
-    <span style=color:#66d9ef>while</span> (<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>charAt</span>(<span style=color:#ae81ff>0</span>) <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34; &#34;</span>) {
-      <span style=color:#a6e22e>c</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>substring</span>(<span style=color:#ae81ff>1</span>);
-    }
-    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>indexOf</span>(<span style=color:#a6e22e>name</span>) <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>) {
-      <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>substring</span>(<span style=color:#a6e22e>name</span>.<span style=color:#a6e22e>length</span>, <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>length</span>);
-    }
-  }
-  <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;&#34;</span>;
-};
-
-<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>deleteCookie</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>cname</span>: <span style=color:#66d9ef>string</span>) <span style=color:#f92672>=&gt;</span> {
-  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>name</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>COOKIE_PREFIX</span><span style=color:#e6db74>}</span><span style=color:#e6db74>_</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>cname</span><span style=color:#e6db74>}</span><span style=color:#e6db74>`</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34;=&#34;</span>;
-  document.<span style=color:#a6e22e>cookie</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>`</span><span style=color:#e6db74>${</span><span style=color:#a6e22e>name</span><span style=color:#e6db74>}</span><span style=color:#e6db74>=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`</span>;
-};
-</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#75715e>// shared/auth.ts
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#75715e>// shared/auth.ts
 </span><span style=color:#75715e></span>
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>AppCookie</span>, <span style=color:#a6e22e>AppRoute</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@/shared/constant&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>cookies</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;next/headers&#34;</span>;
 <span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>redirect</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;next/navigation&#34;</span>;
-<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>getCookie</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./helper&#34;</span>;
-<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>AppRoute</span>, <span style=color:#a6e22e>CookieName</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./constant&#34;</span>;
 
 <span style=color:#66d9ef>export</span> <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>runUserGuard</span> <span style=color:#f92672>=</span> () <span style=color:#f92672>=&gt;</span> {
-  <span style=color:#66d9ef>let</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>null</span>;
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>cookieStore</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>cookies</span>();
+  <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span><span style=color:#a6e22e>cookieStore</span>.<span style=color:#a6e22e>has</span>(<span style=color:#a6e22e>AppCookie</span>.<span style=color:#a6e22e>UserToken</span>)) {
+    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>false</span>;
+  }
   <span style=color:#66d9ef>try</span> {
-    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>userCookie</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>getCookie</span>(<span style=color:#a6e22e>CookieName</span>.<span style=color:#a6e22e>UserCookie</span>);
+    <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>userCookie</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>cookieStore</span>.<span style=color:#66d9ef>get</span>(<span style=color:#a6e22e>AppCookie</span>.<span style=color:#a6e22e>UserToken</span>);
     <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>userCookie</span>) {
-      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>user</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>JSON</span>.<span style=color:#a6e22e>parse</span>(<span style=color:#a6e22e>userCookie</span>);
+      <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>user</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>JSON</span>.<span style=color:#a6e22e>parse</span>(<span style=color:#a6e22e>userCookie</span>.<span style=color:#a6e22e>value</span>);
       <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>true</span>;
     }
-  } <span style=color:#66d9ef>catch</span> (<span style=color:#a6e22e>err</span>) {
-    <span style=color:#a6e22e>err</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>err</span>;
-  }
-  <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>err</span>) {
-    <span style=color:#a6e22e>alert</span>(<span style=color:#a6e22e>err</span>);
-  }
-  <span style=color:#a6e22e>redirect</span>(<span style=color:#a6e22e>AppRoute</span>.<span style=color:#a6e22e>Login</span>);
+  } <span style=color:#66d9ef>catch</span> (<span style=color:#a6e22e>error</span>) {}
+  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>redirect</span>(<span style=color:#a6e22e>AppRoute</span>.<span style=color:#a6e22e>Login</span>);
 };
 </code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-tsx data-lang=tsx><span style=color:#75715e>// my-account/page.tsx
 </span><span style=color:#75715e></span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>runUserGuard</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@/shared/auth&#34;</span>;
@@ -235,6 +199,7 @@ Trường hợp người dùng cố tình vào bằng các địa chỉ cố đ�
 }
 </code></pre></div><p>Các bạn hãy áp dụng cho các trang còn lại.
 &mldr;</p>
+<h2 id=tạo-layout-dùng-chung>Tạo layout dùng chung</h2>
 <p>Nhưng nếu tôi có hơn 10 trang như vậy thì sao, còn cách nào khác không?</p>
 <ol>
 <li>Nhóm các trang thuộc my account chung 1 nhóm sử dụng chung layout</li>
@@ -353,6 +318,8 @@ Trường hợp người dùng cố tình vào bằng các địa chỉ cố đ�
 
 <span style=color:#75715e>// ...
 </span></code></pre></div><p><img src=https://gist.github.com/assets/31009750/6e56425c-4743-4c81-917a-212004e10a2a alt=image></p>
+<h2 id=loading-screen>Loading Screen</h2>
+<p><img src=https://gist.github.com/assets/31009750/34e5e0b7-2cd2-4c2a-8e3b-656fbe0b4271 alt=image></p>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/nextjs-tutorial>nextjs-tutorial</a>
 </div>
