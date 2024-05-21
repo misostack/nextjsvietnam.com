@@ -16,6 +16,7 @@ Các nội dung chính trong bài học lần này:
 1. Phân quyền và chuyển hướng
 2. Tạo layout dùng chung
 3. Loading Screen
+4. I18n - đa ngôn ngữ
 
 Với nội dung trên, chúng ta sẽ tiếp tục với việc phân quyền và chuyển hướng, cũng như thực hành chia layout dùng chung, hiển thị màn hình chờ ( loading screen )
 
@@ -232,4 +233,144 @@ export function middleware(req: NextRequest) {
 
 ## Loading Screen
 
+Trong một trang web có quá nhiều block không cần thiết phải hiện thị ngay. Như ví dụ bên dưới, thì thông tin khi khách hàng vừa truy cập vào cần thấy ngay thông thường sẽ là header, main content (top products). Còn phần random products có thể hiển thị sau.
+
 ![image](https://gist.github.com/assets/31009750/34e5e0b7-2cd2-4c2a-8e3b-656fbe0b4271)
+
+Với một trang web thông thường chúng ta sẽ sử dụng AJAX để lazy load phần này.
+Ngay trong NextJS, chỉ cần với cú pháp đơn giản, ta có ngay kết quả như trên.
+
+Dưới đây là cơ chế của nextjs
+
+![image](https://gist.github.com/assets/31009750/b2e916b4-edd0-40a1-9514-8518a1dc0e23)
+
+1. Đầu tiên khi client request lên server, lúc này theo trình tự server sẽ generate html từ page component
+2. Nếu trong page có các component được gói trong tag Suspend, thì được chuyển đổi để load sau với javascript
+3. Khi trang web được tải xuống thì tài nguyên html sẽ được tải xuống trước, trong lúc đó javascript cùng được tải đồng thời (sẽ có đoạn mã kiểm soát phần tải các component cần stream ). Khi các script này được thực thi thì quá trình stream data diễn ra, trước đó nextjs sẽ tự động tạo ra các placeholder có nội dung mà bạn đã define trong Loading Component. Sau khi dữ liệu sẵn sàng, toàn bộ component của bạn sẽ xuất hiện trên giao diện.
+4. Trong lúc stream diễn ra, bạn hoàn toàn vẫn tương tác được với trang web, đây chính là điểm mấu chốt của công nghệ này.
+
+Lợi ích:
+
+- Thời gian tải trang nhanh
+- Hiển thị nội dung các cùng chờ thân thiện với user
+
+Nào cũng xem code
+
+> src/components/SlowComponent.tsx
+
+```ts
+const wait = (timeout: number) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      fetch("https://jsonplaceholder.typicode.com/todos/1")
+        .then((res) => res.json())
+        .then((data) => resolve(data));
+    }, timeout);
+  });
+};
+export const SlowComponent = async () => {
+  const data: any = await wait(5000);
+
+  return (
+    <>
+      <p>{JSON.stringify(data)}</p>
+    </>
+  );
+};
+```
+
+> src/app/page.tsx
+
+```ts
+import { SlowComponent } from "@/components/SlowComponent";
+import Link from "next/link";
+import { Suspense } from "react";
+import Loading from "./loading";
+
+export default function Home() {
+  return (
+    <main className="container-xl mx-auto p-4">
+      <h1>Home Page</h1>
+      <p>Links to other pages with a tag</p>
+      <ul>
+        <li>
+          <a href="/products">Products</a>
+        </li>
+        <li>
+          <a href="/products/mouse-pad-nextjsvietnam">
+            Mouse Pad NextJSVietNam
+          </a>
+        </li>
+        <li>
+          <a href="/cart">Cart</a>
+        </li>
+        <li>
+          <a href="/order">Order</a>
+        </li>
+        <li>
+          <a href="/my-account">My Account</a>
+        </li>
+        <li>
+          <a href="/my-account/orders">My orders</a>
+        </li>
+        <li>
+          <a href="/my-account/orders/1">My order detail</a>
+        </li>
+      </ul>
+      <p>Links to other pages with Link tag</p>
+      <ul>
+        <li>
+          <Link href="/products">Products</Link>
+        </li>
+      </ul>
+      <h2>Slow Component</h2>
+      <Suspense fallback={<Loading />}>
+        <SlowComponent></SlowComponent>
+      </Suspense>
+    </main>
+  );
+}
+```
+
+## I18n - Đa ngôn ngữ
+
+Thông thường khi làm việc với React, để làm website đa ngôn ngữ chúng ta hay sử dụng https://react.i18next.com/ giúp việc setup trở nên dễ dàng.
+
+Còn trong nextjs thì chúng ta làm thế nào, khá đơn giản, các bạn nhớ quy tắc về cấu trúc thư mục chứ. Lúc này chúng ta chỉ cần tạo cấu trúc thư mục tương ứng
+
+```
+[lang]
+  page.tsx
+  dictionaries.ts
+  dictionaries
+    en.json
+    vi.json
+```
+
+```json
+{
+  "products": {
+    "cart": "Add to Cart"
+  }
+}
+```
+
+```ts
+import "server-only";
+
+const dictionaries = {
+  en: () => import("./dictionaries/en.json").then((module) => module.default),
+  nl: () => import("./dictionaries/vi.json").then((module) => module.default),
+};
+
+export const getDictionary = async (locale) => dictionaries[locale]();
+```
+
+```tsx
+import { getDictionary } from "./dictionaries";
+
+export default async function Page({ params: { lang } }) {
+  const dict = await getDictionary(lang); // en
+  return <button>{dict.products.cart}</button>; // Add to Cart
+}
+```
