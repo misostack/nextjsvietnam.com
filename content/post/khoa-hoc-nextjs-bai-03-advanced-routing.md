@@ -664,3 +664,8 @@ export const Footer = () => {
   );
 };
 ```
+
+## References
+
+- [Next Intl Getting start](https://next-intl-docs.vercel.app/docs/getting-started/app-router/with-i18n-routing)
+- [Navigation Strategy for next-intl](https://next-intl-docs.vercel.app/docs/routing/navigation#shared-pathnames)
