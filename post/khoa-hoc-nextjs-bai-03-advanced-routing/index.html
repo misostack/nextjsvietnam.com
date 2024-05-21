@@ -139,6 +139,7 @@
 <li>Phân quyền và chuyển hướng</li>
 <li>Tạo layout dùng chung</li>
 <li>Loading Screen</li>
+<li>I18n - đa ngôn ngữ</li>
 </ol>
 <p>Với nội dung trên, chúng ta sẽ tiếp tục với việc phân quyền và chuyển hướng, cũng như thực hành chia layout dùng chung, hiển thị màn hình chờ ( loading screen )</p>
 <p><img src=https://gist.github.com/assets/31009750/5504676f-fb7b-46b1-aba6-3d3b8a9cd794 alt=image></p>
@@ -319,7 +320,125 @@ Trường hợp người dùng cố tình vào bằng các địa chỉ cố đ�
 <span style=color:#75715e>// ...
 </span></code></pre></div><p><img src=https://gist.github.com/assets/31009750/6e56425c-4743-4c81-917a-212004e10a2a alt=image></p>
 <h2 id=loading-screen>Loading Screen</h2>
+<p>Trong một trang web có quá nhiều block không cần thiết phải hiện thị ngay. Như ví dụ bên dưới, thì thông tin khi khách hàng vừa truy cập vào cần thấy ngay thông thường sẽ là header, main content (top products). Còn phần random products có thể hiển thị sau.</p>
 <p><img src=https://gist.github.com/assets/31009750/34e5e0b7-2cd2-4c2a-8e3b-656fbe0b4271 alt=image></p>
+<p>Với một trang web thông thường chúng ta sẽ sử dụng AJAX để lazy load phần này.
+Ngay trong NextJS, chỉ cần với cú pháp đơn giản, ta có ngay kết quả như trên.</p>
+<p>Dưới đây là cơ chế của nextjs</p>
+<p><img src=https://gist.github.com/assets/31009750/b2e916b4-edd0-40a1-9514-8518a1dc0e23 alt=image></p>
+<ol>
+<li>Đầu tiên khi client request lên server, lúc này theo trình tự server sẽ generate html từ page component</li>
+<li>Nếu trong page có các component được gói trong tag Suspend, thì được chuyển đổi để load sau với javascript</li>
+<li>Khi trang web được tải xuống thì tài nguyên html sẽ được tải xuống trước, trong lúc đó javascript cùng được tải đồng thời (sẽ có đoạn mã kiểm soát phần tải các component cần stream ). Khi các script này được thực thi thì quá trình stream data diễn ra, trước đó nextjs sẽ tự động tạo ra các placeholder có nội dung mà bạn đã define trong Loading Component. Sau khi dữ liệu sẵn sàng, toàn bộ component của bạn sẽ xuất hiện trên giao diện.</li>
+<li>Trong lúc stream diễn ra, bạn hoàn toàn vẫn tương tác được với trang web, đây chính là điểm mấu chốt của công nghệ này.</li>
+</ol>
+<p>Lợi ích:</p>
+<ul>
+<li>Thời gian tải trang nhanh</li>
+<li>Hiển thị nội dung các cùng chờ thân thiện với user</li>
+</ul>
+<p>Nào cũng xem code</p>
+<blockquote>
+<p>src/components/SlowComponent.tsx</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>wait</span> <span style=color:#f92672>=</span> (<span style=color:#a6e22e>timeout</span>: <span style=color:#66d9ef>number</span>) <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Promise</span>((<span style=color:#a6e22e>resolve</span>) <span style=color:#f92672>=&gt;</span> {
+    <span style=color:#a6e22e>setTimeout</span>(() <span style=color:#f92672>=&gt;</span> {
+      <span style=color:#a6e22e>fetch</span>(<span style=color:#e6db74>&#34;https://jsonplaceholder.typicode.com/todos/1&#34;</span>)
+        .<span style=color:#a6e22e>then</span>((<span style=color:#a6e22e>res</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>json</span>())
+        .<span style=color:#a6e22e>then</span>((<span style=color:#a6e22e>data</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>resolve</span>(<span style=color:#a6e22e>data</span>));
+    }, <span style=color:#a6e22e>timeout</span>);
+  });
+};
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>SlowComponent</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>async</span> () <span style=color:#f92672>=&gt;</span> {
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>data</span>: <span style=color:#66d9ef>any</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>wait</span>(<span style=color:#ae81ff>5000</span>);
+
+  <span style=color:#66d9ef>return</span> (
+    &lt;&gt;
+      &lt;<span style=color:#f92672>p</span>&gt;{<span style=color:#a6e22e>JSON</span>.<span style=color:#a6e22e>stringify</span>(<span style=color:#a6e22e>data</span>)}&lt;/<span style=color:#f92672>p</span>&gt;
+    &lt;/&gt;
+  );
+};
+</code></pre></div><blockquote>
+<p>src/app/page.tsx</p>
+</blockquote>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>SlowComponent</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@/components/SlowComponent&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#a6e22e>Link</span> <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;next/link&#34;</span>;
+<span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Suspense</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;react&#34;</span>;
+<span style=color:#66d9ef>import</span> <span style=color:#a6e22e>Loading</span> <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./loading&#34;</span>;
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>Home() {</span>
+  <span style=color:#66d9ef>return</span> (
+    &lt;<span style=color:#f92672>main</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;container-xl mx-auto p-4&#34;</span>&gt;
+      &lt;<span style=color:#f92672>h1</span>&gt;<span style=color:#a6e22e>Home</span> <span style=color:#a6e22e>Page</span>&lt;/<span style=color:#f92672>h1</span>&gt;
+      &lt;<span style=color:#f92672>p</span>&gt;<span style=color:#a6e22e>Links</span> <span style=color:#a6e22e>to</span> <span style=color:#a6e22e>other</span> <span style=color:#a6e22e>pages</span> <span style=color:#66d9ef>with</span> <span style=color:#a6e22e>a</span> <span style=color:#a6e22e>tag</span>&lt;/<span style=color:#f92672>p</span>&gt;
+      &lt;<span style=color:#f92672>ul</span>&gt;
+        &lt;<span style=color:#f92672>li</span>&gt;
+          &lt;<span style=color:#f92672>a</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/products&#34;</span>&gt;<span style=color:#a6e22e>Products</span>&lt;/<span style=color:#f92672>a</span>&gt;
+        &lt;/<span style=color:#f92672>li</span>&gt;
+        &lt;<span style=color:#f92672>li</span>&gt;
+          &lt;<span style=color:#f92672>a</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/products/mouse-pad-nextjsvietnam&#34;</span>&gt;
+            <span style=color:#a6e22e>Mouse</span> <span style=color:#a6e22e>Pad</span> <span style=color:#a6e22e>NextJSVietNam</span>
+          &lt;/<span style=color:#f92672>a</span>&gt;
+        &lt;/<span style=color:#f92672>li</span>&gt;
+        &lt;<span style=color:#f92672>li</span>&gt;
+          &lt;<span style=color:#f92672>a</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/cart&#34;</span>&gt;<span style=color:#a6e22e>Cart</span>&lt;/<span style=color:#f92672>a</span>&gt;
+        &lt;/<span style=color:#f92672>li</span>&gt;
+        &lt;<span style=color:#f92672>li</span>&gt;
+          &lt;<span style=color:#f92672>a</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/order&#34;</span>&gt;<span style=color:#a6e22e>Order</span>&lt;/<span style=color:#f92672>a</span>&gt;
+        &lt;/<span style=color:#f92672>li</span>&gt;
+        &lt;<span style=color:#f92672>li</span>&gt;
+          &lt;<span style=color:#f92672>a</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/my-account&#34;</span>&gt;<span style=color:#a6e22e>My</span> <span style=color:#a6e22e>Account</span>&lt;/<span style=color:#f92672>a</span>&gt;
+        &lt;/<span style=color:#f92672>li</span>&gt;
+        &lt;<span style=color:#f92672>li</span>&gt;
+          &lt;<span style=color:#f92672>a</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/my-account/orders&#34;</span>&gt;<span style=color:#a6e22e>My</span> <span style=color:#a6e22e>orders</span>&lt;/<span style=color:#f92672>a</span>&gt;
+        &lt;/<span style=color:#f92672>li</span>&gt;
+        &lt;<span style=color:#f92672>li</span>&gt;
+          &lt;<span style=color:#f92672>a</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/my-account/orders/1&#34;</span>&gt;<span style=color:#a6e22e>My</span> <span style=color:#a6e22e>order</span> <span style=color:#a6e22e>detail</span>&lt;/<span style=color:#f92672>a</span>&gt;
+        &lt;/<span style=color:#f92672>li</span>&gt;
+      &lt;/<span style=color:#f92672>ul</span>&gt;
+      &lt;<span style=color:#f92672>p</span>&gt;<span style=color:#a6e22e>Links</span> <span style=color:#a6e22e>to</span> <span style=color:#a6e22e>other</span> <span style=color:#a6e22e>pages</span> <span style=color:#66d9ef>with</span> <span style=color:#a6e22e>Link</span> <span style=color:#a6e22e>tag</span>&lt;/<span style=color:#f92672>p</span>&gt;
+      &lt;<span style=color:#f92672>ul</span>&gt;
+        &lt;<span style=color:#f92672>li</span>&gt;
+          &lt;<span style=color:#f92672>Link</span> <span style=color:#a6e22e>href</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/products&#34;</span>&gt;<span style=color:#a6e22e>Products</span>&lt;/<span style=color:#f92672>Link</span>&gt;
+        &lt;/<span style=color:#f92672>li</span>&gt;
+      &lt;/<span style=color:#f92672>ul</span>&gt;
+      &lt;<span style=color:#f92672>h2</span>&gt;<span style=color:#a6e22e>Slow</span> <span style=color:#a6e22e>Component</span>&lt;/<span style=color:#f92672>h2</span>&gt;
+      &lt;<span style=color:#f92672>Suspense</span> <span style=color:#a6e22e>fallback</span><span style=color:#f92672>=</span>{&lt;<span style=color:#f92672>Loading</span> /&gt;}&gt;
+        &lt;<span style=color:#f92672>SlowComponent</span>&gt;&lt;/<span style=color:#f92672>SlowComponent</span>&gt;
+      &lt;/<span style=color:#f92672>Suspense</span>&gt;
+    &lt;/<span style=color:#f92672>main</span>&gt;
+  );
+}
+</code></pre></div><h2 id=i18n---đa-ngôn-ngữ>I18n - Đa ngôn ngữ</h2>
+<p>Thông thường khi làm việc với React, để làm website đa ngôn ngữ chúng ta hay sử dụng <a href=https://react.i18next.com/>https://react.i18next.com/</a> giúp việc setup trở nên dễ dàng.</p>
+<p>Còn trong nextjs thì chúng ta làm thế nào, khá đơn giản, các bạn nhớ quy tắc về cấu trúc thư mục chứ. Lúc này chúng ta chỉ cần tạo cấu trúc thư mục tương ứng</p>
+<pre tabindex=0><code>[lang]
+  page.tsx
+  dictionaries.ts
+  dictionaries
+    en.json
+    vi.json
+</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-json data-lang=json>{
+  <span style=color:#f92672>&#34;products&#34;</span>: {
+    <span style=color:#f92672>&#34;cart&#34;</span>: <span style=color:#e6db74>&#34;Add to Cart&#34;</span>
+  }
+}
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-ts data-lang=ts><span style=color:#66d9ef>import</span> <span style=color:#e6db74>&#34;server-only&#34;</span>;
+
+<span style=color:#66d9ef>const</span> <span style=color:#a6e22e>dictionaries</span> <span style=color:#f92672>=</span> {
+  <span style=color:#a6e22e>en</span><span style=color:#f92672>:</span> () <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>import</span>(<span style=color:#e6db74>&#34;./dictionaries/en.json&#34;</span>).<span style=color:#a6e22e>then</span>((<span style=color:#a6e22e>module</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>module</span><span style=color:#a6e22e>.default</span>),
+  <span style=color:#a6e22e>nl</span><span style=color:#f92672>:</span> () <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>import</span>(<span style=color:#e6db74>&#34;./dictionaries/vi.json&#34;</span>).<span style=color:#a6e22e>then</span>((<span style=color:#a6e22e>module</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#66d9ef>module</span><span style=color:#a6e22e>.default</span>),
+};
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>getDictionary</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>async</span> (<span style=color:#a6e22e>locale</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>dictionaries</span>[<span style=color:#a6e22e>locale</span>]();
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-tsx data-lang=tsx><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>getDictionary</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;./dictionaries&#34;</span>;
+
+<span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>async</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>Page</span>({ <span style=color:#a6e22e>params</span><span style=color:#f92672>:</span> { <span style=color:#a6e22e>lang</span> } }) {
+  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>dict</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>getDictionary</span>(<span style=color:#a6e22e>lang</span>); <span style=color:#75715e>// en
+</span><span style=color:#75715e></span>  <span style=color:#66d9ef>return</span> &lt;<span style=color:#f92672>button</span>&gt;{<span style=color:#a6e22e>dict</span>.<span style=color:#a6e22e>products</span>.<span style=color:#a6e22e>cart</span>}&lt;/<span style=color:#f92672>button</span>&gt;; <span style=color:#75715e>// Add to Cart
+</span><span style=color:#75715e></span>}
+</code></pre></div>
 <div class="m-1 p-1">
 <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href=https://nextjsvietnam.com/categories/nextjs-tutorial>nextjs-tutorial</a>
 </div>
