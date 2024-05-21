@@ -30,7 +30,9 @@ Yêu cầu:
 4. Các trang thuộc nhóm đăng nhập, cũng có giao diện chung, chỉ khác phần nội dung (content).
 5. Toàn bộ các trang trong website đều sử dụng chung phần header, footer, khác phần nội dung chính (main content)
 
-Trong bài này, chúng ta sẽ giả lập rằng sau khi khách hàng đăng nhập xong, các thông tin sẽ được lưu lại trên cookie session.
+## Phân quyền và chuyển hướng
+
+Trong bài này, chúng ta sẽ giả lập rằng sau khi khách hàng đăng nhập xong, các thông tin sẽ được lưu lại trên cookie.
 
 Do đó chúng ta sẽ cài đặt logic như sau:
 
@@ -47,65 +49,25 @@ Trong NextJS chúng ta có thể làm như sau:
 ![image](https://gist.github.com/assets/31009750/a5eaef32-cef7-4c06-8701-517abc4921be)
 
 ```ts
-// shared/helpers.ts
-import { COOKIE_PREFIX } from "./constant";
-
-export const setCookie = (cname: string, cvalue: string, exdays: number) => {
-  if (exdays) {
-    const d = new Date();
-    d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
-    let expires = "expires=" + d.toUTCString();
-
-    document.cookie =
-      `${COOKIE_PREFIX}_${cname}` + "=" + cvalue + ";" + expires + ";path=/";
-  } else {
-    document.cookie = `${COOKIE_PREFIX}_${cname}` + "=" + cvalue + ";path=/";
-  }
-};
-
-export const getCookie = (cname: string) => {
-  let name = `${COOKIE_PREFIX}_${cname}` + "=";
-  let ca = document.cookie.split(";");
-  for (let i = 0; i < ca.length; i++) {
-    let c = ca[i];
-    while (c.charAt(0) == " ") {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
-  }
-  return "";
-};
-
-export const deleteCookie = (cname: string) => {
-  let name = `${COOKIE_PREFIX}_${cname}` + "=";
-  document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-};
-```
-
-```ts
 // shared/auth.ts
 
+import { AppCookie, AppRoute } from "@/shared/constant";
+import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { getCookie } from "./helper";
-import { AppRoute, CookieName } from "./constant";
 
 export const runUserGuard = () => {
-  let err = null;
+  const cookieStore = cookies();
+  if (!cookieStore.has(AppCookie.UserToken)) {
+    return false;
+  }
   try {
-    const userCookie = getCookie(CookieName.UserCookie);
+    const userCookie = cookieStore.get(AppCookie.UserToken);
     if (userCookie) {
-      const user = JSON.parse(userCookie);
+      const user = JSON.parse(userCookie.value);
       return true;
     }
-  } catch (err) {
-    err = err;
-  }
-  if (err) {
-    alert(err);
-  }
-  redirect(AppRoute.Login);
+  } catch (error) {}
+  return redirect(AppRoute.Login);
 };
 ```
 
@@ -127,6 +89,8 @@ export default function MyAccount() {
 
 Các bạn hãy áp dụng cho các trang còn lại.
 ...
+
+## Tạo layout dùng chung
 
 Nhưng nếu tôi có hơn 10 trang như vậy thì sao, còn cách nào khác không?
 
@@ -265,3 +229,7 @@ export function middleware(req: NextRequest) {
 ```
 
 ![image](https://gist.github.com/assets/31009750/6e56425c-4743-4c81-917a-212004e10a2a)
+
+## Loading Screen
+
+![image](https://gist.github.com/assets/31009750/34e5e0b7-2cd2-4c2a-8e3b-656fbe0b4271)
