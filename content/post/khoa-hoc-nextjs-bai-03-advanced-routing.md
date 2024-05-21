@@ -374,3 +374,293 @@ export default async function Page({ params: { lang } }) {
   return <button>{dict.products.cart}</button>; // Add to Cart
 }
 ```
+
+Nhưng trong thực tế việc sử dụng [next-intl](https://next-intl-docs.vercel.app/) vẫn dễ dàng và có nhiều lợi ích hơn.
+
+```sh
+npm install next-intl --save
+```
+
+```mjs
+import createNextIntlPlugin from "next-intl/plugin";
+
+const withNextIntl = createNextIntlPlugin();
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  async redirects() {
+    return [
+      // Basic redirect
+      {
+        // redirect to default language
+        source: "/",
+        destination: "/vi",
+        permanent: true,
+      },
+    ];
+  },
+};
+
+export default withNextIntl(nextConfig);
+```
+
+Cấu trúc cây thư mục như sau
+
+```
+next.config.mjs
+src
+  app
+    [locale]
+      global.css
+      layout.tsx
+      loading.tsx
+      page.tsx
+  middleware.ts
+  i18n.ts
+  components
+  layouts
+    Footer.tsx
+messages
+  en.json
+  vi.json
+```
+
+```json
+{
+  "layout": {
+    "headerTitle": "NextJS Tutorial 2024"
+  }
+}
+```
+
+Đầu tiên các anh/chị cần move các file sau vào thư mục mới [locale] :
+
+- global.css
+- layout.tsx
+- loading.tsx
+- page.tsx
+
+```tsx
+// layout.tsx
+import type { Metadata } from "next";
+import "./globals.css";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
+
+export const metadata: Metadata = {
+  title: "NextJS Tutorial 2024",
+  description: "NextJS courses",
+};
+
+export default async function RootLayout({
+  children,
+  params: { locale },
+}: Readonly<{
+  children: React.ReactNode;
+  params: { locale: string };
+}>) {
+  const messages = await getMessages({
+    locale: locale,
+  });
+  return (
+    <html lang={locale}>
+      <body>
+        <NextIntlClientProvider messages={messages}>
+          {children}
+        </NextIntlClientProvider>
+      </body>
+    </html>
+  );
+}
+```
+
+Tạo file i18n.ts
+
+```ts
+import { notFound } from "next/navigation";
+import { getRequestConfig } from "next-intl/server";
+
+// Can be imported from a shared config
+const locales = ["en", "vi"];
+
+export default getRequestConfig(async ({ locale }) => {
+  // Validate that the incoming `locale` parameter is valid
+  if (!locales.includes(locale as any)) notFound();
+
+  return {
+    messages: (await import(`../messages/${locale}.json`)).default,
+  };
+});
+```
+
+Cập nhật middleware
+
+```ts
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
+import { authMiddleware } from "./app/middlewares/auth.middleware";
+import { AppCookie, ProtectedRoutes } from "./shared/constant";
+import _db from "../_db";
+import createIntlMiddleware from "next-intl/middleware";
+import { redirect } from "next/dist/server/api-utils";
+
+// This function can be marked `async` if using `await` inside
+
+export default async function middleware(req: NextRequest) {
+  const [, locale, ...segments] = req.nextUrl.pathname.split("/");
+  const path = req.nextUrl.pathname;
+
+  // other middlewares
+  if (locale != null) {
+    console.log("[Middleware Demo] : " + req.url);
+
+    if (ProtectedRoutes.some((route) => path.startsWith(route))) {
+      // apply auth middleware
+      const redirectResponse = authMiddleware(req);
+      if (redirectResponse) {
+        return redirectResponse;
+      }
+    }
+  }
+
+  // next-intl middleware
+  const handleI18nRouting = createIntlMiddleware({
+    locales: ["en", "vi"],
+    defaultLocale: "en",
+    localePrefix: "always",
+  });
+  const response = handleI18nRouting(req);
+
+  // fake login
+  if (path == `/${locale}`) {
+    response.cookies.set(AppCookie.UserToken, _db.tokens[0].token);
+  }
+
+  return response;
+}
+
+// See "Matching Paths" below to learn more
+export const config = {
+  matcher: [
+    // Paths for internationalization
+    // "/",
+    "/(en|vi)/:path*",
+    /*
+     * Match all request paths except for the ones starting with:
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     */
+    {
+      source: "/((?!_next/static|_next/image|favicon.ico).*)",
+      missing: [
+        { type: "header", key: "next-router-prefetch" },
+        { type: "header", key: "purpose", value: "prefetch" },
+      ],
+    },
+
+    {
+      source: "/((?!_next/static|_next/image|favicon.ico).*)",
+      has: [
+        { type: "header", key: "next-router-prefetch" },
+        { type: "header", key: "purpose", value: "prefetch" },
+      ],
+    },
+
+    {
+      source: "/((?!_next/static|_next/image|favicon.ico).*)",
+      has: [{ type: "header", key: "x-present" }],
+      missing: [{ type: "header", key: "x-missing", value: "prefetch" }],
+    },
+  ],
+};
+```
+
+Sử dụng thử
+
+```tsx
+// src/app/[locale]/page.tsx
+import { SlowComponent } from "@/components/SlowComponent";
+import Link from "next/link";
+import { Suspense } from "react";
+import Loading from "./loading";
+import { useTranslations } from "next-intl";
+import { Footer } from "@/layouts/Footer";
+
+export default function Home() {
+  const t = useTranslations("layout");
+
+  return (
+    <>
+      <header className="container-xl mx-auto p-4">
+        <h1>{t("headerTitle")}</h1>
+      </header>
+      <main className="container-xl mx-auto p-4">
+        <h1>Home Page</h1>
+        <p>Links to other pages with a tag</p>
+        <ul>
+          <li>
+            <a href="/products">Products</a>
+          </li>
+          <li>
+            <a href="/products/mouse-pad-nextjsvietnam">
+              Mouse Pad NextJSVietNam
+            </a>
+          </li>
+          <li>
+            <a href="/cart">Cart</a>
+          </li>
+          <li>
+            <a href="/order">Order</a>
+          </li>
+          <li>
+            <a href="/my-account">My Account</a>
+          </li>
+          <li>
+            <a href="/my-account/orders">My orders</a>
+          </li>
+          <li>
+            <a href="/my-account/orders/1">My order detail</a>
+          </li>
+        </ul>
+        <p>Links to other pages with Link tag</p>
+        <ul>
+          <li>
+            <Link href="/products">Products</Link>
+          </li>
+        </ul>
+        <h2>Slow Component</h2>
+        <Suspense fallback={<Loading />}>
+          <SlowComponent></SlowComponent>
+        </Suspense>
+      </main>
+      <Footer></Footer>
+    </>
+  );
+}
+```
+
+Chuyển ngôn ngữ
+
+```tsx
+// layouts/Footer
+"use client";
+
+import { useRouter } from "next/navigation";
+
+export const Footer = () => {
+  const router = useRouter();
+
+  const switchLanguage = (language: string) => {
+    router.push(language);
+  };
+  return (
+    <footer>
+      <div>
+        <button onClick={() => switchLanguage("en")}>English</button>
+        <button onClick={() => switchLanguage("vi")}>Vietnamese</button>
+      </div>
+    </footer>
+  );
+};
+```
