@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="home" href="https://nextjsvietnam.com" />
+    <link rel="home" href="http://localhost:1313/" />
     <meta name="generator" content="jsguru cms" />
 
     
+    
+      
     
 
     
@@ -18,19 +20,19 @@
       
               
         
-        <link rel="stylesheet" href="https://nextjsvietnam.com/themes/2022/public/main.css" />
+        <link rel="stylesheet" href="http://localhost:1313/themes/2022/dist/main.css" />
              
     
       
               
         
-        <link rel="stylesheet" href="https://nextjsvietnam.com/themes/2022/public/home.css" />
+        <link rel="stylesheet" href="http://localhost:1313/themes/2022/dist/home.css" />
              
     
       
               
         
-        <link rel="stylesheet" href="https://nextjsvietnam.com/themes/2022/public/page.css" />
+        <link rel="stylesheet" href="http://localhost:1313/themes/2022/dist/page.css" />
              
         
     
@@ -43,9 +45,12 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-RWE4MLJYE6');
-      
+      gtag('config', 'G-RWE4MLJYE6');    
     </script>    
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1642510310947288"
+    crossorigin="anonymous"></script>    
+    
     
     
 <title>Rest Api Implementation Guidelines | This guidance describes issues that you should consider when designing a web API | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
@@ -53,7 +58,7 @@
 <meta name="keywords" content="rest api" />
 <meta name="description" content="This guidance describes issues that you should consider when designing a web API" />
 <meta property="og:type" content="website" />
-<meta property="og:image" content="https://nextjsvietnam.com/common/no-image.png" />
+<meta property="og:image" content="http://localhost:1313/common/no-image.png" />
 <meta property="og:image:type" content="image/jpeg" />
 <meta property="og:image:width" content="750" />
 <meta property="og:image:height" content="300" />
@@ -94,9 +99,9 @@
     <nav class="nav-fixed nav-default z-50">
     <div class="container">
       <div class="nav-container flex flex-wrap justify-between items-center">
-        <a href="https://nextjsvietnam.com" class="nav-brand inline-block">
+        <a href="http://localhost:1313/" class="nav-brand inline-block">
           
-          <img class="h-12" src="https://nextjsvietnam.com/themes/2022/src/assets/images/logo.png" 
+          <img class="h-12" src="http://localhost:1313/themes/2022/src/assets/images/logo.png" 
           alt="Stunning" />
         </a>
         <a href="javascript:void(0);" data-menu="#menu-main_menu" class="nav-menu-toggle"><span
@@ -116,14 +121,7 @@
           
           
             <li class="nav-menu-item">
-            <a class="nav-menu-link" href="https://nextjsvietnam.com/categories/cheatsheet">Cheatsheet
-                
-            </a>
-            
-            </li>
-          
-            <li class="nav-menu-item">
-            <a class="nav-menu-link" href="https://nextjsvietnam.com/categories/frameworks">Frameworks
+            <a class="nav-menu-link" href="http://localhost:1313/categories/systemdesign">System Design
                 
                     <span class="material-icons">keyboard_arrow_down</span>
                 
@@ -131,16 +129,20 @@
             
                 <ul class="sub-menu">                                    
                 
-                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://nextjsvietnam.com/categories/nestjs">NestJS</a></li>
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/software-architecture">Software Architecture</a></li>
                 
-                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://nextjsvietnam.com/categories/reactjs">ReactJS</a></li>
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/microservice-architecture">Microservice Architecture</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/aws">Learn AWS The Right Way</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/aws-labs">AWS Hands-On Labs</a></li>
                 
                 </ul>
             
             </li>
           
             <li class="nav-menu-item">
-            <a class="nav-menu-link" href="https://nextjsvietnam.com">Tutorials
+            <a class="nav-menu-link" href="http://localhost:1313/categories/cheatsheet">Cheatsheet
                 
                     <span class="material-icons">keyboard_arrow_down</span>
                 
@@ -148,14 +150,56 @@
             
                 <ul class="sub-menu">                                    
                 
-                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://nextjsvietnam.com/categories/nestjs-tutorial">NestJS Tutorial</a></li>
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nestjs-examples">NestJS Examples</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/reactjs-examples">ReactJS Examples</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/react-native-examples">React Native Examples</a></li>
                 
                 </ul>
             
             </li>
           
             <li class="nav-menu-item">
-            <a class="nav-menu-link" href="https://nextjsvietnam.com">Tools
+            <a class="nav-menu-link" href="http://localhost:1313/categories/frameworks">Frameworks
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nestjs">NestJS</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/reactjs">ReactJS</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nextjs">NextJS</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/">Tutorials
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nestjs-tutorial">NestJS Tutorial</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/reactjs-tutorial">ReactJS Tutorial</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nextjs-tutorial">NextJS Tutorial</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/">Tools
                 
                     <span class="material-icons">keyboard_arrow_down</span>
                 
@@ -197,7 +241,7 @@
     
   <section class="container section">
     <div class="page-content max-w-2xl mx-auto">
-        <img src="https://nextjsvietnam.com/common/no-image.png" class="img-responsive" alt="Rest Api Implementation Guidelines" />
+        <img src="http://localhost:1313/common/no-image.png" class="img-responsive" alt="Rest Api Implementation Guidelines" />
         <h1>Rest Api Implementation Guidelines</h1>
         
           
@@ -207,13 +251,13 @@
         <p>
             <strong>Category:</strong>
             
-            <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="https://nextjsvietnam.com/categories/cheatsheet">cheatsheet</a>
+            <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="http://localhost:1313/categories/cheatsheet">cheatsheet</a>
             
         </p>
         <p>
           <strong>Tags:</strong>
           
-        </p>        
+        </p>                
         <p>Các chủ đề chính sẽ đi qua trong bài viết ngày hôm nay:</p>
 <ul>
 <li><input checked="" disabled="" type="checkbox"> Các thuật ngữ và khái niệm thường gặp khi thiết kế web API</li>
@@ -266,8 +310,7 @@ Level 3 : Sử dụng hypermedia (HATEOAS) để link tới các resource có li
 /customers/1: customer&rsquo;s data ( customer with id = 1)</p>
 <p>Điểm đặc biệt quan trọng khi thiết kế API</p>
 <blockquote>
-<p><strong>Không nên mong đợi rằng API sẽ là ánh xạ của database schema</strong></p>
-</blockquote>
+<p><strong>Không nên mong đợi rằng API sẽ là ánh xạ của database schema</strong></p></blockquote>
 <p><strong>2.Mối quan hệ hay trật tự giữa chúng</strong></p>
 <p>/customers/1/orders: sub collection - order of customer 1</p>
 <p><strong>3.Schema cho mỗi resource</strong></p>
@@ -327,8 +370,7 @@ Client : sole responsibility and authority for maintaining the application state
 </ul>
 <p>Ví dụ: Ta có resource như sau</p>
 <blockquote>
-<p>/users/789/orders/3</p>
-</blockquote>
+<p>/users/789/orders/3</p></blockquote>
 <p>Thì 789 là resource ID của user, còn 3 là resource id của order</p>
 <p>Đồng thời khi thiết kế cần lưu ý 3 trường hợp sau:</p>
 <p><strong>Trường hợp 1: Resource IDs luôn được user tạo ra</strong></p>
@@ -401,8 +443,7 @@ Client : sole responsibility and authority for maintaining the application state
 <p><img src="https://user-images.githubusercontent.com/31009750/191485329-15f54413-c2af-4c61-86d8-0659cb789147.png" alt="Database Schema"></p>
 <h3 id="bước-1-phân-tích-các-resource">Bước 1. Phân tích các resource</h3>
 <blockquote>
-<p>Resource: object, data hoặc service</p>
-</blockquote>
+<p>Resource: object, data hoặc service</p></blockquote>
 <ul>
 <li><strong>users</strong> : user service to manage user&rsquo;s data</li>
 <li><strong>auth</strong> : authentication service for login, reset password, confirmed account</li>
@@ -411,51 +452,36 @@ Client : sole responsibility and authority for maintaining the application state
 <h3 id="bước-2-xây-dựng-các-endpoint-định-nghĩa-các-uris-và-sử-dụng-http-verbs-để-đáp-ứng-chức-năng">Bước 2. Xây dựng các endpoint định nghĩa các URIs và sử dụng HTTP Verbs để đáp ứng chức năng</h3>
 <p><strong>2.1. Manage users</strong></p>
 <blockquote>
-<p>POST /users : tạo user</p>
-</blockquote>
+<p>POST /users : tạo user</p></blockquote>
 <blockquote>
-<p>GET /users : truy vấn thông tin của toàn bộ user</p>
-</blockquote>
+<p>GET /users : truy vấn thông tin của toàn bộ user</p></blockquote>
 <blockquote>
-<p>PUT /users : cập nhật nhiều user 1 lúc ( batch update )</p>
-</blockquote>
+<p>PUT /users : cập nhật nhiều user 1 lúc ( batch update )</p></blockquote>
 <blockquote>
-<p>DELETE /users: xóa nhiều user 1 lúc</p>
-</blockquote>
+<p>DELETE /users: xóa nhiều user 1 lúc</p></blockquote>
 <blockquote>
-<p>GET /users/:id truy vấn thông tin của 1 user cụ thể - Ví dụ : GET /users/1</p>
-</blockquote>
+<p>GET /users/:id truy vấn thông tin của 1 user cụ thể - Ví dụ : GET /users/1</p></blockquote>
 <blockquote>
-<p>PUT/PATCH /users/:id : cập nhật 1 user cụ thể - Ví dụ : PATCH /users/1</p>
-</blockquote>
+<p>PUT/PATCH /users/:id : cập nhật 1 user cụ thể - Ví dụ : PATCH /users/1</p></blockquote>
 <blockquote>
-<p>DELETE /users/:id xóa 1 user cụ thể - Ví dụ: DELETE /users/1</p>
-</blockquote>
+<p>DELETE /users/:id xóa 1 user cụ thể - Ví dụ: DELETE /users/1</p></blockquote>
 <blockquote>
-<p>POST /users/:id/change-password : thay đổi mật khẩu của 1 user cụ thể. Ví dụ : POST /users/1/change-password</p>
-</blockquote>
+<p>POST /users/:id/change-password : thay đổi mật khẩu của 1 user cụ thể. Ví dụ : POST /users/1/change-password</p></blockquote>
 <blockquote>
-<p>POST /users/:id/reset-password : gửi link reset mật khẩu của 1 user cụ thể. Ví dụ : POST /users/1/reset-password</p>
-</blockquote>
+<p>POST /users/:id/reset-password : gửi link reset mật khẩu của 1 user cụ thể. Ví dụ : POST /users/1/reset-password</p></blockquote>
 <blockquote>
-<p>POST /users/:id/send-activate-link : gửi lại link kích hoạt tài khoản của 1 user cụ thể. Ví dụ : POST /users/1/send-activate-link</p>
-</blockquote>
+<p>POST /users/:id/send-activate-link : gửi lại link kích hoạt tài khoản của 1 user cụ thể. Ví dụ : POST /users/1/send-activate-link</p></blockquote>
 <p><strong>2.2. Authentication</strong></p>
 <blockquote>
-<p>POST /accounts/sign-in-with-password : đăng nhập</p>
-</blockquote>
+<p>POST /accounts/sign-in-with-password : đăng nhập</p></blockquote>
 <blockquote>
-<p>POST /accounts/verify-secure-code: xác thực mã bảo mật 2 lớp</p>
-</blockquote>
+<p>POST /accounts/verify-secure-code: xác thực mã bảo mật 2 lớp</p></blockquote>
 <blockquote>
-<p>POST /accounts/resend-secure-code: yêu cầu gửi lại mã xác thực 2 lớp</p>
-</blockquote>
+<p>POST /accounts/resend-secure-code: yêu cầu gửi lại mã xác thực 2 lớp</p></blockquote>
 <blockquote>
-<p>POST /accounts/reset-password/request: gửi yêu cầu khôi phục mật khẩu</p>
-</blockquote>
+<p>POST /accounts/reset-password/request: gửi yêu cầu khôi phục mật khẩu</p></blockquote>
 <blockquote>
-<p>POST /accounts/reset-password: cập nhật mật khẩu mới</p>
-</blockquote>
+<p>POST /accounts/reset-password: cập nhật mật khẩu mới</p></blockquote>
 <h2 id="tài-liệu-tham-khảo">Tài liệu tham khảo</h2>
 <ul>
 <li><a href="https://google.aip.dev/122">Google API Dev</a></li>
@@ -464,7 +490,7 @@ Client : sole responsibility and authority for maintaining the application state
       
       <div class="m-1 p-1">
         
-          <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="https://nextjsvietnam.com/categories/cheatsheet">cheatsheet</a>
+          <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="http://localhost:1313/categories/cheatsheet">cheatsheet</a>
         
       </div>
     </div>
@@ -480,25 +506,36 @@ Client : sole responsibility and authority for maintaining the application state
         <ul class="sidebar-links">
         
         
-            <li><a href="/post/100-frontend-interview-questions/">100 Frontend Interview Questions</a></li>
+            <li><a href="/post/6minutes-tech-graphql/">6minutes Tech Graphql</a></li>
         
-            <li><a href="/post/chatgpt-what-can-chat-gpt-do/">Chatgpt What Can Chat Gpt Do</a></li>
+            <li><a href="/post/6minutes-tech-progressive-web-app/">6minutes Tech Progressive Web App</a></li>
         
-            <li><a href="/post/learn-enough-oop-to-be-dangerous/">Learn Enough Oop to Be Dangerous</a></li>
+            <li><a href="/post/flexbox-and-real-world-examples/">Flexbox and Real World Examples</a></li>
         
-            <li><a href="/post/the-future-of-hr/">The Future of Hr</a></li>
+            <li><a href="/post/react-native-examples-setup-working-place-for-react-native-developer/">[React Native Examples] Setup Working Place for React Native Developer</a></li>
         
-            <li><a href="/post/how-to-test-the-database/">How to Test the Database</a></li>
+            <li><a href="/post/happy-new-year-2024/">Happy New Year 2024</a></li>
         
-            <li><a href="/post/the-art-of-programming/">The Art of Programming</a></li>
+            <li><a href="/post/developer-philosophy/">Developer Philosophy</a></li>
         
-            <li><a href="/post/100-nodejs-interview-questions/">100 Nodejs Interview Questions</a></li>
+            <li><a href="/post/test-driven-development-for-beginner/">Test Driven Development for Beginner</a></li>
         
         </ul>
                 
       </div>
     </div>
   </section>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1642510310947288"
+  crossorigin="anonymous"></script>
+  <ins class="adsbygoogle"
+        style="display:block; text-align:center;"
+        data-ad-layout="in-article"
+        data-ad-format="fluid"
+        data-ad-client="ca-pub-1642510310947288"
+        data-ad-slot="9309117729"></ins>
+  <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>  
 
     
     </main>
@@ -506,11 +543,11 @@ Client : sole responsibility and authority for maintaining the application state
       <div class="container md:flex">
         <section class="footer-section-info md:basis-1/4">
           <div class="address">
-            <a class="logo" href="https://nextjsvietnam.com" title="NextJSVietNam">
+            <a class="logo" href="http://localhost:1313/" title="NextJSVietNam">
               NextJSVietNam
             </a>
             <h4 class="footer-heading">
-               PRODUCTION MODE  
+                DEVELOPMENT MODE
             <h4>                
           </div>
         </section>
@@ -519,15 +556,15 @@ Client : sole responsibility and authority for maintaining the application state
           <ul class="footer-section-navigation-menu-links">
             
             
-              <li><a href="https://nextjsvietnam.com/post/khoa-hoc-nestjs/">Khóa học NestJS - Bài 01 - Lộ trình các bài học về NestJS Framework</a></li>              
+              <li><a href="http://localhost:1313/post/nestjs-passing-data-between-layers-in-ddd/">Nestjs Passing Data Between Layers in Domain Driven Design</a></li>              
             
-              <li><a href="https://nextjsvietnam.com/post/build-restful-api-with-nestjs-the-right-way/">Build Restful Api With Nestjs the Right Way</a></li>              
+              <li><a href="http://localhost:1313/post/khoa-hoc-nestjs-bai-06-viet-unit-test/">Khóa học NestJS - Bài 06 Hướng dẫn viết Unit Test</a></li>              
             
-              <li><a href="https://nextjsvietnam.com/post/the-best-way-to-upload-file-in-nestjs/">The Best Way to Upload File in Nestjs</a></li>              
+              <li><a href="http://localhost:1313/post/khoa-hoc-nestjs-bai-05-repository-pattern/">Khóa học NestJS Bài 05 - Repository Pattern</a></li>              
             
-              <li><a href="https://nextjsvietnam.com/post/nestjs-request-and-response-object/">Nestjs Request and Response Object</a></li>              
+              <li><a href="http://localhost:1313/post/khoa-hoc-nestjs-bai-04-model-and-repository-pattern/">Khóa học NestJS Bài 04 - Model and Repository Pattern</a></li>              
             
-              <li><a href="https://nextjsvietnam.com/post/nestjs-pipes/">Nestjs Pipes</a></li>              
+              <li><a href="http://localhost:1313/post/khoa-hoc-nestjs-bai03/">Khóa học NestJS Bài 03 - Controllers &amp; Views</a></li>              
              
           </ul>
         </div>
@@ -536,7 +573,13 @@ Client : sole responsibility and authority for maintaining the application state
           <ul class="footer-section-navigation-menu-links">
             
             
-              <li><a href="https://nextjsvietnam.com/post/create-new-website-with-nextjs/">Create New Website With Nextjs</a></li>              
+              <li><a href="http://localhost:1313/post/khoa-hoc-nextjs-bai-03-advanced-routing/">Khoá học NextJS Bài 03 - Advanced Routing</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nextjs-bai-02-cau-truc-du-an-nextjs/">Khoá học NextJS 2024 - Bài 02: Cấu trúc dự án NextJS</a></li>              
+            
+              <li><a href="http://localhost:1313/post/create-new-website-with-nextjs/">Create New Website With Nextjs</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nextjs/">Khóa học NextJS - Bài 01 - Lộ trình các bài học về NextJS</a></li>              
              
           </ul>
         </div>
@@ -545,15 +588,15 @@ Client : sole responsibility and authority for maintaining the application state
           <ul class="footer-section-navigation-menu-links">
             
             
-              <li><a href="https://nextjsvietnam.com/post/100-frontend-interview-questions/">100 Frontend Interview Questions</a></li>              
+              <li><a href="http://localhost:1313/post/6minutes-tech-graphql/">6minutes Tech Graphql</a></li>              
             
-              <li><a href="https://nextjsvietnam.com/post/chatgpt-what-can-chat-gpt-do/">Chatgpt What Can Chat Gpt Do</a></li>              
+              <li><a href="http://localhost:1313/post/6minutes-tech-progressive-web-app/">6minutes Tech Progressive Web App</a></li>              
             
-              <li><a href="https://nextjsvietnam.com/post/learn-enough-oop-to-be-dangerous/">Learn Enough Oop to Be Dangerous</a></li>              
+              <li><a href="http://localhost:1313/post/flexbox-and-real-world-examples/">Flexbox and Real World Examples</a></li>              
             
-              <li><a href="https://nextjsvietnam.com/post/the-future-of-hr/">The Future of Hr</a></li>              
+              <li><a href="http://localhost:1313/post/react-native-examples-setup-working-place-for-react-native-developer/">[React Native Examples] Setup Working Place for React Native Developer</a></li>              
             
-              <li><a href="https://nextjsvietnam.com/post/how-to-test-the-database/">How to Test the Database</a></li>              
+              <li><a href="http://localhost:1313/post/happy-new-year-2024/">Happy New Year 2024</a></li>              
              
           </ul>
         </div>
@@ -568,9 +611,9 @@ Client : sole responsibility and authority for maintaining the application state
         </div>
         <div class="text-center text-sm">
           Powered by <a class="font-bold text-primary" href="https://gohugo.io/">Go Hugo</a> - Made
-          with love from <a class="font-bold text-primary" href="https://nextjsvietnam.com">NextJSVietNam</a> -
+          with love from <a class="font-bold text-primary" href="http://localhost:1313/">NextJSVietNam</a> -
           Build
-          Version 2023-06-12 13:47:24 &#43;0700 &#43;07
+          Version 2024-05-20 08:51:24 &#43;0700 &#43;07
         </div>
       </div>
     </footer>
@@ -581,7 +624,7 @@ Client : sole responsibility and authority for maintaining the application state
         
         
         
-          <script type="text/javascript" src="https://nextjsvietnam.com/core/jquery-3.6.0.min.js"></script>
+          <script type="text/javascript" src="http://localhost:1313/core/jquery-3.6.0.min.js"></script>
         
              
     
@@ -589,7 +632,7 @@ Client : sole responsibility and authority for maintaining the application state
         
         
         
-          <script type="text/javascript" src="https://nextjsvietnam.com/themes/2022/public/main.js"></script>
+          <script type="text/javascript" src="http://localhost:1313/themes/2022/dist/main.js"></script>
         
              
     
@@ -597,7 +640,7 @@ Client : sole responsibility and authority for maintaining the application state
         
         
         
-          <script type="text/javascript" src="https://nextjsvietnam.com/themes/2022/public/home.js"></script>
+          <script type="text/javascript" src="http://localhost:1313/themes/2022/dist/home.js"></script>
         
              
     

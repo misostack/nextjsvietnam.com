@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="home" href="http://localhost:1313/" />
+    <meta name="generator" content="jsguru cms" />
+
+    
+    
+      
+    
+
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    
+    
+      
+              
+        
+        <link rel="stylesheet" href="http://localhost:1313/themes/2022/dist/main.css" />
+             
+    
+      
+              
+        
+        <link rel="stylesheet" href="http://localhost:1313/themes/2022/dist/home.css" />
+             
+    
+      
+              
+        
+        <link rel="stylesheet" href="http://localhost:1313/themes/2022/dist/page.css" />
+             
+        
+    
+    
+    
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWE4MLJYE6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-RWE4MLJYE6');    
+    </script>    
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1642510310947288"
+    crossorigin="anonymous"></script>    
+    
+    
+    
+<title>The Difference Between Monolithic and Microservices Architecture | Microservice architecture (MSA) is an approach to building software systems that decomposes business domain models into smaller, consistent, bounded-contexts implemented by services | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+<meta name="robots" content="all" />
+<meta name="keywords" content="microservice-architecture" />
+<meta name="description" content="Microservice architecture (MSA) is an approach to building software systems that decomposes business domain models into smaller, consistent, bounded-contexts implemented by services" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://user-images.githubusercontent.com/31009750/269891173-f10b1b6b-ea34-4e23-91b6-db9e995d6bff.png" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="750" />
+<meta property="og:image:height" content="300" />
+<meta
+  property="article:publisher"
+  content="https://www.facebook.com/nextjsvietnam"
+/>
+
+<meta property="article:published_time" content="2023-09-22T15:52:14+07:00" />
+<meta property="article:modified_time" content="2023-09-22T15:52:14+07:00" />
+
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png" />
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png" />
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png" />
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png" />
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png" />
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png" />
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="192x192"
+  href="/android-icon-192x192.png"
+/>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="manifest" href="/manifest.json" />
+<meta name="msapplication-TileColor" content="#ffffff" />
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
+<meta name="theme-color" content="#ffffff" />
+
+  </head>
+  <body class="body-nav-fixed">
+    <nav class="nav-fixed nav-default z-50">
+    <div class="container">
+      <div class="nav-container flex flex-wrap justify-between items-center">
+        <a href="http://localhost:1313/" class="nav-brand inline-block">
+          
+          <img class="h-12" src="http://localhost:1313/themes/2022/src/assets/images/logo.png" 
+          alt="Stunning" />
+        </a>
+        <a href="javascript:void(0);" data-menu="#menu-main_menu" class="nav-menu-toggle"><span
+          class="material-icons">menu</span></a>
+        <ul id="menu-main_menu" class="nav-menu h-0 md:h-auto">
+          <form class="nav-menu-search-bar md:hidden relative">
+            <button class="nav-menu-search-bar-search-btn absolute h-full">
+              <svg class="w-3 h-3 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24">
+                <path
+                  d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z">
+                </path>
+              </svg>
+            </button>
+            <input name="s" type="text" class="w-full" />
+          </form>
+          
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/categories/systemdesign">System Design
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/software-architecture">Software Architecture</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/microservice-architecture">Microservice Architecture</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/aws">Learn AWS The Right Way</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/aws-labs">AWS Hands-On Labs</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/categories/cheatsheet">Cheatsheet
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nestjs-examples">NestJS Examples</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/reactjs-examples">ReactJS Examples</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/react-native-examples">React Native Examples</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/categories/frameworks">Frameworks
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nestjs">NestJS</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/reactjs">ReactJS</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nextjs">NextJS</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/">Tutorials
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nestjs-tutorial">NestJS Tutorial</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/reactjs-tutorial">ReactJS Tutorial</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nextjs-tutorial">NextJS Tutorial</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/">Tools
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://regex101.com/">Online Regex</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://www.bashoneliners.com/">Bash Online</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://www.epochconverter.com/">Unix Timestamp Conversion</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://ryanstutorials.net/bash-scripting-tutorial/">Bash Scripting</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://explainshell.com/">Explain Shell</a></li>
+                
+                </ul>
+            
+            </li>
+          
+          <form class="nav-menu-search-bar hidden md:flex relative">
+            <button class="nav-menu-search-bar-search-btn absolute h-full">
+              <svg class="w-3 h-3 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24">
+                <path
+                  d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z">
+                </path>
+              </svg>
+            </button>
+            <input name="s" type="text" class="w-full" />
+          </form>
+        </ul>
+      </div>
+    </div>
+</nav>
+
+    <main>
+    
+  <section class="container section">
+    <div class="page-content max-w-2xl mx-auto">
+        <img src="https://user-images.githubusercontent.com/31009750/269891173-f10b1b6b-ea34-4e23-91b6-db9e995d6bff.png" class="img-responsive" alt="The Difference Between Monolithic and Microservices Architecture" />
+        <h1>The Difference Between Monolithic and Microservices Architecture</h1>
+        
+          
+          
+          <p><strong>Post Date</strong> : 2023-09-22T15:52:14+07:00</p>
+          <p><strong>Modified Date</strong> : 2023-09-22T15:52:14+07:00</p>
+        <p>
+            <strong>Category:</strong>
+            
+            <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="http://localhost:1313/categories/systemdesign">systemdesign</a>
+            
+            <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="http://localhost:1313/categories/microservice-architecture">microservice-architecture</a>
+            
+        </p>
+        <p>
+          <strong>Tags:</strong>
+          
+        </p>                
+        <h2 id="monolith-advantages-and-drawbacks">Monolith advantages and drawbacks</h2>
+<p>A monolithic architecture is a traditional software development model that uses one code base to perform multiple business functions.</p>
+<p><img src="https://user-images.githubusercontent.com/31009750/269900308-36dcbcff-58fa-42a8-92c2-a7f12a40b012.png" alt="image"></p>
+<p><img src="https://user-images.githubusercontent.com/31009750/269910251-e138f576-ca5d-4773-9209-a6ca914ab4ea.png" alt="image"></p>
+<h3 id="advantages-of-monolithic-architecture">Advantages of Monolithic Architecture</h3>
+<ol>
+<li>
+<p>Simplicity of development : all source code is located in one place which can be quickly understood.</p>
+</li>
+<li>
+<p>Simplicity of debugging : The debugging process is simple because all code is located in one place. You can easily follow the flow of a request and find an issue.</p>
+</li>
+<li>
+<p>Simplicity of testing : You test only one service without any dependencies. Everything is usually clear.</p>
+</li>
+<li>
+<p>Simplicity of deployment : Only one deployment unit (e.g. jar file) should be deployed. There are no dependencies. In cases when UI is packaged with backend code you do not have any breaking changes. Everything exists and changes in one place.</p>
+</li>
+<li>
+<p>Simplicity of application evolution: Basically, the application does not have any limitation from a business logic perspective. If you need some data for new feature, it is already there.</p>
+</li>
+<li>
+<p>Cross-cutting concerns and customizations are used only once: You should take care of cross-cutting concerns only once. For instance, security, logging, exception handling, monitoring, choosing and setting up tomcat parameters, setup of data source connection pool, etc.</p>
+</li>
+<li>
+<p>Simplicity in onboarding new team members: The source code is located in one place. New team members can easily debug some functional flow and to get familiar with the application.</p>
+</li>
+<li>
+<p>Low cost in the early stages of the application: All source code is located in one place, packaged in a single deployment unit, and deployed. What can be easier? There is no overhead neither in infrastructure cost nor development cost.</p>
+</li>
+<li>
+<p>The main function of the application is to be profitable: As a result, it is important to quickly implement some POC (Proof of Concept) solutions to verify the application in the real world. Also, it is important to bring customers to the system. Improvements can be implemented in the future.</p>
+</li>
+<li>
+<p>The requirements are usually unclear at the early stages of development: It is hard to create meaningful architecture when the requirements are unclear. Real customers can define the business needs after some of the functionality already works.</p>
+</li>
+</ol>
+<h3 id="drawbacks-of-monolithic-architecture">Drawbacks of Monolithic Architecture</h3>
+<ol>
+<li>
+<p>Slow speed of development: The simplest disadvantage relates to CI/CD pipeline. Even a small change in source code, you may wait for a lot of time (e.g. 1 hour) for your pipeline to succeed.</p>
+</li>
+<li>
+<p>High code coupling: Of course, you can keep a clear service structure inside your repository. However, as practice shows, eventually, you will end up with a spaghetti code in at least a few places.</p>
+</li>
+<li>
+<p>Code ownership cannot be used: The system is growing. The logical step is to split responsibilities between several teams.</p>
+</li>
+<li>
+<p>Testing becomes harder: Even a small change can negatively affect the system. As a result, the regression for full monolithic service is required.</p>
+</li>
+<li>
+<p>Performance issues: Potentially, you can scale the whole monolithic service in cases of performance issues. But what to do with the database? The single database is used for all services. You can start to optimize your database queries or use read replicas. However, there is a limit to this type of optimization.</p>
+</li>
+<li>
+<p>The cost of infrastructure: In cases of performance issues, you should scale the whole monolithic service.</p>
+</li>
+<li>
+<p>Legacy technologies: Imagine that you have the application written on Java 8. How much time is it required to migrate the whole monolith with multiple services.</p>
+</li>
+<li>
+<p>Lack of flexibility: Using Monolithic Architecture you are tight to the technologies that are used inside your monolith.</p>
+</li>
+<li>
+<p>Problems with deployment: Even a small change requires the redeployment of the whole monolith.</p>
+</li>
+</ol>
+<h2 id="microservices-advantages-and-drawbacks">Microservices advantages and drawbacks</h2>
+<p><img src="https://user-images.githubusercontent.com/31009750/269925780-4fdd34ba-4d75-4156-9377-ccf18c01f5e5.png" alt="image"></p>
+<p><img src="https://user-images.githubusercontent.com/31009750/269927486-8467b46d-b334-4f70-8028-843e8dcf82ee.png" alt="image"></p>
+<h3 id="microservice-advantages">Microservice Advantages</h3>
+<ol>
+<li>
+<p>Self-Contained, lower costs and increase efficient: Each service has its own instances. So when you need to scale up for specific service, the cost compare to monolithic architecture is actually lower.</p>
+</li>
+<li>
+<p>Greater Agility and Flexibility in Development process: each team develop their service autonomous and dependence, so they can select the appropriate tech stack and deployment flow.</p>
+</li>
+<li>
+<p>Enhance new technology stacks</p>
+</li>
+<li>
+<p>High costs at early stage, but easy for upgrading and maintenance.</p>
+</li>
+<li>
+<p>Development, Debugging, Testing each service become more easier</p>
+</li>
+</ol>
+<h3 id="microservice-drawbacks">Microservice Drawbacks</h3>
+<ol>
+<li>
+<p>Increase Development Time</p>
+</li>
+<li>
+<p>Difficult in Global Testing and Debugging</p>
+</li>
+<li>
+<p>Dependency on Devops</p>
+</li>
+<li>
+<p>High Complexity</p>
+</li>
+<li>
+<p>Increase Network Traffic</p>
+</li>
+<li>
+<p>Limited Reuse of Code</p>
+</li>
+<li>
+<p>Problems with deployment</p>
+</li>
+<li>
+<p>Have all properties of a distributed system.</p>
+</li>
+</ol>
+<h3 id="challenges">Challenges</h3>
+<ol>
+<li>Design for Faults</li>
+<li>Design with Dependencies in Mind</li>
+<li>Design with the Domain in Mind</li>
+<li>Design with Promises in Mind</li>
+<li>Distributed Systems Management</li>
+</ol>
+<h2 id="technology-solution-for-microservices">Technology Solution for microservices</h2>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://www.oreilly.com/content/microservices-for-java-developers/">https://www.oreilly.com/content/microservices-for-java-developers/</a></li>
+<li><a href="https://aws.amazon.com/compare/the-difference-between-monolithic-and-microservices-architecture/">https://aws.amazon.com/compare/the-difference-between-monolithic-and-microservices-architecture/</a></li>
+<li><a href="https://www.atlassian.com/microservices/microservices-architecture/microservices-vs-monolith">https://www.atlassian.com/microservices/microservices-architecture/microservices-vs-monolith</a></li>
+</ul>
+        
+      
+      <div class="m-1 p-1">
+        
+          <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="http://localhost:1313/categories/systemdesign">systemdesign</a>
+        
+          <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="http://localhost:1313/categories/microservice-architecture">microservice-architecture</a>
+        
+      </div>
+    </div>
+  </section>
+  <section class="container section">
+    <div class="max-w-2xl mx-auto">
+      <div class="font-heading text-2xl font-semibold">You Might Also Like</div>
+      <div class="mt-8 grid  gap-8">
+        
+        
+        
+        
+        <ul class="sidebar-links">
+        
+        
+            <li><a href="/post/microservice-headfirst/">Microservice Headfirst</a></li>
+        
+            <li><a href="/post/aws-lab-series-build-and-deploy-rest-api/">Aws Lab Series Build and Deploy Rest Api</a></li>
+        
+            <li><a href="/post/aws-lab-series-foreword/">Aws Lab Series Foreword</a></li>
+        
+            <li><a href="/post/aws-series-migration/">Aws Series Migration</a></li>
+        
+            <li><a href="/post/aws-series-governance/">Aws Series Governance</a></li>
+        
+            <li><a href="/post/aws-series-caching/">Aws Series Caching</a></li>
+        
+            <li><a href="/post/aws-series-automation/">Aws Series Automation</a></li>
+        
+        </ul>
+                
+      </div>
+    </div>
+  </section>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1642510310947288"
+  crossorigin="anonymous"></script>
+  <ins class="adsbygoogle"
+        style="display:block; text-align:center;"
+        data-ad-layout="in-article"
+        data-ad-format="fluid"
+        data-ad-client="ca-pub-1642510310947288"
+        data-ad-slot="9309117729"></ins>
+  <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>  
+
+    
+    </main>
+    <footer class="footer">
+      <div class="container md:flex">
+        <section class="footer-section-info md:basis-1/4">
+          <div class="address">
+            <a class="logo" href="http://localhost:1313/" title="NextJSVietNam">
+              NextJSVietNam
+            </a>
+            <h4 class="footer-heading">
+                DEVELOPMENT MODE
+            <h4>                
+          </div>
+        </section>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">NestJS</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="http://localhost:1313/post/nestjs-passing-data-between-layers-in-ddd/">Nestjs Passing Data Between Layers in Domain Driven Design</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nestjs-bai-06-viet-unit-test/">Khóa học NestJS - Bài 06 Hướng dẫn viết Unit Test</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nestjs-bai-05-repository-pattern/">Khóa học NestJS Bài 05 - Repository Pattern</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nestjs-bai-04-model-and-repository-pattern/">Khóa học NestJS Bài 04 - Model and Repository Pattern</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nestjs-bai03/">Khóa học NestJS Bài 03 - Controllers &amp; Views</a></li>              
+             
+          </ul>
+        </div>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">NextJS</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nextjs-bai-03-advanced-routing/">Khoá học NextJS Bài 03 - Advanced Routing</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nextjs-bai-02-cau-truc-du-an-nextjs/">Khoá học NextJS 2024 - Bài 02: Cấu trúc dự án NextJS</a></li>              
+            
+              <li><a href="http://localhost:1313/post/create-new-website-with-nextjs/">Create New Website With Nextjs</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nextjs/">Khóa học NextJS - Bài 01 - Lộ trình các bài học về NextJS</a></li>              
+             
+          </ul>
+        </div>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">Cheatsheet</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="http://localhost:1313/post/6minutes-tech-graphql/">6minutes Tech Graphql</a></li>              
+            
+              <li><a href="http://localhost:1313/post/6minutes-tech-progressive-web-app/">6minutes Tech Progressive Web App</a></li>              
+            
+              <li><a href="http://localhost:1313/post/flexbox-and-real-world-examples/">Flexbox and Real World Examples</a></li>              
+            
+              <li><a href="http://localhost:1313/post/react-native-examples-setup-working-place-for-react-native-developer/">[React Native Examples] Setup Working Place for React Native Developer</a></li>              
+            
+              <li><a href="http://localhost:1313/post/happy-new-year-2024/">Happy New Year 2024</a></li>              
+             
+          </ul>
+        </div>
+      </div>
+      <div class="container">
+        <div class="text-center">
+          <a href=""><span class="material-icons text-4xl m-4">facebook</span></a>
+          <a href=""><span class="material-icons text-4xl  m-4">smart_display</span></a>
+        </div>
+        <div class="text-center text-lg py-4">
+          Copyright @ NextJSVietNam 2022
+        </div>
+        <div class="text-center text-sm">
+          Powered by <a class="font-bold text-primary" href="https://gohugo.io/">Go Hugo</a> - Made
+          with love from <a class="font-bold text-primary" href="http://localhost:1313/">NextJSVietNam</a> -
+          Build
+          Version 2024-05-20 08:51:24 &#43;0700 &#43;07
+        </div>
+      </div>
+    </footer>
+
+    
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="http://localhost:1313/core/jquery-3.6.0.min.js"></script>
+        
+             
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="http://localhost:1313/themes/2022/dist/main.js"></script>
+        
+             
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="http://localhost:1313/themes/2022/dist/home.js"></script>
+        
+             
+    
+
+  
+  <script async>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1760611910980690');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1760611910980690&ev=PageView&noscript=1"
+    /></noscript>
+        
+  </body>
+</html>

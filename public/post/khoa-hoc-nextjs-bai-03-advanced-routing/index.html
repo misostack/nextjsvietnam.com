@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="home" href="http://localhost:1313/" />
+    <meta name="generator" content="jsguru cms" />
+
+    
+    
+      
+    
+
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    
+    
+      
+              
+        
+        <link rel="stylesheet" href="http://localhost:1313/themes/2022/dist/main.css" />
+             
+    
+      
+              
+        
+        <link rel="stylesheet" href="http://localhost:1313/themes/2022/dist/home.css" />
+             
+    
+      
+              
+        
+        <link rel="stylesheet" href="http://localhost:1313/themes/2022/dist/page.css" />
+             
+        
+    
+    
+    
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWE4MLJYE6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-RWE4MLJYE6');    
+    </script>    
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1642510310947288"
+    crossorigin="anonymous"></script>    
+    
+    
+    
+<title>Khoá học NextJS Bài 03 - Advanced Routing | Nội dung chính trong bài này sẽ về phân quyền, chuyển hướng, layout, loading screen | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+<meta name="robots" content="all" />
+<meta name="keywords" content="nextjs tutorial, nextjs routing" />
+<meta name="description" content="Nội dung chính trong bài này sẽ về phân quyền, chuyển hướng, layout, loading screen" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://user-images.githubusercontent.com/31009750/246866968-e42afc31-8eea-44e8-ba86-629918f50401.png" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="750" />
+<meta property="og:image:height" content="300" />
+<meta
+  property="article:publisher"
+  content="https://www.facebook.com/nextjsvietnam"
+/>
+
+<meta property="article:published_time" content="2024-05-20T08:51:24+07:00" />
+<meta property="article:modified_time" content="2024-05-20T08:51:24+07:00" />
+
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png" />
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png" />
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png" />
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png" />
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png" />
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png" />
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="192x192"
+  href="/android-icon-192x192.png"
+/>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="manifest" href="/manifest.json" />
+<meta name="msapplication-TileColor" content="#ffffff" />
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
+<meta name="theme-color" content="#ffffff" />
+
+  </head>
+  <body class="body-nav-fixed">
+    <nav class="nav-fixed nav-default z-50">
+    <div class="container">
+      <div class="nav-container flex flex-wrap justify-between items-center">
+        <a href="http://localhost:1313/" class="nav-brand inline-block">
+          
+          <img class="h-12" src="http://localhost:1313/themes/2022/src/assets/images/logo.png" 
+          alt="Stunning" />
+        </a>
+        <a href="javascript:void(0);" data-menu="#menu-main_menu" class="nav-menu-toggle"><span
+          class="material-icons">menu</span></a>
+        <ul id="menu-main_menu" class="nav-menu h-0 md:h-auto">
+          <form class="nav-menu-search-bar md:hidden relative">
+            <button class="nav-menu-search-bar-search-btn absolute h-full">
+              <svg class="w-3 h-3 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24">
+                <path
+                  d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z">
+                </path>
+              </svg>
+            </button>
+            <input name="s" type="text" class="w-full" />
+          </form>
+          
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/categories/systemdesign">System Design
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/software-architecture">Software Architecture</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/microservice-architecture">Microservice Architecture</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/aws">Learn AWS The Right Way</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/aws-labs">AWS Hands-On Labs</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/categories/cheatsheet">Cheatsheet
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nestjs-examples">NestJS Examples</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/reactjs-examples">ReactJS Examples</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/react-native-examples">React Native Examples</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/categories/frameworks">Frameworks
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nestjs">NestJS</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/reactjs">ReactJS</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nextjs">NextJS</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/">Tutorials
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nestjs-tutorial">NestJS Tutorial</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/reactjs-tutorial">ReactJS Tutorial</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nextjs-tutorial">NextJS Tutorial</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/">Tools
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://regex101.com/">Online Regex</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://www.bashoneliners.com/">Bash Online</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://www.epochconverter.com/">Unix Timestamp Conversion</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://ryanstutorials.net/bash-scripting-tutorial/">Bash Scripting</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://explainshell.com/">Explain Shell</a></li>
+                
+                </ul>
+            
+            </li>
+          
+          <form class="nav-menu-search-bar hidden md:flex relative">
+            <button class="nav-menu-search-bar-search-btn absolute h-full">
+              <svg class="w-3 h-3 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24">
+                <path
+                  d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z">
+                </path>
+              </svg>
+            </button>
+            <input name="s" type="text" class="w-full" />
+          </form>
+        </ul>
+      </div>
+    </div>
+</nav>
+
+    <main>
+    
+  <section class="container section">
+    <div class="page-content max-w-2xl mx-auto">
+        <img src="https://user-images.githubusercontent.com/31009750/246866968-e42afc31-8eea-44e8-ba86-629918f50401.png" class="img-responsive" alt="Khoá học NextJS Bài 03 - Advanced Routing" />
+        <h1>Khoá học NextJS Bài 03 - Advanced Routing</h1>
+        
+          
+          
+          <p><strong>Post Date</strong> : 2024-05-20T08:51:24+07:00</p>
+          <p><strong>Modified Date</strong> : 2024-05-20T08:51:24+07:00</p>
+        <p>
+            <strong>Category:</strong>
+            
+            <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="http://localhost:1313/categories/nextjs-tutorial">nextjs-tutorial</a>
+            
+        </p>
+        <p>
+          <strong>Tags:</strong>
+          
+             <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white"
+             href="/tags/nextjs">nextjs</a>
+          
+        </p>                
+        <p><strong>Note</strong>: Toàn bộ mã nguồn của khóa học này đều được công khai trên github tại <a href="https://github.com/nextjsvietnam/nextjs-tutorial-2024/tree/tutorial/lession-03">Nextjs Tutorial 2024</a></p>
+<p>Các nội dung chính trong bài học lần này:</p>
+<ol>
+<li>Phân quyền và chuyển hướng</li>
+<li>Tạo layout dùng chung</li>
+<li>Loading Screen</li>
+<li>I18n - đa ngôn ngữ</li>
+</ol>
+<p>Với nội dung trên, chúng ta sẽ tiếp tục với việc phân quyền và chuyển hướng, cũng như thực hành chia layout dùng chung, hiển thị màn hình chờ ( loading screen )</p>
+<p><img src="https://gist.github.com/assets/31009750/5504676f-fb7b-46b1-aba6-3d3b8a9cd794" alt="image"></p>
+<p>Yêu cầu:</p>
+<ol>
+<li>Đối với các trang thuộc nhóm Private chỉ có khách hàng đã đăng nhập mới có thể truy cập được.
+Trường hợp người dùng cố tình vào bằng các địa chỉ cố định, chuyển hướng người dùng sang trang đăng nhập.</li>
+<li>Đối với user đã đăng nhập, khi vào lại các trang liên quan tới đăng nhập như: login,register,forget password, reset password, hãy chuyển hướng họ tới trang my-account</li>
+<li>Các trang thuộc nhóm Private của khách hàng có giao diện chung, chỉ khác phần nội dung (content).</li>
+<li>Các trang thuộc nhóm đăng nhập, cũng có giao diện chung, chỉ khác phần nội dung (content).</li>
+<li>Toàn bộ các trang trong website đều sử dụng chung phần header, footer, khác phần nội dung chính (main content)</li>
+</ol>
+<h2 id="phân-quyền-và-chuyển-hướng">Phân quyền và chuyển hướng</h2>
+<p>Trong bài này, chúng ta sẽ giả lập rằng sau khi khách hàng đăng nhập xong, các thông tin sẽ được lưu lại trên cookie.</p>
+<p>Do đó chúng ta sẽ cài đặt logic như sau:</p>
+<ul>
+<li>Nếu user truy cập vào các trang thuộc nhóm private =&gt; kiểm tra cookie này có tồn tại hay không, nếu có cho phép user truy cập, ngược lại thì chuyển hướng user sang trang login</li>
+</ul>
+<p>Trong NextJS chúng ta có thể làm như sau:</p>
+<ol>
+<li>Chuyển hướng người dùng trong trang sử dụng <strong>redirect</strong> function</li>
+</ol>
+<p>Đầu tiên tôi sẽ tạo lần lượt các trang bổ sung như sau: login, register, forgot-password, reset-password.</p>
+<p>Để nhóm các trang này trong một group trong folder, nextjs hỗ trợ chúng ta tạo folder với cú pháp (folderName) , khi dùng cú pháp này folder được tạo ra sẽ không được tính vào cây thư mục khi nextjs route thực hiện mapping giữa segment và cấu trúc thư mục.</p>
+<p><img src="https://gist.github.com/assets/31009750/a5eaef32-cef7-4c06-8701-517abc4921be" alt="image"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#75715e">// shared/auth.ts
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppCookie</span>, <span style="color:#a6e22e">AppRoute</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@/shared/constant&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">cookies</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;next/headers&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">redirect</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;next/navigation&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">runUserGuard</span> <span style="color:#f92672">=</span> () <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">cookieStore</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">cookies</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">cookieStore</span>.<span style="color:#a6e22e">has</span>(<span style="color:#a6e22e">AppCookie</span>.<span style="color:#a6e22e">UserToken</span>)) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">userCookie</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">cookieStore</span>.<span style="color:#66d9ef">get</span>(<span style="color:#a6e22e">AppCookie</span>.<span style="color:#a6e22e">UserToken</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">userCookie</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">parse</span>(<span style="color:#a6e22e">userCookie</span>.<span style="color:#a6e22e">value</span>);
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  } <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">error</span>) {}
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">redirect</span>(<span style="color:#a6e22e">AppRoute</span>.<span style="color:#a6e22e">Login</span>);
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tsx" data-lang="tsx"><span style="display:flex;"><span><span style="color:#75715e">// my-account/page.tsx
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">runUserGuard</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@/shared/auth&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">MyAccount() {</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// run user Guard
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">runUserGuard</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> (
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">main</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;container-xl mx-auto p-4&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">h1</span>&gt;<span style="color:#a6e22e">My</span> <span style="color:#a6e22e">Account</span>&lt;/<span style="color:#f92672">h1</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">main</span>&gt;
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Các bạn hãy áp dụng cho các trang còn lại.
+&hellip;</p>
+<h2 id="tạo-layout-dùng-chung">Tạo layout dùng chung</h2>
+<p>Nhưng nếu tôi có hơn 10 trang như vậy thì sao, còn cách nào khác không?</p>
+<ol>
+<li>Nhóm các trang thuộc my account chung 1 nhóm sử dụng chung layout</li>
+</ol>
+<pre tabindex="0"><code>my-account
+    page.tsx
+    layout.tsx
+    orders
+        page.tsx
+        [id]
+            page.tsx
+</code></pre><p>Do đó, chúng ta cần điều chỉnh lại đường dẫn của mình.</p>
+<p><img src="https://gist.github.com/assets/31009750/bbc6c22e-68d4-4407-a4c9-587528ca0c2a" alt="image"></p>
+<p>Nhưng nếu có nhiều hơn 1 nhóm như vậy, liệu chúng ta có cách nào không?</p>
+<ol start="2">
+<li>Sử dụng middleware</li>
+</ol>
+<p><img src="https://gist.github.com/assets/31009750/b4dda3c1-5497-425f-9da4-b1b478597a6f" alt="image"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">AuthService</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@/service/auth.service&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppCookie</span>, <span style="color:#a6e22e">AppRoute</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@/shared/constant&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NextRequest</span>, <span style="color:#a6e22e">NextResponse</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;next/server&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">authMiddleware</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">req</span>: <span style="color:#66d9ef">NextRequest</span>) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// middleware/auth.ts
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">token</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">cookies</span>.<span style="color:#66d9ef">get</span>(<span style="color:#a6e22e">AppCookie</span>.<span style="color:#a6e22e">UserToken</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">authService</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">AuthService</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">userToken</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">token</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">?</span> <span style="color:#a6e22e">authService</span>.<span style="color:#a6e22e">verifyToken</span>(<span style="color:#a6e22e">token</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">value</span>) <span style="color:#f92672">:</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Assuming you have some function to verify the token
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">token</span> <span style="color:#f92672">||</span> <span style="color:#f92672">!</span><span style="color:#a6e22e">userToken</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">NextResponse</span>.<span style="color:#a6e22e">redirect</span>(<span style="color:#66d9ef">new</span> <span style="color:#a6e22e">URL</span>(<span style="color:#a6e22e">AppRoute</span>.<span style="color:#a6e22e">Login</span>, <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">url</span>));
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">NextResponse</span>.<span style="color:#a6e22e">next</span>();
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NextResponse</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;next/server&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#66d9ef">type</span> { <span style="color:#a6e22e">NextRequest</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;next/server&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">authMiddleware</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;./app/middlewares/auth.middleware&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ProtectedRoutes</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;./shared/constant&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// This function can be marked `async` if using `await` inside
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">middleware</span>(<span style="color:#a6e22e">req</span>: <span style="color:#66d9ef">NextRequest</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;[Middleware Demo] : &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">url</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">path</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">nextUrl</span>.<span style="color:#a6e22e">pathname</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">ProtectedRoutes</span>.<span style="color:#a6e22e">some</span>((<span style="color:#a6e22e">route</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">path</span>.<span style="color:#a6e22e">startsWith</span>(<span style="color:#a6e22e">route</span>))) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// apply auth middleware
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">redirectResponse</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">authMiddleware</span>(<span style="color:#a6e22e">req</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">redirectResponse</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">redirectResponse</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">NextResponse</span>.<span style="color:#a6e22e">next</span>();
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// See &#34;Matching Paths&#34; below to learn more
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">config</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">matcher</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * Match all request paths except for the ones starting with:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * - _next/static (static files)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * - _next/image (image optimization files)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * - favicon.ico (favicon file)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     */</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">source</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;/((?!_next/static|_next/image|favicon.ico).*)&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">missing</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>        { <span style="color:#66d9ef">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;header&#34;</span>, <span style="color:#a6e22e">key</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;next-router-prefetch&#34;</span> },
+</span></span><span style="display:flex;"><span>        { <span style="color:#66d9ef">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;header&#34;</span>, <span style="color:#a6e22e">key</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;purpose&#34;</span>, <span style="color:#a6e22e">value</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;prefetch&#34;</span> },
+</span></span><span style="display:flex;"><span>      ],
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">source</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;/((?!_next/static|_next/image|favicon.ico).*)&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">has</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>        { <span style="color:#66d9ef">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;header&#34;</span>, <span style="color:#a6e22e">key</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;next-router-prefetch&#34;</span> },
+</span></span><span style="display:flex;"><span>        { <span style="color:#66d9ef">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;header&#34;</span>, <span style="color:#a6e22e">key</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;purpose&#34;</span>, <span style="color:#a6e22e">value</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;prefetch&#34;</span> },
+</span></span><span style="display:flex;"><span>      ],
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">source</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;/((?!_next/static|_next/image|favicon.ico).*)&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">has</span><span style="color:#f92672">:</span> [{ <span style="color:#66d9ef">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;header&#34;</span>, <span style="color:#a6e22e">key</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;x-present&#34;</span> }],
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">missing</span><span style="color:#f92672">:</span> [{ <span style="color:#66d9ef">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;header&#34;</span>, <span style="color:#a6e22e">key</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;x-missing&#34;</span>, <span style="color:#a6e22e">value</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;prefetch&#34;</span> }],
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>  ],
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">ProtectedRoutes</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;/my-account&#34;</span>];
+</span></span></code></pre></div><p>Giờ chúng ta sẽ giả sử nếu user truy cập trang chủ, xem như đã login thành công.
+Để kiểm thử auth middleware này.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NextResponse</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;next/server&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#66d9ef">type</span> { <span style="color:#a6e22e">NextRequest</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;next/server&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">authMiddleware</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;./app/middlewares/auth.middleware&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppCookie</span>, <span style="color:#a6e22e">ProtectedRoutes</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;./shared/constant&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">_db</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;../_db&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// This function can be marked `async` if using `await` inside
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">middleware</span>(<span style="color:#a6e22e">req</span>: <span style="color:#66d9ef">NextRequest</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;[Middleware Demo] : &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">url</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">path</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">nextUrl</span>.<span style="color:#a6e22e">pathname</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// fake login
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">path</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;/&#34;</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">response</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">NextResponse</span>.<span style="color:#a6e22e">next</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">cookies</span>.<span style="color:#66d9ef">set</span>(<span style="color:#a6e22e">AppCookie</span>.<span style="color:#a6e22e">UserToken</span>, <span style="color:#a6e22e">_db</span>.<span style="color:#a6e22e">tokens</span>[<span style="color:#ae81ff">0</span>].<span style="color:#a6e22e">token</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">response</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">NextResponse</span>.<span style="color:#a6e22e">next</span>();
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ...
+</span></span></span></code></pre></div><p><img src="https://gist.github.com/assets/31009750/6e56425c-4743-4c81-917a-212004e10a2a" alt="image"></p>
+<h2 id="loading-screen">Loading Screen</h2>
+<p>Trong một trang web có quá nhiều block không cần thiết phải hiện thị ngay. Như ví dụ bên dưới, thì thông tin khi khách hàng vừa truy cập vào cần thấy ngay thông thường sẽ là header, main content (top products). Còn phần random products có thể hiển thị sau.</p>
+<p><img src="https://gist.github.com/assets/31009750/34e5e0b7-2cd2-4c2a-8e3b-656fbe0b4271" alt="image"></p>
+<p>Với một trang web thông thường chúng ta sẽ sử dụng AJAX để lazy load phần này.
+Ngay trong NextJS, chỉ cần với cú pháp đơn giản, ta có ngay kết quả như trên.</p>
+<p>Dưới đây là cơ chế của nextjs</p>
+<p><img src="https://gist.github.com/assets/31009750/b2e916b4-edd0-40a1-9514-8518a1dc0e23" alt="image"></p>
+<ol>
+<li>Đầu tiên khi client request lên server, lúc này theo trình tự server sẽ generate html từ page component</li>
+<li>Nếu trong page có các component được gói trong tag Suspend, thì được chuyển đổi để load sau với javascript</li>
+<li>Khi trang web được tải xuống thì tài nguyên html sẽ được tải xuống trước, trong lúc đó javascript cùng được tải đồng thời (sẽ có đoạn mã kiểm soát phần tải các component cần stream ). Khi các script này được thực thi thì quá trình stream data diễn ra, trước đó nextjs sẽ tự động tạo ra các placeholder có nội dung mà bạn đã define trong Loading Component. Sau khi dữ liệu sẵn sàng, toàn bộ component của bạn sẽ xuất hiện trên giao diện.</li>
+<li>Trong lúc stream diễn ra, bạn hoàn toàn vẫn tương tác được với trang web, đây chính là điểm mấu chốt của công nghệ này.</li>
+</ol>
+<p>Lợi ích:</p>
+<ul>
+<li>Thời gian tải trang nhanh</li>
+<li>Hiển thị nội dung các cùng chờ thân thiện với user</li>
+</ul>
+<p>Nào cũng xem code</p>
+<blockquote>
+<p>src/components/SlowComponent.tsx</p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">wait</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">timeout</span>: <span style="color:#66d9ef">number</span>) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Promise</span>((<span style="color:#a6e22e">resolve</span>) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">setTimeout</span>(() <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">fetch</span>(<span style="color:#e6db74">&#34;https://jsonplaceholder.typicode.com/todos/1&#34;</span>)
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">then</span>((<span style="color:#a6e22e">res</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">json</span>())
+</span></span><span style="display:flex;"><span>        .<span style="color:#a6e22e">then</span>((<span style="color:#a6e22e">data</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">resolve</span>(<span style="color:#a6e22e">data</span>));
+</span></span><span style="display:flex;"><span>    }, <span style="color:#a6e22e">timeout</span>);
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">SlowComponent</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">async</span> () <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">data</span>: <span style="color:#66d9ef">any</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">wait</span>(<span style="color:#ae81ff">5000</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> (
+</span></span><span style="display:flex;"><span>    &lt;&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">p</span>&gt;{<span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">stringify</span>(<span style="color:#a6e22e">data</span>)}&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/&gt;
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><blockquote>
+<p>src/app/page.tsx</p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">SlowComponent</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@/components/SlowComponent&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Link</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;next/link&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Suspense</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;react&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Loading</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;./loading&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">Home() {</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> (
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">main</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;container-xl mx-auto p-4&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">h1</span>&gt;<span style="color:#a6e22e">Home</span> <span style="color:#a6e22e">Page</span>&lt;/<span style="color:#f92672">h1</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">p</span>&gt;<span style="color:#a6e22e">Links</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">other</span> <span style="color:#a6e22e">pages</span> <span style="color:#66d9ef">with</span> <span style="color:#a6e22e">a</span> <span style="color:#a6e22e">tag</span>&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">ul</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>          &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/products&#34;</span>&gt;<span style="color:#a6e22e">Products</span>&lt;/<span style="color:#f92672">a</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>          &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/products/mouse-pad-nextjsvietnam&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">Mouse</span> <span style="color:#a6e22e">Pad</span> <span style="color:#a6e22e">NextJSVietNam</span>
+</span></span><span style="display:flex;"><span>          &lt;/<span style="color:#f92672">a</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>          &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/cart&#34;</span>&gt;<span style="color:#a6e22e">Cart</span>&lt;/<span style="color:#f92672">a</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>          &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/order&#34;</span>&gt;<span style="color:#a6e22e">Order</span>&lt;/<span style="color:#f92672">a</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>          &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/my-account&#34;</span>&gt;<span style="color:#a6e22e">My</span> <span style="color:#a6e22e">Account</span>&lt;/<span style="color:#f92672">a</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>          &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/my-account/orders&#34;</span>&gt;<span style="color:#a6e22e">My</span> <span style="color:#a6e22e">orders</span>&lt;/<span style="color:#f92672">a</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>          &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/my-account/orders/1&#34;</span>&gt;<span style="color:#a6e22e">My</span> <span style="color:#a6e22e">order</span> <span style="color:#a6e22e">detail</span>&lt;/<span style="color:#f92672">a</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;/<span style="color:#f92672">ul</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">p</span>&gt;<span style="color:#a6e22e">Links</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">other</span> <span style="color:#a6e22e">pages</span> <span style="color:#66d9ef">with</span> <span style="color:#a6e22e">Link</span> <span style="color:#a6e22e">tag</span>&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">ul</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>          &lt;<span style="color:#f92672">Link</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/products&#34;</span>&gt;<span style="color:#a6e22e">Products</span>&lt;/<span style="color:#f92672">Link</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;/<span style="color:#f92672">ul</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">h2</span>&gt;<span style="color:#a6e22e">Slow</span> <span style="color:#a6e22e">Component</span>&lt;/<span style="color:#f92672">h2</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">Suspense</span> <span style="color:#a6e22e">fallback</span><span style="color:#f92672">=</span>{&lt;<span style="color:#f92672">Loading</span> /&gt;}&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">SlowComponent</span>&gt;&lt;/<span style="color:#f92672">SlowComponent</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;/<span style="color:#f92672">Suspense</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">main</span>&gt;
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="i18n---đa-ngôn-ngữ">I18n - Đa ngôn ngữ</h2>
+<p>Thông thường khi làm việc với React, để làm website đa ngôn ngữ chúng ta hay sử dụng <a href="https://react.i18next.com/">https://react.i18next.com/</a> giúp việc setup trở nên dễ dàng.</p>
+<p>Còn trong nextjs thì chúng ta làm thế nào, khá đơn giản, các bạn nhớ quy tắc về cấu trúc thư mục chứ. Lúc này chúng ta chỉ cần tạo cấu trúc thư mục tương ứng</p>
+<pre tabindex="0"><code>[lang]
+  page.tsx
+  dictionaries.ts
+  dictionaries
+    en.json
+    vi.json
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;products&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;cart&#34;</span>: <span style="color:#e6db74">&#34;Add to Cart&#34;</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#34;server-only&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">dictionaries</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">en</span><span style="color:#f92672">:</span> () <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">import</span>(<span style="color:#e6db74">&#34;./dictionaries/en.json&#34;</span>).<span style="color:#a6e22e">then</span>((<span style="color:#a6e22e">module</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">module</span>.<span style="color:#66d9ef">default</span>),
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">nl</span><span style="color:#f92672">:</span> () <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">import</span>(<span style="color:#e6db74">&#34;./dictionaries/vi.json&#34;</span>).<span style="color:#a6e22e">then</span>((<span style="color:#a6e22e">module</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">module</span>.<span style="color:#66d9ef">default</span>),
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">getDictionary</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">async</span> (<span style="color:#a6e22e">locale</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">dictionaries</span>[<span style="color:#a6e22e">locale</span>]();
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tsx" data-lang="tsx"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">getDictionary</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;./dictionaries&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">Page</span>({ <span style="color:#a6e22e">params</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">lang</span> } }) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">dict</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">getDictionary</span>(<span style="color:#a6e22e">lang</span>); <span style="color:#75715e">// en
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">return</span> &lt;<span style="color:#f92672">button</span>&gt;{<span style="color:#a6e22e">dict</span>.<span style="color:#a6e22e">products</span>.<span style="color:#a6e22e">cart</span>}&lt;/<span style="color:#f92672">button</span>&gt;; <span style="color:#75715e">// Add to Cart
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><p>Nhưng trong thực tế việc sử dụng <a href="https://next-intl-docs.vercel.app/">next-intl</a> vẫn dễ dàng và có nhiều lợi ích hơn.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>npm install next-intl --save
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-mjs" data-lang="mjs"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">createNextIntlPlugin</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;next-intl/plugin&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">withNextIntl</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">createNextIntlPlugin</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/** @type {import(&#39;next&#39;).NextConfig} */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">nextConfig</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">async</span> <span style="color:#a6e22e">redirects</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> [
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// Basic redirect
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// redirect to default language
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#a6e22e">source</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;/&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">destination</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;/vi&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">permanent</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>    ];
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">withNextIntl</span>(<span style="color:#a6e22e">nextConfig</span>);
+</span></span></code></pre></div><p>Cấu trúc cây thư mục như sau</p>
+<pre tabindex="0"><code>next.config.mjs
+src
+  app
+    [locale]
+      global.css
+      layout.tsx
+      loading.tsx
+      page.tsx
+  middleware.ts
+  i18n.ts
+  components
+  layouts
+    Footer.tsx
+messages
+  en.json
+  vi.json
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;layout&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;headerTitle&#34;</span>: <span style="color:#e6db74">&#34;NextJS Tutorial 2024&#34;</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Đầu tiên các anh/chị cần move các file sau vào thư mục mới [locale] :</p>
+<ul>
+<li>global.css</li>
+<li>layout.tsx</li>
+<li>loading.tsx</li>
+<li>page.tsx</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tsx" data-lang="tsx"><span style="display:flex;"><span><span style="color:#75715e">// layout.tsx
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> <span style="color:#66d9ef">type</span> { <span style="color:#a6e22e">Metadata</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;next&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#34;./globals.css&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NextIntlClientProvider</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;next-intl&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">getMessages</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;next-intl/server&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">metadata</span>: <span style="color:#66d9ef">Metadata</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">title</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;NextJS Tutorial 2024&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">description</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;NextJS courses&#34;</span>,
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">RootLayout</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">children</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">params</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">locale</span> },
+</span></span><span style="display:flex;"><span>}<span style="color:#f92672">:</span> <span style="color:#a6e22e">Readonly</span><span style="color:#f92672">&lt;</span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">children</span>: <span style="color:#66d9ef">React.ReactNode</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">params</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">locale</span>: <span style="color:#66d9ef">string</span> };
+</span></span><span style="display:flex;"><span>}<span style="color:#f92672">&gt;</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">messages</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">getMessages</span>({
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">locale</span>: <span style="color:#66d9ef">locale</span>,
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> (
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">html</span> <span style="color:#a6e22e">lang</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">locale</span>}&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">NextIntlClientProvider</span> <span style="color:#a6e22e">messages</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">messages</span>}&gt;
+</span></span><span style="display:flex;"><span>          {<span style="color:#a6e22e">children</span>}
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">NextIntlClientProvider</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;/<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">html</span>&gt;
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Tạo file i18n.ts</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">notFound</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;next/navigation&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">getRequestConfig</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;next-intl/server&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Can be imported from a shared config
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">locales</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;en&#34;</span>, <span style="color:#e6db74">&#34;vi&#34;</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">getRequestConfig</span>(<span style="color:#66d9ef">async</span> ({ <span style="color:#a6e22e">locale</span> }) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Validate that the incoming `locale` parameter is valid
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">locales</span>.<span style="color:#a6e22e">includes</span>(<span style="color:#a6e22e">locale</span> <span style="color:#66d9ef">as</span> <span style="color:#66d9ef">any</span>)) <span style="color:#a6e22e">notFound</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">messages</span><span style="color:#f92672">:</span> (<span style="color:#66d9ef">await</span> <span style="color:#66d9ef">import</span>(<span style="color:#e6db74">`../messages/</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">locale</span><span style="color:#e6db74">}</span><span style="color:#e6db74">.json`</span>)).<span style="color:#66d9ef">default</span>,
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>Cập nhật middleware</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NextResponse</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;next/server&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#66d9ef">type</span> { <span style="color:#a6e22e">NextRequest</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;next/server&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">authMiddleware</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;./app/middlewares/auth.middleware&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">AppCookie</span>, <span style="color:#a6e22e">ProtectedRoutes</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;./shared/constant&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">_db</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;../_db&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">createIntlMiddleware</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;next-intl/middleware&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">redirect</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;next/dist/server/api-utils&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// This function can be marked `async` if using `await` inside
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">middleware</span>(<span style="color:#a6e22e">req</span>: <span style="color:#66d9ef">NextRequest</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> [, <span style="color:#a6e22e">locale</span>, ...<span style="color:#a6e22e">segments</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">nextUrl</span>.<span style="color:#a6e22e">pathname</span>.<span style="color:#a6e22e">split</span>(<span style="color:#e6db74">&#34;/&#34;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">path</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">nextUrl</span>.<span style="color:#a6e22e">pathname</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// other middlewares
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">locale</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;[Middleware Demo] : &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">url</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">ProtectedRoutes</span>.<span style="color:#a6e22e">some</span>((<span style="color:#a6e22e">route</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">path</span>.<span style="color:#a6e22e">startsWith</span>(<span style="color:#a6e22e">route</span>))) {
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// apply auth middleware
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">redirectResponse</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">authMiddleware</span>(<span style="color:#a6e22e">req</span>);
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">redirectResponse</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">redirectResponse</span>;
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// next-intl middleware
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">handleI18nRouting</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">createIntlMiddleware</span>({
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">locales</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;en&#34;</span>, <span style="color:#e6db74">&#34;vi&#34;</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">defaultLocale</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;en&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">localePrefix</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;always&#34;</span>,
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">response</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">handleI18nRouting</span>(<span style="color:#a6e22e">req</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// fake login
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">path</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">`/</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">locale</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">cookies</span>.<span style="color:#66d9ef">set</span>(<span style="color:#a6e22e">AppCookie</span>.<span style="color:#a6e22e">UserToken</span>, <span style="color:#a6e22e">_db</span>.<span style="color:#a6e22e">tokens</span>[<span style="color:#ae81ff">0</span>].<span style="color:#a6e22e">token</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">response</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// See &#34;Matching Paths&#34; below to learn more
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">config</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">matcher</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Paths for internationalization
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// &#34;/&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#e6db74">&#34;/(en|vi)/:path*&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * Match all request paths except for the ones starting with:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * - _next/static (static files)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * - _next/image (image optimization files)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * - favicon.ico (favicon file)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     */</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">source</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;/((?!_next/static|_next/image|favicon.ico).*)&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">missing</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>        { <span style="color:#66d9ef">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;header&#34;</span>, <span style="color:#a6e22e">key</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;next-router-prefetch&#34;</span> },
+</span></span><span style="display:flex;"><span>        { <span style="color:#66d9ef">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;header&#34;</span>, <span style="color:#a6e22e">key</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;purpose&#34;</span>, <span style="color:#a6e22e">value</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;prefetch&#34;</span> },
+</span></span><span style="display:flex;"><span>      ],
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">source</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;/((?!_next/static|_next/image|favicon.ico).*)&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">has</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>        { <span style="color:#66d9ef">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;header&#34;</span>, <span style="color:#a6e22e">key</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;next-router-prefetch&#34;</span> },
+</span></span><span style="display:flex;"><span>        { <span style="color:#66d9ef">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;header&#34;</span>, <span style="color:#a6e22e">key</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;purpose&#34;</span>, <span style="color:#a6e22e">value</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;prefetch&#34;</span> },
+</span></span><span style="display:flex;"><span>      ],
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">source</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;/((?!_next/static|_next/image|favicon.ico).*)&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">has</span><span style="color:#f92672">:</span> [{ <span style="color:#66d9ef">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;header&#34;</span>, <span style="color:#a6e22e">key</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;x-present&#34;</span> }],
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">missing</span><span style="color:#f92672">:</span> [{ <span style="color:#66d9ef">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;header&#34;</span>, <span style="color:#a6e22e">key</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;x-missing&#34;</span>, <span style="color:#a6e22e">value</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;prefetch&#34;</span> }],
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>  ],
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>Sử dụng thử</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tsx" data-lang="tsx"><span style="display:flex;"><span><span style="color:#75715e">// src/app/[locale]/page.tsx
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">SlowComponent</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@/components/SlowComponent&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Link</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;next/link&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Suspense</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;react&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Loading</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;./loading&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">useTranslations</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;next-intl&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Footer</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@/layouts/Footer&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">Home() {</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">t</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">useTranslations</span>(<span style="color:#e6db74">&#34;layout&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> (
+</span></span><span style="display:flex;"><span>    &lt;&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">header</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;container-xl mx-auto p-4&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">h1</span>&gt;{<span style="color:#a6e22e">t</span>(<span style="color:#e6db74">&#34;headerTitle&#34;</span>)}&lt;/<span style="color:#f92672">h1</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;/<span style="color:#f92672">header</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">main</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;container-xl mx-auto p-4&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">h1</span>&gt;<span style="color:#a6e22e">Home</span> <span style="color:#a6e22e">Page</span>&lt;/<span style="color:#f92672">h1</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">p</span>&gt;<span style="color:#a6e22e">Links</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">other</span> <span style="color:#a6e22e">pages</span> <span style="color:#66d9ef">with</span> <span style="color:#a6e22e">a</span> <span style="color:#a6e22e">tag</span>&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">ul</span>&gt;
+</span></span><span style="display:flex;"><span>          &lt;<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/products&#34;</span>&gt;<span style="color:#a6e22e">Products</span>&lt;/<span style="color:#f92672">a</span>&gt;
+</span></span><span style="display:flex;"><span>          &lt;/<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>          &lt;<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/products/mouse-pad-nextjsvietnam&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>              <span style="color:#a6e22e">Mouse</span> <span style="color:#a6e22e">Pad</span> <span style="color:#a6e22e">NextJSVietNam</span>
+</span></span><span style="display:flex;"><span>            &lt;/<span style="color:#f92672">a</span>&gt;
+</span></span><span style="display:flex;"><span>          &lt;/<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>          &lt;<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/cart&#34;</span>&gt;<span style="color:#a6e22e">Cart</span>&lt;/<span style="color:#f92672">a</span>&gt;
+</span></span><span style="display:flex;"><span>          &lt;/<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>          &lt;<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/order&#34;</span>&gt;<span style="color:#a6e22e">Order</span>&lt;/<span style="color:#f92672">a</span>&gt;
+</span></span><span style="display:flex;"><span>          &lt;/<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>          &lt;<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/my-account&#34;</span>&gt;<span style="color:#a6e22e">My</span> <span style="color:#a6e22e">Account</span>&lt;/<span style="color:#f92672">a</span>&gt;
+</span></span><span style="display:flex;"><span>          &lt;/<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>          &lt;<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/my-account/orders&#34;</span>&gt;<span style="color:#a6e22e">My</span> <span style="color:#a6e22e">orders</span>&lt;/<span style="color:#f92672">a</span>&gt;
+</span></span><span style="display:flex;"><span>          &lt;/<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>          &lt;<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/my-account/orders/1&#34;</span>&gt;<span style="color:#a6e22e">My</span> <span style="color:#a6e22e">order</span> <span style="color:#a6e22e">detail</span>&lt;/<span style="color:#f92672">a</span>&gt;
+</span></span><span style="display:flex;"><span>          &lt;/<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">ul</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">p</span>&gt;<span style="color:#a6e22e">Links</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">other</span> <span style="color:#a6e22e">pages</span> <span style="color:#66d9ef">with</span> <span style="color:#a6e22e">Link</span> <span style="color:#a6e22e">tag</span>&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">ul</span>&gt;
+</span></span><span style="display:flex;"><span>          &lt;<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">Link</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/products&#34;</span>&gt;<span style="color:#a6e22e">Products</span>&lt;/<span style="color:#f92672">Link</span>&gt;
+</span></span><span style="display:flex;"><span>          &lt;/<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">ul</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">h2</span>&gt;<span style="color:#a6e22e">Slow</span> <span style="color:#a6e22e">Component</span>&lt;/<span style="color:#f92672">h2</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">Suspense</span> <span style="color:#a6e22e">fallback</span><span style="color:#f92672">=</span>{&lt;<span style="color:#f92672">Loading</span> /&gt;}&gt;
+</span></span><span style="display:flex;"><span>          &lt;<span style="color:#f92672">SlowComponent</span>&gt;&lt;/<span style="color:#f92672">SlowComponent</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">Suspense</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;/<span style="color:#f92672">main</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">Footer</span>&gt;&lt;/<span style="color:#f92672">Footer</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/&gt;
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Chuyển ngôn ngữ</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tsx" data-lang="tsx"><span style="display:flex;"><span><span style="color:#75715e">// layouts/Footer
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#e6db74">&#34;use client&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">useRouter</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;next/navigation&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">Footer</span> <span style="color:#f92672">=</span> () <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">router</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">useRouter</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">switchLanguage</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">language</span>: <span style="color:#66d9ef">string</span>) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">router</span>.<span style="color:#a6e22e">push</span>(<span style="color:#a6e22e">language</span>);
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> (
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">footer</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">onClick</span><span style="color:#f92672">=</span>{() <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">switchLanguage</span>(<span style="color:#e6db74">&#34;en&#34;</span>)}&gt;<span style="color:#a6e22e">English</span>&lt;/<span style="color:#f92672">button</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">onClick</span><span style="color:#f92672">=</span>{() <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">switchLanguage</span>(<span style="color:#e6db74">&#34;vi&#34;</span>)}&gt;<span style="color:#a6e22e">Vietnamese</span>&lt;/<span style="color:#f92672">button</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">footer</span>&gt;
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><h2 id="references">References</h2>
+<ul>
+<li><a href="https://next-intl-docs.vercel.app/docs/getting-started/app-router/with-i18n-routing">Next Intl Getting start</a></li>
+<li><a href="https://next-intl-docs.vercel.app/docs/routing/navigation#shared-pathnames">Navigation Strategy for next-intl</a></li>
+</ul>
+        
+      
+      <div class="m-1 p-1">
+        
+          <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="http://localhost:1313/categories/nextjs-tutorial">nextjs-tutorial</a>
+        
+      </div>
+    </div>
+  </section>
+  <section class="container section">
+    <div class="max-w-2xl mx-auto">
+      <div class="font-heading text-2xl font-semibold">You Might Also Like</div>
+      <div class="mt-8 grid  gap-8">
+        
+        
+        
+        
+        <ul class="sidebar-links">
+        
+        
+            <li><a href="/post/khoa-hoc-nextjs-bai-02-cau-truc-du-an-nextjs/">Khoá học NextJS 2024 - Bài 02: Cấu trúc dự án NextJS</a></li>
+        
+            <li><a href="/post/khoa-hoc-nextjs/">Khóa học NextJS - Bài 01 - Lộ trình các bài học về NextJS</a></li>
+        
+        </ul>
+                
+      </div>
+    </div>
+  </section>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1642510310947288"
+  crossorigin="anonymous"></script>
+  <ins class="adsbygoogle"
+        style="display:block; text-align:center;"
+        data-ad-layout="in-article"
+        data-ad-format="fluid"
+        data-ad-client="ca-pub-1642510310947288"
+        data-ad-slot="9309117729"></ins>
+  <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>  
+
+    
+    </main>
+    <footer class="footer">
+      <div class="container md:flex">
+        <section class="footer-section-info md:basis-1/4">
+          <div class="address">
+            <a class="logo" href="http://localhost:1313/" title="NextJSVietNam">
+              NextJSVietNam
+            </a>
+            <h4 class="footer-heading">
+                DEVELOPMENT MODE
+            <h4>                
+          </div>
+        </section>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">NestJS</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="http://localhost:1313/post/nestjs-passing-data-between-layers-in-ddd/">Nestjs Passing Data Between Layers in Domain Driven Design</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nestjs-bai-06-viet-unit-test/">Khóa học NestJS - Bài 06 Hướng dẫn viết Unit Test</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nestjs-bai-05-repository-pattern/">Khóa học NestJS Bài 05 - Repository Pattern</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nestjs-bai-04-model-and-repository-pattern/">Khóa học NestJS Bài 04 - Model and Repository Pattern</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nestjs-bai03/">Khóa học NestJS Bài 03 - Controllers &amp; Views</a></li>              
+             
+          </ul>
+        </div>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">NextJS</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nextjs-bai-03-advanced-routing/">Khoá học NextJS Bài 03 - Advanced Routing</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nextjs-bai-02-cau-truc-du-an-nextjs/">Khoá học NextJS 2024 - Bài 02: Cấu trúc dự án NextJS</a></li>              
+            
+              <li><a href="http://localhost:1313/post/create-new-website-with-nextjs/">Create New Website With Nextjs</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nextjs/">Khóa học NextJS - Bài 01 - Lộ trình các bài học về NextJS</a></li>              
+             
+          </ul>
+        </div>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">Cheatsheet</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="http://localhost:1313/post/6minutes-tech-graphql/">6minutes Tech Graphql</a></li>              
+            
+              <li><a href="http://localhost:1313/post/6minutes-tech-progressive-web-app/">6minutes Tech Progressive Web App</a></li>              
+            
+              <li><a href="http://localhost:1313/post/flexbox-and-real-world-examples/">Flexbox and Real World Examples</a></li>              
+            
+              <li><a href="http://localhost:1313/post/react-native-examples-setup-working-place-for-react-native-developer/">[React Native Examples] Setup Working Place for React Native Developer</a></li>              
+            
+              <li><a href="http://localhost:1313/post/happy-new-year-2024/">Happy New Year 2024</a></li>              
+             
+          </ul>
+        </div>
+      </div>
+      <div class="container">
+        <div class="text-center">
+          <a href=""><span class="material-icons text-4xl m-4">facebook</span></a>
+          <a href=""><span class="material-icons text-4xl  m-4">smart_display</span></a>
+        </div>
+        <div class="text-center text-lg py-4">
+          Copyright @ NextJSVietNam 2022
+        </div>
+        <div class="text-center text-sm">
+          Powered by <a class="font-bold text-primary" href="https://gohugo.io/">Go Hugo</a> - Made
+          with love from <a class="font-bold text-primary" href="http://localhost:1313/">NextJSVietNam</a> -
+          Build
+          Version 2024-05-20 08:51:24 &#43;0700 &#43;07
+        </div>
+      </div>
+    </footer>
+
+    
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="http://localhost:1313/core/jquery-3.6.0.min.js"></script>
+        
+             
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="http://localhost:1313/themes/2022/dist/main.js"></script>
+        
+             
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="http://localhost:1313/themes/2022/dist/home.js"></script>
+        
+             
+    
+
+  
+  <script async>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1760611910980690');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1760611910980690&ev=PageView&noscript=1"
+    /></noscript>
+        
+  </body>
+</html>

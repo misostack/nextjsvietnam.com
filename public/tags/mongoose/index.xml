@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mongoose on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+    <link>http://localhost:1313/tags/mongoose/</link>
+    <description>Recent content in Mongoose on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 07 Oct 2023 09:26:40 +0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/mongoose/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Nestjs Cheatsheet Mongoose Examples</title>
+      <link>http://localhost:1313/post/nestjs-cheatsheet-mongoose-examples/</link>
+      <pubDate>Sat, 07 Oct 2023 09:26:40 +0700</pubDate>
+      <guid>http://localhost:1313/post/nestjs-cheatsheet-mongoose-examples/</guid>
+      <description>&lt;p&gt;When you need to work with MongoDB and NestJS, the most powerful tool that you should use is &amp;ldquo;mongoose&amp;rdquo; - the most popular ORM for MongoDB. In this article, I will show you how to use Mongoose with NestJS.&lt;/p&gt;&#xA;&lt;p&gt;What is this topic about?&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Configuration for Mongoose in NestJS&lt;/li&gt;&#xA;&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Schema, Models, Documents Concepts and Examples&lt;/li&gt;&#xA;&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; CRUD Examples&lt;/li&gt;&#xA;&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Data seeds&lt;/li&gt;&#xA;&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Complex Queries: Using native query, aggregate, &amp;hellip;&lt;/li&gt;&#xA;&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Transactions&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;We can use mongoose and create your own module and integrate with NestJS or use the official package from nestjs &lt;a href=&#34;https://www.npmjs.com/package/@nestjs/mongoose&#34;&gt;@nestjs/mongoose&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

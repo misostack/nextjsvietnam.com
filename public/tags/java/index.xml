@@ -1,34 +1,40 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>java on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
-    <link>https://nextjsvietnam.com/tags/java/</link>
-    <description>Recent content in java on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <title>Java on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+    <link>http://localhost:1313/tags/java/</link>
+    <description>Recent content in Java on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 20 Jul 2022 09:04:17 +0700</lastBuildDate><atom:link href="https://nextjsvietnam.com/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 08 May 2024 09:16:47 +0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/java/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Java for Professional</title>
-      <link>https://nextjsvietnam.com/post/java-for-professional/</link>
-      <pubDate>Wed, 20 Jul 2022 09:04:17 +0700</pubDate>
-      
-      <guid>https://nextjsvietnam.com/post/java-for-professional/</guid>
-      <description></description>
+      <title>Java Servlet</title>
+      <link>http://localhost:1313/post/java-servlet/</link>
+      <pubDate>Wed, 08 May 2024 09:16:47 +0700</pubDate>
+      <guid>http://localhost:1313/post/java-servlet/</guid>
+      <description>&lt;h3 id=&#34;install-tomcat-server&#34;&gt;Install Tomcat Server&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://tomcat.apache.org/download-90.cgi#9.0.89&#34;&gt;https://tomcat.apache.org/download-90.cgi#9.0.89&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;For windows, you can download zip and extract in your appropriate folder.&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;C:/java/tomcat/&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;For linux/mac&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;mkdir tomcat&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cd tomcat&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;curl -O https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.89/bin/apache-tomcat-9.0.89.tar.gz&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;tar xvf apache-tomcat-9.0.89.tar.gz&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# if wanna start tomcat local&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo mv apache-tomcat-9.0.89 /usr/local/tomcat&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;echo &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;export CATALINA_HOME=&amp;#34;/usr/local/tomcat&amp;#34;&amp;#39;&lt;/span&gt; &amp;gt;&amp;gt; ~/.zshrc&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Source the profile to update your current session&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;source ~/.zshrc&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cd /usr/local/tomcat/bin&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;chmod +x *.sh&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;./startup.sh&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;You can access Tomcat server at http://localhost:8080/&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Using CATALINA_BASE:   /usr/local/tomcat&#xA;Using CATALINA_HOME:   /usr/local/tomcat&#xA;Using CATALINA_TMPDIR: /usr/local/tomcat/temp&#xA;Using JRE_HOME:        /usr&#xA;Using CLASSPATH:       /usr/local/tomcat/bin/bootstrap.jar:/usr/local/tomcat/bin/tomcat-juli.jar&#xA;Tomcat started.&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;to-integrate-with-jetbrains&#34;&gt;To Integrate with Jetbrains&lt;/h3&gt;&#xA;&lt;p&gt;Edit -&amp;gt; Configuration -&amp;gt; Add New Configuration -&amp;gt; Tomcat Server Local&lt;/p&gt;</description>
     </item>
-    
+    <item>
+      <title>Java Tutorial Day 01 - Hello World!</title>
+      <link>http://localhost:1313/post/java-tutorial-day-01/</link>
+      <pubDate>Thu, 02 May 2024 09:04:38 +0700</pubDate>
+      <guid>http://localhost:1313/post/java-tutorial-day-01/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Goals&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Install multiple version java in your local&lt;/li&gt;&#xA;&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Introduction of Java IDE&lt;/li&gt;&#xA;&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Run Hello World Example&lt;/li&gt;&#xA;&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; OOP and Packages&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;install-multiple-version-java-in-your-local&#34;&gt;Install multiple version java in your local&lt;/h2&gt;&#xA;&lt;p&gt;To manage multiple Java versions on macOS, you can use a version manager like jEnv or SDKMAN!. Here&amp;rsquo;s how to set up each:&lt;/p&gt;&#xA;&lt;h3 id=&#34;sdkman&#34;&gt;SDKMAN&lt;/h3&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;curl -s &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;https://get.sdkman.io&amp;#34;&lt;/span&gt; | bash&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sdk list java&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sdk install java 11.0.2-open&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sdk install java 17.0.2-open&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://sdkman.io/jdks&#34;&gt;https://sdkman.io/jdks&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sdk list java | grep oracle&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sdk install java 22-oracle&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sdk use java 22-oracle&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sdk default java 22-oracle&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;Install maven&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Java for Beginner</title>
-      <link>https://nextjsvietnam.com/post/java-for-beginner/</link>
-      <pubDate>Wed, 20 Jul 2022 09:03:37 +0700</pubDate>
-      
-      <guid>https://nextjsvietnam.com/post/java-for-beginner/</guid>
-      <description>Materials Java Beginner Learning Path Java Developer Center Overview Architecture Java Platform
-What can Java do?
-Development Tools Netbeans IntelliJ IDEA Setup Development Environment Install Java Install JDK &amp;amp; JRE What does Java 8 Packages include ?
-Getting Start Object Oriented Concept
-Object Class Instance Inheritance Language Basic
-Variables Data types Operators Control flow Array Annotation Interface and inheritance Numbers &amp;amp; Strings Generic Lambda Expressions Pattern matching Exceptions Packages Debug &amp;amp; Test</description>
+      <link>http://localhost:1313/post/java-for-beginner/</link>
+      <pubDate>Wed, 12 Oct 2022 09:03:37 +0700</pubDate>
+      <guid>http://localhost:1313/post/java-for-beginner/</guid>
+      <description>&lt;h2 id=&#34;materials&#34;&gt;Materials&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://docs.oracle.com/javase/tutorial/tutorialLearningPaths.html&#34;&gt;Java Beginner Learning Path&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://dev.java/learn/&#34;&gt;Java Developer Center&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;overview-architecture&#34;&gt;Overview Architecture&lt;/h2&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://user-images.githubusercontent.com/31009750/179880593-d0c60179-b32b-4f19-b490-a4729d35db10.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Java Platform&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://user-images.githubusercontent.com/31009750/179880656-d0c59894-64ef-4c32-8c0d-72f6730aa553.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;What can Java do?&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://user-images.githubusercontent.com/31009750/179881065-c161a4e7-2e6c-49be-a036-0ea9e497f86a.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;development-tools&#34;&gt;Development Tools&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://netbeans.apache.org/kb/docs/java/&#34;&gt;Netbeans&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://www.jetbrains.com/idea/&#34;&gt;IntelliJ IDEA&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;setup-development-environment&#34;&gt;Setup Development Environment&lt;/h3&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Install Java&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://www.oracle.com/java/technologies/downloads/#java8-windows&#34;&gt;Install JDK &amp;amp; JRE&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;What does Java 8 Packages include ?&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://user-images.githubusercontent.com/31009750/179881422-085f412a-f764-4793-9df3-6dd0acd95fab.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;getting-start&#34;&gt;Getting Start&lt;/h2&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Object Oriented Concept&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Object&lt;/li&gt;&#xA;&lt;li&gt;Class&lt;/li&gt;&#xA;&lt;li&gt;Instance&lt;/li&gt;&#xA;&lt;li&gt;Inheritance&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Language Basic&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Variables&lt;/li&gt;&#xA;&lt;li&gt;Data types&lt;/li&gt;&#xA;&lt;li&gt;Operators&lt;/li&gt;&#xA;&lt;li&gt;Control flow&lt;/li&gt;&#xA;&lt;li&gt;Array&lt;/li&gt;&#xA;&lt;li&gt;Annotation&lt;/li&gt;&#xA;&lt;li&gt;Interface and inheritance&lt;/li&gt;&#xA;&lt;li&gt;Numbers &amp;amp; Strings&lt;/li&gt;&#xA;&lt;li&gt;Generic&lt;/li&gt;&#xA;&lt;li&gt;Lambda Expressions&lt;/li&gt;&#xA;&lt;li&gt;Pattern matching&lt;/li&gt;&#xA;&lt;li&gt;Exceptions&lt;/li&gt;&#xA;&lt;li&gt;Packages&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Debug &amp;amp; Test&lt;/p&gt;</description>
     </item>
-    
+    <item>
+      <title>Java for Professional</title>
+      <link>http://localhost:1313/post/java-for-professional/</link>
+      <pubDate>Wed, 20 Jul 2022 09:04:17 +0700</pubDate>
+      <guid>http://localhost:1313/post/java-for-professional/</guid>
+      <description></description>
+    </item>
   </channel>
 </rss>

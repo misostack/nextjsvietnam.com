@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="home" href="http://localhost:1313/" />
+    <meta name="generator" content="jsguru cms" />
+
+    
+    
+      
+    
+
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    
+    
+      
+              
+        
+        <link rel="stylesheet" href="http://localhost:1313/themes/2022/dist/main.css" />
+             
+    
+      
+              
+        
+        <link rel="stylesheet" href="http://localhost:1313/themes/2022/dist/home.css" />
+             
+    
+      
+              
+        
+        <link rel="stylesheet" href="http://localhost:1313/themes/2022/dist/page.css" />
+             
+        
+    
+    
+    
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWE4MLJYE6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-RWE4MLJYE6');    
+    </script>    
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1642510310947288"
+    crossorigin="anonymous"></script>    
+    
+    
+    
+<title>Khóa học NestJS Bài 05 - Repository Pattern | Cùng tìm hiểu về Repository Pattern trong NestJS | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+<meta name="robots" content="all" />
+<meta name="keywords" content="nestjs, nestjs-mvc, nestjs-tutorial" />
+<meta name="description" content="Cùng tìm hiểu về Repository Pattern trong NestJS" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://user-images.githubusercontent.com/31009750/181449337-70081a76-5a01-4229-805e-39ed0ded6b5b.png" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="750" />
+<meta property="og:image:height" content="300" />
+<meta
+  property="article:publisher"
+  content="https://www.facebook.com/nextjsvietnam"
+/>
+
+<meta property="article:published_time" content="2023-07-06T21:46:31+07:00" />
+<meta property="article:modified_time" content="2023-07-06T21:46:31+07:00" />
+
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png" />
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png" />
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png" />
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png" />
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png" />
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png" />
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="192x192"
+  href="/android-icon-192x192.png"
+/>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="manifest" href="/manifest.json" />
+<meta name="msapplication-TileColor" content="#ffffff" />
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
+<meta name="theme-color" content="#ffffff" />
+
+  </head>
+  <body class="body-nav-fixed">
+    <nav class="nav-fixed nav-default z-50">
+    <div class="container">
+      <div class="nav-container flex flex-wrap justify-between items-center">
+        <a href="http://localhost:1313/" class="nav-brand inline-block">
+          
+          <img class="h-12" src="http://localhost:1313/themes/2022/src/assets/images/logo.png" 
+          alt="Stunning" />
+        </a>
+        <a href="javascript:void(0);" data-menu="#menu-main_menu" class="nav-menu-toggle"><span
+          class="material-icons">menu</span></a>
+        <ul id="menu-main_menu" class="nav-menu h-0 md:h-auto">
+          <form class="nav-menu-search-bar md:hidden relative">
+            <button class="nav-menu-search-bar-search-btn absolute h-full">
+              <svg class="w-3 h-3 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24">
+                <path
+                  d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z">
+                </path>
+              </svg>
+            </button>
+            <input name="s" type="text" class="w-full" />
+          </form>
+          
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/categories/systemdesign">System Design
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/software-architecture">Software Architecture</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/microservice-architecture">Microservice Architecture</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/aws">Learn AWS The Right Way</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/aws-labs">AWS Hands-On Labs</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/categories/cheatsheet">Cheatsheet
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nestjs-examples">NestJS Examples</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/reactjs-examples">ReactJS Examples</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/react-native-examples">React Native Examples</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/categories/frameworks">Frameworks
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nestjs">NestJS</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/reactjs">ReactJS</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nextjs">NextJS</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/">Tutorials
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nestjs-tutorial">NestJS Tutorial</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/reactjs-tutorial">ReactJS Tutorial</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nextjs-tutorial">NextJS Tutorial</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/">Tools
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://regex101.com/">Online Regex</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://www.bashoneliners.com/">Bash Online</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://www.epochconverter.com/">Unix Timestamp Conversion</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://ryanstutorials.net/bash-scripting-tutorial/">Bash Scripting</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://explainshell.com/">Explain Shell</a></li>
+                
+                </ul>
+            
+            </li>
+          
+          <form class="nav-menu-search-bar hidden md:flex relative">
+            <button class="nav-menu-search-bar-search-btn absolute h-full">
+              <svg class="w-3 h-3 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24">
+                <path
+                  d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z">
+                </path>
+              </svg>
+            </button>
+            <input name="s" type="text" class="w-full" />
+          </form>
+        </ul>
+      </div>
+    </div>
+</nav>
+
+    <main>
+    
+  <section class="container section">
+    <div class="page-content max-w-2xl mx-auto">
+        <img src="https://user-images.githubusercontent.com/31009750/181449337-70081a76-5a01-4229-805e-39ed0ded6b5b.png" class="img-responsive" alt="Khóa học NestJS Bài 05 - Repository Pattern" />
+        <h1>Khóa học NestJS Bài 05 - Repository Pattern</h1>
+        
+          
+          
+          <p><strong>Post Date</strong> : 2023-07-06T21:46:31+07:00</p>
+          <p><strong>Modified Date</strong> : 2023-07-06T21:46:31+07:00</p>
+        <p>
+            <strong>Category:</strong>
+            
+            <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="http://localhost:1313/categories/nestjs-tutorial">nestjs-tutorial</a>
+            
+        </p>
+        <p>
+          <strong>Tags:</strong>
+          
+             <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white"
+             href="/tags/nestjs">nestjs</a>
+          
+             <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white"
+             href="/tags/nestjs-pet-website">, nestjs-pet-website</a>
+          
+        </p>                
+        <ul>
+<li><a href="https://github.com/misostack/nestjs-tutorial-2023/tree/lession05">Lession 05 Source Code</a></li>
+</ul>
+<h2 id="bài-05">Bài 05</h2>
+<ol>
+<li>Giới thiệu sơ qua về repository pattern</li>
+<li>Giới thiệu về dependency injection trong NestJS</li>
+<li>Refactor code PetCategory áp dụng repository pattern</li>
+</ol>
+<h3 id="giới-thiệu-sơ-qua-về-repository-pattern">Giới thiệu sơ qua về repository pattern</h3>
+<p>Trong bài trước, các anh chị có thể thấy sơ đồ sau trong mô hình MVC</p>
+<p><img src="https://user-images.githubusercontent.com/31009750/255315727-b8a19417-ca4f-4791-9158-e62a1bbe41ee.png" alt="image"></p>
+<p>Controller sử dụng trực tiếp Model của ORM để thực hiện truy vấn vào cơ sở dữ liệu.
+Thiết kế này sẽ bộc lộ các điểm yếu sau:</p>
+<ol>
+<li>Khả năng tái sử dụng của các câu truy vấn : do nó nằm trực tiếp trong controller, do đó việc tái sử dụng và chia sẻ giữa các controller khác nhau gần như là không thể.</li>
+<li>Tăng độ phức tạp của controller, càng nhiều câu query phức tạp, controller càng phình lên.</li>
+<li>Việc thực hiện Unit Test trở lên khó khăn, do phần truy vấn cơ cở dữ liệu trộn lận vào code của controller</li>
+</ol>
+<p>Để giải quyết vấn đề này, các anh/chị nên phân chia code thành các layer khác nhau. Mục đích là giúp tăng khả năng mở rộng và bảo trì của dự án.</p>
+<p>Chính vì lẽ đó Repository Pattern được áp dụng. Theo định nghĩa</p>
+<blockquote>
+<p>Repository là một lớp được sinh ra để làm nhiệm vụ thực hiện truy vấn vào cơ sở dữ liệu.</p></blockquote>
+<p>Chính vì đặc điểm trên, nó chỉ thực hiện 1 nhiệm vụ duy nhất là truy vấn vào cở sở dữ liệu. Các câu query phức tạp sẽ được đóng gói trong lớp này. Kết quả là 3 vấn đề được đề cập ở trên sẽ được giải quyết triệt để.</p>
+<p>Các anh/chị có thể đọc thêm về Repository trong bài viết về <a href="https://nextjsvietnam.com/post/domain-driven-design-trong-30-giay/">Domain Driven Design</a> này.</p>
+<p>Tới đây, cùng áp dụng định nghĩa trên để thực hành với NestJS.
+Trong bài trước, Model được chúng trực tiếp trong Controller như sau</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">petCategories</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">PetCategory</span>.<span style="color:#a6e22e">findAll</span>();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">await</span> <span style="color:#a6e22e">PetCategory</span>.<span style="color:#a6e22e">destroy</span>({ <span style="color:#a6e22e">where</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">id</span> } });
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">newPetCategory</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">PetCategory</span>.<span style="color:#a6e22e">create</span>({ ...<span style="color:#66d9ef">object</span> });
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">petCategory</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">PetCategory</span>.<span style="color:#a6e22e">findByPk</span>(<span style="color:#a6e22e">id</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">await</span> <span style="color:#a6e22e">petCategory</span>.<span style="color:#a6e22e">update</span>(<span style="color:#66d9ef">object</span>);
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#75715e">// src\pet\repositories\pet-category.repository.ts
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Injectable</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/common&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">PetCategory</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;../models/pet-category.model&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@Injectable</span>()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PetCategoryRepository</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">findAll() {</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">PetCategory</span>.<span style="color:#a6e22e">findAll</span>();
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#75715e">// src/pet/pet.module.ts
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Module</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/common&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">PetController</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;./controllers/pet.controller&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ManagePetController</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;./controllers/admin/manage-pet.controller&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ManagePetCategoryController</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;./controllers/admin/manage-pet-category.controller&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ManagePetAttributeController</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;./controllers/admin/manage-pet-attribute.controller&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NestjsFormDataModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;nestjs-form-data&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">PetCategoryRepository</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;./repositories/pet-category.repository&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@Module</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">imports</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">NestjsFormDataModule</span>],
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">controllers</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">PetController</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ManagePetController</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ManagePetCategoryController</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ManagePetAttributeController</span>,
+</span></span><span style="display:flex;"><span>  ],
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// registered providers
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#a6e22e">providers</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">PetCategoryRepository</span>],
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PetModule</span> {}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">@Controller</span>(<span style="color:#e6db74">&#34;admin/pet-categories&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ManagePetCategoryController</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">petCategoryRepository</span>: <span style="color:#66d9ef">PetCategoryRepository</span>) {}
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Get</span>(<span style="color:#e6db74">&#34;&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Render</span>(<span style="color:#e6db74">&#34;pet/admin/manage-pet-category/list&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">async</span> <span style="color:#a6e22e">getList() {</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">petCategories</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">petCategoryRepository</span>.<span style="color:#a6e22e">findAll</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">petCategories</span>,
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><h3 id="giới-thiệu-sơ-qua-về-dependency-injection">Giới thiệu sơ qua về dependency injection</h3>
+<p>Lưu ý trong 3 đoạn code minh hoạt trên, để sử dụng được repository, có thể thấy, các anh/chị cần làm 3 việc:</p>
+<ul>
+<li>Khai báo repository là dạng được Injectable</li>
+<li>Khai báo repository cho danh sách Providers của module</li>
+<li>Inject repository vào constructor của controller muốn sử dụng</li>
+</ul>
+<p>Nếu các anh/chị còn lạ lẫm với các khái niệm trên, hãy tìm hiểu chi tiết hơn trong bài viết về <a href="https://nextjsvietnam.com/post/nestjs-provider/">NestJS Provider</a>.</p>
+<p>Hiểu đơn giản, là khi muốn sử dụng 1 class trong module, thay vì các anh/chị phải tự động khởi tạo mỗi lần sử dụng, điều này vô tình sẽ gây ra việc khởi tạo class này quá nhiều lần không cần thiết. Cũng như việc viết code sẽ trở nên khá rối rắm.</p>
+<p>Thay vào đó, nếu áp dụng <strong>Dependency Injection</strong> pattern, các anh/chị dễ dàng giải quyết được vấn đề này. Ví dụ về cách mà dependency injection giải quyết được vấn đề trên.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#34;reflect-metadata&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">injectable</span>, <span style="color:#a6e22e">inject</span>, <span style="color:#a6e22e">container</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;tsyringe&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">ID</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">string</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">number</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Repository</span>&lt;<span style="color:#f92672">T</span>&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">findOne</span>(<span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">ID</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">T</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">CrudService</span>&lt;<span style="color:#f92672">Model</span>&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">findOne</span>(<span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">ID</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Model</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">User</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">id</span><span style="color:#f92672">!:</span> <span style="color:#a6e22e">ID</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">firstName</span><span style="color:#f92672">!:</span> <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">lastName</span><span style="color:#f92672">!:</span> <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">constructor</span>(<span style="color:#a6e22e">payload</span>: <span style="color:#66d9ef">Partial</span>&lt;<span style="color:#f92672">User</span>&gt;) {
+</span></span><span style="display:flex;"><span>    Object.<span style="color:#a6e22e">assign</span>(<span style="color:#66d9ef">this</span>, <span style="color:#a6e22e">payload</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Role</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">id</span><span style="color:#f92672">!:</span> <span style="color:#a6e22e">ID</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span><span style="color:#f92672">!:</span> <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">permissions</span>: <span style="color:#66d9ef">string</span>[] <span style="color:#f92672">=</span> [];
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">constructor</span>(<span style="color:#a6e22e">payload</span>: <span style="color:#66d9ef">Partial</span>&lt;<span style="color:#f92672">Role</span>&gt;) {
+</span></span><span style="display:flex;"><span>    Object.<span style="color:#a6e22e">assign</span>(<span style="color:#66d9ef">this</span>, <span style="color:#a6e22e">payload</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserRepository</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">Repository</span>&lt;<span style="color:#f92672">User</span>&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">findOne</span>(<span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">ID</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">User</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">User</span>({
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">id</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">firstName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Typescript&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">lastName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Master Class&#34;</span>,
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">user</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RoleRepository</span> <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">Repository</span>&lt;<span style="color:#f92672">Role</span>&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">findOne</span>(<span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">ID</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Role</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">role</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Role</span>({
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">id</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Admin&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">permissions</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;CreateUser&#34;</span>, <span style="color:#e6db74">&#34;EditUser&#34;</span>, <span style="color:#e6db74">&#34;RetrieveUser&#34;</span>, <span style="color:#e6db74">&#34;DeleteUser&#34;</span>],
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">role</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">BaseService</span>&lt;<span style="color:#f92672">M</span>, <span style="color:#a6e22e">R</span> <span style="color:#a6e22e">extends</span> <span style="color:#a6e22e">Repository</span>&lt;<span style="color:#f92672">M</span>&gt;&gt;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">implements</span> <span style="color:#a6e22e">CrudService</span>&lt;<span style="color:#f92672">M</span>&gt;
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">constructor</span>(<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">repository</span>: <span style="color:#66d9ef">R</span>) {}
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">findOne</span>(<span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">ID</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">M</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">repository</span>.<span style="color:#a6e22e">findOne</span>(<span style="color:#a6e22e">id</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@injectable</span>()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserService</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">BaseService</span>&lt;<span style="color:#f92672">User</span>, <span style="color:#a6e22e">UserRepository</span>&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">constructor</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">@inject</span>(<span style="color:#a6e22e">UserRepository</span>.<span style="color:#a6e22e">name</span>) <span style="color:#a6e22e">userRepository</span>: <span style="color:#66d9ef">UserRepository</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">@inject</span>(<span style="color:#a6e22e">RoleRepository</span>.<span style="color:#a6e22e">name</span>) <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">roleRepository</span>: <span style="color:#66d9ef">RoleRepository</span>
+</span></span><span style="display:flex;"><span>  ) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">super</span>(<span style="color:#a6e22e">userRepository</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">retrievePermission</span>(<span style="color:#a6e22e">user</span>: <span style="color:#66d9ef">User</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">roleRepository</span>.<span style="color:#a6e22e">findOne</span>(<span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">id</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">main</span> <span style="color:#f92672">=</span> () <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">container</span>.<span style="color:#a6e22e">register</span>(<span style="color:#e6db74">&#34;UserRepository&#34;</span>, {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">useClass</span>: <span style="color:#66d9ef">UserRepository</span>,
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">container</span>.<span style="color:#a6e22e">register</span>(<span style="color:#e6db74">&#34;RoleRepository&#34;</span>, {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">useClass</span>: <span style="color:#66d9ef">RoleRepository</span>,
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">userService</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">container</span>.<span style="color:#a6e22e">resolve</span>(<span style="color:#a6e22e">UserService</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">userService</span>.<span style="color:#a6e22e">findOne</span>(<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">permissions</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">userService</span>.<span style="color:#a6e22e">retrievePermission</span>(<span style="color:#a6e22e">user</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">user</span>, <span style="color:#a6e22e">permissions</span>);
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">main</span>();
+</span></span></code></pre></div><p>Trong đoạn code minh họa trên, các anh/chị có thể thấy rõ, service sẽ phụ thuộc vào repository. Tuy nhiên việc khởi tạo repository sẽ được delegate. Để hiểu rõ hơn về pattern này các anh/chị có thể tìm hiểu chi tiết qua bài viết <a href="https://nextjsvietnam.com/post/learn-enough-oop-to-be-dangerous/">Learn Enough Oop to Be Dangerous</a></p>
+<p>Như vậy, có thể thấy khi làm việc với NestJS, việc tạo ra 1 class và nhúng vào 1 class khác để sử dụng khá là đơn giản đúng không nào.</p>
+<p>Ngoài cách tạo repository một cách chủ động như trên, trong hệ sinh thái nestjs, các anh/chị có thể sử dụng cách sau. Sử dụng chính model làm repository</p>
+<blockquote>
+<p>Tạo provider sử dụng custom token và useValue</p></blockquote>
+<p>Nguyên nhân là repository này sẽ sử dụng các static method của model. Nên việc khởi tạo dependency này sẽ sử dụng chính Model làm giá trị.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">PetCategory</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;../models/pet-category.model&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">PetCategoryInjectionKey</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Pet_Category&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">PetCategoryProvider</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">provide</span>: <span style="color:#66d9ef">PetCategoryInjectionKey</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">useValue</span>: <span style="color:#66d9ef">PetCategory</span>,
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#75715e">// src/pet/pet.module.ts
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Module</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/common&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">PetController</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;./controllers/pet.controller&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ManagePetController</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;./controllers/admin/manage-pet.controller&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ManagePetCategoryController</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;./controllers/admin/manage-pet-category.controller&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ManagePetAttributeController</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;./controllers/admin/manage-pet-attribute.controller&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NestjsFormDataModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;nestjs-form-data&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">PetCategoryRepository</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;./repositories/pet-category.repository&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">PetCategoryProvider</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;./providers/pet-category.provider&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@Module</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">imports</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">NestjsFormDataModule</span>],
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">controllers</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">PetController</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ManagePetController</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ManagePetCategoryController</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ManagePetAttributeController</span>,
+</span></span><span style="display:flex;"><span>  ],
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">providers</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">PetCategoryRepository</span>, <span style="color:#a6e22e">PetCategoryProvider</span>],
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PetModule</span> {}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">PetCategoryInjectionKey</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;./../../providers/pet-category.provider&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Body</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Controller</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Get</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Render</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Inject</span>,
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@nestjs/common&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@Controller</span>(<span style="color:#e6db74">&#39;admin/pet-categories&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ManagePetCategoryController</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">constructor</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">@Inject</span>(<span style="color:#a6e22e">PetCategoryInjectionKey</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">defaultPetCategoryRepository</span>: <span style="color:#66d9ef">typeof</span> <span style="color:#a6e22e">PetCategory</span>,
+</span></span><span style="display:flex;"><span>  ) {}
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Get</span>(<span style="color:#e6db74">&#39;&#39;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Render</span>(<span style="color:#e6db74">&#39;pet/admin/manage-pet-category/list&#39;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">async</span> <span style="color:#a6e22e">getList() {</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">petCategories</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">defaultPetCategoryRepository</span>.<span style="color:#a6e22e">findAll</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">petCategories</span>,
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>Tuy nhiên, cách số 2 này không giải quyết được trọn vẹn vấn đề như cách số 1, mặc dù có vẻ như xuất hiện thêm 1 class repository khi sử dụng trong controller. Nhưng việc viết query vẫn sẽ nằm trọn vẹn trong controller.
+Tuy rằng trông có vẻ controller và model sẽ độc lập hơn, nhưng bản chất vấn đề vẫn không được giải quyết.
+Do đó khi áp dụng trong dự án thực tế, các anh/chị nên chọn cách số 1, vì sẽ có nhiều trường hợp cần việc các query phức tạp, thay vì chỉ CRUD.</p>
+<h3 id="refactor-code-cho-ứng-dụng-pet-website">Refactor code cho ứng dụng Pet Website</h3>
+<p>Trong phần này, các anh/chị sẽ thực hành phân tách code thành các lớp riêng biệt, nhằm mục đích đảm bảo code base của ứng dụng có cấu trúc nhất quán, chặt chẽ, và có sự phân tách hợp lí giúp code base trở nên:</p>
+<ul>
+<li>Dễ bảo trì</li>
+<li>Dễ test</li>
+<li>Dễ thêm mới/thay đổi</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/31009750/255326337-09fca3bc-930e-40ac-a83f-804f740e7691.png" alt="image"></p>
+<p>Trong mô hình trên, các thành phần được định nghĩa như sau:</p>
+<blockquote>
+<p>DTO : data transfer object</p></blockquote>
+<ol>
+<li>Request DTO</li>
+</ol>
+<blockquote>
+<p>Phần này chính là dữ liệu nhận được từ phía client</p></blockquote>
+<ol start="2">
+<li>Response DTO</li>
+</ol>
+<blockquote>
+<p>Phần này chính là dữ liệu sau 1 quá trình xử lý qua các bước khác nhau sẽ được binding vào phần <strong>View</strong></p></blockquote>
+<ol start="3">
+<li>Controller</li>
+</ol>
+<blockquote>
+<p>Phần này chính là phần nhận dữ liệu từ phía client và thực hiện các bước tiếp theo trong quy trình. Đảm nhiệm kết nối với phần service để lấy được ResponseDTO và thực hiện đọc template từ View và render ra kết quả cuối cùng cho người dùng</p></blockquote>
+<ol start="4">
+<li>Service</li>
+</ol>
+<blockquote>
+<p>Phần này đảm nhiệm nhận dữ liệu từ Controller và thực thi các logic nghiệp vụ. Bao gồm: kiểm tra dữ liệu đầu vào, biến đổi dữ liệu nếu cần, kết nối với các service khác để thực hiện nghiệp vụ xử lý, kết nối với các repository tương ứng để tương tác với tầng dữ liệu được lưu trữ. Mục tiêu cung cấp được dữ liệu tổng hợp sau quá trình thực thi nghiệp vụ cho Controller</p></blockquote>
+<ol start="5">
+<li>Entity</li>
+</ol>
+<blockquote>
+<p>Đối tượng nghiệp vụ chính, bao gồm các thuộc tính thể hiện được đối tượng trong ứng dụng</p></blockquote>
+<ol start="6">
+<li>Model</li>
+</ol>
+<blockquote>
+<p>Đối tượng ánh xạ của dữ liệu được lưu trữ trong database.</p></blockquote>
+<p>Thông thường, có thể sử dụng chung 1 class cho cả Entity và Model vì 2 đối tượng này khá tương đồng.</p>
+<ol start="7">
+<li>Repository</li>
+</ol>
+<blockquote>
+<p>Lớp trung gian này làm nhiệm vụ thực hiện các truy vấn vào database</p></blockquote>
+<p>Tuân theo cấu trúc trên, các anh/chị hãy thực hiện refactor lại code của Pet Website.</p>
+        
+      
+      <div class="m-1 p-1">
+        
+          <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="http://localhost:1313/categories/nestjs-tutorial">nestjs-tutorial</a>
+        
+      </div>
+    </div>
+  </section>
+  <section class="container section">
+    <div class="max-w-2xl mx-auto">
+      <div class="font-heading text-2xl font-semibold">You Might Also Like</div>
+      <div class="mt-8 grid  gap-8">
+        
+        
+        
+        
+        <ul class="sidebar-links">
+        
+        
+            <li><a href="/post/khoa-hoc-nestjs-bai-06-viet-unit-test/">Khóa học NestJS - Bài 06 Hướng dẫn viết Unit Test</a></li>
+        
+            <li><a href="/post/khoa-hoc-nestjs-bai-04-model-and-repository-pattern/">Khóa học NestJS Bài 04 - Model and Repository Pattern</a></li>
+        
+            <li><a href="/post/khoa-hoc-nestjs-bai03/">Khóa học NestJS Bài 03 - Controllers &amp; Views</a></li>
+        
+            <li><a href="/post/khoa-hoc-nestjs-bai-02/">Khóa học Nestjs - Bài 02 - Giới thiệu mô hình MVC</a></li>
+        
+            <li><a href="/post/khoa-hoc-nestjs/">Khóa học NestJS - Bài 01 - Lộ trình các bài học về NestJS Framework</a></li>
+        
+        </ul>
+                
+      </div>
+    </div>
+  </section>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1642510310947288"
+  crossorigin="anonymous"></script>
+  <ins class="adsbygoogle"
+        style="display:block; text-align:center;"
+        data-ad-layout="in-article"
+        data-ad-format="fluid"
+        data-ad-client="ca-pub-1642510310947288"
+        data-ad-slot="9309117729"></ins>
+  <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>  
+
+    
+    </main>
+    <footer class="footer">
+      <div class="container md:flex">
+        <section class="footer-section-info md:basis-1/4">
+          <div class="address">
+            <a class="logo" href="http://localhost:1313/" title="NextJSVietNam">
+              NextJSVietNam
+            </a>
+            <h4 class="footer-heading">
+                DEVELOPMENT MODE
+            <h4>                
+          </div>
+        </section>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">NestJS</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="http://localhost:1313/post/nestjs-passing-data-between-layers-in-ddd/">Nestjs Passing Data Between Layers in Domain Driven Design</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nestjs-bai-06-viet-unit-test/">Khóa học NestJS - Bài 06 Hướng dẫn viết Unit Test</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nestjs-bai-05-repository-pattern/">Khóa học NestJS Bài 05 - Repository Pattern</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nestjs-bai-04-model-and-repository-pattern/">Khóa học NestJS Bài 04 - Model and Repository Pattern</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nestjs-bai03/">Khóa học NestJS Bài 03 - Controllers &amp; Views</a></li>              
+             
+          </ul>
+        </div>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">NextJS</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nextjs-bai-03-advanced-routing/">Khoá học NextJS Bài 03 - Advanced Routing</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nextjs-bai-02-cau-truc-du-an-nextjs/">Khoá học NextJS 2024 - Bài 02: Cấu trúc dự án NextJS</a></li>              
+            
+              <li><a href="http://localhost:1313/post/create-new-website-with-nextjs/">Create New Website With Nextjs</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nextjs/">Khóa học NextJS - Bài 01 - Lộ trình các bài học về NextJS</a></li>              
+             
+          </ul>
+        </div>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">Cheatsheet</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="http://localhost:1313/post/6minutes-tech-graphql/">6minutes Tech Graphql</a></li>              
+            
+              <li><a href="http://localhost:1313/post/6minutes-tech-progressive-web-app/">6minutes Tech Progressive Web App</a></li>              
+            
+              <li><a href="http://localhost:1313/post/flexbox-and-real-world-examples/">Flexbox and Real World Examples</a></li>              
+            
+              <li><a href="http://localhost:1313/post/react-native-examples-setup-working-place-for-react-native-developer/">[React Native Examples] Setup Working Place for React Native Developer</a></li>              
+            
+              <li><a href="http://localhost:1313/post/happy-new-year-2024/">Happy New Year 2024</a></li>              
+             
+          </ul>
+        </div>
+      </div>
+      <div class="container">
+        <div class="text-center">
+          <a href=""><span class="material-icons text-4xl m-4">facebook</span></a>
+          <a href=""><span class="material-icons text-4xl  m-4">smart_display</span></a>
+        </div>
+        <div class="text-center text-lg py-4">
+          Copyright @ NextJSVietNam 2022
+        </div>
+        <div class="text-center text-sm">
+          Powered by <a class="font-bold text-primary" href="https://gohugo.io/">Go Hugo</a> - Made
+          with love from <a class="font-bold text-primary" href="http://localhost:1313/">NextJSVietNam</a> -
+          Build
+          Version 2024-05-20 08:51:24 &#43;0700 &#43;07
+        </div>
+      </div>
+    </footer>
+
+    
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="http://localhost:1313/core/jquery-3.6.0.min.js"></script>
+        
+             
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="http://localhost:1313/themes/2022/dist/main.js"></script>
+        
+             
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="http://localhost:1313/themes/2022/dist/home.js"></script>
+        
+             
+    
+
+  
+  <script async>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1760611910980690');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1760611910980690&ev=PageView&noscript=1"
+    /></noscript>
+        
+  </body>
+</html>

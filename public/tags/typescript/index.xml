@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>typescript on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
-    <link>https://nextjsvietnam.com/tags/typescript/</link>
-    <description>Recent content in typescript on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <title>Typescript on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+    <link>http://localhost:1313/tags/typescript/</link>
+    <description>Recent content in Typescript on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 05 Aug 2022 15:07:40 +0700</lastBuildDate><atom:link href="https://nextjsvietnam.com/tags/typescript/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 05 Aug 2022 15:07:40 +0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/typescript/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How to Use Typescript Path Alias in Loopback 4</title>
-      <link>https://nextjsvietnam.com/post/how-to-use-typescript-path-alias-in-loopback-4/</link>
+      <link>http://localhost:1313/post/how-to-use-typescript-path-alias-in-loopback-4/</link>
       <pubDate>Fri, 05 Aug 2022 15:07:40 +0700</pubDate>
-      
-      <guid>https://nextjsvietnam.com/post/how-to-use-typescript-path-alias-in-loopback-4/</guid>
-      <description>The problem In Node.js (or TS/JS in general) you can import single modules into your code. This might look the following:
-import { Example } from &amp;#34;../example/model&amp;#34;; import { Article } from &amp;#34;../article/model&amp;#34;; The problem we have here is that the deeper your project tree is the more &amp;lsquo;../&amp;rsquo; are required to access modules in higher layers. Actually, this doesn&amp;rsquo;t look very beautiful to be honest. Fortunately we can change that.</description>
+      <guid>http://localhost:1313/post/how-to-use-typescript-path-alias-in-loopback-4/</guid>
+      <description>&lt;h2 id=&#34;the-problem&#34;&gt;The problem&lt;/h2&gt;&#xA;&lt;p&gt;In Node.js (or TS/JS in general) you can import single modules into your code.&#xA;This might look the following:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-ts&#34; data-lang=&#34;ts&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;import&lt;/span&gt; { &lt;span style=&#34;color:#a6e22e&#34;&gt;Example&lt;/span&gt; } &lt;span style=&#34;color:#66d9ef&#34;&gt;from&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;../example/model&amp;#34;&lt;/span&gt;;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;import&lt;/span&gt; { &lt;span style=&#34;color:#a6e22e&#34;&gt;Article&lt;/span&gt; } &lt;span style=&#34;color:#66d9ef&#34;&gt;from&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;../article/model&amp;#34;&lt;/span&gt;;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The problem we have here is that the deeper your project tree is the more &amp;lsquo;../&amp;rsquo; are required to access modules in higher layers. Actually, this doesn&amp;rsquo;t look very beautiful to be honest. Fortunately we can change that.&lt;/p&gt;&#xA;&lt;p&gt;The solution: &lt;strong&gt;path aliases&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-ts&#34; data-lang=&#34;ts&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;import&lt;/span&gt; { &lt;span style=&#34;color:#a6e22e&#34;&gt;Example&lt;/span&gt; } &lt;span style=&#34;color:#66d9ef&#34;&gt;from&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;@modules/example/model&amp;#34;&lt;/span&gt;;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;import&lt;/span&gt; { &lt;span style=&#34;color:#a6e22e&#34;&gt;Article&lt;/span&gt; } &lt;span style=&#34;color:#66d9ef&#34;&gt;from&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;@modules/article/model&amp;#34;&lt;/span&gt;;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;In our case&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

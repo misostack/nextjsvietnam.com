@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="home" href="http://localhost:1313/" />
+    <meta name="generator" content="jsguru cms" />
+
+    
+    
+      
+    
+
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    
+    
+      
+              
+        
+        <link rel="stylesheet" href="http://localhost:1313/themes/2022/dist/main.css" />
+             
+    
+      
+              
+        
+        <link rel="stylesheet" href="http://localhost:1313/themes/2022/dist/home.css" />
+             
+    
+      
+              
+        
+        <link rel="stylesheet" href="http://localhost:1313/themes/2022/dist/page.css" />
+             
+        
+    
+    
+    
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWE4MLJYE6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-RWE4MLJYE6');    
+    </script>    
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1642510310947288"
+    crossorigin="anonymous"></script>    
+    
+    
+    
+<title>Khóa học NestJS Bài 03 - Controllers &amp; Views | Cùng tìm hiểu mô hình MVC và NestJS bằng cách xây dựng một website chuyên về thú cưng | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+<meta name="robots" content="all" />
+<meta name="keywords" content="nestjs, nestjs-mvc, nestjs-tutorial" />
+<meta name="description" content="Cùng tìm hiểu mô hình MVC và NestJS bằng cách xây dựng một website chuyên về thú cưng" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://user-images.githubusercontent.com/31009750/181449337-70081a76-5a01-4229-805e-39ed0ded6b5b.png" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="750" />
+<meta property="og:image:height" content="300" />
+<meta
+  property="article:publisher"
+  content="https://www.facebook.com/nextjsvietnam"
+/>
+
+<meta property="article:published_time" content="2023-06-21T14:59:42+07:00" />
+<meta property="article:modified_time" content="2023-06-21T14:59:42+07:00" />
+
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png" />
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png" />
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png" />
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png" />
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png" />
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png" />
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="192x192"
+  href="/android-icon-192x192.png"
+/>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="manifest" href="/manifest.json" />
+<meta name="msapplication-TileColor" content="#ffffff" />
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
+<meta name="theme-color" content="#ffffff" />
+
+  </head>
+  <body class="body-nav-fixed">
+    <nav class="nav-fixed nav-default z-50">
+    <div class="container">
+      <div class="nav-container flex flex-wrap justify-between items-center">
+        <a href="http://localhost:1313/" class="nav-brand inline-block">
+          
+          <img class="h-12" src="http://localhost:1313/themes/2022/src/assets/images/logo.png" 
+          alt="Stunning" />
+        </a>
+        <a href="javascript:void(0);" data-menu="#menu-main_menu" class="nav-menu-toggle"><span
+          class="material-icons">menu</span></a>
+        <ul id="menu-main_menu" class="nav-menu h-0 md:h-auto">
+          <form class="nav-menu-search-bar md:hidden relative">
+            <button class="nav-menu-search-bar-search-btn absolute h-full">
+              <svg class="w-3 h-3 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24">
+                <path
+                  d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z">
+                </path>
+              </svg>
+            </button>
+            <input name="s" type="text" class="w-full" />
+          </form>
+          
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/categories/systemdesign">System Design
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/software-architecture">Software Architecture</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/microservice-architecture">Microservice Architecture</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/aws">Learn AWS The Right Way</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/aws-labs">AWS Hands-On Labs</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/categories/cheatsheet">Cheatsheet
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nestjs-examples">NestJS Examples</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/reactjs-examples">ReactJS Examples</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/react-native-examples">React Native Examples</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/categories/frameworks">Frameworks
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nestjs">NestJS</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/reactjs">ReactJS</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nextjs">NextJS</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/">Tutorials
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nestjs-tutorial">NestJS Tutorial</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/reactjs-tutorial">ReactJS Tutorial</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nextjs-tutorial">NextJS Tutorial</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/">Tools
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://regex101.com/">Online Regex</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://www.bashoneliners.com/">Bash Online</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://www.epochconverter.com/">Unix Timestamp Conversion</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://ryanstutorials.net/bash-scripting-tutorial/">Bash Scripting</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://explainshell.com/">Explain Shell</a></li>
+                
+                </ul>
+            
+            </li>
+          
+          <form class="nav-menu-search-bar hidden md:flex relative">
+            <button class="nav-menu-search-bar-search-btn absolute h-full">
+              <svg class="w-3 h-3 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24">
+                <path
+                  d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z">
+                </path>
+              </svg>
+            </button>
+            <input name="s" type="text" class="w-full" />
+          </form>
+        </ul>
+      </div>
+    </div>
+</nav>
+
+    <main>
+    
+  <section class="container section">
+    <div class="page-content max-w-2xl mx-auto">
+        <img src="https://user-images.githubusercontent.com/31009750/181449337-70081a76-5a01-4229-805e-39ed0ded6b5b.png" class="img-responsive" alt="Khóa học NestJS Bài 03 - Controllers &amp; Views" />
+        <h1>Khóa học NestJS Bài 03 - Controllers &amp; Views</h1>
+        
+          
+          
+          <p><strong>Post Date</strong> : 2023-06-21T14:59:42+07:00</p>
+          <p><strong>Modified Date</strong> : 2023-06-21T14:59:42+07:00</p>
+        <p>
+            <strong>Category:</strong>
+            
+            <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="http://localhost:1313/categories/nestjs-tutorial">nestjs-tutorial</a>
+            
+        </p>
+        <p>
+          <strong>Tags:</strong>
+          
+             <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white"
+             href="/tags/nestjs">nestjs</a>
+          
+             <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white"
+             href="/tags/nestjs-pet-website">, nestjs-pet-website</a>
+          
+        </p>                
+        <h2 id="source-code">Source Code</h2>
+<ul>
+<li><a href="https://github.com/misostack/nestjs-tutorial-2023/tree/lession03">Lession 03 Source Code</a></li>
+</ul>
+<h2 id="bài-03">Bài 03</h2>
+<ol>
+<li>Tìm hiểu về module trong NestJS - ứng dụng xây dựng cấu trúc thư mục cho Pet Website</li>
+<li>Tìm hiểu về EJS và cách tạo layout chung</li>
+<li>Làm việc với form và kiểm tra dữ liệu đầu vào</li>
+</ol>
+<h3 id="tổng-quan">Tổng quan</h3>
+<h4 id="mô-hình-mvc">Mô hình MVC</h4>
+<p><img src="https://user-images.githubusercontent.com/31009750/250263049-03852064-b404-40a9-8292-8d14cdf48138.png" alt="image"></p>
+<p>Phía trên mô hình luồng dữ liệu từ khi người dùng thực hiện yêu cầu cho đến khi nhận được kết quả.</p>
+<ol>
+<li>Bước 1 : Controller nhận dữ liệu từ User (www/form-data, multiplart/form-data, uri segements, query params, headers, &hellip;)</li>
+<li>Bước 2 : Gọi tới Service để yêu cầu xử lý nghiệp vụ tương ứng, input là data từ user</li>
+<li>Bước 3 : Service thực hiện gọi tới Model để đọc/ghi dữ liệu tương ứng</li>
+<li>Bước 4: Model thực hiện đọc/ghi dữ liệu tương ứng trong database</li>
+<li>Bước 5: Service gửi trả cho controller dữ liệu đã được đọc/ghi/xử lý nghiệp vụ tương ứng</li>
+<li>Bước 6: Controller đọc template tương ứng cho phần giao diện kết hợp với data nhận được từ service để render phần view cho người dùng.</li>
+<li>Bước 7: Sau khi render được phần view tương ứng, controller gửi kết quả này lại cho người dùng -&gt; HTML/JSON, &hellip;</li>
+</ol>
+<h4 id="áp-dụng-kiến-trúc-mvc-này-vào-dự-án-đồng-thời-phân-chia-dự-án-theo-từng-module">Áp dụng kiến trúc MVC này vào dự án đồng thời phân chia dự án theo từng module</h4>
+<p><img src="https://user-images.githubusercontent.com/31009750/250264066-b17799f6-b81f-4068-8f77-e90b3221bd27.png" alt="image"></p>
+<h3 id="thực-hành">Thực hành</h3>
+<ol>
+<li>Xây dựng module Pet</li>
+</ol>
+<p><strong>1.1. Controllers</strong></p>
+<ul>
+<li>PetController - /pets - /pets/:petId</li>
+<li>ManagePetController /admin/pets/</li>
+<li>ManagePetCategoryController /admin/pet-categories</li>
+<li>ManagePetAttributeController / admin/pet-attributes</li>
+</ul>
+<p><strong>1.2. Services</strong></p>
+<ul>
+<li>PetService</li>
+<li>PetCategoryService</li>
+<li>PetAttributeService</li>
+</ul>
+<p><strong>1.3. Models</strong></p>
+<ul>
+<li>Pet</li>
+<li>PetCategory</li>
+<li>PetAttribute</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># let&#39;s create a pet module</span>
+</span></span><span style="display:flex;"><span>nest g module pet
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># let&#39;s create controllers</span>
+</span></span><span style="display:flex;"><span>nest g controller pet/controllers/pet --flat
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># for admin pages</span>
+</span></span><span style="display:flex;"><span>nest g controller pet/controllers/admin/manage-pet --flat
+</span></span><span style="display:flex;"><span>nest g controller pet/controllers/admin/manage-pet-category --flat
+</span></span><span style="display:flex;"><span>nest g controller pet/controllers/admin/manage-pet-attribute --flat
+</span></span></code></pre></div><p><strong>app.module.ts</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#75715e">// src/app.module.ts
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Module</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/common&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ServeStaticModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/serve-static&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">join</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;path&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">PetModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;./pet/pet.module&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@Module</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">imports</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// public folder
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">ServeStaticModule</span>.<span style="color:#a6e22e">forRoot</span>({
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">rootPath</span>: <span style="color:#66d9ef">join</span>(<span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">cwd</span>(), <span style="color:#e6db74">&#34;public&#34;</span>),
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">serveRoot</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;/public&#34;</span>,
+</span></span><span style="display:flex;"><span>    }),
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">PetModule</span>,
+</span></span><span style="display:flex;"><span>  ],
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">controllers</span><span style="color:#f92672">:</span> [],
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">providers</span><span style="color:#f92672">:</span> [],
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AppModule</span> {}
+</span></span></code></pre></div><p><strong>pet.module.ts</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#75715e">// src/pet/pet.module.ts
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Module</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/common&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@Module</span>({})
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PetModule</span> {}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Controller</span>, <span style="color:#a6e22e">Get</span>, <span style="color:#a6e22e">Param</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/common&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@Controller</span>(<span style="color:#e6db74">&#34;pets&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PetController</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Get</span>(<span style="color:#e6db74">&#34;&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">getList() {</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Pet List&#34;</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Get</span>(<span style="color:#e6db74">&#34;:id&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">getDetail</span>(<span style="color:#66d9ef">@Param</span>() { <span style="color:#a6e22e">id</span> }<span style="color:#f92672">:</span> { <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">number</span> }) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">`Pet Detail </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">id</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>Tại bước này NestJS cung cấp 1 số cú pháp để khai báo handler cho mỗi path</strong></p>
+<ul>
+<li><a href="https://docs.nestjs.com/controllers#route-parameters">Tài liệu tham khảo về route, params cho controller trong NestJS</a></li>
+</ul>
+<p>Đến đây hãy thử chạy lại ứng dụng của bạn xem chúng ta có gì nào</p>
+<p><img src="https://user-images.githubusercontent.com/31009750/250266534-82dd679a-1b8c-4785-8360-5ca09862b12a.png" alt="image"></p>
+<p><img src="https://user-images.githubusercontent.com/31009750/250266589-680113f5-8baa-46a8-b0a3-57f16a9ab2bc.png" alt="image"></p>
+<p><img src="https://user-images.githubusercontent.com/31009750/250266598-8844188c-d6d9-463f-8fdf-adb597a3bbeb.png" alt="image"></p>
+<p>Cho admin</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Controller</span>, <span style="color:#a6e22e">Get</span>, <span style="color:#a6e22e">Param</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/common&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@Controller</span>(<span style="color:#e6db74">&#34;admin/pets&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ManagePetController</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Get</span>(<span style="color:#e6db74">&#34;&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">getList() {</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;admin pet list&#34;</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Get</span>(<span style="color:#e6db74">&#34;:id&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">getDetail</span>(<span style="color:#66d9ef">@Param</span>() { <span style="color:#a6e22e">id</span> }<span style="color:#f92672">:</span> { <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">string</span> }) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">`admin pet detail </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">id</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Controller</span>, <span style="color:#a6e22e">Get</span>, <span style="color:#a6e22e">Param</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/common&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@Controller</span>(<span style="color:#e6db74">&#34;admin/pet-categories&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ManagePetCategoryController</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Get</span>(<span style="color:#e6db74">&#34;&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">getList() {</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;admin pet categories&#34;</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Get</span>(<span style="color:#e6db74">&#34;:id&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">getDetail</span>(<span style="color:#66d9ef">@Param</span>() { <span style="color:#a6e22e">id</span> }<span style="color:#f92672">:</span> { <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">string</span> }) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">`admin pet category detail </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">id</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Controller</span>, <span style="color:#a6e22e">Get</span>, <span style="color:#a6e22e">Param</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/common&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@Controller</span>(<span style="color:#e6db74">&#34;admin/pet-attributes&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ManagePetAttributeController</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Get</span>(<span style="color:#e6db74">&#34;&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">getList() {</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;admin pet attribute list&#34;</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Get</span>(<span style="color:#e6db74">&#34;:id&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">getDetail</span>(<span style="color:#66d9ef">@Param</span>() { <span style="color:#a6e22e">id</span> }<span style="color:#f92672">:</span> { <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">string</span> }) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">`admin pet attribute detail </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">id</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>Chúng ta hãy bắt đầu với form tạo 1 pet category</strong></p>
+<ul>
+<li>Tích hợp với bootstrap (<a href="https://getbootstrap.com/docs/5.0/getting-started/download/">https://getbootstrap.com/docs/5.0/getting-started/download/</a>)</li>
+<li>Sử dụng ejs partial ( tách các phần chung của trang web - header, footer, và sử dụng lại trong từng template khác nhau)</li>
+<li>Tạo route</li>
+<li>Kết nối với view</li>
+<li>Nhận dữ liệu từ form và xử lý kết quả (fake data)</li>
+</ul>
+<p>Cấu trúc thư mục view sẽ có dạng như sau</p>
+<blockquote>
+<p>views\pet\admin\manage-pet-category\create.ejs</p></blockquote>
+<p>Do đó khi sử dụng ta chỉ cần chỉ đường dẫn tới file template nằm trong thư mục view</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">@Render</span>(<span style="color:#e6db74">&#34;pet/admin/manage-pet-category/create&#34;</span>)
+</span></span></code></pre></div><p>Sau khi sử dụng 1 số example có sẵn tại bootstrap ta có thể sử dụng template như bên dưới:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Controller</span>, <span style="color:#a6e22e">Get</span>, <span style="color:#a6e22e">Param</span>, <span style="color:#a6e22e">Post</span>, <span style="color:#a6e22e">Render</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/common&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@Controller</span>(<span style="color:#e6db74">&#34;admin/pet-categories&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ManagePetCategoryController</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Get</span>(<span style="color:#e6db74">&#34;&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">getList() {</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;admin pet categories&#34;</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Get</span>(<span style="color:#e6db74">&#34;create&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Post</span>(<span style="color:#e6db74">&#34;create&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Render</span>(<span style="color:#e6db74">&#34;pet/admin/manage-pet-category/create&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">create() {</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// a form
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> {};
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Get</span>(<span style="color:#e6db74">&#34;:id&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">getDetail</span>(<span style="color:#66d9ef">@Param</span>() { <span style="color:#a6e22e">id</span> }<span style="color:#f92672">:</span> { <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">string</span> }) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">`admin pet category detail </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">id</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Trong đó phần header, footer sẽ chứa những thành phần dùng chung trong template</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">&lt;</span>%- include(&#39;layouts/admin/header&#39;); %&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">h1</span>&gt;Manage Pet Category - Create New Pet Category&lt;/<span style="color:#f92672">h1</span>&gt;
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">&lt;</span>%- include(&#39;layouts/admin/footer&#39;); %&gt;
+</span></span></code></pre></div><p><img src="https://user-images.githubusercontent.com/31009750/250268918-ee065a07-00fe-4036-8035-280fdd3345c3.png" alt="image"></p>
+<p>You can find all the related source code here:</p>
+<ul>
+<li><a href="https://github.com/misostack/nestjs-tutorial-2023/tree/lession03/public/assets">Assets</a></li>
+<li><a href="https://github.com/misostack/nestjs-tutorial-2023/tree/lession03/views/layouts/admin">Layouts</a></li>
+</ul>
+<p>Và chúng ta có kết quả như sau:</p>
+<p><img src="https://user-images.githubusercontent.com/31009750/250269750-766734ec-d18f-4c5f-b713-26a6e594bbf7.png" alt="image"></p>
+<p>Okie và hãy tới bước tiếp theo nào, hãy thiết kế 1 form để nhập và xử lý dữ liệu cho 1 PetCategory</p>
+<p>Hãy chú ý rằng chúng ta có 3 trường hợp sử dụng cùng 1 view create form của admin pet category:</p>
+<ul>
+<li>Create New Pet Category</li>
+<li>Create New Pet Category thành công/thất bại</li>
+<li>Edit Pet Category</li>
+<li>Update Pet Categeory thành công/thất bại</li>
+</ul>
+<p>Một số ràng buộc của form này:</p>
+<ul>
+<li>Pet category chỉ có title</li>
+<li>Pet category title không được để trống</li>
+<li>Pet category title không được dài hơn 150 kí tự</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># to support multipart/form-data</span>
+</span></span><span style="display:flex;"><span>npm install nestjs-form-data --save
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># to support data validation and transformation</span>
+</span></span><span style="display:flex;"><span>npm install class-transformer reflect-metadata --save
+</span></span></code></pre></div><p><strong>Để sử dụng được multiplart/form-data</strong>, chúng ta cần import module NestJSFormData như bên dưới.
+Do mặc định NestJS được cấu hình chỉ để support json d</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#75715e">// src/pet/pet.module.ts
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Module</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/common&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">PetController</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;./controllers/pet.controller&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ManagePetController</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;./controllers/admin/manage-pet.controller&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ManagePetCategoryController</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;./controllers/admin/manage-pet-category.controller&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ManagePetAttributeController</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;./controllers/admin/manage-pet-attribute.controller&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">NestjsFormDataModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;nestjs-form-data&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@Module</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">imports</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">NestjsFormDataModule</span>],
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">controllers</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">PetController</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ManagePetController</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ManagePetCategoryController</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ManagePetAttributeController</span>,
+</span></span><span style="display:flex;"><span>  ],
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PetModule</span> {}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#75715e">// pet-dto.ts
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">IsNotEmpty</span>, <span style="color:#a6e22e">MaxLength</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;class-validator&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CreatePetCategoryDto</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@MaxLength</span>(<span style="color:#ae81ff">50</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@IsNotEmpty</span>()
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">title</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> { <span style="color:#a6e22e">CreatePetCategoryDto</span> };
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Body</span>, <span style="color:#a6e22e">Controller</span>, <span style="color:#a6e22e">Get</span>, <span style="color:#a6e22e">Param</span>, <span style="color:#a6e22e">Post</span>, <span style="color:#a6e22e">Render</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/common&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">CreatePetCategoryDto</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;src/pet/dtos/pet-dto&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">plainToInstance</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;class-transformer&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">validate</span>, <span style="color:#a6e22e">ValidationError</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;class-validator&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">FormDataRequest</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;nestjs-form-data&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">transformError</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">error</span>: <span style="color:#66d9ef">ValidationError</span>) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">property</span>, <span style="color:#a6e22e">constraints</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">error</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">property</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">constraints</span>,
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@Controller</span>(<span style="color:#e6db74">&#34;admin/pet-categories&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ManagePetCategoryController</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Get</span>(<span style="color:#e6db74">&#34;&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">getList() {</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;admin pet categories&#34;</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Get</span>(<span style="color:#e6db74">&#34;create&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Render</span>(<span style="color:#e6db74">&#34;pet/admin/manage-pet-category/create&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">view_create() {</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// a form
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">mode</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;create&#34;</span>,
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Post</span>(<span style="color:#e6db74">&#34;create&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Render</span>(<span style="color:#e6db74">&#34;pet/admin/manage-pet-category/create&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@FormDataRequest</span>()
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">async</span> <span style="color:#a6e22e">create</span>(<span style="color:#66d9ef">@Body</span>() <span style="color:#a6e22e">createPetCategoryDto</span>: <span style="color:#66d9ef">CreatePetCategoryDto</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">mode</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;create&#34;</span>,
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// validation
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">object</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">plainToInstance</span>(<span style="color:#a6e22e">CreatePetCategoryDto</span>, <span style="color:#a6e22e">createPetCategoryDto</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">errors</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">validate</span>(<span style="color:#66d9ef">object</span>, {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">stopAtFirstError</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">errors</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">Reflect</span>.<span style="color:#66d9ef">set</span>(<span style="color:#a6e22e">data</span>, <span style="color:#e6db74">&#34;error&#34;</span>, <span style="color:#e6db74">&#34;Please correct all fields!&#34;</span>);
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">responseError</span> <span style="color:#f92672">=</span> {};
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">errors</span>.<span style="color:#a6e22e">map</span>((<span style="color:#a6e22e">error</span>) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">rawError</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">transformError</span>(<span style="color:#a6e22e">error</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">Reflect</span>.<span style="color:#66d9ef">set</span>(
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">responseError</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">rawError</span>.<span style="color:#a6e22e">property</span>,
+</span></span><span style="display:flex;"><span>          Object.<span style="color:#a6e22e">values</span>(<span style="color:#a6e22e">rawError</span>.<span style="color:#a6e22e">constraints</span>)[<span style="color:#ae81ff">0</span>]
+</span></span><span style="display:flex;"><span>        );
+</span></span><span style="display:flex;"><span>      });
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">Reflect</span>.<span style="color:#66d9ef">set</span>(<span style="color:#a6e22e">data</span>, <span style="color:#e6db74">&#34;errors&#34;</span>, <span style="color:#a6e22e">responseError</span>);
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> { <span style="color:#a6e22e">data</span> };
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// set value and show success message
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">Reflect</span>.<span style="color:#66d9ef">set</span>(<span style="color:#a6e22e">data</span>, <span style="color:#e6db74">&#34;values&#34;</span>, <span style="color:#66d9ef">object</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Reflect</span>.<span style="color:#66d9ef">set</span>(
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">data</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;success&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">`Pet Category : </span><span style="color:#e6db74">${</span><span style="color:#66d9ef">object</span>.<span style="color:#a6e22e">title</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> has been created!`</span>
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// success
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> { <span style="color:#a6e22e">data</span> };
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Get</span>(<span style="color:#e6db74">&#34;:id&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">getDetail</span>(<span style="color:#66d9ef">@Param</span>() { <span style="color:#a6e22e">id</span> }<span style="color:#f92672">:</span> { <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">string</span> }) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">`admin pet category detail </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">id</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">&lt;</span>%- include(&#39;layouts/admin/header&#39;); %&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">section</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;col-6&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">form</span> <span style="color:#a6e22e">method</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;post&#34;</span> <span style="color:#a6e22e">enctype</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;multipart/form-data&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;card&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;card-body&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">h5</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;card-title&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>          <span style="color:#960050;background-color:#1e0010">&lt;</span>% if (data.mode === &#39;create&#39;) { %&gt; New Pet Category <span style="color:#960050;background-color:#1e0010">&lt;</span>% } %&gt;
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">h5</span>&gt;
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">&lt;!-- error --&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#960050;background-color:#1e0010">&lt;</span>% if (data.error){ %&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;alert alert-danger&#34;</span> <span style="color:#a6e22e">role</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;alert&#34;</span>&gt;<span style="color:#960050;background-color:#1e0010">&lt;</span>%= data.error %&gt;&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>        <span style="color:#960050;background-color:#1e0010">&lt;</span>% } %&gt;
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">&lt;!-- success --&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#960050;background-color:#1e0010">&lt;</span>% if (data.success){ %&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;alert alert-success&#34;</span> <span style="color:#a6e22e">role</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;alert&#34;</span>&gt;<span style="color:#960050;background-color:#1e0010">&lt;</span>%= data.success %&gt;&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>        <span style="color:#960050;background-color:#1e0010">&lt;</span>% } %&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;mb-3&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>          &lt;<span style="color:#f92672">label</span> <span style="color:#a6e22e">for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;title&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;form-label&#34;</span>&gt;Title&lt;/<span style="color:#f92672">label</span>&gt;
+</span></span><span style="display:flex;"><span>          &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;input-group has-validation&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">input</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;form-control &lt;%= data.errors &amp;&amp; data.errors[&#39;title&#39;] ? &#39;is-invalid&#39;: &#39;&#39; %&gt;&#34;</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;title&#34;</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;title&#34;</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&lt;%= data.values &amp;&amp; data.values[&#39;title&#39;] %&gt;&#34;</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#a6e22e">placeholder</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Pet Category Title&#34;</span>
+</span></span><span style="display:flex;"><span>            /&gt;
+</span></span><span style="display:flex;"><span>            <span style="color:#960050;background-color:#1e0010">&lt;</span>% if (data.errors <span style="color:#960050;background-color:#1e0010">&amp;&amp;</span> data.errors[&#39;title&#39;]) { %&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;validationServerUsernameFeedback&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;invalid-feedback&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>              <span style="color:#960050;background-color:#1e0010">&lt;</span>%= data.errors[&#39;title&#39;] %&gt;
+</span></span><span style="display:flex;"><span>            &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>            <span style="color:#960050;background-color:#1e0010">&lt;</span>% } %&gt;
+</span></span><span style="display:flex;"><span>          &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>      <span style="color:#960050;background-color:#1e0010">&lt;</span>% if(!data.success) { %&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;mb-3 col-12 text-center&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;submit&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;btn btn-primary&#34;</span>&gt;Save&lt;/<span style="color:#f92672">button</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>      <span style="color:#960050;background-color:#1e0010">&lt;</span>% } %&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#f92672">form</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">section</span>&gt;
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">&lt;</span>%- include(&#39;layouts/admin/footer&#39;); %&gt;
+</span></span></code></pre></div><p>Và chúng ta có được 3 trạng thái của form như bên dưới</p>
+<p><img src="https://user-images.githubusercontent.com/31009750/250274557-9a8d1677-7737-4127-b8d7-4ad1ca7404c0.png" alt="image">
+<img src="https://user-images.githubusercontent.com/31009750/250274563-3952ec74-8aae-49ca-a093-39d2997eb8ed.png" alt="image">
+<img src="https://user-images.githubusercontent.com/31009750/250274577-33997f54-815c-4600-9dd3-acfc1b96fb38.png" alt="image"></p>
+        
+      
+      <div class="m-1 p-1">
+        
+          <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="http://localhost:1313/categories/nestjs-tutorial">nestjs-tutorial</a>
+        
+      </div>
+    </div>
+  </section>
+  <section class="container section">
+    <div class="max-w-2xl mx-auto">
+      <div class="font-heading text-2xl font-semibold">You Might Also Like</div>
+      <div class="mt-8 grid  gap-8">
+        
+        
+        
+        
+        <ul class="sidebar-links">
+        
+        
+            <li><a href="/post/khoa-hoc-nestjs-bai-06-viet-unit-test/">Khóa học NestJS - Bài 06 Hướng dẫn viết Unit Test</a></li>
+        
+            <li><a href="/post/khoa-hoc-nestjs-bai-05-repository-pattern/">Khóa học NestJS Bài 05 - Repository Pattern</a></li>
+        
+            <li><a href="/post/khoa-hoc-nestjs-bai-04-model-and-repository-pattern/">Khóa học NestJS Bài 04 - Model and Repository Pattern</a></li>
+        
+            <li><a href="/post/khoa-hoc-nestjs-bai-02/">Khóa học Nestjs - Bài 02 - Giới thiệu mô hình MVC</a></li>
+        
+            <li><a href="/post/khoa-hoc-nestjs/">Khóa học NestJS - Bài 01 - Lộ trình các bài học về NestJS Framework</a></li>
+        
+        </ul>
+                
+      </div>
+    </div>
+  </section>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1642510310947288"
+  crossorigin="anonymous"></script>
+  <ins class="adsbygoogle"
+        style="display:block; text-align:center;"
+        data-ad-layout="in-article"
+        data-ad-format="fluid"
+        data-ad-client="ca-pub-1642510310947288"
+        data-ad-slot="9309117729"></ins>
+  <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>  
+
+    
+    </main>
+    <footer class="footer">
+      <div class="container md:flex">
+        <section class="footer-section-info md:basis-1/4">
+          <div class="address">
+            <a class="logo" href="http://localhost:1313/" title="NextJSVietNam">
+              NextJSVietNam
+            </a>
+            <h4 class="footer-heading">
+                DEVELOPMENT MODE
+            <h4>                
+          </div>
+        </section>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">NestJS</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="http://localhost:1313/post/nestjs-passing-data-between-layers-in-ddd/">Nestjs Passing Data Between Layers in Domain Driven Design</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nestjs-bai-06-viet-unit-test/">Khóa học NestJS - Bài 06 Hướng dẫn viết Unit Test</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nestjs-bai-05-repository-pattern/">Khóa học NestJS Bài 05 - Repository Pattern</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nestjs-bai-04-model-and-repository-pattern/">Khóa học NestJS Bài 04 - Model and Repository Pattern</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nestjs-bai03/">Khóa học NestJS Bài 03 - Controllers &amp; Views</a></li>              
+             
+          </ul>
+        </div>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">NextJS</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nextjs-bai-03-advanced-routing/">Khoá học NextJS Bài 03 - Advanced Routing</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nextjs-bai-02-cau-truc-du-an-nextjs/">Khoá học NextJS 2024 - Bài 02: Cấu trúc dự án NextJS</a></li>              
+            
+              <li><a href="http://localhost:1313/post/create-new-website-with-nextjs/">Create New Website With Nextjs</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nextjs/">Khóa học NextJS - Bài 01 - Lộ trình các bài học về NextJS</a></li>              
+             
+          </ul>
+        </div>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">Cheatsheet</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="http://localhost:1313/post/6minutes-tech-graphql/">6minutes Tech Graphql</a></li>              
+            
+              <li><a href="http://localhost:1313/post/6minutes-tech-progressive-web-app/">6minutes Tech Progressive Web App</a></li>              
+            
+              <li><a href="http://localhost:1313/post/flexbox-and-real-world-examples/">Flexbox and Real World Examples</a></li>              
+            
+              <li><a href="http://localhost:1313/post/react-native-examples-setup-working-place-for-react-native-developer/">[React Native Examples] Setup Working Place for React Native Developer</a></li>              
+            
+              <li><a href="http://localhost:1313/post/happy-new-year-2024/">Happy New Year 2024</a></li>              
+             
+          </ul>
+        </div>
+      </div>
+      <div class="container">
+        <div class="text-center">
+          <a href=""><span class="material-icons text-4xl m-4">facebook</span></a>
+          <a href=""><span class="material-icons text-4xl  m-4">smart_display</span></a>
+        </div>
+        <div class="text-center text-lg py-4">
+          Copyright @ NextJSVietNam 2022
+        </div>
+        <div class="text-center text-sm">
+          Powered by <a class="font-bold text-primary" href="https://gohugo.io/">Go Hugo</a> - Made
+          with love from <a class="font-bold text-primary" href="http://localhost:1313/">NextJSVietNam</a> -
+          Build
+          Version 2024-05-20 08:51:24 &#43;0700 &#43;07
+        </div>
+      </div>
+    </footer>
+
+    
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="http://localhost:1313/core/jquery-3.6.0.min.js"></script>
+        
+             
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="http://localhost:1313/themes/2022/dist/main.js"></script>
+        
+             
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="http://localhost:1313/themes/2022/dist/home.js"></script>
+        
+             
+    
+
+  
+  <script async>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1760611910980690');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1760611910980690&ev=PageView&noscript=1"
+    /></noscript>
+        
+  </body>
+</html>

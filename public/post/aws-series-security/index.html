@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="home" href="http://localhost:1313/" />
+    <meta name="generator" content="jsguru cms" />
+
+    
+    
+      
+    
+
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    
+    
+      
+              
+        
+        <link rel="stylesheet" href="http://localhost:1313/themes/2022/dist/main.css" />
+             
+    
+      
+              
+        
+        <link rel="stylesheet" href="http://localhost:1313/themes/2022/dist/home.css" />
+             
+    
+      
+              
+        
+        <link rel="stylesheet" href="http://localhost:1313/themes/2022/dist/page.css" />
+             
+        
+    
+    
+    
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWE4MLJYE6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-RWE4MLJYE6');    
+    </script>    
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1642510310947288"
+    crossorigin="anonymous"></script>    
+    
+    
+    
+<title>Aws Series Security | In this topic you will learn how to protect your infrastructure on AWS | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+<meta name="robots" content="all" />
+<meta name="keywords" content="aws, solution architecture, aws solution architect associate" />
+<meta name="description" content="In this topic you will learn how to protect your infrastructure on AWS" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://gist.github.com/assets/31009750/8e399333-fb60-4510-b61d-f0d253d560e7" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="750" />
+<meta property="og:image:height" content="300" />
+<meta
+  property="article:publisher"
+  content="https://www.facebook.com/nextjsvietnam"
+/>
+
+<meta property="article:published_time" content="2024-01-03T10:12:10+07:00" />
+<meta property="article:modified_time" content="2024-01-03T10:12:10+07:00" />
+
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png" />
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png" />
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png" />
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png" />
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png" />
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png" />
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="192x192"
+  href="/android-icon-192x192.png"
+/>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="manifest" href="/manifest.json" />
+<meta name="msapplication-TileColor" content="#ffffff" />
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
+<meta name="theme-color" content="#ffffff" />
+
+  </head>
+  <body class="body-nav-fixed">
+    <nav class="nav-fixed nav-default z-50">
+    <div class="container">
+      <div class="nav-container flex flex-wrap justify-between items-center">
+        <a href="http://localhost:1313/" class="nav-brand inline-block">
+          
+          <img class="h-12" src="http://localhost:1313/themes/2022/src/assets/images/logo.png" 
+          alt="Stunning" />
+        </a>
+        <a href="javascript:void(0);" data-menu="#menu-main_menu" class="nav-menu-toggle"><span
+          class="material-icons">menu</span></a>
+        <ul id="menu-main_menu" class="nav-menu h-0 md:h-auto">
+          <form class="nav-menu-search-bar md:hidden relative">
+            <button class="nav-menu-search-bar-search-btn absolute h-full">
+              <svg class="w-3 h-3 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24">
+                <path
+                  d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z">
+                </path>
+              </svg>
+            </button>
+            <input name="s" type="text" class="w-full" />
+          </form>
+          
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/categories/systemdesign">System Design
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/software-architecture">Software Architecture</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/microservice-architecture">Microservice Architecture</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/aws">Learn AWS The Right Way</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/aws-labs">AWS Hands-On Labs</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/categories/cheatsheet">Cheatsheet
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nestjs-examples">NestJS Examples</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/reactjs-examples">ReactJS Examples</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/react-native-examples">React Native Examples</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/categories/frameworks">Frameworks
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nestjs">NestJS</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/reactjs">ReactJS</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nextjs">NextJS</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/">Tutorials
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nestjs-tutorial">NestJS Tutorial</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/reactjs-tutorial">ReactJS Tutorial</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nextjs-tutorial">NextJS Tutorial</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/">Tools
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://regex101.com/">Online Regex</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://www.bashoneliners.com/">Bash Online</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://www.epochconverter.com/">Unix Timestamp Conversion</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://ryanstutorials.net/bash-scripting-tutorial/">Bash Scripting</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://explainshell.com/">Explain Shell</a></li>
+                
+                </ul>
+            
+            </li>
+          
+          <form class="nav-menu-search-bar hidden md:flex relative">
+            <button class="nav-menu-search-bar-search-btn absolute h-full">
+              <svg class="w-3 h-3 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24">
+                <path
+                  d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z">
+                </path>
+              </svg>
+            </button>
+            <input name="s" type="text" class="w-full" />
+          </form>
+        </ul>
+      </div>
+    </div>
+</nav>
+
+    <main>
+    
+  <section class="container section">
+    <div class="page-content max-w-2xl mx-auto">
+        <img src="https://gist.github.com/assets/31009750/8e399333-fb60-4510-b61d-f0d253d560e7" class="img-responsive" alt="Aws Series Security" />
+        <h1>Aws Series Security</h1>
+        
+          
+          
+          <p><strong>Post Date</strong> : 2024-01-03T10:12:10+07:00</p>
+          <p><strong>Modified Date</strong> : 2024-01-03T10:12:10+07:00</p>
+        <p>
+            <strong>Category:</strong>
+            
+            <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="http://localhost:1313/categories/systemdesign">systemdesign</a>
+            
+            <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="http://localhost:1313/categories/aws">aws</a>
+            
+        </p>
+        <p>
+          <strong>Tags:</strong>
+          
+             <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white"
+             href="/tags/aws">aws</a>
+          
+        </p>                
+        <h2 id="ddos-attack">DDos Attack</h2>
+<h3 id="syn-floods-attack">SYN Floods Attack</h3>
+<blockquote>
+<p>SYN Flood use TCP 3-Way Handshake to attack the servers</p></blockquote>
+<blockquote>
+<p>Some concepts</p></blockquote>
+<ul>
+<li>SYN(Synchronize Sequence Number)</li>
+<li>ACK(Acknowledgement)</li>
+</ul>
+<p><a href="https://www.geeksforgeeks.org/tcp-3-way-handshake-process/">TCP 3-Way Handshake Process</a></p>
+<p><img src="https://gist.github.com/assets/31009750/8503776e-e14b-43e1-b53c-b87949dfb45a" alt="image">
+<img src="https://gist.github.com/assets/31009750/8b3ec0c5-b515-4c44-8bb6-799d2e759b16" alt="image"></p>
+<blockquote>
+<p>How SYN floods attack work?</p></blockquote>
+<ul>
+<li>Uses the built-in patience of the TCP stacks to overwhelm a server by sending a large number of SYN packets and then ignoring the SYN-ACKs returned by the server. This causes the server to use up resources waiting for a set of amount time for the anticipated ACK that should come from a legitimate client.</li>
+<li>There are so many concurrent TCP connections that a web or application server can have open, so if an attacker sends enough SYN packets to a server, it can easily eat through the allowed number of TCP connections.</li>
+</ul>
+<h3 id="amplification-attack">Amplification Attack</h3>
+<ul>
+<li>Amplicafication/Reflection attacks can include things such as NTP, SSDP, DNS, Chargen, SNMP attacks,&hellip;</li>
+<li>This is where an attacker may send a third-party server(such as an NTP server) a request using a spoofed IP address. Then the server will response to that request with a greater payload than the initial request(28-54 times larger than the request) to the spoofed IP address.</li>
+<li>Attackers can cordinate this use multiple NTP servers a second to send legitimate NTP traffic to the target</li>
+</ul>
+<p><img src="https://gist.github.com/assets/31009750/67fc1dcc-ae49-4ef8-ad14-3c3e3fb559bf" alt="image"></p>
+<ul>
+<li><a href="https://www.cloudflare.com/learning/ddos/ntp-amplification-ddos-attack/">Example About Amplication Attack</a></li>
+</ul>
+<h3 id="layer-7-attack">Layer 7 Attack</h3>
+<ul>
+<li>A typically layer 7 attack occurs when a web server receives flood of GET or POST requests, usually from a botnet or a large number of compromised computer.</li>
+</ul>
+<p><img src="https://gist.github.com/assets/31009750/77f21b0b-caec-4587-9b6c-7a9c0a4013d1" alt="image"></p>
+<h2 id="cloudtrail">CloudTrail</h2>
+<p>You can identity which users and accounts called AWS, the source IP address from which the calls were made, and when the calls occurred. Basically, it logs all your API calls and store in S3.</p>
+<p><img src="https://gist.github.com/assets/31009750/2d334e9b-0a34-458b-93c3-034c445aa850" alt="image"></p>
+<h2 id="aws-shield">AWS Shield</h2>
+<ul>
+<li>Free DDos Protection</li>
+<li>Protect all customers on ELB, CloudFront, Route53</li>
+<li>Protect againts SYN/UDP floods, reflection attacks, and other Layer3/Layer4 attacks</li>
+</ul>
+<h3 id="aws-shiled-advanced">AWS Shiled Advanced</h3>
+<ul>
+<li>Always on, flow-based monitoring</li>
+<li>24/7 access to DDos response Team(DRT) to help and mitigate application-layer</li>
+<li>Protect your AWS bill against higher fees due to ELB, CloudFront, Route53 usage spikes during a DDos attack</li>
+<li>Costs 3,000 USD per month.</li>
+</ul>
+<p><img src="https://gist.github.com/assets/31009750/48e719e9-d9dc-4ad3-96ac-1cb50cc19b5c" alt="image"></p>
+<blockquote>
+<p>Shield Protection against Layer3/Layer4 attacks</p></blockquote>
+<h2 id="filtering-traffic-with-waf">Filtering Traffic with WAF</h2>
+<blockquote>
+<p>WAF: web application firewall to monitor: http/https requests that are forward to Amazon CloudFront or an Application Load Balancer. It also let you control access to your content.</p></blockquote>
+<ul>
+<li>You can configure: ip addresses, query string parameters to be allowed</li>
+<li>It will return error 403 if the requests are not allowed</li>
+<li>Operate at Layer 7</li>
+</ul>
+<p>WAFs allow you:</p>
+<ul>
+<li>Allow/Block all requests except the ones you specify</li>
+<li>Count the requests that match properties you specify</li>
+</ul>
+<p>Conditions:</p>
+<ul>
+<li>Ip addressess,</li>
+<li>Country</li>
+<li>Values in headers</li>
+<li>Presense of SQL code(SQL Injection)</li>
+<li>Presense of scripts(Cross Site Scripting)</li>
+<li>Strings that appear in requests(specific strings/regex)</li>
+</ul>
+<h2 id="guard-your-network-with-guardduty">Guard your network with GuardDuty</h2>
+<ul>
+<li>Threat Detection service that uses machine learning to continous monitor malicious behavior from: unusual API calls, calls from malicious ip, attempt to disable CloudTrail logging, unauthorized deployments</li>
+<li>Alerts appear in GuardDuty console and CloudWatch Events</li>
+<li>Receives feeds from third party Proofpoint, as well as AWS Security about known malicious domain or IP addresses, etc</li>
+<li>Monitor CloudTrail logs, VPC Flow logs, DNS logs</li>
+<li>Machine learning and anomaly detection</li>
+<li>7days-14days to set baseline, once active you will find GuardDuty console, and in CloudWatch Events</li>
+</ul>
+<h2 id="aws-firewall-manager">AWS Firewall Manager</h2>
+<ul>
+<li>Security management service in a single pane of glass. Allow you to centrally set up and manage firewall rules across multiple AWS accounts and applications in AWS Organizations</li>
+<li>You can create WAF rules for your ALB, API Gateways, Amazon CloudFront, or Shield Protection for your ALB, Elastic IPs</li>
+</ul>
+<h2 id="monitoring-s3-buckets-wih-macie">Monitoring S3 Buckets wih Macie</h2>
+<h3 id="personal-identifiable-information">Personal Identifiable Information</h3>
+<ul>
+<li>Personal Data used to establish an individual&rsquo;s identity</li>
+<li>This data could be exploited by criminals, used in identity theft and financial fraud</li>
+<li>Home address, email address, Social Security Number</li>
+<li>Passport number, driver license number</li>
+</ul>
+<blockquote>
+<p>Macie uses machine learning and pattern matching to discover sensitive data in S3</p></blockquote>
+<ul>
+<li>Alerts you about unencrypted buckets</li>
+<li>Alerts you about public buckets</li>
+<li>Alerts you about buckets shared with AWS accounts outside of those defined in your AWS Organizations.</li>
+<li>Great for frameworks like HIPAA and GDPR</li>
+<li>It looks for PI, PII and financial data</li>
+</ul>
+<h3 id="security-operating-system-using-amazon-inspector">Security Operating system using Amazon Inspector</h3>
+<ul>
+<li>Used to perform vulnerability scans on both EC2 instances and VPCs: host assessments and network assessments.</li>
+</ul>
+<h2 id="manage-encryption-keys-with-kms-and-cloudhsm">Manage Encryption Keys with KMS and CloudHSM</h2>
+<h3 id="kms">KMS</h3>
+<ul>
+<li>KMS: key management service to create and control encryption key to encrypt your data. Integrated with EBS, S3, RDS.</li>
+<li>Centralized control</li>
+<li>Shared tenancy</li>
+<li>Automatic key rotation</li>
+<li>Automatic key generation</li>
+</ul>
+<h3 id="cmk">CMK</h3>
+<ul>
+<li>A customer master key(CMK) is a logical presentation or master key. Includes: metadata, description, key state.</li>
+<li>To start using KMS you start with request of creating a CMK.</li>
+</ul>
+<h3 id="hsm">HSM</h3>
+<ul>
+<li>A hardware security module is a physical computing device that safeguards and manage digital keys, perform encryption/decryption functions.</li>
+<li>A HSM contains one or more secure cryptoprocessor chips.</li>
+<li>Dedicated HSM</li>
+<li>Full control of users, groups, keys</li>
+<li>No automatic key rotation</li>
+</ul>
+<h2 id="storing-your-secrets-in-secret-mananger">Storing Your Secrets in Secret Mananger</h2>
+<blockquote>
+<p>A service that securely stores, encrypts, rotate your database credentials and other secrets</p></blockquote>
+<ul>
+<li>Encryption in transit and at-rest using KMS</li>
+<li>Automatically rotates credentials</li>
+<li>Apply fine-grained access control using IAM policies</li>
+<li>Costs money but is highly scalable</li>
+<li>Your appplication makes an API call to Secrets Manager to receive the secret programmatically</li>
+</ul>
+<blockquote>
+<p>What can be stored:</p></blockquote>
+<ul>
+<li>RDS credentials</li>
+<li>Credentials for non-RDS databases</li>
+<li>Any other types of secrets: ssh keys, API keys</li>
+</ul>
+<blockquote>
+<p>If you enable rotation, SM immediately rotates the secret once to test the configuration</p></blockquote>
+<h2 id="storing-your-secrets-in-parameter-store">Storing your secrets in Parameter Store</h2>
+<ul>
+<li>AWS Systems Manager to store configuration data: passwords, database strings, AMI IDs, license. Your values can be stored as plain text or encrypted data</li>
+<li>Parameter is free</li>
+<li>Limit number of params: 10,000</li>
+<li>No Key Rotation</li>
+</ul>
+<h2 id="temporately-shared-s3-object-with-presigned-urls">Temporately shared S3 object with presigned URLs</h2>
+<ul>
+<li>When you wanna share private files in your S3 buckets, thinks about presigned URLs</li>
+</ul>
+<h2 id="iam-policy-documents">IAM Policy Documents</h2>
+<h3 id="amazon-resource-namesarns">Amazon Resource Names(ARNs)</h3>
+<ul>
+<li>Uniquely Identify a resource in Amazon</li>
+</ul>
+<p><img src="https://gist.github.com/assets/31009750/c0273391-6c5c-493e-a5fd-d90665e4ebca" alt="image"></p>
+<ul>
+<li>IAM : global, so there is no region</li>
+<li>S3 : global namespace, so there is no region</li>
+</ul>
+<h3 id="iam-policy">IAM Policy</h3>
+<ul>
+<li>JSON document defines policies</li>
+<li>Identity policy</li>
+<li>Resource policy</li>
+<li>No effect until attached</li>
+</ul>
+<h3 id="policy-document">Policy Document</h3>
+<ul>
+<li>A list of statements</li>
+</ul>
+<p><img src="https://gist.github.com/assets/31009750/210dfab7-b6f2-422d-8e50-d903142f75e7" alt="image"></p>
+<p><img src="https://gist.github.com/assets/31009750/a9caf348-ca38-4735-b5fb-c6bf9aa829c6" alt="image"></p>
+<ul>
+<li>Not explicit allowed &lt;==&gt; Implicitly defined</li>
+<li>Explicit Deny &gt; everything</li>
+<li>Only attached policies have effect</li>
+<li>AWS joins all applicable policies</li>
+</ul>
+<h3 id="permission-boundaries">Permission Boundaries</h3>
+<p><img src="https://gist.github.com/assets/31009750/4407a4e5-bb2e-4039-bd08-70b686ffa479" alt="image"></p>
+<h2 id="aws-certificate-mananger">AWS Certificate Mananger</h2>
+<ul>
+<li>Allow to create,manage,deploy public or private SSL certificates</li>
+<li>Free SSL</li>
+<li>Automated Renewals and Deployment</li>
+<li>Easier to setup</li>
+<li>Supported services: ELB, CloudFront, API Gateway</li>
+</ul>
+<h2 id="audit-manager">Audit Manager</h2>
+<ul>
+<li>Continually audit your AWS usage to make sure you stay compliant with industry standards: PCI compliance, GDPR, &hellip;</li>
+<li>Compliance with HIPAA, GDPR, continous auditing and automate auditing reports</li>
+</ul>
+<h2 id="downloading-compliance-documents-from-aws-artifact">Downloading Compliance Documents from AWS Artifact</h2>
+<ul>
+<li>Single source to get compliance-related information: compliance reports: HIPAA, GDPR, &hellip;</li>
+</ul>
+<h2 id="authentication-access-with-cognito">Authentication Access with Cognito</h2>
+<ul>
+<li>Provide authentication, authorization, and user management for web and mobile apps in a single service without the need for custom code. It supports user login via SNS accounts(social network service account: google, facebook, apple)</li>
+</ul>
+<p>There main two components of Cognito:</p>
+<ul>
+<li>User pools: directories of users that provide sign-up/sign-in options for your application users.</li>
+<li>Identity pools: allow you to give your users access to other AWS services</li>
+</ul>
+<p><img src="https://gist.github.com/assets/31009750/0bc74ab6-0f64-4762-b160-cb4a5996c77f" alt="image"></p>
+<p><img src="https://gist.github.com/assets/31009750/745e20d8-9f12-425c-b6b7-2dc11e5d8342" alt="image"></p>
+<h2 id="aws-network-firewall">AWS Network Firewall</h2>
+<ul>
+<li>Physical firewall protected your VPCs</li>
+<li>Works with AWS Firewall Manager</li>
+<li>Filter Internet traffic with ACL</li>
+<li>Filter Outbound traffic: url/domain name, ipaddress</li>
+<li>Layer 4 Firewall</li>
+</ul>
+<h2 id="other-services">Other services</h2>
+<h3 id="amazon-detective">Amazon Detective</h3>
+<ul>
+<li>Triage Security Findings: resources, ip addresses, aws accounts</li>
+<li>Threat Hunting</li>
+<li>Analyze root course of event across multiple AWS services.</li>
+</ul>
+<h3 id="security-hub">Security Hub</h3>
+<ul>
+<li>Single place to view all your security alerts service: GuardDuty(Threat Detection service AI), Amazon Inspector(automate security assessments), Amazon Detective(Root cause detective) and AWS Firewall Manager across multiple AWS security services and accounts</li>
+</ul>
+        
+      
+      <div class="m-1 p-1">
+        
+          <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="http://localhost:1313/categories/systemdesign">systemdesign</a>
+        
+          <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="http://localhost:1313/categories/aws">aws</a>
+        
+      </div>
+    </div>
+  </section>
+  <section class="container section">
+    <div class="max-w-2xl mx-auto">
+      <div class="font-heading text-2xl font-semibold">You Might Also Like</div>
+      <div class="mt-8 grid  gap-8">
+        
+        
+        
+        
+        <ul class="sidebar-links">
+        
+        
+            <li><a href="/post/microservice-headfirst/">Microservice Headfirst</a></li>
+        
+            <li><a href="/post/aws-lab-series-build-and-deploy-rest-api/">Aws Lab Series Build and Deploy Rest Api</a></li>
+        
+            <li><a href="/post/aws-lab-series-foreword/">Aws Lab Series Foreword</a></li>
+        
+            <li><a href="/post/aws-series-migration/">Aws Series Migration</a></li>
+        
+            <li><a href="/post/aws-series-governance/">Aws Series Governance</a></li>
+        
+            <li><a href="/post/aws-series-caching/">Aws Series Caching</a></li>
+        
+            <li><a href="/post/aws-series-automation/">Aws Series Automation</a></li>
+        
+        </ul>
+                
+      </div>
+    </div>
+  </section>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1642510310947288"
+  crossorigin="anonymous"></script>
+  <ins class="adsbygoogle"
+        style="display:block; text-align:center;"
+        data-ad-layout="in-article"
+        data-ad-format="fluid"
+        data-ad-client="ca-pub-1642510310947288"
+        data-ad-slot="9309117729"></ins>
+  <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>  
+
+    
+    </main>
+    <footer class="footer">
+      <div class="container md:flex">
+        <section class="footer-section-info md:basis-1/4">
+          <div class="address">
+            <a class="logo" href="http://localhost:1313/" title="NextJSVietNam">
+              NextJSVietNam
+            </a>
+            <h4 class="footer-heading">
+                DEVELOPMENT MODE
+            <h4>                
+          </div>
+        </section>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">NestJS</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="http://localhost:1313/post/nestjs-passing-data-between-layers-in-ddd/">Nestjs Passing Data Between Layers in Domain Driven Design</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nestjs-bai-06-viet-unit-test/">Khóa học NestJS - Bài 06 Hướng dẫn viết Unit Test</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nestjs-bai-05-repository-pattern/">Khóa học NestJS Bài 05 - Repository Pattern</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nestjs-bai-04-model-and-repository-pattern/">Khóa học NestJS Bài 04 - Model and Repository Pattern</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nestjs-bai03/">Khóa học NestJS Bài 03 - Controllers &amp; Views</a></li>              
+             
+          </ul>
+        </div>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">NextJS</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nextjs-bai-03-advanced-routing/">Khoá học NextJS Bài 03 - Advanced Routing</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nextjs-bai-02-cau-truc-du-an-nextjs/">Khoá học NextJS 2024 - Bài 02: Cấu trúc dự án NextJS</a></li>              
+            
+              <li><a href="http://localhost:1313/post/create-new-website-with-nextjs/">Create New Website With Nextjs</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nextjs/">Khóa học NextJS - Bài 01 - Lộ trình các bài học về NextJS</a></li>              
+             
+          </ul>
+        </div>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">Cheatsheet</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="http://localhost:1313/post/6minutes-tech-graphql/">6minutes Tech Graphql</a></li>              
+            
+              <li><a href="http://localhost:1313/post/6minutes-tech-progressive-web-app/">6minutes Tech Progressive Web App</a></li>              
+            
+              <li><a href="http://localhost:1313/post/flexbox-and-real-world-examples/">Flexbox and Real World Examples</a></li>              
+            
+              <li><a href="http://localhost:1313/post/react-native-examples-setup-working-place-for-react-native-developer/">[React Native Examples] Setup Working Place for React Native Developer</a></li>              
+            
+              <li><a href="http://localhost:1313/post/happy-new-year-2024/">Happy New Year 2024</a></li>              
+             
+          </ul>
+        </div>
+      </div>
+      <div class="container">
+        <div class="text-center">
+          <a href=""><span class="material-icons text-4xl m-4">facebook</span></a>
+          <a href=""><span class="material-icons text-4xl  m-4">smart_display</span></a>
+        </div>
+        <div class="text-center text-lg py-4">
+          Copyright @ NextJSVietNam 2022
+        </div>
+        <div class="text-center text-sm">
+          Powered by <a class="font-bold text-primary" href="https://gohugo.io/">Go Hugo</a> - Made
+          with love from <a class="font-bold text-primary" href="http://localhost:1313/">NextJSVietNam</a> -
+          Build
+          Version 2024-05-20 08:51:24 &#43;0700 &#43;07
+        </div>
+      </div>
+    </footer>
+
+    
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="http://localhost:1313/core/jquery-3.6.0.min.js"></script>
+        
+             
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="http://localhost:1313/themes/2022/dist/main.js"></script>
+        
+             
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="http://localhost:1313/themes/2022/dist/home.js"></script>
+        
+             
+    
+
+  
+  <script async>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1760611910980690');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1760611910980690&ev=PageView&noscript=1"
+    /></noscript>
+        
+  </body>
+</html>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Microservice-Architecture on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+    <link>http://localhost:1313/categories/microservice-architecture/</link>
+    <description>Recent content in Microservice-Architecture on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 19 Apr 2024 08:27:33 +0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/microservice-architecture/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Microservice Headfirst</title>
+      <link>http://localhost:1313/post/microservice-headfirst/</link>
+      <pubDate>Fri, 19 Apr 2024 08:27:33 +0700</pubDate>
+      <guid>http://localhost:1313/post/microservice-headfirst/</guid>
+      <description>&lt;p&gt;In theory, you will split your monolith application in to microservices like this&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://gist.github.com/assets/31009750/a9f0ee0a-c2e7-4896-9dda-d2da9cf2a43d&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;And the biggest issue we have to face is Data Management Between Services&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://gist.github.com/assets/31009750/3850f906-aa90-4a76-b7c0-4fe5f553c27a&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;In this article, we will go through 2 sections to help you dive in deeper in microservice world.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Microservice Pattern&lt;/li&gt;&#xA;&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; Practice: build a shopping website with microservice architecture&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;microservice-pattern&#34;&gt;Microservice Pattern&lt;/h2&gt;&#xA;&lt;h3 id=&#34;database-per-service&#34;&gt;Database Per Service&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;We want each service to run independently of other services&lt;/li&gt;&#xA;&lt;li&gt;Database schema/structure might change unexpectedly&lt;/li&gt;&#xA;&lt;li&gt;Some services might function more efficiently with different types of DB&amp;rsquo;s (sql, non-sql)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Some issues we may got if we don&amp;rsquo;t apply this pattern&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>The Difference Between Monolithic and Microservices Architecture</title>
+      <link>http://localhost:1313/post/the-difference-between-monolithic-and-microservices-architecture/</link>
+      <pubDate>Fri, 22 Sep 2023 15:52:14 +0700</pubDate>
+      <guid>http://localhost:1313/post/the-difference-between-monolithic-and-microservices-architecture/</guid>
+      <description>&lt;h2 id=&#34;monolith-advantages-and-drawbacks&#34;&gt;Monolith advantages and drawbacks&lt;/h2&gt;&#xA;&lt;p&gt;A monolithic architecture is a traditional software development model that uses one code base to perform multiple business functions.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://user-images.githubusercontent.com/31009750/269900308-36dcbcff-58fa-42a8-92c2-a7f12a40b012.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://user-images.githubusercontent.com/31009750/269910251-e138f576-ca5d-4773-9209-a6ca914ab4ea.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;&#xA;&lt;h3 id=&#34;advantages-of-monolithic-architecture&#34;&gt;Advantages of Monolithic Architecture&lt;/h3&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Simplicity of development : all source code is located in one place which can be quickly understood.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Simplicity of debugging : The debugging process is simple because all code is located in one place. You can easily follow the flow of a request and find an issue.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

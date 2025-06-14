@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tdd on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+    <link>http://localhost:1313/tags/tdd/</link>
+    <description>Recent content in Tdd on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 25 Aug 2023 19:53:36 +0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/tdd/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Test Driven Development for Beginner</title>
+      <link>http://localhost:1313/post/test-driven-development-for-beginner/</link>
+      <pubDate>Fri, 25 Aug 2023 19:53:36 +0700</pubDate>
+      <guid>http://localhost:1313/post/test-driven-development-for-beginner/</guid>
+      <description>&lt;h2 id=&#34;rules-for-test-driven-development--tdd-&#34;&gt;Rules for Test Driven Development ( TDD )&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Don’t write a line of new code unless you first have a failing automated test.&lt;/li&gt;&#xA;&lt;li&gt;Eliminate duplication&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Technical implications:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;You must design organically, with running code providing feedback between decisions&lt;/li&gt;&#xA;&lt;li&gt;You must write your own tests&lt;/li&gt;&#xA;&lt;li&gt;Your development environment must provide rapid response to small changes&lt;/li&gt;&#xA;&lt;li&gt;Your designs must consist of many highly cohesive, loosely coupled components&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;cohesion&#34;&gt;Cohesion&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Relationship inside module&lt;/li&gt;&#xA;&lt;li&gt;Connection betweeen functions&lt;/li&gt;&#xA;&lt;li&gt;Evaluate the quality that component/module focus on single responsibility&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Cohesion types:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

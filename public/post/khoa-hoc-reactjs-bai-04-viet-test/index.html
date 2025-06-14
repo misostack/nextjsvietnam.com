@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="home" href="http://localhost:1313/" />
+    <meta name="generator" content="jsguru cms" />
+
+    
+    
+      
+    
+
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    
+    
+      
+              
+        
+        <link rel="stylesheet" href="http://localhost:1313/themes/2022/dist/main.css" />
+             
+    
+      
+              
+        
+        <link rel="stylesheet" href="http://localhost:1313/themes/2022/dist/home.css" />
+             
+    
+      
+              
+        
+        <link rel="stylesheet" href="http://localhost:1313/themes/2022/dist/page.css" />
+             
+        
+    
+    
+    
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWE4MLJYE6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-RWE4MLJYE6');    
+    </script>    
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1642510310947288"
+    crossorigin="anonymous"></script>    
+    
+    
+    
+<title>Khóa học ReactJS Bài 04 - viết test cho dự án React | Tổng hợp các công cụ và phương pháp để test tự động 1 dự án ReactJS. Minh họa với vitest và cypress | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+<meta name="robots" content="all" />
+<meta name="keywords" content="reactjs, reactjs-beginner" />
+<meta name="description" content="Tổng hợp các công cụ và phương pháp để test tự động 1 dự án ReactJS. Minh họa với vitest và cypress" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://user-images.githubusercontent.com/31009750/246856332-ece36caa-82ef-4a4f-86d9-9dad4a108929.png" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="750" />
+<meta property="og:image:height" content="300" />
+<meta
+  property="article:publisher"
+  content="https://www.facebook.com/nextjsvietnam"
+/>
+
+<meta property="article:published_time" content="2023-09-28T08:07:25+07:00" />
+<meta property="article:modified_time" content="2023-09-28T08:07:25+07:00" />
+
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png" />
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png" />
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png" />
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png" />
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png" />
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png" />
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="192x192"
+  href="/android-icon-192x192.png"
+/>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="manifest" href="/manifest.json" />
+<meta name="msapplication-TileColor" content="#ffffff" />
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
+<meta name="theme-color" content="#ffffff" />
+
+  </head>
+  <body class="body-nav-fixed">
+    <nav class="nav-fixed nav-default z-50">
+    <div class="container">
+      <div class="nav-container flex flex-wrap justify-between items-center">
+        <a href="http://localhost:1313/" class="nav-brand inline-block">
+          
+          <img class="h-12" src="http://localhost:1313/themes/2022/src/assets/images/logo.png" 
+          alt="Stunning" />
+        </a>
+        <a href="javascript:void(0);" data-menu="#menu-main_menu" class="nav-menu-toggle"><span
+          class="material-icons">menu</span></a>
+        <ul id="menu-main_menu" class="nav-menu h-0 md:h-auto">
+          <form class="nav-menu-search-bar md:hidden relative">
+            <button class="nav-menu-search-bar-search-btn absolute h-full">
+              <svg class="w-3 h-3 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24">
+                <path
+                  d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z">
+                </path>
+              </svg>
+            </button>
+            <input name="s" type="text" class="w-full" />
+          </form>
+          
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/categories/systemdesign">System Design
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/software-architecture">Software Architecture</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/microservice-architecture">Microservice Architecture</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/aws">Learn AWS The Right Way</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/aws-labs">AWS Hands-On Labs</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/categories/cheatsheet">Cheatsheet
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nestjs-examples">NestJS Examples</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/reactjs-examples">ReactJS Examples</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/react-native-examples">React Native Examples</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/categories/frameworks">Frameworks
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nestjs">NestJS</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/reactjs">ReactJS</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nextjs">NextJS</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/">Tutorials
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nestjs-tutorial">NestJS Tutorial</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/reactjs-tutorial">ReactJS Tutorial</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nextjs-tutorial">NextJS Tutorial</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/">Tools
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://regex101.com/">Online Regex</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://www.bashoneliners.com/">Bash Online</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://www.epochconverter.com/">Unix Timestamp Conversion</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://ryanstutorials.net/bash-scripting-tutorial/">Bash Scripting</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://explainshell.com/">Explain Shell</a></li>
+                
+                </ul>
+            
+            </li>
+          
+          <form class="nav-menu-search-bar hidden md:flex relative">
+            <button class="nav-menu-search-bar-search-btn absolute h-full">
+              <svg class="w-3 h-3 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24">
+                <path
+                  d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z">
+                </path>
+              </svg>
+            </button>
+            <input name="s" type="text" class="w-full" />
+          </form>
+        </ul>
+      </div>
+    </div>
+</nav>
+
+    <main>
+    
+  <section class="container section">
+    <div class="page-content max-w-2xl mx-auto">
+        <img src="https://user-images.githubusercontent.com/31009750/246856332-ece36caa-82ef-4a4f-86d9-9dad4a108929.png" class="img-responsive" alt="Khóa học ReactJS Bài 04 - viết test cho dự án React" />
+        <h1>Khóa học ReactJS Bài 04 - viết test cho dự án React</h1>
+        
+          
+          
+          <p><strong>Post Date</strong> : 2023-09-28T08:07:25+07:00</p>
+          <p><strong>Modified Date</strong> : 2023-09-28T08:07:25+07:00</p>
+        <p>
+            <strong>Category:</strong>
+            
+            <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="http://localhost:1313/categories/reactjs-tutorial">reactjs-tutorial</a>
+            
+        </p>
+        <p>
+          <strong>Tags:</strong>
+          
+             <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white"
+             href="/tags/reactjs">reactjs</a>
+          
+        </p>                
+        <p><strong>Note</strong>: Toàn bộ mã nguồn của khóa học này đều được công khai trên github tại <a href="https://github.com/misostack/reactjs-tutorial-2023/tree/lession04">ReactJS Tutorial 2023</a></p>
+<p>Đầu tiên, trước khi bắt đầu viết test, các anh/chị cần suy nghĩ xem dự án của mình sẽ test những gì. Cùng nhìn vào hình minh họa bên dưới sau:</p>
+<blockquote>
+<p>Kim tự tháp kiểm thử phần mềm</p></blockquote>
+<p><img src="https://user-images.githubusercontent.com/31009750/261233946-8a85e14e-e153-4dd0-a22c-ced35255d20c.png" alt="image"></p>
+<p>Do đó, việc viết test được phân vào 3 nhóm chính:</p>
+<ol>
+<li>Unit Test</li>
+<li>Integration Test</li>
+<li>E2E Test ( end to end Test)</li>
+</ol>
+<p>Vậy trong mỗi nhóm như vậy các anh/chị sẽ test những gì, công cụ nào có thể hỗ trợ chúng ta làm công việc này.</p>
+<h2 id="unit-test-trong-dự-án-reactjs">Unit Test trong dự án ReactJS</h2>
+<blockquote>
+<p>Unit Test còn được gọi là kiểm thử đơn vị, đơn vị đôi khi là 1 function hoặc cũng có thể làm 1 component, hay thậm chí là 1 module nếu xem xét ở 1 góc độ rộng hơn.</p></blockquote>
+<p>Vậy trong dự án ReactJS, các đơn vị này là gì, và các anh/chị cần test ra sao?</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Test Render Component with props</li>
+<li><input checked="" disabled="" type="checkbox"> Test Util Function</li>
+</ul>
+<h3 id="1-test-component">1. Test Component</h3>
+<p>Chính xác đây là cốt lõi và bản chất của các dự án ReactJS (component based system), toàn bộ ứng dụng sẽ được cấu thành từ các component nhỏ(chúng tự quản lí state, và kết hợp chúng để render thành các giao diện hiển thị cho người dùng, react lại hành vi của user khi tương tác).</p>
+<p>Như vậy thì test component là test những gì?</p>
+<ul>
+<li>Test render - test kết quả của component(nhận props) sau đó render ra UI tương ứng.</li>
+</ul>
+<p>Tại bước này ReactJS cung cấp 1 kĩ thuật gọi là &ldquo;shallow rendering&rdquo; giúp các anh/chị có thể test được kết quả của component mà không cần thiết phải mount(headless), giảm được rất nhiều thời gian khi chạy test.</p>
+<p>Có nên test state change hay không? Có nhưng nó không thuộc phạm vi cần test trong khi thực hiện Unit Test</p>
+<h3 id="2-test-util-function">2. Test Util Function</h3>
+<p>Trong dự án ReactJS, chắc hẳn sẽ có những function được viết nhằm mục đích biến đổi dữ liệu trước khi được sử dụng, đây cũng được xem là 1 phần trong kiểm thử đơn vị</p>
+<h2 id="integration-test-trong-dự-án-reactjs">Integration Test trong dự án ReactJS</h2>
+<p>Tại bước này các anh/chị sẽ kiểm tra khi các component ở bước trên có tương tác với các component khác/Api call/Hành vi của user thì nó có hoạt động đúng hay không. Và tại bước này các anh/chị cần sử dụng tới việc mounting của component để kiểm tra xem các component con có hoạt động đúng như mong đợi không.</p>
+<p>Ở bước này, khi test các anh/chị sẽ phải áp dụng các kĩ thuật như : mock/stub để giả lập 1 số component/api call/user behavior liên quan nhằm giảm bớt thời gian chạy kiểm thử.</p>
+<p>Như vậy có thể tổng hợp lại tại bước này các anh/chị nên test:</p>
+<ol>
+<li><input checked="" disabled="" type="checkbox"> Test Component with state change</li>
+<li><input checked="" disabled="" type="checkbox"> Test Component with API call</li>
+<li><input checked="" disabled="" type="checkbox"> Test Component with User Action</li>
+</ol>
+<h2 id="e2e-test-trong-dự-án-reactjs">E2E Test trong dự án ReactJS</h2>
+<p>Kiểm thử E2E nhằm mục đích sẽ giả lập việc user sử dụng ứng dụng, và kiểm tra xem ứng dụng có hoạt động chính xác không, và việc kiểm này sẽ kiểm tra toàn bộ ứng dụng hoạt động có đúng không.</p>
+<p>Ở bước này, khi test các anh/chị cần xây dựng kịch bản test như 1 user để tiến hành viết code.
+Có một số công cụ thường được sử dụng ở bước này như:</p>
+<ul>
+<li><a href="https://docs.cypress.io/guides/getting-started/installing-cypress">Cypress</a></li>
+<li><a href="https://pptr.dev/">Puppeteer</a></li>
+<li><a href="https://playwright.dev/docs/intro">Playwright</a></li>
+</ul>
+<p>Một số kĩ thuật cần áp dụng trong phần này:</p>
+<ul>
+<li>Snapshot</li>
+</ul>
+<h2 id="thiết-lập-môi-trường-để-viết-test-cho-dự-án-reactjs">Thiết lập môi trường để viết test cho dự án ReactJS</h2>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Testing Runners: <a href="https://jestjs.io/docs/cli">Jest</a>, <a href="https://vitest.dev/guide/features.html">Vitest</a>, &hellip;</li>
+<li><input checked="" disabled="" type="checkbox"> Test Render: <a href="https://testing-library.com/">Testing Library</a>, <a href="https://enzymejs.github.io/enzyme/">Enzyme</a></li>
+<li><input checked="" disabled="" type="checkbox"> E2E: Cypress, Selenium, &hellip;</li>
+</ul>
+<p>Trong phạm vi bài viết tôi sẽ demo với các công cụ sau:</p>
+<ol>
+<li>Test Runners: vitest</li>
+<li>Test Render: Testing Library</li>
+<li>E2E Test Framework: Cypress</li>
+</ol>
+<p>Ưu điểm vượt trội của Cypress so với các công cụ khác như Selenium,&hellip; chính là thay vì chạy bên ngoài browser và sử dụng các remote command thông qua network. Cypress làm điều ngược lại, cypress sẽ chạy trong cùng 1 vòng lặp với ứng dụng của các anh/chị.
+Đặc biệt do chạy trên nền nodejs, nên cypress và nodejs tương tác với nhau một cách đồng bộ, giúp các tác vụ trở nên mượt mà hơn, và thời gian phản hồi rút ngắn tối đa.
+Do Cypress được cài đặt trên môi trường local của các anh/chị, nên có thể thực hiện các tác vụ khác của automation test như: <strong>chụp screenshots</strong>, <strong>record videos</strong>, <strong>chạy các file hệ thống</strong>, <strong>gọi network call</strong>.</p>
+<p>Các chủ đề tôi sẽ đi qua bao gồm:</p>
+<ol>
+<li><input checked="" disabled="" type="checkbox"> Setup vitest</li>
+<li><input checked="" disabled="" type="checkbox"> Viết Unit Test cho Function</li>
+<li>[] Viết Unit Test cho Stateless React Component</li>
+<li>[] Viết Integration Test cho React Component</li>
+<li>[] Giới thiệu về: Mock, Stub</li>
+<li>[] Setup Cypress cho E2E Test</li>
+<li>[] Cấu hình gitlab CI chạy test</li>
+</ol>
+<h3 id="setup-vitest">Setup Vitest</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>npm install -D vitest
+</span></span><span style="display:flex;"><span>npm install -D @vitest/ui
+</span></span></code></pre></div><p><strong>package.json</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;scripts&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;test&#34;</span>: <span style="color:#e6db74">&#34;vitest&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;test:ui&#34;</span>: <span style="color:#e6db74">&#34;vitest --ui&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;test:run&#34;</span>: <span style="color:#e6db74">&#34;vitest run&#34;</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>vite.config.js</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">defineConfig</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;vite&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">react</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;@vitejs/plugin-react&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">fileURLToPath</span>, <span style="color:#a6e22e">URL</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;url&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// https://vitejs.dev/config/
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">defineConfig</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">plugins</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">react</span>()],
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">test</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">environment</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;happy-dom&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">globals</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">server</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">port</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">3015</span>,
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">resolve</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">alias</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>      {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">find</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;@app&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">replacement</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">fileURLToPath</span>(<span style="color:#66d9ef">new</span> <span style="color:#a6e22e">URL</span>(<span style="color:#e6db74">&#34;./src&#34;</span>, <span style="color:#66d9ef">import</span>.<span style="color:#a6e22e">meta</span>.<span style="color:#a6e22e">url</span>)),
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>    ],
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>npm run test
+</span></span><span style="display:flex;"><span>npm run test:ui
+</span></span><span style="display:flex;"><span>npm run test:run
+</span></span></code></pre></div><p><strong>jsconfig.json</strong> for your code editor</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;compilerOptions&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;typeRoots&#34;</span>: [<span style="color:#e6db74">&#34;tests/types&#34;</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;baseUrl&#34;</span>: <span style="color:#e6db74">&#34;.&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;target&#34;</span>: <span style="color:#e6db74">&#34;ES2020&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// … all other compiler options
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// all paths defined here must match the configured path in `vite.config.ts`
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#f92672">&#34;paths&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;@app/*&#34;</span>: [<span style="color:#e6db74">&#34;./src/*&#34;</span>]
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;exclude&#34;</span>: [<span style="color:#e6db74">&#34;node_modules&#34;</span>, <span style="color:#e6db74">&#34;tests&#34;</span>],
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;include&#34;</span>: [<span style="color:#e6db74">&#34;.&#34;</span>]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>tests/global.d.ts</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">vitest</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;vitest&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">declare</span> <span style="color:#66d9ef">global</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">expect</span>: <span style="color:#66d9ef">typeof</span> <span style="color:#a6e22e">vitest</span>.<span style="color:#a6e22e">expect</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">describe</span>: <span style="color:#66d9ef">typeof</span> <span style="color:#a6e22e">vitest</span>.<span style="color:#a6e22e">describe</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">it</span>: <span style="color:#66d9ef">typeof</span> <span style="color:#a6e22e">vitest</span>.<span style="color:#a6e22e">it</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">test</span>: <span style="color:#66d9ef">typeof</span> <span style="color:#a6e22e">vitest</span>.<span style="color:#a6e22e">test</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> {};
+</span></span></code></pre></div><p><strong>tests/units/shared/utils.spec.js</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">generatePagers</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;@app/shared/utils&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">test</span>(<span style="color:#e6db74">&#34;generatePagers&#34;</span>, () =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">testCases</span> <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">input</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">numberOfPages</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">10</span>, <span style="color:#a6e22e">currentPage</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span>, <span style="color:#a6e22e">spaces</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">5</span> },
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">output</span><span style="color:#f92672">:</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>],
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">input</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">numberOfPages</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">10</span>, <span style="color:#a6e22e">currentPage</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">4</span>, <span style="color:#a6e22e">spaces</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">5</span> },
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">output</span><span style="color:#f92672">:</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>],
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">input</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">numberOfPages</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">10</span>, <span style="color:#a6e22e">currentPage</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">5</span>, <span style="color:#a6e22e">spaces</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">5</span> },
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">output</span><span style="color:#f92672">:</span> [<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">7</span>],
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">input</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">numberOfPages</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">10</span>, <span style="color:#a6e22e">currentPage</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">8</span>, <span style="color:#a6e22e">spaces</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">5</span> },
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">output</span><span style="color:#f92672">:</span> [<span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">10</span>],
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">input</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">numberOfPages</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">10</span>, <span style="color:#a6e22e">currentPage</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">10</span>, <span style="color:#a6e22e">spaces</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">5</span> },
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">output</span><span style="color:#f92672">:</span> [<span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">10</span>],
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>  ].<span style="color:#a6e22e">map</span>((<span style="color:#a6e22e">tc</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">output</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">tc</span>.<span style="color:#a6e22e">output</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">result</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">generatePagers</span>(<span style="color:#a6e22e">tc</span>.<span style="color:#a6e22e">input</span>),
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">testCases</span>[<span style="color:#ae81ff">0</span>].<span style="color:#a6e22e">result</span>).<span style="color:#a6e22e">toEqual</span>(<span style="color:#a6e22e">testCases</span>[<span style="color:#ae81ff">0</span>].<span style="color:#a6e22e">output</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">testCases</span>[<span style="color:#ae81ff">1</span>].<span style="color:#a6e22e">result</span>).<span style="color:#a6e22e">toEqual</span>(<span style="color:#a6e22e">testCases</span>[<span style="color:#ae81ff">1</span>].<span style="color:#a6e22e">output</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">testCases</span>[<span style="color:#ae81ff">2</span>].<span style="color:#a6e22e">result</span>).<span style="color:#a6e22e">toEqual</span>(<span style="color:#a6e22e">testCases</span>[<span style="color:#ae81ff">2</span>].<span style="color:#a6e22e">output</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">testCases</span>[<span style="color:#ae81ff">3</span>].<span style="color:#a6e22e">result</span>).<span style="color:#a6e22e">toEqual</span>(<span style="color:#a6e22e">testCases</span>[<span style="color:#ae81ff">3</span>].<span style="color:#a6e22e">output</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">testCases</span>[<span style="color:#ae81ff">4</span>].<span style="color:#a6e22e">result</span>).<span style="color:#a6e22e">toEqual</span>(<span style="color:#a6e22e">testCases</span>[<span style="color:#ae81ff">4</span>].<span style="color:#a6e22e">output</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-jsx" data-lang="jsx"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">render</span>, <span style="color:#a6e22e">screen</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;@testing-library/react&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#e6db74">&#34;@testing-library/jest-dom&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">PaginationComponent</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;../../../src/components/PaginationComponent&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Test cases
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * 1. Number of pages &lt;= 1 : must not render anything
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * 2. Number of pages &lt;= 5 : always render n pages and 4 buttons:first,previous,next,last with n &lt;=5
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * 3. Number of pages &gt; 1 and current page = 1 : disabled first,previous, enable next,last
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * 4. Number of pages &gt; 1 and current page &gt; 1 &amp;&amp; current page is not last page : enable, first, previous, next, last
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * 5. Number of pages &gt; 1 and current page &gt; 1 &amp;&amp; current page is last page : enable, first, previous and disable next, last
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * 6. Number of pages &gt; 5 and current page = 5 &amp;&amp; pages includes: 3,4,5,6,7
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">onChangeCurrentPage</span> <span style="color:#f92672">=</span> () =&gt; {};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">describe</span>(<span style="color:#e6db74">&#34;Test PaginationComponent&#34;</span>, () =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">test</span>(<span style="color:#e6db74">&#34;TC1: Number of pages &lt;= 1 : must not render anything&#34;</span>, () =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ARRANGE
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">props</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">numberOfPages</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">currentPage</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">onChangeCurrentPage</span>,
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">render</span>(&lt;<span style="color:#f92672">PaginationComponent</span> {<span style="color:#a6e22e">...props</span>} /&gt;);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ASSERT
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">pagination</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">screen</span>.<span style="color:#a6e22e">queryByLabelText</span>(<span style="color:#e6db74">&#34;pagination&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">pagination</span>).<span style="color:#a6e22e">toBeNull</span>();
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">test</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;TC2: Number of pages &lt;= 5 : always render n pages and 4 buttons:first,previous,next,last with n &lt;=5&#34;</span> <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34; \nTC3: Number of pages &gt; 1 and current page = 1 : disabled first,previous, enable next,last&#34;</span>,
+</span></span><span style="display:flex;"><span>    () =&gt; {
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// ARRANGE
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">props</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">numberOfPages</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">5</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">currentPage</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">onChangeCurrentPage</span>,
+</span></span><span style="display:flex;"><span>      };
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">render</span>(&lt;<span style="color:#f92672">PaginationComponent</span> {<span style="color:#a6e22e">...props</span>} /&gt;);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// ASSERT
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">pagination</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">screen</span>.<span style="color:#a6e22e">queryByLabelText</span>(<span style="color:#e6db74">&#34;pagination&#34;</span>);
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">pageItems</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">pagination</span>.<span style="color:#a6e22e">querySelectorAll</span>(<span style="color:#e6db74">&#34;[data-page-item=true]&#34;</span>);
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">firstPageItem</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">pagination</span>.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#34;[data-page-type=first]&#34;</span>);
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">previousPageItem</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">pagination</span>.<span style="color:#a6e22e">querySelector</span>(
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;[data-page-type=previous]&#34;</span>
+</span></span><span style="display:flex;"><span>      );
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">nextPageItem</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">pagination</span>.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#34;[data-page-type=next]&#34;</span>);
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">lastPageItem</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">pagination</span>.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#34;[data-page-type=last]&#34;</span>);
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">pageItems</span>.<span style="color:#a6e22e">length</span>).<span style="color:#a6e22e">toEqual</span>(<span style="color:#ae81ff">5</span>);
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">firstPageItem</span>).<span style="color:#a6e22e">toBeTruthy</span>();
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">firstPageItem</span>).<span style="color:#a6e22e">toHaveClass</span>(<span style="color:#e6db74">&#34;disabled&#34;</span>);
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">previousPageItem</span>).<span style="color:#a6e22e">toBeTruthy</span>();
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">previousPageItem</span>).<span style="color:#a6e22e">toHaveClass</span>(<span style="color:#e6db74">&#34;disabled&#34;</span>);
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">nextPageItem</span>).<span style="color:#a6e22e">toBeTruthy</span>();
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">nextPageItem</span>).<span style="color:#a6e22e">to</span>.<span style="color:#a6e22e">not</span>.<span style="color:#a6e22e">toHaveClass</span>(<span style="color:#e6db74">&#34;disabled&#34;</span>);
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">lastPageItem</span>).<span style="color:#a6e22e">toBeTruthy</span>();
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">expect</span>(<span style="color:#a6e22e">lastPageItem</span>).<span style="color:#a6e22e">to</span>.<span style="color:#a6e22e">not</span>.<span style="color:#a6e22e">toHaveClass</span>(<span style="color:#e6db74">&#34;disabled&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p><strong>Vitest UI</strong></p>
+<p><img src="https://user-images.githubusercontent.com/31009750/271358107-67d10d0a-de04-49db-a076-e35f5f05634e.png" alt="image"></p>
+<p><strong>Debug</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#f92672">&#34;version&#34;</span>: <span style="color:#e6db74">&#34;0.2.0&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;configurations&#34;</span>: [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;node&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;request&#34;</span>: <span style="color:#e6db74">&#34;launch&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Debug Current Test File&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;autoAttachChildProcesses&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;skipFiles&#34;</span>: [<span style="color:#e6db74">&#34;&lt;node_internals&gt;/**&#34;</span>, <span style="color:#e6db74">&#34;**/node_modules/**&#34;</span>],
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;program&#34;</span>: <span style="color:#e6db74">&#34;${workspaceRoot}/node_modules/vitest/vitest.mjs&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;args&#34;</span>: [<span style="color:#e6db74">&#34;run&#34;</span>, <span style="color:#e6db74">&#34;${relativeFile}&#34;</span>],
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;smartStep&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;console&#34;</span>: <span style="color:#e6db74">&#34;integratedTerminal&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><img src="https://user-images.githubusercontent.com/31009750/271357687-aff9d45e-b134-40f3-8ced-ef6d75173cd2.png" alt="image"></p>
+<p><strong>Default vitest config</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>include: **/*.<span style="color:#f92672">{</span>test,spec<span style="color:#f92672">}</span>.?<span style="color:#f92672">(</span>c|m<span style="color:#f92672">)[</span>jt<span style="color:#f92672">]</span>s?<span style="color:#f92672">(</span>x<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>exclude:  **/node_modules/**, **/dist/**, **/cypress/**, **/.<span style="color:#f92672">{</span>idea,git,cache,output,temp<span style="color:#f92672">}</span>/**, **/<span style="color:#f92672">{</span>karma,rollup,webpack,vite,vitest,jest,ava,babel,nyc,cypress,tsup,build<span style="color:#f92672">}</span>.config.*
+</span></span><span style="display:flex;"><span>watch exclude:  **/node_modules/**, **/dist/**
+</span></span></code></pre></div><h2 id="tổng-kết">Tổng kết</h2>
+<ol>
+<li>Có 3 loại test: Unit Test, Integration Test, E2E Test</li>
+<li>Hãy viết Unit Test cho các Util Function</li>
+<li>Hãy viết Integration Test cho các Component</li>
+<li>Hãy viết E2E cho các tính năng quan trọng cần kiểm tra toàn bộ flow như: đăng ký, thanh toán, mua hàng, &hellip;</li>
+<li>Khẩu quyết: &ldquo;Viết nhiều Integration Test, không cần snapshot test. Viết một ít unit test, một ít E2E Test&rdquo;</li>
+</ol>
+<blockquote>
+<p>Viết test nhằm 1 mục đích duy nhất - tăng sự đảm bảo của codebase. Hỗ trợ regression test, giúp các anh/chị mạnh dạn thay đổi/refactor code.</p></blockquote>
+        
+      
+      <div class="m-1 p-1">
+        
+          <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="http://localhost:1313/categories/reactjs-tutorial">reactjs-tutorial</a>
+        
+      </div>
+    </div>
+  </section>
+  <section class="container section">
+    <div class="max-w-2xl mx-auto">
+      <div class="font-heading text-2xl font-semibold">You Might Also Like</div>
+      <div class="mt-8 grid  gap-8">
+        
+        
+        
+        
+        <ul class="sidebar-links">
+        
+        
+            <li><a href="/post/khoa-hoc-reactjs-bai-03/">Khóa học ReactJS - Bài 03 - Props và States</a></li>
+        
+            <li><a href="/post/khoa-hoc-reactjs-bai-02/">Khóa học ReactJS - Bài 02 - Làm quen với ReactJS qua các khái niệm</a></li>
+        
+            <li><a href="/post/khoa-hoc-reactjs/">Khóa học ReactJS - Bài 01 - Lộ trình các bài học về ReactJS</a></li>
+        
+        </ul>
+                
+      </div>
+    </div>
+  </section>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1642510310947288"
+  crossorigin="anonymous"></script>
+  <ins class="adsbygoogle"
+        style="display:block; text-align:center;"
+        data-ad-layout="in-article"
+        data-ad-format="fluid"
+        data-ad-client="ca-pub-1642510310947288"
+        data-ad-slot="9309117729"></ins>
+  <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>  
+
+    
+    </main>
+    <footer class="footer">
+      <div class="container md:flex">
+        <section class="footer-section-info md:basis-1/4">
+          <div class="address">
+            <a class="logo" href="http://localhost:1313/" title="NextJSVietNam">
+              NextJSVietNam
+            </a>
+            <h4 class="footer-heading">
+                DEVELOPMENT MODE
+            <h4>                
+          </div>
+        </section>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">NestJS</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="http://localhost:1313/post/nestjs-passing-data-between-layers-in-ddd/">Nestjs Passing Data Between Layers in Domain Driven Design</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nestjs-bai-06-viet-unit-test/">Khóa học NestJS - Bài 06 Hướng dẫn viết Unit Test</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nestjs-bai-05-repository-pattern/">Khóa học NestJS Bài 05 - Repository Pattern</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nestjs-bai-04-model-and-repository-pattern/">Khóa học NestJS Bài 04 - Model and Repository Pattern</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nestjs-bai03/">Khóa học NestJS Bài 03 - Controllers &amp; Views</a></li>              
+             
+          </ul>
+        </div>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">NextJS</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nextjs-bai-03-advanced-routing/">Khoá học NextJS Bài 03 - Advanced Routing</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nextjs-bai-02-cau-truc-du-an-nextjs/">Khoá học NextJS 2024 - Bài 02: Cấu trúc dự án NextJS</a></li>              
+            
+              <li><a href="http://localhost:1313/post/create-new-website-with-nextjs/">Create New Website With Nextjs</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nextjs/">Khóa học NextJS - Bài 01 - Lộ trình các bài học về NextJS</a></li>              
+             
+          </ul>
+        </div>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">Cheatsheet</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="http://localhost:1313/post/6minutes-tech-graphql/">6minutes Tech Graphql</a></li>              
+            
+              <li><a href="http://localhost:1313/post/6minutes-tech-progressive-web-app/">6minutes Tech Progressive Web App</a></li>              
+            
+              <li><a href="http://localhost:1313/post/flexbox-and-real-world-examples/">Flexbox and Real World Examples</a></li>              
+            
+              <li><a href="http://localhost:1313/post/react-native-examples-setup-working-place-for-react-native-developer/">[React Native Examples] Setup Working Place for React Native Developer</a></li>              
+            
+              <li><a href="http://localhost:1313/post/happy-new-year-2024/">Happy New Year 2024</a></li>              
+             
+          </ul>
+        </div>
+      </div>
+      <div class="container">
+        <div class="text-center">
+          <a href=""><span class="material-icons text-4xl m-4">facebook</span></a>
+          <a href=""><span class="material-icons text-4xl  m-4">smart_display</span></a>
+        </div>
+        <div class="text-center text-lg py-4">
+          Copyright @ NextJSVietNam 2022
+        </div>
+        <div class="text-center text-sm">
+          Powered by <a class="font-bold text-primary" href="https://gohugo.io/">Go Hugo</a> - Made
+          with love from <a class="font-bold text-primary" href="http://localhost:1313/">NextJSVietNam</a> -
+          Build
+          Version 2024-05-20 08:51:24 &#43;0700 &#43;07
+        </div>
+      </div>
+    </footer>
+
+    
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="http://localhost:1313/core/jquery-3.6.0.min.js"></script>
+        
+             
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="http://localhost:1313/themes/2022/dist/main.js"></script>
+        
+             
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="http://localhost:1313/themes/2022/dist/home.js"></script>
+        
+             
+    
+
+  
+  <script async>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1760611910980690');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1760611910980690&ev=PageView&noscript=1"
+    /></noscript>
+        
+  </body>
+</html>

@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="home" href="http://localhost:1313/" />
+    <meta name="generator" content="jsguru cms" />
+
+    
+    
+      
+    
+
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    
+    
+      
+              
+        
+        <link rel="stylesheet" href="http://localhost:1313/themes/2022/dist/main.css" />
+             
+    
+      
+              
+        
+        <link rel="stylesheet" href="http://localhost:1313/themes/2022/dist/home.css" />
+             
+    
+      
+              
+        
+        <link rel="stylesheet" href="http://localhost:1313/themes/2022/dist/page.css" />
+             
+        
+    
+    
+    
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWE4MLJYE6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-RWE4MLJYE6');    
+    </script>    
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1642510310947288"
+    crossorigin="anonymous"></script>    
+    
+    
+    
+<title>Aws Series Decoupling Workflows | In this topic you will learn how to decouple your workflows on AWS architecture | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+<meta name="robots" content="all" />
+<meta name="keywords" content="aws, solution architecture, aws solution architect associate" />
+<meta name="description" content="In this topic you will learn how to decouple your workflows on AWS architecture" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://gist.github.com/assets/31009750/2509a342-da20-4d40-ad32-921a5e8263f3" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="750" />
+<meta property="og:image:height" content="300" />
+<meta
+  property="article:publisher"
+  content="https://www.facebook.com/nextjsvietnam"
+/>
+
+<meta property="article:published_time" content="2023-12-30T23:48:50+07:00" />
+<meta property="article:modified_time" content="2023-12-30T23:48:50+07:00" />
+
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png" />
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png" />
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png" />
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png" />
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png" />
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png" />
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="192x192"
+  href="/android-icon-192x192.png"
+/>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="manifest" href="/manifest.json" />
+<meta name="msapplication-TileColor" content="#ffffff" />
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
+<meta name="theme-color" content="#ffffff" />
+
+  </head>
+  <body class="body-nav-fixed">
+    <nav class="nav-fixed nav-default z-50">
+    <div class="container">
+      <div class="nav-container flex flex-wrap justify-between items-center">
+        <a href="http://localhost:1313/" class="nav-brand inline-block">
+          
+          <img class="h-12" src="http://localhost:1313/themes/2022/src/assets/images/logo.png" 
+          alt="Stunning" />
+        </a>
+        <a href="javascript:void(0);" data-menu="#menu-main_menu" class="nav-menu-toggle"><span
+          class="material-icons">menu</span></a>
+        <ul id="menu-main_menu" class="nav-menu h-0 md:h-auto">
+          <form class="nav-menu-search-bar md:hidden relative">
+            <button class="nav-menu-search-bar-search-btn absolute h-full">
+              <svg class="w-3 h-3 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24">
+                <path
+                  d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z">
+                </path>
+              </svg>
+            </button>
+            <input name="s" type="text" class="w-full" />
+          </form>
+          
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/categories/systemdesign">System Design
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/software-architecture">Software Architecture</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/microservice-architecture">Microservice Architecture</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/aws">Learn AWS The Right Way</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/aws-labs">AWS Hands-On Labs</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/categories/cheatsheet">Cheatsheet
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nestjs-examples">NestJS Examples</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/reactjs-examples">ReactJS Examples</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/react-native-examples">React Native Examples</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/categories/frameworks">Frameworks
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nestjs">NestJS</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/reactjs">ReactJS</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nextjs">NextJS</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/">Tutorials
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nestjs-tutorial">NestJS Tutorial</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/reactjs-tutorial">ReactJS Tutorial</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nextjs-tutorial">NextJS Tutorial</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/">Tools
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://regex101.com/">Online Regex</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://www.bashoneliners.com/">Bash Online</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://www.epochconverter.com/">Unix Timestamp Conversion</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://ryanstutorials.net/bash-scripting-tutorial/">Bash Scripting</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://explainshell.com/">Explain Shell</a></li>
+                
+                </ul>
+            
+            </li>
+          
+          <form class="nav-menu-search-bar hidden md:flex relative">
+            <button class="nav-menu-search-bar-search-btn absolute h-full">
+              <svg class="w-3 h-3 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24">
+                <path
+                  d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z">
+                </path>
+              </svg>
+            </button>
+            <input name="s" type="text" class="w-full" />
+          </form>
+        </ul>
+      </div>
+    </div>
+</nav>
+
+    <main>
+    
+  <section class="container section">
+    <div class="page-content max-w-2xl mx-auto">
+        <img src="https://gist.github.com/assets/31009750/2509a342-da20-4d40-ad32-921a5e8263f3" class="img-responsive" alt="Aws Series Decoupling Workflows" />
+        <h1>Aws Series Decoupling Workflows</h1>
+        
+          
+          
+          <p><strong>Post Date</strong> : 2023-12-30T23:48:50+07:00</p>
+          <p><strong>Modified Date</strong> : 2023-12-30T23:48:50+07:00</p>
+        <p>
+            <strong>Category:</strong>
+            
+            <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="http://localhost:1313/categories/systemdesign">systemdesign</a>
+            
+            <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="http://localhost:1313/categories/aws">aws</a>
+            
+        </p>
+        <p>
+          <strong>Tags:</strong>
+          
+             <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white"
+             href="/tags/aws">aws</a>
+          
+        </p>                
+        <h2 id="the-issue-with-tight-coupling">The issue with tight coupling</h2>
+<p><img src="https://gist.github.com/assets/31009750/aecd21b5-5ee2-473c-aa12-34db20ce1d25" alt="image"></p>
+<h2 id="the-solution--loose-coupling">The solution : loose coupling</h2>
+<p><img src="https://gist.github.com/assets/31009750/796c33fb-ee23-4be2-876c-10e90e611534" alt="image"></p>
+<p><img src="https://gist.github.com/assets/31009750/d503a69a-787f-49ed-a778-b73c32cb72a9" alt="image"></p>
+<h3 id="simple-queue-servicesqs">Simple Queue Service(SQS)</h3>
+<p><img src="https://gist.github.com/assets/31009750/2610a121-0c58-4e60-99e4-de83cff617ee" alt="image"></p>
+<ul>
+<li>SQS is fully managed message queuing service that enables you to decouple and scale microservices, distributed systems, and serverless applications.</li>
+<li>A message queue that allows asynchronous processing of work. One resource write a message to an SQS queue, and then another resource retrieve that messages from SQS</li>
+</ul>
+<h4 id="some-important-settings">Some important settings</h4>
+<ul>
+<li>Delivery delay: default is 0, max value is 15 minutes</li>
+<li>Message size: up to 256KB of text in any format</li>
+<li>Encryption: messages are encrypted in transit by default, but you can add at-rest</li>
+<li>Message retention: default is 4 days, can be set between 1 minutes and 14 days.</li>
+<li>Long vs Short: Long polling isn&rsquo;t the default, but it should be.</li>
+<li>Queue Depth: this can be a trigger for autoscaling -&gt; if two many messages in queue, add more instances to solve it.</li>
+</ul>
+<p>SSE-SQS</p>
+<p><img src="https://gist.github.com/assets/31009750/5ac88950-bc5b-4f08-9b84-d917ad9fd88e" alt="image"></p>
+<p><strong>Visibility Timeout</strong></p>
+<p><img src="https://gist.github.com/assets/31009750/97d476b7-b69c-4ef5-bf9f-ae18cbe00b8d" alt="image"></p>
+<h3 id="simple-notification-servicesns">Simple Notification Service(SNS)</h3>
+<ul>
+<li>SNS is a fully managed messaging service for both application-to-application (A2A) and application-to-person(A2P) communication</li>
+</ul>
+<h3 id="api-gateway">API Gateway</h3>
+<ul>
+<li>API Gateway is a fully managed service that makes easy for developers to create,publish,maintain, monitor, and secure APIs at any scale.</li>
+</ul>
+<h3 id="sidelining-message-queue-with-dead-letter-queues">Sidelining Message Queue with Dead-Letter Queues</h3>
+<ul>
+<li><strong>DLQ</strong> are the targets for messages that can not be processed successfully</li>
+<li>Works with SQS and SNS!</li>
+<li>Useful for debugging applications and messaging systems</li>
+<li>Ability to isolate unconsumed messages to troubleshoot</li>
+<li>Redrive capacity allows you to move the message back into the source queue</li>
+<li>These are technically just other SQS queues</li>
+<li>DLQs used FIFO SQS queues must ALSO be FIFO queues</li>
+</ul>
+<p><strong>Benefits</strong>:</p>
+<ul>
+<li>Configure alarms based on message availability counts</li>
+<li>Quickly identify which logs to investigate for exceptions</li>
+<li>Analyze the SQS message contents for any errors</li>
+<li>Troubleshoot consumer permissions</li>
+</ul>
+<p><img src="https://gist.github.com/assets/31009750/f4d67d8d-c2dd-4a86-9d1e-651767e14a8a" alt="image"></p>
+<h3 id="order-messages-using-sqs-fifo">Order Messages using SQS FIFO</h3>
+<ul>
+<li>Guaranteed ordering</li>
+<li>No message duplication</li>
+<li>300 transactions per second &lt;&ndash;&gt; Batching can achieve up to 3,000 messages per second, per API call</li>
+</ul>
+<p><img src="https://gist.github.com/assets/31009750/420941b0-6cc1-4486-b6c8-1963d17d0102" alt="image"></p>
+<p><strong>FIFO High throughput</strong></p>
+<ul>
+<li>Process up to 9,000 transactions per second, per API without batching</li>
+<li>Up to 90,000 transactions per second by using batching APIs</li>
+</ul>
+<p><img src="https://gist.github.com/assets/31009750/b87f2da1-375e-41be-942c-2a4f0de8a938" alt="image"></p>
+<h2 id="delivering-messages-with-sns">Delivering Messages with SNS</h2>
+<p><img src="https://gist.github.com/assets/31009750/169b8c77-acec-4044-a3cf-f0590548f2ff" alt="image"></p>
+<p>SNS: Simple Notification Service</p>
+<ul>
+<li>Push-based messaging service, proactively delivers messages to the endpoints that are subscribed to it.</li>
+<li>This can be used to alert a system or a person</li>
+<li>One message can be sent to many</li>
+</ul>
+<h3 id="sns-settings-and-quotas">SNS Settings and Quotas</h3>
+<p><strong>Subcribers</strong></p>
+<ul>
+<li>Kinesis Data Firehose, SQS, Lambda, email, HTTP(s), SMS and platform application endpoint.</li>
+</ul>
+<p><strong>Message Size</strong></p>
+<ul>
+<li>Up to 256KB of text in any format</li>
+</ul>
+<p><strong>DLQ support</strong></p>
+<ul>
+<li>Messages that failed to delivered can be stored in SQS DLQ</li>
+</ul>
+<p><strong>FIFO or Standard</strong></p>
+<ul>
+<li>FIFO only supports SQS FIFO queues as subcribers</li>
+</ul>
+<p><strong>Encryption</strong></p>
+<ul>
+<li>Messages are encrypted in transit by default, and you can add at-rest via AWS KMS</li>
+</ul>
+<p><strong>Access Policies</strong></p>
+<ul>
+<li>A resource policy can be added to a topic, similar to S3. Useful for cross-account access.</li>
+</ul>
+<p><strong>Large Message Payloads</strong></p>
+<ul>
+<li>The SNS Extended Library allows sending messages up to 2GB in size</li>
+<li>The payload is stored in Amazon S3, then SNS published a reference to the object</li>
+</ul>
+<p><strong>SNS Fanout</strong></p>
+<ul>
+<li>Messages published in SNS topics are replicated in multiple endpoint subcriptions</li>
+<li>Allow for fully decoupled parallel asynchronous processing</li>
+</ul>
+<p><strong>SNS Architecture</strong></p>
+<p><img src="https://gist.github.com/assets/31009750/dde420a1-ec4e-4c9a-839d-91df589f850e" alt="image">
+<img src="https://gist.github.com/assets/31009750/73b5274f-fbe6-4a35-950a-677e0dfe1762" alt="image">
+<img src="https://gist.github.com/assets/31009750/301bf0bb-0b0b-4902-860d-e387692df0e0" alt="image"></p>
+<p><strong>Message Filtering</strong></p>
+<ul>
+<li>By default, every message published to a topic is sent to all subcribers</li>
+<li>Filter policies use JSON to define which messages get sent to specific subscribers</li>
+</ul>
+<p><img src="https://gist.github.com/assets/31009750/64be337a-6d55-4970-bcdd-29ef7d4b6aef" alt="image"></p>
+<h2 id="api-gateway-1">API Gateway</h2>
+<ul>
+<li>Fully managed service that allow you to easy publish, create, maintain, monitor and secure your API.</li>
+<li>It allow you to put a safe &ldquo;frontdoor&rdquo; on your application</li>
+</ul>
+<p><strong>Notable Features</strong></p>
+<ul>
+<li>Protect endpoints by attaching WAF</li>
+<li>Easily implement DDos protection and rare limiting</li>
+<li>Easy to use</li>
+</ul>
+<p><strong>API Options</strong></p>
+<ul>
+<li>REST API: API Keys, per-client throttles, validation of requests, WAF integration -&gt; Restful API</li>
+<li>HTTP API: Simpler option than REST API, cheaper, minimum features -&gt; Restful API</li>
+<li>Websocket API: Collection of WebSocket routes integrated with Lambda functions, HTTP Endpoints and other AWS services</li>
+</ul>
+<p><strong>Endpoint Types</strong></p>
+<ul>
+<li>Edge-Optimized: Default option. API requests get sent through a CloudFront edge. Best for global users</li>
+<li>Regional: Perfect for clients that reside in the same, specific region. Ability to leverage with CloudFront if required.</li>
+<li>Private: only accessible via VPCs using interface VPC Endpoints.</li>
+</ul>
+<p><strong>Securing your APIs</strong></p>
+<ul>
+<li>User authentication can be accomplished to control access to your APIs</li>
+<li>Authentication methods include IAM roles, Amazon Coginito, or even your own custom authorizer(Lambda functions)</li>
+<li>DNS: Edge optimized endpoints require ACM(AWS Certificate Manager) certs in the us-east-1</li>
+<li>SSL: Regional endpoints require ACM certs in the same region.</li>
+<li>WAF: you can place WAF in front of your API to prevent DDos</li>
+</ul>
+<p><strong>Example usecase</strong></p>
+<p><img src="https://gist.github.com/assets/31009750/4c9cb901-feaf-4e6e-8e42-ba6b1af7be30" alt="image"></p>
+<h2 id="aws-batch">AWS Batch</h2>
+<h3 id="batch-workloads">Batch Workloads</h3>
+<ul>
+<li>You can use AWS Batch to run batch computing workloads withi AWS(run on EC2 or EC2/Fargate)</li>
+<li>Scale based on your configuration</li>
+<li>Automatically Provision and Scale</li>
+<li>No install required</li>
+</ul>
+<h3 id="important-components">Important Components</h3>
+<h4 id="jobs">Jobs</h4>
+<ul>
+<li>Units of work that are submitted to AWS Batch(shell scripts, executeables, and Docker Images)</li>
+</ul>
+<h4 id="job-definitions">Job Definitions</h4>
+<ul>
+<li>Specify how your jobs are to be run(blueprint for resources in job)</li>
+</ul>
+<h4 id="jobqueues">JobQueues</h4>
+<ul>
+<li>Jobs get submitted to specific queues and reside until scheduled to run in a compute environment.</li>
+</ul>
+<h4 id="compute-environment">Compute Environment</h4>
+<ul>
+<li>Set of managed or unmanaged compute resources used to run your jobs</li>
+</ul>
+<h3 id="how-do-you-choose-between-fargate-and-ec2-compute-environment">How do you choose between Fargate and EC2 compute environment</h3>
+<p><img src="https://gist.github.com/assets/31009750/1e9807b3-17cf-4082-be13-0cb4cc709cb3" alt="image"></p>
+<h4 id="fargate">Fargate</h4>
+<ul>
+<li>Recommend approach for MOST workloads</li>
+<li>Require fast start times(&lt; 30 seconds)</li>
+<li>Require 16 vCPU or less</li>
+<li>Require no GPUs</li>
+<li>Require 120 Gib of memory or less</li>
+</ul>
+<h4 id="ec2">EC2</h4>
+<ul>
+<li>Need more control over instance selection</li>
+<li>Require GPUs</li>
+<li>Require Elastic Fabric Adapter</li>
+<li>Require custom AMIs</li>
+<li>High levels of concurrency</li>
+<li>Require access to Linux parameters</li>
+</ul>
+<h3 id="aws-batch-or-lambda">AWS Batch or Lambda</h3>
+<h4 id="time-limits">Time limits</h4>
+<ul>
+<li>Lambda : 15 mins execution time limit</li>
+<li>Batch: does not have this</li>
+</ul>
+<h4 id="disk-space">Disk Space</h4>
+<ul>
+<li>Lambda: has limited disk space, and if you wanna leverage it with EFS requires functions live within a VPC</li>
+</ul>
+<h4 id="runtime-limitations">Runtime limitations</h4>
+<ul>
+<li>Lambda is serverless but it has limited runtimes</li>
+</ul>
+<h4 id="batch-runtimes">Batch Runtimes</h4>
+<ul>
+<li>Batch uses Docker, so any runtime can be used</li>
+</ul>
+<h3 id="how-to-leverage-aws-batch-in-your-application">How to leverage AWS Batch in your application</h3>
+<p><img src="https://gist.github.com/assets/31009750/f677c26e-df43-44a3-a105-14f2ba7dfd93" alt="image"></p>
+<p><img src="https://gist.github.com/assets/31009750/d11ef996-91f5-46d8-8f03-43f388c0901e" alt="image"></p>
+<h3 id="summary-for-aws-batch">Summary for AWS Batch</h3>
+<p><img src="https://gist.github.com/assets/31009750/b350d236-074a-4c17-b0d0-0ad2ba0b247c" alt="image"></p>
+<h2 id="amazon-mq">Amazon MQ</h2>
+<p><img src="https://gist.github.com/assets/31009750/75584195-9f83-4c85-8917-37cd3d763652" alt="image">
+<img src="https://gist.github.com/assets/31009750/93e6d6a0-4132-43d0-91d5-43d5945a3f02" alt="image"></p>
+<ul>
+<li>Message broker service allowing easier migrating message broker system to AWS Clouds</li>
+<li>Allows you to leverage both Apache ActiveMQ and RabbitMQ engine types</li>
+<li>New applications should try and leverage SNS with SQS</li>
+<li>Amazon MQ restricts access to private networks. So require VPC connectivity</li>
+<li>Amazon MQ offer HA architectures: cluster deployments for Amazon RabbitMQ across multi AZ behind NLB</li>
+</ul>
+<h2 id="cordinating-distributed-apps-with-aws-step-functions">Cordinating Distributed Apps with AWS Step Functions</h2>
+<ul>
+<li>A serverless orchetration service to manage and run event-driven task executions</li>
+</ul>
+<p><img src="https://gist.github.com/assets/31009750/4a3bb45f-7c20-43bd-a013-8bd479fc4741" alt="image"></p>
+<p><img src="https://gist.github.com/assets/31009750/2170b556-b89c-40a5-aa15-64accd1f115d" alt="image"></p>
+<h2 id="ingesting-data-from-sass-applications-to-aws-with-amazon-appflow">Ingesting Data from SASS Applications to AWS with Amazon AppFlow</h2>
+<ul>
+<li>
+<p>Integration: Fully managed integration service for exchanging data between SaaS apps and AWS Services</p>
+</li>
+<li>
+<p>Ingest Data: Pull data records from third-party SaaS vendors and store them in S3</p>
+</li>
+<li>
+<p>Bi-directional data transfer with limited combinations</p>
+</li>
+<li>
+<p>Flow : flows transfer data between sources and destinations</p>
+</li>
+<li>
+<p>Map: determines how your source data is stored within your destination</p>
+</li>
+<li>
+<p>Filters: criteria to control which data is transfered</p>
+</li>
+<li>
+<p>Trigger: how flow start(run on demand, run on event, run on schedule)</p>
+</li>
+</ul>
+<p><img src="https://gist.github.com/assets/31009750/c93ed9e3-0648-424e-8a49-802175b9d446" alt="image"></p>
+<h3 id="usecases">Usecases</h3>
+<ul>
+<li>Transfering Salesforce records to Amazon Redshift (datawarehouse but cheaper)</li>
+<li>Ingesting and analyzing Slack conversations in S3</li>
+<li>Migrate Zenddesk and other help desk support tickets to Snowflake(datawarehouse but more expesive)</li>
+<li>Transfering aggregate data on a schedule basis to S3*</li>
+</ul>
+        
+      
+      <div class="m-1 p-1">
+        
+          <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="http://localhost:1313/categories/systemdesign">systemdesign</a>
+        
+          <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="http://localhost:1313/categories/aws">aws</a>
+        
+      </div>
+    </div>
+  </section>
+  <section class="container section">
+    <div class="max-w-2xl mx-auto">
+      <div class="font-heading text-2xl font-semibold">You Might Also Like</div>
+      <div class="mt-8 grid  gap-8">
+        
+        
+        
+        
+        <ul class="sidebar-links">
+        
+        
+            <li><a href="/post/microservice-headfirst/">Microservice Headfirst</a></li>
+        
+            <li><a href="/post/aws-lab-series-build-and-deploy-rest-api/">Aws Lab Series Build and Deploy Rest Api</a></li>
+        
+            <li><a href="/post/aws-lab-series-foreword/">Aws Lab Series Foreword</a></li>
+        
+            <li><a href="/post/aws-series-migration/">Aws Series Migration</a></li>
+        
+            <li><a href="/post/aws-series-governance/">Aws Series Governance</a></li>
+        
+            <li><a href="/post/aws-series-caching/">Aws Series Caching</a></li>
+        
+            <li><a href="/post/aws-series-automation/">Aws Series Automation</a></li>
+        
+        </ul>
+                
+      </div>
+    </div>
+  </section>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1642510310947288"
+  crossorigin="anonymous"></script>
+  <ins class="adsbygoogle"
+        style="display:block; text-align:center;"
+        data-ad-layout="in-article"
+        data-ad-format="fluid"
+        data-ad-client="ca-pub-1642510310947288"
+        data-ad-slot="9309117729"></ins>
+  <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>  
+
+    
+    </main>
+    <footer class="footer">
+      <div class="container md:flex">
+        <section class="footer-section-info md:basis-1/4">
+          <div class="address">
+            <a class="logo" href="http://localhost:1313/" title="NextJSVietNam">
+              NextJSVietNam
+            </a>
+            <h4 class="footer-heading">
+                DEVELOPMENT MODE
+            <h4>                
+          </div>
+        </section>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">NestJS</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="http://localhost:1313/post/nestjs-passing-data-between-layers-in-ddd/">Nestjs Passing Data Between Layers in Domain Driven Design</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nestjs-bai-06-viet-unit-test/">Khóa học NestJS - Bài 06 Hướng dẫn viết Unit Test</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nestjs-bai-05-repository-pattern/">Khóa học NestJS Bài 05 - Repository Pattern</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nestjs-bai-04-model-and-repository-pattern/">Khóa học NestJS Bài 04 - Model and Repository Pattern</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nestjs-bai03/">Khóa học NestJS Bài 03 - Controllers &amp; Views</a></li>              
+             
+          </ul>
+        </div>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">NextJS</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nextjs-bai-03-advanced-routing/">Khoá học NextJS Bài 03 - Advanced Routing</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nextjs-bai-02-cau-truc-du-an-nextjs/">Khoá học NextJS 2024 - Bài 02: Cấu trúc dự án NextJS</a></li>              
+            
+              <li><a href="http://localhost:1313/post/create-new-website-with-nextjs/">Create New Website With Nextjs</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nextjs/">Khóa học NextJS - Bài 01 - Lộ trình các bài học về NextJS</a></li>              
+             
+          </ul>
+        </div>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">Cheatsheet</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="http://localhost:1313/post/6minutes-tech-graphql/">6minutes Tech Graphql</a></li>              
+            
+              <li><a href="http://localhost:1313/post/6minutes-tech-progressive-web-app/">6minutes Tech Progressive Web App</a></li>              
+            
+              <li><a href="http://localhost:1313/post/flexbox-and-real-world-examples/">Flexbox and Real World Examples</a></li>              
+            
+              <li><a href="http://localhost:1313/post/react-native-examples-setup-working-place-for-react-native-developer/">[React Native Examples] Setup Working Place for React Native Developer</a></li>              
+            
+              <li><a href="http://localhost:1313/post/happy-new-year-2024/">Happy New Year 2024</a></li>              
+             
+          </ul>
+        </div>
+      </div>
+      <div class="container">
+        <div class="text-center">
+          <a href=""><span class="material-icons text-4xl m-4">facebook</span></a>
+          <a href=""><span class="material-icons text-4xl  m-4">smart_display</span></a>
+        </div>
+        <div class="text-center text-lg py-4">
+          Copyright @ NextJSVietNam 2022
+        </div>
+        <div class="text-center text-sm">
+          Powered by <a class="font-bold text-primary" href="https://gohugo.io/">Go Hugo</a> - Made
+          with love from <a class="font-bold text-primary" href="http://localhost:1313/">NextJSVietNam</a> -
+          Build
+          Version 2024-05-20 08:51:24 &#43;0700 &#43;07
+        </div>
+      </div>
+    </footer>
+
+    
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="http://localhost:1313/core/jquery-3.6.0.min.js"></script>
+        
+             
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="http://localhost:1313/themes/2022/dist/main.js"></script>
+        
+             
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="http://localhost:1313/themes/2022/dist/home.js"></script>
+        
+             
+    
+
+  
+  <script async>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1760611910980690');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1760611910980690&ev=PageView&noscript=1"
+    /></noscript>
+        
+  </body>
+</html>

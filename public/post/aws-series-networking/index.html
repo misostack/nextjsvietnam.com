@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="home" href="http://localhost:1313/" />
+    <meta name="generator" content="jsguru cms" />
+
+    
+    
+      
+    
+
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    
+    
+      
+              
+        
+        <link rel="stylesheet" href="http://localhost:1313/themes/2022/dist/main.css" />
+             
+    
+      
+              
+        
+        <link rel="stylesheet" href="http://localhost:1313/themes/2022/dist/home.css" />
+             
+    
+      
+              
+        
+        <link rel="stylesheet" href="http://localhost:1313/themes/2022/dist/page.css" />
+             
+        
+    
+    
+    
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWE4MLJYE6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-RWE4MLJYE6');    
+    </script>    
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1642510310947288"
+    crossorigin="anonymous"></script>    
+    
+    
+    
+<title>Aws Series Networking | In this topic you will learn about VPC, Network, Subnet, Internet Gateway,... | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+<meta name="robots" content="all" />
+<meta name="keywords" content="aws, solution architecture, aws solution architect associate" />
+<meta name="description" content="In this topic you will learn about VPC, Network, Subnet, Internet Gateway,..." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://gist.github.com/assets/31009750/2fcb9c85-9d55-443e-8301-93d716ab7524" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="750" />
+<meta property="og:image:height" content="300" />
+<meta
+  property="article:publisher"
+  content="https://www.facebook.com/nextjsvietnam"
+/>
+
+<meta property="article:published_time" content="2023-12-28T10:22:54+07:00" />
+<meta property="article:modified_time" content="2023-12-28T10:22:54+07:00" />
+
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png" />
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png" />
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png" />
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png" />
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png" />
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png" />
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="192x192"
+  href="/android-icon-192x192.png"
+/>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="manifest" href="/manifest.json" />
+<meta name="msapplication-TileColor" content="#ffffff" />
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
+<meta name="theme-color" content="#ffffff" />
+
+  </head>
+  <body class="body-nav-fixed">
+    <nav class="nav-fixed nav-default z-50">
+    <div class="container">
+      <div class="nav-container flex flex-wrap justify-between items-center">
+        <a href="http://localhost:1313/" class="nav-brand inline-block">
+          
+          <img class="h-12" src="http://localhost:1313/themes/2022/src/assets/images/logo.png" 
+          alt="Stunning" />
+        </a>
+        <a href="javascript:void(0);" data-menu="#menu-main_menu" class="nav-menu-toggle"><span
+          class="material-icons">menu</span></a>
+        <ul id="menu-main_menu" class="nav-menu h-0 md:h-auto">
+          <form class="nav-menu-search-bar md:hidden relative">
+            <button class="nav-menu-search-bar-search-btn absolute h-full">
+              <svg class="w-3 h-3 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24">
+                <path
+                  d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z">
+                </path>
+              </svg>
+            </button>
+            <input name="s" type="text" class="w-full" />
+          </form>
+          
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/categories/systemdesign">System Design
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/software-architecture">Software Architecture</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/microservice-architecture">Microservice Architecture</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/aws">Learn AWS The Right Way</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/aws-labs">AWS Hands-On Labs</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/categories/cheatsheet">Cheatsheet
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nestjs-examples">NestJS Examples</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/reactjs-examples">ReactJS Examples</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/react-native-examples">React Native Examples</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/categories/frameworks">Frameworks
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nestjs">NestJS</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/reactjs">ReactJS</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nextjs">NextJS</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/">Tutorials
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nestjs-tutorial">NestJS Tutorial</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/reactjs-tutorial">ReactJS Tutorial</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nextjs-tutorial">NextJS Tutorial</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/">Tools
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://regex101.com/">Online Regex</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://www.bashoneliners.com/">Bash Online</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://www.epochconverter.com/">Unix Timestamp Conversion</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://ryanstutorials.net/bash-scripting-tutorial/">Bash Scripting</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://explainshell.com/">Explain Shell</a></li>
+                
+                </ul>
+            
+            </li>
+          
+          <form class="nav-menu-search-bar hidden md:flex relative">
+            <button class="nav-menu-search-bar-search-btn absolute h-full">
+              <svg class="w-3 h-3 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24">
+                <path
+                  d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z">
+                </path>
+              </svg>
+            </button>
+            <input name="s" type="text" class="w-full" />
+          </form>
+        </ul>
+      </div>
+    </div>
+</nav>
+
+    <main>
+    
+  <section class="container section">
+    <div class="page-content max-w-2xl mx-auto">
+        <img src="https://gist.github.com/assets/31009750/2fcb9c85-9d55-443e-8301-93d716ab7524" class="img-responsive" alt="Aws Series Networking" />
+        <h1>Aws Series Networking</h1>
+        
+          
+          
+          <p><strong>Post Date</strong> : 2023-12-28T10:22:54+07:00</p>
+          <p><strong>Modified Date</strong> : 2023-12-28T10:22:54+07:00</p>
+        <p>
+            <strong>Category:</strong>
+            
+            <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="http://localhost:1313/categories/systemdesign">systemdesign</a>
+            
+            <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="http://localhost:1313/categories/aws">aws</a>
+            
+        </p>
+        <p>
+          <strong>Tags:</strong>
+          
+             <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white"
+             href="/tags/aws">aws</a>
+          
+        </p>                
+        <h2 id="6-networking">6. Networking</h2>
+<h3 id="61-vpc">6.1. VPC</h3>
+<p><img src="https://gist.github.com/assets/31009750/dbaacce5-bb1d-4bf7-b14a-70467cd64c19" alt="image"></p>
+<p><img src="https://gist.github.com/assets/31009750/b228fd97-9a64-480e-ad7a-2a6c4a8704a0" alt="image"></p>
+<ul>
+<li>Virtual Private Cloud</li>
+<li>Fully customized your network</li>
+<li>Create a <strong>hardward Virtual Private Network(VPN)</strong> connection between your data center and your AWS VPC.</li>
+<li>Logical data center in AWS</li>
+<li>Consists of: internet gateway, route tables, network access control lists, subnets, security groups</li>
+<li>1 subnet is always in 1 Availability Zone (subnet can&rsquo;t span into multiple AZs)</li>
+<li>Amazon IPV4 CIDR block size must be between <strong>/16 - /24</strong></li>
+</ul>
+<p><strong>What can we do with VPC</strong></p>
+<ul>
+<li>Launch instances into a subnet of your choosing</li>
+<li>Custom IP Addresses: Assign IP Addresses Range for each subnet</li>
+<li>Route tables: config route tables between subnets</li>
+<li>Internet Gateway: create internet gateway and attach it to our VPC</li>
+<li>Access Control Lists: subnet network access control lists(NACLs)</li>
+</ul>
+<blockquote>
+<p>Tips: you can use Network Access Control Lists(NACLs) to block specific IP Addresses</p></blockquote>
+<p><strong>There 2 kinds of VPC</strong></p>
+<ul>
+<li><strong>Default VPC</strong>: user friendly, all subnets in default VPC have a route to the internet, each ec2 instance has both a public and private IP address.</li>
+<li><strong>Custom VPC</strong>: fully customizable, takes time to set up.</li>
+</ul>
+<p><strong>Network Diagram</strong></p>
+<p><img src="https://gist.github.com/assets/31009750/7349a654-65d3-47fd-91a3-c3e678ce5cb8" alt="image"></p>
+<p><strong>In a subnet with CIDR Block 10.0.0.0/24</strong>, the first 4 IP addresses and the last IP address in each subnet block are not available for you to use. Because they are reserved:</p>
+<ul>
+<li>10.0.0.0: Network address</li>
+<li>10.0.0.1: Reserved by AWS for the VPC router</li>
+<li>10.0.0.2: Reserved by AWS for DNS Purpose</li>
+<li>10.0.0.3: Reserved by AWS for future use.</li>
+<li>10.0.0.255: Network broadcast address</li>
+</ul>
+<p><strong>NAT Gateway</strong></p>
+<p><img src="https://gist.github.com/assets/31009750/76c11b9c-2df3-4f13-82c2-26f40b5b1cdc" alt="image"></p>
+<ul>
+<li>Redundant inside the AZ</li>
+<li>Starts at 5Gbps and scales currently to 45Gbps</li>
+<li>No need to patch</li>
+<li>Not associated with Security Groups</li>
+<li>Automatically assigned a public IP address</li>
+</ul>
+<p><strong>Protect your resources with Security Group</strong></p>
+<ul>
+<li>Last line of defend</li>
+<li>Virtual Firewall on AWS</li>
+<li>By default everything is block</li>
+<li><strong>Stateful</strong></li>
+</ul>
+<blockquote>
+<p>If you send a request from your instance, the response traffic for that request is allowed to flow in regardless of inbound security group rules</p></blockquote>
+<blockquote>
+<p>Responses to allowed inbound traffic are allowed to flow out, regardless of outbound group.</p></blockquote>
+<p>For instance:</p>
+<ul>
+<li>If you have an allow inbound rule for port 80, and you set a deny for outbound rule for port 80(the deny rule won&rsquo;t work)</li>
+</ul>
+<p><strong>Network ACL</strong></p>
+<ul>
+<li>The first line of defense</li>
+<li>ACL: access control list</li>
+<li>Act as a firewall for controlling traffic in and out of one or more subnets</li>
+<li>Default Network ACLs: VPC automatically comes with a default network ACL, by default it allows all outbound and inbound traffic</li>
+<li>You can create custom Network ACL. By default custom network ACL denies all inbound and outbound traffic</li>
+<li>Subnet Associations: each subnet must be associated with a network ACL. If you don&rsquo;t explicitly associate a subnet with a network ACL, it will be automatically associated with a default network ACL.</li>
+<li><strong>Block IP Addresses</strong>: Block IP addresses using <strong>network ACLs</strong>, not security groups</li>
+<li>Network ACL is stateless, you have to define your inbound and outbound rules</li>
+<li>Network ACL evaluate the rules in order, <strong>starting with the lowest numbered rule</strong>, when deciding whether allow or deny traffic. If the traffic <strong>matches a rule</strong>, the rule is <strong>applied</strong> and we <strong>do not evaluate any additional rules</strong>.</li>
+</ul>
+<p><strong>VPC Endpoints</strong></p>
+<ul>
+<li>Are virtual devices</li>
+<li>Not impose availability risk or bandwith constraints when your VPC communicate with AWS Services.</li>
+<li>Enable you privately connect your <strong>VPC</strong> to <strong>supported AWS Services</strong> powered by private link without requiring an Internet Gateway/NAT/VPC Connection/AWS Direct Connect</li>
+<li>Traffic between your VPC and other service does not leave the Amazon Network</li>
+</ul>
+<blockquote>
+<p>There are 2 types of endpoints</p></blockquote>
+<ul>
+<li>Interface Endpoint: elastic network interface with a private IP Address</li>
+<li>Gateway Endpoint: similar to NAT, is virtual device you provision. It supports connection to S3 and DynamoDB</li>
+</ul>
+<p><img src="https://gist.github.com/assets/31009750/925b01ba-ca5a-4ffb-a269-513a4161f2e6" alt="image"></p>
+<p><strong>Multiple VPCs</strong></p>
+<ul>
+<li>Use VPC Peering</li>
+<li>Connect 1 VPC to another via direct network route using private IP addresses</li>
+<li>Not support transitive peering. Eg: A&lt;&ndash;&gt;B, A&lt;&ndash;&gt;C, and it does not allow you to B&lt;&ndash;&gt;C via A. You must create peering connection between B&lt;&ndash;&gt;C</li>
+<li>You can peer between regions</li>
+<li>No overlapping CIDR address range</li>
+</ul>
+<p><strong>Network privacy with AWS PrivateLink</strong></p>
+<ul>
+<li>If you have to make peering VPCs to tens,hundreds,or thoudsands of customer VPCs, think of AWS PrivateLink.</li>
+</ul>
+<p><img src="https://gist.github.com/assets/31009750/d340fe94-f6c3-4340-abba-8fc3f0ad3ba2" alt="image"></p>
+<p><strong>AWS VPN CloudHub</strong></p>
+<ul>
+<li>If you have multiple sites, each with its own VPN connection, you can use AWS VPN CloudHub to connect those sites together.</li>
+</ul>
+<p><img src="https://gist.github.com/assets/31009750/e43a0b77-eb2a-4008-abd2-d30a45effb8d" alt="image"></p>
+<ul>
+<li>Establish private connectivity between AWS and your data center or office(on-premises)</li>
+</ul>
+<p><strong>There are 2 types of Direct Connection</strong></p>
+<ul>
+<li>Dedicated Connection: physical ethernet connection associated with a customer</li>
+<li>Hosted Connection: physical ethernet connection that AWS Direct Connect Partner provision on behalf of customer</li>
+</ul>
+<p><img src="https://gist.github.com/assets/31009750/f3cc5dff-2cec-4314-882d-c07c22e80ac2" alt="image"></p>
+<p><strong>AWS Transit Gateway</strong></p>
+<p>If you&rsquo;re facing with this problems:</p>
+<p><img src="https://gist.github.com/assets/31009750/c94297ac-7f4b-423d-b23e-04152a7e6cfa" alt="image"></p>
+<p>You can just simplify your network topology with AWS Transit Gateway(act as a router)</p>
+<p><img src="https://gist.github.com/assets/31009750/bdd6cde6-2416-4dcf-b7c3-b007863b02a7" alt="image"></p>
+<ul>
+<li>Allow transitive peering between thousands of VPCs and on-premises data centers</li>
+<li>Works on a hub-and-spoke model</li>
+<li>Works on a regional basis</li>
+<li>Can use it across multiple AWS accounts using RAM(Resource Access Management)</li>
+</ul>
+<p>Summary:</p>
+<ul>
+<li>You can use route tables to limit how VPCs talk to each other</li>
+<li>Works with Direct Connect as well as VPN connections.</li>
+<li>Supports IP Multicast</li>
+</ul>
+<p><strong>5GB Networks</strong></p>
+<ul>
+<li>
+<p>5GB provides mobile devices wither higher speed, lower latency, and greater capacity than 4GB LTE networks. It is one the fastest, most robust technologies the world has ever seen.</p>
+</li>
+<li>
+<p>AWS Wavelength embeds AWS Compute and Storage within 5GB networks : smart car &lt;&ndash;&gt; 5GB &lt;&ndash;&gt; AWS Compute/Services -&gt; Mobile Edge Computing</p>
+</li>
+</ul>
+        
+      
+      <div class="m-1 p-1">
+        
+          <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="http://localhost:1313/categories/systemdesign">systemdesign</a>
+        
+          <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="http://localhost:1313/categories/aws">aws</a>
+        
+      </div>
+    </div>
+  </section>
+  <section class="container section">
+    <div class="max-w-2xl mx-auto">
+      <div class="font-heading text-2xl font-semibold">You Might Also Like</div>
+      <div class="mt-8 grid  gap-8">
+        
+        
+        
+        
+        <ul class="sidebar-links">
+        
+        
+            <li><a href="/post/microservice-headfirst/">Microservice Headfirst</a></li>
+        
+            <li><a href="/post/aws-lab-series-build-and-deploy-rest-api/">Aws Lab Series Build and Deploy Rest Api</a></li>
+        
+            <li><a href="/post/aws-lab-series-foreword/">Aws Lab Series Foreword</a></li>
+        
+            <li><a href="/post/aws-series-migration/">Aws Series Migration</a></li>
+        
+            <li><a href="/post/aws-series-governance/">Aws Series Governance</a></li>
+        
+            <li><a href="/post/aws-series-caching/">Aws Series Caching</a></li>
+        
+            <li><a href="/post/aws-series-automation/">Aws Series Automation</a></li>
+        
+        </ul>
+                
+      </div>
+    </div>
+  </section>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1642510310947288"
+  crossorigin="anonymous"></script>
+  <ins class="adsbygoogle"
+        style="display:block; text-align:center;"
+        data-ad-layout="in-article"
+        data-ad-format="fluid"
+        data-ad-client="ca-pub-1642510310947288"
+        data-ad-slot="9309117729"></ins>
+  <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>  
+
+    
+    </main>
+    <footer class="footer">
+      <div class="container md:flex">
+        <section class="footer-section-info md:basis-1/4">
+          <div class="address">
+            <a class="logo" href="http://localhost:1313/" title="NextJSVietNam">
+              NextJSVietNam
+            </a>
+            <h4 class="footer-heading">
+                DEVELOPMENT MODE
+            <h4>                
+          </div>
+        </section>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">NestJS</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="http://localhost:1313/post/nestjs-passing-data-between-layers-in-ddd/">Nestjs Passing Data Between Layers in Domain Driven Design</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nestjs-bai-06-viet-unit-test/">Khóa học NestJS - Bài 06 Hướng dẫn viết Unit Test</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nestjs-bai-05-repository-pattern/">Khóa học NestJS Bài 05 - Repository Pattern</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nestjs-bai-04-model-and-repository-pattern/">Khóa học NestJS Bài 04 - Model and Repository Pattern</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nestjs-bai03/">Khóa học NestJS Bài 03 - Controllers &amp; Views</a></li>              
+             
+          </ul>
+        </div>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">NextJS</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nextjs-bai-03-advanced-routing/">Khoá học NextJS Bài 03 - Advanced Routing</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nextjs-bai-02-cau-truc-du-an-nextjs/">Khoá học NextJS 2024 - Bài 02: Cấu trúc dự án NextJS</a></li>              
+            
+              <li><a href="http://localhost:1313/post/create-new-website-with-nextjs/">Create New Website With Nextjs</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nextjs/">Khóa học NextJS - Bài 01 - Lộ trình các bài học về NextJS</a></li>              
+             
+          </ul>
+        </div>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">Cheatsheet</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="http://localhost:1313/post/6minutes-tech-graphql/">6minutes Tech Graphql</a></li>              
+            
+              <li><a href="http://localhost:1313/post/6minutes-tech-progressive-web-app/">6minutes Tech Progressive Web App</a></li>              
+            
+              <li><a href="http://localhost:1313/post/flexbox-and-real-world-examples/">Flexbox and Real World Examples</a></li>              
+            
+              <li><a href="http://localhost:1313/post/react-native-examples-setup-working-place-for-react-native-developer/">[React Native Examples] Setup Working Place for React Native Developer</a></li>              
+            
+              <li><a href="http://localhost:1313/post/happy-new-year-2024/">Happy New Year 2024</a></li>              
+             
+          </ul>
+        </div>
+      </div>
+      <div class="container">
+        <div class="text-center">
+          <a href=""><span class="material-icons text-4xl m-4">facebook</span></a>
+          <a href=""><span class="material-icons text-4xl  m-4">smart_display</span></a>
+        </div>
+        <div class="text-center text-lg py-4">
+          Copyright @ NextJSVietNam 2022
+        </div>
+        <div class="text-center text-sm">
+          Powered by <a class="font-bold text-primary" href="https://gohugo.io/">Go Hugo</a> - Made
+          with love from <a class="font-bold text-primary" href="http://localhost:1313/">NextJSVietNam</a> -
+          Build
+          Version 2024-05-20 08:51:24 &#43;0700 &#43;07
+        </div>
+      </div>
+    </footer>
+
+    
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="http://localhost:1313/core/jquery-3.6.0.min.js"></script>
+        
+             
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="http://localhost:1313/themes/2022/dist/main.js"></script>
+        
+             
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="http://localhost:1313/themes/2022/dist/home.js"></script>
+        
+             
+    
+
+  
+  <script async>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1760611910980690');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1760611910980690&ev=PageView&noscript=1"
+    /></noscript>
+        
+  </body>
+</html>

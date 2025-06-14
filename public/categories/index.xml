@@ -2,55 +2,151 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
-    <link>https://nextjsvietnam.com/categories/</link>
+    <link>http://localhost:1313/categories/</link>
     <description>Recent content in Categories on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 05 Aug 2022 20:07:21 +0700</lastBuildDate><atom:link href="https://nextjsvietnam.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 20 May 2024 08:51:24 +0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>frameworks</title>
-      <link>https://nextjsvietnam.com/categories/frameworks/</link>
-      <pubDate>Fri, 05 Aug 2022 20:07:21 +0700</pubDate>
-      
-      <guid>https://nextjsvietnam.com/categories/frameworks/</guid>
+      <title>Nextjs-Tutorial</title>
+      <link>http://localhost:1313/categories/nextjs-tutorial/</link>
+      <pubDate>Mon, 20 May 2024 08:51:24 +0700</pubDate>
+      <guid>http://localhost:1313/categories/nextjs-tutorial/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>cheatsheet</title>
-      <link>https://nextjsvietnam.com/categories/cheatsheet/</link>
-      <pubDate>Fri, 05 Aug 2022 15:07:40 +0700</pubDate>
-      
-      <guid>https://nextjsvietnam.com/categories/cheatsheet/</guid>
+      <title>6minutes-Tech</title>
+      <link>http://localhost:1313/categories/6minutes-tech/</link>
+      <pubDate>Sun, 19 May 2024 08:35:31 +0700</pubDate>
+      <guid>http://localhost:1313/categories/6minutes-tech/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>lifestyle</title>
-      <link>https://nextjsvietnam.com/categories/lifestyle/</link>
-      <pubDate>Thu, 28 Jul 2022 09:18:57 +0700</pubDate>
-      
-      <guid>https://nextjsvietnam.com/categories/lifestyle/</guid>
+      <title>Cheatsheet</title>
+      <link>http://localhost:1313/categories/cheatsheet/</link>
+      <pubDate>Sun, 19 May 2024 08:35:31 +0700</pubDate>
+      <guid>http://localhost:1313/categories/cheatsheet/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>java</title>
-      <link>https://nextjsvietnam.com/categories/java/</link>
-      <pubDate>Wed, 20 Jul 2022 09:04:17 +0700</pubDate>
-      
-      <guid>https://nextjsvietnam.com/categories/java/</guid>
+      <title>Java</title>
+      <link>http://localhost:1313/categories/java/</link>
+      <pubDate>Wed, 08 May 2024 09:16:47 +0700</pubDate>
+      <guid>http://localhost:1313/categories/java/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>systemdesign</title>
-      <link>https://nextjsvietnam.com/categories/systemdesign/</link>
-      <pubDate>Tue, 12 Jul 2022 11:39:43 +0700</pubDate>
-      
-      <guid>https://nextjsvietnam.com/categories/systemdesign/</guid>
+      <title>Frameworks</title>
+      <link>http://localhost:1313/categories/frameworks/</link>
+      <pubDate>Sat, 27 Apr 2024 14:31:26 +0700</pubDate>
+      <guid>http://localhost:1313/categories/frameworks/</guid>
       <description></description>
     </item>
-    
+    <item>
+      <title>Nestjs</title>
+      <link>http://localhost:1313/categories/nestjs/</link>
+      <pubDate>Sat, 27 Apr 2024 14:31:26 +0700</pubDate>
+      <guid>http://localhost:1313/categories/nestjs/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Microservice-Architecture</title>
+      <link>http://localhost:1313/categories/microservice-architecture/</link>
+      <pubDate>Fri, 19 Apr 2024 08:27:33 +0700</pubDate>
+      <guid>http://localhost:1313/categories/microservice-architecture/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Systemdesign</title>
+      <link>http://localhost:1313/categories/systemdesign/</link>
+      <pubDate>Fri, 19 Apr 2024 08:27:33 +0700</pubDate>
+      <guid>http://localhost:1313/categories/systemdesign/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>React-Native-Examples</title>
+      <link>http://localhost:1313/categories/react-native-examples/</link>
+      <pubDate>Thu, 28 Mar 2024 08:51:55 +0700</pubDate>
+      <guid>http://localhost:1313/categories/react-native-examples/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Reactjs-Examples</title>
+      <link>http://localhost:1313/categories/reactjs-examples/</link>
+      <pubDate>Thu, 01 Feb 2024 08:58:18 +0700</pubDate>
+      <guid>http://localhost:1313/categories/reactjs-examples/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Aws-Labs</title>
+      <link>http://localhost:1313/categories/aws-labs/</link>
+      <pubDate>Sat, 06 Jan 2024 08:56:51 +0700</pubDate>
+      <guid>http://localhost:1313/categories/aws-labs/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Aws</title>
+      <link>http://localhost:1313/categories/aws/</link>
+      <pubDate>Thu, 04 Jan 2024 10:16:42 +0700</pubDate>
+      <guid>http://localhost:1313/categories/aws/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Nestjs-Examples</title>
+      <link>http://localhost:1313/categories/nestjs-examples/</link>
+      <pubDate>Sat, 07 Oct 2023 09:26:40 +0700</pubDate>
+      <guid>http://localhost:1313/categories/nestjs-examples/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Reactjs</title>
+      <link>http://localhost:1313/categories/reactjs/</link>
+      <pubDate>Sun, 01 Oct 2023 18:38:44 +0700</pubDate>
+      <guid>http://localhost:1313/categories/reactjs/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Reactjs-Tutorial</title>
+      <link>http://localhost:1313/categories/reactjs-tutorial/</link>
+      <pubDate>Thu, 28 Sep 2023 08:07:25 +0700</pubDate>
+      <guid>http://localhost:1313/categories/reactjs-tutorial/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Nextjs</title>
+      <link>http://localhost:1313/categories/nextjs/</link>
+      <pubDate>Tue, 26 Sep 2023 12:00:00 +0700</pubDate>
+      <guid>http://localhost:1313/categories/nextjs/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Software-Architecture</title>
+      <link>http://localhost:1313/categories/software-architecture/</link>
+      <pubDate>Sun, 03 Sep 2023 09:39:41 +0700</pubDate>
+      <guid>http://localhost:1313/categories/software-architecture/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Games</title>
+      <link>http://localhost:1313/categories/games/</link>
+      <pubDate>Fri, 21 Jul 2023 10:24:34 +0700</pubDate>
+      <guid>http://localhost:1313/categories/games/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Nestjs-Tutorial</title>
+      <link>http://localhost:1313/categories/nestjs-tutorial/</link>
+      <pubDate>Thu, 06 Jul 2023 21:52:16 +0700</pubDate>
+      <guid>http://localhost:1313/categories/nestjs-tutorial/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Lifestyle</title>
+      <link>http://localhost:1313/categories/lifestyle/</link>
+      <pubDate>Sat, 31 Dec 2022 21:10:13 +0700</pubDate>
+      <guid>http://localhost:1313/categories/lifestyle/</guid>
+      <description></description>
+    </item>
   </channel>
 </rss>

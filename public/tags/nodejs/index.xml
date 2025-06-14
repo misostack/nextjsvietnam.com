@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>nodejs on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
-    <link>https://nextjsvietnam.com/tags/nodejs/</link>
-    <description>Recent content in nodejs on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <title>Nodejs on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+    <link>http://localhost:1313/tags/nodejs/</link>
+    <description>Recent content in Nodejs on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 12 Jul 2022 11:39:11 +0700</lastBuildDate><atom:link href="https://nextjsvietnam.com/tags/nodejs/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 12 Jul 2022 11:39:11 +0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/nodejs/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Developer Your Rest Api With Nestjs</title>
-      <link>https://nextjsvietnam.com/post/developer-your-rest-api-with-nestjs/</link>
+      <link>http://localhost:1313/post/developer-your-rest-api-with-nestjs/</link>
       <pubDate>Tue, 12 Jul 2022 11:39:11 +0700</pubDate>
-      
-      <guid>https://nextjsvietnam.com/post/developer-your-rest-api-with-nestjs/</guid>
-      <description>Ứng dụng Xây dựng REST API cung cấp dữ liệu thời gian thực giá vàng
-Tính năng cập nhật giá vàng Cập nhật giá vàng theo ngày : nhập thông thường Cập nhật giá vàng hàng loạt: import tập tin excel theo định dạng Cập nhật giá vàng tự động: thiết lập link liên kết lấy giá vàng, khoảng thời gian lấy Tính năng hiển thị giá vàng Dạng hiện thị : dạng bảng hoặc dạng biểu đồ</description>
+      <guid>http://localhost:1313/post/developer-your-rest-api-with-nestjs/</guid>
+      <description>&lt;h2 id=&#34;ứng-dụng&#34;&gt;Ứng dụng&lt;/h2&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Xây dựng REST API cung cấp dữ liệu thời gian thực giá vàng&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://user-images.githubusercontent.com/31009750/179179969-d1b9fbb0-0b8c-45a1-9892-8d151d6b67b5.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;&#xA;&lt;h3 id=&#34;tính-năng-cập-nhật-giá-vàng&#34;&gt;Tính năng cập nhật giá vàng&lt;/h3&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Cập nhật giá vàng theo ngày : nhập thông thường&lt;/li&gt;&#xA;&lt;li&gt;Cập nhật giá vàng hàng loạt: import tập tin excel theo định dạng&lt;/li&gt;&#xA;&lt;li&gt;Cập nhật giá vàng tự động: thiết lập link liên kết lấy giá vàng, khoảng thời gian lấy&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h3 id=&#34;tính-năng-hiển-thị-giá-vàng&#34;&gt;Tính năng hiển thị giá vàng&lt;/h3&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Dạng hiện thị : dạng bảng hoặc dạng biểu đồ&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

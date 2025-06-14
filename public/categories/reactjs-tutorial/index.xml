@@ -1,22 +1,40 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>reactjs-tutorial on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
-    <link>https://nextjsvietnam.com/categories/reactjs-tutorial/</link>
-    <description>Recent content in reactjs-tutorial on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <title>Reactjs-Tutorial on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+    <link>http://localhost:1313/categories/reactjs-tutorial/</link>
+    <description>Recent content in Reactjs-Tutorial on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 19 May 2023 22:00:00 +0700</lastBuildDate><atom:link href="https://nextjsvietnam.com/categories/reactjs-tutorial/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 28 Sep 2023 08:07:25 +0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/reactjs-tutorial/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Khóa học ReactJS Bài 04 - viết test cho dự án React</title>
+      <link>http://localhost:1313/post/khoa-hoc-reactjs-bai-04-viet-test/</link>
+      <pubDate>Thu, 28 Sep 2023 08:07:25 +0700</pubDate>
+      <guid>http://localhost:1313/post/khoa-hoc-reactjs-bai-04-viet-test/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: Toàn bộ mã nguồn của khóa học này đều được công khai trên github tại &lt;a href=&#34;https://github.com/misostack/reactjs-tutorial-2023/tree/lession04&#34;&gt;ReactJS Tutorial 2023&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;Đầu tiên, trước khi bắt đầu viết test, các anh/chị cần suy nghĩ xem dự án của mình sẽ test những gì. Cùng nhìn vào hình minh họa bên dưới sau:&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Kim tự tháp kiểm thử phần mềm&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://user-images.githubusercontent.com/31009750/261233946-8a85e14e-e153-4dd0-a22c-ced35255d20c.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;Do đó, việc viết test được phân vào 3 nhóm chính:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Unit Test&lt;/li&gt;&#xA;&lt;li&gt;Integration Test&lt;/li&gt;&#xA;&lt;li&gt;E2E Test ( end to end Test)&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;Vậy trong mỗi nhóm như vậy các anh/chị sẽ test những gì, công cụ nào có thể hỗ trợ chúng ta làm công việc này.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Khóa học ReactJS - Bài 03 - Props và States</title>
+      <link>http://localhost:1313/post/khoa-hoc-reactjs-bai-03/</link>
+      <pubDate>Thu, 13 Jul 2023 21:45:10 +0700</pubDate>
+      <guid>http://localhost:1313/post/khoa-hoc-reactjs-bai-03/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: Toàn bộ mã nguồn của khóa học này đều được công khai trên github tại &lt;a href=&#34;https://github.com/misostack/reactjs-tutorial-2023/tree/lession03&#34;&gt;ReactJS Tutorial 2023&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;bài-03&#34;&gt;Bài 03&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Tìm hiểu lý thuyết về props, state, hooks và minh hoạ&lt;/li&gt;&#xA;&lt;li&gt;Tìm hiểu lý thuyết về cách tổ chức cấu trúc dữ liệu trong ứng dụng và minh hoạ&lt;/li&gt;&#xA;&lt;li&gt;Tổng kết&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;Trong bài trước, các anh chị đã tìm hiểu được cấu trúc 1 ứng dụng ReactJS chính là tổ hợp các component.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Khóa học ReactJS - Bài 02 - Làm quen với ReactJS qua các khái niệm</title>
+      <link>http://localhost:1313/post/khoa-hoc-reactjs-bai-02/</link>
+      <pubDate>Sun, 02 Jul 2023 20:08:16 +0700</pubDate>
+      <guid>http://localhost:1313/post/khoa-hoc-reactjs-bai-02/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: Toàn bộ mã nguồn của khóa học này đều được công khai trên github tại &lt;a href=&#34;https://github.com/misostack/reactjs-tutorial-2023/tree/lession02&#34;&gt;ReactJS Tutorial 2023&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;bài-02&#34;&gt;Bài 02&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Tạo dự án mới với vite&lt;/li&gt;&#xA;&lt;li&gt;Sử dụng Env Variables&lt;/li&gt;&#xA;&lt;li&gt;Rendering: Khái niệm về component, JSX&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h3 id=&#34;tạo-dự-án-mới-với-vite&#34;&gt;Tạo dự án mới với vite&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://vitejs.dev/guide/&#34;&gt;Tham khảo&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;npm create vite@latest reactjs-tutorial-2023 -- --template react&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Ngoài react ra vite còn hỗ trợ 1 số template khác khi tạo dự án như: vanilla, vanilla-ts, vue, vue-ts, react, react-ts, react-swc, react-swc-ts, preact, preact-ts, lit, lit-ts, svelte, svelte-ts.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Khóa học ReactJS - Bài 01 - Lộ trình các bài học về ReactJS</title>
-      <link>https://nextjsvietnam.com/post/khoa-hoc-reactjs/</link>
+      <link>http://localhost:1313/post/khoa-hoc-reactjs/</link>
       <pubDate>Fri, 19 May 2023 22:00:00 +0700</pubDate>
-      
-      <guid>https://nextjsvietnam.com/post/khoa-hoc-reactjs/</guid>
-      <description>Note: Toàn bộ mã nguồn của khóa học này đều được công khai trên github tại ReactJS Tutorial 2023
-Trước khi bắt đầu nội dung chi tiết của khóa học này, tôi sẽ liệt kê một số câu hỏi thường gặp, cũng như câu trả lời của nó.
-Câu hỏi số 1 : Tại sao khóa học này xuất hiện? Câu trả lời là &amp;ldquo;Niềm tự hào dân tộc&amp;rdquo;. Phần lớn tài liệu dành cho lập trình viên được viết bằng &amp;ldquo;Tiếng Anh&amp;rdquo;, tuy nhiên một số quốc gia như &amp;ldquo;Trung Quốc&amp;rdquo;, &amp;ldquo;Nhật Bản&amp;rdquo;, &amp;ldquo;Hàn Quốc&amp;rdquo;, hay các nước lớn như &amp;ldquo;Pháp&amp;rdquo;, &amp;ldquo;Đức&amp;rdquo; đều có những tài liệu lập trình được địa phương hóa, với rất nhiều kiến thức chuyên sâu, cũng như các chú giải/kinh nghiệm của người đi trước được truyền tải lại.</description>
+      <guid>http://localhost:1313/post/khoa-hoc-reactjs/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: Toàn bộ mã nguồn của khóa học này đều được công khai trên github tại &lt;a href=&#34;//github.com/misostack/reactjs-tutorial-2023.git&#34;&gt;ReactJS Tutorial 2023&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;Trước khi bắt đầu nội dung chi tiết của khóa học này, tôi sẽ liệt kê một số câu hỏi thường gặp, cũng như câu trả lời của nó.&lt;/p&gt;&#xA;&lt;h2 id=&#34;câu-hỏi-số-1--tại-sao-khóa-học-này-xuất-hiện&#34;&gt;Câu hỏi số 1 : Tại sao khóa học này xuất hiện?&lt;/h2&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;h3 id=&#34;câu-trả-lời-là-niềm-tự-hào-dân-tộc&#34;&gt;Câu trả lời là &amp;ldquo;Niềm tự hào dân tộc&amp;rdquo;.&lt;/h3&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;Phần lớn tài liệu dành cho lập trình viên được viết bằng &amp;ldquo;Tiếng Anh&amp;rdquo;, tuy nhiên một số quốc gia như &amp;ldquo;Trung Quốc&amp;rdquo;, &amp;ldquo;Nhật Bản&amp;rdquo;, &amp;ldquo;Hàn Quốc&amp;rdquo;, hay các nước lớn như &amp;ldquo;Pháp&amp;rdquo;, &amp;ldquo;Đức&amp;rdquo; đều có những tài liệu lập trình được địa phương hóa, với rất nhiều kiến thức chuyên sâu, cũng như các chú giải/kinh nghiệm của người đi trước được truyền tải lại.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

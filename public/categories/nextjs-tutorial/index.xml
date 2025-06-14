@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nextjs-Tutorial on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+    <link>http://localhost:1313/categories/nextjs-tutorial/</link>
+    <description>Recent content in Nextjs-Tutorial on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 20 May 2024 08:51:24 +0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/nextjs-tutorial/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Khoá học NextJS Bài 03 - Advanced Routing</title>
+      <link>http://localhost:1313/post/khoa-hoc-nextjs-bai-03-advanced-routing/</link>
+      <pubDate>Mon, 20 May 2024 08:51:24 +0700</pubDate>
+      <guid>http://localhost:1313/post/khoa-hoc-nextjs-bai-03-advanced-routing/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: Toàn bộ mã nguồn của khóa học này đều được công khai trên github tại &lt;a href=&#34;https://github.com/nextjsvietnam/nextjs-tutorial-2024/tree/tutorial/lession-03&#34;&gt;Nextjs Tutorial 2024&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;Các nội dung chính trong bài học lần này:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Phân quyền và chuyển hướng&lt;/li&gt;&#xA;&lt;li&gt;Tạo layout dùng chung&lt;/li&gt;&#xA;&lt;li&gt;Loading Screen&lt;/li&gt;&#xA;&lt;li&gt;I18n - đa ngôn ngữ&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;Với nội dung trên, chúng ta sẽ tiếp tục với việc phân quyền và chuyển hướng, cũng như thực hành chia layout dùng chung, hiển thị màn hình chờ ( loading screen )&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Khoá học NextJS 2024 - Bài 02: Cấu trúc dự án NextJS</title>
+      <link>http://localhost:1313/post/khoa-hoc-nextjs-bai-02-cau-truc-du-an-nextjs/</link>
+      <pubDate>Sat, 18 May 2024 09:05:19 +0700</pubDate>
+      <guid>http://localhost:1313/post/khoa-hoc-nextjs-bai-02-cau-truc-du-an-nextjs/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: Toàn bộ mã nguồn của khóa học này đều được công khai trên github tại &lt;a href=&#34;https://github.com/nextjsvietnam/nextjs-tutorial-2024/tree/tutorial/lession-02&#34;&gt;Nextjs Tutorial 2024&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;Các nội dung chính trong bài học lần này:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Khởi tạo dự án NextJS&lt;/li&gt;&#xA;&lt;li&gt;So sánh cấu trúc của 1 trang web với cấu trúc của một dự án NextJS&lt;/li&gt;&#xA;&lt;li&gt;Tạo cấu trúc thư mục cơ bản nhất cho một dự án NextJS&lt;/li&gt;&#xA;&lt;li&gt;Cài đặt và cấu hình VSCode cho dự án NextJS&lt;/li&gt;&#xA;&lt;li&gt;Triển khai dự án đầu tiên của bạn lên server&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;khởi-tạo-dự-án-nextjs&#34;&gt;Khởi tạo dự án NextJS&lt;/h2&gt;&#xA;&lt;p&gt;Có 2 cách để tạo 1 dự án NextJS&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Khóa học NextJS - Bài 01 - Lộ trình các bài học về NextJS</title>
+      <link>http://localhost:1313/post/khoa-hoc-nextjs/</link>
+      <pubDate>Fri, 19 May 2023 22:00:00 +0700</pubDate>
+      <guid>http://localhost:1313/post/khoa-hoc-nextjs/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: Toàn bộ mã nguồn của khóa học này đều được công khai trên github tại &lt;a href=&#34;https://github.com/nextjsvietnam/nextjs-tutorial-2024&#34;&gt;Nextjs Tutorial 2024&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;Trước khi bắt đầu nội dung chi tiết của khóa học này, tôi sẽ liệt kê một số câu hỏi thường gặp, cũng như câu trả lời của nó.&lt;/p&gt;&#xA;&lt;h2 id=&#34;câu-hỏi-số-1--tại-sao-khóa-học-này-xuất-hiện&#34;&gt;Câu hỏi số 1 : Tại sao khóa học này xuất hiện?&lt;/h2&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;h3 id=&#34;câu-trả-lời-là-niềm-tự-hào-dân-tộc&#34;&gt;Câu trả lời là &amp;ldquo;Niềm tự hào dân tộc&amp;rdquo;.&lt;/h3&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;Phần lớn tài liệu dành cho lập trình viên được viết bằng &amp;ldquo;Tiếng Anh&amp;rdquo;, tuy nhiên một số quốc gia như &amp;ldquo;Trung Quốc&amp;rdquo;, &amp;ldquo;Nhật Bản&amp;rdquo;, &amp;ldquo;Hàn Quốc&amp;rdquo;, hay các nước lớn như &amp;ldquo;Pháp&amp;rdquo;, &amp;ldquo;Đức&amp;rdquo; đều có những tài liệu lập trình được địa phương hóa, với rất nhiều kiến thức chuyên sâu, cũng như các chú giải/kinh nghiệm của người đi trước được truyền tải lại.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

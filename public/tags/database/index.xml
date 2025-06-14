@@ -1,22 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>database on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
-    <link>https://nextjsvietnam.com/tags/database/</link>
-    <description>Recent content in database on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <title>Database on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+    <link>http://localhost:1313/tags/database/</link>
+    <description>Recent content in Database on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 12 Nov 2022 18:31:01 +0700</lastBuildDate><atom:link href="https://nextjsvietnam.com/tags/database/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 12 Nov 2022 18:31:01 +0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/database/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How to Test the Database</title>
-      <link>https://nextjsvietnam.com/post/how-to-test-the-database/</link>
+      <link>http://localhost:1313/post/how-to-test-the-database/</link>
       <pubDate>Sat, 12 Nov 2022 18:31:01 +0700</pubDate>
-      
-      <guid>https://nextjsvietnam.com/post/how-to-test-the-database/</guid>
-      <description>Things you may concern when test your database
-Basic CRUD Data mapping Steps Setup environment Prepare data and testcases Run tests Report Details Schema Database Table, Column Keys and Indexes Stored Procedures Trigger Database Server Configuration Functional Data integrity and consistency Non functional testing
-Performance testing Load testing Stress testing Endurance testing Spike testing Volume testing Scalability testing Common Performance Problems Long Load time Poor response time Poor scalability Bottlenecking Common performance bottlenecks CPU utilization Memory utilization Network utilization Operating System limitations Disk usage References https://www.</description>
+      <guid>http://localhost:1313/post/how-to-test-the-database/</guid>
+      <description>&lt;p&gt;Things you may concern when test your database&lt;/p&gt;&#xA;&lt;h2 id=&#34;basic&#34;&gt;Basic&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;CRUD&lt;/li&gt;&#xA;&lt;li&gt;Data mapping&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;steps&#34;&gt;Steps&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Setup environment&lt;/li&gt;&#xA;&lt;li&gt;Prepare data and testcases&lt;/li&gt;&#xA;&lt;li&gt;Run tests&lt;/li&gt;&#xA;&lt;li&gt;Report&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;details&#34;&gt;Details&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Schema&lt;/li&gt;&#xA;&lt;li&gt;Database Table, Column&lt;/li&gt;&#xA;&lt;li&gt;Keys and Indexes&lt;/li&gt;&#xA;&lt;li&gt;Stored Procedures&lt;/li&gt;&#xA;&lt;li&gt;Trigger&lt;/li&gt;&#xA;&lt;li&gt;Database Server Configuration&lt;/li&gt;&#xA;&lt;li&gt;Functional&lt;/li&gt;&#xA;&lt;li&gt;Data integrity and consistency&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;Non functional testing&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Performance testing&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Load testing&lt;/li&gt;&#xA;&lt;li&gt;Stress testing&lt;/li&gt;&#xA;&lt;li&gt;Endurance testing&lt;/li&gt;&#xA;&lt;li&gt;Spike testing&lt;/li&gt;&#xA;&lt;li&gt;Volume testing&lt;/li&gt;&#xA;&lt;li&gt;Scalability testing&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;common-performance-problems&#34;&gt;Common Performance Problems&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Long Load time&lt;/li&gt;&#xA;&lt;li&gt;Poor response time&lt;/li&gt;&#xA;&lt;li&gt;Poor scalability&lt;/li&gt;&#xA;&lt;li&gt;Bottlenecking&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;common-performance-bottlenecks&#34;&gt;Common performance bottlenecks&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;CPU utilization&lt;/li&gt;&#xA;&lt;li&gt;Memory utilization&lt;/li&gt;&#xA;&lt;li&gt;Network utilization&lt;/li&gt;&#xA;&lt;li&gt;Operating System limitations&lt;/li&gt;&#xA;&lt;li&gt;Disk usage&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://www.guru99.com/performance-testing.html&#34;&gt;https://www.guru99.com/performance-testing.html&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
     </item>
-    
   </channel>
 </rss>

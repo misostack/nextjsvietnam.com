@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Aws-Labs on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+    <link>http://localhost:1313/categories/aws-labs/</link>
+    <description>Recent content in Aws-Labs on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 06 Jan 2024 08:56:51 +0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/aws-labs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Aws Lab Series Build and Deploy Rest Api</title>
+      <link>http://localhost:1313/post/aws-lab-series-build-and-deploy-rest-api/</link>
+      <pubDate>Sat, 06 Jan 2024 08:56:51 +0700</pubDate>
+      <guid>http://localhost:1313/post/aws-lab-series-build-and-deploy-rest-api/</guid>
+      <description>&lt;p&gt;First of all we have figure out our requirements and materials that we have.&lt;/p&gt;&#xA;&lt;h2 id=&#34;overview-of-requirements&#34;&gt;Overview of requirements&lt;/h2&gt;&#xA;&lt;h3 id=&#34;overview-of-the-api-service&#34;&gt;Overview of the API Service&lt;/h3&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Our Rest API service is written in NodeJS&lt;/li&gt;&#xA;&lt;li&gt;Use Relational Database&lt;/li&gt;&#xA;&lt;li&gt;There is a job queue inside the service&lt;/li&gt;&#xA;&lt;li&gt;The service store image on disk&lt;/li&gt;&#xA;&lt;li&gt;User can upload images via this service&lt;/li&gt;&#xA;&lt;li&gt;User data must be encrypted&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;what-system-needs&#34;&gt;What system needs&lt;/h3&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;We have a domain on godaddy and plan to use: api.domainame for api services, appname.domainname for application&lt;/li&gt;&#xA;&lt;li&gt;Both app and api must have ssl connection&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;analyze-requirements-and-design-system-for-long-term-usage&#34;&gt;Analyze requirements and design system for long-term usage&lt;/h2&gt;&#xA;&lt;p&gt;Things to cocerns:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Aws Lab Series Foreword</title>
+      <link>http://localhost:1313/post/aws-lab-series-foreword/</link>
+      <pubDate>Sat, 06 Jan 2024 08:46:59 +0700</pubDate>
+      <guid>http://localhost:1313/post/aws-lab-series-foreword/</guid>
+      <description>&lt;p&gt;A good architecture include these pillars&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://gist.github.com/assets/31009750/5023db72-a857-4235-8a9f-02aa09698e5a&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

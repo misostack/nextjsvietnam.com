@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nextjs on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+    <link>http://localhost:1313/categories/nextjs/</link>
+    <description>Recent content in Nextjs on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 26 Sep 2023 12:00:00 +0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/nextjs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Create New Website With Nextjs</title>
+      <link>http://localhost:1313/post/create-new-website-with-nextjs/</link>
+      <pubDate>Tue, 26 Sep 2023 12:00:00 +0700</pubDate>
+      <guid>http://localhost:1313/post/create-new-website-with-nextjs/</guid>
+      <description>&lt;p&gt;In this article, we&amp;rsquo;ll go through all of nextjs&amp;rsquo;s important concepts:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;How does nextjs work?&lt;/li&gt;&#xA;&lt;li&gt;Things you need to know to create a website with nextjs&lt;/li&gt;&#xA;&lt;li&gt;When you need to use nextjs?&lt;/li&gt;&#xA;&lt;li&gt;Real world examples: build a mcq website ( multichoice questions ) for developer with NextJS + SailsJS + MongoDB&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;references&#34;&gt;References:&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://github.com/misostack/mcq-web&#34;&gt;NextJS Multichoice questions Web Source Code&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://github.com/misostack/mcq-api&#34;&gt;NextJS Multichoice questions API Source Code&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;&lt;strong&gt;Demo:&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://mcq-web.jsbase.dev&#34;&gt;https://mcq-web.jsbase.dev&lt;/a&gt; ( Web )&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://mcq-api.jsbase.dev&#34;&gt;https://mcq-api.jsbase.dev&lt;/a&gt; ( API )&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Note: About API in dev server, all data will be reset after one week. Feel free to use for your testing/learning purpose.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

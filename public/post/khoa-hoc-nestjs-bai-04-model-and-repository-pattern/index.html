@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="home" href="http://localhost:1313/" />
+    <meta name="generator" content="jsguru cms" />
+
+    
+    
+      
+    
+
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    
+    
+      
+              
+        
+        <link rel="stylesheet" href="http://localhost:1313/themes/2022/dist/main.css" />
+             
+    
+      
+              
+        
+        <link rel="stylesheet" href="http://localhost:1313/themes/2022/dist/home.css" />
+             
+    
+      
+              
+        
+        <link rel="stylesheet" href="http://localhost:1313/themes/2022/dist/page.css" />
+             
+        
+    
+    
+    
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWE4MLJYE6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-RWE4MLJYE6');    
+    </script>    
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1642510310947288"
+    crossorigin="anonymous"></script>    
+    
+    
+    
+<title>Khóa học NestJS Bài 04 - Model and Repository Pattern | Cùng tìm hiểu về Model trong MVC và so sánh giữa ActiveRecord với Repository Pattern trong NestJS | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+<meta name="robots" content="all" />
+<meta name="keywords" content="nestjs, nestjs-mvc, nestjs-tutorial" />
+<meta name="description" content="Cùng tìm hiểu về Model trong MVC và so sánh giữa ActiveRecord với Repository Pattern trong NestJS" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://user-images.githubusercontent.com/31009750/181449337-70081a76-5a01-4229-805e-39ed0ded6b5b.png" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="750" />
+<meta property="og:image:height" content="300" />
+<meta
+  property="article:publisher"
+  content="https://www.facebook.com/nextjsvietnam"
+/>
+
+<meta property="article:published_time" content="2023-07-03T14:29:29+07:00" />
+<meta property="article:modified_time" content="2023-07-03T14:29:29+07:00" />
+
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png" />
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png" />
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png" />
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png" />
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png" />
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png" />
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="192x192"
+  href="/android-icon-192x192.png"
+/>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="manifest" href="/manifest.json" />
+<meta name="msapplication-TileColor" content="#ffffff" />
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
+<meta name="theme-color" content="#ffffff" />
+
+  </head>
+  <body class="body-nav-fixed">
+    <nav class="nav-fixed nav-default z-50">
+    <div class="container">
+      <div class="nav-container flex flex-wrap justify-between items-center">
+        <a href="http://localhost:1313/" class="nav-brand inline-block">
+          
+          <img class="h-12" src="http://localhost:1313/themes/2022/src/assets/images/logo.png" 
+          alt="Stunning" />
+        </a>
+        <a href="javascript:void(0);" data-menu="#menu-main_menu" class="nav-menu-toggle"><span
+          class="material-icons">menu</span></a>
+        <ul id="menu-main_menu" class="nav-menu h-0 md:h-auto">
+          <form class="nav-menu-search-bar md:hidden relative">
+            <button class="nav-menu-search-bar-search-btn absolute h-full">
+              <svg class="w-3 h-3 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24">
+                <path
+                  d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z">
+                </path>
+              </svg>
+            </button>
+            <input name="s" type="text" class="w-full" />
+          </form>
+          
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/categories/systemdesign">System Design
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/software-architecture">Software Architecture</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/microservice-architecture">Microservice Architecture</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/aws">Learn AWS The Right Way</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/aws-labs">AWS Hands-On Labs</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/categories/cheatsheet">Cheatsheet
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nestjs-examples">NestJS Examples</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/reactjs-examples">ReactJS Examples</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/react-native-examples">React Native Examples</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/categories/frameworks">Frameworks
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nestjs">NestJS</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/reactjs">ReactJS</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nextjs">NextJS</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/">Tutorials
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nestjs-tutorial">NestJS Tutorial</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/reactjs-tutorial">ReactJS Tutorial</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nextjs-tutorial">NextJS Tutorial</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/">Tools
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://regex101.com/">Online Regex</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://www.bashoneliners.com/">Bash Online</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://www.epochconverter.com/">Unix Timestamp Conversion</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://ryanstutorials.net/bash-scripting-tutorial/">Bash Scripting</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://explainshell.com/">Explain Shell</a></li>
+                
+                </ul>
+            
+            </li>
+          
+          <form class="nav-menu-search-bar hidden md:flex relative">
+            <button class="nav-menu-search-bar-search-btn absolute h-full">
+              <svg class="w-3 h-3 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24">
+                <path
+                  d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z">
+                </path>
+              </svg>
+            </button>
+            <input name="s" type="text" class="w-full" />
+          </form>
+        </ul>
+      </div>
+    </div>
+</nav>
+
+    <main>
+    
+  <section class="container section">
+    <div class="page-content max-w-2xl mx-auto">
+        <img src="https://user-images.githubusercontent.com/31009750/181449337-70081a76-5a01-4229-805e-39ed0ded6b5b.png" class="img-responsive" alt="Khóa học NestJS Bài 04 - Model and Repository Pattern" />
+        <h1>Khóa học NestJS Bài 04 - Model and Repository Pattern</h1>
+        
+          
+          
+          <p><strong>Post Date</strong> : 2023-07-03T14:29:29+07:00</p>
+          <p><strong>Modified Date</strong> : 2023-07-03T14:29:29+07:00</p>
+        <p>
+            <strong>Category:</strong>
+            
+            <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="http://localhost:1313/categories/nestjs-tutorial">nestjs-tutorial</a>
+            
+        </p>
+        <p>
+          <strong>Tags:</strong>
+          
+             <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white"
+             href="/tags/nestjs">nestjs</a>
+          
+             <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white"
+             href="/tags/nestjs-pet-website">, nestjs-pet-website</a>
+          
+        </p>                
+        <h2 id="source-code">Source Code</h2>
+<ul>
+<li><a href="https://github.com/misostack/nestjs-tutorial-2023/tree/lession04">Lession 04 Source Code</a></li>
+</ul>
+<h2 id="bài-04">Bài 04</h2>
+<ol>
+<li>Giới thiệu sơ qua về một số ORM phổ biến : Sequelize</li>
+<li>Tìm hiểu về ActiveRecord Pattern</li>
+<li>Ứng dụng để tạo database schema với Sequelize trong NestJS</li>
+<li>Ứng dụng thêm,xóa,sửa,tìm kiếm với Model cho PetCategory</li>
+<li>Ứng dụng để tạo data seed trong NestJS</li>
+</ol>
+<h3 id="cấu-hình-cho-nestjs-làm-với-với-mysql-thông-qua-sequelize">Cấu hình cho NestJS làm với với MySQL thông qua Sequelize</h3>
+<p>Đầu tiên bạn cần tạo database trước
+Database name : <strong>nestjs_tutorial_2023</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">DATABASE</span> <span style="color:#f92672">`</span>nestjs_tutorial_2023<span style="color:#f92672">`</span> CHARACTER <span style="color:#66d9ef">SET</span> <span style="color:#e6db74">&#39;utf8mb4&#39;</span> <span style="color:#66d9ef">COLLATE</span> <span style="color:#e6db74">&#39;utf8mb4_bin&#39;</span>;
+</span></span></code></pre></div><p><img src="https://user-images.githubusercontent.com/31009750/250492489-8e106e4c-640f-4aea-84d4-d3663f223c02.png" alt="image"></p>
+<ul>
+<li>Kết nối với MYSQL bằng Sequelize</li>
+<li>Kết nối với PostgreSQL bằng TypeORM</li>
+<li>Kết nối với MongoDB bằng Mongoose</li>
+</ul>
+<p><strong>1.1. Kết nối với MYSQL bằng Sequelize</strong></p>
+<p>Cài đặt các packages</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>npm install --save @nestjs/sequelize sequelize sequelize-typescript mysql2
+</span></span><span style="display:flex;"><span>npm install --save-dev @types/sequelize
+</span></span><span style="display:flex;"><span>npm install --save-dev sequelize-cli
+</span></span><span style="display:flex;"><span>npx sequelize-cli init
+</span></span></code></pre></div><p>Trong phần này tôi xin giới thiệu với các anh chị 3 bước chính làm việc với database:</p>
+<ol>
+<li><input checked="" disabled="" type="checkbox"> Thiết lập kết nối</li>
+<li><input checked="" disabled="" type="checkbox"> Khai báo model</li>
+<li><input checked="" disabled="" type="checkbox"> Cấu trúc thư mục database migration - khởi tạo, cập nhật database schema</li>
+</ol>
+<blockquote>
+<p>Thiết lập kết nối</p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#75715e">// src/app.module.ts
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Module</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/common&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ServeStaticModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/serve-static&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">join</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;path&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">PetModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;./pet/pet.module&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">SequelizeModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/sequelize&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@Module</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">imports</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// public folder
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">ServeStaticModule</span>.<span style="color:#a6e22e">forRoot</span>({
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">rootPath</span>: <span style="color:#66d9ef">join</span>(<span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">cwd</span>(), <span style="color:#e6db74">&#34;public&#34;</span>),
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">serveRoot</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;/public&#34;</span>,
+</span></span><span style="display:flex;"><span>    }),
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">PetModule</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">SequelizeModule</span>.<span style="color:#a6e22e">forRoot</span>({
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">dialect</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;mysql&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">host</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;localhost&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">port</span>: <span style="color:#66d9ef">3306</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">username</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;root&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">password</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;123456&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">database</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;nestjs_tutorial_2023&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">models</span><span style="color:#f92672">:</span> [],
+</span></span><span style="display:flex;"><span>    }),
+</span></span><span style="display:flex;"><span>  ],
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">providers</span><span style="color:#f92672">:</span> [],
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AppModule</span> {}
+</span></span></code></pre></div><blockquote>
+<p>Khai báo model</p></blockquote>
+<p><strong>Model trong ORM:</strong></p>
+<ul>
+<li>Chính là ánh xạ của 1 thực thể trong cơ sở dữ liệu, thông qua ORM chúng ta chỉ cần làm việc với các phương thức (method) của Model, phần còn lại là các câu lệnh SQL/NoSQL sẽ được ORM xử lý. Ưu điểm là việc lập trình sẽ trở nên dễ dàng và có tính nhất quán hơn. Nhược điểm là đôi khi 1 số câu query sẽ chậm và khó để triển khai các query có tính chất phức tạp. Tuy nhiên với trường hợp đó ORM vẫn hỗ trợ chúng thực hiện SQL/NoSQL query truyền thống.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#e6db74">&#34;use strict&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">PetCategory</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;src/pet/models/pet-category.model&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/** @type {import(&#39;sequelize-cli&#39;).Migration} */</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">async</span> <span style="color:#a6e22e">up</span>(<span style="color:#a6e22e">queryInterface</span>, <span style="color:#a6e22e">Sequelize</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * Add altering commands here.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * Example:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * await queryInterface.createTable(&#39;users&#39;, { id: Sequelize.INTEGER });
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">queryInterface</span>.<span style="color:#a6e22e">createTable</span>(<span style="color:#e6db74">&#34;pet_categories&#34;</span>, {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">type</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">Sequelize</span>.<span style="color:#a6e22e">UUID</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">defaultValue</span>: <span style="color:#66d9ef">Sequelize.UUIDV4</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">primaryKey</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">type</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">Sequelize</span>.<span style="color:#a6e22e">STRING</span>(<span style="color:#ae81ff">60</span>),
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">allowNull</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">createdAt</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">type</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">Sequelize</span>.<span style="color:#a6e22e">DATE</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">defaultValue</span>: <span style="color:#66d9ef">Sequelize.fn</span>(<span style="color:#e6db74">&#34;NOW&#34;</span>),
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">updatedAt</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">type</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">Sequelize</span>.<span style="color:#a6e22e">DATE</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">defaultValue</span>: <span style="color:#66d9ef">Sequelize.fn</span>(<span style="color:#e6db74">&#34;NOW&#34;</span>),
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">async</span> <span style="color:#a6e22e">down</span>(<span style="color:#a6e22e">queryInterface</span>, <span style="color:#a6e22e">Sequelize</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * Add reverting commands here.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * Example:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * await queryInterface.dropTable(&#39;users&#39;);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">queryInterface</span>.<span style="color:#a6e22e">dropTable</span>(<span style="color:#e6db74">&#34;pet_categories&#34;</span>);
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><blockquote>
+<p>Điều chỉnh lại config để sử dụng model và sử dụng database uri</p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#75715e">// src/app.module.ts
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Module</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/common&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ServeStaticModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/serve-static&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">join</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;path&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">PetModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;./pet/pet.module&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">SequelizeModule</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/sequelize&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">models</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;./pet/models&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@Module</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">imports</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// public folder
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">ServeStaticModule</span>.<span style="color:#a6e22e">forRoot</span>({
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">rootPath</span>: <span style="color:#66d9ef">join</span>(<span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">cwd</span>(), <span style="color:#e6db74">&#34;public&#34;</span>),
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">serveRoot</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;/public&#34;</span>,
+</span></span><span style="display:flex;"><span>    }),
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">PetModule</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">SequelizeModule</span>.<span style="color:#a6e22e">forRoot</span>({
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">uri</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;mysql://root:123456@localhost/nestjs_tutorial_2023&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">dialect</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;mysql&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">models</span>: <span style="color:#66d9ef">models</span>,
+</span></span><span style="display:flex;"><span>    }),
+</span></span><span style="display:flex;"><span>  ],
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">providers</span><span style="color:#f92672">:</span> [],
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AppModule</span> {}
+</span></span></code></pre></div><blockquote>
+<p>Cấu trúc thư mục database migration - khởi tạo, cập nhật database schema</p></blockquote>
+<p>Đôi lời giải thích tại sao chúng ta cần sử dụng sequelize-cli để cập nhật database.
+Trong quá trình phát triển dự án, khi có 1 bảng dữ liệu cần thêm mới/xóa hoặc cập nhật các cột trong bảng. Cách trực tiếp nhất là các câu lệnh SQL, mặc dù chúng ta vẫn có thể quản lí được câu lệnh nào đã chạy hoặc chưa và việc chia sẻ với các thành viên trong team hoặc người phụ trách triển khai sản phẩm trên môi trường production.</p>
+<p>Trong các ORM hiện đại ngày nay, để thống nhất cách làm và quy chuẩn hóa, thông thường chúng ta sẽ sử dụng cli của các ORM này liên quan đến với tạo/chỉnh sửa database, table.
+Và thực hiện việc migrate qua các dòng lệnh. Còn cấu trúc các bảng dữ liệu sẽ được triển khai thông qua code - nhằm mang tính thống nhất với model đã được quản lí bởi ORM.</p>
+<p>Sau khi chạy câu lệnh mặc định sau của sequelize-cli chúng ta sẽ có cấu trúc thư mục mặc định như sau.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>npx sequelize-cli init
+</span></span></code></pre></div><pre tabindex="0"><code class="language-xs" data-lang="xs">config
+  database.json
+db
+  models
+  seeders
+  migrations
+</code></pre><blockquote>
+<p><strong>.sequelizerc</strong></p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// .sequelizerc
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">path</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;path&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">config</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">path</span>.<span style="color:#a6e22e">resolve</span>(<span style="color:#e6db74">&#34;config&#34;</span>, <span style="color:#e6db74">&#34;database.json&#34;</span>),
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;models-path&#34;</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">path</span>.<span style="color:#a6e22e">resolve</span>(<span style="color:#e6db74">&#34;db&#34;</span>, <span style="color:#e6db74">&#34;models&#34;</span>),
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;seeders-path&#34;</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">path</span>.<span style="color:#a6e22e">resolve</span>(<span style="color:#e6db74">&#34;db&#34;</span>, <span style="color:#e6db74">&#34;seeders&#34;</span>),
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;migrations-path&#34;</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">path</span>.<span style="color:#a6e22e">resolve</span>(<span style="color:#e6db74">&#34;db&#34;</span>, <span style="color:#e6db74">&#34;migrations&#34;</span>),
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>Tuy nhiên để phù hợp với cấu trúc hiện tại của dự án, ta cần điều chỉnh lại 1 chút như sau</p>
+<pre tabindex="0"><code class="language-xss" data-lang="xss">src
+    database
+        config
+            config.ts
+    migrations
+        *.ts
+    seeds
+        *.ts
+</code></pre><blockquote>
+<p><strong>.sequelizerc</strong></p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">path</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;path&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">config</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">path</span>.<span style="color:#a6e22e">resolve</span>(<span style="color:#e6db74">&#34;./dist/database/config/config.js&#34;</span>),
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;seeders-path&#34;</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">path</span>.<span style="color:#a6e22e">resolve</span>(<span style="color:#e6db74">&#34;./dist/database/seeders&#34;</span>),
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;migrations-path&#34;</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">path</span>.<span style="color:#a6e22e">resolve</span>(<span style="color:#e6db74">&#34;./dist/database/migrations&#34;</span>),
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>Ở đây, thay vì chạy trực tiếp bản source, chúng ta sẽ chạy bản build của chúng</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#75715e">// config.ts
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">production</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">url</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;mysql://root:123456@localhost/nestjs_tutorial_2023&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">dialect</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;mysql&#34;</span>,
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#75715e">// src/pet/models/pet-category.model
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Column</span>, <span style="color:#a6e22e">DataType</span>, <span style="color:#a6e22e">Model</span>, <span style="color:#a6e22e">Table</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;sequelize-typescript&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@Table</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">tableName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;pet_categories&#34;</span>,
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PetCategory</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Model</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Column</span>({
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">primaryKey</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">type</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">DataType</span>.<span style="color:#a6e22e">UUID</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">defaultValue</span>: <span style="color:#66d9ef">DataType.UUIDV4</span>,
+</span></span><span style="display:flex;"><span>  })
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">id?</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Column</span>({
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">type</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">DataType</span>.<span style="color:#a6e22e">STRING</span>(<span style="color:#ae81ff">60</span>),
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">allowNull</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>  })
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#75715e">// src\database\migrations\20230704043449-create-pet-category-table.ts
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#e6db74">&#34;use strict&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">PetCategory</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;src/pet/models/pet-category.model&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/** @type {import(&#39;sequelize-cli&#39;).Migration} */</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">async</span> <span style="color:#a6e22e">up</span>(<span style="color:#a6e22e">queryInterface</span>, <span style="color:#a6e22e">Sequelize</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * Add altering commands here.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * Example:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * await queryInterface.createTable(&#39;users&#39;, { id: Sequelize.INTEGER });
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">queryInterface</span>.<span style="color:#a6e22e">createTable</span>(<span style="color:#e6db74">&#34;pet_categories&#34;</span>, {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">type</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">Sequelize</span>.<span style="color:#a6e22e">UUID</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">defaultValue</span>: <span style="color:#66d9ef">Sequelize.UUIDV4</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">primaryKey</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">type</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">Sequelize</span>.<span style="color:#a6e22e">STRING</span>(<span style="color:#ae81ff">60</span>),
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">allowNull</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">async</span> <span style="color:#a6e22e">down</span>(<span style="color:#a6e22e">queryInterface</span>, <span style="color:#a6e22e">Sequelize</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * Add reverting commands here.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * Example:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * await queryInterface.dropTable(&#39;users&#39;);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">queryInterface</span>.<span style="color:#a6e22e">dropTable</span>(<span style="color:#e6db74">&#34;pet_categories&#34;</span>);
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><h3 id="lưu-ý-đặc-biệt-cho-model-ở-đây">Lưu ý đặc biệt cho model ở đây</h3>
+<p>Do PetCategory Model trong ví dụ có kế thừa từ Model từ sequelize nên sẽ thừa kế 1 số field định sẵn, dù trong code của Model PetCategory ta không thấy chúng xuất hiện.
+Do vậy khi tạo script migrate cho PetCategory cần lưu ý thêm 2 cột mặc định này.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">declare</span> <span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Model</span>&lt;<span style="color:#f92672">TModelAttributes</span> <span style="color:#a6e22e">extends</span> {} <span style="color:#960050;background-color:#1e0010">=</span> <span style="color:#a6e22e">any</span>, <span style="color:#a6e22e">TCreationAttributes</span> <span style="color:#a6e22e">extends</span> {} <span style="color:#960050;background-color:#1e0010">=</span> <span style="color:#a6e22e">TModelAttributes</span>&gt; <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">OriginModel</span>&lt;<span style="color:#f92672">TModelAttributes</span>, <span style="color:#a6e22e">TCreationAttributes</span>&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">id?</span>: <span style="color:#66d9ef">number</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">any</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">createdAt?</span>: <span style="color:#66d9ef">Date</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">any</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">updatedAt?</span>: <span style="color:#66d9ef">Date</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">any</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">deletedAt?</span>: <span style="color:#66d9ef">Date</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">any</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">version?</span>: <span style="color:#66d9ef">number</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">any</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> <span style="color:#a6e22e">isInitialized</span>: <span style="color:#66d9ef">boolean</span>;
+</span></span></code></pre></div><p><strong>Một số command phổ biến</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ npx sequelize-cli --help
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Sequelize CLI <span style="color:#f92672">[</span>Node: 16.19.1, CLI: 6.6.1, ORM: 6.32.1<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>sequelize &lt;command&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Commands:
+</span></span><span style="display:flex;"><span>  sequelize db:migrate                        Run pending migrations
+</span></span><span style="display:flex;"><span>  sequelize db:migrate:schema:timestamps:add  Update migration table to have timestamps
+</span></span><span style="display:flex;"><span>  sequelize db:migrate:status                 List the status of all migrations
+</span></span><span style="display:flex;"><span>  sequelize db:migrate:undo                   Reverts a migration
+</span></span><span style="display:flex;"><span>  sequelize db:migrate:undo:all               Revert all migrations ran
+</span></span><span style="display:flex;"><span>  sequelize db:seed                           Run specified seeder
+</span></span><span style="display:flex;"><span>  sequelize db:seed:undo                      Deletes data from the database
+</span></span><span style="display:flex;"><span>  sequelize db:seed:all                       Run every seeder
+</span></span><span style="display:flex;"><span>  sequelize db:seed:undo:all                  Deletes data from the database
+</span></span><span style="display:flex;"><span>  sequelize db:create                         Create database specified by configuration
+</span></span><span style="display:flex;"><span>  sequelize db:drop                           Drop database specified by configuration
+</span></span><span style="display:flex;"><span>  sequelize init                              Initializes project
+</span></span><span style="display:flex;"><span>  sequelize init:config                       Initializes configuration
+</span></span><span style="display:flex;"><span>  sequelize init:migrations                   Initializes migrations
+</span></span><span style="display:flex;"><span>  sequelize init:models                       Initializes models
+</span></span><span style="display:flex;"><span>  sequelize init:seeders                      Initializes seeders
+</span></span><span style="display:flex;"><span>  sequelize migration:generate                Generates a new migration file
+</span></span><span style="display:flex;"><span>  sequelize migration:create                  Generates a new migration file
+</span></span><span style="display:flex;"><span>  sequelize model:generate                    Generates a model and its migration
+</span></span><span style="display:flex;"><span>  sequelize model:create                      Generates a model and its migration
+</span></span><span style="display:flex;"><span>  sequelize seed:generate                     Generates a new seed file
+</span></span><span style="display:flex;"><span>  sequelize seed:create                       Generates a new seed file
+</span></span></code></pre></div><p><strong>Tôi xin ví dụ command để thực hiện tạo file migration, sau đó build, và chạy</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># create migration</span>
+</span></span><span style="display:flex;"><span>npx sequelize-cli migration:create --name create-pet-category-table --migrations-path ./src/database/migrations
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># build</span>
+</span></span><span style="display:flex;"><span>npm run build
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># run migration</span>
+</span></span><span style="display:flex;"><span>npx sequelize-cli db:migrate --env production
+</span></span></code></pre></div><p>Lưu ý nếu không chỉ định env thì mặc định là development. Như trong file config ở trên chúng ta chỉ set duy nhất một môi trường là production. Và các config sẽ được thay thế bằng biến môi trường.</p>
+<p>Sau khi chạy migrate xong lúc này kiểm tra database ta sẽ thấy</p>
+<p><img src="https://user-images.githubusercontent.com/31009750/250823645-6f52bcab-9a90-4c76-b658-04612fb44db2.png" alt="image">
+<img src="https://user-images.githubusercontent.com/31009750/250823856-425b437a-6107-4f75-ba83-48f7ea63bef4.png" alt="image"></p>
+<p>Bước tiếp theo, chúng ta bắt đầu test thử một số method cơ bản của Model: thêm, cập nhật, xóa, tìm kiếm</p>
+<p>Lưu ý nhỏ khi tiếp tục bài học với ví dụ của Pet Category hiện tại, chúng ta cần cập nhật PetCategory Model lại 1 chút, thay vì column title -&gt; sẽ chuyển sang column name, cho tương thích với database lúc này.</p>
+<blockquote>
+<p>Thêm PetCategory</p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">PetCategory</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;src/pet/models/pet-category.model&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">await</span> <span style="color:#a6e22e">PetCategory</span>.<span style="color:#a6e22e">create</span>({ ...<span style="color:#66d9ef">object</span> });
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">@Controller</span>(<span style="color:#e6db74">&#34;admin/pet-categories&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ManagePetCategoryController</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Post</span>(<span style="color:#e6db74">&#34;create&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Render</span>(<span style="color:#e6db74">&#34;pet/admin/manage-pet-category/create&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@FormDataRequest</span>()
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">async</span> <span style="color:#a6e22e">create</span>(<span style="color:#66d9ef">@Body</span>() <span style="color:#a6e22e">createPetCategoryDto</span>: <span style="color:#66d9ef">CreatePetCategoryDto</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">mode</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;create&#34;</span>,
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// validation
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">object</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">plainToInstance</span>(<span style="color:#a6e22e">CreatePetCategoryDto</span>, <span style="color:#a6e22e">createPetCategoryDto</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// set value and show success message
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">Reflect</span>.<span style="color:#66d9ef">set</span>(<span style="color:#a6e22e">data</span>, <span style="color:#e6db74">&#34;values&#34;</span>, <span style="color:#66d9ef">object</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// create PetCategory
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">newPetCategory</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">PetCategory</span>.<span style="color:#a6e22e">create</span>({ ...<span style="color:#66d9ef">object</span> });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Reflect</span>.<span style="color:#66d9ef">set</span>(
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">data</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;success&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">`Pet Category : </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">newPetCategory</span>.<span style="color:#a6e22e">id</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> - </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">newPetCategory</span>.<span style="color:#a6e22e">name</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> has been created!`</span>
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// success
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> { <span style="color:#a6e22e">data</span> };
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Sau khi chạy thử http://localhost:3000/admin/pet-categories/create chúng ta có được kết quả như bên dưới</p>
+<p><img src="https://user-images.githubusercontent.com/31009750/250825079-e29b1b36-bc07-4a48-bb9e-cfba92dc3129.png" alt="image"></p>
+<p>Ngoài ra Sequelize còn hỗ trợ bạn cấu hình để có thể xem chi tiết được câu sql được ORM tạo ra. Thay đổi một chút ở phần config cho kết nối database tại app module.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#a6e22e">SequelizeModule</span>.<span style="color:#a6e22e">forRoot</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">uri</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;mysql://root:123456@localhost/nestjs_tutorial_2023&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">dialect</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;mysql&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">models</span>: <span style="color:#66d9ef">models</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">logging</span>: <span style="color:#66d9ef">console.log</span>,
+</span></span><span style="display:flex;"><span>}),
+</span></span></code></pre></div><p><img src="https://user-images.githubusercontent.com/31009750/250826619-d4ddb66e-31b7-41b2-b828-527924474ef7.png" alt="image"></p>
+<blockquote>
+<p>Tìm kiếm PetCategory - danh sách</p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">@Controller</span>(<span style="color:#e6db74">&#39;admin/pet-categories&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ManagePetCategoryController</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Get</span>(<span style="color:#e6db74">&#39;&#39;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Render</span>(<span style="color:#e6db74">&#39;pet/admin/manage-pet-category/list&#39;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">async</span> <span style="color:#a6e22e">getList() {</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">petCategories</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">PetCategory</span>.<span style="color:#a6e22e">findAll</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">petCategories</span>,
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">&lt;</span>%- include(&#39;layouts/admin/header&#39;); %&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">section</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;col-12&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;card&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;card-body&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">h5</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;card-title&#34;</span>&gt;List Pet Categories&lt;/<span style="color:#f92672">h5</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;table-responsive&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">table</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;table table-light table-striped&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>          &lt;<span style="color:#f92672">thead</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>              &lt;<span style="color:#f92672">th</span> <span style="color:#a6e22e">scope</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;col&#34;</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;width: 360px&#34;</span>&gt;ID&lt;/<span style="color:#f92672">th</span>&gt;
+</span></span><span style="display:flex;"><span>              &lt;<span style="color:#f92672">th</span> <span style="color:#a6e22e">scope</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;col&#34;</span>&gt;Name&lt;/<span style="color:#f92672">th</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;/<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>          &lt;/<span style="color:#f92672">thead</span>&gt;
+</span></span><span style="display:flex;"><span>          &lt;<span style="color:#f92672">tbody</span>&gt;
+</span></span><span style="display:flex;"><span>            <span style="color:#960050;background-color:#1e0010">&lt;</span>% petCategories.forEach(petCategory =&gt; { %&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">tr</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>              &lt;<span style="color:#f92672">td</span>&gt;<span style="color:#960050;background-color:#1e0010">&lt;</span>%= petCategory.id %&gt;&lt;/<span style="color:#f92672">td</span>&gt;
+</span></span><span style="display:flex;"><span>              &lt;<span style="color:#f92672">td</span>&gt;<span style="color:#960050;background-color:#1e0010">&lt;</span>%= petCategory.name %&gt;&lt;/<span style="color:#f92672">td</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;/<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>            <span style="color:#960050;background-color:#1e0010">&lt;</span>% }) %&gt;
+</span></span><span style="display:flex;"><span>          &lt;/<span style="color:#f92672">tbody</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">table</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">section</span>&gt;
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">&lt;</span>%- include(&#39;layouts/admin/footer&#39;); %&gt;
+</span></span></code></pre></div><p><img src="https://user-images.githubusercontent.com/31009750/250829442-dbb50893-c56f-4842-a130-58d559fd90e0.png" alt="image"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#75715e">// find all
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">petCategories</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">PetCategory</span>.<span style="color:#a6e22e">findAll</span>();
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// delete
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">await</span> <span style="color:#a6e22e">PetCategory</span>.<span style="color:#a6e22e">destroy</span>({ <span style="color:#a6e22e">where</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">id</span> } });
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// create
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">newPetCategory</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">PetCategory</span>.<span style="color:#a6e22e">create</span>({ ...<span style="color:#66d9ef">object</span> });
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// find by primary key
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">petCategory</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">PetCategory</span>.<span style="color:#a6e22e">findByPk</span>(<span style="color:#a6e22e">id</span>);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// update
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">await</span> <span style="color:#a6e22e">petCategory</span>.<span style="color:#a6e22e">update</span>(<span style="color:#66d9ef">object</span>);
+</span></span></code></pre></div><p>Update source code of ManagePetCategory controllers and views</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Body</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Controller</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Delete</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Get</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Param</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Post</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Redirect</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Render</span>,
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@nestjs/common&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">CreatePetCategoryDto</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;src/pet/dtos/pet-dto&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">plainToInstance</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;class-transformer&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">validate</span>, <span style="color:#a6e22e">ValidationError</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;class-validator&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">FormDataRequest</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;nestjs-form-data&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">PetCategory</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;src/pet/models/pet-category.model&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Response</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;express&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">transformError</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">error</span>: <span style="color:#66d9ef">ValidationError</span>) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">property</span>, <span style="color:#a6e22e">constraints</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">error</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">property</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">constraints</span>,
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@Controller</span>(<span style="color:#e6db74">&#34;admin/pet-categories&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ManagePetCategoryController</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Get</span>(<span style="color:#e6db74">&#34;&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Render</span>(<span style="color:#e6db74">&#34;pet/admin/manage-pet-category/list&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">async</span> <span style="color:#a6e22e">getList() {</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">petCategories</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">PetCategory</span>.<span style="color:#a6e22e">findAll</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">petCategories</span>,
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Post</span>(<span style="color:#e6db74">&#34;delete/:id&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Redirect</span>(<span style="color:#e6db74">&#34;/admin/pet-categories/&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">async</span> <span style="color:#a6e22e">deleteOne</span>(<span style="color:#66d9ef">@Param</span>() { <span style="color:#a6e22e">id</span> }<span style="color:#f92672">:</span> { <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">string</span> }) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">PetCategory</span>.<span style="color:#a6e22e">destroy</span>({ <span style="color:#a6e22e">where</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">id</span> } });
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Get</span>(<span style="color:#e6db74">&#34;create&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Render</span>(<span style="color:#e6db74">&#34;pet/admin/manage-pet-category/create&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">view_create() {</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// a form
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">mode</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;create&#34;</span>,
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Post</span>(<span style="color:#e6db74">&#34;create&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Render</span>(<span style="color:#e6db74">&#34;pet/admin/manage-pet-category/create&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@FormDataRequest</span>()
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">async</span> <span style="color:#a6e22e">create</span>(<span style="color:#66d9ef">@Body</span>() <span style="color:#a6e22e">createPetCategoryDto</span>: <span style="color:#66d9ef">CreatePetCategoryDto</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">mode</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;create&#34;</span>,
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// validation
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">object</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">plainToInstance</span>(<span style="color:#a6e22e">CreatePetCategoryDto</span>, <span style="color:#a6e22e">createPetCategoryDto</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">errors</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">validate</span>(<span style="color:#66d9ef">object</span>, {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">stopAtFirstError</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">errors</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">Reflect</span>.<span style="color:#66d9ef">set</span>(<span style="color:#a6e22e">data</span>, <span style="color:#e6db74">&#34;error&#34;</span>, <span style="color:#e6db74">&#34;Please correct all fields!&#34;</span>);
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">responseError</span> <span style="color:#f92672">=</span> {};
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">errors</span>.<span style="color:#a6e22e">map</span>((<span style="color:#a6e22e">error</span>) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">rawError</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">transformError</span>(<span style="color:#a6e22e">error</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">Reflect</span>.<span style="color:#66d9ef">set</span>(
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">responseError</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">rawError</span>.<span style="color:#a6e22e">property</span>,
+</span></span><span style="display:flex;"><span>          Object.<span style="color:#a6e22e">values</span>(<span style="color:#a6e22e">rawError</span>.<span style="color:#a6e22e">constraints</span>)[<span style="color:#ae81ff">0</span>]
+</span></span><span style="display:flex;"><span>        );
+</span></span><span style="display:flex;"><span>      });
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">Reflect</span>.<span style="color:#66d9ef">set</span>(<span style="color:#a6e22e">data</span>, <span style="color:#e6db74">&#34;errors&#34;</span>, <span style="color:#a6e22e">responseError</span>);
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> { <span style="color:#a6e22e">data</span> };
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// set value and show success message
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">Reflect</span>.<span style="color:#66d9ef">set</span>(<span style="color:#a6e22e">data</span>, <span style="color:#e6db74">&#34;values&#34;</span>, <span style="color:#66d9ef">object</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// create PetCategory
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">newPetCategory</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">PetCategory</span>.<span style="color:#a6e22e">create</span>({ ...<span style="color:#66d9ef">object</span> });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Reflect</span>.<span style="color:#66d9ef">set</span>(
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">data</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;success&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">`Pet Category : </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">newPetCategory</span>.<span style="color:#a6e22e">id</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> - </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">newPetCategory</span>.<span style="color:#a6e22e">name</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> has been created!`</span>
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// success
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> { <span style="color:#a6e22e">data</span> };
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Get</span>(<span style="color:#e6db74">&#34;:id&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Render</span>(<span style="color:#e6db74">&#34;pet/admin/manage-pet-category/create&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">async</span> <span style="color:#a6e22e">getDetail</span>(<span style="color:#66d9ef">@Param</span>() { <span style="color:#a6e22e">id</span> }<span style="color:#f92672">:</span> { <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">string</span> }) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">mode</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;edit&#34;</span>,
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">petCategory</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">PetCategory</span>.<span style="color:#a6e22e">findByPk</span>(<span style="color:#a6e22e">id</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Reflect</span>.<span style="color:#66d9ef">set</span>(<span style="color:#a6e22e">data</span>, <span style="color:#e6db74">&#34;values&#34;</span>, <span style="color:#a6e22e">petCategory</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> { <span style="color:#a6e22e">data</span> };
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Post</span>(<span style="color:#e6db74">&#34;:id&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Render</span>(<span style="color:#e6db74">&#34;pet/admin/manage-pet-category/create&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@FormDataRequest</span>()
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">async</span> <span style="color:#a6e22e">updateOne</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">@Param</span>() { <span style="color:#a6e22e">id</span> }<span style="color:#f92672">:</span> { <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">string</span> },
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">@Body</span>() <span style="color:#a6e22e">createPetCategoryDto</span>: <span style="color:#66d9ef">CreatePetCategoryDto</span>
+</span></span><span style="display:flex;"><span>  ) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">mode</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;edit&#34;</span>,
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">petCategory</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">PetCategory</span>.<span style="color:#a6e22e">findByPk</span>(<span style="color:#a6e22e">id</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// validation
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">object</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">plainToInstance</span>(<span style="color:#a6e22e">CreatePetCategoryDto</span>, <span style="color:#a6e22e">createPetCategoryDto</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">errors</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">validate</span>(<span style="color:#66d9ef">object</span>, {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">stopAtFirstError</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">errors</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">Reflect</span>.<span style="color:#66d9ef">set</span>(<span style="color:#a6e22e">data</span>, <span style="color:#e6db74">&#34;error&#34;</span>, <span style="color:#e6db74">&#34;Please correct all fields!&#34;</span>);
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">responseError</span> <span style="color:#f92672">=</span> {};
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">errors</span>.<span style="color:#a6e22e">map</span>((<span style="color:#a6e22e">error</span>) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">rawError</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">transformError</span>(<span style="color:#a6e22e">error</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">Reflect</span>.<span style="color:#66d9ef">set</span>(
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">responseError</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">rawError</span>.<span style="color:#a6e22e">property</span>,
+</span></span><span style="display:flex;"><span>          Object.<span style="color:#a6e22e">values</span>(<span style="color:#a6e22e">rawError</span>.<span style="color:#a6e22e">constraints</span>)[<span style="color:#ae81ff">0</span>]
+</span></span><span style="display:flex;"><span>        );
+</span></span><span style="display:flex;"><span>      });
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">Reflect</span>.<span style="color:#66d9ef">set</span>(<span style="color:#a6e22e">data</span>, <span style="color:#e6db74">&#34;errors&#34;</span>, <span style="color:#a6e22e">responseError</span>);
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> { <span style="color:#a6e22e">data</span> };
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// set value and show success message
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">petCategory</span>.<span style="color:#a6e22e">update</span>(<span style="color:#66d9ef">object</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Reflect</span>.<span style="color:#66d9ef">set</span>(<span style="color:#a6e22e">data</span>, <span style="color:#e6db74">&#34;values&#34;</span>, <span style="color:#a6e22e">petCategory</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> { <span style="color:#a6e22e">data</span> };
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
+<p>Views - list.html</p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">&lt;</span>%- include(&#39;layouts/admin/header&#39;); %&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">section</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;col-12&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;card&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;card-body&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">h5</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;card-title&#34;</span>&gt;List Pet Categories&lt;/<span style="color:#f92672">h5</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;pb-4&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">a</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;btn btn-primary&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/admin/pet-categories/create&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">role</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;button&#34;</span>
+</span></span><span style="display:flex;"><span>          &gt;New Pet Category&lt;/<span style="color:#f92672">a</span>
+</span></span><span style="display:flex;"><span>        &gt;
+</span></span><span style="display:flex;"><span>      &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;table-responsive&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">table</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;table table-light table-striped&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>          &lt;<span style="color:#f92672">thead</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>              &lt;<span style="color:#f92672">th</span> <span style="color:#a6e22e">scope</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;col&#34;</span> <span style="color:#a6e22e">style</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;width: 360px&#34;</span>&gt;ID&lt;/<span style="color:#f92672">th</span>&gt;
+</span></span><span style="display:flex;"><span>              &lt;<span style="color:#f92672">th</span> <span style="color:#a6e22e">scope</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;col&#34;</span>&gt;Name&lt;/<span style="color:#f92672">th</span>&gt;
+</span></span><span style="display:flex;"><span>              &lt;<span style="color:#f92672">th</span> <span style="color:#a6e22e">scope</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;col&#34;</span>&gt;Action&lt;/<span style="color:#f92672">th</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;/<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>          &lt;/<span style="color:#f92672">thead</span>&gt;
+</span></span><span style="display:flex;"><span>          &lt;<span style="color:#f92672">tbody</span>&gt;
+</span></span><span style="display:flex;"><span>            <span style="color:#960050;background-color:#1e0010">&lt;</span>% petCategories.forEach(petCategory =&gt; { %&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">tr</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>              &lt;<span style="color:#f92672">td</span>&gt;<span style="color:#960050;background-color:#1e0010">&lt;</span>%= petCategory.id %&gt;&lt;/<span style="color:#f92672">td</span>&gt;
+</span></span><span style="display:flex;"><span>              &lt;<span style="color:#f92672">td</span>&gt;<span style="color:#960050;background-color:#1e0010">&lt;</span>%= petCategory.name %&gt;&lt;/<span style="color:#f92672">td</span>&gt;
+</span></span><span style="display:flex;"><span>              &lt;<span style="color:#f92672">td</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;<span style="color:#f92672">a</span>
+</span></span><span style="display:flex;"><span>                  <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/admin/pet-categories/&lt;%= petCategory.id %&gt;&#34;</span>
+</span></span><span style="display:flex;"><span>                  <span style="color:#a6e22e">title</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Edit&#34;</span>
+</span></span><span style="display:flex;"><span>                  &gt;Edit&lt;/<span style="color:#f92672">a</span>
+</span></span><span style="display:flex;"><span>                &gt;
+</span></span><span style="display:flex;"><span>                &lt;<span style="color:#f92672">form</span>
+</span></span><span style="display:flex;"><span>                  <span style="color:#a6e22e">action</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/admin/pet-categories/delete/&lt;%= petCategory.id %&gt;&#34;</span>
+</span></span><span style="display:flex;"><span>                  <span style="color:#a6e22e">method</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;post&#34;</span>
+</span></span><span style="display:flex;"><span>                &gt;
+</span></span><span style="display:flex;"><span>                  &lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;submit&#34;</span>&gt;Delete&lt;/<span style="color:#f92672">button</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;/<span style="color:#f92672">form</span>&gt;
+</span></span><span style="display:flex;"><span>              &lt;/<span style="color:#f92672">td</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;/<span style="color:#f92672">tr</span>&gt;
+</span></span><span style="display:flex;"><span>            <span style="color:#960050;background-color:#1e0010">&lt;</span>% }) %&gt;
+</span></span><span style="display:flex;"><span>          &lt;/<span style="color:#f92672">tbody</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">table</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">section</span>&gt;
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">&lt;</span>%- include(&#39;layouts/admin/footer&#39;); %&gt;
+</span></span></code></pre></div><blockquote>
+<p>Views - Create/Edit</p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">&lt;</span>%- include(&#39;layouts/admin/header&#39;); %&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">section</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;col-6&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">form</span> <span style="color:#a6e22e">method</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;post&#34;</span> <span style="color:#a6e22e">enctype</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;multipart/form-data&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;card&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;card-body&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">h5</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;card-title&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>          <span style="color:#960050;background-color:#1e0010">&lt;</span>% if (data.mode === &#39;create&#39;) { %&gt; New Pet Category <span style="color:#960050;background-color:#1e0010">&lt;</span>% } %&gt; <span style="color:#960050;background-color:#1e0010">&lt;</span>% if
+</span></span><span style="display:flex;"><span>          (data.mode === &#39;edit&#39;) { %&gt; Edit Pet Category <span style="color:#960050;background-color:#1e0010">&lt;</span>% } %&gt;
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">h5</span>&gt;
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">&lt;!-- error --&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#960050;background-color:#1e0010">&lt;</span>% if (data.error){ %&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;alert alert-danger&#34;</span> <span style="color:#a6e22e">role</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;alert&#34;</span>&gt;<span style="color:#960050;background-color:#1e0010">&lt;</span>%= data.error %&gt;&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>        <span style="color:#960050;background-color:#1e0010">&lt;</span>% } %&gt;
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">&lt;!-- success --&gt;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#960050;background-color:#1e0010">&lt;</span>% if (data.success){ %&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;alert alert-success&#34;</span> <span style="color:#a6e22e">role</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;alert&#34;</span>&gt;<span style="color:#960050;background-color:#1e0010">&lt;</span>%= data.success %&gt;&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text/javascript&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">setTimeout</span>(() =&gt; {
+</span></span><span style="display:flex;"><span>            window.<span style="color:#a6e22e">location</span>.<span style="color:#a6e22e">href</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;/admin/pet-categories/&#34;</span>;
+</span></span><span style="display:flex;"><span>          }, <span style="color:#ae81ff">2000</span>);
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>        <span style="color:#960050;background-color:#1e0010">&lt;</span>% } %&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;mb-3&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>          &lt;<span style="color:#f92672">label</span> <span style="color:#a6e22e">for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;title&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;form-label&#34;</span>&gt;Name&lt;/<span style="color:#f92672">label</span>&gt;
+</span></span><span style="display:flex;"><span>          &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;input-group has-validation&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">input</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;form-control &lt;%= data.errors &amp;&amp; data.errors[&#39;name&#39;] ? &#39;is-invalid&#39;: &#39;&#39; %&gt;&#34;</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;name&#34;</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;name&#34;</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&lt;%= data.values &amp;&amp; data.values[&#39;name&#39;] %&gt;&#34;</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#a6e22e">placeholder</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Pet Category name&#34;</span>
+</span></span><span style="display:flex;"><span>            /&gt;
+</span></span><span style="display:flex;"><span>            <span style="color:#960050;background-color:#1e0010">&lt;</span>% if (data.errors <span style="color:#960050;background-color:#1e0010">&amp;&amp;</span> data.errors[&#39;name&#39;]) { %&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;validationServerUsernameFeedback&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;invalid-feedback&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>              <span style="color:#960050;background-color:#1e0010">&lt;</span>%= data.errors[&#39;name&#39;] %&gt;
+</span></span><span style="display:flex;"><span>            &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>            <span style="color:#960050;background-color:#1e0010">&lt;</span>% } %&gt;
+</span></span><span style="display:flex;"><span>          &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>      <span style="color:#960050;background-color:#1e0010">&lt;</span>% if(!data.success) { %&gt;
+</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;mb-3 col-12 text-center&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;submit&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;btn btn-primary&#34;</span>&gt;Save&lt;/<span style="color:#f92672">button</span>&gt;
+</span></span><span style="display:flex;"><span>      &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>      <span style="color:#960050;background-color:#1e0010">&lt;</span>% } %&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;/<span style="color:#f92672">form</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">section</span>&gt;
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">&lt;</span>%- include(&#39;layouts/admin/footer&#39;); %&gt;
+</span></span></code></pre></div><h3 id="tạo-data-seed-với-sequelize-cli">Tạo data seed với sequelize-cli</h3>
+<blockquote>
+<p>Lưu ý tại bước này, nếu sử dụng generate của cli, thư mục target trong config của sequelize lúc này là thư mục dist.</p></blockquote>
+<p>Do đó, ta cần điều chỉnh một chút lại config cho <strong>.sequelizerc</strong> như sau. Một lưu ý tiếp theo, là hãy nhớ chỉnh lại file extension cho file seeding hay migrations sang đuôi ts nhé.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">path</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;path&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">database_dist</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">NODE_ENV</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;production&#34;</span> <span style="color:#f92672">?</span> <span style="color:#e6db74">&#34;dist&#34;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;src&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">config</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">path</span>.<span style="color:#a6e22e">resolve</span>(<span style="color:#e6db74">`./</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">database_dist</span><span style="color:#e6db74">}</span><span style="color:#e6db74">/database/config/config.js`</span>),
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;seeders-path&#34;</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">path</span>.<span style="color:#a6e22e">resolve</span>(<span style="color:#e6db74">`./</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">database_dist</span><span style="color:#e6db74">}</span><span style="color:#e6db74">/database/seeders`</span>),
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;migrations-path&#34;</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">path</span>.<span style="color:#a6e22e">resolve</span>(<span style="color:#e6db74">`./</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">database_dist</span><span style="color:#e6db74">}</span><span style="color:#e6db74">/database/migrations`</span>),
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#75715e"># create migration</span>
+</span></span><span style="display:flex;"><span>npx sequelize-cli migration:create --name create-pet-category-table --migrations-path ./src/database/migrations
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># create seed</span>
+</span></span><span style="display:flex;"><span>npx sequelize-cli seed:generate --name pet-category
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># build</span>
+</span></span><span style="display:flex;"><span>npm run build
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># run migration/seeds</span>
+</span></span><span style="display:flex;"><span>NODE_ENV<span style="color:#f92672">=</span>production npx sequelize-cli db:migrate --env production
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Column</span>, <span style="color:#a6e22e">DataType</span>, <span style="color:#a6e22e">Model</span>, <span style="color:#a6e22e">Table</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;sequelize-typescript&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">PetCategoryTableName</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;pet_categories&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">@Table</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">tableName</span>: <span style="color:#66d9ef">PetCategoryTableName</span>,
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PetCategory</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Model</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Column</span>({
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">primaryKey</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">type</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">DataType</span>.<span style="color:#a6e22e">UUID</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">defaultValue</span>: <span style="color:#66d9ef">DataType.UUIDV4</span>,
+</span></span><span style="display:flex;"><span>  })
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">id?</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">@Column</span>({
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">type</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">DataType</span>.<span style="color:#a6e22e">STRING</span>(<span style="color:#ae81ff">60</span>),
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">allowNull</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>  })
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
+<p>src\database\seeders\20230706141027-pet-category.ts</p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#e6db74">&#34;use strict&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">PetCategory</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">PetCategoryTableName</span>,
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;src/pet/models/pet-category.model&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/** @type {import(&#39;sequelize-cli&#39;).Migration} */</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">async</span> <span style="color:#a6e22e">up</span>(<span style="color:#a6e22e">queryInterface</span>, <span style="color:#a6e22e">Sequelize</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * Add seed commands here.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * Example:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * await queryInterface.bulkInsert(&#39;People&#39;, [{
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     *   name: &#39;John Doe&#39;,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     *   isBetaMember: false
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * }], {});
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">queryInterface</span>.<span style="color:#a6e22e">bulkInsert</span>(
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">PetCategoryTableName</span>,
+</span></span><span style="display:flex;"><span>      [
+</span></span><span style="display:flex;"><span>        { <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Dogs&#34;</span> },
+</span></span><span style="display:flex;"><span>        { <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Cats&#34;</span> },
+</span></span><span style="display:flex;"><span>        { <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Pigs&#34;</span> },
+</span></span><span style="display:flex;"><span>        { <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Birds&#34;</span> },
+</span></span><span style="display:flex;"><span>        { <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Others&#34;</span> },
+</span></span><span style="display:flex;"><span>      ],
+</span></span><span style="display:flex;"><span>      {}
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">async</span> <span style="color:#a6e22e">down</span>(<span style="color:#a6e22e">queryInterface</span>, <span style="color:#a6e22e">Sequelize</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * Add commands to revert seed here.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * Example:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * await queryInterface.bulkDelete(&#39;People&#39;, null, {});
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">queryInterface</span>.<span style="color:#a6e22e">bulkDelete</span>(<span style="color:#a6e22e">PetCategoryTableName</span>, <span style="color:#66d9ef">null</span>, {});
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>Mọi thứ trông có vẻ ổn, tuy nhiên, khi chạy câu lệnh migrate seed, bạn có thể gặp phải lỗi được mô tả tại <a href="https://github.com/sequelize/sequelize/issues/13224">đây</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>Loaded configuration file <span style="color:#e6db74">&#34;dist\database\config\config.js&#34;</span>.
+</span></span><span style="display:flex;"><span>Using environment <span style="color:#e6db74">&#34;production&#34;</span>.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">==</span> 20230706141027-pet-category: migrating <span style="color:#f92672">=======</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ERROR: Field <span style="color:#e6db74">&#39;id&#39;</span> doesn<span style="color:#960050;background-color:#1e0010">&#39;</span>t have a default value
+</span></span></code></pre></div><p>Để bypass issue này trong lúc sequelize chưa có bản vá cho lỗi này, ngay lúc migrate, chúng ta sẽ phải generate uuid trực tiếp, bằng package <a href="https://www.npmjs.com/package/uuid">này</a></p>
+<p>Cập nhật lại 1 chút file seed src\database\seeders\20230706141027-pet-category.ts</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#e6db74">&#34;use strict&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">PetCategoryTableName</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;src/pet/models/pet-category.model&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">v4</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">uuidv4</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;uuid&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/** @type {import(&#39;sequelize-cli&#39;).Migration} */</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">async</span> <span style="color:#a6e22e">up</span>(<span style="color:#a6e22e">queryInterface</span>, <span style="color:#a6e22e">Sequelize</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * Add seed commands here.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * Example:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * await queryInterface.bulkInsert(&#39;People&#39;, [{
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     *   name: &#39;John Doe&#39;,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     *   isBetaMember: false
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * }], {});
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">queryInterface</span>.<span style="color:#a6e22e">bulkInsert</span>(
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">PetCategoryTableName</span>,
+</span></span><span style="display:flex;"><span>      [
+</span></span><span style="display:flex;"><span>        { <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">uuidv4</span>(), <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Dogs&#34;</span> },
+</span></span><span style="display:flex;"><span>        { <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">uuidv4</span>(), <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Cats&#34;</span> },
+</span></span><span style="display:flex;"><span>        { <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">uuidv4</span>(), <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Pigs&#34;</span> },
+</span></span><span style="display:flex;"><span>        { <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">uuidv4</span>(), <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Birds&#34;</span> },
+</span></span><span style="display:flex;"><span>        { <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">uuidv4</span>(), <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Others&#34;</span> },
+</span></span><span style="display:flex;"><span>      ],
+</span></span><span style="display:flex;"><span>      {}
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">async</span> <span style="color:#a6e22e">down</span>(<span style="color:#a6e22e">queryInterface</span>, <span style="color:#a6e22e">Sequelize</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * Add commands to revert seed here.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * Example:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     * await queryInterface.bulkDelete(&#39;People&#39;, null, {});
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">queryInterface</span>.<span style="color:#a6e22e">bulkDelete</span>(<span style="color:#a6e22e">PetCategoryTableName</span>, <span style="color:#66d9ef">null</span>, {});
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ NODE_ENV<span style="color:#f92672">=</span>production npx sequelize-cli db:seed:all
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Sequelize CLI <span style="color:#f92672">[</span>Node: 16.19.1, CLI: 6.6.1, ORM: 6.32.1<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Loaded configuration file <span style="color:#e6db74">&#34;dist\database\config\config.js&#34;</span>.
+</span></span><span style="display:flex;"><span>Using environment <span style="color:#e6db74">&#34;production&#34;</span>.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">==</span> 20230706141027-pet-category: migrating <span style="color:#f92672">=======</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">==</span> 20230706141027-pet-category: migrated <span style="color:#f92672">(</span>0.155s<span style="color:#f92672">)</span>
+</span></span></code></pre></div><p>Và kết quả</p>
+<p><img src="https://user-images.githubusercontent.com/31009750/251483919-c00301f0-70f8-4342-b745-090547146eb2.png" alt="image"></p>
+        
+      
+      <div class="m-1 p-1">
+        
+          <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="http://localhost:1313/categories/nestjs-tutorial">nestjs-tutorial</a>
+        
+      </div>
+    </div>
+  </section>
+  <section class="container section">
+    <div class="max-w-2xl mx-auto">
+      <div class="font-heading text-2xl font-semibold">You Might Also Like</div>
+      <div class="mt-8 grid  gap-8">
+        
+        
+        
+        
+        <ul class="sidebar-links">
+        
+        
+            <li><a href="/post/khoa-hoc-nestjs-bai-06-viet-unit-test/">Khóa học NestJS - Bài 06 Hướng dẫn viết Unit Test</a></li>
+        
+            <li><a href="/post/khoa-hoc-nestjs-bai-05-repository-pattern/">Khóa học NestJS Bài 05 - Repository Pattern</a></li>
+        
+            <li><a href="/post/khoa-hoc-nestjs-bai03/">Khóa học NestJS Bài 03 - Controllers &amp; Views</a></li>
+        
+            <li><a href="/post/khoa-hoc-nestjs-bai-02/">Khóa học Nestjs - Bài 02 - Giới thiệu mô hình MVC</a></li>
+        
+            <li><a href="/post/khoa-hoc-nestjs/">Khóa học NestJS - Bài 01 - Lộ trình các bài học về NestJS Framework</a></li>
+        
+        </ul>
+                
+      </div>
+    </div>
+  </section>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1642510310947288"
+  crossorigin="anonymous"></script>
+  <ins class="adsbygoogle"
+        style="display:block; text-align:center;"
+        data-ad-layout="in-article"
+        data-ad-format="fluid"
+        data-ad-client="ca-pub-1642510310947288"
+        data-ad-slot="9309117729"></ins>
+  <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>  
+
+    
+    </main>
+    <footer class="footer">
+      <div class="container md:flex">
+        <section class="footer-section-info md:basis-1/4">
+          <div class="address">
+            <a class="logo" href="http://localhost:1313/" title="NextJSVietNam">
+              NextJSVietNam
+            </a>
+            <h4 class="footer-heading">
+                DEVELOPMENT MODE
+            <h4>                
+          </div>
+        </section>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">NestJS</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="http://localhost:1313/post/nestjs-passing-data-between-layers-in-ddd/">Nestjs Passing Data Between Layers in Domain Driven Design</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nestjs-bai-06-viet-unit-test/">Khóa học NestJS - Bài 06 Hướng dẫn viết Unit Test</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nestjs-bai-05-repository-pattern/">Khóa học NestJS Bài 05 - Repository Pattern</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nestjs-bai-04-model-and-repository-pattern/">Khóa học NestJS Bài 04 - Model and Repository Pattern</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nestjs-bai03/">Khóa học NestJS Bài 03 - Controllers &amp; Views</a></li>              
+             
+          </ul>
+        </div>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">NextJS</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nextjs-bai-03-advanced-routing/">Khoá học NextJS Bài 03 - Advanced Routing</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nextjs-bai-02-cau-truc-du-an-nextjs/">Khoá học NextJS 2024 - Bài 02: Cấu trúc dự án NextJS</a></li>              
+            
+              <li><a href="http://localhost:1313/post/create-new-website-with-nextjs/">Create New Website With Nextjs</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nextjs/">Khóa học NextJS - Bài 01 - Lộ trình các bài học về NextJS</a></li>              
+             
+          </ul>
+        </div>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">Cheatsheet</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="http://localhost:1313/post/6minutes-tech-graphql/">6minutes Tech Graphql</a></li>              
+            
+              <li><a href="http://localhost:1313/post/6minutes-tech-progressive-web-app/">6minutes Tech Progressive Web App</a></li>              
+            
+              <li><a href="http://localhost:1313/post/flexbox-and-real-world-examples/">Flexbox and Real World Examples</a></li>              
+            
+              <li><a href="http://localhost:1313/post/react-native-examples-setup-working-place-for-react-native-developer/">[React Native Examples] Setup Working Place for React Native Developer</a></li>              
+            
+              <li><a href="http://localhost:1313/post/happy-new-year-2024/">Happy New Year 2024</a></li>              
+             
+          </ul>
+        </div>
+      </div>
+      <div class="container">
+        <div class="text-center">
+          <a href=""><span class="material-icons text-4xl m-4">facebook</span></a>
+          <a href=""><span class="material-icons text-4xl  m-4">smart_display</span></a>
+        </div>
+        <div class="text-center text-lg py-4">
+          Copyright @ NextJSVietNam 2022
+        </div>
+        <div class="text-center text-sm">
+          Powered by <a class="font-bold text-primary" href="https://gohugo.io/">Go Hugo</a> - Made
+          with love from <a class="font-bold text-primary" href="http://localhost:1313/">NextJSVietNam</a> -
+          Build
+          Version 2024-05-20 08:51:24 &#43;0700 &#43;07
+        </div>
+      </div>
+    </footer>
+
+    
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="http://localhost:1313/core/jquery-3.6.0.min.js"></script>
+        
+             
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="http://localhost:1313/themes/2022/dist/main.js"></script>
+        
+             
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="http://localhost:1313/themes/2022/dist/home.js"></script>
+        
+             
+    
+
+  
+  <script async>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1760611910980690');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1760611910980690&ev=PageView&noscript=1"
+    /></noscript>
+        
+  </body>
+</html>

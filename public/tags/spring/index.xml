@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>spring on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
-    <link>https://nextjsvietnam.com/tags/spring/</link>
-    <description>Recent content in spring on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <title>Spring on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+    <link>http://localhost:1313/tags/spring/</link>
+    <description>Recent content in Spring on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 20 Jul 2022 09:04:17 +0700</lastBuildDate><atom:link href="https://nextjsvietnam.com/tags/spring/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 20 Jul 2022 09:04:17 +0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/spring/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Java for Professional</title>
-      <link>https://nextjsvietnam.com/post/java-for-professional/</link>
+      <link>http://localhost:1313/post/java-for-professional/</link>
       <pubDate>Wed, 20 Jul 2022 09:04:17 +0700</pubDate>
-      
-      <guid>https://nextjsvietnam.com/post/java-for-professional/</guid>
+      <guid>http://localhost:1313/post/java-for-professional/</guid>
       <description></description>
     </item>
-    
   </channel>
 </rss>

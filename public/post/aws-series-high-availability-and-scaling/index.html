@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="home" href="http://localhost:1313/" />
+    <meta name="generator" content="jsguru cms" />
+
+    
+    
+      
+    
+
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    
+    
+      
+              
+        
+        <link rel="stylesheet" href="http://localhost:1313/themes/2022/dist/main.css" />
+             
+    
+      
+              
+        
+        <link rel="stylesheet" href="http://localhost:1313/themes/2022/dist/home.css" />
+             
+    
+      
+              
+        
+        <link rel="stylesheet" href="http://localhost:1313/themes/2022/dist/page.css" />
+             
+        
+    
+    
+    
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWE4MLJYE6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-RWE4MLJYE6');    
+    </script>    
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1642510310947288"
+    crossorigin="anonymous"></script>    
+    
+    
+    
+<title>Aws Series High Availability and Scaling | In this topic you will learn how to scale on AWS architecture | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+<meta name="robots" content="all" />
+<meta name="keywords" content="aws, solution architecture, aws solution architect associate" />
+<meta name="description" content="In this topic you will learn how to scale on AWS architecture" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://gist.github.com/assets/31009750/d011d22e-3f5b-446b-bb01-efa7655968c5" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="750" />
+<meta property="og:image:height" content="300" />
+<meta
+  property="article:publisher"
+  content="https://www.facebook.com/nextjsvietnam"
+/>
+
+<meta property="article:published_time" content="2023-12-30T09:31:02+07:00" />
+<meta property="article:modified_time" content="2023-12-30T09:31:02+07:00" />
+
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png" />
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png" />
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png" />
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png" />
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png" />
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png" />
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="192x192"
+  href="/android-icon-192x192.png"
+/>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="manifest" href="/manifest.json" />
+<meta name="msapplication-TileColor" content="#ffffff" />
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
+<meta name="theme-color" content="#ffffff" />
+
+  </head>
+  <body class="body-nav-fixed">
+    <nav class="nav-fixed nav-default z-50">
+    <div class="container">
+      <div class="nav-container flex flex-wrap justify-between items-center">
+        <a href="http://localhost:1313/" class="nav-brand inline-block">
+          
+          <img class="h-12" src="http://localhost:1313/themes/2022/src/assets/images/logo.png" 
+          alt="Stunning" />
+        </a>
+        <a href="javascript:void(0);" data-menu="#menu-main_menu" class="nav-menu-toggle"><span
+          class="material-icons">menu</span></a>
+        <ul id="menu-main_menu" class="nav-menu h-0 md:h-auto">
+          <form class="nav-menu-search-bar md:hidden relative">
+            <button class="nav-menu-search-bar-search-btn absolute h-full">
+              <svg class="w-3 h-3 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24">
+                <path
+                  d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z">
+                </path>
+              </svg>
+            </button>
+            <input name="s" type="text" class="w-full" />
+          </form>
+          
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/categories/systemdesign">System Design
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/software-architecture">Software Architecture</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/microservice-architecture">Microservice Architecture</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/aws">Learn AWS The Right Way</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/aws-labs">AWS Hands-On Labs</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/categories/cheatsheet">Cheatsheet
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nestjs-examples">NestJS Examples</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/reactjs-examples">ReactJS Examples</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/react-native-examples">React Native Examples</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/categories/frameworks">Frameworks
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nestjs">NestJS</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/reactjs">ReactJS</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nextjs">NextJS</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/">Tutorials
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nestjs-tutorial">NestJS Tutorial</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/reactjs-tutorial">ReactJS Tutorial</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nextjs-tutorial">NextJS Tutorial</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/">Tools
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://regex101.com/">Online Regex</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://www.bashoneliners.com/">Bash Online</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://www.epochconverter.com/">Unix Timestamp Conversion</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://ryanstutorials.net/bash-scripting-tutorial/">Bash Scripting</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://explainshell.com/">Explain Shell</a></li>
+                
+                </ul>
+            
+            </li>
+          
+          <form class="nav-menu-search-bar hidden md:flex relative">
+            <button class="nav-menu-search-bar-search-btn absolute h-full">
+              <svg class="w-3 h-3 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24">
+                <path
+                  d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z">
+                </path>
+              </svg>
+            </button>
+            <input name="s" type="text" class="w-full" />
+          </form>
+        </ul>
+      </div>
+    </div>
+</nav>
+
+    <main>
+    
+  <section class="container section">
+    <div class="page-content max-w-2xl mx-auto">
+        <img src="https://gist.github.com/assets/31009750/d011d22e-3f5b-446b-bb01-efa7655968c5" class="img-responsive" alt="Aws Series High Availability and Scaling" />
+        <h1>Aws Series High Availability and Scaling</h1>
+        
+          
+          
+          <p><strong>Post Date</strong> : 2023-12-30T09:31:02+07:00</p>
+          <p><strong>Modified Date</strong> : 2023-12-30T09:31:02+07:00</p>
+        <p>
+            <strong>Category:</strong>
+            
+            <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="http://localhost:1313/categories/systemdesign">systemdesign</a>
+            
+            <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="http://localhost:1313/categories/aws">aws</a>
+            
+        </p>
+        <p>
+          <strong>Tags:</strong>
+          
+             <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white"
+             href="/tags/aws">aws</a>
+          
+        </p>                
+        <h2 id="vertical-scaling-vs-horizontal-scaling">Vertical Scaling vs Horizontal Scaling</h2>
+<h3 id="vertical-scaling">Vertical Scaling</h3>
+<p>Eg:</p>
+<ul>
+<li>Increase your EC2 RAM</li>
+<li>Increase your EC2 CPU</li>
+<li>&hellip;</li>
+</ul>
+<p><img src="https://gist.github.com/assets/31009750/dd252275-7a83-4e64-9ac4-9a6d8387896a" alt="image"></p>
+<h3 id="horizontal-scaling">Horizontal Scaling</h3>
+<p>Eg:</p>
+<ul>
+<li>Add new EC2</li>
+<li>Add new EC2</li>
+<li>&hellip;</li>
+</ul>
+<p><img src="https://gist.github.com/assets/31009750/c1b33a1a-7933-4427-86dc-33384ec14def" alt="image"></p>
+<p>But we dont&rsquo; only scale EC2, it should include other parts:</p>
+<ul>
+<li>Database</li>
+<li>VPC</li>
+<li>AZ</li>
+<li>&hellip;</li>
+</ul>
+<h3 id="the-3ws-of-scaling">The 3W&rsquo;s of Scaling</h3>
+<blockquote>
+<p>What do we scale?</p></blockquote>
+<ul>
+<li>What sort of resource, we&rsquo;re going to scale. How do we define template?</li>
+</ul>
+<blockquote>
+<p>Where do we scale?</p></blockquote>
+<ul>
+<li>When applying the model, where does it go? Should we scale out database? Or Webservers?</li>
+</ul>
+<blockquote>
+<p>When do we scale?</p></blockquote>
+<ul>
+<li>How do we know we need more? CloudWatch alarms can tell us it&rsquo;s time to add more resources.</li>
+</ul>
+<h2 id="launch-template">Launch Template</h2>
+<ul>
+<li>A launch template specifies the needed settings that go into building out an EC2 instance. It is a collection of settings you can configure so you dont&rsquo; have to walk through the EC2 wizard over and over.</li>
+</ul>
+<p>It&rsquo;s a heart of auto scaling feature.</p>
+<p>Let&rsquo;s compare Lauch Template with Configurations:</p>
+<p><strong>Launch Template</strong></p>
+<ul>
+<li>Capable of leveraging all EC2 auto scaling features.</li>
+<li>Supports versioning</li>
+<li>More granularity</li>
+<li>AWS recommends this approach</li>
+</ul>
+<p><strong>Configuration</strong></p>
+<ul>
+<li>Only for certain EC2 auto scaling features</li>
+<li>Immutable</li>
+<li>Limited configuration options</li>
+<li>Try not to use them</li>
+</ul>
+<h3 id="what-can-be-included-inside-a-launch-template">What can be included inside a Launch Template?</h3>
+<ul>
+<li>AMI</li>
+<li>EC Instance Size</li>
+<li>Security Groups</li>
+<li>Potentially networking information( if you use autoscaling, this part should be set inside autoscaling group configuration)</li>
+<li>Potentially UserData</li>
+</ul>
+<h2 id="scaling-ec2-instances-with-auto-scaling-groups">Scaling EC2 Instances with Auto Scaling Groups</h2>
+<ul>
+<li>Creating a <strong>High Available</strong> application</li>
+<li>Remember spread the resources out over multiple AZs and utilize load balancers</li>
+</ul>
+<h3 id="auto-scaling-groups">Auto Scaling Groups</h3>
+<ul>
+<li>Contain a collection of EC2 Instances that are treated as collective group for purposes of scaling and management.</li>
+</ul>
+<h3 id="auto-scaling-steps">Auto Scaling Steps</h3>
+<p><img src="https://gist.github.com/assets/31009750/dfbc4bff-2f5f-41be-969c-bfcf83fbfb5d" alt="image"></p>
+<h3 id="lifecycle">LifeCycle</h3>
+<p><img src="https://gist.github.com/assets/31009750/bc5b2d34-4d48-44df-b296-cc635c28b73d" alt="image"></p>
+<h2 id="step-scaling">Step Scaling</h2>
+<p><img src="https://gist.github.com/assets/31009750/5dd648ba-07c5-466f-a115-cc916d9fba25" alt="image"></p>
+<p><img src="https://gist.github.com/assets/31009750/6ba94b3f-4555-4733-8789-5918445aaa8a" alt="image"></p>
+<p><img src="https://gist.github.com/assets/31009750/0fcf9021-261e-4227-b8d4-e5e15674851f" alt="image"></p>
+<h3 id="simple-scaling">Simple Scaling</h3>
+<ul>
+<li>Relies on metrics for scaling needs</li>
+</ul>
+<p>Example: Add 1 instances if CPU Utilization metric &gt; 80%</p>
+<h3 id="target-tracking">Target Tracking</h3>
+<ul>
+<li>Uses a Scaling metric and value that ASG should maintain at all times</li>
+</ul>
+<p>Eg: Maintain ASGAverageCPUUtilization = 50%</p>
+<h3 id="instance-warm-up-and-cooldown">Instance Warm-up and CoolDown</h3>
+<blockquote>
+<p>Warm-Up: stops instances from being placed behind the load balancer, failing the health check, and being terminated prematurely</p></blockquote>
+<blockquote>
+<p>CoolDown: Pauses Auto Scaling for a set amount of time. Help you avoid runaway scaling events. -&gt; prevent over doing auto scaling</p></blockquote>
+<blockquote>
+<p>Avoid Thrashing: You want to create instances quickly and spin them down slowly</p></blockquote>
+<h3 id="scaling-types">Scaling Types</h3>
+<ul>
+<li>Reactive Scaling: Measure and determine if you need to create/remove resources</li>
+<li>Schedule Scaling: Have a predictable workload, create a scaling event to get your resources ready to go before they&rsquo;re actually needed -&gt; shopping events(black Friday, Christmas, Hoildays)</li>
+<li>Predictive Scaling: AWS uses it machine learning algorithms to determine when you&rsquo;ll need to scale. They are reevaluated every 24 hours to create a forecast for the next 48 hours</li>
+</ul>
+<h3 id="key-figures">Key Figures</h3>
+<ul>
+<li>Desired: initial value</li>
+<li>Min: minimum value</li>
+<li>Max: maximum value</li>
+</ul>
+<h2 id="scaling-relational-databases">Scaling Relational Databases</h2>
+<h3 id="4-types-of-scaling">4 Types of Scaling</h3>
+<p><img src="https://gist.github.com/assets/31009750/19124be9-a916-4c0c-976a-518f2e95a8ee" alt="image"></p>
+<ul>
+<li>Vertical Scaling : resize</li>
+<li>Scaling Storage: storage can be resized, but it&rsquo;s only able to go up, not down</li>
+<li>Read replicas: creating read-only copies of your data can help spread out the workload</li>
+<li>Aurora serverless: We can offload autoscale to AWS. Excels with unpredictable workloads</li>
+</ul>
+<h2 id="scaling-non-relational-databases">Scaling Non-Relational Databases</h2>
+<h3 id="dynamodb">DynamoDB</h3>
+<ul>
+<li>AWS does all the heavy lifting for you</li>
+<li>Just 2 options: provisioned(predictable workload) and on-demand(sporadic workload)</li>
+<li>You can switch between 2 options, but only twice per 24hours per table</li>
+</ul>
+<p><img src="https://gist.github.com/assets/31009750/a66efd82-ce2b-4808-80f5-7a0e9840f05d" alt="image"></p>
+<h4 id="some-figures">Some figures</h4>
+<p><strong>RCU(read capacity unit)</strong></p>
+<ul>
+<li>DynamoDB Unit of measurement for reads per second for an item up to 4KB in size.</li>
+<li>One strongly consistent read per second</li>
+<li>Two eventually consistent read per second</li>
+</ul>
+<p>So how many RCUs for <strong>1 strongly consistent read</strong> per second for object that are <strong>7KB</strong> in size?</p>
+<p>1 RCU = 4 KB/ 1 strongly consistent read
+Round up to the next nearest amount for the item size = 8KB/4KB = <strong>2 RCU</strong></p>
+<p><strong>WCU(write capacity unit)</strong></p>
+<ul>
+<li>DynanoDB Unit of measurement for writes per second for an item up to 1KB in size</li>
+</ul>
+<p>So how many WCUs for <strong>1 write per second</strong> for an object that is 3KB in size?</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-m" data-lang="m"><span style="display:flex;"><span><span style="color:#ae81ff">1</span> WCU <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>KB <span style="color:#f92672">*</span> <span style="color:#ae81ff">1</span> write per second
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">3</span>KB <span style="color:#f92672">*</span> <span style="color:#ae81ff">1</span> WCU <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span> WCU
+</span></span></code></pre></div><h2 id="disaster-recovery-strategies">Disaster Recovery Strategies</h2>
+<h3 id="rpo-recovery-point-objective">RPO (Recovery Point Objective)</h3>
+<ul>
+<li>How much data you can afford to lose?</li>
+<li>Typically speaking, the lower time, the greater the cost</li>
+</ul>
+<h3 id="rto-recovery-time-objective">RTO (Recovery Time Objective)</h3>
+<ul>
+<li>How fast do you want to fail over? How much time can the business afford?</li>
+<li>Typically speaking, the lower the time, the more expensive the cost</li>
+</ul>
+<h2 id="backup-and-restore">Backup and Restore</h2>
+<h3 id="simplest-disaster-recovery-strategy">Simplest Disaster Recovery Strategy</h3>
+<ul>
+<li>Restore the system from your backup</li>
+</ul>
+<h4 id="pilot-light">Pilot Light</h4>
+<p><img src="https://gist.github.com/assets/31009750/d978930b-edb6-4e41-bacb-04a8ae09df00" alt="image">
+<img src="https://gist.github.com/assets/31009750/e4691ac5-6b64-4bcb-b311-a7cc24ce0aee" alt="image">
+<img src="https://gist.github.com/assets/31009750/d2cc7692-78ab-41ec-8871-9ee0cc09a4ea" alt="image"></p>
+<h4 id="warm-standby">Warm StandBy</h4>
+<p><img src="https://gist.github.com/assets/31009750/dc5ba925-1068-49f5-a493-0ce6104ea5ec" alt="image">
+<img src="https://gist.github.com/assets/31009750/58232696-cefb-4152-ba77-f37f88fe94f4" alt="image">
+<img src="https://gist.github.com/assets/31009750/d2cc7692-78ab-41ec-8871-9ee0cc09a4ea" alt="image"></p>
+<h4 id="activeactive-failover">Active/Active Failover</h4>
+<p><img src="https://gist.github.com/assets/31009750/1f65e92d-1aca-40ac-b00f-4a7b09b1c361" alt="image">
+<img src="https://gist.github.com/assets/31009750/4b6a633d-184d-4ff2-8484-a3bd026f4412" alt="image"></p>
+        
+      
+      <div class="m-1 p-1">
+        
+          <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="http://localhost:1313/categories/systemdesign">systemdesign</a>
+        
+          <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="http://localhost:1313/categories/aws">aws</a>
+        
+      </div>
+    </div>
+  </section>
+  <section class="container section">
+    <div class="max-w-2xl mx-auto">
+      <div class="font-heading text-2xl font-semibold">You Might Also Like</div>
+      <div class="mt-8 grid  gap-8">
+        
+        
+        
+        
+        <ul class="sidebar-links">
+        
+        
+            <li><a href="/post/microservice-headfirst/">Microservice Headfirst</a></li>
+        
+            <li><a href="/post/aws-lab-series-build-and-deploy-rest-api/">Aws Lab Series Build and Deploy Rest Api</a></li>
+        
+            <li><a href="/post/aws-lab-series-foreword/">Aws Lab Series Foreword</a></li>
+        
+            <li><a href="/post/aws-series-migration/">Aws Series Migration</a></li>
+        
+            <li><a href="/post/aws-series-governance/">Aws Series Governance</a></li>
+        
+            <li><a href="/post/aws-series-caching/">Aws Series Caching</a></li>
+        
+            <li><a href="/post/aws-series-automation/">Aws Series Automation</a></li>
+        
+        </ul>
+                
+      </div>
+    </div>
+  </section>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1642510310947288"
+  crossorigin="anonymous"></script>
+  <ins class="adsbygoogle"
+        style="display:block; text-align:center;"
+        data-ad-layout="in-article"
+        data-ad-format="fluid"
+        data-ad-client="ca-pub-1642510310947288"
+        data-ad-slot="9309117729"></ins>
+  <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>  
+
+    
+    </main>
+    <footer class="footer">
+      <div class="container md:flex">
+        <section class="footer-section-info md:basis-1/4">
+          <div class="address">
+            <a class="logo" href="http://localhost:1313/" title="NextJSVietNam">
+              NextJSVietNam
+            </a>
+            <h4 class="footer-heading">
+                DEVELOPMENT MODE
+            <h4>                
+          </div>
+        </section>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">NestJS</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="http://localhost:1313/post/nestjs-passing-data-between-layers-in-ddd/">Nestjs Passing Data Between Layers in Domain Driven Design</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nestjs-bai-06-viet-unit-test/">Khóa học NestJS - Bài 06 Hướng dẫn viết Unit Test</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nestjs-bai-05-repository-pattern/">Khóa học NestJS Bài 05 - Repository Pattern</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nestjs-bai-04-model-and-repository-pattern/">Khóa học NestJS Bài 04 - Model and Repository Pattern</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nestjs-bai03/">Khóa học NestJS Bài 03 - Controllers &amp; Views</a></li>              
+             
+          </ul>
+        </div>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">NextJS</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nextjs-bai-03-advanced-routing/">Khoá học NextJS Bài 03 - Advanced Routing</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nextjs-bai-02-cau-truc-du-an-nextjs/">Khoá học NextJS 2024 - Bài 02: Cấu trúc dự án NextJS</a></li>              
+            
+              <li><a href="http://localhost:1313/post/create-new-website-with-nextjs/">Create New Website With Nextjs</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nextjs/">Khóa học NextJS - Bài 01 - Lộ trình các bài học về NextJS</a></li>              
+             
+          </ul>
+        </div>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">Cheatsheet</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="http://localhost:1313/post/6minutes-tech-graphql/">6minutes Tech Graphql</a></li>              
+            
+              <li><a href="http://localhost:1313/post/6minutes-tech-progressive-web-app/">6minutes Tech Progressive Web App</a></li>              
+            
+              <li><a href="http://localhost:1313/post/flexbox-and-real-world-examples/">Flexbox and Real World Examples</a></li>              
+            
+              <li><a href="http://localhost:1313/post/react-native-examples-setup-working-place-for-react-native-developer/">[React Native Examples] Setup Working Place for React Native Developer</a></li>              
+            
+              <li><a href="http://localhost:1313/post/happy-new-year-2024/">Happy New Year 2024</a></li>              
+             
+          </ul>
+        </div>
+      </div>
+      <div class="container">
+        <div class="text-center">
+          <a href=""><span class="material-icons text-4xl m-4">facebook</span></a>
+          <a href=""><span class="material-icons text-4xl  m-4">smart_display</span></a>
+        </div>
+        <div class="text-center text-lg py-4">
+          Copyright @ NextJSVietNam 2022
+        </div>
+        <div class="text-center text-sm">
+          Powered by <a class="font-bold text-primary" href="https://gohugo.io/">Go Hugo</a> - Made
+          with love from <a class="font-bold text-primary" href="http://localhost:1313/">NextJSVietNam</a> -
+          Build
+          Version 2024-05-20 08:51:24 &#43;0700 &#43;07
+        </div>
+      </div>
+    </footer>
+
+    
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="http://localhost:1313/core/jquery-3.6.0.min.js"></script>
+        
+             
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="http://localhost:1313/themes/2022/dist/main.js"></script>
+        
+             
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="http://localhost:1313/themes/2022/dist/home.js"></script>
+        
+             
+    
+
+  
+  <script async>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1760611910980690');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1760611910980690&ev=PageView&noscript=1"
+    /></noscript>
+        
+  </body>
+</html>

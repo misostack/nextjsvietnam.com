@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="home" href="http://localhost:1313/" />
+    <meta name="generator" content="jsguru cms" />
+
+    
+    
+      
+    
+
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    
+    
+      
+              
+        
+        <link rel="stylesheet" href="http://localhost:1313/themes/2022/dist/main.css" />
+             
+    
+      
+              
+        
+        <link rel="stylesheet" href="http://localhost:1313/themes/2022/dist/home.css" />
+             
+    
+      
+              
+        
+        <link rel="stylesheet" href="http://localhost:1313/themes/2022/dist/page.css" />
+             
+        
+    
+    
+    
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWE4MLJYE6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-RWE4MLJYE6');    
+    </script>    
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1642510310947288"
+    crossorigin="anonymous"></script>    
+    
+    
+    
+<title>Aws Series Serverless Computing | In this topic you will learn about lambda, ecs and fargate, eks, ... | Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+<meta name="robots" content="all" />
+<meta name="keywords" content="aws, solution architecture, aws solution architect associate" />
+<meta name="description" content="In this topic you will learn about lambda, ecs and fargate, eks, ..." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://gist.github.com/assets/31009750/6ec743dc-da52-49ca-b3fa-b7d06ece422c" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="750" />
+<meta property="og:image:height" content="300" />
+<meta
+  property="article:publisher"
+  content="https://www.facebook.com/nextjsvietnam"
+/>
+
+<meta property="article:published_time" content="2024-01-01T15:49:26+07:00" />
+<meta property="article:modified_time" content="2024-01-01T15:49:26+07:00" />
+
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png" />
+<link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png" />
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png" />
+<link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png" />
+<link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png" />
+<link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png" />
+<link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png" />
+<link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png" />
+<link
+  rel="icon"
+  type="image/png"
+  sizes="192x192"
+  href="/android-icon-192x192.png"
+/>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="manifest" href="/manifest.json" />
+<meta name="msapplication-TileColor" content="#ffffff" />
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
+<meta name="theme-color" content="#ffffff" />
+
+  </head>
+  <body class="body-nav-fixed">
+    <nav class="nav-fixed nav-default z-50">
+    <div class="container">
+      <div class="nav-container flex flex-wrap justify-between items-center">
+        <a href="http://localhost:1313/" class="nav-brand inline-block">
+          
+          <img class="h-12" src="http://localhost:1313/themes/2022/src/assets/images/logo.png" 
+          alt="Stunning" />
+        </a>
+        <a href="javascript:void(0);" data-menu="#menu-main_menu" class="nav-menu-toggle"><span
+          class="material-icons">menu</span></a>
+        <ul id="menu-main_menu" class="nav-menu h-0 md:h-auto">
+          <form class="nav-menu-search-bar md:hidden relative">
+            <button class="nav-menu-search-bar-search-btn absolute h-full">
+              <svg class="w-3 h-3 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24">
+                <path
+                  d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z">
+                </path>
+              </svg>
+            </button>
+            <input name="s" type="text" class="w-full" />
+          </form>
+          
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/categories/systemdesign">System Design
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/software-architecture">Software Architecture</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/microservice-architecture">Microservice Architecture</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/aws">Learn AWS The Right Way</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/aws-labs">AWS Hands-On Labs</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/categories/cheatsheet">Cheatsheet
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nestjs-examples">NestJS Examples</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/reactjs-examples">ReactJS Examples</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/react-native-examples">React Native Examples</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/categories/frameworks">Frameworks
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nestjs">NestJS</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/reactjs">ReactJS</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nextjs">NextJS</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/">Tutorials
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nestjs-tutorial">NestJS Tutorial</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/reactjs-tutorial">ReactJS Tutorial</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://localhost:1313/categories/nextjs-tutorial">NextJS Tutorial</a></li>
+                
+                </ul>
+            
+            </li>
+          
+            <li class="nav-menu-item">
+            <a class="nav-menu-link" href="http://localhost:1313/">Tools
+                
+                    <span class="material-icons">keyboard_arrow_down</span>
+                
+            </a>
+            
+                <ul class="sub-menu">                                    
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://regex101.com/">Online Regex</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="http://www.bashoneliners.com/">Bash Online</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://www.epochconverter.com/">Unix Timestamp Conversion</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://ryanstutorials.net/bash-scripting-tutorial/">Bash Scripting</a></li>
+                
+                    <li class="nav-menu-item"><a class="nav-menu-link" href="https://explainshell.com/">Explain Shell</a></li>
+                
+                </ul>
+            
+            </li>
+          
+          <form class="nav-menu-search-bar hidden md:flex relative">
+            <button class="nav-menu-search-bar-search-btn absolute h-full">
+              <svg class="w-3 h-3 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24">
+                <path
+                  d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z">
+                </path>
+              </svg>
+            </button>
+            <input name="s" type="text" class="w-full" />
+          </form>
+        </ul>
+      </div>
+    </div>
+</nav>
+
+    <main>
+    
+  <section class="container section">
+    <div class="page-content max-w-2xl mx-auto">
+        <img src="https://gist.github.com/assets/31009750/6ec743dc-da52-49ca-b3fa-b7d06ece422c" class="img-responsive" alt="Aws Series Serverless Computing" />
+        <h1>Aws Series Serverless Computing</h1>
+        
+          
+          
+          <p><strong>Post Date</strong> : 2024-01-01T15:49:26+07:00</p>
+          <p><strong>Modified Date</strong> : 2024-01-01T15:49:26+07:00</p>
+        <p>
+            <strong>Category:</strong>
+            
+            <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="http://localhost:1313/categories/systemdesign">systemdesign</a>
+            
+            <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="http://localhost:1313/categories/aws">aws</a>
+            
+        </p>
+        <p>
+          <strong>Tags:</strong>
+          
+             <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white"
+             href="/tags/aws">aws</a>
+          
+        </p>                
+        <h2 id="aws-lambda">AWS Lambda</h2>
+<blockquote>
+<p>Serverless compute service that lets you run code without provisioning or managing the underlying servers. So you can focus on code, not the servers! Automated scaling</p></blockquote>
+<h3 id="lambda-main-features">Lambda Main features</h3>
+<ul>
+<li>Free tier 1M requests and 400K GBs of compute per month</li>
+<li>Integrates with numerous AWS services: S3, DynamoDB, EventBridge, SQS/SNS, and Kinenis</li>
+<li>CloudWatch for Logging</li>
+<li>Set memories requirement as needed, up to 10,240 MB! CPU scales with memory</li>
+<li>Execution Length: short-term executions, limit time is 900s(15mins). For anything longer: AWS Batch, EC2</li>
+<li>Runtime support: Python,Golang,Java,Node.js and others</li>
+</ul>
+<h3 id="configuration">Configuration:</h3>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Runtime</li>
+<li><input checked="" disabled="" type="checkbox"> Permissions: you need to attach a role</li>
+<li><input checked="" disabled="" type="checkbox"> Networking: optionally define VPC, subnet, and security groups your functions are a part of.</li>
+<li><input checked="" disabled="" type="checkbox"> Resources: define the amount of available memory allocated to your function</li>
+<li><input checked="" disabled="" type="checkbox"> Trigger: What&rsquo;s going to alert your Lambda function to start? Defining a trigger will kick Lambda off if that event occurs</li>
+</ul>
+<h3 id="lambda-function-quotas">Lambda Function Quotas</h3>
+<p><img src="https://gist.github.com/assets/31009750/ad46b36b-543a-42ae-89df-a9fcf21b2312" alt="image"></p>
+<h3 id="popular-architecture-example">Popular Architecture Example</h3>
+<p><img src="https://gist.github.com/assets/31009750/49b202ec-4f9a-48a9-87fd-739efe2feb1d" alt="image"></p>
+<p><img src="https://gist.github.com/assets/31009750/e754c0d1-09f6-46ab-b5d3-74b6e49b29d4" alt="image"></p>
+<h2 id="serverless-application-repository">Serverless Application Repository</h2>
+<ul>
+<li>Serverless Apps: allow user to easily find, deploy, or even publish their own serverless applications.</li>
+<li>Ability to privately share applications within orgs or publicity for the world</li>
+<li>AWS SAM template: upload load your application code and a manifest file.</li>
+<li>Deeply integrated with AWS Lambda service. Appears with console.</li>
+</ul>
+<h3 id="sam">SAM</h3>
+<blockquote>
+<p>Serverless Application Model</p></blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#f92672">AWSTemplateFormatVersion</span>: <span style="color:#e6db74">2010-09-09</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Transform</span>: <span style="color:#ae81ff">AWS::Serverless-2016-10-31</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Resources</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">getAllItemsFunction</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">Type</span>: <span style="color:#ae81ff">AWS::Serverless::Function</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">Properties</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">Handler</span>: <span style="color:#ae81ff">src/get-all-items.getAllItemsHandler</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">Runtime</span>: <span style="color:#ae81ff">nodejs12.x</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">Events</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">Api</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">Type</span>: <span style="color:#ae81ff">HttpApi</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">Properties</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">Path</span>: <span style="color:#ae81ff">/</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">Method</span>: <span style="color:#ae81ff">GET</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">Connectors</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">MyConn</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">Properties</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">Destination</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">Id</span>: <span style="color:#ae81ff">SampleTable</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">Permissions</span>:
+</span></span><span style="display:flex;"><span>            - <span style="color:#ae81ff">Read</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">SampleTable</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">Type</span>: <span style="color:#ae81ff">AWS::Serverless::SimpleTable</span>
+</span></span></code></pre></div><h3 id="publish-and-deploy">Publish and Deploy</h3>
+<h4 id="publish">Publish</h4>
+<ul>
+<li>Makes them available for others to find and deploy</li>
+<li>Define apps with AWS SAM template</li>
+<li>Set to private by default</li>
+<li>Must explicit share if desired</li>
+</ul>
+<h4 id="deploy">Deploy</h4>
+<ul>
+<li>Find and deploy published applications</li>
+<li>Browse public apps without needing an AWS account</li>
+<li>Browse within AWS Lambda console</li>
+<li>Be careful of trusting all applications</li>
+</ul>
+<h2 id="running-container-in-amazon-ecs-or-amazon-eks">Running container in Amazon ECS or Amazon EKS</h2>
+<h3 id="problems-with-containers">Problems with Containers</h3>
+<p><img src="https://gist.github.com/assets/31009750/de720c02-35c3-49ce-9ec3-847e89ff12ca" alt="image"></p>
+<h3 id="ecs-or-eks">ECS or EKS</h3>
+<h4 id="ecs">ECS</h4>
+<ul>
+<li>Proprietary AWS Specific container management solution</li>
+<li>Best use when you&rsquo;re all in on AWS</li>
+<li>You&rsquo;re looking for something simple to orchestrate containers</li>
+</ul>
+<h4 id="eks">EKS</h4>
+<ul>
+<li>AWS managed version of opensource Kubernetes container management solution</li>
+<li>Best used when you&rsquo;re all in on AWS</li>
+<li>Significantly more work to configure and integrate with AWS</li>
+</ul>
+<p>Both of them are greate for long running applications.</p>
+<h3 id="aws-fargate">AWS Fargate</h3>
+<ul>
+<li>AWF Fargate is a serverless compute engine for docker containers</li>
+<li>AWS owns and manages the infrastructure</li>
+<li>Require use of ECS or EKS</li>
+<li>Support both Linux and Windows Container</li>
+</ul>
+<h4 id="ec2-vs-fargate">EC2 vs Fargate</h4>
+<p><strong>EC2</strong></p>
+<ul>
+<li>You are responsible for underlying operating system</li>
+<li>EC2 pricing model</li>
+<li>Long-running containers</li>
+<li>Multiple containers can share same host</li>
+<li>Capable of mouting EFS file systems for persistent, shared storage</li>
+</ul>
+<p><strong>Fargate</strong></p>
+<ul>
+<li>No operating system access</li>
+<li>Pay based on resources allocated and time ran</li>
+<li>Short-running tasks</li>
+<li>Isolated environment per container</li>
+<li>Capable of mounting EFS file systems for persistent, shared storage</li>
+</ul>
+<h4 id="fargate-vs-lambda">Fargate vs Lambda</h4>
+<p><strong>Fargate</strong></p>
+<ul>
+<li>Select Fargate when you have more consistent workloads.</li>
+<li>Allow Docker use across the organization and a great level of control by developers</li>
+</ul>
+<p><strong>Lambda</strong></p>
+<ul>
+<li>Great for unpredictable or inconsistent workloads</li>
+<li>Perfect for applications that can be expressed as a single function</li>
+</ul>
+<h2 id="amazon-eventbridge">Amazon EventBridge</h2>
+<ul>
+<li>Amazon EventBridge(formerly CloudWatch Events) is a serverless event bus</li>
+<li>It allows you to pass events from a source to an endpoint. It&rsquo;s the glue that holds your serverless application together</li>
+</ul>
+<h3 id="main-concepts">Main concepts</h3>
+<ul>
+<li>Events: a recorded changed in an AWS environment, SaaS partner, or one of your own configured applications/services. This also included scheduled events</li>
+<li>Rules: criteria used to match incoming events and send them to the appropriate targets. Based on either event patterns or schedules</li>
+<li>Event bus: A router that receives events and delivers them to targets(destinations). Every account has a default bus, and you can create other custom buses.</li>
+</ul>
+<h4 id="rule-triggers">Rule Triggers</h4>
+<ul>
+<li>Event Pattern: Define an event source and event pattern that trigger your rule. Eg: EC terminated.</li>
+<li>Scheduled: Set up a recurring schedule for trigger your rule. Eg: Rate-based(1hour), Cron-based(0 12 * _ ? _)</li>
+</ul>
+<h3 id="event-bridge-architecture">Event Bridge Architecture</h3>
+<p><img src="https://gist.github.com/assets/31009750/04f5d25a-2057-4acf-857c-8ad6dd780eda" alt="image"></p>
+<h2 id="amazon-ecr">Amazon ECR</h2>
+<blockquote>
+<p>Amazon Elastic Container Registry</p></blockquote>
+<ul>
+<li>AWS-managed container image registry</li>
+<li>Private container image repositories with permissions via IAM</li>
+<li>Supported formats: OCI images, Docker images, OCI artifact</li>
+<li>Lifecycle policies: rules for expering and removing unused/older images</li>
+<li>Scan on push repository settings</li>
+<li>Sharing: Cross region, cross account, configured per repository and per region</li>
+<li>Cache rules: pull through cache rules allow for caching public repos privately</li>
+<li>Tags: prevent image tags from being overwritten, configured per repository this setting</li>
+<li>Integrations: your own container infrastructure, Amazon EC2, Amazon EKS clusters, Amazon Linux can be used locally</li>
+</ul>
+<h2 id="amazon-eks-distro">Amazon EKS Distro</h2>
+<ul>
+<li>Amazon EKS Distro(Amazon EKS-D) is Kubernetes distribution based on and used by Amazon EKS</li>
+<li>Amazon EKS is fully managed by you</li>
+<li>Where: anywhere</li>
+<li>Self-managed Kubernetes deployments</li>
+</ul>
+<h2 id="amazon-eks-ecs-anywhere-outside-aws">Amazon EKS, ECS anywhere outside AWS</h2>
+<h3 id="eks-anywhere">EKS Anywhere</h3>
+<ul>
+<li>On-premises EKS : on-premises way to manage K8s clusters with same practice use EKS, based on EKS distro, full lifecycle management of multiple K8s clusters, required enterprise subscriptions</li>
+</ul>
+<h3 id="ecs-anywhere">ECS anywhere</h3>
+<ul>
+<li>Management of container-based apps on-premises</li>
+<li>No need to install and operate local container orchestration software</li>
+<li>No ELB support for inbound traffic</li>
+</ul>
+<p>Requirements:</p>
+<ul>
+<li>SSM Agent</li>
+<li>ECS Agent</li>
+<li>Docker</li>
+<li>Must register external instances as SSM Managed Instances</li>
+<li>Can install scripts using ECS console</li>
+<li>Execute scripts on-premises VMs or bare-metal servers</li>
+<li>Deploy containers using the EXTERNAL lauch type</li>
+</ul>
+<p><img src="https://gist.github.com/assets/31009750/4460ef27-ace9-40ba-8f06-115fcf499318" alt="image"></p>
+<h2 id="amazon-aurora-serverless">Amazon Aurora Serverless</h2>
+<ul>
+<li>On-Demand and Auto-scaling</li>
+<li>Aurora Capacity Unit(ACUs): measurement on how your clusters scale</li>
+<li>Set a minimum and maximum ACUs for scaling requirements. v1 can be set 0, but from v2 only to minimum</li>
+<li>Allocated(quickly) by AWS-managed warm pools</li>
+<li>Each ACU: 2 Gib memory + matching CPU, networking capability</li>
+<li>Same data resiliency as Aurora provisioned: six copies of data across 3 AZs</li>
+<li>Multi-AZ deployments for establing highly available clusters</li>
+</ul>
+<p><img src="https://gist.github.com/assets/31009750/38efc98c-f1e1-49cd-8d61-40d09c83ad75" alt="image"></p>
+<h2 id="x-ray-for-amazon-app-insight">X-Ray for Amazon App-Insight</h2>
+<ul>
+<li>App-Insight: insights about request/response</li>
+<li>Downstream: view calls to downstream AWS resources and other microservices/apis/databases</li>
+<li>Traces</li>
+<li>Multiple options:tracing headers, send tracedata, run X-Ray deamon</li>
+<li>header contain: X-Amzn-Trace-Id</li>
+<li>AWS X-Ray deamon, software listen UDP at port 2000. Collects raw segment data and sends it to AWS X-Ray API</li>
+</ul>
+<p><img src="https://gist.github.com/assets/31009750/56ff3d88-58ee-4999-aa65-a37ddc532e5c" alt="image"></p>
+<h2 id="aws-appsync-for-graphql-interfaces">AWS Appsync for GraphQL Interfaces</h2>
+<ul>
+<li>Robust, scalable GraphQL interfaces for application developers</li>
+<li>Combine data from multiple resoures: DynamoDB, Lambda</li>
+<li>Easy interact via GraphQL</li>
+<li>GraphQL: data language that enables app to fetch data from servers</li>
+<li>Seamless integration with: React, ReactNative, IOS and Android</li>
+</ul>
+        
+      
+      <div class="m-1 p-1">
+        
+          <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="http://localhost:1313/categories/systemdesign">systemdesign</a>
+        
+          <a class="m-1 p-1 text-xs font-bold leading-none border border-gray-200 bg-white" href="http://localhost:1313/categories/aws">aws</a>
+        
+      </div>
+    </div>
+  </section>
+  <section class="container section">
+    <div class="max-w-2xl mx-auto">
+      <div class="font-heading text-2xl font-semibold">You Might Also Like</div>
+      <div class="mt-8 grid  gap-8">
+        
+        
+        
+        
+        <ul class="sidebar-links">
+        
+        
+            <li><a href="/post/microservice-headfirst/">Microservice Headfirst</a></li>
+        
+            <li><a href="/post/aws-lab-series-build-and-deploy-rest-api/">Aws Lab Series Build and Deploy Rest Api</a></li>
+        
+            <li><a href="/post/aws-lab-series-foreword/">Aws Lab Series Foreword</a></li>
+        
+            <li><a href="/post/aws-series-migration/">Aws Series Migration</a></li>
+        
+            <li><a href="/post/aws-series-governance/">Aws Series Governance</a></li>
+        
+            <li><a href="/post/aws-series-caching/">Aws Series Caching</a></li>
+        
+            <li><a href="/post/aws-series-automation/">Aws Series Automation</a></li>
+        
+        </ul>
+                
+      </div>
+    </div>
+  </section>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1642510310947288"
+  crossorigin="anonymous"></script>
+  <ins class="adsbygoogle"
+        style="display:block; text-align:center;"
+        data-ad-layout="in-article"
+        data-ad-format="fluid"
+        data-ad-client="ca-pub-1642510310947288"
+        data-ad-slot="9309117729"></ins>
+  <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>  
+
+    
+    </main>
+    <footer class="footer">
+      <div class="container md:flex">
+        <section class="footer-section-info md:basis-1/4">
+          <div class="address">
+            <a class="logo" href="http://localhost:1313/" title="NextJSVietNam">
+              NextJSVietNam
+            </a>
+            <h4 class="footer-heading">
+                DEVELOPMENT MODE
+            <h4>                
+          </div>
+        </section>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">NestJS</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="http://localhost:1313/post/nestjs-passing-data-between-layers-in-ddd/">Nestjs Passing Data Between Layers in Domain Driven Design</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nestjs-bai-06-viet-unit-test/">Khóa học NestJS - Bài 06 Hướng dẫn viết Unit Test</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nestjs-bai-05-repository-pattern/">Khóa học NestJS Bài 05 - Repository Pattern</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nestjs-bai-04-model-and-repository-pattern/">Khóa học NestJS Bài 04 - Model and Repository Pattern</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nestjs-bai03/">Khóa học NestJS Bài 03 - Controllers &amp; Views</a></li>              
+             
+          </ul>
+        </div>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">NextJS</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nextjs-bai-03-advanced-routing/">Khoá học NextJS Bài 03 - Advanced Routing</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nextjs-bai-02-cau-truc-du-an-nextjs/">Khoá học NextJS 2024 - Bài 02: Cấu trúc dự án NextJS</a></li>              
+            
+              <li><a href="http://localhost:1313/post/create-new-website-with-nextjs/">Create New Website With Nextjs</a></li>              
+            
+              <li><a href="http://localhost:1313/post/khoa-hoc-nextjs/">Khóa học NextJS - Bài 01 - Lộ trình các bài học về NextJS</a></li>              
+             
+          </ul>
+        </div>
+        <div class="footer-section-navigation-menu md:basis-1/4">
+          <h4 class="footer-heading">Cheatsheet</h4>
+          <ul class="footer-section-navigation-menu-links">
+            
+            
+              <li><a href="http://localhost:1313/post/6minutes-tech-graphql/">6minutes Tech Graphql</a></li>              
+            
+              <li><a href="http://localhost:1313/post/6minutes-tech-progressive-web-app/">6minutes Tech Progressive Web App</a></li>              
+            
+              <li><a href="http://localhost:1313/post/flexbox-and-real-world-examples/">Flexbox and Real World Examples</a></li>              
+            
+              <li><a href="http://localhost:1313/post/react-native-examples-setup-working-place-for-react-native-developer/">[React Native Examples] Setup Working Place for React Native Developer</a></li>              
+            
+              <li><a href="http://localhost:1313/post/happy-new-year-2024/">Happy New Year 2024</a></li>              
+             
+          </ul>
+        </div>
+      </div>
+      <div class="container">
+        <div class="text-center">
+          <a href=""><span class="material-icons text-4xl m-4">facebook</span></a>
+          <a href=""><span class="material-icons text-4xl  m-4">smart_display</span></a>
+        </div>
+        <div class="text-center text-lg py-4">
+          Copyright @ NextJSVietNam 2022
+        </div>
+        <div class="text-center text-sm">
+          Powered by <a class="font-bold text-primary" href="https://gohugo.io/">Go Hugo</a> - Made
+          with love from <a class="font-bold text-primary" href="http://localhost:1313/">NextJSVietNam</a> -
+          Build
+          Version 2024-05-20 08:51:24 &#43;0700 &#43;07
+        </div>
+      </div>
+    </footer>
+
+    
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="http://localhost:1313/core/jquery-3.6.0.min.js"></script>
+        
+             
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="http://localhost:1313/themes/2022/dist/main.js"></script>
+        
+             
+    
+      
+        
+        
+        
+          <script type="text/javascript" src="http://localhost:1313/themes/2022/dist/home.js"></script>
+        
+             
+    
+
+  
+  <script async>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1760611910980690');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1760611910980690&ev=PageView&noscript=1"
+    /></noscript>
+        
+  </body>
+</html>

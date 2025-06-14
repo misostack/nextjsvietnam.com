@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>chat-gpt on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
-    <link>https://nextjsvietnam.com/tags/chat-gpt/</link>
-    <description>Recent content in chat-gpt on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <title>Chat-Gpt on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+    <link>http://localhost:1313/tags/chat-gpt/</link>
+    <description>Recent content in Chat-Gpt on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 29 May 2023 13:58:50 +0700</lastBuildDate><atom:link href="https://nextjsvietnam.com/tags/chat-gpt/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 29 May 2023 13:58:50 +0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/chat-gpt/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Chatgpt What Can Chat Gpt Do</title>
-      <link>https://nextjsvietnam.com/post/chatgpt-what-can-chat-gpt-do/</link>
+      <link>http://localhost:1313/post/chatgpt-what-can-chat-gpt-do/</link>
       <pubDate>Mon, 29 May 2023 13:58:50 +0700</pubDate>
-      
-      <guid>https://nextjsvietnam.com/post/chatgpt-what-can-chat-gpt-do/</guid>
-      <description>What is ChatGPT? Language Model Instruction Tuning Common GPT Apps Companionship (Bạn đồng hành) Questions and Answers Creativity Multistep Planning (AutoGPT, BabyAGI) </description>
+      <guid>http://localhost:1313/post/chatgpt-what-can-chat-gpt-do/</guid>
+      <description>&lt;h2 id=&#34;what-is-chatgpt&#34;&gt;What is ChatGPT?&lt;/h2&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://user-images.githubusercontent.com/31009750/241668466-33016b20-e8fd-4c56-b500-f5b87ba386e8.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;&#xA;&lt;h3 id=&#34;language-model&#34;&gt;Language Model&lt;/h3&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://user-images.githubusercontent.com/31009750/241709199-52e79fa4-ec63-4b25-8f87-6f1a70270c66.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;&#xA;&lt;h3 id=&#34;instruction-tuning&#34;&gt;Instruction Tuning&lt;/h3&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://user-images.githubusercontent.com/31009750/241709554-5adc7d45-d068-4cc1-ba72-a1832de48351.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;common-gpt-apps&#34;&gt;Common GPT Apps&lt;/h2&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://user-images.githubusercontent.com/31009750/241709734-32a3f739-699d-46f6-b5df-a6e34fe85e1d.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;&#xA;&lt;h3 id=&#34;companionship-bạn-đồng-hành&#34;&gt;Companionship (Bạn đồng hành)&lt;/h3&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://user-images.githubusercontent.com/31009750/241709939-e0789f7f-5e01-4e05-bc94-537039d3234d.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://user-images.githubusercontent.com/31009750/241710249-ae2a1953-69aa-48f2-8101-f6f3abf770f9.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;&#xA;&lt;h3 id=&#34;questions-and-answers&#34;&gt;Questions and Answers&lt;/h3&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://user-images.githubusercontent.com/31009750/241712723-fdc5cc99-a231-49de-814b-7dfb60fc50c6.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://user-images.githubusercontent.com/31009750/241713286-a248c389-9ff5-41cb-adbb-6e5d51ac1ab7.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;&#xA;&lt;h3 id=&#34;creativity&#34;&gt;Creativity&lt;/h3&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://user-images.githubusercontent.com/31009750/241713998-8f52366c-ba0c-44af-9091-2a69b8525d68.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://user-images.githubusercontent.com/31009750/241714674-a2325c4d-be02-4a89-85bf-39b5b606b86e.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;&#xA;&lt;h3 id=&#34;multistep-planning-autogpt-babyagi&#34;&gt;Multistep Planning (AutoGPT, BabyAGI)&lt;/h3&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://user-images.githubusercontent.com/31009750/241714577-d2c3d8f7-12ef-421f-bf43-468578824325.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://user-images.githubusercontent.com/31009750/241714749-ac9d8ab9-d0b6-4aaa-8ed3-3b982d956242.png&#34; alt=&#34;image&#34;&gt;&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

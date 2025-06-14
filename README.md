@@ -3,6 +3,8 @@
 ## Theme Development
 
 ```bash
+# install hugo
+brew install hugo
 # Run hugo site
 hugo serve
 # Watch change theme assset

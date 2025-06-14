@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>design-patterns on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
-    <link>https://nextjsvietnam.com/tags/design-patterns/</link>
-    <description>Recent content in design-patterns on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <title>Design-Patterns on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</title>
+    <link>http://localhost:1313/tags/design-patterns/</link>
+    <description>Recent content in Design-Patterns on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 20 Jul 2022 09:04:00 +0700</lastBuildDate><atom:link href="https://nextjsvietnam.com/tags/design-patterns/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 20 Jul 2022 09:04:00 +0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/design-patterns/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Java for Pre Intermediate</title>
-      <link>https://nextjsvietnam.com/post/java-for-pre-intermediate/</link>
+      <link>http://localhost:1313/post/java-for-pre-intermediate/</link>
       <pubDate>Wed, 20 Jul 2022 09:04:00 +0700</pubDate>
-      
-      <guid>https://nextjsvietnam.com/post/java-for-pre-intermediate/</guid>
-      <description>Java Advanced APIs Java EE Essentials Java EE Tutorial References Java point EE </description>
+      <guid>http://localhost:1313/post/java-for-pre-intermediate/</guid>
+      <description>&lt;h2 id=&#34;java-advanced-apis&#34;&gt;Java Advanced APIs&lt;/h2&gt;&#xA;&lt;h2 id=&#34;java-ee-essentials&#34;&gt;Java EE Essentials&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://docs.oracle.com/javaee/7/tutorial/&#34;&gt;Java EE Tutorial&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://www.javatpoint.com/java-ee&#34;&gt;Java point EE&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
     </item>
-    
   </channel>
 </rss>
