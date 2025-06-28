@@ -3,7 +3,25 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://localhost:1313/categories/</loc>
-    <lastmod>2024-05-20T08:51:24+07:00</lastmod>
+    <lastmod>2025-06-28T15:19:22+07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/java/</loc>
+    <lastmod>2025-06-28T15:19:22+07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/java/</loc>
+    <lastmod>2025-06-28T15:19:22+07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/post/java-tutorial-2025-day-01/</loc>
+    <lastmod>2025-06-28T15:19:22+07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/post/</loc>
+    <lastmod>2025-06-28T15:19:22+07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2025-06-28T15:19:22+07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/</loc>
+    <lastmod>2025-06-28T15:19:22+07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/post/khoa-hoc-nextjs-bai-03-advanced-routing/</loc>
     <lastmod>2024-05-20T08:51:24+07:00</lastmod>
@@ -12,15 +30,6 @@
     <lastmod>2024-05-20T08:51:24+07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/nextjs-tutorial/</loc>
-    <lastmod>2024-05-20T08:51:24+07:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/post/</loc>
-    <lastmod>2024-05-20T08:51:24+07:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/</loc>
-    <lastmod>2024-05-20T08:51:24+07:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/</loc>
     <lastmod>2024-05-20T08:51:24+07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/post/6minutes-tech-graphql/</loc>
@@ -37,12 +46,6 @@
   </url><url>
     <loc>http://localhost:1313/post/6minutes-tech-progressive-web-app/</loc>
     <lastmod>2024-05-15T10:02:21+07:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/categories/java/</loc>
-    <lastmod>2024-05-08T09:16:47+07:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/java/</loc>
-    <lastmod>2024-05-08T09:16:47+07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/post/java-servlet/</loc>
     <lastmod>2024-05-08T09:16:47+07:00</lastmod>

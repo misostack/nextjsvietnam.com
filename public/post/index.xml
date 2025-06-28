@@ -6,8 +6,15 @@
     <description>Recent content in Posts on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 20 May 2024 08:51:24 +0700</lastBuildDate>
+    <lastBuildDate>Sat, 28 Jun 2025 15:19:22 +0700</lastBuildDate>
     <atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java Tutorial 2025 Day 01</title>
+      <link>http://localhost:1313/post/java-tutorial-2025-day-01/</link>
+      <pubDate>Sat, 28 Jun 2025 15:19:22 +0700</pubDate>
+      <guid>http://localhost:1313/post/java-tutorial-2025-day-01/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;image-2.png&#34; alt=&#34;alt text&#34;&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Khoá học NextJS Bài 03 - Advanced Routing</title>
       <link>http://localhost:1313/post/khoa-hoc-nextjs-bai-03-advanced-routing/</link>

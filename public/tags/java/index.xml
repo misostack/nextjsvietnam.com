@@ -6,8 +6,15 @@
     <description>Recent content in Java on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 08 May 2024 09:16:47 +0700</lastBuildDate>
+    <lastBuildDate>Sat, 28 Jun 2025 15:19:22 +0700</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java Tutorial 2025 Day 01</title>
+      <link>http://localhost:1313/post/java-tutorial-2025-day-01/</link>
+      <pubDate>Sat, 28 Jun 2025 15:19:22 +0700</pubDate>
+      <guid>http://localhost:1313/post/java-tutorial-2025-day-01/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;image-2.png&#34; alt=&#34;alt text&#34;&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Java Servlet</title>
       <link>http://localhost:1313/post/java-servlet/</link>
