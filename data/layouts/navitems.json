@@ -84,6 +84,11 @@
         "name": "NextJS Tutorial",
         "url": "categories/nextjs-tutorial",
         "childrens": []
+      },
+      {
+        "name": "Java Tutorial",
+        "url": "categories/java",
+        "childrens": []
       }
     ]
   },
