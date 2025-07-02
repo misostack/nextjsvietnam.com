@@ -1,5 +1,5 @@
 ---
-title: "Java Tutorial 2025 Day 01"
+title: "Java Tutorial 2025 Day 01: Hello CLI"
 type: "post"
 date: 2025-06-28T15:19:22+07:00
 description: "Java Tutorial 2025 Day 01"
@@ -8,6 +8,10 @@ categories: ["java"]
 tags: ["java"]
 image: /articles/java-tutorial-2025-day-01/001.png
 ---
+
+### SourceCode
+
+- [Source code](https://github.com/RefactorEveryThing/ret_java_cli_001)
 
 **Create Main App**
 
