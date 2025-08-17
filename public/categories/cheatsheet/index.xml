@@ -6,8 +6,15 @@
     <description>Recent content in Cheatsheet on Useful NodeJS Tricks, JavaScript Tips, Tricks and Best Practices</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 19 May 2024 08:35:31 +0700</lastBuildDate>
+    <lastBuildDate>Sat, 16 Aug 2025 21:34:58 +0700</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/cheatsheet/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>6minutes Tech Rag</title>
+      <link>http://localhost:1313/post/6minutes-tech-rag/</link>
+      <pubDate>Sat, 16 Aug 2025 21:34:58 +0700</pubDate>
+      <guid>http://localhost:1313/post/6minutes-tech-rag/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;image-2.png&#34; alt=&#34;alt text&#34;&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://aws.amazon.com/what-is/retrieval-augmented-generation/&#34;&gt;https://aws.amazon.com/what-is/retrieval-augmented-generation/&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://cloud.google.com/use-cases/retrieval-augmented-generation?hl=en&#34;&gt;https://cloud.google.com/use-cases/retrieval-augmented-generation?hl=en&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://aws.amazon.com/blogs/machine-learning/from-concept-to-reality-navigating-the-journey-of-rag-from-proof-of-concept-to-production/&#34;&gt;https://aws.amazon.com/blogs/machine-learning/from-concept-to-reality-navigating-the-journey-of-rag-from-proof-of-concept-to-production/&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+    </item>
     <item>
       <title>6minutes Tech Graphql</title>
       <link>http://localhost:1313/post/6minutes-tech-graphql/</link>

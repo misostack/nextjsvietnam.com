@@ -2,8 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://localhost:1313/post/6minutes-tech-rag/</loc>
+    <lastmod>2025-08-16T21:34:58+07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/6minutes-tech/</loc>
+    <lastmod>2025-08-16T21:34:58+07:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/categories/</loc>
-    <lastmod>2025-07-02T13:49:22+07:00</lastmod>
+    <lastmod>2025-08-16T21:34:58+07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/cheatsheet/</loc>
+    <lastmod>2025-08-16T21:34:58+07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/post/</loc>
+    <lastmod>2025-08-16T21:34:58+07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/</loc>
+    <lastmod>2025-08-16T21:34:58+07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/java/</loc>
     <lastmod>2025-07-02T13:49:22+07:00</lastmod>
@@ -14,13 +29,10 @@
     <loc>http://localhost:1313/post/java-tutorial-2025-day-02/</loc>
     <lastmod>2025-07-02T13:49:22+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/post/</loc>
+    <loc>http://localhost:1313/post/java-tutorial-2025-day-03/</loc>
     <lastmod>2025-07-02T13:49:22+07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/</loc>
-    <lastmod>2025-07-02T13:49:22+07:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/</loc>
     <lastmod>2025-07-02T13:49:22+07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/post/java-tutorial-2025-day-01/</loc>
@@ -36,12 +48,6 @@
     <lastmod>2024-05-20T08:51:24+07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/post/6minutes-tech-graphql/</loc>
-    <lastmod>2024-05-19T08:35:31+07:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/categories/6minutes-tech/</loc>
-    <lastmod>2024-05-19T08:35:31+07:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/categories/cheatsheet/</loc>
     <lastmod>2024-05-19T08:35:31+07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/post/khoa-hoc-nextjs-bai-02-cau-truc-du-an-nextjs/</loc>
