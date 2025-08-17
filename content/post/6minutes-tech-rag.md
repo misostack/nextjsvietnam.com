@@ -6,7 +6,7 @@ description: "Without RAG, the LLM takes the user input and creates a response b
 keywords: ["6minutes Tech Rag"]
 categories: ["cheatsheet", "6minutes-tech"]
 tags: []
-image: "/common/no-image.png"
+image: "https://gist.github.com/user-attachments/assets/f381b263-1055-42e6-883d-049db387f411"
 ---
 
 ## LLM
