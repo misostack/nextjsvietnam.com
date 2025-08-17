@@ -87,6 +87,21 @@ Utilizing mentorship or buddy systems.
 
 ![alt text](https://docs.aws.amazon.com/images/sagemaker/latest/dg/images/jumpstart/jumpstart-fm-rag.jpg)
 
+Common usecases:
+
+1. Provided enhanced context for internal informations
+2. Optimize enhanced context for large internal knowledge base
+
+### Provided enhanced context for internal informations
+
+### Optimize enhanced context for large internal knowledge base
+
+Let's say you have 10,000 products in your database. If you feed the LLM with the context of 10,000 products included details every conversation. It is not viable solution and the tokens for each question will be exploded, and you will be bankrupt immediately.
+
+The main idea for an assistant chatbox like this is build your internal knowledge base, process the internal query from user question to find the relevant products and feed for the LLM. You should have process to retrieve necessary information from the customer to build the appropriated internal queries.
+
+![Optimize Enhanced Context for LLM from Large Knowledge Base](https://gist.github.com/user-attachments/assets/b4ca75ea-7223-461f-bee7-c59038ea5f01)
+
 ## References
 
 - https://aws.amazon.com/what-is/retrieval-augmented-generation/
