@@ -70,11 +70,19 @@ Utilizing mentorship or buddy systems.
 
 ```
 
-<img width="1714" height="970" alt="image" src="https://gist.github.com/user-attachments/assets/579f641c-0aa2-493b-afbf-4ef870bea8cd" />
+> And after we feed ChatGPT with context
 
-<img width="1634" height="482" alt="image" src="https://gist.github.com/user-attachments/assets/d58f8916-d5c4-4a4b-aa86-3a3220471261" />
+**Company information**
 
-<img width="1826" height="340" alt="image" src="https://gist.github.com/user-attachments/assets/eefb63e7-0037-41b0-8fff-bb095248ca1b" />
+![LLM](https://gist.github.com/user-attachments/assets/579f641c-0aa2-493b-afbf-4ef870bea8cd)
+
+**Onboarding process**
+
+![LLM](https://gist.github.com/user-attachments/assets/d58f8916-d5c4-4a4b-aa86-3a3220471261)
+
+**Unknown question**
+
+![LLM](https://gist.github.com/user-attachments/assets/eefb63e7-0037-41b0-8fff-bb095248ca1b)
 
 ## RAG
 
