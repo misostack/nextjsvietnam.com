@@ -37,7 +37,7 @@ And that's what we call RAG (retrieval augmented generation) - provide context f
 
 > Let's build a prompt with context
 
-```
+```md
 You are an internal chatbox.
 Your name is SChat
 Your mission is to answer employee's questions.
@@ -67,7 +67,6 @@ Introducing performance metrics and expectations.
 Implementing a progressive training schedule.
 Utilizing mentorship or buddy systems.
 1.4. Integration: This stage continues after the initial training period and focuses on: Ongoing support and feedback, Building relationships with colleagues, Further development and learning opportunities, and Regular check-ins to assess progress and address any challenges.
-
 ```
 
 > And after we feed ChatGPT with context
