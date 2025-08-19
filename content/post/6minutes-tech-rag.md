@@ -102,6 +102,30 @@ The main idea for an assistant chatbox like this is build your internal knowledg
 
 ![Optimize Enhanced Context for LLM from Large Knowledge Base](https://gist.github.com/user-attachments/assets/b4ca75ea-7223-461f-bee7-c59038ea5f01)
 
+Let's dive in "implementation"
+
+- [x] Create your products
+- [x] Create your product knowledge base
+- [x] Create insight questions
+- [x] Build prompt and enhanced context
+- [x] Test expected outputs
+
+To make it simple, we're providing some simple scope below:
+
+I. Product includes: name, price, gender, category, short description
+
+II. Insight questions
+
+1. Q1: Do you have any options in your mind already?
+
+2. Q2: Are you buying this product for yourself or for someone else?
+
+3. Q3: Which gender are you looking for products for?
+
+4. Q4: What product category do you want to find?
+
+5. Q5: Do you have any special requests regarding color or shape?
+
 ## References
 
 - https://aws.amazon.com/what-is/retrieval-augmented-generation/
